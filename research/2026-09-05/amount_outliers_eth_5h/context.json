@@ -1,6 +1,6 @@
 {
   "asof": {
-    "observed_at": "2026-09-05T17:23:18.277932+00:00",
+    "observed_at": "2026-09-05T21:51:23.889588+00:00",
     "pinned_block": 25912299
   },
   "code": {
@@ -898,6 +898,9 @@
       "is_contract": true,
       "minimal_proxy_target": null
     },
+    "0x8f40082c34812db98681c63db3bbeb29dbe871a7": {
+      "error": "{'jsonrpc': '2.0', 'id': 2, 'error': {'code': -32603, 'message': 'Internal error'}}"
+    },
     "0x8f5835e9d756c9bd934bce527157a4b0ef3c5cb7": {
       "code_bytes": 6586,
       "eip7702_delegate": null,
@@ -1324,11 +1327,17 @@
       "is_contract": true,
       "minimal_proxy_target": null
     },
+    "0xd315a9c38ec871068fec378e4ce78af528c76293": {
+      "error": "{'jsonrpc': '2.0', 'id': 3, 'error': {'code': -32603, 'message': 'Internal error'}}"
+    },
     "0xd37bbe5744d730a1d98d8dc97c42f0ca46ad7146": {
       "code_bytes": 5141,
       "eip7702_delegate": null,
       "is_contract": true,
       "minimal_proxy_target": null
+    },
+    "0xd4fa2d31b7968e448877f69a96de69f5de8cd23e": {
+      "error": "{'jsonrpc': '2.0', 'id': 4, 'error': {'code': -32603, 'message': 'Internal error'}}"
     },
     "0xd5bcd78cdea44d898cffe3a37b3c53aa66bfba99": {
       "code_bytes": 0,
@@ -1521,6 +1530,9 @@
       "eip7702_delegate": null,
       "is_contract": true,
       "minimal_proxy_target": null
+    },
+    "0xf6b4cbf5f6211645cb251ab5e111f0a8881259ec": {
+      "error": "{'jsonrpc': '2.0', 'id': 5, 'error': {'code': -32603, 'message': 'Internal error'}}"
     },
     "0xf6f8863ec07b3c427dfa19419863fba02d93378a": {
       "code_bytes": 0,
@@ -1771,6 +1783,13 @@
       "logs": 0,
       "status_ok": true
     },
+    "0x53b3d3efbaef177d98068dd9927aafb3615d6421f68e121bb476d8424734e6fe": {
+      "contract_address": null,
+      "effective_gas_price_wei": 122372387,
+      "gas_used": 285577,
+      "logs": 8,
+      "status_ok": true
+    },
     "0x55114460ee91ab4bbb48c7090e8b7d06cb5f18f3a3982facaea7b395d618d1a9": {
       "contract_address": null,
       "effective_gas_price_wei": 1521066185,
@@ -1881,6 +1900,13 @@
       "effective_gas_price_wei": 2108576717,
       "gas_used": 79295,
       "logs": 1,
+      "status_ok": true
+    },
+    "0x7112aefaf1c053491953def1c60e9e293dc5514846ee85f6f5091b0fd84567db": {
+      "contract_address": null,
+      "effective_gas_price_wei": 74633838,
+      "gas_used": 766427,
+      "logs": 31,
       "status_ok": true
     },
     "0x71321e5a0edfaaf685b664f92e5164dd03cb860dc5f69c6b2cc02d951ba58a07": {
@@ -2283,6 +2309,11 @@
       "name_untrusted": "Lighter",
       "symbol_untrusted": "LIT"
     },
+    "0x23878914efe38d27c4d67ab83ed1b93a74d4086a": {
+      "decimals": null,
+      "name_untrusted": null,
+      "symbol_untrusted": null
+    },
     "0x28b3a8fb53b741a8fd78c0fb9a6b2393d896a43d": {
       "decimals": 6,
       "name_untrusted": "Spark Savings USDC",
@@ -2313,6 +2344,11 @@
       "name_untrusted": "Pepe",
       "symbol_untrusted": "PEPE"
     },
+    "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2": {
+      "decimals": null,
+      "name_untrusted": null,
+      "symbol_untrusted": null
+    },
     "0x6df1c1e379bc5a00a7b4c6e67a203333772f45a8": {
       "decimals": 6,
       "name_untrusted": "Aave Ethereum Variable Debt USDT",
@@ -2323,15 +2359,30 @@
       "name_untrusted": "Aave Ethereum Variable Debt USDC",
       "symbol_untrusted": "variableDebtEthUSDC"
     },
+    "0x7bc3485026ac48b6cf9baf0a377477fff5703af8": {
+      "decimals": null,
+      "name_untrusted": null,
+      "symbol_untrusted": null
+    },
     "0x865377367054516e17014ccded1e7d814edc9ce4": {
       "decimals": 18,
       "name_untrusted": "Dola USD Stablecoin",
       "symbol_untrusted": "DOLA"
     },
+    "0x8798249c2e607446efb7ad49ec89dd1865ff4272": {
+      "decimals": null,
+      "name_untrusted": null,
+      "symbol_untrusted": null
+    },
     "0x967da4048cd07ab37855c090aaf366e4ce1b9f48": {
       "decimals": 18,
       "name_untrusted": "Ocean Token",
       "symbol_untrusted": "OCEAN"
+    },
+    "0x98c23e9d8f34fefb1b7bd6a91b7ff122f4e16f5c": {
+      "decimals": null,
+      "name_untrusted": null,
+      "symbol_untrusted": null
     },
     "0xa0246c9032bc3a600820415ae600c6388619a14d": {
       "decimals": 18,
@@ -2362,6 +2413,11 @@
       "decimals": 18,
       "name_untrusted": "RedSonic Vault Ethereum",
       "symbol_untrusted": "rsvETH"
+    },
+    "0xd4fa2d31b7968e448877f69a96de69f5de8cd23e": {
+      "decimals": null,
+      "name_untrusted": null,
+      "symbol_untrusted": null
     },
     "0xdef1ca1fb7fbcdc777520aa7f396b4e015f497ab": {
       "decimals": 18,

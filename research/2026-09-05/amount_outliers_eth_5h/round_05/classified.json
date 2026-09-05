@@ -25,7 +25,7 @@
     "unknown": 1010,
     "unknown_usd": "93555335.30"
   },
-  "generated_at": "2026-09-05T21:48:14.038878+00:00",
+  "generated_at": "2026-09-05T21:42:15.067992+00:00",
   "groups": [
     {
       "group": "exchange_flow",
@@ -546,11 +546,6 @@
             6
           ]
         ],
-        "resulting_account_states": {
-          "debt_remaining": 1,
-          "positive_balance": 4,
-          "zero_balance": 1
-        },
         "role_examples": [
           {
             "called_contract": "0xf8b2c637a68cf6a17b1df9f8992eebeff63d2dff",
@@ -606,7 +601,7 @@
       "share_usd_pct": 0.37,
       "sum_usd": "5636931.65",
       "transactions": 6,
-      "what": "An asset enters DolomiteMargin, which credits a numbered internal account. A deposit may increase supplied principal or reduce an existing debt; the signed resulting balance distinguishes these cases. Proxy routing legs are one deposit, not additional capital."
+      "what": "USDC passes through a deposit proxy into DolomiteMargin, which credits a numbered account. The account balance is an internal signed principal record, so a second ERC-20 share transfer is not required. The two transfer legs are one deposit."
     },
     {
       "group": "settlement",
@@ -11453,7 +11448,7 @@
             "transactions": 1
           },
           {
-            "address": "0x3b98b9e9cb75c1cb1729aab8f09ced2936505e4f",
+            "address": "0x982a4652e3e63ef86556432682e3093c5257ec46",
             "sum_usd": "5500241.40",
             "transactions": 3
           }

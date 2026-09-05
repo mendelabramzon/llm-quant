@@ -1,0 +1,73 @@
+{
+  "checks": {
+    "all_five_hour_buckets": true,
+    "all_investigations_present": true,
+    "all_packets_have_review_notes": true,
+    "all_unknown_clusters_retained": true,
+    "candidate_and_label_counts": true,
+    "candidate_statuses": true,
+    "canonical_hash_sample": true,
+    "collection_verified": true,
+    "ethereum_mainnet": true,
+    "five_hour_prices": true,
+    "five_hours": true,
+    "group_totals": true,
+    "interpretation_regressions": true,
+    "native_receipts_success": true,
+    "no_implied_prices": true,
+    "no_rule_errors": true,
+    "packet_receipts_success": true,
+    "primary_labels_replay": true,
+    "raw_census_totals": true,
+    "regression_unit_tests": true,
+    "selection_recomputes": true,
+    "signed_account_states": true,
+    "usd_totals": true,
+    "verified_decimals": true,
+    "zero_not_a_holder": true
+  },
+  "checks_passed": 25,
+  "coverage": {
+    "classified": 9160,
+    "classified_usd": "1437774162.22",
+    "coverage_count_pct": 90.07,
+    "coverage_usd_pct": 93.89,
+    "residue_clusters": 472,
+    "sum_usd": "1531329497.52",
+    "transactions": 10170,
+    "types_in_registry": 58,
+    "types_with_occurrences": 54,
+    "unknown": 1010,
+    "unknown_usd": "93555335.30"
+  },
+  "interpretation": "Consistency checks and targeted regressions; not independent classification-accuracy measurement.",
+  "known_case_regressions": {
+    "0x0fff7095c88bae0c4fc9ee2d14038b803e17f36c349dcde31cb9c9ab6cbd62f8": "operator_token_batch",
+    "0x84421f1ca5d985b7c4fdd57e4d20fb947bdb8ad9aaaf99833e2e29b8ff5d3655": "unknown",
+    "0x90c68d21460c9752b8bbe536a8e052627b0069c71299cc908d177288d28891df": "lending_with_swap",
+    "0xaef5aedfe316784db2413644b75ab893babaaa40dee154bd7e2fbb4430304749": "flash_funded_lending",
+    "0xb48219e059fd1c60de893fbae1583b71909dd380b4a35fa8d2581a2acd9ecb58": "cow_settlement",
+    "0xbfab93a1d6f770012c597a6e9d20cd515028da66f9db0733b36c717156689519": "dolomite_account_deposit",
+    "0xfb3c8db76ae820d5b0f9478c3f381318f93c1ce0a0e0000fb7d261e568cd4bb5": "liquidity_collect_only",
+    "0xfcb06a2e24b43beadff24dca822a2e9f6abfb58f74faf45ab7e7df3410a7addd": "bridge_out",
+    "0xfec01dde6895fad8be1546bfbb88bf41ba3a2a3ee45c6e853af05814e60faa40": "contract_token_execution"
+  },
+  "scope": {
+    "end_exclusive": "2026-09-05T16:22:48+00:00",
+    "start": "2026-09-05T11:22:48+00:00"
+  },
+  "source_sha256": {
+    "amount_outliers.py": "bdbcf266c8a2d7a21cbcc40b8fe594fedc1c908f71d400cc57705189e58c29ae",
+    "analyze_onchain.py": "29a6e2d5a6423f3dd3962c324b1a0f51940e74ab5a7e2da979a353a5f5de9266",
+    "enrich_cases.py": "6c84fa74179bcb021519eff7c659e39172f3f58994c75a2a67ce187803f9d065",
+    "eth_day_collect.py": "8bd1c9da2502fadd607ad80cbe597d7b8583c76351840e0c04c1246561d62b32",
+    "gas_outliers.py": "5229c6d2fec63b63b0bba41c43e036acdf68090fdc1ab34004d9bba079b65ece",
+    "onchain_probe.py": "9b6f6fac7ea976be7e4b8cc29bed3c7f176fcce542856143386924a897da2681",
+    "signatures.py": "fcdcd43607a5b04122ed1fa1fb489d1ce75e51b5ef0b03ff89c4279f18f4c98e",
+    "test_tx_types.py": "d404f7bcb184f78376dc1a644f527062a03789595cd285d9c37f90900b9590fb",
+    "tx_types.py": "67836573c1a8bfd5c0ce1cdf7d99fb93c8a22b5e99f03921d9586c0e49d6326d",
+    "type_registry.py": "b4b644da61ca57aec4051381e3ca13933826905cfa75be83a408c198ebc4d09a",
+    "validate.py": "b1ef2da30f2b18b7444ad869f4743aa2087daeb00a31e9377efe8eebece6658d"
+  },
+  "unit_tests": 7
+}

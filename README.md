@@ -84,4 +84,20 @@ The day: 7,173 blocks, 1,793,396 transactions, 5,962,702 logs; 67,572 transactio
 
 Outputs live in `research/2026-09-05/amount_outliers_eth_day/`: `letter.md` and `report.md` are the deliverables; `qual_notes.md` holds the LLM's notes keyed by transaction hash (with `synthesis`, `feedback` and `type` sections); `classified.json`, `residue.json`, `packets.json`, `investigations.jsonl.gz`, `all_matches_by_hash.json.gz`, `types_by_hash.json.gz`, `rounds.json` and `round_0X/` are the quant artifacts; `stats.json`, `prices.json`, `native_status.json`, `context.json`, `unknown_topics.json` and `addresses.json.gz` are inputs and lookups; `txs_big.jsonl.gz` (26 MB) is the selected population with full features. The full census `txs_all.jsonl.gz` (426 MB) and the raw blocks and logs (1.0 GB) are ignored by git; the block and log hashes are in the collection manifests. All RPC use is read-only on the first local key; keys are never written to outputs.
 
-Codex's five-hour run (`research/2026-09-05/eth_5h`, `research/2026-09-05/amount_outliers_eth_5h`) is kept as the origin of the inherited registry; its `method.md` describes the learning cycle and its `round_0X/` archives the registry after each of its four rounds.
+Codex's five-hour run (`research/2026-09-05/eth_5h`, `research/2026-09-05/amount_outliers_eth_5h`) is kept as the origin of the inherited registry; its `method.md` describes the learning cycle and its `round_0X/` archives its discovery and audit rounds.
+
+
+## Completed five-hour Ethereum mainnet study
+
+The [five-hour research memo](research/2026-09-05/amount_outliers_eth_5h/letter.md) covers 5 September 2026, 11:22:48–16:22:48 UTC: 392,428 transactions, 10,170 amount candidates, 54 observed primary categories, and 90.07% rule coverage. Twelve rules were learned through qualitative investigation. The [full report](research/2026-09-05/amount_outliers_eth_5h/report.md), [notes](research/2026-09-05/amount_outliers_eth_5h/qual_notes.md) and [validation](research/2026-09-05/amount_outliers_eth_5h/validation.json) retain evidence and uncertainty.
+
+The final [frozen replay](research/2026-09-05/amount_outliers_eth_5h/replay/README.md) preserves this study independently of the separate day-long work in `scripts/`. Its defaults use the five-hour data and disable implied prices. From the repository root:
+
+```sh
+uv run python research/2026-09-05/amount_outliers_eth_5h/replay/tx_types.py scan
+uv run python research/2026-09-05/amount_outliers_eth_5h/replay/tx_types.py classify --audit-known --label 'five-hour replay'
+uv run python research/2026-09-05/amount_outliers_eth_5h/replay/tx_types.py render
+uv run python research/2026-09-05/amount_outliers_eth_5h/replay/validate.py
+```
+
+Known rules investigate every selected occurrence; unresolved clusters produce LLM evidence packets. The LLM review is performed separately and its learned rules are retained. Coverage measures rule matches, not verified economic intent or classifier accuracy. Earlier rounds document discovery; round 7 records the completed feature scan and the final signed-account interpretation.

@@ -1,0 +1,2878 @@
+{
+  "scope": "Saved five-hour Ethereum window only; retrospective marks; no realized PnL",
+  "inputs_sha256": {
+    "txs_big.jsonl.gz": "6927b59d32784b0c7b14ae101d14f1c788bf2a844a70a547a6a9e7511fdc763c",
+    "types_by_hash.json.gz": "6c73d3e4cd809d804e703756bf031fbf7fc0fb6e0cd9e06dc431eb0a3bc9569e",
+    "all_matches_by_hash.json.gz": "e4d3be393a69e0159a0a30cb8fcc3c1f724f4effa17564638322406af7f14fb6"
+  },
+  "primary_types": {
+    "aave_v3_op": {
+      "count": 322,
+      "sum_largest_change_usd": "84964275.94",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0xc98b5ef1ab3587e2c53013c822252578b9a056e2",
+          "destination": "0xaf6e0473f86360a91fc88564927372cdf999b8ad",
+          "count": 18,
+          "sum_largest_change_usd": "16669681.85"
+        },
+        {
+          "sender": "0x654fae4aa229d104cabead47e56703f58b174be4",
+          "destination": "0x000000000035b5e5ad9019092c665357240f594e",
+          "count": 9,
+          "sum_largest_change_usd": "15724431.60"
+        },
+        {
+          "sender": "0x17b6aa44f45a732487f95b524f15053e8149376f",
+          "destination": "0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+          "count": 11,
+          "sum_largest_change_usd": "8721848.64"
+        }
+      ]
+    },
+    "aster_treasury_deposit": {
+      "count": 17,
+      "sum_largest_change_usd": "4420782.90",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x12055d433c62e467144e5399d400a2fec29accac",
+          "destination": "0x604dd02d620633ae427888d41bfd15e38483736e",
+          "count": 1,
+          "sum_largest_change_usd": "1500040.90"
+        },
+        {
+          "sender": "0x22b7211627af2c37d212bcc55e0480e2167babf7",
+          "destination": "0x604dd02d620633ae427888d41bfd15e38483736e",
+          "count": 2,
+          "sum_largest_change_usd": "1155142.55"
+        },
+        {
+          "sender": "0xc40ca9847255a1b89ac50ee08555ec150a1e23a1",
+          "destination": "0x604dd02d620633ae427888d41bfd15e38483736e",
+          "count": 1,
+          "sum_largest_change_usd": "499929.65"
+        }
+      ]
+    },
+    "aster_treasury_withdrawal": {
+      "count": 10,
+      "sum_largest_change_usd": "5693827.86",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x1cbba42a845eb24f404c4a2498fdd1a2718b8c22",
+          "destination": "0x604dd02d620633ae427888d41bfd15e38483736e",
+          "count": 5,
+          "sum_largest_change_usd": "4519092.08"
+        },
+        {
+          "sender": "0xef9c62ed74150c63d07573e5f9140107166777ab",
+          "destination": "0x604dd02d620633ae427888d41bfd15e38483736e",
+          "count": 5,
+          "sum_largest_change_usd": "1174735.78"
+        }
+      ]
+    },
+    "atomic_arbitrage": {
+      "count": 4,
+      "sum_largest_change_usd": "80090.95",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0xf6b4cbf5f6211645cb251ab5e111f0a8881259ec",
+          "destination": "0x8f40082c34812db98681c63db3bbeb29dbe871a7",
+          "count": 2,
+          "sum_largest_change_usd": "31005.97"
+        },
+        {
+          "sender": "0xd37e02228f6f78d48092dafb5c2ae12123dea693",
+          "destination": "0x8f40082c34812db98681c63db3bbeb29dbe871a7",
+          "count": 1,
+          "sum_largest_change_usd": "28451.63"
+        },
+        {
+          "sender": "0x500f6a008c52afd69faa15dcbf8f632aba02e704",
+          "destination": "0xc95f529f34cae611da066bb96eee5b62e027414b",
+          "count": 1,
+          "sum_largest_change_usd": "20633.35"
+        }
+      ]
+    },
+    "batch_payout": {
+      "count": 120,
+      "sum_largest_change_usd": "11146561.04",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x7830c87c02e56aff27fa8ab1241711331fa86f43",
+          "destination": "0xa9d1e08c7793af67e9d92fe308d5697fb81d3e43",
+          "count": 90,
+          "sum_largest_change_usd": "10503900.83"
+        },
+        {
+          "sender": "0xb23360ccdd9ed1b15d45e5d3824bb409c8d7c460",
+          "destination": "0x09c30cdcdd971423cb3ba757a47d56c35d06d818",
+          "count": 8,
+          "sum_largest_change_usd": "125238.21"
+        },
+        {
+          "sender": "0x963737c550e70ffe4d59464542a28604edb2ef9a",
+          "destination": "0xa3222357a0eccf60c73606170be6c99adecb59b3",
+          "count": 5,
+          "sum_largest_change_usd": "121574.35"
+        }
+      ]
+    },
+    "beacon_deposit": {
+      "count": 8,
+      "sum_largest_change_usd": "1859201.85",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0xc016184b209802dfeb30a6484c873f93d6009caa",
+          "destination": "0xad1d64a4e6a93b79581a8a0aa5816b6e4552b8bd",
+          "count": 1,
+          "sum_largest_change_usd": "1340890.03"
+        },
+        {
+          "sender": "0x44894aeee56c2dd589c1d5c8cb04b87576967f97",
+          "destination": "0x00000000219ab540356cbb839cbe05303d7705fa",
+          "count": 2,
+          "sum_largest_change_usd": "157364.88"
+        },
+        {
+          "sender": "0x0657b4bc1793bddbda1ad39e50d5c3aef3ca2439",
+          "destination": "0x8659eeff31cfcff580d37af8e7af250f8998aa83",
+          "count": 1,
+          "sum_largest_change_usd": "113106.01"
+        }
+      ]
+    },
+    "bridge_in": {
+      "count": 174,
+      "sum_largest_change_usd": "40151125.03",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x65c340eb0688d8f8b64e9c6d580f312a97b615d8",
+          "destination": "0x81d40f21f12a8f0e3252bccb954d722d4c464b64",
+          "count": 10,
+          "sum_largest_change_usd": "7337035.94"
+        },
+        {
+          "sender": "0xd0dcacd0135d463b553bf7ac8c68f32fa178c279",
+          "destination": "0x173272739bd7aa6e4e214714048a9fe699453059",
+          "count": 9,
+          "sum_largest_change_usd": "4466130.43"
+        },
+        {
+          "sender": "0x0e183f1d7286cc260761d15fc07514a39b5a36c2",
+          "destination": "0x173272739bd7aa6e4e214714048a9fe699453059",
+          "count": 9,
+          "sum_largest_change_usd": "3704287.02"
+        }
+      ]
+    },
+    "bridge_out": {
+      "count": 374,
+      "sum_largest_change_usd": "76308911.84",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x404335bce530400a5814375e7ec1fb55faff3ea2",
+          "destination": "0x852ded011285fe67063a08005c71a85690503cee",
+          "count": 1,
+          "sum_largest_change_usd": "16424299.60"
+        },
+        {
+          "sender": "0x65c340eb0688d8f8b64e9c6d580f312a97b615d8",
+          "destination": "0xbd3fa81b58ba92a82136038b25adec7066af3155",
+          "count": 12,
+          "sum_largest_change_usd": "10000593.12"
+        },
+        {
+          "sender": "0xb4db65281ea38f464b0ef804a1e63be1d4c87d02",
+          "destination": "0xca11bde05977b3631167028862be2a173976ca11",
+          "count": 2,
+          "sum_largest_change_usd": "8982124.67"
+        }
+      ]
+    },
+    "ccip_token_send": {
+      "count": 2,
+      "sum_largest_change_usd": "3331993.11",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0xca686974913389d42f3c5f61010503daccdb487a",
+          "destination": "0x80226fc0ee2b096224eeac085bb9a8cba1146f7d",
+          "count": 1,
+          "sum_largest_change_usd": "2315416.17"
+        },
+        {
+          "sender": "0xc98b5ef1ab3587e2c53013c822252578b9a056e2",
+          "destination": "0x80226fc0ee2b096224eeac085bb9a8cba1146f7d",
+          "count": 1,
+          "sum_largest_change_usd": "1016576.94"
+        }
+      ]
+    },
+    "compound_v3_op": {
+      "count": 10,
+      "sum_largest_change_usd": "810821.36",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x57747e525246afe00b3a6e19ed4cb0e462b20633",
+          "destination": "0xc3d688b66703497daa19211eedff47f25384cdc3",
+          "count": 1,
+          "sum_largest_change_usd": "320278.93"
+        },
+        {
+          "sender": "0xc98b5ef1ab3587e2c53013c822252578b9a056e2",
+          "destination": "0x852f79dad4e6c44a89be189dc3ecf51b3c5273c8",
+          "count": 1,
+          "sum_largest_change_usd": "173678.07"
+        },
+        {
+          "sender": "0xc7229cbbb10dfa06e0cade96c03d9128fc80d1fd",
+          "destination": "0xa17581a9e3356d9a858b789d68b4d866e593ae94",
+          "count": 1,
+          "sum_largest_change_usd": "61143.49"
+        }
+      ]
+    },
+    "contract_token_execution": {
+      "count": 210,
+      "sum_largest_change_usd": "50254062.14",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x11b113383ce08e84001dc614f141ae4c27221e31",
+          "destination": "0x445f16314284b43dfa1fd3cd77b9dea4a1bebd97",
+          "count": 45,
+          "sum_largest_change_usd": "21519053.28"
+        },
+        {
+          "sender": "0x28c6c06298d514db089934071355e5743bf21d60",
+          "destination": "0xee7ae85f2fe2239e27d9c1e23fffe168d63b4055",
+          "count": 82,
+          "sum_largest_change_usd": "12739925.33"
+        },
+        {
+          "sender": "0x7d328f5d5f4640f81b2f93d2903ec0a6c030eed6",
+          "destination": "0xd126a7c785c91834903630a33a64d4b74f867601",
+          "count": 6,
+          "sum_largest_change_usd": "3963390.83"
+        }
+      ]
+    },
+    "cow_settlement": {
+      "count": 89,
+      "sum_largest_change_usd": "11707567.83",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x5c3593481cba011737e36ded62f1797c9f6afce1",
+          "destination": "0x9008d19f58aabd9ed0d60971565aa8510560ab41",
+          "count": 6,
+          "sum_largest_change_usd": "3388506.68"
+        },
+        {
+          "sender": "0xa7842153fde380a864726d0e91f14f6ffab7d46c",
+          "destination": "0x9008d19f58aabd9ed0d60971565aa8510560ab41",
+          "count": 9,
+          "sum_largest_change_usd": "3036538.32"
+        },
+        {
+          "sender": "0x01441f809a807422641f59afcc18e22eaf7200d6",
+          "destination": "0x8f5835e9d756c9bd934bce527157a4b0ef3c5cb7",
+          "count": 2,
+          "sum_largest_change_usd": "1251025.85"
+        }
+      ]
+    },
+    "deposit_sweep": {
+      "count": 985,
+      "sum_largest_change_usd": "116338471.73",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0xb5e4d21240e9356cafc3a1261d10383f62dfc24e",
+          "destination": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "count": 6,
+          "sum_largest_change_usd": "19500855.86"
+        },
+        {
+          "sender": "0x3ab50d7bc82ef58b20d0f6cb0db0952e7642c22f",
+          "destination": "0x4df2c2afd20cadf42f03fdf1fefda8f3caf1b234",
+          "count": 1,
+          "sum_largest_change_usd": "12278328.50"
+        },
+        {
+          "sender": "0x77134cbc06cb00b66f4c7e623d5fdbf6777635ec",
+          "destination": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "count": 2,
+          "sum_largest_change_usd": "10000434.60"
+        }
+      ]
+    },
+    "dex_swap_contract": {
+      "count": 188,
+      "sum_largest_change_usd": "7552196.56",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0xae2fc483527b8ef99eb5d9b44875f005ba1fae13",
+          "destination": "0x1f2f10d1c40777ae1da742455c65828ff36df387",
+          "count": 17,
+          "sum_largest_change_usd": "2335663.37"
+        },
+        {
+          "sender": "0x5b43453fce04b92e190f391a83136bfbecedefd1",
+          "destination": "0xbdb3ba9ffe392549e1f8658dd2630c141fdf47b6",
+          "count": 37,
+          "sum_largest_change_usd": "1115707.01"
+        },
+        {
+          "sender": "0xd9d8f818a7a71ed0e1fe936b991508b0e88b1609",
+          "destination": "0xbdb3ba9ffe392549e1f8658dd2630c141fdf47b6",
+          "count": 12,
+          "sum_largest_change_usd": "662121.01"
+        }
+      ]
+    },
+    "dex_swap_direct_pool": {
+      "count": 2,
+      "sum_largest_change_usd": "80312.59",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x7338f383a39e25a529d940bf9bac1c20bd80071f",
+          "destination": "0xe521ba88837b2726e5343cca91ada6f19f356c45",
+          "count": 1,
+          "sum_largest_change_usd": "50202.20"
+        },
+        {
+          "sender": "0x694e137343d0e774478473578c4f560bb500f8b5",
+          "destination": "0xe521ba88837b2726e5343cca91ada6f19f356c45",
+          "count": 1,
+          "sum_largest_change_usd": "30110.39"
+        }
+      ]
+    },
+    "dex_swap_user": {
+      "count": 91,
+      "sum_largest_change_usd": "7251195.43",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0xc98b5ef1ab3587e2c53013c822252578b9a056e2",
+          "destination": "0x6a000f20005980200259b80c5102003040001068",
+          "count": 2,
+          "sum_largest_change_usd": "1121346.29"
+        },
+        {
+          "sender": "0xcb9240ff4a99e086f1843229fc7fe1ba7b30f941",
+          "destination": "0x0000000000001ff3684f28c67538d4d072c22734",
+          "count": 5,
+          "sum_largest_change_usd": "1000000.00"
+        },
+        {
+          "sender": "0xf9bd82c83cf3b4759a68379e094c4af680175d99",
+          "destination": "0x0000000000001ff3684f28c67538d4d072c22734",
+          "count": 1,
+          "sum_largest_change_usd": "1000000.00"
+        }
+      ]
+    },
+    "dolomite_account_deposit": {
+      "count": 6,
+      "sum_largest_change_usd": "5636931.65",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x1ed39244d59f3ee811d3f1997dd78e194ca1fa78",
+          "destination": "0xf8b2c637a68cf6a17b1df9f8992eebeff63d2dff",
+          "count": 1,
+          "sum_largest_change_usd": "4080051.82"
+        },
+        {
+          "sender": "0xe6705fccaf951870ef24463c88a81f31610efba4",
+          "destination": "0xf8b2c637a68cf6a17b1df9f8992eebeff63d2dff",
+          "count": 4,
+          "sum_largest_change_usd": "1502589.02"
+        },
+        {
+          "sender": "0x71389dacf73a752f16139f3a49f62569dfe215b0",
+          "destination": "0xf8b2c637a68cf6a17b1df9f8992eebeff63d2dff",
+          "count": 1,
+          "sum_largest_change_usd": "54290.81"
+        }
+      ]
+    },
+    "eip7702_delegated": {
+      "count": 31,
+      "sum_largest_change_usd": "2308096.77",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x39f6a6c85d39d5abad8a398310c52e7c374f2ba3",
+          "destination": "0x21bc354b5a5502df3097e8838eaab5eb0b06aac9",
+          "count": 3,
+          "sum_largest_change_usd": "1332146.54"
+        },
+        {
+          "sender": "0xfc04fb6b93e0550f1607d5927d7a4ccac36c0457",
+          "destination": "0x2228e5704b637131a3798a186caf18366c146f74",
+          "count": 3,
+          "sum_largest_change_usd": "241151.86"
+        },
+        {
+          "sender": "0x34d840ebc5a113f434baab7f0ecb53dde726b625",
+          "destination": "0x390bfb3f5fa74cdc47f6f6e690354c494021d7ca",
+          "count": 2,
+          "sum_largest_change_usd": "148800.81"
+        }
+      ]
+    },
+    "erc20_transfer_from": {
+      "count": 145,
+      "sum_largest_change_usd": "41911835.39",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x55fe002aeff02f77364de339a1292923a15844b8",
+          "destination": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "count": 19,
+          "sum_largest_change_usd": "25139125.55"
+        },
+        {
+          "sender": "0xb7a2d83d94fce4a4cc8f92c961af418d5c797565",
+          "destination": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "count": 2,
+          "sum_largest_change_usd": "2269193.21"
+        },
+        {
+          "sender": "0xdf899a960ad64c2ddcb59ebf0a30c2104841cd53",
+          "destination": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "count": 3,
+          "sum_largest_change_usd": "2009510.84"
+        }
+      ]
+    },
+    "erc4337_bundle": {
+      "count": 102,
+      "sum_largest_change_usd": "5013485.80",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0xce54f65abb8b61b83c14cbe97de97fce75bbf556",
+          "destination": "0x0000000071727de22e5e9d8baf0edac6f37da032",
+          "count": 13,
+          "sum_largest_change_usd": "1192152.73"
+        },
+        {
+          "sender": "0x81e3add2b2b6ee38558c8c5a347d4f79e7aeb98e",
+          "destination": "0x0000000071727de22e5e9d8baf0edac6f37da032",
+          "count": 8,
+          "sum_largest_change_usd": "812539.24"
+        },
+        {
+          "sender": "0xb00439e6f77af558c79005ee9d158df547490e88",
+          "destination": "0x0000000071727de22e5e9d8baf0edac6f37da032",
+          "count": 5,
+          "sum_largest_change_usd": "582740.63"
+        }
+      ]
+    },
+    "exchange_deposit": {
+      "count": 1322,
+      "sum_largest_change_usd": "184315141.24",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x4df2c2afd20cadf42f03fdf1fefda8f3caf1b234",
+          "destination": "0xa9d1e08c7793af67e9d92fe308d5697fb81d3e43",
+          "count": 1,
+          "sum_largest_change_usd": "12278328.45"
+        },
+        {
+          "sender": "0x7c1c091f8999eb921c45914ec48bd2d2fd7846ab",
+          "destination": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "count": 3,
+          "sum_largest_change_usd": "10500460.85"
+        },
+        {
+          "sender": "0x14681e4e26f1b5b5774ae3b7f694ff08bbbeb65c",
+          "destination": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "count": 2,
+          "sum_largest_change_usd": "10000434.60"
+        }
+      ]
+    },
+    "exchange_internal_transfer": {
+      "count": 43,
+      "sum_largest_change_usd": "41824269.64",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x28c6c06298d514db089934071355e5743bf21d60",
+          "destination": "0x21a31ee1afc51d94c2efccaa2092ad1028285549",
+          "count": 1,
+          "sum_largest_change_usd": "27336755.06"
+        },
+        {
+          "sender": "0x28c6c06298d514db089934071355e5743bf21d60",
+          "destination": "0xc5f0f7b66764f6ec8c8dff7ba683102295e16409",
+          "count": 1,
+          "sum_largest_change_usd": "6561106.16"
+        },
+        {
+          "sender": "0x28c6c06298d514db089934071355e5743bf21d60",
+          "destination": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+          "count": 1,
+          "sum_largest_change_usd": "3956555.58"
+        }
+      ]
+    },
+    "exchange_withdrawal": {
+      "count": 891,
+      "sum_largest_change_usd": "116292850.09",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x28c6c06298d514db089934071355e5743bf21d60",
+          "destination": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "count": 42,
+          "sum_largest_change_usd": "20802326.36"
+        },
+        {
+          "sender": "0x9696f59e4d72e237be84ffd425dcad154bf96976",
+          "destination": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "count": 30,
+          "sum_largest_change_usd": "7771306.70"
+        },
+        {
+          "sender": "0x05ff6964d21e5dae3b1010d5ae0465b3c450f381",
+          "destination": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "count": 1,
+          "sum_largest_change_usd": "7564056.91"
+        }
+      ]
+    },
+    "flash_funded_lending": {
+      "count": 10,
+      "sum_largest_change_usd": "17433394.36",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0xc98b5ef1ab3587e2c53013c822252578b9a056e2",
+          "destination": "0xaf6e0473f86360a91fc88564927372cdf999b8ad",
+          "count": 1,
+          "sum_largest_change_usd": "8191554.16"
+        },
+        {
+          "sender": "0x654fae4aa229d104cabead47e56703f58b174be4",
+          "destination": "0x000000000035b5e5ad9019092c665357240f594e",
+          "count": 2,
+          "sum_largest_change_usd": "6588926.46"
+        },
+        {
+          "sender": "0x3ee92cd00993a4488ae153ab41ac7947cbcbc1de",
+          "destination": "0x9205a569b0ff45df1e4f5ae48e21bc7f0656f0bb",
+          "count": 2,
+          "sum_largest_change_usd": "1572139.74"
+        }
+      ]
+    },
+    "flash_loan_arbitrage": {
+      "count": 160,
+      "sum_largest_change_usd": "1863273.49",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x460dd050cdd60f594ff423726f94667afc2e9b56",
+          "destination": "0x85541934b8a3bfb111e6d2c86ebdaa5882d87c00",
+          "count": 5,
+          "sum_largest_change_usd": "261775.64"
+        },
+        {
+          "sender": "0x5c096ef846447cb935c5d247e4ab2a867ecc33a9",
+          "destination": "0x00000f91109c4d0007e90000d9facad5298a0cac",
+          "count": 5,
+          "sum_largest_change_usd": "181146.74"
+        },
+        {
+          "sender": "0x025080f14aa3305049f9ce08d7b92368d54cb9b6",
+          "destination": "0xcb0151ac9479a6a0261622baa63ae843c9793d45",
+          "count": 3,
+          "sum_largest_change_usd": "145112.33"
+        }
+      ]
+    },
+    "flash_loan_other": {
+      "count": 84,
+      "sum_largest_change_usd": "899607.25",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x48b8470fd956b5778fded969cfa8e0fefd24c55e",
+          "destination": "0xcb0151ac9479a6a0261622baa63ae843c9793d45",
+          "count": 4,
+          "sum_largest_change_usd": "166034.43"
+        },
+        {
+          "sender": "0x21378e678a111691a60fa688c72d61439e124c8f",
+          "destination": "0xcb0151ac9479a6a0261622baa63ae843c9793d45",
+          "count": 4,
+          "sum_largest_change_usd": "144616.25"
+        },
+        {
+          "sender": "0x62702b0b1b0aaccccb80ca07a1cdbd5ff0b40d3a",
+          "destination": "0x824a78cd1c450e80f9d4744707fe29b8e0f7e0f5",
+          "count": 1,
+          "sum_largest_change_usd": "106280.17"
+        }
+      ]
+    },
+    "intent_or_rfq_fill": {
+      "count": 86,
+      "sum_largest_change_usd": "4209483.36",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x6f12b91bf6da752ada71b7a1a622c57d8a48818a",
+          "destination": "0x225a38bc71102999dd13478bfabd7c4d53f2dc17",
+          "count": 24,
+          "sum_largest_change_usd": "1333591.17"
+        },
+        {
+          "sender": "0xa926414d5dfa0d84568e0c5b8f56e7f7e3efa586",
+          "destination": "0x225a38bc71102999dd13478bfabd7c4d53f2dc17",
+          "count": 16,
+          "sum_largest_change_usd": "652949.03"
+        },
+        {
+          "sender": "0xc912027e7143b98ae64aedaa8f60cecb641bc247",
+          "destination": "0x52b335fd4d229c4b4ffa6190526e4b5fb8e3fb09",
+          "count": 1,
+          "sum_largest_change_usd": "244331.90"
+        }
+      ]
+    },
+    "lending_with_swap": {
+      "count": 74,
+      "sum_largest_change_usd": "57650942.46",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x654fae4aa229d104cabead47e56703f58b174be4",
+          "destination": "0x000000000035b5e5ad9019092c665357240f594e",
+          "count": 29,
+          "sum_largest_change_usd": "50671482.84"
+        },
+        {
+          "sender": "0x3ee92cd00993a4488ae153ab41ac7947cbcbc1de",
+          "destination": "0x9205a569b0ff45df1e4f5ae48e21bc7f0656f0bb",
+          "count": 14,
+          "sum_largest_change_usd": "2392012.73"
+        },
+        {
+          "sender": "0xdeda0a855d5f29491e13781fddd7ca33a88a1e02",
+          "destination": "0x45e9b04942176a513b22acc1ced75c34d2fd9215",
+          "count": 3,
+          "sum_largest_change_usd": "1613791.48"
+        }
+      ]
+    },
+    "lido_stake": {
+      "count": 9,
+      "sum_largest_change_usd": "465360.16",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0xfafc7b995c429af4ff11555b4a6f7d5e9f380c2a",
+          "destination": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+          "count": 1,
+          "sum_largest_change_usd": "245886.00"
+        },
+        {
+          "sender": "0x4c49d4bd6a571827b4a556a0e1e3071da6231b9d",
+          "destination": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+          "count": 1,
+          "sum_largest_change_usd": "73823.93"
+        },
+        {
+          "sender": "0x1ea697d73625cc7e9d28aa164798edd74b6e1592",
+          "destination": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+          "count": 1,
+          "sum_largest_change_usd": "30451.79"
+        }
+      ]
+    },
+    "lido_withdrawal": {
+      "count": 6,
+      "sum_largest_change_usd": "3971473.83",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x739212d5bafe6aac8be49a60b7d003bd41dbf38b",
+          "destination": "0x68025a4615407993a680102b08a23a61d11c657c",
+          "count": 1,
+          "sum_largest_change_usd": "3044965.23"
+        },
+        {
+          "sender": "0x739212d5bafe6aac8be49a60b7d003bd41dbf38b",
+          "destination": "0x85b78aca6deae198fbf201c82daf6ca21942acc6",
+          "count": 3,
+          "sum_largest_change_usd": "786470.69"
+        },
+        {
+          "sender": "0xe09d681299230404b509597206535cb3398f8dd7",
+          "destination": "0x1b7a4c3797236a1c37f8741c0be35c2c72736fff",
+          "count": 1,
+          "sum_largest_change_usd": "122066.41"
+        }
+      ]
+    },
+    "liquidity_add": {
+      "count": 27,
+      "sum_largest_change_usd": "4932922.07",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x7faa567a93daead7abc660f8afffdffd7f05f10c",
+          "destination": "0xc36442b4a4522e871399cd717abdd847ab11fe88",
+          "count": 1,
+          "sum_largest_change_usd": "2257450.28"
+        },
+        {
+          "sender": "0x009ae54bf26fccaa4c5a1443ebded3e472849371",
+          "destination": "0xc36442b4a4522e871399cd717abdd847ab11fe88",
+          "count": 1,
+          "sum_largest_change_usd": "475845.03"
+        },
+        {
+          "sender": "0x8b137283471e9a8147c4c123fe51205864ac616d",
+          "destination": "0xc36442b4a4522e871399cd717abdd847ab11fe88",
+          "count": 2,
+          "sum_largest_change_usd": "339952.16"
+        }
+      ]
+    },
+    "liquidity_collect_only": {
+      "count": 5,
+      "sum_largest_change_usd": "602328.07",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x85d3b628f1c7d9411f1a97bac8933eddbbc2a683",
+          "destination": "0xc36442b4a4522e871399cd717abdd847ab11fe88",
+          "count": 1,
+          "sum_largest_change_usd": "296108.53"
+        },
+        {
+          "sender": "0x7e6bee8157aceb2cbaaa74868f99a369f9e5d4c1",
+          "destination": "0xc36442b4a4522e871399cd717abdd847ab11fe88",
+          "count": 1,
+          "sum_largest_change_usd": "176036.43"
+        },
+        {
+          "sender": "0x6fd4ca63f12a61a78678b525a0bc907c62de5b42",
+          "destination": "0xc36442b4a4522e871399cd717abdd847ab11fe88",
+          "count": 2,
+          "sum_largest_change_usd": "92069.82"
+        }
+      ]
+    },
+    "liquidity_remove": {
+      "count": 31,
+      "sum_largest_change_usd": "5856058.19",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x7faa567a93daead7abc660f8afffdffd7f05f10c",
+          "destination": "0xc36442b4a4522e871399cd717abdd847ab11fe88",
+          "count": 1,
+          "sum_largest_change_usd": "2256712.13"
+        },
+        {
+          "sender": "0x0a031d88732b13e855964bc11cf2f3747314ffdc",
+          "destination": "0x383e6b4437b59fff47b619cba855ca29342a8559",
+          "count": 1,
+          "sum_largest_change_usd": "1263914.28"
+        },
+        {
+          "sender": "0xae2fc483527b8ef99eb5d9b44875f005ba1fae13",
+          "destination": "0x1f2f10d1c40777ae1da742455c65828ff36df387",
+          "count": 4,
+          "sum_largest_change_usd": "519515.79"
+        }
+      ]
+    },
+    "liquidity_v4": {
+      "count": 40,
+      "sum_largest_change_usd": "3564975.54",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x3ee92cd00993a4488ae153ab41ac7947cbcbc1de",
+          "destination": "0x9205a569b0ff45df1e4f5ae48e21bc7f0656f0bb",
+          "count": 5,
+          "sum_largest_change_usd": "1307373.41"
+        },
+        {
+          "sender": "0x1fb933190ec6a09c29ce85386c4dc36844b9ca00",
+          "destination": "0xbd216513d74c8cf14cf4747e6aaa6420ff64ee9e",
+          "count": 10,
+          "sum_largest_change_usd": "827653.64"
+        },
+        {
+          "sender": "0xae2fc483527b8ef99eb5d9b44875f005ba1fae13",
+          "destination": "0x1f2f10d1c40777ae1da742455c65828ff36df387",
+          "count": 3,
+          "sum_largest_change_usd": "422954.41"
+        }
+      ]
+    },
+    "liquidity_with_swap": {
+      "count": 94,
+      "sum_largest_change_usd": "12225424.59",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0xae2fc483527b8ef99eb5d9b44875f005ba1fae13",
+          "destination": "0x1f2f10d1c40777ae1da742455c65828ff36df387",
+          "count": 44,
+          "sum_largest_change_usd": "8476376.86"
+        },
+        {
+          "sender": "0x3ee92cd00993a4488ae153ab41ac7947cbcbc1de",
+          "destination": "0x9205a569b0ff45df1e4f5ae48e21bc7f0656f0bb",
+          "count": 15,
+          "sum_largest_change_usd": "2406538.60"
+        },
+        {
+          "sender": "0x9781b7e5b264c053834345f6d8a0d16652a66056",
+          "destination": "0x70e60fbfe09caaad444d6c489ef865bfaabbefc8",
+          "count": 1,
+          "sum_largest_change_usd": "617144.13"
+        }
+      ]
+    },
+    "morpho_op": {
+      "count": 179,
+      "sum_largest_change_usd": "37347765.54",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0xde6b2a06407575b98724818445178c1f5fd53361",
+          "destination": "0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb",
+          "count": 1,
+          "sum_largest_change_usd": "4585761.49"
+        },
+        {
+          "sender": "0x1ed39244d59f3ee811d3f1997dd78e194ca1fa78",
+          "destination": "0x53e82abbb12638f09d9e624578ccb666217a765e",
+          "count": 1,
+          "sum_largest_change_usd": "4080050.87"
+        },
+        {
+          "sender": "0xc4ba4e822c420452fe2bab93211208d3ccbd79d3",
+          "destination": "0xc21b08c16458202593d4d9b26b9984ee67b38bbd",
+          "count": 1,
+          "sum_largest_change_usd": "3948674.76"
+        }
+      ]
+    },
+    "nft_trade": {
+      "count": 1,
+      "sum_largest_change_usd": "14399.38",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x10a4fd93a69e74e5f913c4ba9a6314ee739aee7b",
+          "destination": "0x0000000000000068f116a894984e2db1123eb395",
+          "count": 1,
+          "sum_largest_change_usd": "14399.38"
+        }
+      ]
+    },
+    "operator_token_batch": {
+      "count": 70,
+      "sum_largest_change_usd": "28700730.16",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x4309fe6bcccda0627d1b2377f9e0f1d5175af70c",
+          "destination": "0xee39678386f5bfc68df2c65656ec8e23f60063b5",
+          "count": 17,
+          "sum_largest_change_usd": "23936456.13"
+        },
+        {
+          "sender": "0x5060720e59dd975b16318a2f664eee645515b54c",
+          "destination": "0xee39678386f5bfc68df2c65656ec8e23f60063b5",
+          "count": 9,
+          "sum_largest_change_usd": "2126925.99"
+        },
+        {
+          "sender": "0x082597099797a14e843921d356ef98f6ad83128b",
+          "destination": "0xee39678386f5bfc68df2c65656ec8e23f60063b5",
+          "count": 12,
+          "sum_largest_change_usd": "839467.83"
+        }
+      ]
+    },
+    "plain_transfer_eoa": {
+      "count": 2201,
+      "sum_largest_change_usd": "292753273.54",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x55fe002aeff02f77364de339a1292923a15844b8",
+          "destination": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "count": 8,
+          "sum_largest_change_usd": "21002062.19"
+        },
+        {
+          "sender": "0x5754284f345afc66a98fbb0a0afe71e0f007b949",
+          "destination": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "count": 1,
+          "sum_largest_change_usd": "20000877.80"
+        },
+        {
+          "sender": "0x02fd743343e8684badad06e5180636d31fd73ce2",
+          "destination": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "count": 2,
+          "sum_largest_change_usd": "8982124.67"
+        }
+      ]
+    },
+    "psm_conversion": {
+      "count": 202,
+      "sum_largest_change_usd": "33632807.40",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x062ce42cae04c51d04e77e3d64cc8953a2296ffe",
+          "destination": "0x8a25a24ede9482c4fc0738f99611be58f1c839ab",
+          "count": 27,
+          "sum_largest_change_usd": "7074182.39"
+        },
+        {
+          "sender": "0xd480bb579f61edf044d0e86e33cb72310c816d6a",
+          "destination": "0x6131b5fae19ea4f9d964eac0408e4408b66337b5",
+          "count": 8,
+          "sum_largest_change_usd": "2460161.80"
+        },
+        {
+          "sender": "0xb81a0e6c38c3fec8a171cfe9631f60127a0c5bfd",
+          "destination": "0x6131b5fae19ea4f9d964eac0408e4408b66337b5",
+          "count": 4,
+          "sum_largest_change_usd": "2150477.06"
+        }
+      ]
+    },
+    "relay_deposit": {
+      "count": 77,
+      "sum_largest_change_usd": "2671370.70",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x268b482e32e4ba7d4999efdeb6d5bbb0c7ea8151",
+          "destination": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+          "count": 1,
+          "sum_largest_change_usd": "299657.83"
+        },
+        {
+          "sender": "0x4337004ec9c1417f1c7a26ebd4b4fbed6acf9e5d",
+          "destination": "0x4337084d9e255ff0702461cf8895ce9e3b5ff108",
+          "count": 2,
+          "sum_largest_change_usd": "159977.49"
+        },
+        {
+          "sender": "0x4337019d937ebcbd73dd750072d86c1ce664b350",
+          "destination": "0x4337084d9e255ff0702461cf8895ce9e3b5ff108",
+          "count": 1,
+          "sum_largest_change_usd": "152066.57"
+        }
+      ]
+    },
+    "relay_settlement_withdrawal": {
+      "count": 81,
+      "sum_largest_change_usd": "2756067.15",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+          "destination": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+          "count": 81,
+          "sum_largest_change_usd": "2756067.15"
+        }
+      ]
+    },
+    "restaking_or_lst_other": {
+      "count": 3,
+      "sum_largest_change_usd": "527865.32",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x283504f935274046827e023fafc74b328c9c06f1",
+          "destination": "0xd1a557fe9d49d047a2318c05a13523e4b9e56e09",
+          "count": 2,
+          "sum_largest_change_usd": "516791.59"
+        },
+        {
+          "sender": "0x366f7b03ffa176c0226c2ac40c1615ad5bc649b3",
+          "destination": "0xcfc6d9bd7411962bfe7145451a7ef71a24b6a7a2",
+          "count": 1,
+          "sum_largest_change_usd": "11073.73"
+        }
+      ]
+    },
+    "safe_execution": {
+      "count": 40,
+      "sum_largest_change_usd": "4810535.49",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0xb09972f590a2490b6232ccbfe6f31a08f652c24f",
+          "destination": "0xb6b7ccbbb70d0f5389ddd39fcdc4faaeb62e8998",
+          "count": 9,
+          "sum_largest_change_usd": "2166077.38"
+        },
+        {
+          "sender": "0xb09972f590a2490b6232ccbfe6f31a08f652c24f",
+          "destination": "0x86d043c1c5850ad1fba6d0ab58c99afdcc85301f",
+          "count": 3,
+          "sum_largest_change_usd": "807242.14"
+        },
+        {
+          "sender": "0x735698e050da63a3ce02488b6cd6714b8e459a09",
+          "destination": "0x09332755c6ece5f8a9c3ca6b71650902c523b9ac",
+          "count": 1,
+          "sum_largest_change_usd": "273460.20"
+        }
+      ]
+    },
+    "sandwich_attack": {
+      "count": 10,
+      "sum_largest_change_usd": "139846.64",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x11111215b72e894c60f24e91ac2c8ccb1d373911",
+          "destination": "0x672061b75f770331b0c7c2a566a9ac0a9ba331d2",
+          "count": 8,
+          "sum_largest_change_usd": "114369.84"
+        },
+        {
+          "sender": "0x70e878f90ba6e4c021fc08231b50db99c41982d5",
+          "destination": "0xbadc0de76438f9524d42c219b390636196bfbdfc",
+          "count": 2,
+          "sum_largest_change_usd": "25476.80"
+        }
+      ]
+    },
+    "sandwich_victim": {
+      "count": 5,
+      "sum_largest_change_usd": "105376.43",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x1c2afc214b471174b961c818ebcda416bcdacc66",
+          "destination": "0x4c82d1fbfe28c977cbb58d8c7ff8fcf9f70a2cca",
+          "count": 2,
+          "sum_largest_change_usd": "49132.32"
+        },
+        {
+          "sender": "0xac0d7d2f56318bb0357cdf2769b37c1f7ec415f9",
+          "destination": "0x4c82d1fbfe28c977cbb58d8c7ff8fcf9f70a2cca",
+          "count": 1,
+          "sum_largest_change_usd": "20044.11"
+        },
+        {
+          "sender": "0x249a1b925e48d3dd31823a9ae76341229f298038",
+          "destination": "0x4c82d1fbfe28c977cbb58d8c7ff8fcf9f70a2cca",
+          "count": 1,
+          "sum_largest_change_usd": "19941.08"
+        }
+      ]
+    },
+    "stablecoin_burn": {
+      "count": 24,
+      "sum_largest_change_usd": "27321858.38",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x55fe002aeff02f77364de339a1292923a15844b8",
+          "destination": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "count": 5,
+          "sum_largest_change_usd": "24907246.08"
+        },
+        {
+          "sender": "0x062ce42cae04c51d04e77e3d64cc8953a2296ffe",
+          "destination": "0x8a25a24ede9482c4fc0738f99611be58f1c839ab",
+          "count": 10,
+          "sum_largest_change_usd": "1573724.82"
+        },
+        {
+          "sender": "0x3005a4c0efe7e66f3f60ef8704983247a5c6ca61",
+          "destination": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "count": 1,
+          "sum_largest_change_usd": "645579.15"
+        }
+      ]
+    },
+    "stablecoin_mint": {
+      "count": 57,
+      "sum_largest_change_usd": "24308570.22",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x5b6122c109b78c6755486966148c1d70a50a47d7",
+          "destination": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "count": 4,
+          "sum_largest_change_usd": "10684068.96"
+        },
+        {
+          "sender": "0x062ce42cae04c51d04e77e3d64cc8953a2296ffe",
+          "destination": "0x8a25a24ede9482c4fc0738f99611be58f1c839ab",
+          "count": 9,
+          "sum_largest_change_usd": "3081886.84"
+        },
+        {
+          "sender": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+          "destination": "0x2222222d7164433c4c09b0b0d809a9b52c04c205",
+          "count": 6,
+          "sum_largest_change_usd": "2996242.90"
+        }
+      ]
+    },
+    "swap_other": {
+      "count": 243,
+      "sum_largest_change_usd": "10543282.58",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+          "destination": "0xccc88a9d1b4ed6b0eaba998850414b24f1c315be",
+          "count": 6,
+          "sum_largest_change_usd": "1920496.01"
+        },
+        {
+          "sender": "0x50bf934781f63028c5c8ef49c4affe19a86d99b6",
+          "destination": "0x8d04cc7e86e687854eb41d9d43512b655b93184b",
+          "count": 13,
+          "sum_largest_change_usd": "892050.68"
+        },
+        {
+          "sender": "0x54620b9a8a2c43aa8ed028450a7ce656a9c69feb",
+          "destination": "0x7cf7132a8be97d71852124dc96cd9e08621a49bb",
+          "count": 17,
+          "sum_largest_change_usd": "842532.98"
+        }
+      ]
+    },
+    "unknown": {
+      "count": 1010,
+      "sum_largest_change_usd": "93555335.30",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0xba020d1428110c72ad39ee71be37026e0a97ffa8",
+          "destination": "0xa5e1a81738259256181f9a0e478188553062d340",
+          "count": 2,
+          "sum_largest_change_usd": "4467240.93"
+        },
+        {
+          "sender": "0x40dc31da1209e963d59cac8221bb542382788738",
+          "destination": "0x16dd80d93c88549c5f774691cb66ddffae6a7972",
+          "count": 10,
+          "sum_largest_change_usd": "3990467.74"
+        },
+        {
+          "sender": "0x3eb5ba7f608609cdc9375c8f8f93861af0b69b1b",
+          "destination": "0x33b41fe18d3a39046ad672f8a0c8c415454f629c",
+          "count": 17,
+          "sum_largest_change_usd": "2740341.22"
+        }
+      ]
+    },
+    "vault_deposit": {
+      "count": 42,
+      "sum_largest_change_usd": "4020914.13",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x283132390ea87d6ecc20255b59ba94329ee17961",
+          "destination": "0x604e586f17ce106b64185a7a0d2c1da5bace711e",
+          "count": 7,
+          "sum_largest_change_usd": "1703199.04"
+        },
+        {
+          "sender": "0x9f3b2da083bd1011106cc8facc34e2262f3e6d6f",
+          "destination": "0x2e3bbd03dbc6d890c8c7e06be4e065c5c0eee7e8",
+          "count": 2,
+          "sum_largest_change_usd": "478854.81"
+        },
+        {
+          "sender": "0xe6705fccaf951870ef24463c88a81f31610efba4",
+          "destination": "0x9396dcbf78fc526bb003665337c5e73b699571ef",
+          "count": 1,
+          "sum_largest_change_usd": "221294.36"
+        }
+      ]
+    },
+    "vault_withdraw": {
+      "count": 49,
+      "sum_largest_change_usd": "13397621.74",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0x53c79f415ffb95d66dfd97deb52a20aa2f69c84d",
+          "destination": "0x9641d764fc13c8b624c04430c7356c1c7c8102e2",
+          "count": 1,
+          "sum_largest_change_usd": "3753603.45"
+        },
+        {
+          "sender": "0x17b6aa44f45a732487f95b524f15053e8149376f",
+          "destination": "0x9d39a5de30e57443bff2a8307a4256c8797a3497",
+          "count": 1,
+          "sum_largest_change_usd": "1712605.45"
+        },
+        {
+          "sender": "0x283132390ea87d6ecc20255b59ba94329ee17961",
+          "destination": "0x604e586f17ce106b64185a7a0d2c1da5bace711e",
+          "count": 5,
+          "sum_largest_change_usd": "1410795.12"
+        }
+      ]
+    },
+    "weth_unwrap": {
+      "count": 20,
+      "sum_largest_change_usd": "1338486.60",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0xbdd50e6f8b34593b1fa8d5e59e9e01b9de531fc6",
+          "destination": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "count": 9,
+          "sum_largest_change_usd": "619139.65"
+        },
+        {
+          "sender": "0x3f7650dc23f23965dff61ae7a5f3a714d84d1370",
+          "destination": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "count": 1,
+          "sum_largest_change_usd": "246500.18"
+        },
+        {
+          "sender": "0xa54dc4425190570cb5c841adf445bbecf3b249f5",
+          "destination": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "count": 5,
+          "sum_largest_change_usd": "221692.64"
+        }
+      ]
+    },
+    "weth_wrap": {
+      "count": 63,
+      "sum_largest_change_usd": "5520859.75",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0xe98d8879018cdbff25fc435fffe884f5dcb85e84",
+          "destination": "0x51c72848c68a965f66fa7a88855f9f7784502a7f",
+          "count": 1,
+          "sum_largest_change_usd": "1855852.24"
+        },
+        {
+          "sender": "0x07ae8551be970cb1cca11dd7a11f47ae82e70e67",
+          "destination": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "count": 10,
+          "sum_largest_change_usd": "1438224.72"
+        },
+        {
+          "sender": "0xe6705fccaf951870ef24463c88a81f31610efba4",
+          "destination": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "count": 1,
+          "sum_largest_change_usd": "403247.50"
+        }
+      ]
+    },
+    "wsteth_wrap_unwrap": {
+      "count": 21,
+      "sum_largest_change_usd": "14933278.96",
+      "top_sender_destination_pairs": [
+        {
+          "sender": "0xc98b5ef1ab3587e2c53013c822252578b9a056e2",
+          "destination": "0xcfc6d9bd7411962bfe7145451a7ef71a24b6a7a2",
+          "count": 9,
+          "sum_largest_change_usd": "8792166.23"
+        },
+        {
+          "sender": "0xde6b2a06407575b98724818445178c1f5fd53361",
+          "destination": "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0",
+          "count": 1,
+          "sum_largest_change_usd": "4585761.49"
+        },
+        {
+          "sender": "0xe6705fccaf951870ef24463c88a81f31610efba4",
+          "destination": "0xcfc6d9bd7411962bfe7145451a7ef71a24b6a7a2",
+          "count": 2,
+          "sum_largest_change_usd": "917574.36"
+        }
+      ]
+    }
+  },
+  "overlaps": {
+    "sandwich_attack": {
+      "count": 88,
+      "primary_labels": {
+        "liquidity_with_swap": 42,
+        "lending_with_swap": 34,
+        "sandwich_attack": 10,
+        "flash_funded_lending": 2
+      }
+    },
+    "sandwich_victim": {
+      "count": 8,
+      "primary_labels": {
+        "sandwich_victim": 5,
+        "psm_conversion": 3
+      }
+    },
+    "liquidity_with_swap": {
+      "count": 123,
+      "primary_labels": {
+        "liquidity_with_swap": 94,
+        "lending_with_swap": 27,
+        "flash_funded_lending": 2
+      }
+    },
+    "flash_loan_arbitrage": {
+      "count": 214,
+      "primary_labels": {
+        "flash_loan_arbitrage": 160,
+        "psm_conversion": 28,
+        "liquidity_with_swap": 8,
+        "flash_funded_lending": 8,
+        "intent_or_rfq_fill": 10
+      }
+    }
+  },
+  "actor_sequences": {
+    "sender": "0x654fae4aa229d104cabead47e56703f58b174be4",
+    "outer_contract": "0x000000000035b5e5ad9019092c665357240f594e",
+    "all_window_sender_transactions": 40,
+    "unselected_sender_transactions": [],
+    "selected_transactions": 40,
+    "primary_labels": {
+      "lending_with_swap": 29,
+      "aave_v3_op": 9,
+      "flash_funded_lending": 2
+    },
+    "sum_largest_changes_usd": "72984840.90",
+    "episodes": [
+      {
+        "block": 25910849,
+        "block_hash": "0xe0f14ea0bc502f913b592a37c4384f9a0c0bf327f8a25f12354900a5aabd73e7",
+        "hashes": [
+          "0x74342e719fe591b84a0a3cadab143e1cda1a5426566d66ed1bb1b9f905ca9927",
+          "0xe89173edc4548cbb3120b183d7b2cf8a5aa56f225410545d5bb9403901e3a27d",
+          "0xe490aa892b439edf2d14260624d750be012c3b5fb033f796e4ffa11773c37d2c"
+        ],
+        "indices": [
+          0,
+          1,
+          2
+        ],
+        "primary_labels": [
+          "lending_with_swap",
+          "lending_with_swap"
+        ],
+        "middle_selected": false,
+        "middle_destination": "0xb1f3a7b816b0681188f54dfa400991b93adf00ed",
+        "start_weth": "710.933981038708409535",
+        "outer_contract_weth_cash_change": "0.010924232930832452",
+        "outer_contract_cash_usd_at_study_marks": "26.83",
+        "gas_limit_cost_usd_upper_bound": "0.2979200501884249209417360714",
+        "matched_liquidity_positions": [
+          {
+            "position": [
+              "0x000000000004444c5dc75cb358380d2e3de08a90",
+              "0x0fb0e40cec3bb23e13abc585958a93c796fbea56955e19a23727a716a0423239",
+              "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+              -226,
+              -225,
+              "0x5ff05"
+            ],
+            "liquidity_raw": "43427500456532",
+            "intervening_swap_same_pool": true
+          }
+        ],
+        "aave_events": [
+          {
+            "index": 0,
+            "family": "AaveSupply",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "710933981038708409535"
+          },
+          {
+            "index": 0,
+            "family": "AaveBorrow",
+            "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "1216375784357"
+          },
+          {
+            "index": 2,
+            "family": "AaveRepay",
+            "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "1216375784358"
+          },
+          {
+            "index": 2,
+            "family": "AaveWithdraw",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "710933981038708409532"
+          }
+        ],
+        "middle_largest_change_usd": "9757.63",
+        "middle_events": {
+          "ERC20_Transfer_shape": 10,
+          "Approval": 1,
+          "V4Swap": 3,
+          "unknown": 2
+        },
+        "middle_assets": [
+          "USDC",
+          "USDT"
+        ]
+      },
+      {
+        "block": 25910935,
+        "block_hash": "0xf6ac6ebe15233071a0d46f5950429c4f49a88a88610310d80bc2b694b0eef9e1",
+        "hashes": [
+          "0xac07db9dfcb250401b6d08dc1c535359ba935e5fc218cfdf3e4809ad830417b3",
+          "0xf814e3bf9b9febeda214244746db4e620240847a17cc8ac4e125248013d41b9f",
+          "0xe9261740c1496b1ea281abcd42643e9e1ddfab8447f392ddc9ac995890345aa2"
+        ],
+        "indices": [
+          0,
+          1,
+          2
+        ],
+        "primary_labels": [
+          "lending_with_swap",
+          "lending_with_swap"
+        ],
+        "middle_selected": true,
+        "middle_destination": "0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45",
+        "start_weth": "710.944905271639241987",
+        "outer_contract_weth_cash_change": "0.006620363423333464",
+        "outer_contract_cash_usd_at_study_marks": "16.26",
+        "gas_limit_cost_usd_upper_bound": "0.2763926079558826661781533789",
+        "matched_liquidity_positions": [
+          {
+            "position": [
+              "0xe0554a476a092703abdb3ef35c80e0d76d32939f",
+              null,
+              "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+              198212,
+              198213,
+              null
+            ],
+            "liquidity_raw": "2291969054989936766",
+            "intervening_swap_same_pool": true
+          }
+        ],
+        "aave_events": [
+          {
+            "index": 0,
+            "family": "AaveSupply",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "710944905271639241987"
+          },
+          {
+            "index": 0,
+            "family": "AaveBorrow",
+            "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "59780693828"
+          },
+          {
+            "index": 2,
+            "family": "AaveRepay",
+            "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "59780693829"
+          },
+          {
+            "index": 2,
+            "family": "AaveWithdraw",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "710944905271639241984"
+          }
+        ],
+        "middle_largest_change_usd": "16258.92",
+        "middle_events": {
+          "ERC20_Transfer_shape": 4,
+          "V3Swap": 2,
+          "WETHWithdrawal": 1
+        },
+        "middle_assets": [
+          "USDC",
+          "WETH"
+        ]
+      },
+      {
+        "block": 25910990,
+        "block_hash": "0xee69c4700ea18b59d09e5ff147bf761f9ca85d1586f3a5b6779c0a4983c1f542",
+        "hashes": [
+          "0xeaa390439220f8c77c49e33d24f5ccf65dd4a734c1ca6512314d3d7403eb6d69",
+          "0x00b7ccd9b7b6d77bec2b1cb695f2af5d131ea8ae9e49d0a394005acf40f554e0",
+          "0x7f414051379892bca5272033bda8544cbf73ccad0f28573fed1528d8cae7758c"
+        ],
+        "indices": [
+          0,
+          1,
+          2
+        ],
+        "primary_labels": [
+          "aave_v3_op",
+          "lending_with_swap"
+        ],
+        "middle_selected": false,
+        "middle_destination": "0xb4769e9c5be31199a25ecd1b0c6609183fa72521",
+        "start_weth": "710.951525635062575451",
+        "outer_contract_weth_cash_change": "0.030262765342742127",
+        "outer_contract_cash_usd_at_study_marks": "74.31",
+        "gas_limit_cost_usd_upper_bound": "0.3321887560112665498449858545",
+        "matched_liquidity_positions": [],
+        "aave_events": [
+          {
+            "index": 0,
+            "family": "AaveSupply",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "710951525635062575451"
+          },
+          {
+            "index": 0,
+            "family": "AaveBorrow",
+            "asset": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "94383382429"
+          },
+          {
+            "index": 2,
+            "family": "AaveRepay",
+            "asset": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "94383382430"
+          },
+          {
+            "index": 2,
+            "family": "AaveWithdraw",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "710951525635062575448"
+          }
+        ],
+        "middle_largest_change_usd": "4159.70",
+        "middle_events": {
+          "WETHDeposit": 1,
+          "ERC20_Transfer_shape": 10,
+          "V3Swap": 3,
+          "Approval": 1,
+          "anonymous": 1,
+          "unknown": 3
+        },
+        "middle_assets": [
+          "ETH",
+          "USDC",
+          "USDT",
+          "WETH"
+        ]
+      },
+      {
+        "block": 25910995,
+        "block_hash": "0xe1fb79623c6c20b53cc63179f3b4805e95edbe73c16475e077b946480b34a241",
+        "hashes": [
+          "0xed4d95b24d00d9ce49fe3e381b5bae366535717670d0131f77cdab3e92fd72ec",
+          "0xc4a0a6f27119c7298dff9d2272825ea274745b70965830cd9cc5dfd8f1c23b16",
+          "0xb6eabef86d2ac23564ec1883fad0ed597d14474256aad623843eb31514a903fe"
+        ],
+        "indices": [
+          199,
+          200,
+          201
+        ],
+        "primary_labels": [
+          "lending_with_swap",
+          "lending_with_swap"
+        ],
+        "middle_selected": false,
+        "middle_destination": "0xa48e223e2a723a2f574e3a4e0b12126851b81ca4",
+        "start_weth": "710.981788400405317578",
+        "outer_contract_weth_cash_change": "0.000275393699158928",
+        "outer_contract_cash_usd_at_study_marks": "0.68",
+        "gas_limit_cost_usd_upper_bound": "0.2563460016564137891720555896",
+        "matched_liquidity_positions": [
+          {
+            "position": [
+              "0x000000000004444c5dc75cb358380d2e3de08a90",
+              "0x77b480a635c038223de17d7eb3860bc8c12beb2a2b29dbfc59a3d35fd17e617f",
+              "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+              190,
+              191,
+              "0x5ff28"
+            ],
+            "liquidity_raw": "727091391572",
+            "intervening_swap_same_pool": true
+          }
+        ],
+        "aave_events": [
+          {
+            "index": 199,
+            "family": "AaveSupply",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "710981788400405317578"
+          },
+          {
+            "index": 199,
+            "family": "AaveBorrow",
+            "asset": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "1832209800"
+          },
+          {
+            "index": 201,
+            "family": "AaveRepay",
+            "asset": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "1832209801"
+          },
+          {
+            "index": 201,
+            "family": "AaveWithdraw",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "710981788400405317575"
+          }
+        ],
+        "middle_largest_change_usd": "0.00",
+        "middle_events": {
+          "V4Swap": 3,
+          "ERC20_Transfer_shape": 5,
+          "unknown": 1
+        },
+        "middle_assets": [
+          "USDC",
+          "USDT"
+        ]
+      },
+      {
+        "block": 25911033,
+        "block_hash": "0x93e215d6406a51d12cf85ea1ff373048caf2977f46f9efac591bd7c98125be12",
+        "hashes": [
+          "0x5653d962621406f202bfabbc6d07f7b7f63c8f3f72062af1247c37a0bfd3d4ae",
+          "0x5c72963f346b79d81d9d6cb3ebec6ff1b6863694b041de0400cd45d859e1cf36",
+          "0xe7853bfa0228443c96558bf4f8ac2920750d383f3a86748a87f6594eb2adcd99"
+        ],
+        "indices": [
+          0,
+          1,
+          2
+        ],
+        "primary_labels": [
+          "lending_with_swap",
+          "lending_with_swap"
+        ],
+        "middle_selected": false,
+        "middle_destination": "0x0000000000001ff3684f28c67538d4d072c22734",
+        "start_weth": "710.982063794104476506",
+        "outer_contract_weth_cash_change": "0.001168113917387545",
+        "outer_contract_cash_usd_at_study_marks": "2.87",
+        "gas_limit_cost_usd_upper_bound": "0.2590958200222817565751910572",
+        "matched_liquidity_positions": [
+          {
+            "position": [
+              "0x000000000004444c5dc75cb358380d2e3de08a90",
+              "0xe836920940770f97f2dc3bb729a87a655ea851dc65228465dc44051ab17eabc6",
+              "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+              276222,
+              276223,
+              "0x5ff2b"
+            ],
+            "liquidity_raw": "5737373301980087074",
+            "intervening_swap_same_pool": true
+          }
+        ],
+        "aave_events": [
+          {
+            "index": 0,
+            "family": "AaveSupply",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "710982063794104476506"
+          },
+          {
+            "index": 0,
+            "family": "AaveBorrow",
+            "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "5728118693"
+          },
+          {
+            "index": 2,
+            "family": "AaveRepay",
+            "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "5728118694"
+          },
+          {
+            "index": 2,
+            "family": "AaveWithdraw",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "710982063794104476503"
+          }
+        ],
+        "middle_largest_change_usd": "288.32",
+        "middle_events": {
+          "ERC20_Transfer_shape": 10,
+          "V3Swap": 2,
+          "V4Swap": 2
+        },
+        "middle_assets": [
+          "USDC",
+          "USDT",
+          "WETH"
+        ]
+      },
+      {
+        "block": 25911089,
+        "block_hash": "0x7a298fd4df1f6c604cd66889620c144fc6d69f44627f42d9926670d66b39205a",
+        "hashes": [
+          "0xcae0ea032c49cd58bf4dbaad0961098aceb02d45d0141fd83eab600a86327181",
+          "0xd7f63bc362c297afb5c83c85d29b189d0f24ec301c641500a1c6c15cfc08e82a",
+          "0x2ea4ca5588fcd4950f6c8a6f90ebeb71fa8a2d4009efecd9079526aa5afeb2fc"
+        ],
+        "indices": [
+          0,
+          1,
+          2
+        ],
+        "primary_labels": [
+          "aave_v3_op",
+          "lending_with_swap"
+        ],
+        "middle_selected": false,
+        "middle_destination": "0xccc88a9d1b4ed6b0eaba998850414b24f1c315be",
+        "start_weth": "710.983231908021864051",
+        "outer_contract_weth_cash_change": "0.001277654915729391",
+        "outer_contract_cash_usd_at_study_marks": "3.13",
+        "gas_limit_cost_usd_upper_bound": "0.2602921898049035163660207495",
+        "matched_liquidity_positions": [],
+        "aave_events": [
+          {
+            "index": 0,
+            "family": "AaveSupply",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "710983231908021864051"
+          },
+          {
+            "index": 0,
+            "family": "AaveBorrow",
+            "asset": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "94697802030"
+          },
+          {
+            "index": 2,
+            "family": "AaveRepay",
+            "asset": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "94697802031"
+          },
+          {
+            "index": 2,
+            "family": "AaveWithdraw",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "710983231908021864048"
+          }
+        ],
+        "middle_largest_change_usd": "204.43",
+        "middle_events": {
+          "Approval": 4,
+          "ERC20_Transfer_shape": 11,
+          "unknown": 4,
+          "V2Sync": 1,
+          "V2Swap": 1,
+          "CurveTokenExchangeU": 1,
+          "anonymous": 2,
+          "RelayErc20Deposit": 1
+        },
+        "middle_assets": [
+          "USDC",
+          "USDT",
+          "WETH"
+        ]
+      },
+      {
+        "block": 25911110,
+        "block_hash": "0xfe53939ebb6383698632bdca0b07e83f683176205f49466805cc8b576d3df2b2",
+        "hashes": [
+          "0x15ddfa453d061993f0111e477366d8b3f756a10c108787ba88ddfdb2fbf78a8e",
+          "0xcfb4db30418a077f63f039fa05a4c00a73ac05dbec7fca5e912d4c2a38aac355",
+          "0x9461b7cf91f6c6874fbb0b09f87f071b92398154f4c428bcae387ae145b339d1"
+        ],
+        "indices": [
+          1,
+          2,
+          3
+        ],
+        "primary_labels": [
+          "lending_with_swap",
+          "lending_with_swap"
+        ],
+        "middle_selected": false,
+        "middle_destination": "0x57d6f8753129a2254299e53a13dc35033f035385",
+        "start_weth": "710.984509562937593442",
+        "outer_contract_weth_cash_change": "0.002297990758664339",
+        "outer_contract_cash_usd_at_study_marks": "5.65",
+        "gas_limit_cost_usd_upper_bound": "0.2626827025907293149608892825",
+        "matched_liquidity_positions": [],
+        "aave_events": [
+          {
+            "index": 1,
+            "family": "AaveSupply",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "710984509562937593442"
+          },
+          {
+            "index": 1,
+            "family": "AaveBorrow",
+            "asset": "0x6b175474e89094c44da98b954eedeac495271d0f",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "1171658327149000000000000"
+          },
+          {
+            "index": 3,
+            "family": "AaveRepay",
+            "asset": "0x6b175474e89094c44da98b954eedeac495271d0f",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "1171658327149000000000001"
+          },
+          {
+            "index": 3,
+            "family": "AaveWithdraw",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "710984509562937593439"
+          }
+        ],
+        "middle_largest_change_usd": "862.32",
+        "middle_events": {
+          "Approval": 1,
+          "ERC20_Transfer_shape": 14,
+          "unknown": 5,
+          "V4Swap": 2,
+          "V3Swap": 2,
+          "AcrossFundsDeposited": 1
+        },
+        "middle_assets": [
+          "USDC",
+          "USDT",
+          "WETH"
+        ]
+      },
+      {
+        "block": 25911337,
+        "block_hash": "0x9c0fa1105c583b07da32cde8fb2a82bc9d8eeb11182360d390c270a573441946",
+        "hashes": [
+          "0x0cd296fb5fc64475ec5f2eadffd1ca1a4e6ceca1943d1e6e335b3fc01d0cfed4",
+          "0xe4f5790bbbe29255023f6bff438db7a2af8bbef500a8df94d7aefc6fd8fe2d3f",
+          "0x71f1ed1361ab7d018d31c2862184b83b6ebc4206951574e5ea3d7ce3ea5c3a28"
+        ],
+        "indices": [
+          47,
+          48,
+          49
+        ],
+        "primary_labels": [
+          "flash_funded_lending",
+          "flash_funded_lending"
+        ],
+        "middle_selected": false,
+        "middle_destination": "0x2adc73d7f87e8bdbcc64b7dd7c251bbccf72a7d2",
+        "start_weth": "710.986807553696257781",
+        "outer_contract_weth_cash_change": "0.014938419715420507",
+        "outer_contract_cash_usd_at_study_marks": "36.73",
+        "gas_limit_cost_usd_upper_bound": "0.7250767796333793751316950144",
+        "matched_liquidity_positions": [
+          {
+            "position": [
+              "0x000000000004444c5dc75cb358380d2e3de08a90",
+              "0x8aa4e11cbdf30eedc92100f4c8a31ff748e201d44712cc8c90d189edaa8e4e47",
+              "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+              565,
+              566,
+              "0x5ff55"
+            ],
+            "liquidity_raw": "40827491037138",
+            "intervening_swap_same_pool": true
+          }
+        ],
+        "aave_events": [
+          {
+            "index": 47,
+            "family": "AaveWithdraw",
+            "asset": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "4"
+          },
+          {
+            "index": 47,
+            "family": "AaveWithdraw",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "117"
+          },
+          {
+            "index": 47,
+            "family": "AaveSupply",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "11659200829178327998503"
+          },
+          {
+            "index": 47,
+            "family": "AaveBorrow",
+            "asset": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "3294300276784"
+          },
+          {
+            "index": 47,
+            "family": "AaveSupply",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "710986807553696257781"
+          },
+          {
+            "index": 47,
+            "family": "AaveSupply",
+            "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "3290945758067"
+          },
+          {
+            "index": 47,
+            "family": "AaveWithdraw",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "11659200829178327998503"
+          },
+          {
+            "index": 49,
+            "family": "AaveSupply",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "11659200829178327998503"
+          },
+          {
+            "index": 49,
+            "family": "AaveWithdraw",
+            "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "3290945758061"
+          },
+          {
+            "index": 49,
+            "family": "AaveRepay",
+            "asset": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "3294300276785"
+          },
+          {
+            "index": 49,
+            "family": "AaveWithdraw",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "12370187636732024256281"
+          }
+        ],
+        "middle_largest_change_usd": "2099.80",
+        "middle_events": {
+          "unknown": 1,
+          "ERC20_Transfer_shape": 6,
+          "V4Swap": 1,
+          "V3Swap": 1,
+          "V2Sync": 1,
+          "V2Swap": 1
+        },
+        "middle_assets": [
+          "USDC",
+          "USDT",
+          "WETH"
+        ]
+      },
+      {
+        "block": 25911349,
+        "block_hash": "0x4c5284676a2573d3d58a882950668544e5ea68f344b058929341797bdf7d236e",
+        "hashes": [
+          "0x8f5c4a2987be2029e4a6430eeed76e657277118c4afbbd93fa72f741aea0079c",
+          "0xe0697c2f09539eb759c9ca423bb6f48001916217310222fbe724478d5dddb78d",
+          "0xbfd942c15d60f697d4af3673c0cc9cd882b122332d05071c5fc8d5d0301f7790"
+        ],
+        "indices": [
+          0,
+          1,
+          2
+        ],
+        "primary_labels": [
+          "lending_with_swap",
+          "lending_with_swap"
+        ],
+        "middle_selected": true,
+        "middle_destination": "0x4c82d1fbfe28c977cbb58d8c7ff8fcf9f70a2cca",
+        "start_weth": "711.001745973411678288",
+        "outer_contract_weth_cash_change": "0.040092223465954208",
+        "outer_contract_cash_usd_at_study_marks": "98.58",
+        "gas_limit_cost_usd_upper_bound": "0.4522228817840111668345200285",
+        "matched_liquidity_positions": [
+          {
+            "position": [
+              "0x000000000004444c5dc75cb358380d2e3de08a90",
+              "0x0fb0e40cec3bb23e13abc585958a93c796fbea56955e19a23727a716a0423239",
+              "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+              -82,
+              -81,
+              "0x5ff57"
+            ],
+            "liquidity_raw": "297864302851667",
+            "intervening_swap_same_pool": true
+          }
+        ],
+        "aave_events": [
+          {
+            "index": 0,
+            "family": "AaveSupply",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "711001745973411678288"
+          },
+          {
+            "index": 0,
+            "family": "AaveBorrow",
+            "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "1150621648835"
+          },
+          {
+            "index": 2,
+            "family": "AaveRepay",
+            "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "1150621648837"
+          },
+          {
+            "index": 2,
+            "family": "AaveWithdraw",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "711001745973411678285"
+          }
+        ],
+        "middle_largest_change_usd": "19941.08",
+        "middle_events": {
+          "WETHDeposit": 1,
+          "ERC20_Transfer_shape": 11,
+          "V3Swap": 3,
+          "V4Swap": 2
+        },
+        "middle_assets": [
+          "ETH",
+          "USDC",
+          "USDT",
+          "WETH"
+        ]
+      },
+      {
+        "block": 25911429,
+        "block_hash": "0x98c7fc56ccc542678fa09d629981296212cbf9547a8b0e533200929e7289765e",
+        "hashes": [
+          "0x59653603f1b9818ba0003b8ac68f3155e7006204512348576f01b99fb891fb28",
+          "0xefd80d4f3104927a0a77f89f4fd8ae60d45957ec1e32eb42d1f76ba1b30f515a",
+          "0x1878a99580c43778346ea300e95ec67973eb200f6ba1767fe2c086cc71dc7363"
+        ],
+        "indices": [
+          0,
+          1,
+          2
+        ],
+        "primary_labels": [
+          "aave_v3_op",
+          "lending_with_swap"
+        ],
+        "middle_selected": false,
+        "middle_destination": "0x337685fdab40d39bd02028545a4ffa7d287cc3e2",
+        "start_weth": "711.041838196877632496",
+        "outer_contract_weth_cash_change": "0.001498090980140528",
+        "outer_contract_cash_usd_at_study_marks": "3.67",
+        "gas_limit_cost_usd_upper_bound": "0.3980149098761689335032224247",
+        "matched_liquidity_positions": [],
+        "aave_events": [
+          {
+            "index": 0,
+            "family": "AaveSupply",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "711041838196877632496"
+          },
+          {
+            "index": 0,
+            "family": "AaveBorrow",
+            "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "31285836089"
+          },
+          {
+            "index": 2,
+            "family": "AaveRepay",
+            "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "31285836091"
+          },
+          {
+            "index": 2,
+            "family": "AaveWithdraw",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "711041838196877632493"
+          }
+        ],
+        "middle_largest_change_usd": "799.07",
+        "middle_events": {
+          "ERC20_Transfer_shape": 7,
+          "V3Swap": 1,
+          "anonymous": 1,
+          "unknown": 3
+        },
+        "middle_assets": [
+          "USDC",
+          "USDT",
+          "WETH"
+        ]
+      },
+      {
+        "block": 25911582,
+        "block_hash": "0x31ae8e161bf2495c83a635d20a560e1af78cc9d5c7323cc601cd7255d0a6a840",
+        "hashes": [
+          "0x8974901eaeca380afd31024edb86f147e1be5acf42ef5ac7b5c8fdd06920d390",
+          "0x8d8439c643669fd4f74daad30a09997747fb18f30821a8c06a93382a2b685425",
+          "0x6b2409efc370499000ad679809f36705f288209c49f41e0ea9f5a188e64cb2e4"
+        ],
+        "indices": [
+          0,
+          1,
+          2
+        ],
+        "primary_labels": [
+          "aave_v3_op",
+          "lending_with_swap"
+        ],
+        "middle_selected": false,
+        "middle_destination": "0x0000000000001ff3684f28c67538d4d072c22734",
+        "start_weth": "711.043336287857773024",
+        "outer_contract_weth_cash_change": "0.001968384977333149",
+        "outer_contract_cash_usd_at_study_marks": "4.84",
+        "gas_limit_cost_usd_upper_bound": "0.4730397247203449004957913223",
+        "matched_liquidity_positions": [],
+        "aave_events": [
+          {
+            "index": 0,
+            "family": "AaveSupply",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "711043336287857773024"
+          },
+          {
+            "index": 0,
+            "family": "AaveBorrow",
+            "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "31943511044"
+          },
+          {
+            "index": 2,
+            "family": "AaveRepay",
+            "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "31943511045"
+          },
+          {
+            "index": 2,
+            "family": "AaveWithdraw",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "711043336287857773021"
+          }
+        ],
+        "middle_largest_change_usd": "513.90",
+        "middle_events": {
+          "ERC20_Transfer_shape": 8,
+          "V3Swap": 2,
+          "anonymous": 1
+        },
+        "middle_assets": [
+          "USDC",
+          "USDT",
+          "WETH"
+        ]
+      },
+      {
+        "block": 25911701,
+        "block_hash": "0x16295586c39c9757b045b4b1f49b3e49ffb530cb449a6d9584c853431e996443",
+        "hashes": [
+          "0x1c135c5fa4eda3580dfee5bb32c1ae9a418ec612afb3fa550d74b0b016190ba9",
+          "0xbedf49d7d05f42bc593d9ad9446d1239f361486f7d58addcc73fa2771f2fc69f",
+          "0x07911b27c06a75a686ac6c2c80546b3a362c37c9a997099cfd769ff8cc01fbc9"
+        ],
+        "indices": [
+          0,
+          1,
+          2
+        ],
+        "primary_labels": [
+          "lending_with_swap",
+          "lending_with_swap"
+        ],
+        "middle_selected": false,
+        "middle_destination": "0xfa9edea5ac3aaf4f9af53c14f623e68ad61d6c0f",
+        "start_weth": "711.045304672835106173",
+        "outer_contract_weth_cash_change": "0.004081116103131459",
+        "outer_contract_cash_usd_at_study_marks": "10.04",
+        "gas_limit_cost_usd_upper_bound": "0.4150608386622644039223988834",
+        "matched_liquidity_positions": [
+          {
+            "position": [
+              "0x000000000004444c5dc75cb358380d2e3de08a90",
+              "0x76dbd3b36d5f0a1fa1c38b75984a9ed57aa1a36a6dbab77b9503ef9349dbb617",
+              "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+              276274,
+              276276,
+              "0x5ff9a"
+            ],
+            "liquidity_raw": "29717725138840903845",
+            "intervening_swap_same_pool": true
+          }
+        ],
+        "aave_events": [
+          {
+            "index": 0,
+            "family": "AaveSupply",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "711045304672835106173"
+          },
+          {
+            "index": 0,
+            "family": "AaveBorrow",
+            "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "24914368865"
+          },
+          {
+            "index": 2,
+            "family": "AaveRepay",
+            "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "24914368866"
+          },
+          {
+            "index": 2,
+            "family": "AaveWithdraw",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "711045304672835106170"
+          }
+        ],
+        "middle_largest_change_usd": "2978.20",
+        "middle_events": {
+          "Approval": 1,
+          "unknown": 1,
+          "V4Swap": 1,
+          "ERC20_Transfer_shape": 3
+        },
+        "middle_assets": [
+          "USDC",
+          "frxUSD"
+        ]
+      },
+      {
+        "block": 25911742,
+        "block_hash": "0x1c969b2c2c7fcf693a44c5ef203bbc0551620cbe6848a7238113fe0e36bed3a9",
+        "hashes": [
+          "0x6942ba0394a24f417c7e78192bc361e04cd00a2655fb26741203fca0a99891aa",
+          "0x8b1f7d57194c60c1e5cf7523714a519ff1e00a01e25f84dd0c3e79aa7af75832",
+          "0xeb1ad9cf3e402277b893f3b1ec5cc4540835e58dd80ed84fc5e7ec88afa7fcf4"
+        ],
+        "indices": [
+          6,
+          7,
+          8
+        ],
+        "primary_labels": [
+          "aave_v3_op",
+          "lending_with_swap"
+        ],
+        "middle_selected": false,
+        "middle_destination": "0xb300000b72deaeb607a12d5f54773d1c19c7028d",
+        "start_weth": "711.049385788938237632",
+        "outer_contract_weth_cash_change": "0.000417192720611519",
+        "outer_contract_cash_usd_at_study_marks": "1.02",
+        "gas_limit_cost_usd_upper_bound": "0.4603175448169279061496463029",
+        "matched_liquidity_positions": [],
+        "aave_events": [
+          {
+            "index": 6,
+            "family": "AaveSupply",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "711049385788938237632"
+          },
+          {
+            "index": 6,
+            "family": "AaveBorrow",
+            "asset": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "16398652779"
+          },
+          {
+            "index": 8,
+            "family": "AaveRepay",
+            "asset": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "16398652780"
+          },
+          {
+            "index": 8,
+            "family": "AaveWithdraw",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "711049385788938237629"
+          }
+        ],
+        "middle_largest_change_usd": "146.00",
+        "middle_events": {
+          "ERC20_Transfer_shape": 16,
+          "Approval": 2,
+          "V3Swap": 2,
+          "V4Swap": 2,
+          "WETHDeposit": 1,
+          "unknown": 5
+        },
+        "middle_assets": [
+          "USDC",
+          "USDT",
+          "WETH"
+        ]
+      },
+      {
+        "block": 25911771,
+        "block_hash": "0xeec009894a2dd4e18592c243697ca549c018658d2279cfc710b4773f38acf757",
+        "hashes": [
+          "0xcae533f0e6db0696acccd392d4c52ee3d6de58ac95cb6086b69b1c83caa47413",
+          "0x94eb4ae4cf65c69f032eb5bdc2f515acfdc7799568d443b45546a570e5f77046",
+          "0x3c879fa600a3fe8a5a69514e557c7ae0c0caa7d96ff4eb752ae2237b2744268a"
+        ],
+        "indices": [
+          38,
+          39,
+          40
+        ],
+        "primary_labels": [
+          "aave_v3_op",
+          "lending_with_swap"
+        ],
+        "middle_selected": false,
+        "middle_destination": "0x8feab81d36e7576107d5de0758c1b839be31b4f6",
+        "start_weth": "711.049802981658849151",
+        "outer_contract_weth_cash_change": "0.004458389808781122",
+        "outer_contract_cash_usd_at_study_marks": "10.96",
+        "gas_limit_cost_usd_upper_bound": "0.5474024215289278183720556496",
+        "matched_liquidity_positions": [],
+        "aave_events": [
+          {
+            "index": 38,
+            "family": "AaveSupply",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "711049802981658849151"
+          },
+          {
+            "index": 38,
+            "family": "AaveBorrow",
+            "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "70178251909"
+          },
+          {
+            "index": 40,
+            "family": "AaveRepay",
+            "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "70178251911"
+          },
+          {
+            "index": 40,
+            "family": "AaveWithdraw",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "711049802981658849148"
+          }
+        ],
+        "middle_largest_change_usd": "375.99",
+        "middle_events": {
+          "unknown": 6,
+          "ERC20_Transfer_shape": 20,
+          "DODOSwap": 1,
+          "anonymous": 1,
+          "V4Swap": 3
+        },
+        "middle_assets": [
+          "USDC",
+          "USDT"
+        ]
+      },
+      {
+        "block": 25911802,
+        "block_hash": "0xadf1cd838a8ccf9a4b9dbc4888cc5fc6ec2510998f4eb4fa2d4f5a8a93449c97",
+        "hashes": [
+          "0x1aa3afeb6a85c6c3cd4b595cfeeb77a7321a2b35dd8d6c579863bda5f642d948",
+          "0x9de0b5e26a50e5cbfb3dfe2bbe0c11ac7907052223a014e6e5dfbd508a933bff",
+          "0x591ba402d0d11e079010bd91072c48d7a80f15c74bfcd31831652aecb18ed424"
+        ],
+        "indices": [
+          142,
+          143,
+          144
+        ],
+        "primary_labels": [
+          "lending_with_swap",
+          "lending_with_swap"
+        ],
+        "middle_selected": false,
+        "middle_destination": "0x0000000071727de22e5e9d8baf0edac6f37da032",
+        "start_weth": "711.054261371467630273",
+        "outer_contract_weth_cash_change": "0.003986537820403266",
+        "outer_contract_cash_usd_at_study_marks": "9.80",
+        "gas_limit_cost_usd_upper_bound": "0.4497521233702689685196841034",
+        "matched_liquidity_positions": [
+          {
+            "position": [
+              "0x000000000004444c5dc75cb358380d2e3de08a90",
+              "0x77b480a635c038223de17d7eb3860bc8c12beb2a2b29dbfc59a3d35fd17e617f",
+              "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+              -2338,
+              -2337,
+              "0x5ffad"
+            ],
+            "liquidity_raw": "839586675973",
+            "intervening_swap_same_pool": true
+          }
+        ],
+        "aave_events": [
+          {
+            "index": 142,
+            "family": "AaveSupply",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "711054261371467630273"
+          },
+          {
+            "index": 142,
+            "family": "AaveBorrow",
+            "asset": "0x6b175474e89094c44da98b954eedeac495271d0f",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "2364702483000000000000"
+          },
+          {
+            "index": 144,
+            "family": "AaveRepay",
+            "asset": "0x6b175474e89094c44da98b954eedeac495271d0f",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "2364702483000000000001"
+          },
+          {
+            "index": 144,
+            "family": "AaveWithdraw",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "711054261371467630270"
+          }
+        ],
+        "middle_largest_change_usd": "192.66",
+        "middle_events": {
+          "EntryPointBeforeExecution": 1,
+          "unknown": 10,
+          "Approval": 5,
+          "ERC20_Transfer_shape": 24,
+          "V2Sync": 1,
+          "V2Swap": 1,
+          "V3Swap": 2,
+          "V4Swap": 2,
+          "WETHDeposit": 1,
+          "FluidSwap": 1,
+          "UserOperation": 1
+        },
+        "middle_assets": [
+          "USDC",
+          "USDT",
+          "WETH"
+        ]
+      },
+      {
+        "block": 25911874,
+        "block_hash": "0xbf056ab7c6af0d41e897f2ae2a98e7734019c2e87ed1fd6140d3901255ea3e73",
+        "hashes": [
+          "0xfbb2cdfa6f1dfeac53d2dea46e082d3ff0b721945b56f08766110172124db6f0",
+          "0x7bd7e48f286c050e8287f3ed47d424d94b10c52ba7d0906bfcbec1c8c5d08859",
+          "0x6301da10c1a3746fe0394ec7ccbf47498834211e70920cdb1d4407ead832581a"
+        ],
+        "indices": [
+          160,
+          161,
+          162
+        ],
+        "primary_labels": [
+          "aave_v3_op",
+          "lending_with_swap"
+        ],
+        "middle_selected": false,
+        "middle_destination": "0x0000000071727de22e5e9d8baf0edac6f37da032",
+        "start_weth": "711.058247909288033539",
+        "outer_contract_weth_cash_change": "0.000373392965239083",
+        "outer_contract_cash_usd_at_study_marks": "0.92",
+        "gas_limit_cost_usd_upper_bound": "0.9306176137336878622987664808",
+        "matched_liquidity_positions": [],
+        "aave_events": [
+          {
+            "index": 160,
+            "family": "AaveSupply",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "711058247909288033539"
+          },
+          {
+            "index": 160,
+            "family": "AaveBorrow",
+            "asset": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "97435408384"
+          },
+          {
+            "index": 162,
+            "family": "AaveRepay",
+            "asset": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "97435408386"
+          },
+          {
+            "index": 162,
+            "family": "AaveWithdraw",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "711058247909288033536"
+          }
+        ],
+        "middle_largest_change_usd": "190.63",
+        "middle_events": {
+          "EntryPointBeforeExecution": 1,
+          "ERC20_Transfer_shape": 9,
+          "unknown": 5,
+          "Approval": 2,
+          "anonymous": 1,
+          "V4Swap": 1,
+          "UserOperation": 1
+        },
+        "middle_assets": [
+          "USDC",
+          "USDT"
+        ]
+      },
+      {
+        "block": 25911943,
+        "block_hash": "0x5a3523fed17f6b98cfc3d26d28e62b88134c82203ff99ee2452a4aa4a576b8bf",
+        "hashes": [
+          "0x05dadda2e58b1ab789cc3974857c97de77e00ff8e92c5a19f1866c870104fd0b",
+          "0xd6472cd8053016ce84b86b7c84eb63ea1432e0fedf5f9d5443587b15d543f2d8",
+          "0x93730a56745d5b07553814c45372daf2ace0d2f21b864ee7fef03ff6f434e942"
+        ],
+        "indices": [
+          0,
+          1,
+          2
+        ],
+        "primary_labels": [
+          "aave_v3_op",
+          "lending_with_swap"
+        ],
+        "middle_selected": false,
+        "middle_destination": "0xccc88a9d1b4ed6b0eaba998850414b24f1c315be",
+        "start_weth": "711.058621302253272622",
+        "outer_contract_weth_cash_change": "0.00917841888122759",
+        "outer_contract_cash_usd_at_study_marks": "22.56",
+        "gas_limit_cost_usd_upper_bound": "0.4429461455339438891540065724",
+        "matched_liquidity_positions": [],
+        "aave_events": [
+          {
+            "index": 0,
+            "family": "AaveSupply",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "711058621302253272622"
+          },
+          {
+            "index": 0,
+            "family": "AaveBorrow",
+            "asset": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "96289633331"
+          },
+          {
+            "index": 2,
+            "family": "AaveRepay",
+            "asset": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "96289633332"
+          },
+          {
+            "index": 2,
+            "family": "AaveWithdraw",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "711058621302253272619"
+          }
+        ],
+        "middle_largest_change_usd": "1153.61",
+        "middle_events": {
+          "ERC20_Transfer_shape": 12,
+          "unknown": 5,
+          "Approval": 2,
+          "anonymous": 3,
+          "RelayErc20Deposit": 1
+        },
+        "middle_assets": [
+          "USDC",
+          "USDT"
+        ]
+      },
+      {
+        "block": 25911995,
+        "block_hash": "0xc31c89fd1aa1e30979f7953e600fcf711f0a553f5366f24e1571bb3c1cef336e",
+        "hashes": [
+          "0x67a23ceeb08a41ac3fa9cc0fe3557610a4531b791999ff477a6a5470c5cfcd1e",
+          "0xb19179a96eb27cb0fb05f08443c9634198423adf0f8f6d0944a5ba6b9a07641f",
+          "0x90c68d21460c9752b8bbe536a8e052627b0069c71299cc908d177288d28891df"
+        ],
+        "indices": [
+          6,
+          7,
+          8
+        ],
+        "primary_labels": [
+          "lending_with_swap",
+          "lending_with_swap"
+        ],
+        "middle_selected": true,
+        "middle_destination": "0x6131b5fae19ea4f9d964eac0408e4408b66337b5",
+        "start_weth": "711.067799721134500212",
+        "outer_contract_weth_cash_change": "0.013153583645535269",
+        "outer_contract_cash_usd_at_study_marks": "32.33",
+        "gas_limit_cost_usd_upper_bound": "0.3539142894156170032572152952",
+        "matched_liquidity_positions": [],
+        "aave_events": [
+          {
+            "index": 6,
+            "family": "AaveSupply",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "711067799721134500212"
+          },
+          {
+            "index": 6,
+            "family": "AaveBorrow",
+            "asset": "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "131824735893513774504703"
+          },
+          {
+            "index": 8,
+            "family": "AaveRepay",
+            "asset": "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "131824735893513774504704"
+          },
+          {
+            "index": 8,
+            "family": "AaveWithdraw",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "711067799721134500209"
+          }
+        ],
+        "middle_largest_change_usd": "464314.56",
+        "middle_events": {
+          "Approval": 1,
+          "ERC20_Transfer_shape": 40,
+          "unknown": 39,
+          "V4Swap": 3,
+          "CurveTokenExchange": 4,
+          "FluidSwap": 4,
+          "ERC4626Withdraw": 2,
+          "DSNote": 9,
+          "PSMBuyGem": 2,
+          "AggregatorSwapped": 1
+        },
+        "middle_assets": [
+          "DAI",
+          "GHO",
+          "USDC",
+          "USDS",
+          "USDT",
+          "USDe",
+          "frxUSD",
+          "sDAI",
+          "sUSDe"
+        ]
+      },
+      {
+        "block": 25912028,
+        "block_hash": "0x6c9e2fb6e69b257219d4a786a4c2bc832669bc2ec717b24868ec0b346f4d3c73",
+        "hashes": [
+          "0x10c555876d40d2dbd731e5a31eb55c58f6cf94479385f843bf04d91eb2cd86bc",
+          "0x06dd2ba089855125f975804d0330da92ac48f364a2e0901d4733ed8cc447c384",
+          "0x0de739c1ced8e47e3b3c78439a81b19978bac596d9f999c29a6af101716fbf47"
+        ],
+        "indices": [
+          36,
+          37,
+          38
+        ],
+        "primary_labels": [
+          "lending_with_swap",
+          "lending_with_swap"
+        ],
+        "middle_selected": false,
+        "middle_destination": "0x509b52749c2991b7472b3ee5876f5e0bca8f2429",
+        "start_weth": "711.080953304780035481",
+        "outer_contract_weth_cash_change": "0.00195868671297909",
+        "outer_contract_cash_usd_at_study_marks": "4.82",
+        "gas_limit_cost_usd_upper_bound": "0.6856484552007820270328810437",
+        "matched_liquidity_positions": [
+          {
+            "position": [
+              "0x5777d92f208679db4b9778590fa3cab3ac9e2168",
+              null,
+              "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+              -276225,
+              -276224,
+              null
+            ],
+            "liquidity_raw": "111768588265322375678",
+            "intervening_swap_same_pool": true
+          }
+        ],
+        "aave_events": [
+          {
+            "index": 36,
+            "family": "AaveSupply",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "711080953304780035481"
+          },
+          {
+            "index": 36,
+            "family": "AaveBorrow",
+            "asset": "0x6b175474e89094c44da98b954eedeac495271d0f",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "256515873989000000000000"
+          },
+          {
+            "index": 38,
+            "family": "AaveRepay",
+            "asset": "0x6b175474e89094c44da98b954eedeac495271d0f",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "256515873989000000000001"
+          },
+          {
+            "index": 38,
+            "family": "AaveWithdraw",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "711080953304780035478"
+          }
+        ],
+        "middle_largest_change_usd": "5667.47",
+        "middle_events": {
+          "ERC20_Transfer_shape": 4,
+          "WETHDeposit": 1,
+          "V3Swap": 2
+        },
+        "middle_assets": [
+          "DAI",
+          "ETH",
+          "USDC",
+          "WETH"
+        ]
+      },
+      {
+        "block": 25912097,
+        "block_hash": "0xeb2fce6209b51e560cdbd70ec6385b7ca0546a95a0ec76b25b7683bc3906313e",
+        "hashes": [
+          "0x521f8499462136e04beba6f3c58095e7c8316929c1c784c0a5f5aaa2b6dee8d0",
+          "0x1e7729f9e8278a4204e629d62f093852eb15f5c99e910344d65eaf51cd644462",
+          "0xc2ab91a8ae7574fce3cc8dbb252593f4e6d776877c9dc38b57338f9e0b4be98b"
+        ],
+        "indices": [
+          0,
+          1,
+          2
+        ],
+        "primary_labels": [
+          "aave_v3_op",
+          "lending_with_swap"
+        ],
+        "middle_selected": false,
+        "middle_destination": "0x5c7bcd6e7de5423a257d81b442095a1a6ced35c5",
+        "start_weth": "711.082911991493014571",
+        "outer_contract_weth_cash_change": "0.005936991968108173",
+        "outer_contract_cash_usd_at_study_marks": "14.61",
+        "gas_limit_cost_usd_upper_bound": "0.4776494703660003329239799425",
+        "matched_liquidity_positions": [],
+        "aave_events": [
+          {
+            "index": 0,
+            "family": "AaveSupply",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "711082911991493014571"
+          },
+          {
+            "index": 0,
+            "family": "AaveBorrow",
+            "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "67571108902"
+          },
+          {
+            "index": 2,
+            "family": "AaveRepay",
+            "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "67571108903"
+          },
+          {
+            "index": 2,
+            "family": "AaveWithdraw",
+            "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+            "amount_raw": "711082911991493014568"
+          }
+        ],
+        "middle_largest_change_usd": "1126.79",
+        "middle_events": {
+          "unknown": 4,
+          "ERC20_Transfer_shape": 6,
+          "Approval": 1,
+          "anonymous": 1
+        },
+        "middle_assets": [
+          "USDC",
+          "USDT"
+        ]
+      }
+    ],
+    "summary": {
+      "count": 20,
+      "middle_unselected": 17,
+      "matched_liquidity_episodes": 9,
+      "matched_liquidity_with_middle_swap": 9,
+      "cash_weth": "0.154867944752713209",
+      "cash_usd": "380.61",
+      "median_episode_cash_usd": "9.92",
+      "gas_limit_cost_usd_upper_bound": "8.756581326872227101634895044",
+      "zero_priority_fee_transactions": 40
+    }
+  },
+  "flash_screen": {
+    "transactions": 300,
+    "below_position_threshold": 182,
+    "zero_priority_fee": 193,
+    "with_unpriced_assets": 204,
+    "with_unknown_events": 261,
+    "with_weth_withdrawal": 173
+  }
+}

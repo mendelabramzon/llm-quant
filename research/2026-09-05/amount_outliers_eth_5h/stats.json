@@ -32,8 +32,8 @@
     "swaps": 4597
   },
   "flash_loan_rule": "ERC-20 legs A->B of X and B->A of Y>=X on the same asset inside one transaction, borrow first, X >= $1,000",
-  "generated_at": "2026-09-05T17:32:34.813695+00:00",
-  "implied_price_rule": "token outside the registry with at least 1000000000 single-token-in single-token-out swaps against a priced asset and at least $100000 of priced volume; price is the median per unit at 18 decimals",
+  "generated_at": "2026-09-05T21:42:27.857762+00:00",
+  "implied_price_rule": "token outside the registry with at least 1000000000 single-token-in single-token-out swaps against a priced asset and at least $100000 of priced volume; price is the median per unit at 18 decimals. A leg valued this way equals (leg raw amount / swap raw amount) times the swap USD, so the USD does not depend on the assumed decimals; only displayed token amounts do",
   "implied_prices": {},
   "interesting_addresses": 9643,
   "max_position_change": "27336755.06",
