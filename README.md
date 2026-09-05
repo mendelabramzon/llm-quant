@@ -44,3 +44,18 @@ uv run --with pycryptodome python scripts/gas_outliers.py show <tx hash> [...]  
 ```
 
 Outputs live in `research/2026-09-05/gas_outliers/`: `report.md` is the deliverable; `packets.json`, `stats.json`, and `context.json` are the quant artifacts; `qual_notes.md` is the LLM's interpretation keyed by transaction hash, with a `synthesis` section and a `feedback` section that lists what the qualitative pass asks the quant step to add next. `rpc_requests.jsonl` records the follow-up requests without credentials. Re-running `scan` regenerates the quant artifacts and leaves the notes untouched; the render marks any packet without a note.
+
+## Large amounts: the second loop iteration, in USD
+
+`scripts/amount_outliers.py` repeats the loop for a different quant filter: transactions that move large amounts in USD. `prices` reads Chainlink USD feeds pinned at each chain's last sampled block (the feed's `description()` must match the expected pair before its answer is used; the first verified candidate address wins) plus the wstETH ratio, and cross-checks ETH against swaps in the two factory-verified USDC/WETH pools of the pilot. `scan` values every top-level native transfer, every ERC-20 transfer of a registry token (addresses known to the author, checked against the chain by `resolve`) and every WETH wrap or unwrap, nets them per address and asset inside each transaction and across the window, ranks user transactions by largest position change, gross priced volume and native value, describes the population above `--threshold` (default $10,000: assets, shapes, repeated patterns, repeat actors, window-level nets, unpriced tokens), and writes packets for the top 3 per metric with at most one per repeated pattern plus 2 hash-sampled controls per chain. Stablecoins outside the feed set are taken at parity; tokens outside the registry are unpriced and listed rather than valued.
+
+```sh
+uv run --with pycryptodome python scripts/amount_outliers.py prices    # bounded RPC: ~3k credits; cached
+uv run --with pycryptodome python scripts/amount_outliers.py scan      # offline given prices.json (falls back to in-sample ETH price without it), ~3 s
+uv run --with pycryptodome python scripts/amount_outliers.py resolve   # bounded RPC: token symbol/decimals with registry checks, code presence; ~15k credits; cached
+uv run --with pycryptodome python scripts/amount_outliers.py render    # packets + prices + context + qual_notes.md -> report.md
+uv run --with pycryptodome python scripts/amount_outliers.py show <tx hash> [...]
+uv run --with pycryptodome python scripts/cl_cycling_check.py          # offline follow-up asked for by the notes: do per-block liquidity cyclers ever meet a swap?
+```
+
+Outputs live in `research/2026-09-05/amount_outliers/`: `report.md` is the deliverable and `letter.md` the short narrative; `prices.json`, `packets.json`, `stats.json`, `context.json` and `cycling_check.json` are the quant artifacts; `qual_notes.md` is the LLM's interpretation keyed by transaction hash with `synthesis` and `feedback` sections. The main finding of this iteration is that most "large" transactions on Base and Optimism are bots minting concentrated-liquidity positions at the end of a block and burning them at the start of the next, which earns gauge emissions while the liquidity is almost never in the pool when a swap executes; `cycling_check.json` tests that on the pilot's 30-minute pool histories.

@@ -1,0 +1,2219 @@
+{
+  "chains": {
+    "arbitrum": {
+      "above_100k": 2,
+      "above_1m": 0,
+      "above_threshold": 17,
+      "by_asset": {
+        "ARB": {
+          "sum_usd": "442582.02",
+          "transactions": 5
+        },
+        "ETH": {
+          "sum_usd": "88235.24",
+          "transactions": 2
+        },
+        "USDC": {
+          "sum_usd": "247729.55",
+          "transactions": 9
+        },
+        "USDT": {
+          "sum_usd": "200008.78",
+          "transactions": 1
+        }
+      },
+      "by_shape": {
+        "batch_payout": 1,
+        "contract_interaction": 1,
+        "mint_or_burn": 3,
+        "plain_transfer": 12
+      },
+      "campaigns": [],
+      "distinct_patterns_above_threshold": 17,
+      "erc20_coverage_pct": 78.63,
+      "erc20_transfer_logs": 2438,
+      "erc20_transfer_logs_priced": 1917,
+      "metrics": {
+        "gross_volume_usd": {
+          "mad": 68.62554302736001,
+          "max": 269978.83799123444,
+          "min": 2.4579712e-15,
+          "n": 1023,
+          "p50": 72.9897289,
+          "p90": 734.5048943344871,
+          "p95": 2186.766080128774,
+          "p99": 35512.490938677656
+        },
+        "native_value_usd": {
+          "mad": 0.0,
+          "max": 50556.46414107251,
+          "min": 0.0,
+          "n": 1023,
+          "p50": 0.0,
+          "p90": 90.95824574191634,
+          "p95": 187.42743211647996,
+          "p99": 266.25088154368
+        },
+        "position_change_usd": {
+          "mad": 54.56548616940999,
+          "max": 269978.83799123444,
+          "min": 2.4579712e-15,
+          "n": 1023,
+          "p50": 57.46561345041,
+          "p90": 434.39040900813,
+          "p95": 1320.1647399463725,
+          "p99": 19996.99183598272
+        }
+      },
+      "registry_legs_without_price": {},
+      "repeat_actors": [],
+      "skipped_metrics": {},
+      "sum_gross_volume_all_user_usd": "1426134.79",
+      "sum_position_change_above_threshold_usd": "978555.59",
+      "system_transactions": 474,
+      "transactions": 1986,
+      "unpriced_tokens_top": [
+        {
+          "largest_raw": "100000000000",
+          "token": "0x93fb6d5307e02311095a2e8b64005d0af3054c4b",
+          "transfers": 170
+        },
+        {
+          "largest_raw": "62064308781583552955",
+          "token": "0x33b49f2264e85bb124d2730dc180182717d436ae",
+          "transfers": 48
+        },
+        {
+          "largest_raw": "9094610627610494702822",
+          "token": "0x25118290e6a5f4139381d072181157035864099d",
+          "transfers": 42
+        },
+        {
+          "largest_raw": "62998300256074135200",
+          "token": "0x67598ca3035f4ab009908cdf4bf74c884f3203b4",
+          "transfers": 28
+        },
+        {
+          "largest_raw": "14159287792000000000000",
+          "token": "0x0c1c1c109fe34733fca54b82d7b46b75cfb71f6e",
+          "transfers": 18
+        },
+        {
+          "largest_raw": "10972500000",
+          "token": "0x374c5fb7979d5fdbaad2d95409e235e5cbdfd43c",
+          "transfers": 18
+        },
+        {
+          "largest_raw": "73103744",
+          "token": "0x6efa9b8883dfb78fd75cd89d8474c44c3cbda469",
+          "transfers": 13
+        },
+        {
+          "largest_raw": "20000000000",
+          "token": "0xa529c8b1e7355b44ce37507694db999f34828a88",
+          "transfers": 12
+        }
+      ],
+      "user_transactions": 1512,
+      "window_gross_through_top": [
+        {
+          "address": "0xb38e8c17e38363af6ebdcb3dae12e0243582891d",
+          "gross_through_usd": "360176.53",
+          "net_over_gross_pct": 99.8,
+          "net_usd": "359454.43",
+          "symbol": "ARB"
+        },
+        {
+          "address": "0xcde5d48fca07f9c52300d2e65632dd71ed169b90",
+          "gross_through_usd": "269978.84",
+          "net_over_gross_pct": 100.0,
+          "net_usd": "-269978.84",
+          "symbol": "ARB"
+        },
+        {
+          "address": "0x658ced5a795ee4c945077680c9eb56cac722726e",
+          "gross_through_usd": "200008.78",
+          "net_over_gross_pct": 100.0,
+          "net_usd": "-200008.78",
+          "symbol": "USDT"
+        },
+        {
+          "address": "0xeb0c033a5ed544b1993e7f57a5291b592b92187a",
+          "gross_through_usd": "200008.78",
+          "net_over_gross_pct": 100.0,
+          "net_usd": "200008.78",
+          "symbol": "USDT"
+        },
+        {
+          "address": "0xee7ae85f2fe2239e27d9c1e23fffe168d63b4055",
+          "gross_through_usd": "94912.18",
+          "net_over_gross_pct": 77.73,
+          "net_usd": "73777.90",
+          "symbol": "USDC"
+        },
+        {
+          "address": "0x563537412ad5d49faa7fa442b9193b8238d98c3c",
+          "gross_through_usd": "88235.24",
+          "net_over_gross_pct": 100.0,
+          "net_usd": "88235.24",
+          "symbol": "ETH"
+        },
+        {
+          "address": "0x6df2af891379af92bfdc0a97e9feb12e53a047ba",
+          "gross_through_usd": "87159.03",
+          "net_over_gross_pct": 0.0,
+          "net_usd": "0.00",
+          "symbol": "USDC"
+        },
+        {
+          "address": "0xfd78ee919681417d192449715b2594ab58f5d002",
+          "gross_through_usd": "79288.66",
+          "net_over_gross_pct": 0.0,
+          "net_usd": "0.00",
+          "symbol": "USDC"
+        }
+      ],
+      "window_net_top": [
+        {
+          "address": "0xb38e8c17e38363af6ebdcb3dae12e0243582891d",
+          "gross_through_usd": "360176.53",
+          "net_usd": "359454.43",
+          "symbol": "ARB"
+        },
+        {
+          "address": "0xcde5d48fca07f9c52300d2e65632dd71ed169b90",
+          "gross_through_usd": "269978.84",
+          "net_usd": "-269978.84",
+          "symbol": "ARB"
+        },
+        {
+          "address": "0x658ced5a795ee4c945077680c9eb56cac722726e",
+          "gross_through_usd": "200008.78",
+          "net_usd": "-200008.78",
+          "symbol": "USDT"
+        },
+        {
+          "address": "0xeb0c033a5ed544b1993e7f57a5291b592b92187a",
+          "gross_through_usd": "200008.78",
+          "net_usd": "200008.78",
+          "symbol": "USDT"
+        },
+        {
+          "address": "0x563537412ad5d49faa7fa442b9193b8238d98c3c",
+          "gross_through_usd": "88235.24",
+          "net_usd": "88235.24",
+          "symbol": "ETH"
+        },
+        {
+          "address": "0x27bffb0f09c18539f9a47a39958bb149fe42a155",
+          "gross_through_usd": "74989.45",
+          "net_usd": "-74989.45",
+          "symbol": "USDC"
+        },
+        {
+          "address": "0xee7ae85f2fe2239e27d9c1e23fffe168d63b4055",
+          "gross_through_usd": "94912.18",
+          "net_usd": "73777.90",
+          "symbol": "USDC"
+        },
+        {
+          "address": "0x142cfe56a727c027d4e694441efd558137afece3",
+          "gross_through_usd": "70117.32",
+          "net_usd": "70117.32",
+          "symbol": "ARB"
+        }
+      ],
+      "with_priced_flow": 1023
+    },
+    "base": {
+      "above_100k": 572,
+      "above_1m": 114,
+      "above_threshold": 661,
+      "by_asset": {
+        "ETH": {
+          "sum_usd": "144473.72",
+          "transactions": 5
+        },
+        "USDC": {
+          "sum_usd": "197694419.13",
+          "transactions": 282
+        },
+        "WETH": {
+          "sum_usd": "30697460.78",
+          "transactions": 176
+        },
+        "cbBTC": {
+          "sum_usd": "43338151.20",
+          "transactions": 198
+        }
+      },
+      "by_shape": {
+        "batch_payout": 12,
+        "contract_interaction": 640,
+        "mint_or_burn": 1,
+        "plain_transfer": 8
+      },
+      "campaigns": [
+        {
+          "asset": "USDC",
+          "blocks": [
+            50905668,
+            50905727
+          ],
+          "examples": [
+            "0x93b6cdb202927607ac93b5fa11fb158f216cde7993cb355652e8bddaa5ae04ec",
+            "0x41b6e0cd1f4bfa631639b782a35a6506880bc2d501e3240d2f652453b17e594d",
+            "0x10142d85a1986164bd551b6cd54b374abc46e5aaefc838d3182287b822d4322e"
+          ],
+          "failed": 0,
+          "key": "0x2192bc3b4028acc1113f2cd9ac2cba70c36520db|0x2f4bbe99|USDC|6.6e+05",
+          "selector": "0x2f4bbe99",
+          "senders": 1,
+          "shape": "contract_interaction",
+          "share_of_above_threshold_pct": 9.1,
+          "to": "0x2192bc3b4028acc1113f2cd9ac2cba70c36520db",
+          "transactions": 60,
+          "typical_usd": "6.6e+05"
+        },
+        {
+          "asset": "USDC",
+          "blocks": [
+            50905668,
+            50905727
+          ],
+          "examples": [
+            "0x42de4c33b3e5635e070b9b0557b5c69b03024ed3a8a416e083c6e9dfcf5f999c",
+            "0x2d6fb927edf423d8c4ac5f8b9ed5a69a6f86cd41addf5f2207a0f2ccd2f653f0",
+            "0x4623d6afdd100817ef43cfe9877d4faeaabc79810595bf41dfdfbed9d7603daf"
+          ],
+          "failed": 0,
+          "key": "0x2192bc3b4028acc1113f2cd9ac2cba70c36520db|0xefe447f3|USDC|6.6e+05",
+          "selector": "0xefe447f3",
+          "senders": 1,
+          "shape": "contract_interaction",
+          "share_of_above_threshold_pct": 9.1,
+          "to": "0x2192bc3b4028acc1113f2cd9ac2cba70c36520db",
+          "transactions": 60,
+          "typical_usd": "6.6e+05"
+        },
+        {
+          "asset": "WETH",
+          "blocks": [
+            50905668,
+            50905727
+          ],
+          "examples": [
+            "0xdc515a191b5620e53c930a1e8990312196f0f81b4847b564ecf846e9e81975e2",
+            "0x483326cb564f3dd14c18c889326c0cea0dab9c946d533b1ce849d3a0f131af37",
+            "0xcd267bbb7cbbfc54d59f2278e150ff8464f06e80a852cff3438edea0a4897597"
+          ],
+          "failed": 0,
+          "key": "0x2192bc3b4028acc1113f2cd9ac2cba70c36520db|0x2f4bbe99|WETH|1.33e+05",
+          "selector": "0x2f4bbe99",
+          "senders": 1,
+          "shape": "contract_interaction",
+          "share_of_above_threshold_pct": 8.8,
+          "to": "0x2192bc3b4028acc1113f2cd9ac2cba70c36520db",
+          "transactions": 58,
+          "typical_usd": "1.33e+05"
+        },
+        {
+          "asset": "WETH",
+          "blocks": [
+            50905668,
+            50905727
+          ],
+          "examples": [
+            "0x39af9087533045b01bcc327819dc8e14fa511a4d65f935ef6f552df572a54f25",
+            "0x7566e14af08b84af242ea55e99c96b544ed24d867d5b88b5f55d10806cac7445",
+            "0x9018fcd622b54551ed632d5f28aa696c24c043a00dd3bb93f4ff00d961c756dc"
+          ],
+          "failed": 0,
+          "key": "0x2192bc3b4028acc1113f2cd9ac2cba70c36520db|0xefe447f3|WETH|1.33e+05",
+          "selector": "0xefe447f3",
+          "senders": 1,
+          "shape": "contract_interaction",
+          "share_of_above_threshold_pct": 8.8,
+          "to": "0x2192bc3b4028acc1113f2cd9ac2cba70c36520db",
+          "transactions": 58,
+          "typical_usd": "1.33e+05"
+        },
+        {
+          "asset": "USDC",
+          "blocks": [
+            50905668,
+            50905727
+          ],
+          "examples": [
+            "0xf0a57d10c2b35d2f79a2d3543878fe3e561aae89ad3fde112bcfc070e9e39428",
+            "0x91e311fcca08c77f5f11a9b368acb9748c23fdcd8a3b2afadc7ccdbae6aed0b4",
+            "0xbe20afaaa704d766427e8f832ef564a2e25e34620c1fc884ea8337eb324e4329"
+          ],
+          "failed": 0,
+          "key": "0x9eefb63ff5274358319f15798a13a68caef9eb79|0x07cb82b4|USDC|1.02e+06",
+          "selector": "0x07cb82b4",
+          "senders": 1,
+          "shape": "contract_interaction",
+          "share_of_above_threshold_pct": 8.6,
+          "to": "0x9eefb63ff5274358319f15798a13a68caef9eb79",
+          "transactions": 57,
+          "typical_usd": "1.02e+06"
+        },
+        {
+          "asset": "USDC",
+          "blocks": [
+            50905668,
+            50905727
+          ],
+          "examples": [
+            "0x52c0df22fef693e30dc48dd5ed17e3f4a5c93723df968cd998dd62c94db5756a",
+            "0xfe4187632449a0631e4a2c58b0ef58b9cd54d74b70973f5ac9799b8074fe03af",
+            "0x9ba0944d5b6b547f341ac69401c0de6f722080b86dfabf54243014d49a1e1eba"
+          ],
+          "failed": 0,
+          "key": "0x9eefb63ff5274358319f15798a13a68caef9eb79|0xda6b0e38|USDC|1.02e+06",
+          "selector": "0xda6b0e38",
+          "senders": 1,
+          "shape": "contract_interaction",
+          "share_of_above_threshold_pct": 8.6,
+          "to": "0x9eefb63ff5274358319f15798a13a68caef9eb79",
+          "transactions": 57,
+          "typical_usd": "1.02e+06"
+        },
+        {
+          "asset": "cbBTC",
+          "blocks": [
+            50905674,
+            50905727
+          ],
+          "examples": [
+            "0x2217157e238b07efeedfe909cc7cefa3c478f2a055b938086eeea670c92ed3fd",
+            "0xa4268fbde5dc8d658523be84c6db8d913b36e66cb4feac9c031f9212c81eb72b",
+            "0x9777fe21fcabf4ca9ed83e946f66446d427919f0fc50af2e761a64e96021075c"
+          ],
+          "failed": 0,
+          "key": "0x2192bc3b4028acc1113f2cd9ac2cba70c36520db|0x2f4bbe99|cbBTC|1.81e+05",
+          "selector": "0x2f4bbe99",
+          "senders": 1,
+          "shape": "contract_interaction",
+          "share_of_above_threshold_pct": 7.9,
+          "to": "0x2192bc3b4028acc1113f2cd9ac2cba70c36520db",
+          "transactions": 52,
+          "typical_usd": "1.81e+05"
+        },
+        {
+          "asset": "cbBTC",
+          "blocks": [
+            50905674,
+            50905727
+          ],
+          "examples": [
+            "0x4dce6f1f33e82b3e738f01d1add46430d37574fb370b81f90951f8515e696291",
+            "0x49039db8278298a7049ad3aece3287cd790150697480df9f964fd67f719d1269",
+            "0x2677b73dc311aaf4147ca8da60b1f2c01b666727290488b974b3ca7212e1689f"
+          ],
+          "failed": 0,
+          "key": "0x2192bc3b4028acc1113f2cd9ac2cba70c36520db|0xefe447f3|cbBTC|1.81e+05",
+          "selector": "0xefe447f3",
+          "senders": 1,
+          "shape": "contract_interaction",
+          "share_of_above_threshold_pct": 7.9,
+          "to": "0x2192bc3b4028acc1113f2cd9ac2cba70c36520db",
+          "transactions": 52,
+          "typical_usd": "1.81e+05"
+        },
+        {
+          "asset": "cbBTC",
+          "blocks": [
+            50905676,
+            50905727
+          ],
+          "examples": [
+            "0x2538eea77380bd481328babba2d2aae4f67bc5675ba816ec64ec126d11f459fa",
+            "0xd11de222d8658a08c379bf42223a4be20ae1bd959f7978e60ab78fdc2e84310a",
+            "0x0de550ec0858150cfc324443e4114e7c4cd0d5d8c75b1c2d745ead70b327f4f4"
+          ],
+          "failed": 0,
+          "key": "0x61040e143a77f165ba44543af4a079f2c809d14b|0xb2e8b356|cbBTC|2.58e+05",
+          "selector": "0xb2e8b356",
+          "senders": 5,
+          "shape": "contract_interaction",
+          "share_of_above_threshold_pct": 4.7,
+          "to": "0x61040e143a77f165ba44543af4a079f2c809d14b",
+          "transactions": 31,
+          "typical_usd": "2.58e+05"
+        },
+        {
+          "asset": "cbBTC",
+          "blocks": [
+            50905676,
+            50905727
+          ],
+          "examples": [
+            "0xbdd6e7f355d5db62f6948cb32e1a122daded3b312406894382225e510687ee50",
+            "0x86990ea3faae2f3fc5969fb02b274558968099800fafb395ffa372515008abd1",
+            "0xb259c9e95b85529a4f4721c871a78e4907e39528f4ff4f9c1fb43ef2fa22c788"
+          ],
+          "failed": 0,
+          "key": "0x61040e143a77f165ba44543af4a079f2c809d14b|0x0d390afd|cbBTC|2.58e+05",
+          "selector": "0x0d390afd",
+          "senders": 4,
+          "shape": "contract_interaction",
+          "share_of_above_threshold_pct": 4.5,
+          "to": "0x61040e143a77f165ba44543af4a079f2c809d14b",
+          "transactions": 30,
+          "typical_usd": "2.58e+05"
+        }
+      ],
+      "distinct_patterns_above_threshold": 100,
+      "erc20_coverage_pct": 41.7,
+      "erc20_transfer_logs": 11261,
+      "erc20_transfer_logs_priced": 4696,
+      "metrics": {
+        "gross_volume_usd": {
+          "mad": 68.3430977729995,
+          "max": 1900439.3728773042,
+          "min": 2.4579712e-15,
+          "n": 2655,
+          "p50": 68.3450974915995,
+          "p90": 509405.10543267545,
+          "p95": 1228231.236900982,
+          "p99": 1900071.5367411315
+        },
+        "native_value_usd": {
+          "mad": 0.0,
+          "max": 49159.37439814118,
+          "min": 0.0,
+          "n": 2655,
+          "p50": 0.0,
+          "p90": 0.002804354269406747,
+          "p95": 5.680604541430659,
+          "p99": 472.8054327976024
+        },
+        "position_change_usd": {
+          "mad": 49.718073682650996,
+          "max": 1023880.6960719664,
+          "min": 2.4579712e-15,
+          "n": 2655,
+          "p50": 49.719073541951,
+          "p90": 302561.5170770487,
+          "p95": 660090.679664054,
+          "p99": 1023512.8599357936
+        }
+      },
+      "registry_legs_without_price": {},
+      "repeat_actors": [
+        {
+          "address": "0xb2cc224c1c9fee385f8ad6a55b4d94e92359dc59",
+          "examples": [
+            "0x52c0df22fef693e30dc48dd5ed17e3f4a5c93723df968cd998dd62c94db5756a",
+            "0x93b6cdb202927607ac93b5fa11fb158f216cde7993cb355652e8bddaa5ae04ec",
+            "0xf0a57d10c2b35d2f79a2d3543878fe3e561aae89ad3fde112bcfc070e9e39428"
+          ],
+          "roles": {
+            "largest position": 234
+          },
+          "sum_position_change_usd": "195866612.28",
+          "transactions_above_threshold": 234
+        },
+        {
+          "address": "0x4506de02071dcd46a22638aab6cd19e57e252e22",
+          "examples": [
+            "0x93b6cdb202927607ac93b5fa11fb158f216cde7993cb355652e8bddaa5ae04ec",
+            "0x42de4c33b3e5635e070b9b0557b5c69b03024ed3a8a416e083c6e9dfcf5f999c",
+            "0x41b6e0cd1f4bfa631639b782a35a6506880bc2d501e3240d2f652453b17e594d"
+          ],
+          "roles": {
+            "tx sender": 120
+          },
+          "sum_position_change_usd": "79208731.46",
+          "transactions_above_threshold": 120
+        },
+        {
+          "address": "0xb5f0b4ae66c14f7efaa9aa1468e8fc536a3e288c",
+          "examples": [
+            "0xdc515a191b5620e53c930a1e8990312196f0f81b4847b564ecf846e9e81975e2",
+            "0x39af9087533045b01bcc327819dc8e14fa511a4d65f935ef6f552df572a54f25",
+            "0x483326cb564f3dd14c18c889326c0cea0dab9c946d533b1ce849d3a0f131af37"
+          ],
+          "roles": {
+            "largest position": 117
+          },
+          "sum_position_change_usd": "15569046.10",
+          "transactions_above_threshold": 117
+        },
+        {
+          "address": "0x4e962bb3889bf030368f56810a9c96b83cb3e778",
+          "examples": [
+            "0x3220c2069fbbde9405b6ed7ba5631610efede5e4ac66dab29e59d925186e64a6",
+            "0x8405fe2f3671ce22e6cc0bd56a26bd874a5d62ccb2fca9e3cb2dc0bcd670e337",
+            "0x2dd29ddf9d45c121079518a3e54a7eb9dcc8ca8e8dc98aaf06f049dddefecc79"
+          ],
+          "roles": {
+            "largest position": 116
+          },
+          "sum_position_change_usd": "21046238.10",
+          "transactions_above_threshold": 116
+        },
+        {
+          "address": "0xfbffd28084c84727637a62583a95b462841a3fd6",
+          "examples": [
+            "0x3220c2069fbbde9405b6ed7ba5631610efede5e4ac66dab29e59d925186e64a6",
+            "0x8405fe2f3671ce22e6cc0bd56a26bd874a5d62ccb2fca9e3cb2dc0bcd670e337",
+            "0x2dd29ddf9d45c121079518a3e54a7eb9dcc8ca8e8dc98aaf06f049dddefecc79"
+          ],
+          "roles": {
+            "tx sender": 116
+          },
+          "sum_position_change_usd": "21046238.10",
+          "transactions_above_threshold": 116
+        },
+        {
+          "address": "0xff579a77eb33ebe7b2cd05dd46d919cd0b5841fb",
+          "examples": [
+            "0xdc515a191b5620e53c930a1e8990312196f0f81b4847b564ecf846e9e81975e2",
+            "0x39af9087533045b01bcc327819dc8e14fa511a4d65f935ef6f552df572a54f25",
+            "0x483326cb564f3dd14c18c889326c0cea0dab9c946d533b1ce849d3a0f131af37"
+          ],
+          "roles": {
+            "tx sender": 116
+          },
+          "sum_position_change_usd": "15478305.64",
+          "transactions_above_threshold": 116
+        },
+        {
+          "address": "0x356575f22ee00c666c7a5e89eba7d1232f239dc9",
+          "examples": [
+            "0x52c0df22fef693e30dc48dd5ed17e3f4a5c93723df968cd998dd62c94db5756a",
+            "0xf0a57d10c2b35d2f79a2d3543878fe3e561aae89ad3fde112bcfc070e9e39428",
+            "0xfe4187632449a0631e4a2c58b0ef58b9cd54d74b70973f5ac9799b8074fe03af"
+          ],
+          "roles": {
+            "tx sender": 114
+          },
+          "sum_position_change_usd": "116657880.83",
+          "transactions_above_threshold": 114
+        },
+        {
+          "address": "0x61040e143a77f165ba44543af4a079f2c809d14b",
+          "examples": [
+            "0x21036cf32bd535c0a8a9abc907b6035d49cd85c7c78ac5b17835ad12b20c200e",
+            "0x2621c6a9616fcb4315246dade4ddfc67a3c1dd0aa16c7384b852de5916648bc7",
+            "0x3d488aef7add2f2374c14f9048d3af38e561c405ed0555b86de90704742d8550"
+          ],
+          "roles": {
+            "largest position": 101
+          },
+          "sum_position_change_usd": "35960312.13",
+          "transactions_above_threshold": 101
+        }
+      ],
+      "skipped_metrics": {},
+      "sum_gross_volume_all_user_usd": "467883903.01",
+      "sum_position_change_above_threshold_usd": "271874504.83",
+      "system_transactions": 60,
+      "transactions": 8207,
+      "unpriced_tokens_top": [
+        {
+          "largest_raw": "1116419589520072087",
+          "token": "0x36ea99adb52e84fe5fdd401a23cd11559fef82b3",
+          "transfers": 1003
+        },
+        {
+          "largest_raw": "9000000000",
+          "token": "0x92bf08c2f107d3a5d7e31d705e634c34a9dc3391",
+          "transfers": 1002
+        },
+        {
+          "largest_raw": "134669630000000000000000",
+          "token": "0x0b3e328455c4059eeb9e3f84b5543f74e24e7e1b",
+          "transfers": 584
+        },
+        {
+          "largest_raw": "147709475453759876474804",
+          "token": "0x940181a94a35a4569e4529a3cdfb74e38fd98631",
+          "transfers": 574
+        },
+        {
+          "largest_raw": "271000000000000000000",
+          "token": "0xbbd27c575fb0e113219d610cc787b02eeff71d42",
+          "transfers": 515
+        },
+        {
+          "largest_raw": "994482500000000000000",
+          "token": "0xb4bb2032a73a53c0aa7dc9ee2d9658a978fa7bc2",
+          "transfers": 136
+        },
+        {
+          "largest_raw": "3235198464507067768413",
+          "token": "0xbaa5cc21fd487b8fcc2f632f3f4e8d37262a0842",
+          "transfers": 130
+        },
+        {
+          "largest_raw": "4087800000000000181899",
+          "token": "0x853a7c99227499dba9db8c3a02aa691afdebf841",
+          "transfers": 100
+        }
+      ],
+      "user_transactions": 8147,
+      "window_gross_through_top": [
+        {
+          "address": "0xb2cc224c1c9fee385f8ad6a55b4d94e92359dc59",
+          "gross_through_usd": "196163093.95",
+          "net_over_gross_pct": 0.05,
+          "net_usd": "97469.94",
+          "symbol": "USDC"
+        },
+        {
+          "address": "0xb2cc224c1c9fee385f8ad6a55b4d94e92359dc59",
+          "gross_through_usd": "168032739.96",
+          "net_over_gross_pct": 0.05,
+          "net_usd": "82346.48",
+          "symbol": "WETH"
+        },
+        {
+          "address": "0x9eefb63ff5274358319f15798a13a68caef9eb79",
+          "gross_through_usd": "116657880.83",
+          "net_over_gross_pct": 0.0,
+          "net_usd": "-1312.76",
+          "symbol": "USDC"
+        },
+        {
+          "address": "0x9eefb63ff5274358319f15798a13a68caef9eb79",
+          "gross_through_usd": "99928941.95",
+          "net_over_gross_pct": 0.0,
+          "net_usd": "6.36",
+          "symbol": "WETH"
+        },
+        {
+          "address": "0x2192bc3b4028acc1113f2cd9ac2cba70c36520db",
+          "gross_through_usd": "83782848.54",
+          "net_over_gross_pct": 0.02,
+          "net_usd": "-15929.57",
+          "symbol": "WETH"
+        },
+        {
+          "address": "0x2192bc3b4028acc1113f2cd9ac2cba70c36520db",
+          "gross_through_usd": "83367917.08",
+          "net_over_gross_pct": 0.03,
+          "net_usd": "-23812.70",
+          "symbol": "USDC"
+        },
+        {
+          "address": "0x4e962bb3889bf030368f56810a9c96b83cb3e778",
+          "gross_through_usd": "46066626.20",
+          "net_over_gross_pct": 0.55,
+          "net_usd": "254932.62",
+          "symbol": "cbBTC"
+        },
+        {
+          "address": "0x61040e143a77f165ba44543af4a079f2c809d14b",
+          "gross_through_usd": "32735146.38",
+          "net_over_gross_pct": 0.74,
+          "net_usd": "-243548.42",
+          "symbol": "cbBTC"
+        }
+      ],
+      "window_net_top": [
+        {
+          "address": "0xecec48ec5a7b7f7b96460b0f4e2b99cf0db94cb1",
+          "gross_through_usd": "296802.31",
+          "net_usd": "287399.80",
+          "symbol": "WETH"
+        },
+        {
+          "address": "0x4e962bb3889bf030368f56810a9c96b83cb3e778",
+          "gross_through_usd": "46066626.20",
+          "net_usd": "254932.62",
+          "symbol": "cbBTC"
+        },
+        {
+          "address": "0x61040e143a77f165ba44543af4a079f2c809d14b",
+          "gross_through_usd": "32735146.38",
+          "net_usd": "-243548.42",
+          "symbol": "cbBTC"
+        },
+        {
+          "address": "0xec2ca51afc5529bff84909fb04dec81be3b2490f",
+          "gross_through_usd": "208804.51",
+          "net_usd": "208804.51",
+          "symbol": "WETH"
+        },
+        {
+          "address": "0x4e506648d493c8870f55e870480f92f2f33ece51",
+          "gross_through_usd": "541671.67",
+          "net_usd": "-202919.63",
+          "symbol": "WETH"
+        },
+        {
+          "address": "0x3fe04a59ebd38cf06080a6f60a98d124eb59392a",
+          "gross_through_usd": "5803660.84",
+          "net_usd": "-161957.17",
+          "symbol": "WETH"
+        },
+        {
+          "address": "0xb90fe999be6869af0afc557dccfbe169ea3403d6",
+          "gross_through_usd": "127428.67",
+          "net_usd": "127428.67",
+          "symbol": "WETH"
+        },
+        {
+          "address": "0xdc9fc59ce646c55690cad2180f32f0e151cf72f6",
+          "gross_through_usd": "99985.73",
+          "net_usd": "-99985.73",
+          "symbol": "USDC"
+        }
+      ],
+      "with_priced_flow": 2655
+    },
+    "ethereum": {
+      "above_100k": 17,
+      "above_1m": 3,
+      "above_threshold": 82,
+      "by_asset": {
+        "AAVE": {
+          "sum_usd": "10095.99",
+          "transactions": 1
+        },
+        "ETH": {
+          "sum_usd": "589135.87",
+          "transactions": 11
+        },
+        "LINK": {
+          "sum_usd": "164397.64",
+          "transactions": 4
+        },
+        "UNI": {
+          "sum_usd": "17036.06",
+          "transactions": 1
+        },
+        "USDC": {
+          "sum_usd": "1106546.00",
+          "transactions": 18
+        },
+        "USDS": {
+          "sum_usd": "810927.30",
+          "transactions": 2
+        },
+        "USDT": {
+          "sum_usd": "9505214.82",
+          "transactions": 33
+        },
+        "USDe": {
+          "sum_usd": "467477.40",
+          "transactions": 1
+        },
+        "WBTC": {
+          "sum_usd": "15961.95",
+          "transactions": 1
+        },
+        "WETH": {
+          "sum_usd": "317568.25",
+          "transactions": 6
+        },
+        "crvUSD": {
+          "sum_usd": "49580.00",
+          "transactions": 1
+        },
+        "stETH": {
+          "sum_usd": "70321.71",
+          "transactions": 3
+        }
+      },
+      "by_shape": {
+        "batch_payout": 1,
+        "contract_interaction": 16,
+        "mint_or_burn": 6,
+        "plain_transfer": 48,
+        "swap": 11
+      },
+      "campaigns": [
+        {
+          "asset": "USDT",
+          "blocks": [
+            25910247,
+            25910252
+          ],
+          "examples": [
+            "0x1ca4f037706a002ad85bab9338d6686727f6572bfa21784372504d2f08b96ced",
+            "0x8e2b548a6f200b71480a0c7b40ed91fc2c66800f2f5f6040164d6501e09eabba"
+          ],
+          "failed": 0,
+          "key": "0x7777857616fb37f0cfa262e9bb945e828312df17|0x3fa72595|USDT|1.43e+04",
+          "selector": "0x3fa72595",
+          "senders": 2,
+          "shape": "contract_interaction",
+          "share_of_above_threshold_pct": 2.4,
+          "to": "0x7777857616fb37f0cfa262e9bb945e828312df17",
+          "transactions": 2,
+          "typical_usd": "1.43e+04"
+        },
+        {
+          "asset": "USDC",
+          "blocks": [
+            25910245,
+            25910250
+          ],
+          "examples": [
+            "0x4dc0f152281bd0c58ca034b52c402010e8d5bab3ce9e6516ccd7ac0494dfc608",
+            "0xc11be4f5987550a77b10ad872fcec991a5b244461b0bfd8b3d15da6fd74a9804"
+          ],
+          "failed": 0,
+          "key": "0x8a25a24ede9482c4fc0738f99611be58f1c839ab|0x6a761202|USDC|1.27e+05",
+          "selector": "0x6a761202",
+          "senders": 1,
+          "shape": "mint_or_burn",
+          "share_of_above_threshold_pct": 2.4,
+          "to": "0x8a25a24ede9482c4fc0738f99611be58f1c839ab",
+          "transactions": 2,
+          "typical_usd": "1.27e+05"
+        },
+        {
+          "asset": "USDT",
+          "blocks": [
+            25910246,
+            25910248
+          ],
+          "examples": [
+            "0x348b25f5b74ee53a28bd2e2d87d63f094fd25faab47b1ffb59b2423dbf976a9b",
+            "0xa5ae90bce357d7154f3f0f3178ed0636475e2bbac04cc29b52513f1df85b29ee"
+          ],
+          "failed": 0,
+          "key": "0xdac17f958d2ee523a2206206994597c13d831ec7|0xa9059cbb|USDT|3e+04",
+          "selector": "0xa9059cbb",
+          "senders": 2,
+          "shape": "plain_transfer",
+          "share_of_above_threshold_pct": 2.4,
+          "to": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "transactions": 2,
+          "typical_usd": "3e+04"
+        }
+      ],
+      "distinct_patterns_above_threshold": 79,
+      "erc20_coverage_pct": 68.04,
+      "erc20_transfer_logs": 3698,
+      "erc20_transfer_logs_priced": 2516,
+      "metrics": {
+        "gross_volume_usd": {
+          "mad": 61.48433862242909,
+          "max": 48305825.316571705,
+          "min": 5.751652608e-13,
+          "n": 2222,
+          "p50": 61.6559975177,
+          "p90": 2330.6034412031354,
+          "p95": 9979.133235074214,
+          "p99": 100068.7952747
+        },
+        "native_value_usd": {
+          "mad": 0.0,
+          "max": 171578.47390839027,
+          "min": 0.0,
+          "n": 2222,
+          "p50": 0.0,
+          "p90": 98.29238488445772,
+          "p95": 274.61792752738745,
+          "p99": 3264.052638653872
+        },
+        "position_change_usd": {
+          "mad": 50.83735176683922,
+          "max": 4000175.5601000045,
+          "min": 5.751652608e-13,
+          "n": 2222,
+          "p50": 50.88896916203922,
+          "p90": 1571.8221906482288,
+          "p95": 5770.722950374746,
+          "p99": 82601.39791558328
+        }
+      },
+      "registry_legs_without_price": {},
+      "repeat_actors": [
+        {
+          "address": "0x51c72848c68a965f66fa7a88855f9f7784502a7f",
+          "examples": [
+            "0x6854a8e079bb83aa2d3c855478539eec7ce3dbb44607245d3ab80eba30012bd6",
+            "0x99784f16f1980055ad81d948e13e5044934e360312e11f74a788abbdf8e23427",
+            "0xdcdab011aecc920e58b903138a483986f3d642ad9ad9c1a8cd6aae30b708f5df"
+          ],
+          "roles": {
+            "largest position": 5
+          },
+          "sum_position_change_usd": "152003.72",
+          "transactions_above_threshold": 5
+        }
+      ],
+      "skipped_metrics": {},
+      "sum_gross_volume_all_user_usd": "77304606.79",
+      "sum_position_change_above_threshold_usd": "13124262.98",
+      "system_transactions": 0,
+      "transactions": 2742,
+      "unpriced_tokens_top": [
+        {
+          "largest_raw": "999985003115",
+          "token": "0xde7a933accd1a2e7d8c6f5ab4b77afd74b6f34f3",
+          "transfers": 107
+        },
+        {
+          "largest_raw": "275296160170312288091148",
+          "token": "0xe172e9b6cfbeeb5593bdce3f077356fdb33af904",
+          "transfers": 67
+        },
+        {
+          "largest_raw": "5093158898193",
+          "token": "0x5b5ebae3d2df95c5cfda7bd7b9bd688576a0dc9d",
+          "transfers": 53
+        },
+        {
+          "largest_raw": "26161910000",
+          "token": "0x70c2ae26f54d1a69fb98959051b84003d1134f5c",
+          "transfers": 52
+        },
+        {
+          "largest_raw": "333667207208915344247237",
+          "token": "0xa27ec0006e59f245217ff08cd52a7e8b169e62d2",
+          "transfers": 37
+        },
+        {
+          "largest_raw": "6525000000000000000",
+          "token": "0x2dee3f17e7a2092d2a16b4abd71ed6d485464971",
+          "transfers": 32
+        },
+        {
+          "largest_raw": "539019924637",
+          "token": "0x412b6dc9a2d82e849b1f1c66db8b94c6009a35b2",
+          "transfers": 28
+        },
+        {
+          "largest_raw": "13494954919310857000",
+          "token": "0x8141cf466915c2eedaa29a528c1e91d0ad69817d",
+          "transfers": 25
+        }
+      ],
+      "user_transactions": 2742,
+      "window_gross_through_top": [
+        {
+          "address": "0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb",
+          "gross_through_usd": "53221346.72",
+          "net_over_gross_pct": 0.0,
+          "net_usd": "0.00",
+          "symbol": "WETH"
+        },
+        {
+          "address": "0xd226997439ecfbeff8e110c8c78c8a7eefd19f89",
+          "gross_through_usd": "48305334.82",
+          "net_over_gross_pct": 0.0,
+          "net_usd": "0.00",
+          "symbol": "WETH"
+        },
+        {
+          "address": "0x99e66f3ce49266bd04a64d989ea63df0b8f43b80",
+          "gross_through_usd": "4916023.84",
+          "net_over_gross_pct": 0.0,
+          "net_usd": "0.00",
+          "symbol": "WETH"
+        },
+        {
+          "address": "0x23878914efe38d27c4d67ab83ed1b93a74d4086a",
+          "gross_through_usd": "4093179.64",
+          "net_over_gross_pct": 100.0,
+          "net_usd": "4093179.64",
+          "symbol": "USDT"
+        },
+        {
+          "address": "0x29c97b183ec6776ecd6975050c00862f930171a1",
+          "gross_through_usd": "4000175.56",
+          "net_over_gross_pct": 100.0,
+          "net_usd": "-4000175.56",
+          "symbol": "USDT"
+        },
+        {
+          "address": "0x28c6c06298d514db089934071355e5743bf21d60",
+          "gross_through_usd": "3082311.54",
+          "net_over_gross_pct": 99.86,
+          "net_usd": "3077893.99",
+          "symbol": "USDT"
+        },
+        {
+          "address": "0xefa417562cd30c2a571f6f27223657bba76d2110",
+          "gross_through_usd": "3000131.67",
+          "net_over_gross_pct": 100.0,
+          "net_usd": "-3000131.67",
+          "symbol": "USDT"
+        },
+        {
+          "address": "0x6a000f20005980200259b80c5102003040001068",
+          "gross_through_usd": "1711905.49",
+          "net_over_gross_pct": 0.0,
+          "net_usd": "0.00",
+          "symbol": "USDC"
+        }
+      ],
+      "window_net_top": [
+        {
+          "address": "0x23878914efe38d27c4d67ab83ed1b93a74d4086a",
+          "gross_through_usd": "4093179.64",
+          "net_usd": "4093179.64",
+          "symbol": "USDT"
+        },
+        {
+          "address": "0x29c97b183ec6776ecd6975050c00862f930171a1",
+          "gross_through_usd": "4000175.56",
+          "net_usd": "-4000175.56",
+          "symbol": "USDT"
+        },
+        {
+          "address": "0x28c6c06298d514db089934071355e5743bf21d60",
+          "gross_through_usd": "3082311.54",
+          "net_usd": "3077893.99",
+          "symbol": "USDT"
+        },
+        {
+          "address": "0xefa417562cd30c2a571f6f27223657bba76d2110",
+          "gross_through_usd": "3000131.67",
+          "net_usd": "-3000131.67",
+          "symbol": "USDT"
+        },
+        {
+          "address": "0x1a9184719a59a2de7a160c77ff1090fb714f1836",
+          "gross_through_usd": "1000028.89",
+          "net_usd": "-1000028.89",
+          "symbol": "USDT"
+        },
+        {
+          "address": "0x5f8e393eced9bbc552cf955339cdbeeb8b5e36e4",
+          "gross_through_usd": "1000028.89",
+          "net_usd": "1000028.89",
+          "symbol": "USDT"
+        },
+        {
+          "address": "0xcf0a12cbd8088fc5f84ad431e71787157041cd69",
+          "gross_through_usd": "786000.00",
+          "net_usd": "-786000.00",
+          "symbol": "USDS"
+        },
+        {
+          "address": "0xcf0a12cbd8088fc5f84ad431e71787157041cd69",
+          "gross_through_usd": "785889.41",
+          "net_usd": "785889.41",
+          "symbol": "USDC"
+        }
+      ],
+      "with_priced_flow": 2222
+    },
+    "optimism": {
+      "above_100k": 46,
+      "above_1m": 0,
+      "above_threshold": 292,
+      "by_asset": {
+        "USDC": {
+          "sum_usd": "13249234.88",
+          "transactions": 290
+        },
+        "USDT": {
+          "sum_usd": "58491.48",
+          "transactions": 2
+        }
+      },
+      "by_shape": {
+        "contract_interaction": 287,
+        "plain_transfer": 5
+      },
+      "campaigns": [
+        {
+          "asset": "USDC",
+          "blocks": [
+            156500953,
+            156501012
+          ],
+          "examples": [
+            "0x0aece271b7eb24e8aa5e2c7ca7ba30953e5385f83e5b6cb37bcbbbaba382b0e3",
+            "0xa117e779c2db5ce6199438c1ed53ec599e3e2bdb7d0231a1ea7a858d9d54b194",
+            "0x7b031c6535a7b55795c8fadc247ec7be90fc97d25f2a913cdd04397d0d998a66"
+          ],
+          "failed": 0,
+          "key": "0x343c41429cfad966dbb8a00c5fd096dbb8dc320f|0x2d1586f7|USDC|3e+04",
+          "selector": "0x2d1586f7",
+          "senders": 3,
+          "shape": "contract_interaction",
+          "share_of_above_threshold_pct": 20.5,
+          "to": "0x343c41429cfad966dbb8a00c5fd096dbb8dc320f",
+          "transactions": 60,
+          "typical_usd": "3e+04"
+        },
+        {
+          "asset": "USDC",
+          "blocks": [
+            156500953,
+            156501012
+          ],
+          "examples": [
+            "0x3f5cd9c41c0459ad3205cc5b71761a6b558ce3149ceb04d8ac329f1d9da830d0",
+            "0x52dca6101d7004040bac19f40c8dfd78948b7f33b56826544dbdb269968fcd0b",
+            "0x32d8fffd0ca1dc0a5802c905ddde55ed6e8e7dda730a2a2d458878b397f7a6c1"
+          ],
+          "failed": 0,
+          "key": "0x343c41429cfad966dbb8a00c5fd096dbb8dc320f|0x46c8fb83|USDC|3e+04",
+          "selector": "0x46c8fb83",
+          "senders": 3,
+          "shape": "contract_interaction",
+          "share_of_above_threshold_pct": 20.5,
+          "to": "0x343c41429cfad966dbb8a00c5fd096dbb8dc320f",
+          "transactions": 60,
+          "typical_usd": "3e+04"
+        },
+        {
+          "asset": "USDC",
+          "blocks": [
+            156500953,
+            156501000
+          ],
+          "examples": [
+            "0x6182bde19667de3b2e998d4d94b1961b5a7e92ac3cbe65e1d612590d196993f1",
+            "0x48cd02d9cb11d9ecd845c79fb7c7a6c56d4df6b7d830484e8d7fa3b5e5c0f8d8",
+            "0x331a202bde2af289fa81b649330eb5be30372e3af7af07388b847348012e8986"
+          ],
+          "failed": 0,
+          "key": "0xf1b41a86d82d9b93f1d88db14f98d33505887c76|0xc393d0e3|USDC|2.08e+04",
+          "selector": "0xc393d0e3",
+          "senders": 1,
+          "shape": "contract_interaction",
+          "share_of_above_threshold_pct": 7.9,
+          "to": "0xf1b41a86d82d9b93f1d88db14f98d33505887c76",
+          "transactions": 23,
+          "typical_usd": "2.08e+04"
+        },
+        {
+          "asset": "USDC",
+          "blocks": [
+            156500953,
+            156500999
+          ],
+          "examples": [
+            "0xe5ffadd613b550d0e4928850bf38bc1950ac8c9ba2276834ef517f1c932a4659",
+            "0x5b9562d8d5b9a2691208df6f5dbee4a4a1d0775b4a24559ae954ffaa936fa445",
+            "0x429299bdf2d22b2a2773511a814c7a2958192f9188334d59aea539949649c56a"
+          ],
+          "failed": 0,
+          "key": "0xf1b41a86d82d9b93f1d88db14f98d33505887c76|0x83730cc3|USDC|2.08e+04",
+          "selector": "0x83730cc3",
+          "senders": 1,
+          "shape": "contract_interaction",
+          "share_of_above_threshold_pct": 7.5,
+          "to": "0xf1b41a86d82d9b93f1d88db14f98d33505887c76",
+          "transactions": 22,
+          "typical_usd": "2.08e+04"
+        },
+        {
+          "asset": "USDC",
+          "blocks": [
+            156500954,
+            156500998
+          ],
+          "examples": [
+            "0x3e2e0790a841d6c181cd76b5227b3adee954db0a283e5526befdb4ad61f32c7f",
+            "0x72916119787309c24b14d7ec635c07b977cde647b584821f5c8cd866bec273c0",
+            "0x7707271e3bccdbde607808345d7e5b64ae8195f82695a647e68cfec992b9a3f9"
+          ],
+          "failed": 0,
+          "key": "0xc26ae9339be07ce072b96003fa959517c4af37e9|0xcbce98b0|USDC|1.33e+05",
+          "selector": "0xcbce98b0",
+          "senders": 1,
+          "shape": "contract_interaction",
+          "share_of_above_threshold_pct": 6.2,
+          "to": "0xc26ae9339be07ce072b96003fa959517c4af37e9",
+          "transactions": 18,
+          "typical_usd": "1.33e+05"
+        },
+        {
+          "asset": "USDC",
+          "blocks": [
+            156500955,
+            156500999
+          ],
+          "examples": [
+            "0x6e2698795438641a491b65649f851308a24a9975c5bc7f26ea4b04ba3a9e4148",
+            "0x90081cef4702fc0225428a2d7244ad19c62834f8df8494eee1075157c3d7eb75",
+            "0x5248b322920cc76cdc4d2ce4a003e861475e03be57e93157bdd6843c8abab449"
+          ],
+          "failed": 0,
+          "key": "0xc26ae9339be07ce072b96003fa959517c4af37e9|0xd9fc0833|USDC|1.33e+05",
+          "selector": "0xd9fc0833",
+          "senders": 1,
+          "shape": "contract_interaction",
+          "share_of_above_threshold_pct": 6.2,
+          "to": "0xc26ae9339be07ce072b96003fa959517c4af37e9",
+          "transactions": 18,
+          "typical_usd": "1.33e+05"
+        },
+        {
+          "asset": "USDC",
+          "blocks": [
+            156500954,
+            156500998
+          ],
+          "examples": [
+            "0x8578244720f12eceb335666884ee0967584000ee5b4bae83a1d896b50a79f7e4",
+            "0x1fe638731492579547406c98b1119448bcf7990d1bd7425864e190eb706ab0bb",
+            "0x91114b0c6f948967dce4c7a678777f8def4f99ad0047c0c286b3d5e298951f18"
+          ],
+          "failed": 0,
+          "key": "0xf1b41a86d82d9b93f1d88db14f98d33505887c76|0x83730cc3|USDC|4.09e+04",
+          "selector": "0x83730cc3",
+          "senders": 1,
+          "shape": "contract_interaction",
+          "share_of_above_threshold_pct": 6.2,
+          "to": "0xf1b41a86d82d9b93f1d88db14f98d33505887c76",
+          "transactions": 18,
+          "typical_usd": "4.09e+04"
+        },
+        {
+          "asset": "USDC",
+          "blocks": [
+            156500955,
+            156500999
+          ],
+          "examples": [
+            "0x51117030e3c71539519eed8f1f093c1ced71c542cfdbd24cef555286e2f759f4",
+            "0xf862a21011c5e42b37f51deee9028194efe8b3937a143fcd387b0a7e8f275d93",
+            "0x1763547830c4522d78996a156c97b8abcf1fc3a72e439ade363981c8ece9195f"
+          ],
+          "failed": 0,
+          "key": "0xf1b41a86d82d9b93f1d88db14f98d33505887c76|0xc393d0e3|USDC|4.09e+04",
+          "selector": "0xc393d0e3",
+          "senders": 1,
+          "shape": "contract_interaction",
+          "share_of_above_threshold_pct": 6.2,
+          "to": "0xf1b41a86d82d9b93f1d88db14f98d33505887c76",
+          "transactions": 18,
+          "typical_usd": "4.09e+04"
+        },
+        {
+          "asset": "USDC",
+          "blocks": [
+            156500957,
+            156500986
+          ],
+          "examples": [
+            "0x6e5d4f037480d16a78bf332613ca178cab02e9a47f9395692df7fdafac27a35b",
+            "0x2a9bfd23281593796330254d8e2bda1f36953eb7ec3ebd848ca5480f4b062e16",
+            "0x549b4148d0cec96e90e1d6cccf0a05e7eb77953558f2198a5ff90150acbe5cdf"
+          ],
+          "failed": 0,
+          "key": "0xf1b41a86d82d9b93f1d88db14f98d33505887c76|0x83730cc3|USDC|1.18e+04",
+          "selector": "0x83730cc3",
+          "senders": 1,
+          "shape": "contract_interaction",
+          "share_of_above_threshold_pct": 2.4,
+          "to": "0xf1b41a86d82d9b93f1d88db14f98d33505887c76",
+          "transactions": 7,
+          "typical_usd": "1.18e+04"
+        },
+        {
+          "asset": "USDC",
+          "blocks": [
+            156501000,
+            156501012
+          ],
+          "examples": [
+            "0x4d2809f531171e313b964bb8adb49117404d171d646d0a30a7123ae4ed1cb083",
+            "0x19450e8b2c823e8adeb9fd49939ca611c0794542a818368072af56dfcfc7ee6d",
+            "0x23310afb4ac0be2e56fa190e94445f7c72f4657f40544fd5c8b73c508dab0b0f"
+          ],
+          "failed": 0,
+          "key": "0xf1b41a86d82d9b93f1d88db14f98d33505887c76|0x83730cc3|USDC|3.23e+04",
+          "selector": "0x83730cc3",
+          "senders": 1,
+          "shape": "contract_interaction",
+          "share_of_above_threshold_pct": 2.4,
+          "to": "0xf1b41a86d82d9b93f1d88db14f98d33505887c76",
+          "transactions": 7,
+          "typical_usd": "3.23e+04"
+        }
+      ],
+      "distinct_patterns_above_threshold": 24,
+      "erc20_coverage_pct": 18.29,
+      "erc20_transfer_logs": 9197,
+      "erc20_transfer_logs_priced": 1682,
+      "metrics": {
+        "gross_volume_usd": {
+          "mad": 38716.34174314783,
+          "max": 248107.10662012332,
+          "min": 2.4579712e-15,
+          "n": 520,
+          "p50": 38717.32182740395,
+          "p90": 154076.92656836414,
+          "p95": 248107.10661912346,
+          "p99": 248107.10662012332
+        },
+        "native_value_usd": {
+          "mad": 0.0,
+          "max": 798.84064,
+          "min": 0.0,
+          "n": 520,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p95": 0.9995837623967999,
+          "p99": 400.6493056
+        },
+        "position_change_usd": {
+          "mad": 20164.464413115285,
+          "max": 133114.6260775377,
+          "min": 2.4579712e-15,
+          "n": 520,
+          "p50": 20772.648909015097,
+          "p90": 40937.113323730155,
+          "p95": 133114.62607653785,
+          "p99": 133114.6260775377
+        }
+      },
+      "registry_legs_without_price": {},
+      "repeat_actors": [
+        {
+          "address": "0x32f5e7bf5060ce08be8dbac7f12e3ae43816764e",
+          "examples": [
+            "0x6182bde19667de3b2e998d4d94b1961b5a7e92ac3cbe65e1d612590d196993f1",
+            "0xe5ffadd613b550d0e4928850bf38bc1950ac8c9ba2276834ef517f1c932a4659",
+            "0x48cd02d9cb11d9ecd845c79fb7c7a6c56d4df6b7d830484e8d7fa3b5e5c0f8d8"
+          ],
+          "roles": {
+            "tx sender": 120
+          },
+          "sum_position_change_usd": "3447146.98",
+          "transactions_above_threshold": 120
+        },
+        {
+          "address": "0x7a05ffec63a936f61653221d0f56e11b868c8d5b",
+          "examples": [
+            "0x0aece271b7eb24e8aa5e2c7ca7ba30953e5385f83e5b6cb37bcbbbaba382b0e3",
+            "0x3f5cd9c41c0459ad3205cc5b71761a6b558ce3149ceb04d8ac329f1d9da830d0",
+            "0xa117e779c2db5ce6199438c1ed53ec599e3e2bdb7d0231a1ea7a858d9d54b194"
+          ],
+          "roles": {
+            "largest position": 120
+          },
+          "sum_position_change_usd": "3599493.48",
+          "transactions_above_threshold": 120
+        },
+        {
+          "address": "0x9e3ed65340a913b96ba7b86d5d5876dde623946e",
+          "examples": [
+            "0x6182bde19667de3b2e998d4d94b1961b5a7e92ac3cbe65e1d612590d196993f1",
+            "0xe5ffadd613b550d0e4928850bf38bc1950ac8c9ba2276834ef517f1c932a4659",
+            "0x48cd02d9cb11d9ecd845c79fb7c7a6c56d4df6b7d830484e8d7fa3b5e5c0f8d8"
+          ],
+          "roles": {
+            "largest position": 120
+          },
+          "sum_position_change_usd": "3447146.98",
+          "transactions_above_threshold": 120
+        },
+        {
+          "address": "0xa83a922a933da0d06cc87d60e54c6a44ddcdfaf9",
+          "examples": [
+            "0x3e2e0790a841d6c181cd76b5227b3adee954db0a283e5526befdb4ad61f32c7f",
+            "0x6e2698795438641a491b65649f851308a24a9975c5bc7f26ea4b04ba3a9e4148",
+            "0x72916119787309c24b14d7ec635c07b977cde647b584821f5c8cd866bec273c0"
+          ],
+          "roles": {
+            "tx sender": 46
+          },
+          "sum_position_change_usd": "6088390.05",
+          "transactions_above_threshold": 46
+        },
+        {
+          "address": "0xc26ae9339be07ce072b96003fa959517c4af37e9",
+          "examples": [
+            "0x3e2e0790a841d6c181cd76b5227b3adee954db0a283e5526befdb4ad61f32c7f",
+            "0x6e2698795438641a491b65649f851308a24a9975c5bc7f26ea4b04ba3a9e4148",
+            "0x72916119787309c24b14d7ec635c07b977cde647b584821f5c8cd866bec273c0"
+          ],
+          "roles": {
+            "largest position": 46
+          },
+          "sum_position_change_usd": "6088390.05",
+          "transactions_above_threshold": 46
+        },
+        {
+          "address": "0x2b59a3268af4134f87dc40acd73b07128d8a51e5",
+          "examples": [
+            "0x3f5cd9c41c0459ad3205cc5b71761a6b558ce3149ceb04d8ac329f1d9da830d0",
+            "0xa117e779c2db5ce6199438c1ed53ec599e3e2bdb7d0231a1ea7a858d9d54b194",
+            "0x5e67363efd8a2d1ff920f248ba01f9ed4e8226e3cf3bc6e8b5d46b6dc46db02c"
+          ],
+          "roles": {
+            "tx sender": 40
+          },
+          "sum_position_change_usd": "1199831.16",
+          "transactions_above_threshold": 40
+        },
+        {
+          "address": "0x329861a0199ddb9452d7240f6064960f188c22d8",
+          "examples": [
+            "0x0aece271b7eb24e8aa5e2c7ca7ba30953e5385f83e5b6cb37bcbbbaba382b0e3",
+            "0x32d8fffd0ca1dc0a5802c905ddde55ed6e8e7dda730a2a2d458878b397f7a6c1",
+            "0x8788c47c6f5b378d9404f1c68b05d0fd4ffe213a8590182bb2501340d4a79d82"
+          ],
+          "roles": {
+            "tx sender": 40
+          },
+          "sum_position_change_usd": "1199831.16",
+          "transactions_above_threshold": 40
+        },
+        {
+          "address": "0x3d3e57272fe369cdcf319d7c9825593afbce507a",
+          "examples": [
+            "0x52dca6101d7004040bac19f40c8dfd78948b7f33b56826544dbdb269968fcd0b",
+            "0x7b031c6535a7b55795c8fadc247ec7be90fc97d25f2a913cdd04397d0d998a66",
+            "0xbfb5726d257f9113f116bd77f04275661d6e0c828944183d6f061e4e84561ee2"
+          ],
+          "roles": {
+            "tx sender": 40
+          },
+          "sum_position_change_usd": "1199831.16",
+          "transactions_above_threshold": 40
+        }
+      ],
+      "skipped_metrics": {
+        "native_value_usd": "no user transaction reaches the threshold on this metric"
+      },
+      "sum_gross_volume_all_user_usd": "35883679.61",
+      "sum_position_change_above_threshold_usd": "13307726.35",
+      "system_transactions": 60,
+      "transactions": 1629,
+      "unpriced_tokens_top": [
+        {
+          "largest_raw": "8993000000000000000000",
+          "token": "0xbb9e2a8e969c3978f2d75107e552af14b9dfd7e4",
+          "transfers": 2715
+        },
+        {
+          "largest_raw": "2612000000000000000000",
+          "token": "0xb49cf63d74d0002c725d0522e4952d9bbf80f116",
+          "transfers": 2306
+        },
+        {
+          "largest_raw": "5009000000000000000000",
+          "token": "0xd0519ab25cd0131b1c64c3209ba339b92531521e",
+          "transfers": 2076
+        },
+        {
+          "largest_raw": "2799235593256197932453",
+          "token": "0x9560e827af36c94d2ac33a39bce1fe78631088db",
+          "transfers": 308
+        },
+        {
+          "largest_raw": "1798910452",
+          "token": "0x08c6f91e2b681faf5e17227f2a44c307b3c1364c",
+          "transfers": 35
+        },
+        {
+          "largest_raw": "998000000",
+          "token": "0xdcb612005417dc906ff72c87df732e5a90d49e11",
+          "transfers": 13
+        },
+        {
+          "largest_raw": "50000000000000000",
+          "token": "0xd0cf4de352ac8dcce00bd6b93ee73d3cb272edc3",
+          "transfers": 10
+        },
+        {
+          "largest_raw": "1870607183120694905",
+          "token": "0x1f514a61bcde34f94bc39731235690ab9da737f7",
+          "transfers": 8
+        }
+      ],
+      "user_transactions": 1569,
+      "window_gross_through_top": [
+        {
+          "address": "0x478946bcd4a5a22b316470f5486fafb928c0ba25",
+          "gross_through_usd": "13174502.22",
+          "net_over_gross_pct": 0.38,
+          "net_usd": "50049.76",
+          "symbol": "USDC"
+        },
+        {
+          "address": "0x478946bcd4a5a22b316470f5486fafb928c0ba25",
+          "gross_through_usd": "11449785.48",
+          "net_over_gross_pct": 0.41,
+          "net_usd": "46497.45",
+          "symbol": "WETH"
+        },
+        {
+          "address": "0x343c41429cfad966dbb8a00c5fd096dbb8dc320f",
+          "gross_through_usd": "7222905.81",
+          "net_over_gross_pct": 0.0,
+          "net_usd": "0.00",
+          "symbol": "WETH"
+        },
+        {
+          "address": "0x343c41429cfad966dbb8a00c5fd096dbb8dc320f",
+          "gross_through_usd": "7198986.96",
+          "net_over_gross_pct": 0.0,
+          "net_usd": "0.00",
+          "symbol": "USDC"
+        },
+        {
+          "address": "0xc26ae9339be07ce072b96003fa959517c4af37e9",
+          "gross_through_usd": "6088390.05",
+          "net_over_gross_pct": 0.0,
+          "net_usd": "-0.00",
+          "symbol": "USDC"
+        },
+        {
+          "address": "0xc26ae9339be07ce072b96003fa959517c4af37e9",
+          "gross_through_usd": "5289654.10",
+          "net_over_gross_pct": 0.0,
+          "net_usd": "-0.00",
+          "symbol": "WETH"
+        },
+        {
+          "address": "0x7a05ffec63a936f61653221d0f56e11b868c8d5b",
+          "gross_through_usd": "4096012.65",
+          "net_over_gross_pct": 0.02,
+          "net_usd": "-697.30",
+          "symbol": "WETH"
+        },
+        {
+          "address": "0x7a05ffec63a936f61653221d0f56e11b868c8d5b",
+          "gross_through_usd": "3599493.48",
+          "net_over_gross_pct": 0.0,
+          "net_usd": "-0.00",
+          "symbol": "USDC"
+        }
+      ],
+      "window_net_top": [
+        {
+          "address": "0x478946bcd4a5a22b316470f5486fafb928c0ba25",
+          "gross_through_usd": "13174502.22",
+          "net_usd": "50049.76",
+          "symbol": "USDC"
+        },
+        {
+          "address": "0x478946bcd4a5a22b316470f5486fafb928c0ba25",
+          "gross_through_usd": "11449785.48",
+          "net_usd": "46497.45",
+          "symbol": "WETH"
+        },
+        {
+          "address": "0x0f0067cd819cb8f20bda62046daff7a2b5c88280",
+          "gross_through_usd": "46490.95",
+          "net_usd": "46490.95",
+          "symbol": "USDT"
+        },
+        {
+          "address": "0x5e6adbe46c93480d434dc29c3aeaab4eaa9937b9",
+          "gross_through_usd": "40557.21",
+          "net_usd": "-38970.05",
+          "symbol": "USDC"
+        },
+        {
+          "address": "0x656111ac221ac16a6d6094f759a6a2228114c871",
+          "gross_through_usd": "34633.16",
+          "net_usd": "34633.16",
+          "symbol": "USDC"
+        },
+        {
+          "address": "0x5e6adbe46c93480d434dc29c3aeaab4eaa9937b9",
+          "gross_through_usd": "34739.08",
+          "net_usd": "-34431.06",
+          "symbol": "WETH"
+        },
+        {
+          "address": "0xacd03d601e5bb1b275bb94076ff46ed9d753435a",
+          "gross_through_usd": "58591.43",
+          "net_usd": "-34390.47",
+          "symbol": "USDT"
+        },
+        {
+          "address": "0x97a04f92642a6a2ac7cd6377ffdf68ae6da4bc39",
+          "gross_through_usd": "40585.78",
+          "net_usd": "-13750.15",
+          "symbol": "USDC"
+        }
+      ],
+      "with_priced_flow": 520
+    },
+    "polygon": {
+      "above_100k": 0,
+      "above_1m": 0,
+      "above_threshold": 8,
+      "by_asset": {
+        "DAI": {
+          "sum_usd": "10143.11",
+          "transactions": 1
+        },
+        "POL": {
+          "sum_usd": "30475.93",
+          "transactions": 2
+        },
+        "USDC": {
+          "sum_usd": "72062.92",
+          "transactions": 3
+        },
+        "USDC.e": {
+          "sum_usd": "12858.97",
+          "transactions": 1
+        },
+        "USDT": {
+          "sum_usd": "89983.95",
+          "transactions": 1
+        }
+      },
+      "by_shape": {
+        "contract_interaction": 1,
+        "plain_transfer": 6,
+        "swap": 1
+      },
+      "campaigns": [],
+      "distinct_patterns_above_threshold": 8,
+      "erc20_coverage_pct": 33.56,
+      "erc20_transfer_logs": 35252,
+      "erc20_transfer_logs_priced": 11830,
+      "metrics": {
+        "gross_volume_usd": {
+          "mad": 11.002410777734594,
+          "max": 89983.9492222,
+          "min": 1.51096992e-09,
+          "n": 4787,
+          "p50": 11.00241077934,
+          "p90": 319.2366602914627,
+          "p95": 899.9620110000001,
+          "p99": 4870.84123265419
+        },
+        "native_value_usd": {
+          "mad": 0.0,
+          "max": 18699.158735200537,
+          "min": 0.0,
+          "n": 4787,
+          "p50": 0.0,
+          "p90": 1.6054055399999997e-09,
+          "p95": 0.018887124,
+          "p99": 43.2367200467447
+        },
+        "position_change_usd": {
+          "mad": 5.999999998394594,
+          "max": 89983.9492222,
+          "min": 1.51096992e-09,
+          "n": 4787,
+          "p50": 6.0,
+          "p90": 197.6022156,
+          "p95": 496.6195382,
+          "p99": 2109.304218740368
+        }
+      },
+      "registry_legs_without_price": {},
+      "repeat_actors": [],
+      "skipped_metrics": {},
+      "sum_gross_volume_all_user_usd": "1415223.50",
+      "sum_position_change_above_threshold_usd": "215524.88",
+      "system_transactions": 0,
+      "transactions": 9056,
+      "unpriced_tokens_top": [
+        {
+          "largest_raw": "12858970000",
+          "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+          "transfers": 11321
+        },
+        {
+          "largest_raw": "10244776619658",
+          "token": "0xeb51d9a39ad5eef215dc0bf39a8821ff804a0f01",
+          "transfers": 7749
+        },
+        {
+          "largest_raw": "10244776619658",
+          "token": "0x99a57e6c8558bc6689f894e068733adf83c19725",
+          "transfers": 2965
+        },
+        {
+          "largest_raw": "5187000000",
+          "token": "0x3a3bd7bb9528e159577f7c2e685cc81a765002e2",
+          "transfers": 559
+        },
+        {
+          "largest_raw": "15944708589856147227801",
+          "token": "0xab787774bdf01fc22410165ffabf76e0e0ebc94f",
+          "transfers": 81
+        },
+        {
+          "largest_raw": "6060012910",
+          "token": "0x87513958db9b060a04620b215b76030b17e52cdd",
+          "transfers": 80
+        },
+        {
+          "largest_raw": "485000000000",
+          "token": "0x6a92b1e99de09f71cd96bc91f934826d96b8b26e",
+          "transfers": 71
+        },
+        {
+          "largest_raw": "200000000",
+          "token": "0x8639526b318a4dc77e464e15313d8cc74ebd1b1d",
+          "transfers": 62
+        }
+      ],
+      "user_transactions": 9056,
+      "window_gross_through_top": [
+        {
+          "address": "0xc417fd8e9661c0d2120b64a04bb3278c17e99db1",
+          "gross_through_usd": "272635.75",
+          "net_over_gross_pct": 30.73,
+          "net_usd": "-83770.60",
+          "symbol": "USDC.e"
+        },
+        {
+          "address": "0xada100874d00e3331d00f2007a9c336a65009718",
+          "gross_through_usd": "261761.79",
+          "net_over_gross_pct": 0.0,
+          "net_usd": "0.00",
+          "symbol": "USDC.e"
+        },
+        {
+          "address": "0x4d97dcd97ec945f40cf65f87097ace5ea0476045",
+          "gross_through_usd": "234757.32",
+          "net_over_gross_pct": 23.31,
+          "net_usd": "54711.25",
+          "symbol": "USDC.e"
+        },
+        {
+          "address": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+          "gross_through_usd": "188865.14",
+          "net_over_gross_pct": 0.0,
+          "net_usd": "0.00",
+          "symbol": "USDC.e"
+        },
+        {
+          "address": "0xe7804c37c13166ff0b37f5ae0bb07a3aebb6e245",
+          "gross_through_usd": "122689.10",
+          "net_over_gross_pct": 99.27,
+          "net_usd": "121798.14",
+          "symbol": "USDT"
+        },
+        {
+          "address": "0xada100db00ca00073811820692005400218fce1f",
+          "gross_through_usd": "101584.98",
+          "net_over_gross_pct": 0.0,
+          "net_usd": "0.00",
+          "symbol": "USDC.e"
+        },
+        {
+          "address": "0xa05772b66f99a9cdfb847676dd2fc026bae4e9c2",
+          "gross_through_usd": "89983.95",
+          "net_over_gross_pct": 100.0,
+          "net_usd": "-89983.95",
+          "symbol": "USDT"
+        },
+        {
+          "address": "0xa1200000d0002264c9a1698e001292d00e1b00af",
+          "gross_through_usd": "88111.00",
+          "net_over_gross_pct": 0.0,
+          "net_usd": "0.00",
+          "symbol": "USDC.e"
+        }
+      ],
+      "window_net_top": [
+        {
+          "address": "0xe7804c37c13166ff0b37f5ae0bb07a3aebb6e245",
+          "gross_through_usd": "122689.10",
+          "net_usd": "121798.14",
+          "symbol": "USDT"
+        },
+        {
+          "address": "0xa05772b66f99a9cdfb847676dd2fc026bae4e9c2",
+          "gross_through_usd": "89983.95",
+          "net_usd": "-89983.95",
+          "symbol": "USDT"
+        },
+        {
+          "address": "0xc417fd8e9661c0d2120b64a04bb3278c17e99db1",
+          "gross_through_usd": "272635.75",
+          "net_usd": "-83770.60",
+          "symbol": "USDC.e"
+        },
+        {
+          "address": "0x4d97dcd97ec945f40cf65f87097ace5ea0476045",
+          "gross_through_usd": "234757.32",
+          "net_usd": "54711.25",
+          "symbol": "USDC.e"
+        },
+        {
+          "address": "0x1347378b1d0eb69d3462e09b3dfa2fe28ebe74ec",
+          "gross_through_usd": "34885.33",
+          "net_usd": "34885.33",
+          "symbol": "USDC"
+        },
+        {
+          "address": "0x46ffbfa31f7c6882214ec714c99c397f2780f65f",
+          "gross_through_usd": "34885.33",
+          "net_usd": "-34885.33",
+          "symbol": "USDC"
+        },
+        {
+          "address": "0x3a3bd7bb9528e159577f7c2e685cc81a765002e2",
+          "gross_through_usd": "30397.73",
+          "net_usd": "26725.04",
+          "symbol": "USDC.e"
+        },
+        {
+          "address": "0xee7ae85f2fe2239e27d9c1e23fffe168d63b4055",
+          "gross_through_usd": "24779.14",
+          "net_usd": "24669.64",
+          "symbol": "USDC"
+        }
+      ],
+      "with_priced_flow": 4787
+    }
+  },
+  "controls_per_chain": 2,
+  "generated_at": "2026-09-05T14:17:56.859697+00:00",
+  "metric_definitions": {
+    "gross_volume_usd": "sum of all priced legs; routed and flash-loan legs count every time they move",
+    "native_value_usd": "top-level transaction value at the native price",
+    "position_change_usd": "largest absolute net USD change of any single (address, asset) pair inside the transaction; counts top-level native value, registry ERC-20 transfers and WETH wrap/unwrap"
+  },
+  "metrics": {
+    "gross_volume_usd": "gross priced volume",
+    "native_value_usd": "native value sent",
+    "position_change_usd": "largest position change"
+  },
+  "price_meta": {
+    "file": "research/2026-09-05/amount_outliers/prices.json",
+    "generated_at": "2026-09-05T14:05:21.044612+00:00"
+  },
+  "prices_used": {
+    "AAVE": {
+      "source": "Chainlink AAVE / USD on ethereum at block 25910254",
+      "usd": "129.6754"
+    },
+    "ARB": {
+      "source": "Chainlink ARB / USD on arbitrum at block 501959324",
+      "usd": "0.132369"
+    },
+    "BTC": {
+      "source": "Chainlink BTC / USD on arbitrum at block 501959324",
+      "usd": "79706.32909034"
+    },
+    "DAI": {
+      "source": "Chainlink DAI / USD on ethereum at block 25910254",
+      "usd": "0.99981415"
+    },
+    "ETH": {
+      "source": "Chainlink ETH / USD on ethereum at block 25910254",
+      "usd": "2457.9712"
+    },
+    "LINK": {
+      "source": "Chainlink LINK / USD on ethereum at block 25910254",
+      "usd": "11.8647495"
+    },
+    "OP": {
+      "source": "Chainlink OP / USD on optimism at block 156501012",
+      "usd": "0.10062385"
+    },
+    "POL": {
+      "source": "Chainlink MATIC / USD on polygon at block 93263846",
+      "usd": "0.09443562"
+    },
+    "STETH": {
+      "source": "Chainlink STETH / USD on ethereum at block 25910254",
+      "usd": "2454.84950361"
+    },
+    "UNI": {
+      "source": "Chainlink UNI / USD on ethereum at block 25910254",
+      "usd": "6.29603951"
+    },
+    "USD": {
+      "source": "assumed parity",
+      "usd": "1"
+    },
+    "USDC": {
+      "source": "Chainlink USDC / USD on ethereum at block 25910254",
+      "usd": "0.9998593"
+    },
+    "USDT": {
+      "source": "Chainlink USDT / USD on ethereum at block 25910254",
+      "usd": "1.00004389"
+    },
+    "WSTETH": {
+      "source": "STETH / USD feed times wstETH stEthPerToken() at block 25910254",
+      "usd": "3052.00197071143908692313264081"
+    }
+  },
+  "registry": {
+    "arbitrum": {
+      "0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f": {
+        "decimals": 8,
+        "label": "WBTC",
+        "price_key": "BTC"
+      },
+      "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34": {
+        "decimals": 18,
+        "label": "USDe",
+        "price_key": "USD"
+      },
+      "0x82af49447d8a07e3bd95bd0d56f35241523fbab1": {
+        "decimals": 18,
+        "label": "WETH",
+        "price_key": "ETH"
+      },
+      "0x912ce59144191c1204e64559fe8253a0e49e6548": {
+        "decimals": 18,
+        "label": "ARB",
+        "price_key": "ARB"
+      },
+      "0xaf88d065e77c8cc2239327c5edb3a432268e5831": {
+        "decimals": 6,
+        "label": "USDC",
+        "price_key": "USDC"
+      },
+      "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1": {
+        "decimals": 18,
+        "label": "DAI",
+        "price_key": "DAI"
+      },
+      "0xf97f4df75117a78c1a5a0dbb814af92458539fb4": {
+        "decimals": 18,
+        "label": "LINK",
+        "price_key": "LINK"
+      },
+      "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9": {
+        "decimals": 6,
+        "label": "USDT",
+        "price_key": "USDT"
+      },
+      "0xff970a61a04b1ca14834a43f5de4533ebddb5cc8": {
+        "decimals": 6,
+        "label": "USDC.e",
+        "price_key": "USD"
+      }
+    },
+    "base": {
+      "0x4200000000000000000000000000000000000006": {
+        "decimals": 18,
+        "label": "WETH",
+        "price_key": "ETH"
+      },
+      "0x50c5725949a6f0c72e6c4a641f24049a917db0cb": {
+        "decimals": 18,
+        "label": "DAI",
+        "price_key": "DAI"
+      },
+      "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34": {
+        "decimals": 18,
+        "label": "USDe",
+        "price_key": "USD"
+      },
+      "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913": {
+        "decimals": 6,
+        "label": "USDC",
+        "price_key": "USDC"
+      },
+      "0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf": {
+        "decimals": 8,
+        "label": "cbBTC",
+        "price_key": "BTC"
+      },
+      "0xd9aaec86b65d86f6a7b5b1b0c42ffa531710b6ca": {
+        "decimals": 6,
+        "label": "USDbC",
+        "price_key": "USD"
+      },
+      "0xfde4c96c8593536e31f229ea8f37b2ada2699bb2": {
+        "decimals": 6,
+        "label": "USDT",
+        "price_key": "USDT"
+      }
+    },
+    "ethereum": {
+      "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984": {
+        "decimals": 18,
+        "label": "UNI",
+        "price_key": "UNI"
+      },
+      "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599": {
+        "decimals": 8,
+        "label": "WBTC",
+        "price_key": "BTC"
+      },
+      "0x40d16fc0246ad3160ccc09b8d0d3a2cd28ae6c2f": {
+        "decimals": 18,
+        "label": "GHO",
+        "price_key": "USD"
+      },
+      "0x4c9edd5852cd905f086c759e8383e09bff1e68b3": {
+        "decimals": 18,
+        "label": "USDe",
+        "price_key": "USD"
+      },
+      "0x514910771af9ca656af840dff83e8264ecf986ca": {
+        "decimals": 18,
+        "label": "LINK",
+        "price_key": "LINK"
+      },
+      "0x5f98805a4e8be255a32880fdec7f6728c6568ba0": {
+        "decimals": 18,
+        "label": "LUSD",
+        "price_key": "USD"
+      },
+      "0x6b175474e89094c44da98b954eedeac495271d0f": {
+        "decimals": 18,
+        "label": "DAI",
+        "price_key": "DAI"
+      },
+      "0x6c3ea9036406852006290770bedfcaba0e23a0e8": {
+        "decimals": 6,
+        "label": "PYUSD",
+        "price_key": "USD"
+      },
+      "0x73a15fed60bf67631dc6cd7bc5b6e8da8190acf5": {
+        "decimals": 18,
+        "label": "USD0",
+        "price_key": "USD"
+      },
+      "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0": {
+        "decimals": 18,
+        "label": "wstETH",
+        "price_key": "WSTETH"
+      },
+      "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9": {
+        "decimals": 18,
+        "label": "AAVE",
+        "price_key": "AAVE"
+      },
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": {
+        "decimals": 6,
+        "label": "USDC",
+        "price_key": "USDC"
+      },
+      "0xae7ab96520de3a18e5e111b5eaab095312d7fe84": {
+        "decimals": 18,
+        "label": "stETH",
+        "price_key": "STETH"
+      },
+      "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2": {
+        "decimals": 18,
+        "label": "WETH",
+        "price_key": "ETH"
+      },
+      "0xc5f0f7b66764f6ec8c8dff7ba683102295e16409": {
+        "decimals": 18,
+        "label": "FDUSD",
+        "price_key": "USD"
+      },
+      "0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf": {
+        "decimals": 8,
+        "label": "cbBTC",
+        "price_key": "BTC"
+      },
+      "0xdac17f958d2ee523a2206206994597c13d831ec7": {
+        "decimals": 6,
+        "label": "USDT",
+        "price_key": "USDT"
+      },
+      "0xdc035d45d973e3ec169d2276ddab16f1e407384f": {
+        "decimals": 18,
+        "label": "USDS",
+        "price_key": "USD"
+      },
+      "0xf939e0a03fb07f59a73314e73794be0e57ac1b4e": {
+        "decimals": 18,
+        "label": "crvUSD",
+        "price_key": "USD"
+      }
+    },
+    "optimism": {
+      "0x0b2c639c533813f4aa9d7837caf62653d097ff85": {
+        "decimals": 6,
+        "label": "USDC",
+        "price_key": "USDC"
+      },
+      "0x4200000000000000000000000000000000000006": {
+        "decimals": 18,
+        "label": "WETH",
+        "price_key": "ETH"
+      },
+      "0x4200000000000000000000000000000000000042": {
+        "decimals": 18,
+        "label": "OP",
+        "price_key": "OP"
+      },
+      "0x68f180fcce6836688e9084f035309e29bf0a2095": {
+        "decimals": 8,
+        "label": "WBTC",
+        "price_key": "BTC"
+      },
+      "0x7f5c764cbc14f9669b88837ca1490cca17c31607": {
+        "decimals": 6,
+        "label": "USDC.e",
+        "price_key": "USD"
+      },
+      "0x94b008aa00579c1307b0ef2c499ad98a8ce58e58": {
+        "decimals": 6,
+        "label": "USDT",
+        "price_key": "USDT"
+      },
+      "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1": {
+        "decimals": 18,
+        "label": "DAI",
+        "price_key": "DAI"
+      }
+    },
+    "polygon": {
+      "0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270": {
+        "decimals": 18,
+        "label": "WPOL",
+        "price_key": "POL"
+      },
+      "0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6": {
+        "decimals": 8,
+        "label": "WBTC",
+        "price_key": "BTC"
+      },
+      "0x2791bca1f2de4661ed88a30c99a7a9449aa84174": {
+        "decimals": 6,
+        "label": "USDC.e",
+        "price_key": "USD"
+      },
+      "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359": {
+        "decimals": 6,
+        "label": "USDC",
+        "price_key": "USDC"
+      },
+      "0x53e0bca35ec356bd5dddfebbd1fc0fd03fabad39": {
+        "decimals": 18,
+        "label": "LINK",
+        "price_key": "LINK"
+      },
+      "0x7ceb23fd6bc0add59e62ac25578270cff1b9f619": {
+        "decimals": 18,
+        "label": "WETH",
+        "price_key": "ETH"
+      },
+      "0x8f3cf7ad23cd3cadbd9735aff958023239c6a063": {
+        "decimals": 18,
+        "label": "DAI",
+        "price_key": "DAI"
+      },
+      "0xc2132d05d31c914a87c6611c10748aeb04b58e8f": {
+        "decimals": 6,
+        "label": "USDT",
+        "price_key": "USDT"
+      }
+    }
+  },
+  "sample": "research/2026-09-05/sample",
+  "system_types_excluded": {
+    "arbitrum": [
+      "0x64",
+      "0x65",
+      "0x66",
+      "0x68",
+      "0x69",
+      "0x6a"
+    ],
+    "base": [
+      "0x7e"
+    ],
+    "optimism": [
+      "0x7e"
+    ]
+  },
+  "threshold_usd": "10000",
+  "top_per_metric": 3
+}

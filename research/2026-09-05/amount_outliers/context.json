@@ -1,0 +1,1037 @@
+{
+  "asof": {
+    "arbitrum": {
+      "fallback": "latest when the pinned call errors",
+      "observed_at": "2026-09-05T14:06:23.782678+00:00",
+      "pinned_block": 501959221
+    },
+    "base": {
+      "fallback": "latest when the pinned call errors",
+      "observed_at": "2026-09-05T14:05:55.930206+00:00",
+      "pinned_block": 50905725
+    },
+    "ethereum": {
+      "fallback": "latest when the pinned call errors",
+      "observed_at": "2026-09-05T14:05:27.105678+00:00",
+      "pinned_block": 25910253
+    },
+    "optimism": {
+      "fallback": "latest when the pinned call errors",
+      "observed_at": "2026-09-05T14:06:39.356567+00:00",
+      "pinned_block": 156501001
+    },
+    "polygon": {
+      "fallback": "latest when the pinned call errors",
+      "observed_at": "2026-09-05T14:06:53.780447+00:00",
+      "pinned_block": 93263841
+    }
+  },
+  "code": {
+    "arbitrum": {
+      "0x1714400ff23db4af24f9fd64e7039e6597f18c2b": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0x2668cc31a8110b224f211e8fae4bfd3300663f32": {
+        "code_bytes": 45,
+        "is_contract": true,
+        "minimal_proxy_target": "0x8db6c8b7a085c3839e93eb8dad45b93fb1ef5836"
+      },
+      "0x27bffb0f09c18539f9a47a39958bb149fe42a155": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0x563537412ad5d49faa7fa442b9193b8238d98c3c": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0x5a241a1990248182f4b7cfd62535fb572387867c": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0x658ced5a795ee4c945077680c9eb56cac722726e": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0x6df2af891379af92bfdc0a97e9feb12e53a047ba": {
+        "code_bytes": 7066,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x7242429b405efff0e399ebbd5f81cb7960438f89": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0x74bbbb0e7f0bad6938509dd4b556a39a4db1f2cd": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0x912ce59144191c1204e64559fe8253a0e49e6548": {
+        "code_bytes": 2593,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xaf88d065e77c8cc2239327c5edb3a432268e5831": {
+        "code_bytes": 1852,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xb38e8c17e38363af6ebdcb3dae12e0243582891d": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0xbaed34aec301d4d5606b8fec9e7988d91eb73408": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0xc183f6c5cfdddbeb1614f1e85f65a41b6cea5301": {
+        "code_bytes": 45,
+        "is_contract": true,
+        "minimal_proxy_target": "0x8db6c8b7a085c3839e93eb8dad45b93fb1ef5836"
+      },
+      "0xcde5d48fca07f9c52300d2e65632dd71ed169b90": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0xd0fc78aaaad55ed1505362e8a121f238f2df3f15": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0xde0622b9767e81a28c2a38b4fb9ccdd640647bf1": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0xeb0c033a5ed544b1993e7f57a5291b592b92187a": {
+        "code_bytes": 23,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xee7ae85f2fe2239e27d9c1e23fffe168d63b4055": {
+        "code_bytes": 209,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9": {
+        "code_bytes": 2141,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      }
+    },
+    "base": {
+      "0x0d0707963952f2fba59dd06f2b425ace40b492fe": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0x0f0067cd819cb8f20bda62046daff7a2b5c88280": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0x1695434de9dcff593bc06f0853737e2703a787ad": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0x2192bc3b4028acc1113f2cd9ac2cba70c36520db": {
+        "code_bytes": 609,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x4200000000000000000000000000000000000006": {
+        "code_bytes": 2041,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x42d4a22cad0f5a49681a5715ce994af73a43b76b": {
+        "code_bytes": 45,
+        "is_contract": true,
+        "minimal_proxy_target": "0xc770898522d2a9c8da7a10d63989b6b58305b665"
+      },
+      "0x4e962bb3889bf030368f56810a9c96b83cb3e778": {
+        "code_bytes": 45,
+        "is_contract": true,
+        "minimal_proxy_target": "0xec8e5342b19977b4ef8892e02d8daecfa1315831"
+      },
+      "0x61040e143a77f165ba44543af4a079f2c809d14b": {
+        "code_bytes": 130,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x9eefb63ff5274358319f15798a13a68caef9eb79": {
+        "code_bytes": 1383,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xb2cc224c1c9fee385f8ad6a55b4d94e92359dc59": {
+        "code_bytes": 45,
+        "is_contract": true,
+        "minimal_proxy_target": "0xec8e5342b19977b4ef8892e02d8daecfa1315831"
+      },
+      "0xb90fe999be6869af0afc557dccfbe169ea3403d6": {
+        "code_bytes": 45,
+        "is_contract": true,
+        "minimal_proxy_target": "0xc770898522d2a9c8da7a10d63989b6b58305b665"
+      },
+      "0xf129060fa092f31b481dbc5fe08f405e19459d82": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0xf8ce4d7d99695c41c15626338222145f061bc07f": {
+        "code_bytes": 15096,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      }
+    },
+    "ethereum": {
+      "0x006d0e0d006109f0020f3050000a713780b7b000": {
+        "code_bytes": 4814,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x0344c4f9985c85877d284bea8ea3df13498af96c": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0x079ca3f710599739a22673c2856202f90d3a8806": {
+        "code_bytes": 19018,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x07ae8551be970cb1cca11dd7a11f47ae82e70e67": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0x15f46551f5d736c9b8861c1d1358e29183f7a6c7": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0x1a9184719a59a2de7a160c77ff1090fb714f1836": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801": {
+        "code_bytes": 22142,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x23878914efe38d27c4d67ab83ed1b93a74d4086a": {
+        "code_bytes": 2400,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x240cda79512c58f40a8e466186ae39bb5519d2ff": {
+        "code_bytes": 23,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x28c6c06298d514db089934071355e5743bf21d60": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0x29c97b183ec6776ecd6975050c00862f930171a1": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0x37305b1cd40574e4c5ce33f8e8306be057fd7341": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0x51c72848c68a965f66fa7a88855f9f7784502a7f": {
+        "code_bytes": 20805,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x5f8e393eced9bbc552cf955339cdbeeb8b5e36e4": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0x6872b6630a3afcd3117191a8403c2002e13df7de": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0x6a000f20005980200259b80c5102003040001068": {
+        "code_bytes": 24562,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2": {
+        "code_bytes": 2400,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x99e66f3ce49266bd04a64d989ea63df0b8f43b80": {
+        "code_bytes": 23588,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb": {
+        "code_bytes": 15623,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2": {
+        "code_bytes": 3124,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xcf0a12cbd8088fc5f84ad431e71787157041cd69": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0xd226997439ecfbeff8e110c8c78c8a7eefd19f89": {
+        "code_bytes": 23183,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xdac17f958d2ee523a2206206994597c13d831ec7": {
+        "code_bytes": 11075,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xdfd5293d8e347dfe59e90efd55b2956a1343963d": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0xefa417562cd30c2a571f6f27223657bba76d2110": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0xfaa318479b7755b2dbfdd34dc306cb28b420ad12": {
+        "code_bytes": 22142,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xfc6a3c2f0d80a0ce98d2c83fe5f1c5100c94ddb4": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      }
+    },
+    "optimism": {
+      "0x478946bcd4a5a22b316470f5486fafb928c0ba25": {
+        "code_bytes": 45,
+        "is_contract": true,
+        "minimal_proxy_target": "0xc28ad28853a547556780bebf7847628501a3bcbb"
+      },
+      "0x5e6adbe46c93480d434dc29c3aeaab4eaa9937b9": {
+        "code_bytes": 5797,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x9e3ed65340a913b96ba7b86d5d5876dde623946e": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0xc26ae9339be07ce072b96003fa959517c4af37e9": {
+        "code_bytes": 5881,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xf1b41a86d82d9b93f1d88db14f98d33505887c76": {
+        "code_bytes": 24413,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      }
+    },
+    "polygon": {
+      "0x0b60c1ee6d01c3d5704eeae6c12552c7a63beead": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0x1347378b1d0eb69d3462e09b3dfa2fe28ebe74ec": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0x13bc539a173f920ceb31b8bd23c4754786c0638a": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0x33a7bed1d4475c6b1589e80635af6d5c6df1f7a9": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0x3c4829196bfadff4394726b45159aeaac6fcd41c": {
+        "code_bytes": 13322,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359": {
+        "code_bytes": 1852,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x46ffbfa31f7c6882214ec714c99c397f2780f65f": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0x4d97dcd97ec945f40cf65f87097ace5ea0476045": {
+        "code_bytes": 15007,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x67366782805870060151383f4bbff9dab53e5cd6": {
+        "code_bytes": 24009,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x882df4b0fb50a229c3b4124eb18c759911485bfb": {
+        "code_bytes": 11293,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x88bbcaeeaf0dca4ad50e8aab9387cd78c60be758": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0xa05772b66f99a9cdfb847676dd2fc026bae4e9c2": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0xa5e0829caced8ffdd4de3c43696c57f7d7a678ff": {
+        "code_bytes": 21943,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xada100874d00e3331d00f2007a9c336a65009718": {
+        "code_bytes": 10736,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xba12222222228d8ba445958a75a0704d566bf2c8": {
+        "code_bytes": 24512,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xc2132d05d31c914a87c6611c10748aeb04b58e8f": {
+        "code_bytes": 2949,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xc417fd8e9661c0d2120b64a04bb3278c17e99db1": {
+        "code_bytes": 209,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xd5f5475502120ad0e3dbaa25ecedffd19d6569fa": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0xd992e779c8100663d7ce751aa7071decf07e3027": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0xe111180000d2663c0091e4f400237545b87b996b": {
+        "code_bytes": 21037,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xe7804c37c13166ff0b37f5ae0bb07a3aebb6e245": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0xee7ae85f2fe2239e27d9c1e23fffe168d63b4055": {
+        "code_bytes": 209,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      }
+    }
+  },
+  "tokens": {
+    "arbitrum": {
+      "0x0c1c1c109fe34733fca54b82d7b46b75cfb71f6e": {
+        "block_tag": "0x1deb4a35",
+        "decimals": 18,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000044348495000000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "CHIP"
+      },
+      "0x25118290e6a5f4139381d072181157035864099d": {
+        "block_tag": "0x1deb4a35",
+        "decimals": 18,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045241494e00000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "RAIN"
+      },
+      "0x33b49f2264e85bb124d2730dc180182717d436ae": {
+        "block_tag": "0x1deb4a35",
+        "decimals": 18,
+        "raw": [
+          "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000004446f727900000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "Dory"
+      },
+      "0x67598ca3035f4ab009908cdf4bf74c884f3203b4": {
+        "block_tag": "0x1deb4a35",
+        "decimals": 18,
+        "raw": [
+          "0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000a452eea93942e48e2808a00000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "E.\ua4d4.H?"
+      },
+      "0x912ce59144191c1204e64559fe8253a0e49e6548": {
+        "block_tag": "0x1deb4a35",
+        "decimals": 18,
+        "decimals_match_registry": true,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000034152420000000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "registry_decimals": 18,
+        "registry_label": "ARB",
+        "symbol_matches_registry": true,
+        "symbol_untrusted": "ARB"
+      },
+      "0x93fb6d5307e02311095a2e8b64005d0af3054c4b": {
+        "block_tag": "0x1deb4a35",
+        "decimals": 6,
+        "raw": [
+          "0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000755cc815344d0a100000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "symbol_untrusted": "U\u0301SD\u0421"
+      },
+      "0xaf88d065e77c8cc2239327c5edb3a432268e5831": {
+        "block_tag": "0x1deb4a35",
+        "decimals": 6,
+        "decimals_match_registry": true,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045553444300000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "registry_decimals": 6,
+        "registry_label": "USDC",
+        "symbol_matches_registry": true,
+        "symbol_untrusted": "USDC"
+      },
+      "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9": {
+        "block_tag": "0x1deb4a35",
+        "decimals": 6,
+        "decimals_match_registry": true,
+        "raw": [
+          "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000007555344e282ae3000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "registry_decimals": 6,
+        "registry_label": "USDT",
+        "symbol_matches_registry": false,
+        "symbol_untrusted": "USD\u20ae0"
+      }
+    },
+    "base": {
+      "0x00000000a22c618fd6b4d7e9a335c4b96b189a38": {
+        "block_tag": "0x308c27d",
+        "decimals": 18,
+        "raw": [
+          "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000005544f574e53000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "TOWNS"
+      },
+      "0x0b3e328455c4059eeb9e3f84b5543f74e24e7e1b": {
+        "block_tag": "0x308c27d",
+        "decimals": 18,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000075649525455414c00000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "VIRTUAL"
+      },
+      "0x1a44233fae8d50f1aeb3a5d58dd426ff4814cb53": {
+        "block_tag": "0x308c27d",
+        "decimals": 18,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045155494400000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "QUID"
+      },
+      "0x36ea99adb52e84fe5fdd401a23cd11559fef82b3": {
+        "block_tag": "0x308c27d",
+        "decimals": 9,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045748554600000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000009"
+        ],
+        "symbol_untrusted": "WHUF"
+      },
+      "0x4200000000000000000000000000000000000006": {
+        "block_tag": "0x308c27d",
+        "decimals": 18,
+        "decimals_match_registry": true,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045745544800000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "registry_decimals": 18,
+        "registry_label": "WETH",
+        "symbol_matches_registry": true,
+        "symbol_untrusted": "WETH"
+      },
+      "0x53f39e5c53ee40bbc3da97c3b47bd2968d110a8d": {
+        "block_tag": "0x308c27d",
+        "decimals": 18,
+        "raw": [
+          "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000005414c49474e000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "ALIGN"
+      },
+      "0x5cda0e1ca4ce2af96315f7f8963c85399c172204": {
+        "block_tag": "0x308c27d",
+        "decimals": 18,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000067774434f494e0000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "wtCOIN"
+      },
+      "0x60a3e35cc302bfa44cb288bc5a4f316fdb1adb42": {
+        "block_tag": "0x308c27d",
+        "decimals": 6,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000044555524300000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "symbol_untrusted": "EURC"
+      },
+      "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913": {
+        "block_tag": "0x308c27d",
+        "decimals": 6,
+        "decimals_match_registry": true,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045553444300000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "registry_decimals": 6,
+        "registry_label": "USDC",
+        "symbol_matches_registry": true,
+        "symbol_untrusted": "USDC"
+      },
+      "0x92bf08c2f107d3a5d7e31d705e634c34a9dc3391": {
+        "block_tag": "0x308c27d",
+        "decimals": 9,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000034c4a540000000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000009"
+        ],
+        "symbol_untrusted": "LJT"
+      },
+      "0x940181a94a35a4569e4529a3cdfb74e38fd98631": {
+        "block_tag": "0x308c27d",
+        "decimals": 18,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000044145524f00000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "AERO"
+      },
+      "0xacfe6019ed1a7dc6f7b508c02d1b04ec88cc21bf": {
+        "block_tag": "0x308c27d",
+        "decimals": 18,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000035656560000000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "VVV"
+      },
+      "0xb2000000000000000000008bc8786b856e61707c": {
+        "block_tag": "0x308c27d",
+        "decimals": 8,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000054d45544163000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000008"
+        ],
+        "symbol_untrusted": "METAc"
+      },
+      "0xbbd27c575fb0e113219d610cc787b02eeff71d42": {
+        "block_tag": "0x308c27d",
+        "decimals": 18,
+        "raw": [
+          "0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000448414c4f00000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "HALO"
+      },
+      "0xcb585250f852c6c6bf90434ab21a00f02833a4af": {
+        "block_tag": "0x308c27d",
+        "decimals": 6,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000056362585250000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "symbol_untrusted": "cbXRP"
+      },
+      "0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf": {
+        "block_tag": "0x308c27d",
+        "decimals": 8,
+        "decimals_match_registry": true,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000056362425443000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000008"
+        ],
+        "registry_decimals": 8,
+        "registry_label": "cbBTC",
+        "symbol_matches_registry": true,
+        "symbol_untrusted": "cbBTC"
+      }
+    },
+    "ethereum": {
+      "0x1f573d6fb3f13d689ff844b4ce37794d79a7ff1c": {
+        "block_tag": "0x18b5bed",
+        "decimals": 18,
+        "raw": [
+          "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000003424e540000000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "BNT"
+      },
+      "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984": {
+        "block_tag": "0x18b5bed",
+        "decimals": 18,
+        "decimals_match_registry": true,
+        "raw": [
+          "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000003554e490000000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "registry_decimals": 18,
+        "registry_label": "UNI",
+        "symbol_matches_registry": true,
+        "symbol_untrusted": "UNI"
+      },
+      "0x5b5ebae3d2df95c5cfda7bd7b9bd688576a0dc9d": {
+        "block_tag": "0x18b5bed",
+        "decimals": 6,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045553445400000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "symbol_untrusted": "USDT"
+      },
+      "0x6b175474e89094c44da98b954eedeac495271d0f": {
+        "block_tag": "0x18b5bed",
+        "decimals": 18,
+        "decimals_match_registry": true,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000034441490000000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "registry_decimals": 18,
+        "registry_label": "DAI",
+        "symbol_matches_registry": true,
+        "symbol_untrusted": "DAI"
+      },
+      "0x6df1c1e379bc5a00a7b4c6e67a203333772f45a8": {
+        "block_tag": "0x18b5bed",
+        "decimals": 6,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000137661726961626c65446562744574685553445400000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "symbol_untrusted": "variableDebtEthUSDT"
+      },
+      "0x70c2ae26f54d1a69fb98959051b84003d1134f5c": {
+        "block_tag": "0x18b5bed",
+        "decimals": 6,
+        "raw": [
+          "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000006ea92a45344430000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "symbol_untrusted": "\ua4a4SDC"
+      },
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": {
+        "block_tag": "0x18b5bed",
+        "decimals": 6,
+        "decimals_match_registry": true,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045553444300000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "registry_decimals": 6,
+        "registry_label": "USDC",
+        "symbol_matches_registry": true,
+        "symbol_untrusted": "USDC"
+      },
+      "0xa27ec0006e59f245217ff08cd52a7e8b169e62d2": {
+        "block_tag": "0x18b5bed",
+        "decimals": 18,
+        "raw": [
+          "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000005415a544543000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "AZTEC"
+      },
+      "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2": {
+        "block_tag": "0x18b5bed",
+        "decimals": 18,
+        "decimals_match_registry": true,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045745544800000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "registry_decimals": 18,
+        "registry_label": "WETH",
+        "symbol_matches_registry": true,
+        "symbol_untrusted": "WETH"
+      },
+      "0xdac17f958d2ee523a2206206994597c13d831ec7": {
+        "block_tag": "0x18b5bed",
+        "decimals": 6,
+        "decimals_match_registry": true,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045553445400000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "registry_decimals": 6,
+        "registry_label": "USDT",
+        "symbol_matches_registry": true,
+        "symbol_untrusted": "USDT"
+      },
+      "0xdc035d45d973e3ec169d2276ddab16f1e407384f": {
+        "block_tag": "0x18b5bed",
+        "decimals": 18,
+        "decimals_match_registry": true,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045553445300000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "registry_decimals": 18,
+        "registry_label": "USDS",
+        "symbol_matches_registry": true,
+        "symbol_untrusted": "USDS"
+      },
+      "0xde7a933accd1a2e7d8c6f5ab4b77afd74b6f34f3": {
+        "block_tag": "0x18b5bed",
+        "decimals": 6,
+        "raw": [
+          "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000006ea92a45344540000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "symbol_untrusted": "\ua4a4SDT"
+      },
+      "0xe172e9b6cfbeeb5593bdce3f077356fdb33af904": {
+        "block_tag": "0x18b5bed",
+        "decimals": 18,
+        "raw": [
+          "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000004464f4c4400000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "FOLD"
+      }
+    },
+    "optimism": {
+      "0x08c6f91e2b681faf5e17227f2a44c307b3c1364c": {
+        "block_tag": "0x9540409",
+        "decimals": 6,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000096c69717569645553440000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "symbol_untrusted": "liquidUSD"
+      },
+      "0x0b2c639c533813f4aa9d7837caf62653d097ff85": {
+        "block_tag": "0x9540409",
+        "decimals": 6,
+        "decimals_match_registry": true,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045553444300000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "registry_decimals": 6,
+        "registry_label": "USDC",
+        "symbol_matches_registry": true,
+        "symbol_untrusted": "USDC"
+      },
+      "0x4200000000000000000000000000000000000006": {
+        "block_tag": "0x9540409",
+        "decimals": 18,
+        "decimals_match_registry": true,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045745544800000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "registry_decimals": 18,
+        "registry_label": "WETH",
+        "symbol_matches_registry": true,
+        "symbol_untrusted": "WETH"
+      },
+      "0x9560e827af36c94d2ac33a39bce1fe78631088db": {
+        "block_tag": "0x9540409",
+        "decimals": 18,
+        "raw": [
+          "0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000456454c4f00000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "VELO"
+      },
+      "0xb49cf63d74d0002c725d0522e4952d9bbf80f116": {
+        "block_tag": "0x9540409",
+        "decimals": 18,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000117777772e746f6b732e6d6f6d20f09f9fa9000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "www.toks.mom \ud83d\udfe9"
+      },
+      "0xbb9e2a8e969c3978f2d75107e552af14b9dfd7e4": {
+        "block_tag": "0x9540409",
+        "decimals": 18,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000117777772e746f6b732e6d6f6d20f09f9491000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "www.toks.mom \ud83d\udd11"
+      },
+      "0xd0519ab25cd0131b1c64c3209ba339b92531521e": {
+        "block_tag": "0x9540409",
+        "decimals": 18,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000117777772e746f6b732e6d6f6d20f09f9a80000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "www.toks.mom \ud83d\ude80"
+      }
+    },
+    "polygon": {
+      "0x2791bca1f2de4661ed88a30c99a7a9449aa84174": {
+        "block_tag": "0x58f17e1",
+        "decimals": 6,
+        "decimals_match_registry": true,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045553444300000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "registry_decimals": 6,
+        "registry_label": "USDC.e",
+        "symbol_matches_registry": false,
+        "symbol_untrusted": "USDC"
+      },
+      "0x3a3bd7bb9528e159577f7c2e685cc81a765002e2": {
+        "block_tag": "0x58f17e1",
+        "decimals": 6,
+        "raw": [
+          "0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000457434f4c00000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "symbol_untrusted": "WCOL"
+      },
+      "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359": {
+        "block_tag": "0x58f17e1",
+        "decimals": 6,
+        "decimals_match_registry": true,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045553444300000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "registry_decimals": 6,
+        "registry_label": "USDC",
+        "symbol_matches_registry": true,
+        "symbol_untrusted": "USDC"
+      },
+      "0x8f3cf7ad23cd3cadbd9735aff958023239c6a063": {
+        "block_tag": "0x58f17e1",
+        "decimals": 18,
+        "decimals_match_registry": true,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000034441490000000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "registry_decimals": 18,
+        "registry_label": "DAI",
+        "symbol_matches_registry": true,
+        "symbol_untrusted": "DAI"
+      },
+      "0x99a57e6c8558bc6689f894e068733adf83c19725": {
+        "block_tag": "0x58f17e1",
+        "decimals": 9,
+        "raw": [
+          "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000005734c474e53000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000009"
+        ],
+        "symbol_untrusted": "sLGNS"
+      },
+      "0xab787774bdf01fc22410165ffabf76e0e0ebc94f": {
+        "block_tag": "0x58f17e1",
+        "decimals": 18,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000035069580000000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "PiX"
+      },
+      "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb": {
+        "block_tag": "0x58f17e1",
+        "decimals": 6,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000047055534400000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "symbol_untrusted": "pUSD"
+      },
+      "0xc2132d05d31c914a87c6611c10748aeb04b58e8f": {
+        "block_tag": "0x58f17e1",
+        "decimals": 6,
+        "decimals_match_registry": true,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000055553445430000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "registry_decimals": 6,
+        "registry_label": "USDT",
+        "symbol_matches_registry": false,
+        "symbol_untrusted": "USDT0"
+      },
+      "0xeb51d9a39ad5eef215dc0bf39a8821ff804a0f01": {
+        "block_tag": "0x58f17e1",
+        "decimals": 9,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000044c474e5300000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000009"
+        ],
+        "symbol_untrusted": "LGNS"
+      }
+    }
+  }
+}
