@@ -1,0 +1,26 @@
+{
+  "checks": {
+    "five_complete_chains": true,
+    "discovery_integrity": true,
+    "finalized_heads_cover_sample": true,
+    "context_integrity": true,
+    "ethereum_factory_membership": true,
+    "expected_discovery_totals": true,
+    "local_markdown_links": true,
+    "no_draft_placeholders": true,
+    "no_supplied_credentials_in_artifacts": true
+  },
+  "missing_local_links": [],
+  "credential_match_files": [],
+  "files_scanned_for_credentials": 716,
+  "document_sha256": {
+    "README.md": "49c2a68f5278f3046a542a286b0d57e048469d27cc70fb78d3d413a2aac7d229",
+    "research/2026-09-05/onchain_llm_research.md": "ade26e58656e0c6ea64bb71f7178fe6930028d5a23549c78a2db7ad56b593d9f"
+  },
+  "swap_reconciliation_diagnostics": {
+    "pool_transaction_groups": 59,
+    "exact_matches": 57,
+    "groups_with_retained_residuals": 2,
+    "note": "Positive transfer residuals are retained and discussed in the memo; equality is not a universal pool invariant."
+  }
+}

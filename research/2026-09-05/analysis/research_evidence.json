@@ -1,0 +1,579 @@
+{
+  "cases": {
+    "ethereum_usdc_weth_gap_bps": "4.31279825847849069886659095306759199214053907689169585800000",
+    "optimism_distribution": {
+      "all_from_zero": true,
+      "logs_from_emitter": 27000,
+      "logs_per_transaction": {
+        "0x22b022eef97e2749a912f5a2c8051ffa5aab03f761ba95338d3a9b79df373e6a": 3000,
+        "0x2919ca28d0a7350702f8dc7f6235887a188e49419939791f675ee18edc22a2bd": 3000,
+        "0x2f48fb1059b2082f74251fbf60f9eaef20bb3b330553b82e93c4b28ff3eee282": 3000,
+        "0x45e8ad8a242d3572a490467acd73ad68712655374122b6d6cc8f8d9bf008f84c": 3000,
+        "0x5fd50b73c2f66cf2cf246c79e7569edaa9cbdfd4e3288d51ee0d20c815e120d9": 3000,
+        "0xc100d5d9c5f3f7278e363382d5b624623565c361f9046ac1845f6792b800cd1e": 3000,
+        "0xe7baaf85974e95fa8c60e275cdc9b47e35dfa50f16d8d3e5ab44fa24d3d7b849": 3000,
+        "0xec6a1d72150d34f73df53336e004e32a53f82ca502a1c9b73b18d429069b8071": 3000,
+        "0xf4fbba6253faf746aa6f9810faa0d77e9e1a71e380cab56003839051f29e7676": 3000
+      },
+      "share_of_optimism_logs_pct": 63.19632993165434,
+      "transactions": 9,
+      "unique_recipients": 27000,
+      "unique_token_ids": [
+        "1"
+      ]
+    },
+    "polymarket": {
+      "official_fill_events": 5434,
+      "official_match_events": 1918,
+      "same_shape_on_base": 14,
+      "top_token_ids": [
+        [
+          "87092180035608443812303494589945716012246916987396776734875280463098736093328",
+          553
+        ],
+        [
+          "12054979594845451561993944876209194631580627234811307419055728532364023667213",
+          519
+        ],
+        [
+          "2785369006710140812188691708629296123559061998366528169169402681975764761553",
+          471
+        ],
+        [
+          "37663839323351417993182198979005065960500417624044684620183192119104618652047",
+          399
+        ],
+        [
+          "40494005936462445051959154126874027015581557801602910299758169365253132467157",
+          221
+        ]
+      ],
+      "transactions_with_official_fills": 1918,
+      "unique_maker_addresses": 1223,
+      "unique_outcome_token_ids": 594
+    },
+    "selected_pools": [
+      {
+        "chain": "arbitrum",
+        "decimals0": 18,
+        "decimals1": 18,
+        "end_token1_per_token0": "18549.4057046042308037006033713820523317086642936095961312071",
+        "fee_millionths_at_end": "500",
+        "pool": "0xc6f780497a95e246eb9449f5e4770916dcd6396a",
+        "pool_net_token0_from_swaps": "9.170082625694140388",
+        "pool_net_token1_from_swaps": "-170374.779715511977747706",
+        "swap_events_in_discovery": 71,
+        "symbol0_untrusted": "WETH",
+        "symbol1_untrusted": "ARB",
+        "token0": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
+        "token1": "0x912ce59144191c1204e64559fe8253a0e49e6548"
+      },
+      {
+        "chain": "arbitrum",
+        "decimals0": 18,
+        "decimals1": 18,
+        "end_token1_per_token0": "0.00000668736694753148503478415400362319950979630769558010810600477",
+        "fee_millionths_at_end": "100",
+        "pool": "0xd13040d4fe917ee704158cfcb3338dcd2838b245",
+        "pool_net_token0_from_swaps": "-9426.397035503506292142",
+        "pool_net_token1_from_swaps": "0.063187762885107928",
+        "swap_events_in_discovery": 42,
+        "symbol0_untrusted": "RAIN",
+        "symbol1_untrusted": "WETH",
+        "token0": "0x25118290e6a5f4139381d072181157035864099d",
+        "token1": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1"
+      },
+      {
+        "chain": "base",
+        "decimals0": 6,
+        "decimals1": 8,
+        "end_token1_per_token0": "0.0000125442219175978085150886913344948260190576120198736449100260",
+        "fee_millionths_at_end": "212",
+        "pool": "0x4e962bb3889bf030368f56810a9c96b83cb3e778",
+        "pool_net_token0_from_swaps": "3193.018436",
+        "pool_net_token1_from_swaps": "-0.04004772",
+        "swap_events_in_discovery": 8,
+        "symbol0_untrusted": "USDC",
+        "symbol1_untrusted": "cbBTC",
+        "token0": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "token1": "0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf"
+      },
+      {
+        "chain": "base",
+        "decimals0": 18,
+        "decimals1": 6,
+        "end_token1_per_token0": "2458.72182918377021471484132413922558035823539284060529909867",
+        "fee_millionths_at_end": "305",
+        "pool": "0xb2cc224c1c9fee385f8ad6a55b4d94e92359dc59",
+        "pool_net_token0_from_swaps": "0.141652663634243131",
+        "pool_net_token1_from_swaps": "-347.865648",
+        "swap_events_in_discovery": 8,
+        "symbol0_untrusted": "WETH",
+        "symbol1_untrusted": "USDC",
+        "token0": "0x4200000000000000000000000000000000000006",
+        "token1": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913"
+      },
+      {
+        "chain": "base",
+        "decimals0": 18,
+        "decimals1": 18,
+        "end_token1_per_token0": "973.034256794329994016526063005613485814485434389406921278121",
+        "fee_millionths_at_end": "2700",
+        "pool": "0xb5f0b4ae66c14f7efaa9aa1468e8fc536a3e288c",
+        "pool_net_token0_from_swaps": "0",
+        "pool_net_token1_from_swaps": "0",
+        "swap_events_in_discovery": 0,
+        "symbol0_untrusted": "WETH",
+        "symbol1_untrusted": "MORPHO",
+        "token0": "0x4200000000000000000000000000000000000006",
+        "token1": "0xbaa5cc21fd487b8fcc2f632f3f4e8d37262a0842"
+      },
+      {
+        "chain": "ethereum",
+        "decimals0": 6,
+        "decimals1": 18,
+        "end_token1_per_token0": "0.000406751704366701517324049934275527072444580863895434068357602",
+        "end_usdc_per_weth": "2458.50229824350896115592258312699724942880235725614912712478",
+        "fee_millionths_at_end": "500",
+        "pool": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+        "pool_net_token0_from_swaps": "-4637.678087",
+        "pool_net_token1_from_swaps": "1.887295777623070981",
+        "swap_events_in_discovery": 6,
+        "symbol0_untrusted": "USDC",
+        "symbol1_untrusted": "WETH",
+        "token0": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "token1": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+      },
+      {
+        "chain": "ethereum",
+        "decimals0": 18,
+        "decimals1": 6,
+        "end_token1_per_token0": "2457.64285210464509384182999670841044002676744373239390717439",
+        "fee_millionths_at_end": "100",
+        "pool": "0xc7bbec68d12a0d1830360f8ec58fa599ba1b0e9b",
+        "pool_net_token0_from_swaps": "0.14055573247430436",
+        "pool_net_token1_from_swaps": "-343.652647",
+        "swap_events_in_discovery": 23,
+        "symbol0_untrusted": "WETH",
+        "symbol1_untrusted": "USDT",
+        "token0": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+        "token1": "0xdac17f958d2ee523a2206206994597c13d831ec7"
+      },
+      {
+        "chain": "ethereum",
+        "decimals0": 6,
+        "decimals1": 18,
+        "end_token1_per_token0": "0.000406927128170924104144490806213745028312848691758434554240537",
+        "end_usdc_per_weth": "2457.44245289039528043721168484845894597060177697541068056182",
+        "fee_millionths_at_end": "100",
+        "pool": "0xe0554a476a092703abdb3ef35c80e0d76d32939f",
+        "pool_net_token0_from_swaps": "-4080.4453",
+        "pool_net_token1_from_swaps": "1.661716654384186596",
+        "swap_events_in_discovery": 33,
+        "symbol0_untrusted": "USDC",
+        "symbol1_untrusted": "WETH",
+        "token0": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "token1": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+      },
+      {
+        "chain": "optimism",
+        "decimals0": 6,
+        "decimals1": 18,
+        "end_token1_per_token0": "0.000406750096043115195059737222459408203822577339763211410360561",
+        "fee_millionths_at_end": "344",
+        "pool": "0x478946bcd4a5a22b316470f5486fafb928c0ba25",
+        "pool_net_token0_from_swaps": "-486.337109",
+        "pool_net_token1_from_swaps": "0.197878416105862492",
+        "swap_events_in_discovery": 1,
+        "symbol0_untrusted": "USDC",
+        "symbol1_untrusted": "WETH",
+        "token0": "0x0b2c639c533813f4aa9d7837caf62653d097ff85",
+        "token1": "0x4200000000000000000000000000000000000006"
+      }
+    ],
+    "swap_transfer_reconciliation": {
+      "checked_pool_transactions": 59,
+      "matched": 57,
+      "mismatches": [
+        {
+          "pool": "0xc7bbec68d12a0d1830360f8ec58fa599ba1b0e9b",
+          "swap_delta": [
+            "-325890143692421657",
+            "802273839"
+          ],
+          "swap_log_indices": [
+            10,
+            39,
+            50
+          ],
+          "tokens": [
+            "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "0xdac17f958d2ee523a2206206994597c13d831ec7"
+          ],
+          "transaction": "0x4f94c120999f1df5eddb6850e8424f1d75966bd8e724f6a9c32de42fb813a855",
+          "transfer_minus_swap_raw": [
+            "333163952",
+            "0"
+          ],
+          "transfer_net": [
+            "-325890143359257705",
+            "802273839"
+          ]
+        },
+        {
+          "pool": "0xe0554a476a092703abdb3ef35c80e0d76d32939f",
+          "swap_delta": [
+            "-3903345",
+            "1587710984828047"
+          ],
+          "swap_log_indices": [
+            139
+          ],
+          "tokens": [
+            "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+          ],
+          "transaction": "0x6042cd526b318e683312b89566ee09287c17d9236db8f566ae1d267d3b3386d9",
+          "transfer_minus_swap_raw": [
+            "0",
+            "12471153"
+          ],
+          "transfer_net": [
+            "-3903345",
+            "1587710997299200"
+          ]
+        }
+      ]
+    }
+  },
+  "chains": {
+    "arbitrum": {
+      "blocks": 474,
+      "canonical_hash_changes": [],
+      "entire_window_finalized_at_recheck": true,
+      "failed": 122,
+      "failure_pct": 6.143,
+      "failure_pct_excluding_known_system": 8.068783068783068,
+      "finalized_head_at_recheck": 501972736,
+      "known_system_transactions": 474,
+      "logs": 5320,
+      "multiple_swap_transactions": 13,
+      "offline_integrity_checks": {
+        "block_range_mismatch": false,
+        "cumulative_gas_mismatches": 0,
+        "outside_window": 0,
+        "parent_mismatches": 0,
+        "sha256_mismatches": 0,
+        "validation_issue_count": 0
+      },
+      "quality_issues": {},
+      "raw_json_bytes": 10182445,
+      "receipts": 1986,
+      "swap_events": 375,
+      "swap_transactions": 347,
+      "transactions": 1986,
+      "unique_senders": 715,
+      "v3_burn_events": 3,
+      "v3_mint_events": 2,
+      "v3_zero_burn_events": 2
+    },
+    "base": {
+      "blocks": 60,
+      "canonical_hash_changes": [],
+      "entire_window_finalized_at_recheck": true,
+      "failed": 283,
+      "failure_pct": 3.4483,
+      "failure_pct_excluding_known_system": 3.4736712900454156,
+      "finalized_head_at_recheck": 50906269,
+      "known_system_transactions": 60,
+      "logs": 36923,
+      "multiple_swap_transactions": 179,
+      "offline_integrity_checks": {
+        "block_range_mismatch": false,
+        "cumulative_gas_mismatches": 0,
+        "outside_window": 0,
+        "parent_mismatches": 0,
+        "sha256_mismatches": 0,
+        "validation_issue_count": 0
+      },
+      "quality_issues": {},
+      "raw_json_bytes": 48758486,
+      "receipts": 8207,
+      "swap_events": 1145,
+      "swap_transactions": 909,
+      "transactions": 8207,
+      "unique_senders": 2246,
+      "v3_burn_events": 1473,
+      "v3_mint_events": 488,
+      "v3_zero_burn_events": 986
+    },
+    "ethereum": {
+      "blocks": 10,
+      "canonical_hash_changes": [],
+      "entire_window_finalized_at_recheck": true,
+      "failed": 54,
+      "failure_pct": 1.9694,
+      "failure_pct_excluding_known_system": 1.9693654266958425,
+      "finalized_head_at_recheck": 25910254,
+      "known_system_transactions": 0,
+      "logs": 8868,
+      "multiple_swap_transactions": 105,
+      "offline_integrity_checks": {
+        "block_range_mismatch": false,
+        "cumulative_gas_mismatches": 0,
+        "outside_window": 0,
+        "parent_mismatches": 0,
+        "sha256_mismatches": 0,
+        "validation_issue_count": 0
+      },
+      "quality_issues": {},
+      "raw_json_bytes": 15286703,
+      "receipts": 2742,
+      "swap_events": 573,
+      "swap_transactions": 346,
+      "transactions": 2742,
+      "unique_senders": 1810,
+      "v3_burn_events": 5,
+      "v3_mint_events": 5,
+      "v3_zero_burn_events": 2
+    },
+    "optimism": {
+      "blocks": 60,
+      "canonical_hash_changes": [],
+      "entire_window_finalized_at_recheck": true,
+      "failed": 20,
+      "failure_pct": 1.2277,
+      "failure_pct_excluding_known_system": 1.2746972594008923,
+      "finalized_head_at_recheck": 156502524,
+      "known_system_transactions": 60,
+      "logs": 42724,
+      "multiple_swap_transactions": 15,
+      "offline_integrity_checks": {
+        "block_range_mismatch": false,
+        "cumulative_gas_mismatches": 0,
+        "outside_window": 0,
+        "parent_mismatches": 0,
+        "sha256_mismatches": 0,
+        "validation_issue_count": 0
+      },
+      "quality_issues": {},
+      "raw_json_bytes": 37145882,
+      "receipts": 1629,
+      "swap_events": 52,
+      "swap_transactions": 28,
+      "transactions": 1629,
+      "unique_senders": 164,
+      "v3_burn_events": 460,
+      "v3_mint_events": 152,
+      "v3_zero_burn_events": 305
+    },
+    "polygon": {
+      "blocks": 80,
+      "canonical_hash_changes": [],
+      "entire_window_finalized_at_recheck": true,
+      "failed": 232,
+      "failure_pct": 2.5618,
+      "failure_pct_excluding_known_system": 2.5618374558303887,
+      "finalized_head_at_recheck": 93265009,
+      "known_system_transactions": 0,
+      "logs": 103918,
+      "multiple_swap_transactions": 280,
+      "offline_integrity_checks": {
+        "block_range_mismatch": false,
+        "cumulative_gas_mismatches": 0,
+        "outside_window": 0,
+        "parent_mismatches": 0,
+        "sha256_mismatches": 0,
+        "validation_issue_count": 0
+      },
+      "quality_issues": {},
+      "raw_json_bytes": 109070336,
+      "receipts": 9056,
+      "swap_events": 1146,
+      "swap_transactions": 575,
+      "transactions": 9056,
+      "unique_senders": 4821,
+      "v3_burn_events": 0,
+      "v3_mint_events": 0,
+      "v3_zero_burn_events": 0
+    }
+  },
+  "contexts": {
+    "arbitrum": {
+      "discovery_overlap_extra": 0,
+      "discovery_overlap_missing": 0,
+      "duplicates": 0,
+      "end_block": 501959324,
+      "logs": 922,
+      "out_of_range": 0,
+      "pools": {
+        "0xc6f780497a95e246eb9449f5e4770916dcd6396a": {
+          "burns": 2,
+          "events": 268,
+          "families": {
+            "V3Burn": 2,
+            "V3Collect": 2,
+            "V3Mint": 1,
+            "V3Swap": 263
+          },
+          "max_swap_tick": 98371,
+          "min_swap_tick": 98283,
+          "zero_burns": 1
+        },
+        "0xd13040d4fe917ee704158cfcb3338dcd2838b245": {
+          "burns": 0,
+          "events": 654,
+          "families": {
+            "V3Swap": 654
+          },
+          "max_swap_tick": -119148,
+          "min_swap_tick": -119166,
+          "zero_burns": 0
+        }
+      },
+      "removed": 0,
+      "request_range_gaps": 0,
+      "start_block": 501952248,
+      "unexpected_emitters": 0
+    },
+    "base": {
+      "discovery_overlap_extra": 0,
+      "discovery_overlap_missing": 0,
+      "duplicates": 0,
+      "end_block": 50905727,
+      "logs": 33149,
+      "out_of_range": 0,
+      "pools": {
+        "0x4e962bb3889bf030368f56810a9c96b83cb3e778": {
+          "burns": 4783,
+          "events": 11197,
+          "families": {
+            "V3Burn": 4783,
+            "V3Collect": 4781,
+            "V3Mint": 1595,
+            "V3Swap": 38
+          },
+          "max_swap_tick": -66811,
+          "min_swap_tick": -66817,
+          "zero_burns": 3189
+        },
+        "0xb2cc224c1c9fee385f8ad6a55b4d94e92359dc59": {
+          "burns": 6631,
+          "events": 15660,
+          "families": {
+            "V3Burn": 6631,
+            "V3Collect": 6629,
+            "V3Mint": 2217,
+            "V3Swap": 183
+          },
+          "max_swap_tick": -198243,
+          "min_swap_tick": -198249,
+          "zero_burns": 4419
+        },
+        "0xb5f0b4ae66c14f7efaa9aa1468e8fc536a3e288c": {
+          "burns": 2674,
+          "events": 6292,
+          "families": {
+            "V3Burn": 2674,
+            "V3Collect": 2674,
+            "V3Mint": 896,
+            "V3Swap": 48
+          },
+          "max_swap_tick": 68807,
+          "min_swap_tick": 68807,
+          "zero_burns": 1786
+        }
+      },
+      "removed": 0,
+      "request_range_gaps": 0,
+      "start_block": 50904828,
+      "unexpected_emitters": 0
+    },
+    "ethereum": {
+      "discovery_overlap_extra": 0,
+      "discovery_overlap_missing": 0,
+      "duplicates": 0,
+      "end_block": 25910254,
+      "logs": 678,
+      "out_of_range": 0,
+      "pools": {
+        "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640": {
+          "burns": 0,
+          "events": 88,
+          "families": {
+            "V3Mint": 1,
+            "V3Swap": 87
+          },
+          "max_swap_tick": 198251,
+          "min_swap_tick": 198242,
+          "zero_burns": 0
+        },
+        "0xc7bbec68d12a0d1830360f8ec58fa599ba1b0e9b": {
+          "burns": 0,
+          "events": 207,
+          "families": {
+            "V3Swap": 207
+          },
+          "max_swap_tick": -198227,
+          "min_swap_tick": -198254,
+          "zero_burns": 0
+        },
+        "0xe0554a476a092703abdb3ef35c80e0d76d32939f": {
+          "burns": 0,
+          "events": 383,
+          "families": {
+            "V3Swap": 383
+          },
+          "max_swap_tick": 198252,
+          "min_swap_tick": 198238,
+          "zero_burns": 0
+        }
+      },
+      "removed": 0,
+      "request_range_gaps": 0,
+      "start_block": 25910105,
+      "unexpected_emitters": 0
+    },
+    "optimism": {
+      "discovery_overlap_extra": 0,
+      "discovery_overlap_missing": 0,
+      "duplicates": 0,
+      "end_block": 156501012,
+      "logs": 15261,
+      "out_of_range": 0,
+      "pools": {
+        "0x478946bcd4a5a22b316470f5486fafb928c0ba25": {
+          "burns": 6523,
+          "events": 15261,
+          "families": {
+            "V3Burn": 6523,
+            "V3Collect": 6523,
+            "V3Mint": 2175,
+            "V3Swap": 40
+          },
+          "max_swap_tick": 198250,
+          "min_swap_tick": 198241,
+          "zero_burns": 4349
+        }
+      },
+      "removed": 0,
+      "request_range_gaps": 0,
+      "start_block": 156500113,
+      "unexpected_emitters": 0
+    }
+  },
+  "generated_at": "2026-09-05T10:54:02.970234+00:00",
+  "representation": {
+    "candidate_file_bytes": 80666,
+    "candidate_transactions": 87,
+    "raw_json_bytes": 220443852,
+    "summary_file_bytes": 94202
+  },
+  "rpc": {
+    "estimated_credits_upper_bound": 554070,
+    "http_attempts": 1245,
+    "http_attempts_with_error": 71,
+    "logical_method_attempts": 4284,
+    "response_bytes_including_retries": 285996101
+  }
+}
