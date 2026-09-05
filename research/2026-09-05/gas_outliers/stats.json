@@ -1,0 +1,899 @@
+{
+  "chains": {
+    "arbitrum": {
+      "metrics": {
+        "fee_paid_wei": {
+          "mad": 1013830446000.0,
+          "max": 95082700000000,
+          "min": 422940000000,
+          "n": 1512,
+          "p50": 1437556204000.0,
+          "p90": 5229941076600.0,
+          "p95": 9181940000000.0,
+          "p99": 36896725418200.0
+        },
+        "gas_limit": {
+          "mad": 144378.5,
+          "max": 100001242,
+          "min": 21362,
+          "n": 1512,
+          "p50": 191694.5,
+          "p90": 4000000.0,
+          "p95": 6000000.0,
+          "p99": 25000000.0
+        },
+        "priority_fee_wei": {
+          "mad": 0.0,
+          "max": 0,
+          "min": 0,
+          "n": 1512,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "p99": 0.0
+        }
+      },
+      "skipped_metrics": [
+        "priority_fee_wei"
+      ],
+      "system_transactions": 474,
+      "transactions": 1986,
+      "tx_types": {
+        "0x0": 208,
+        "0x1": 1,
+        "0x2": 1283,
+        "0x4": 20,
+        "0x6a": 474
+      },
+      "user_transactions": 1512
+    },
+    "base": {
+      "metrics": {
+        "fee_paid_wei": {
+          "mad": 337489648011,
+          "max": 621154967479030,
+          "min": 105946653906,
+          "n": 8147,
+          "p50": 515820248627,
+          "p90": 2926307368736.4,
+          "p95": 5064894190431.3,
+          "p99": 14502738618184.5
+        },
+        "gas_limit": {
+          "mad": 190000,
+          "max": 16777216,
+          "min": 21000,
+          "n": 8147,
+          "p50": 250000,
+          "p90": 1660000.0,
+          "p95": 2000010.0,
+          "p99": 8000000.0
+        },
+        "priority_fee_wei": {
+          "mad": 999950,
+          "max": 1276126477,
+          "min": 0,
+          "n": 8147,
+          "p50": 1000000,
+          "p90": 5000000.0,
+          "p95": 14720000.0,
+          "p99": 44775923.42
+        }
+      },
+      "skipped_metrics": [],
+      "system_transactions": 60,
+      "transactions": 8207,
+      "tx_types": {
+        "0x0": 1367,
+        "0x1": 22,
+        "0x2": 6729,
+        "0x4": 29,
+        "0x7e": 60
+      },
+      "user_transactions": 8147
+    },
+    "ethereum": {
+      "metrics": {
+        "fee_paid_wei": {
+          "mad": 6885364899282.0,
+          "max": 4349378297500264,
+          "min": 1286165643000,
+          "n": 2742,
+          "p50": 8494746750282.0,
+          "p90": 99989822494304.5,
+          "p95": 150154666718934.2,
+          "p99": 600577774361358.6
+        },
+        "gas_limit": {
+          "mad": 49000.0,
+          "max": 16698639,
+          "min": 21000,
+          "n": 2742,
+          "p50": 70000.0,
+          "p90": 600000.0,
+          "p95": 1242634.95,
+          "p99": 5247560.0
+        },
+        "priority_fee_wei": {
+          "mad": 49276954.5,
+          "max": 36428571428,
+          "min": 0,
+          "n": 2742,
+          "p50": 49413542.5,
+          "p90": 2000000000.0,
+          "p95": 2000000000.0,
+          "p99": 2930797920.78
+        }
+      },
+      "skipped_metrics": [],
+      "system_transactions": 0,
+      "transactions": 2742,
+      "tx_types": {
+        "0x0": 681,
+        "0x1": 6,
+        "0x2": 1997,
+        "0x3": 20,
+        "0x4": 38
+      },
+      "user_transactions": 2742
+    },
+    "optimism": {
+      "metrics": {
+        "fee_paid_wei": {
+          "mad": 5341107688,
+          "max": 14009947278106,
+          "min": 927433423,
+          "n": 1569,
+          "p50": 6440040809,
+          "p90": 1041661033117.0,
+          "p95": 5142979778035.2,
+          "p99": 8459301298728.44
+        },
+        "gas_limit": {
+          "mad": 1100000,
+          "max": 15000000,
+          "min": 21000,
+          "n": 1569,
+          "p50": 1500000,
+          "p90": 3000000.0,
+          "p95": 5000000.0,
+          "p99": 15000000.0
+        },
+        "priority_fee_wei": {
+          "mad": 703,
+          "max": 100139789,
+          "min": 1,
+          "n": 1569,
+          "p50": 704,
+          "p90": 5000000.0,
+          "p95": 8000000.0,
+          "p99": 11110000.0
+        }
+      },
+      "skipped_metrics": [],
+      "system_transactions": 60,
+      "transactions": 1629,
+      "tx_types": {
+        "0x0": 51,
+        "0x2": 1517,
+        "0x4": 1,
+        "0x7e": 60
+      },
+      "user_transactions": 1569
+    },
+    "polygon": {
+      "metrics": {
+        "fee_paid_wei": {
+          "mad": 6.012334932299254e+16,
+          "max": 26884236915653947055,
+          "min": 5718292518603000,
+          "n": 9056,
+          "p50": 7.94686307083454e+16,
+          "p90": 2.525309982447062e+17,
+          "p95": 3.1923296670034534e+17,
+          "p99": 1.0799977506938346e+18
+        },
+        "gas_limit": {
+          "mad": 367128.0,
+          "max": 32000000,
+          "min": 21000,
+          "n": 9056,
+          "p50": 390128.0,
+          "p90": 1800000.0,
+          "p95": 2651185.0,
+          "p99": 10000000.0
+        },
+        "priority_fee_wei": {
+          "mad": 62937668139.0,
+          "max": 87924000000000,
+          "min": 24158813535,
+          "n": 9056,
+          "p50": 148200000000.0,
+          "p90": 319379522203.0,
+          "p95": 400000000000.0,
+          "p99": 805000000000.0
+        }
+      },
+      "skipped_metrics": [],
+      "system_transactions": 0,
+      "transactions": 9056,
+      "tx_types": {
+        "0x0": 1141,
+        "0x2": 7723,
+        "0x4": 192
+      },
+      "user_transactions": 9056
+    }
+  },
+  "generated_at": "2026-09-05T13:03:06.452621+00:00",
+  "high_tip_activity": {
+    "arbitrum": {
+      "p95_priority_fee_gwei": "0",
+      "repeat_senders": [],
+      "transactions_at_or_above_p95": 0
+    },
+    "base": {
+      "p95_priority_fee_gwei": "0.0147",
+      "repeat_senders": [
+        {
+          "all_transactions_in_sample": 120,
+          "distinct_destinations": 1,
+          "example_transactions": [
+            "0x45531b8fb50666bff381bab4ca9e0c6b94803d0f1cee75f516c1099e29474800",
+            "0xab8ee4dd267b902cd1e4cb4c1cd5dc04c9ecb41fcf547777931f78866b9393d5",
+            "0x3acd79bdb93475703421320a430fdb133a8f93fba23a5a9f3445d2e33368b25c"
+          ],
+          "failed": 0,
+          "high_tip_transactions": 60,
+          "median_gas_limit": 260000,
+          "median_priority_fee_gwei": "0.0248",
+          "selectors": [
+            [
+              "0xc806a16e",
+              60
+            ]
+          ],
+          "sender": "0xe86f1d3f2f52b7a0b9fdfcc614d060beed32cd5d"
+        },
+        {
+          "all_transactions_in_sample": 60,
+          "distinct_destinations": 1,
+          "example_transactions": [
+            "0xda2a7619a385c5a91af8c9e382f904f2cd1c955755ac93bb069757572813fb4e",
+            "0x35d8d01e654f9034b5f9b70c14dfa1d4424ba300f30bb8d60c48dd806aa529a9",
+            "0x24257b4987476fbe3a2cf6f9e49ab89eeb318463acf144176111dc176237b5f0"
+          ],
+          "failed": 0,
+          "high_tip_transactions": 60,
+          "median_gas_limit": 70000,
+          "median_priority_fee_gwei": "0.0200",
+          "selectors": [
+            [
+              "0x7b84f330",
+              60
+            ]
+          ],
+          "sender": "0x1f6791653247bf9c8c09598e6b1a1aec3aaec957"
+        },
+        {
+          "all_transactions_in_sample": 15,
+          "distinct_destinations": 12,
+          "example_transactions": [
+            "0x6dc49686232273eff1207bcab509b94bf774c8be1fecf4602e574482450abe2b",
+            "0xfa16701f52ad8f0ab57c55fda306c245ce04cb2f240e8c6abb93415f85546fc9",
+            "0x7b69c7db6d3d9178b49514ed7dcf7ccadc846beb525d5271eb4883233ce7cdee"
+          ],
+          "failed": 0,
+          "high_tip_transactions": 15,
+          "median_gas_limit": 84000,
+          "median_priority_fee_gwei": "0.1150",
+          "selectors": [
+            [
+              "0x",
+              8
+            ],
+            [
+              "0xa9059cbb",
+              5
+            ],
+            [
+              "0xb61d27f6",
+              2
+            ]
+          ],
+          "sender": "0x3304e22ddaa22bcdc5fca2269b418046ae7b566a"
+        },
+        {
+          "all_transactions_in_sample": 11,
+          "distinct_destinations": 2,
+          "example_transactions": [
+            "0x144b9d5b57977ec5d1e4c361f5a069121f83beb86c02cb7e2f07332cf33d0df7",
+            "0xe4610a4134a8ba37119a6b2c8542054c8cafadb3fc6c03a9afda66bd8a84252d",
+            "0xc95302e2780e3017e59aa751c0d6ac88f4c794ff09ef3d34b4b68c5b37609d24"
+          ],
+          "failed": 0,
+          "high_tip_transactions": 11,
+          "median_gas_limit": 500000,
+          "median_priority_fee_gwei": "0.0460",
+          "selectors": [
+            [
+              "0xcac88ea9",
+              7
+            ],
+            [
+              "0x04e45aaf",
+              4
+            ]
+          ],
+          "sender": "0xf9b6a1eb0190bf76274b0876957ee9f4f508af41"
+        },
+        {
+          "all_transactions_in_sample": 9,
+          "distinct_destinations": 4,
+          "example_transactions": [
+            "0x7988aefc1e94faea7535ec6675fb0aa3543ad258312671367c28f739ac9a5c89",
+            "0xef891b5dc73d6b65606c979f6120becedb85dbb21f138e6b88b37b63e2612d21",
+            "0x55980311038662ea6c10578fcd63a453f46549c29e3c939a2f71886037f4ed18"
+          ],
+          "failed": 3,
+          "high_tip_transactions": 6,
+          "median_gas_limit": 550000,
+          "median_priority_fee_gwei": "0.1450",
+          "selectors": [
+            [
+              "0x3593564c",
+              3
+            ],
+            [
+              "0x095ea7b3",
+              1
+            ],
+            [
+              "0xc04b8d59",
+              1
+            ]
+          ],
+          "sender": "0x575cf154924f07c10a74b46fecfeb02e8763a4bf"
+        },
+        {
+          "all_transactions_in_sample": 5,
+          "distinct_destinations": 5,
+          "example_transactions": [
+            "0x18ba33e3847a9e344b712f0ac418c6930d9c3e1ea894502e6299dd4723262958",
+            "0x4af90a0a393b5f22397ddea08ab2c992f79970c59eeb9de9be80a37249d8bcb8",
+            "0xb935b2e84214635f3545c4cce49f27503d586f4587ad50557697c02f90e086f9"
+          ],
+          "failed": 0,
+          "high_tip_transactions": 5,
+          "median_gas_limit": 90000,
+          "median_priority_fee_gwei": "0.4000",
+          "selectors": [
+            [
+              "0x",
+              3
+            ],
+            [
+              "0xa9059cbb",
+              2
+            ]
+          ],
+          "sender": "0xbaed383ede0e5d9d72430661f3285daa77e9439f"
+        },
+        {
+          "all_transactions_in_sample": 20,
+          "distinct_destinations": 1,
+          "example_transactions": [
+            "0x3a3f6674bfdedd7402be76cfbd74957801fa88ef8df714b59933b847ef149ed4",
+            "0x0036de2a0b5bd02653a83a9d72efaed35fc09a2d3f18af91e54931b249b78c0f",
+            "0x43d32c5dd7be4f9cc41229c0ed060acd25adab5d1e2993ac64f7b985de004bf9"
+          ],
+          "failed": 0,
+          "high_tip_transactions": 4,
+          "median_gas_limit": 600002,
+          "median_priority_fee_gwei": "0.1082",
+          "selectors": [
+            [
+              "0xa00597a0",
+              4
+            ]
+          ],
+          "sender": "0x4ac2c2b62fb70377cf5fa33b374157c16eb7c6d7"
+        },
+        {
+          "all_transactions_in_sample": 4,
+          "distinct_destinations": 2,
+          "example_transactions": [
+            "0x10bd15a0d6582a8597ce4be06d43ce145cf2974862ad220cd9b4cd319e4a8f02",
+            "0xfc78ae38a5f6e584864a36b9846f802d4e22188cc5c1d3965613eeaa00304e1b",
+            "0x67d81d135a6d0b00cd2237e64d12e512d5acf099414bbf6c704f6116ced2a75a"
+          ],
+          "failed": 0,
+          "high_tip_transactions": 4,
+          "median_gas_limit": 178388,
+          "median_priority_fee_gwei": "0.0200",
+          "selectors": [
+            [
+              "0x415a9735",
+              2
+            ],
+            [
+              "0xa9059cbb",
+              2
+            ]
+          ],
+          "sender": "0xac6427822309e857b064a6636faf9f3e01c05fb9"
+        }
+      ],
+      "transactions_at_or_above_p95": 409
+    },
+    "ethereum": {
+      "p95_priority_fee_gwei": "2.0000",
+      "repeat_senders": [
+        {
+          "all_transactions_in_sample": 61,
+          "distinct_destinations": 1,
+          "example_transactions": [
+            "0xe1bc17bd77b23f59a10501f86e8d7f28b066e36ee6dca87531e8887f71c8a4f0",
+            "0x738b57f49be6fcbd824f2d59466cd6adcab44edd881b1c7cd860b30ccb02882c",
+            "0xd96acd5cf2a6c6aa2cf4cd0bba032c406d49421a9e61cee13ab38307f69c4914"
+          ],
+          "failed": 0,
+          "high_tip_transactions": 31,
+          "median_gas_limit": 210000,
+          "median_priority_fee_gwei": "2.0260",
+          "selectors": [
+            [
+              "0xa9059cbb",
+              31
+            ]
+          ],
+          "sender": "0x559432e18b281731c054cd703d4b49872be4ed53"
+        },
+        {
+          "all_transactions_in_sample": 8,
+          "distinct_destinations": 2,
+          "example_transactions": [
+            "0x1657c2da8683e649d280a57f86a4ec3f089e715a2bde70461f83dd781e7ec4e5",
+            "0x3890f71bbb90b4c5e4ee6ad7332ed274b0f3764354dab568aa21c2f9b15d1541",
+            "0x692741ee1927ad6a83f29bf15fc614cec78521b494de33f81cd0522a37d16784"
+          ],
+          "failed": 0,
+          "high_tip_transactions": 8,
+          "median_gas_limit": 147463,
+          "median_priority_fee_gwei": "2.0000",
+          "selectors": [
+            [
+              "0xb61d27f6",
+              7
+            ],
+            [
+              "0x",
+              1
+            ]
+          ],
+          "sender": "0x05ff6964d21e5dae3b1010d5ae0465b3c450f381"
+        },
+        {
+          "all_transactions_in_sample": 6,
+          "distinct_destinations": 4,
+          "example_transactions": [
+            "0xca3d1e0889d375d2c5a5fec695d14d2dcae8fde27c2d9a2da970e3155f65b13c",
+            "0x522116678a3e1fc2c64323c095b87a28a0ce9e35aed2523a400ae3f812d7b967",
+            "0x6ee7bbe13b063be60cd82ef75764da71f697db2b30fffd095798d4b378140690"
+          ],
+          "failed": 0,
+          "high_tip_transactions": 6,
+          "median_gas_limit": 342863,
+          "median_priority_fee_gwei": "2.0000",
+          "selectors": [
+            [
+              "0x095ea7b3",
+              3
+            ],
+            [
+              "0x3ce33bff",
+              3
+            ]
+          ],
+          "sender": "0xc3c7de27812e5246845fc90a50412199f2e46907"
+        },
+        {
+          "all_transactions_in_sample": 6,
+          "distinct_destinations": 1,
+          "example_transactions": [
+            "0x4a71f54a44da4fc54430150d71d43d99c2ae6f54a435f7061714b00c219f2b7d",
+            "0x359655e54a0a6620b497a9608d59e2831f1e0122692d7a20ac52faf7fa4a0c47",
+            "0x37543a55eceef6d580974378f2a115a0a635a8dbedbad10244eb8fdcd8d24ed8"
+          ],
+          "failed": 0,
+          "high_tip_transactions": 6,
+          "median_gas_limit": 90000,
+          "median_priority_fee_gwei": "2.0000",
+          "selectors": [
+            [
+              "0xa9059cbb",
+              6
+            ]
+          ],
+          "sender": "0x18e296053cbdf986196903e889b7dca7a73882f6"
+        },
+        {
+          "all_transactions_in_sample": 6,
+          "distinct_destinations": 5,
+          "example_transactions": [
+            "0x9a7907567b24abef026cde8480c373561d88f7d242692ce0f81cefc19234b6ce",
+            "0xc2f68aca5b6c5643cfc159e999e567addd46a9ab52b58bb8b363fcb2d4d7fc0b",
+            "0xaae8fec9eb0437cadc7e3add4c87780fedccaaebbb12330a0936432263987328"
+          ],
+          "failed": 0,
+          "high_tip_transactions": 6,
+          "median_gas_limit": 60500,
+          "median_priority_fee_gwei": "2.0000",
+          "selectors": [
+            [
+              "0x",
+              3
+            ],
+            [
+              "0xa9059cbb",
+              3
+            ]
+          ],
+          "sender": "0xd47a1bdc6872ad2fd16e50149baa9924c653e624"
+        },
+        {
+          "all_transactions_in_sample": 5,
+          "distinct_destinations": 1,
+          "example_transactions": [
+            "0x4b34dd680eb7d9551f5eefeb73121b8462abcf9bdffef10c8690b2f79551fd20",
+            "0x86089cd41f9c11044c4f4e3def26b2709ccc205d00e043b9df7f1c744cb25065",
+            "0x35ffb1e1c0e37132247312705dbfd3824dd5c4744baa047ff99ebe9547c35f82"
+          ],
+          "failed": 0,
+          "high_tip_transactions": 5,
+          "median_gas_limit": 96046,
+          "median_priority_fee_gwei": "2.0000",
+          "selectors": [
+            [
+              "0xa9059cbb",
+              5
+            ]
+          ],
+          "sender": "0xaa8ba7d4611437141192e7ceced531bc0a133efb"
+        },
+        {
+          "all_transactions_in_sample": 5,
+          "distinct_destinations": 2,
+          "example_transactions": [
+            "0x046937f06915b32bef17babe7bc9835999167ec86d2ad8aff0cbc601086d1289",
+            "0xf6097d673db4183b7c09c0764dd07c84dff20dc04b1a009bf554571e1844ebd5",
+            "0x0cf130e28e1c6f912e29d3785d1eb9faa2d1fa99f0d1e914580648fb2af116ab"
+          ],
+          "failed": 0,
+          "high_tip_transactions": 5,
+          "median_gas_limit": 573657,
+          "median_priority_fee_gwei": "2.0000",
+          "selectors": [
+            [
+              "0x5f575529",
+              4
+            ],
+            [
+              "0x095ea7b3",
+              1
+            ]
+          ],
+          "sender": "0x8637d3d215fbae518c4135e4a5ca125703fc3c19"
+        },
+        {
+          "all_transactions_in_sample": 4,
+          "distinct_destinations": 4,
+          "example_transactions": [
+            "0x1f79851f2316cb18f9dee8bb8ac8552c8340aff84ea58821cf4b368249653692",
+            "0x0cfbf730b628610c2a2b1c3a6cfa0ee35e479530ca9ac23696a90a039095b7f2",
+            "0xdb2f5dde732576a62a3e7d70b0ca47cd022fa14b60a59829f27dc620c47e32c3"
+          ],
+          "failed": 0,
+          "high_tip_transactions": 4,
+          "median_gas_limit": 31500,
+          "median_priority_fee_gwei": "2.0000",
+          "selectors": [
+            [
+              "0x",
+              4
+            ]
+          ],
+          "sender": "0xf30ba13e4b04ce5dc4d254ae5fa95477800f0eb0"
+        }
+      ],
+      "transactions_at_or_above_p95": 281
+    },
+    "optimism": {
+      "p95_priority_fee_gwei": "0.008",
+      "repeat_senders": [
+        {
+          "all_transactions_in_sample": 120,
+          "distinct_destinations": 1,
+          "example_transactions": [
+            "0x492e93ff94e55bf6d90e4d762fa49193513061bfee77c7940e17d7c5dfe8571f",
+            "0x647d9d6a444074db72e40c5158c3da7ba1c9847741baa6e1dc36776c1c985fa6",
+            "0x5cc047444c0b68d93fc8b076ebd09de0c5435794467a193c928de8b25d7b11b8"
+          ],
+          "failed": 0,
+          "high_tip_transactions": 60,
+          "median_gas_limit": 300000,
+          "median_priority_fee_gwei": "0.0111",
+          "selectors": [
+            [
+              "0xc806a16e",
+              60
+            ]
+          ],
+          "sender": "0x94387751a464c073889ec2c0380519dc42f16cb9"
+        },
+        {
+          "all_transactions_in_sample": 4,
+          "distinct_destinations": 1,
+          "example_transactions": [
+            "0x12ad8e7ab97c839ba05380b8d44068dc36731905d91eae173f7d278e2d11b450",
+            "0x29d15f6e39a29f59f0fd3018b0bc7ee02452eb3bcda89d2d63eb98f296f8f613",
+            "0x539b30dbee7ce7946b7ad6825c595a862b3d67ba4d94d7aaac6aff527b9059a3"
+          ],
+          "failed": 0,
+          "high_tip_transactions": 4,
+          "median_gas_limit": 1000000,
+          "median_priority_fee_gwei": "0.0100",
+          "selectors": [
+            [
+              "0x81002ee2",
+              1
+            ],
+            [
+              "0xc102132e",
+              1
+            ],
+            [
+              "0xc1021330",
+              1
+            ]
+          ],
+          "sender": "0x33b12dd75f66933acd6438594d80cf91cacdc10b"
+        },
+        {
+          "all_transactions_in_sample": 3,
+          "distinct_destinations": 2,
+          "example_transactions": [
+            "0xa0c2421f1da1388be1f3160c9e57a3cf1a99b43ae97adbc0a30945e226798ef3",
+            "0x69a83902191326d9e101758be77bcde2d5fde7c6b18eb92d0dc84828d1da789d",
+            "0x2ae6f8fadb924d7ad30dc5c31bc7bd5037c2be2cc04c995cfc45f07d32360679"
+          ],
+          "failed": 0,
+          "high_tip_transactions": 3,
+          "median_gas_limit": 161760,
+          "median_priority_fee_gwei": "0.1001",
+          "selectors": [
+            [
+              "0xb61d27f6",
+              2
+            ],
+            [
+              "0xa9059cbb",
+              1
+            ]
+          ],
+          "sender": "0xacd03d601e5bb1b275bb94076ff46ed9d753435a"
+        },
+        {
+          "all_transactions_in_sample": 3,
+          "distinct_destinations": 1,
+          "example_transactions": [
+            "0x5792f6b861b51594a2ab0882745c04b6e51be82909a12ce2bc39dd2eda897d22",
+            "0x7f73ead544f95deaa9dad39fbc6dbeb36fa4c2e05a0b09b6c6f29e1498fb85ac",
+            "0x0e38fb5586af3987c47ac9a9ebb23eb0e8cda298347fea390c9547712e739471"
+          ],
+          "failed": 2,
+          "high_tip_transactions": 3,
+          "median_gas_limit": 1620000,
+          "median_priority_fee_gwei": "0.0136",
+          "selectors": [
+            [
+              "0x2f139e4f",
+              3
+            ]
+          ],
+          "sender": "0x78126dac3a2c08479d2196741da77f56ca8cfb88"
+        }
+      ],
+      "transactions_at_or_above_p95": 79
+    },
+    "polygon": {
+      "p95_priority_fee_gwei": "400.0000",
+      "repeat_senders": [
+        {
+          "all_transactions_in_sample": 75,
+          "distinct_destinations": 75,
+          "example_transactions": [
+            "0xc188e23fab2a442ee51a61d605bdcbaacd7f4ca3b969d4cc074196edf8499655",
+            "0xaf1359e6f521b9946133398eb6fcf6b8866cd6a223302e72fc11622830f4213b",
+            "0xcbf682cfe1c0cd8d008f059d9cd0d02c67c1d463af8db7122e165d7fcb0bb1bf"
+          ],
+          "failed": 0,
+          "high_tip_transactions": 75,
+          "median_gas_limit": 21000,
+          "median_priority_fee_gwei": "494.7000",
+          "selectors": [
+            [
+              "0x",
+              75
+            ]
+          ],
+          "sender": "0x1c62a58a11d88d71f936e0ee799eaebd74546894"
+        },
+        {
+          "all_transactions_in_sample": 26,
+          "distinct_destinations": 1,
+          "example_transactions": [
+            "0x3f0f3db9ae1d1ee6340a4db63b70d25c3f1e58ef21e94fcc7d24fc375d509c72",
+            "0xc7bc2c0b85c6ecd32fff2379cd221b99b78c7ab6db9bc6db62c461dbcbf85f11",
+            "0xb856af973532049809127121264fb6e835cda7b8ee6d08dca62a0e82666c3ee5"
+          ],
+          "failed": 0,
+          "high_tip_transactions": 26,
+          "median_gas_limit": 21000,
+          "median_priority_fee_gwei": "805.0000",
+          "selectors": [
+            [
+              "0x",
+              26
+            ]
+          ],
+          "sender": "0xccec50fdab5bc3e75d969183266e8904fe2b2f99"
+        },
+        {
+          "all_transactions_in_sample": 26,
+          "distinct_destinations": 1,
+          "example_transactions": [
+            "0x5d11227b3c4843e00636aa25dfbf1f73db031953c84bec888f9c2d0f4e751bb8",
+            "0x04a94252c91ac9bb25077f0e5917bfd6ad55a0693d242034221b9bf776f88a64",
+            "0x8d4f013f6256ef6e227e8dcb7841591c426edbfde8ecbdebde0a9ccd5d3a783a"
+          ],
+          "failed": 0,
+          "high_tip_transactions": 26,
+          "median_gas_limit": 21000,
+          "median_priority_fee_gwei": "805.0000",
+          "selectors": [
+            [
+              "0x",
+              26
+            ]
+          ],
+          "sender": "0xf0f8a97a37460d18ab3f0557569a2d72b1844e10"
+        },
+        {
+          "all_transactions_in_sample": 21,
+          "distinct_destinations": 1,
+          "example_transactions": [
+            "0x15d24bc69c7eccc06aa892ced7c79118efe2e39031bc7de736de742dcfbec4f2",
+            "0x6131bdad0d523898199ca864e83429572c63ef5d11ec13cac53e113486e3ec04",
+            "0xaaf14f790052630e487953b2eb677bbaa80dc388a4765950b4379bb1b79fa2dd"
+          ],
+          "failed": 0,
+          "high_tip_transactions": 21,
+          "median_gas_limit": 420000,
+          "median_priority_fee_gwei": "924.3220",
+          "selectors": [
+            [
+              "0xa9059cbb",
+              21
+            ]
+          ],
+          "sender": "0x343d752bb710c5575e417edb3f9fa06241a4749a"
+        },
+        {
+          "all_transactions_in_sample": 30,
+          "distinct_destinations": 1,
+          "example_transactions": [
+            "0xe923aadbb7a4333b57db26dc4fb7496e5ec7dce2be152a9476133a70fa26456b",
+            "0x792f1d3674c93bde19ec457510e1a14eda43f7fcf3540a7bcb338298ae7f8284",
+            "0x6cffbd64d519ad7b71816554341291fd7f202bd8ff04b70d606ea2372b920bd3"
+          ],
+          "failed": 0,
+          "high_tip_transactions": 19,
+          "median_gas_limit": 200000,
+          "median_priority_fee_gwei": "488.0880",
+          "selectors": [
+            [
+              "0xf3c91c83",
+              19
+            ]
+          ],
+          "sender": "0xeba33d81583ac30eab08a3f457edd58daa8065f4"
+        },
+        {
+          "all_transactions_in_sample": 24,
+          "distinct_destinations": 15,
+          "example_transactions": [
+            "0xa3c351bbba0891aa8fd74f5a85105f5ff43819da323fd9193e84cd7bbfe02e5f",
+            "0xdfc1f1ed200727dae5cf4a54991285e0b90c17b572c3cbec50e00cdc9027bf6d",
+            "0xe4d6e1f746b34f03cedd6e4b1f7a842c67a6134891ebe9459fad8c7cd983a642"
+          ],
+          "failed": 0,
+          "high_tip_transactions": 16,
+          "median_gas_limit": 21000,
+          "median_priority_fee_gwei": "963.4932",
+          "selectors": [
+            [
+              "0x",
+              16
+            ]
+          ],
+          "sender": "0x501c43b2510da0ca6572e05b479e530ce3985646"
+        },
+        {
+          "all_transactions_in_sample": 15,
+          "distinct_destinations": 1,
+          "example_transactions": [
+            "0x1ea89c8dffb734269eb6f2236dfa0d4a24ab4738e2a434d34c43c25a68848403",
+            "0xc0a24eaac344dfab5e358c257eec5b7f1c7a8877077a1c98ff036c29ceb88d04",
+            "0x00f8f7f9227def48fee02aed281765c6ee2b8f9ab3d2935d40058ca5e24738e8"
+          ],
+          "failed": 7,
+          "high_tip_transactions": 7,
+          "median_gas_limit": 65000,
+          "median_priority_fee_gwei": "439.0910",
+          "selectors": [
+            [
+              "0xa9059cbb",
+              7
+            ]
+          ],
+          "sender": "0x057089e02e1781016c882d682729c84352fd16c9"
+        },
+        {
+          "all_transactions_in_sample": 8,
+          "distinct_destinations": 1,
+          "example_transactions": [
+            "0xa2196218bfb54b552135ab5cf2b48263293a1a6e26915bd02aaffc06574ade40",
+            "0x34fb2bf7b3ca52b7ce5741b5670d3336c0f322a0fbbd5e65905c9c7d6bc75715",
+            "0xf8957d404c00f8638d7f9554eb501e93292b0e2f247aa35255f8d2299ec126fb"
+          ],
+          "failed": 0,
+          "high_tip_transactions": 7,
+          "median_gas_limit": 600000,
+          "median_priority_fee_gwei": "497.7840",
+          "selectors": [
+            [
+              "0x68c7450f",
+              7
+            ]
+          ],
+          "sender": "0xbaff6cfecfcb282e9177f1fff9047be7321851d7"
+        }
+      ],
+      "transactions_at_or_above_p95": 458
+    }
+  },
+  "metrics": {
+    "fee_paid_wei": "total fee paid",
+    "gas_limit": "gas limit",
+    "priority_fee_wei": "priority fee"
+  },
+  "sample": "research/2026-09-05/sample",
+  "system_types_excluded": {
+    "arbitrum": [
+      "0x64",
+      "0x65",
+      "0x66",
+      "0x68",
+      "0x69",
+      "0x6a"
+    ],
+    "base": [
+      "0x7e"
+    ],
+    "optimism": [
+      "0x7e"
+    ]
+  },
+  "top_per_metric": 3
+}

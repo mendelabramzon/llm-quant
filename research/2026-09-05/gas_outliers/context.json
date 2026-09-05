@@ -1,0 +1,646 @@
+{
+  "asof": {
+    "arbitrum": {
+      "fallback": "latest when the pinned call errors",
+      "observed_at": "2026-09-05T12:56:23.807650+00:00",
+      "pinned_block": 501959320
+    },
+    "base": {
+      "fallback": "latest when the pinned call errors",
+      "observed_at": "2026-09-05T12:56:07.894424+00:00",
+      "pinned_block": 50905718
+    },
+    "ethereum": {
+      "fallback": "latest when the pinned call errors",
+      "observed_at": "2026-09-05T12:55:45.694180+00:00",
+      "pinned_block": 25910254
+    },
+    "optimism": {
+      "fallback": "latest when the pinned call errors",
+      "observed_at": "2026-09-05T12:56:40.064171+00:00",
+      "pinned_block": 156501010
+    },
+    "polygon": {
+      "fallback": "latest when the pinned call errors",
+      "observed_at": "2026-09-05T12:56:45.482628+00:00",
+      "pinned_block": 93263812
+    }
+  },
+  "code": {
+    "arbitrum": {
+      "0x0000000071727de22e5e9d8baf0edac6f37da032": {
+        "code_bytes": 16035,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x0bc4df77353ae96f31bc82bc2536bb23b2009919": {
+        "code_bytes": 7795,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x13015e4e6f839e1aa1016df521ea458eca20438c": {
+        "code_bytes": 6733,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x1e266e7bd2cd8597171df7f3d36ebdbc7ee53e91": {
+        "code_bytes": 7955,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x223752eb475098e79d10937480df93864d7efb83": {
+        "code_bytes": 7285,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x25118290e6a5f4139381d072181157035864099d": {
+        "code_bytes": 176,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x4ecf61a6c2fab8a047ceb3b3b263b401763e9d49": {
+        "code_bytes": 4806,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x662a623d4529a438c05e848b2723847af063b89c": {
+        "code_bytes": 7632,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45": {
+        "code_bytes": 24497,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x6bb121533f78d8d0c8a847b0ab399e0399966563": {
+        "code_bytes": 1201,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x8080808080dab95efed788a9214e400ba552def6": {
+        "code_bytes": 1201,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x82af49447d8a07e3bd95bd0d56f35241523fbab1": {
+        "code_bytes": 2092,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x86be76a0fa2bd3ecb69330cbb4fd1f62c48f43e3": {
+        "code_bytes": 13298,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xa5d2d45228ee2e3a18ab122b2ce84997d008f4eb": {
+        "code_bytes": 24525,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xaf88d065e77c8cc2239327c5edb3a432268e5831": {
+        "code_bytes": 1852,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xc8ee91a54287db53897056e12d9819156d3822fb": {
+        "code_bytes": 7998,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xce35916482a90cdaa0c276e30a7990d8fca18ce2": {
+        "code_bytes": 1201,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xd13040d4fe917ee704158cfcb3338dcd2838b245": {
+        "code_bytes": 22142,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xe6c8d111337d0052b9d88bf5d7d55b7f8385acd3": {
+        "code_bytes": 1451,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xf97f4df75117a78c1a5a0dbb814af92458539fb4": {
+        "code_bytes": 760,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xff162c694eaa571f685030649814282ea457f169": {
+        "code_bytes": 2227,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      }
+    },
+    "base": {
+      "0x0392b12a1ceb0cd13af5ea448cf5586ea609852d": {
+        "code_bytes": 45,
+        "is_contract": true,
+        "minimal_proxy_target": "0xec8e5342b19977b4ef8892e02d8daecfa1315831"
+      },
+      "0x10ea4fc84b3ba9e0d6a7c26c6da0e98b81038d9d": {
+        "code_bytes": 45,
+        "is_contract": true,
+        "minimal_proxy_target": "0xa4e46b4f701c62e14df11b48dce76a7d793cd6d7"
+      },
+      "0x278d858f05b94576c1e6f73285886876ff6ef8d2": {
+        "code_bytes": 687,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x4200000000000000000000000000000000000006": {
+        "code_bytes": 2041,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x46c85152bfe9f96829aa94755d9f915f9b10ef5f": {
+        "code_bytes": 2196,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x4a5c2f8edf362470b47735547e763f131e00d6c1": {
+        "code_bytes": 17777,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913": {
+        "code_bytes": 1852,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xcdac0d6c6c59727a65f871236188350531885c43": {
+        "code_bytes": 45,
+        "is_contract": true,
+        "minimal_proxy_target": "0xa4e46b4f701c62e14df11b48dce76a7d793cd6d7"
+      },
+      "0xcf77a3ba9a5ca399b7c97c74d54e5b1beb874e43": {
+        "code_bytes": 23581,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xe67f39fbe8c24ef8b3542efed1ee9963cefc1f2a": {
+        "code_bytes": 12493,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xf397910f005151b09644228573a4353818d3755d": {
+        "code_bytes": 699,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xf43eb8de897fbc7f2502483b2bef7bb9ea179229": {
+        "code_bytes": 3314,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xf65d8d39f5e2b85ccd34e6a74f09cea922d3ede1": {
+        "code_bytes": 45,
+        "is_contract": true,
+        "minimal_proxy_target": "0xa4e46b4f701c62e14df11b48dce76a7d793cd6d7"
+      },
+      "0xf851feb6e1149efe41a15a025ce7c0c0481c5e7f": {
+        "code_bytes": 45,
+        "is_contract": true,
+        "minimal_proxy_target": "0xcbfe93b82207b0ea8b46b46432e372b86cf511bd"
+      }
+    },
+    "ethereum": {
+      "0x0000000000001ff3684f28c67538d4d072c22734": {
+        "code_bytes": 1009,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x000000000004444c5dc75cb358380d2e3de08a90": {
+        "code_bytes": 24009,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x0a5aa8eda423a6ee19d4dc3e1d39befc8acc2477": {
+        "code_bytes": 2744,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x22b19704e575d5e776608c5283e88606a546f46e": {
+        "code_bytes": 985,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x447a03c131c0a97a8b8d548e3cd81aec4ce05d73": {
+        "code_bytes": 21494,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x44b28991b167582f18ba0259e0173176ca125505": {
+        "code_bytes": 19918,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x8d02bb7ffd0ae9f6cf9004f290edcc96cd58ba16": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0x8feab81d36e7576107d5de0758c1b839be31b4f6": {
+        "code_bytes": 13322,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": {
+        "code_bytes": 2186,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2": {
+        "code_bytes": 3124,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xce8b69d410e3241280ea8d0b1f71ba6840c4528b": {
+        "code_bytes": 24041,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xe172e9b6cfbeeb5593bdce3f077356fdb33af904": {
+        "code_bytes": 18972,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xe76c6c83af64e4c60245d8c7de953df673a7a33d": {
+        "code_bytes": 3933,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xeb4c2781e4eba804ce9a9803c67d0893436bb27d": {
+        "code_bytes": 2428,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      }
+    },
+    "optimism": {
+      "0x0b2c639c533813f4aa9d7837caf62653d097ff85": {
+        "code_bytes": 1852,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x2a783e166edb6c937ed28ab42a26cc796412357e": {
+        "code_bytes": 21742,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x66753c4e3fc84f1ed0e3c267c927284e9d90c572": {
+        "code_bytes": 1419,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x7ca0b75e67e33c0014325b739a8d019c4fe445f0": {
+        "code_bytes": 122,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x94b008aa00579c1307b0ef2c499ad98a8ce58e58": {
+        "code_bytes": 6774,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xac6bca0bb66d4587171cfc77b19e5e68f74de55e": {
+        "code_bytes": 122,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xdffcc3536d932eb51df51a7f5fa407c4270d5308": {
+        "code_bytes": 1419,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xee7ae85f2fe2239e27d9c1e23fffe168d63b4055": {
+        "code_bytes": 209,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      }
+    },
+    "polygon": {
+      "0x0000000000000000000000000000000000001010": {
+        "code_bytes": 5315,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x25a4b842cb200e9148ff5a11babf80488c8d8b07": {
+        "code_bytes": 2227,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x2791bca1f2de4661ed88a30c99a7a9449aa84174": {
+        "code_bytes": 2037,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x2c0367a9db231ddebd88a94b4f6461a6e47c58b1": {
+        "code_bytes": 163,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x3a3bd7bb9528e159577f7c2e685cc81a765002e2": {
+        "code_bytes": 4914,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359": {
+        "code_bytes": 1852,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x4d97dcd97ec945f40cf65f87097ace5ea0476045": {
+        "code_bytes": 15007,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x94f7ef03ec6b2028bf80facabf8c997bfde36faf": {
+        "code_bytes": 212,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x99a57e6c8558bc6689f894e068733adf83c19725": {
+        "code_bytes": 6386,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0x9f3d8b0d320deafe327f1eda5cfa20b98966a212": {
+        "code_bytes": 0,
+        "is_contract": false,
+        "minimal_proxy_target": null
+      },
+      "0xca11bde05977b3631167028862be2a173976ca11": {
+        "code_bytes": 3808,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xd216153c06e857cd7f72665e0af1d7d82172f494": {
+        "code_bytes": 15132,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      },
+      "0xeb51d9a39ad5eef215dc0bf39a8821ff804a0f01": {
+        "code_bytes": 7945,
+        "is_contract": true,
+        "minimal_proxy_target": null
+      }
+    }
+  },
+  "tokens": {
+    "arbitrum": {
+      "0x25118290e6a5f4139381d072181157035864099d": {
+        "block_tag": "0x1deb4a98",
+        "decimals": 18,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045241494e00000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "RAIN"
+      },
+      "0x4ecf61a6c2fab8a047ceb3b3b263b401763e9d49": {
+        "block_tag": "0x1deb4a98",
+        "decimals": 18,
+        "raw": [
+          "0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000455534e4400000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "USND"
+      },
+      "0x82af49447d8a07e3bd95bd0d56f35241523fbab1": {
+        "block_tag": "0x1deb4a98",
+        "decimals": 18,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045745544800000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "WETH"
+      },
+      "0xaf88d065e77c8cc2239327c5edb3a432268e5831": {
+        "block_tag": "0x1deb4a98",
+        "decimals": 6,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045553444300000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "symbol_untrusted": "USDC"
+      },
+      "0xe6c8d111337d0052b9d88bf5d7d55b7f8385acd3": {
+        "block_tag": "0x1deb4a98",
+        "decimals": 18,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000044554487800000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "ETHx"
+      },
+      "0xf97f4df75117a78c1a5a0dbb814af92458539fb4": {
+        "block_tag": "0x1deb4a98",
+        "decimals": 18,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000044c494e4b00000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "LINK"
+      }
+    },
+    "base": {
+      "0x4200000000000000000000000000000000000006": {
+        "block_tag": "0x308c276",
+        "decimals": 18,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045745544800000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "WETH"
+      },
+      "0x46c85152bfe9f96829aa94755d9f915f9b10ef5f": {
+        "block_tag": "0x308c276",
+        "decimals": 6,
+        "raw": [
+          "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000004634e474e00000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "symbol_untrusted": "cNGN"
+      },
+      "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913": {
+        "block_tag": "0x308c276",
+        "decimals": 6,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045553444300000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "symbol_untrusted": "USDC"
+      },
+      "0xe67f39fbe8c24ef8b3542efed1ee9963cefc1f2a": {
+        "block_tag": "0x308c276",
+        "decimals": 18,
+        "raw": [
+          "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000006414e594f4e450000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "ANYONE"
+      },
+      "0xecff4d80f54cf55c626e52f304a8891645961e72": {
+        "block_tag": "0x308c276",
+        "decimals": 8,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000034441470000000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000008"
+        ],
+        "symbol_untrusted": "DAG"
+      },
+      "0xf43eb8de897fbc7f2502483b2bef7bb9ea179229": {
+        "block_tag": "0x308c276",
+        "decimals": 18,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000035a454e0000000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "ZEN"
+      }
+    },
+    "ethereum": {
+      "0x0a5aa8eda423a6ee19d4dc3e1d39befc8acc2477": {
+        "block_tag": "0x18b5bee",
+        "decimals": 18,
+        "raw": [
+          "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000003454c410000000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "ELA"
+      },
+      "0x44b28991b167582f18ba0259e0173176ca125505": {
+        "block_tag": "0x18b5bee",
+        "decimals": 18,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000047550454700000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "uPEG"
+      },
+      "0x6b175474e89094c44da98b954eedeac495271d0f": {
+        "block_tag": "0x18b5bee",
+        "decimals": 18,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000034441490000000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "DAI"
+      },
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": {
+        "block_tag": "0x18b5bee",
+        "decimals": 6,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045553444300000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "symbol_untrusted": "USDC"
+      },
+      "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2": {
+        "block_tag": "0x18b5bee",
+        "decimals": 18,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045745544800000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "WETH"
+      },
+      "0xdac17f958d2ee523a2206206994597c13d831ec7": {
+        "block_tag": "0x18b5bee",
+        "decimals": 6,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045553445400000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "symbol_untrusted": "USDT"
+      },
+      "0xe172e9b6cfbeeb5593bdce3f077356fdb33af904": {
+        "block_tag": "0x18b5bee",
+        "decimals": 18,
+        "raw": [
+          "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000004464f4c4400000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "FOLD"
+      },
+      "0xe76c6c83af64e4c60245d8c7de953df673a7a33d": {
+        "block_tag": "0x18b5bee",
+        "decimals": 18,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045241494c00000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000012"
+        ],
+        "symbol_untrusted": "RAIL"
+      }
+    },
+    "optimism": {
+      "0x0b2c639c533813f4aa9d7837caf62653d097ff85": {
+        "block_tag": "0x9540412",
+        "decimals": 6,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045553444300000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "symbol_untrusted": "USDC"
+      },
+      "0x94b008aa00579c1307b0ef2c499ad98a8ce58e58": {
+        "block_tag": "0x9540412",
+        "decimals": 6,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045553445400000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "symbol_untrusted": "USDT"
+      }
+    },
+    "polygon": {
+      "0x2791bca1f2de4661ed88a30c99a7a9449aa84174": {
+        "block_tag": "0x58f17c4",
+        "decimals": 6,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045553444300000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "symbol_untrusted": "USDC"
+      },
+      "0x3a3bd7bb9528e159577f7c2e685cc81a765002e2": {
+        "block_tag": "0x58f17c4",
+        "decimals": 6,
+        "raw": [
+          "0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000457434f4c00000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "symbol_untrusted": "WCOL"
+      },
+      "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359": {
+        "block_tag": "0x58f17c4",
+        "decimals": 6,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045553444300000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000006"
+        ],
+        "symbol_untrusted": "USDC"
+      },
+      "0x99a57e6c8558bc6689f894e068733adf83c19725": {
+        "block_tag": "0x58f17c4",
+        "decimals": 9,
+        "raw": [
+          "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000005734c474e53000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000009"
+        ],
+        "symbol_untrusted": "sLGNS"
+      },
+      "0xeb51d9a39ad5eef215dc0bf39a8821ff804a0f01": {
+        "block_tag": "0x58f17c4",
+        "decimals": 9,
+        "raw": [
+          "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000044c474e5300000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000000009"
+        ],
+        "symbol_untrusted": "LGNS"
+      }
+    }
+  }
+}
