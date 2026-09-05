@@ -1,0 +1,20 @@
+{
+  "chain": "ethereum",
+  "chain_id": 1,
+  "hours": 5,
+  "raw": "../eth_5h",
+  "threshold_usd": "10000",
+  "supplemental_selection": "event-supported flash principal >= 10000 or gross priced legs >= 100000",
+  "price_policy": "ETH/BTC hourly endpoint marks, other feeds and wrapper rates at window end; identified stablecoins without feeds at parity; no implied pricing in primary run",
+  "llm_execution": "Codex investigates representative evidence packets in this research session, then edits persistent deterministic rules. No external model daemon is installed.",
+  "source_docs": {
+    "receipt_status": "https://ethereum.org/developers/docs/apis/json-rpc/",
+    "morpho_events": "https://github.com/morpho-org/morpho-blue/blob/main/src/libraries/EventsLib.sol",
+    "morpho_deployments": "https://docs.morpho.org/developers/contracts/addresses/",
+    "cow_deployments": "https://docs.cow.fi/cow-protocol/reference/contracts/core",
+    "aave_pool": "https://governance.aave.com/t/bgd-aave-v3-ethereum-new-deployment-vs-aave-v2-upgrade/9990?page=2",
+    "curve_events": "https://github.com/curvefi/curve-contract/blob/master/contracts/pools/seth/StableSwapSETH.vy",
+    "vault_standard": "https://eips.ethereum.org/EIPS/eip-4626",
+    "btc_feed": "https://data.chain.link/feeds/ethereum/mainnet/btc-usd"
+  }
+}

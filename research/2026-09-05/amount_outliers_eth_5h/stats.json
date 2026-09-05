@@ -1,0 +1,330 @@
+{
+  "above_100k": 2271,
+  "above_10m": 10,
+  "above_1m": 266,
+  "above_threshold": 10170,
+  "counts": {
+    "blocks": 1498,
+    "logs": 1146927,
+    "native_unconfirmed_or_failed": 116333,
+    "transactions": 392428
+  },
+  "day": "research/2026-09-05/eth_5h",
+  "eth_in_sample": {
+    "feed_hourly": {
+      "1": "2455.6657",
+      "2": "2458.82623187",
+      "3": "2455.11161674",
+      "4": "2458.12",
+      "5": "2460.8002"
+    },
+    "hourly_median_usdc_per_weth": {
+      "0": "2454.78",
+      "1": "2459.32",
+      "2": "2455.97",
+      "3": "2457.90",
+      "4": "2459.79"
+    },
+    "pools": [
+      "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+      "0xe0554a476a092703abdb3ef35c80e0d76d32939f"
+    ],
+    "swaps": 4597
+  },
+  "flash_loan_rule": "ERC-20 legs A->B of X and B->A of Y>=X on the same asset inside one transaction, borrow first, X >= $1,000",
+  "generated_at": "2026-09-05T17:32:34.813695+00:00",
+  "implied_price_rule": "token outside the registry with at least 1000000000 single-token-in single-token-out swaps against a priced asset and at least $100000 of priced volume; price is the median per unit at 18 decimals",
+  "implied_prices": {},
+  "interesting_addresses": 9643,
+  "max_position_change": "27336755.06",
+  "p50_above_threshold": "29995.78",
+  "p99_above_threshold": "1999487.75",
+  "price_meta": {
+    "file": "research/2026-09-05/amount_outliers_eth_5h/prices.json",
+    "generated_at": "2026-09-05T17:02:36.073830+00:00"
+  },
+  "prices_used": {
+    "AAVE": {
+      "source": "Chainlink AAVE / USD at block 25912299",
+      "usd": "131.857477"
+    },
+    "BTC": {
+      "source": "Chainlink hourly series (5 points), window-end 79835.33065615",
+      "usd": "79835.33065615"
+    },
+    "CBETH": {
+      "source": "ETH times exchangeRate() at block 25912299",
+      "usd": "2802.3718090820360916230510"
+    },
+    "CRV": {
+      "source": "Chainlink CRV / USD at block 25912299",
+      "usd": "0.36463008"
+    },
+    "DAI": {
+      "source": "Chainlink DAI / USD at block 25912299",
+      "usd": "0.99963784"
+    },
+    "ENS": {
+      "source": "Chainlink ENS / USD at block 25912299",
+      "usd": "5.81479281"
+    },
+    "ETH": {
+      "source": "Chainlink hourly series (5 points), window-end 2460.8002",
+      "usd": "2460.8002"
+    },
+    "LINK": {
+      "source": "Chainlink LINK / USD at block 25912299",
+      "usd": "11.96072"
+    },
+    "MKR": {
+      "source": "Chainlink MKR / USD at block 25912299",
+      "usd": "1555.912554"
+    },
+    "RETH": {
+      "source": "ETH times getExchangeRate() at block 25912299",
+      "usd": "2881.8138362042083102133272"
+    },
+    "SDAI": {
+      "source": "DAI times convertToAssets(uint256) at block 25912299",
+      "usd": "1.1797352962636056113299072"
+    },
+    "STETH": {
+      "source": "Chainlink STETH / USD at block 25912299",
+      "usd": "2458.86"
+    },
+    "SUSDE": {
+      "source": "USD times convertToAssets(uint256) at block 25912299",
+      "usd": "1.246649260840050791"
+    },
+    "SUSDS": {
+      "source": "USD times convertToAssets(uint256) at block 25912299",
+      "usd": "1.108561248173872287"
+    },
+    "UNI": {
+      "source": "Chainlink UNI / USD at block 25912299",
+      "usd": "6.3655824"
+    },
+    "USD": {
+      "source": "assumed parity",
+      "usd": "1"
+    },
+    "USDC": {
+      "source": "Chainlink USDC / USD at block 25912299",
+      "usd": "0.9998593"
+    },
+    "USDT": {
+      "source": "Chainlink USDT / USD at block 25912299",
+      "usd": "1.00004389"
+    },
+    "WEETH": {
+      "source": "ETH times getRate() at block 25912299",
+      "usd": "2714.3053856404198239366986"
+    },
+    "WSTETH": {
+      "source": "STETH times stEthPerToken() at block 25912299",
+      "usd": "3057.17432617886536651770"
+    }
+  },
+  "registry": {
+    "0x0000000000085d4780b73119b644ae5ecd22b376": {
+      "decimals": 18,
+      "label": "TUSD",
+      "price_key": "USD"
+    },
+    "0x18084fba666a33d37592fa2633fd49a74dd93a88": {
+      "decimals": 18,
+      "label": "tBTC",
+      "price_key": "BTC"
+    },
+    "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984": {
+      "decimals": 18,
+      "label": "UNI",
+      "price_key": "UNI"
+    },
+    "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599": {
+      "decimals": 8,
+      "label": "WBTC",
+      "price_key": "BTC"
+    },
+    "0x40d16fc0246ad3160ccc09b8d0d3a2cd28ae6c2f": {
+      "decimals": 18,
+      "label": "GHO",
+      "price_key": "USD"
+    },
+    "0x4c9edd5852cd905f086c759e8383e09bff1e68b3": {
+      "decimals": 18,
+      "label": "USDe",
+      "price_key": "USD"
+    },
+    "0x514910771af9ca656af840dff83e8264ecf986ca": {
+      "decimals": 18,
+      "label": "LINK",
+      "price_key": "LINK"
+    },
+    "0x5f98805a4e8be255a32880fdec7f6728c6568ba0": {
+      "decimals": 18,
+      "label": "LUSD",
+      "price_key": "USD"
+    },
+    "0x6b175474e89094c44da98b954eedeac495271d0f": {
+      "decimals": 18,
+      "label": "DAI",
+      "price_key": "DAI"
+    },
+    "0x6c3ea9036406852006290770bedfcaba0e23a0e8": {
+      "decimals": 6,
+      "label": "PYUSD",
+      "price_key": "USD"
+    },
+    "0x73a15fed60bf67631dc6cd7bc5b6e8da8190acf5": {
+      "decimals": 18,
+      "label": "USD0",
+      "price_key": "USD"
+    },
+    "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0": {
+      "decimals": 18,
+      "label": "wstETH",
+      "price_key": "WSTETH"
+    },
+    "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9": {
+      "decimals": 18,
+      "label": "AAVE",
+      "price_key": "AAVE"
+    },
+    "0x8236a87084f8b84306f72007f36f2618a5634494": {
+      "decimals": 8,
+      "label": "LBTC",
+      "price_key": "BTC"
+    },
+    "0x8292bb45bf1ee4d140127049757c2e0ff06317ed": {
+      "decimals": 18,
+      "label": "RLUSD",
+      "price_key": "USD"
+    },
+    "0x83f20f44975d03b1b09e64809b757c47f942beea": {
+      "decimals": 18,
+      "label": "sDAI",
+      "price_key": "SDAI"
+    },
+    "0x853d955acef822db058eb8505911ed77f175b99e": {
+      "decimals": 18,
+      "label": "FRAX",
+      "price_key": "USD"
+    },
+    "0x8d0d000ee44948fc98c9b98a4fa4921476f08b0d": {
+      "decimals": 18,
+      "label": "USD1",
+      "price_key": "USD"
+    },
+    "0x8e870d67f660d95d5be530380d0ec0bd388289e1": {
+      "decimals": 18,
+      "label": "USDP",
+      "price_key": "USD"
+    },
+    "0x9d39a5de30e57443bff2a8307a4256c8797a3497": {
+      "decimals": 18,
+      "label": "sUSDe",
+      "price_key": "SUSDE"
+    },
+    "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2": {
+      "decimals": 18,
+      "label": "MKR",
+      "price_key": "MKR"
+    },
+    "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": {
+      "decimals": 6,
+      "label": "USDC",
+      "price_key": "USDC"
+    },
+    "0xa3931d71877c0e7a3148cb7eb4463524fec27fbd": {
+      "decimals": 18,
+      "label": "sUSDS",
+      "price_key": "SUSDS"
+    },
+    "0xae78736cd615f374d3085123a210448e74fc6393": {
+      "decimals": 18,
+      "label": "rETH",
+      "price_key": "RETH"
+    },
+    "0xae7ab96520de3a18e5e111b5eaab095312d7fe84": {
+      "decimals": 18,
+      "label": "stETH",
+      "price_key": "STETH"
+    },
+    "0xbe9895146f7af43049ca1c1ae358b0541ea49704": {
+      "decimals": 18,
+      "label": "cbETH",
+      "price_key": "CBETH"
+    },
+    "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2": {
+      "decimals": 18,
+      "label": "WETH",
+      "price_key": "ETH"
+    },
+    "0xc139190f447e929f090edeb554d95abb8b18ac1c": {
+      "decimals": 18,
+      "label": "USDtb",
+      "price_key": "USD"
+    },
+    "0xc18360217d8f7ab5e7c516566761ea12ce7f9d72": {
+      "decimals": 18,
+      "label": "ENS",
+      "price_key": "ENS"
+    },
+    "0xc5f0f7b66764f6ec8c8dff7ba683102295e16409": {
+      "decimals": 18,
+      "label": "FDUSD",
+      "price_key": "USD"
+    },
+    "0xcacd6fd266af91b8aed52accc382b4e165586e29": {
+      "decimals": 18,
+      "label": "frxUSD",
+      "price_key": "USD"
+    },
+    "0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf": {
+      "decimals": 8,
+      "label": "cbBTC",
+      "price_key": "BTC"
+    },
+    "0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee": {
+      "decimals": 18,
+      "label": "weETH",
+      "price_key": "WEETH"
+    },
+    "0xd533a949740bb3306d119cc777fa900ba034cd52": {
+      "decimals": 18,
+      "label": "CRV",
+      "price_key": "CRV"
+    },
+    "0xdac17f958d2ee523a2206206994597c13d831ec7": {
+      "decimals": 6,
+      "label": "USDT",
+      "price_key": "USDT"
+    },
+    "0xdc035d45d973e3ec169d2276ddab16f1e407384f": {
+      "decimals": 18,
+      "label": "USDS",
+      "price_key": "USD"
+    },
+    "0xf939e0a03fb07f59a73314e73794be0e57ac1b4e": {
+      "decimals": 18,
+      "label": "crvUSD",
+      "price_key": "USD"
+    }
+  },
+  "sandwich_rule": "same block, same pool: actor swaps in direction d at index i, a stranger swaps in direction d at k, the actor swaps -d at j>k",
+  "selection_counts": {
+    "flash_usd": 297,
+    "gross": 3109,
+    "pc": 9903
+  },
+  "selection_rule": "pc >= threshold OR event-supported flash principal >= threshold OR gross >= 10 * threshold",
+  "sum_position_change_above_threshold_usd": "1531329497.52",
+  "threshold_usd": "10000",
+  "window": {
+    "end_utc": "2026-09-05T16:22:48+00:00",
+    "first_block": 25910802,
+    "last_block": 25912299,
+    "start_utc": "2026-09-05T11:22:48+00:00"
+  }
+}

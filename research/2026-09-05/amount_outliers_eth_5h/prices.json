@@ -1,0 +1,716 @@
+{
+  "assets": {
+    "AAVE": {
+      "age_seconds": 1824,
+      "answer_raw": "13185747700",
+      "block": 25912299,
+      "decimals": 8,
+      "description_onchain": "AAVE / USD",
+      "expected_description": [
+        "AAVE / USD"
+      ],
+      "feed": "0x547a514d5e3769680ce22b2361c10ea13619e8a9",
+      "rejected_candidates": [],
+      "round_id": "92233720368547782752",
+      "source": "Chainlink AAVE / USD at block 25912299",
+      "updated_at": "2026-09-05T15:52:23+00:00",
+      "usd": "131.857477",
+      "verified": true
+    },
+    "BTC": {
+      "age_seconds": 1176,
+      "answer_raw": "7983533065615",
+      "block": 25912299,
+      "decimals": 8,
+      "description_onchain": "BTC / USD",
+      "expected_description": [
+        "BTC / USD"
+      ],
+      "feed": "0xf4030086522a5beea4988f8ca5b36dbc97bee88c",
+      "rejected_candidates": [],
+      "round_id": "129127208515966885341",
+      "source": "Chainlink BTC / USD at block 25912299",
+      "updated_at": "2026-09-05T16:03:11+00:00",
+      "usd": "79835.33065615",
+      "verified": true
+    },
+    "CBETH": {
+      "block": 25912299,
+      "call": "exchangeRate()",
+      "contract": "0xbe9895146f7af43049ca1c1ae358b0541ea49704",
+      "rate": "1.138805096440595255",
+      "raw": "0x0000000000000000000000000000000000000000000000000fcdd93399bf0337",
+      "source": "ETH times exchangeRate() at block 25912299",
+      "underlying": "ETH",
+      "usd": "2802.3718090820360916230510",
+      "verified": true
+    },
+    "CRV": {
+      "age_seconds": 516,
+      "answer_raw": "36463008",
+      "block": 25912299,
+      "decimals": 8,
+      "description_onchain": "CRV / USD",
+      "expected_description": [
+        "CRV / USD"
+      ],
+      "feed": "0xcd627aa160a6fa45eb793d19ef54f5062f20f33f",
+      "rejected_candidates": [],
+      "round_id": "36893488147419124013",
+      "source": "Chainlink CRV / USD at block 25912299",
+      "updated_at": "2026-09-05T16:14:11+00:00",
+      "usd": "0.36463008",
+      "verified": true
+    },
+    "DAI": {
+      "age_seconds": 2748,
+      "answer_raw": "99963784",
+      "block": 25912299,
+      "decimals": 8,
+      "description_onchain": "DAI / USD",
+      "expected_description": [
+        "DAI / USD"
+      ],
+      "feed": "0xaed0c38402a5d19df6e4c03f4e2dced6e29c1ee9",
+      "rejected_candidates": [],
+      "round_id": "129127208515966878407",
+      "source": "Chainlink DAI / USD at block 25912299",
+      "updated_at": "2026-09-05T15:36:59+00:00",
+      "usd": "0.99963784",
+      "verified": true
+    },
+    "ENS": {
+      "age_seconds": 18312,
+      "answer_raw": "581479281",
+      "block": 25912299,
+      "decimals": 8,
+      "description_onchain": "ENS / USD",
+      "expected_description": [
+        "ENS / USD"
+      ],
+      "feed": "0x5c00128d4d1c2f4f652c267d7bcdd7ac99c16e16",
+      "rejected_candidates": [],
+      "round_id": "36893488147419107856",
+      "source": "Chainlink ENS / USD at block 25912299",
+      "updated_at": "2026-09-05T11:17:35+00:00",
+      "usd": "5.81479281",
+      "verified": true
+    },
+    "ETH": {
+      "age_seconds": 1080,
+      "answer_raw": "246080020000",
+      "block": 25912299,
+      "decimals": 8,
+      "description_onchain": "ETH / USD",
+      "expected_description": [
+        "ETH / USD"
+      ],
+      "feed": "0x5f4ec3df9cbd43714fe2740f5e3616155c5b8419",
+      "rejected_candidates": [],
+      "round_id": "129127208515966894648",
+      "source": "Chainlink ETH / USD at block 25912299",
+      "updated_at": "2026-09-05T16:04:47+00:00",
+      "usd": "2460.8002",
+      "verified": true
+    },
+    "LINK": {
+      "age_seconds": 3300,
+      "answer_raw": "1196072000",
+      "block": 25912299,
+      "decimals": 8,
+      "description_onchain": "LINK / USD",
+      "expected_description": [
+        "LINK / USD"
+      ],
+      "feed": "0x2c1d072e956affc0d435cb7ac38ef18d24d9127c",
+      "rejected_candidates": [],
+      "round_id": "129127208515966893219",
+      "source": "Chainlink LINK / USD at block 25912299",
+      "updated_at": "2026-09-05T15:27:47+00:00",
+      "usd": "11.96072",
+      "verified": true
+    },
+    "MKR": {
+      "age_seconds": 1104,
+      "answer_raw": "155591255400",
+      "block": 25912299,
+      "decimals": 8,
+      "description_onchain": "MKR / USD",
+      "expected_description": [
+        "MKR / USD"
+      ],
+      "feed": "0xec1d1b3b0443256cc3860e24a46f108e699484aa",
+      "rejected_candidates": [],
+      "round_id": "55340232221128677062",
+      "source": "Chainlink MKR / USD at block 25912299",
+      "updated_at": "2026-09-05T16:04:23+00:00",
+      "usd": "1555.912554",
+      "verified": true
+    },
+    "RETH": {
+      "block": 25912299,
+      "call": "getExchangeRate()",
+      "contract": "0xae78736cd615f374d3085123a210448e74fc6393",
+      "rate": "1.171088102237722636",
+      "raw": "0x00000000000000000000000000000000000000000000000010408a6c9e90d80c",
+      "source": "ETH times getExchangeRate() at block 25912299",
+      "underlying": "ETH",
+      "usd": "2881.8138362042083102133272",
+      "verified": true
+    },
+    "SDAI": {
+      "block": 25912299,
+      "call": "convertToAssets(uint256)",
+      "contract": "0x83f20f44975d03b1b09e64809b757c47f942beea",
+      "rate": "1.18016270398848208",
+      "raw": "0x0000000000000000000000000000000000000000000000001060c7b9fc65e020",
+      "source": "DAI times convertToAssets(uint256) at block 25912299",
+      "underlying": "DAI",
+      "usd": "1.1797352962636056113299072",
+      "verified": true
+    },
+    "STETH": {
+      "age_seconds": 2256,
+      "answer_raw": "245886000000",
+      "block": 25912299,
+      "decimals": 8,
+      "description_onchain": "STETH / USD",
+      "expected_description": [
+        "STETH / USD"
+      ],
+      "feed": "0xcfe54b5cd566ab89272946f602d76ea879cab4a8",
+      "rejected_candidates": [],
+      "round_id": "36893488147419125055",
+      "source": "Chainlink STETH / USD at block 25912299",
+      "updated_at": "2026-09-05T15:45:11+00:00",
+      "usd": "2458.86",
+      "verified": true
+    },
+    "SUSDE": {
+      "block": 25912299,
+      "call": "convertToAssets(uint256)",
+      "contract": "0x9d39a5de30e57443bff2a8307a4256c8797a3497",
+      "rate": "1.246649260840050791",
+      "raw": "0x000000000000000000000000000000000000000000000000114cfce5cfdfe067",
+      "source": "USD times convertToAssets(uint256) at block 25912299",
+      "underlying": "USD",
+      "usd": "1.246649260840050791",
+      "verified": true
+    },
+    "SUSDS": {
+      "block": 25912299,
+      "call": "convertToAssets(uint256)",
+      "contract": "0xa3931d71877c0e7a3148cb7eb4463524fec27fbd",
+      "rate": "1.108561248173872287",
+      "raw": "0x0000000000000000000000000000000000000000000000000f626694f12ad49f",
+      "source": "USD times convertToAssets(uint256) at block 25912299",
+      "underlying": "USD",
+      "usd": "1.108561248173872287",
+      "verified": true
+    },
+    "UNI": {
+      "age_seconds": 1104,
+      "answer_raw": "636558240",
+      "block": 25912299,
+      "decimals": 8,
+      "description_onchain": "UNI / USD",
+      "expected_description": [
+        "UNI / USD"
+      ],
+      "feed": "0x553303d460ee0afb37edff9be42922d8ff63220e",
+      "rejected_candidates": [],
+      "round_id": "129127208515966886414",
+      "source": "Chainlink UNI / USD at block 25912299",
+      "updated_at": "2026-09-05T16:04:23+00:00",
+      "usd": "6.3655824",
+      "verified": true
+    },
+    "USDC": {
+      "age_seconds": 30132,
+      "answer_raw": "99985930",
+      "block": 25912299,
+      "decimals": 8,
+      "description_onchain": "USDC / USD",
+      "expected_description": [
+        "USDC / USD"
+      ],
+      "feed": "0x8fffffd4afb6115b954bd326cbe7b4ba576818f6",
+      "rejected_candidates": [],
+      "round_id": "55340232221128656022",
+      "source": "Chainlink USDC / USD at block 25912299",
+      "updated_at": "2026-09-05T08:00:35+00:00",
+      "usd": "0.9998593",
+      "verified": true
+    },
+    "USDT": {
+      "age_seconds": 75012,
+      "answer_raw": "100004389",
+      "block": 25912299,
+      "decimals": 8,
+      "description_onchain": "USDT / USD",
+      "expected_description": [
+        "USDT / USD"
+      ],
+      "feed": "0x3e7d1eab13ad0104d2750b8863b489d65364e32d",
+      "rejected_candidates": [],
+      "round_id": "55340232221128655638",
+      "source": "Chainlink USDT / USD at block 25912299",
+      "updated_at": "2026-09-04T19:32:35+00:00",
+      "usd": "1.00004389",
+      "verified": true
+    },
+    "WEETH": {
+      "block": 25912299,
+      "call": "getRate()",
+      "contract": "0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee",
+      "rate": "1.103017378509811493",
+      "raw": "0x0000000000000000000000000000000000000000000000000f4eb4763328ef25",
+      "source": "ETH times getRate() at block 25912299",
+      "underlying": "ETH",
+      "usd": "2714.3053856404198239366986",
+      "verified": true
+    },
+    "WSTETH": {
+      "block": 25912299,
+      "call": "stEthPerToken()",
+      "contract": "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0",
+      "rate": "1.243329968432064195",
+      "raw": "0x00000000000000000000000000000000000000000000000011413204d2fda6c3",
+      "source": "STETH times stEthPerToken() at block 25912299",
+      "underlying": "STETH",
+      "usd": "3057.17432617886536651770",
+      "verified": true
+    }
+  },
+  "assumed_parity": [
+    "FDUSD",
+    "FRAX",
+    "GHO",
+    "LUSD",
+    "PYUSD",
+    "RLUSD",
+    "TUSD",
+    "USD0",
+    "USD1",
+    "USDP",
+    "USDS",
+    "USDe",
+    "USDtb",
+    "crvUSD",
+    "frxUSD"
+  ],
+  "estimated_credits": 7360,
+  "generated_at": "2026-09-05T17:02:36.073830+00:00",
+  "hour_pins": [
+    {
+      "block": 25911100,
+      "hour": 1,
+      "timestamp": 1788610967,
+      "utc": "2026-09-05T12:22:47+00:00"
+    },
+    {
+      "block": 25911399,
+      "hour": 2,
+      "timestamp": 1788614567,
+      "utc": "2026-09-05T13:22:47+00:00"
+    },
+    {
+      "block": 25911699,
+      "hour": 3,
+      "timestamp": 1788618167,
+      "utc": "2026-09-05T14:22:47+00:00"
+    },
+    {
+      "block": 25911999,
+      "hour": 4,
+      "timestamp": 1788621767,
+      "utc": "2026-09-05T15:22:47+00:00"
+    },
+    {
+      "block": 25912299,
+      "hour": 5,
+      "timestamp": 1788625367,
+      "utc": "2026-09-05T16:22:47+00:00"
+    }
+  ],
+  "hourly": {
+    "BTC": [
+      {
+        "block": 25911100,
+        "hour": 1,
+        "timestamp": 1788610967,
+        "updated_at": "2026-09-05T12:01:23+00:00",
+        "usd": "79627.91794881"
+      },
+      {
+        "block": 25911399,
+        "hour": 2,
+        "timestamp": 1788614567,
+        "updated_at": "2026-09-05T13:01:35+00:00",
+        "usd": "79717.07424139"
+      },
+      {
+        "block": 25911699,
+        "hour": 3,
+        "timestamp": 1788618167,
+        "updated_at": "2026-09-05T14:01:59+00:00",
+        "usd": "79679.4390438"
+      },
+      {
+        "block": 25911999,
+        "hour": 4,
+        "timestamp": 1788621767,
+        "updated_at": "2026-09-05T15:02:35+00:00",
+        "usd": "79743.42386834"
+      },
+      {
+        "block": 25912299,
+        "hour": 5,
+        "timestamp": 1788625367,
+        "updated_at": "2026-09-05T16:03:11+00:00",
+        "usd": "79835.33065615"
+      }
+    ],
+    "ETH": [
+      {
+        "block": 25911100,
+        "hour": 1,
+        "timestamp": 1788610967,
+        "updated_at": "2026-09-05T12:03:23+00:00",
+        "usd": "2455.6657"
+      },
+      {
+        "block": 25911399,
+        "hour": 2,
+        "timestamp": 1788614567,
+        "updated_at": "2026-09-05T13:03:47+00:00",
+        "usd": "2458.82623187"
+      },
+      {
+        "block": 25911699,
+        "hour": 3,
+        "timestamp": 1788618167,
+        "updated_at": "2026-09-05T14:03:47+00:00",
+        "usd": "2455.11161674"
+      },
+      {
+        "block": 25911999,
+        "hour": 4,
+        "timestamp": 1788621767,
+        "updated_at": "2026-09-05T15:04:11+00:00",
+        "usd": "2458.12"
+      },
+      {
+        "block": 25912299,
+        "hour": 5,
+        "timestamp": 1788625367,
+        "updated_at": "2026-09-05T16:04:47+00:00",
+        "usd": "2460.8002"
+      }
+    ]
+  },
+  "method": "Chainlink aggregator proxy latestRoundData() at the pinned block; description() must match the expected pair. ETH and BTC are read at the last block of every hour; other feeds at the window end. Rate-bearing tokens use one exchange-rate call at the window end times the underlying price. Stablecoins without a feed are valued at parity by scan.",
+  "pinned_block": 25912299,
+  "registry_validation": {
+    "0x0000000000085d4780b73119b644ae5ecd22b376": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "TUSD",
+      "symbol_untrusted": "TUSD"
+    },
+    "0x18084fba666a33d37592fa2633fd49a74dd93a88": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "tBTC",
+      "symbol_untrusted": "tBTC"
+    },
+    "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "UNI",
+      "symbol_untrusted": "UNI"
+    },
+    "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599": {
+      "block": 25912299,
+      "decimals": 8,
+      "decimals_match": true,
+      "expected_decimals": 8,
+      "label": "WBTC",
+      "symbol_untrusted": "WBTC"
+    },
+    "0x40d16fc0246ad3160ccc09b8d0d3a2cd28ae6c2f": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "GHO",
+      "symbol_untrusted": "GHO"
+    },
+    "0x4c9edd5852cd905f086c759e8383e09bff1e68b3": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "USDe",
+      "symbol_untrusted": "USDe"
+    },
+    "0x514910771af9ca656af840dff83e8264ecf986ca": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "LINK",
+      "symbol_untrusted": "LINK"
+    },
+    "0x5f98805a4e8be255a32880fdec7f6728c6568ba0": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "LUSD",
+      "symbol_untrusted": "LUSD"
+    },
+    "0x6b175474e89094c44da98b954eedeac495271d0f": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "DAI",
+      "symbol_untrusted": "DAI"
+    },
+    "0x6c3ea9036406852006290770bedfcaba0e23a0e8": {
+      "block": 25912299,
+      "decimals": 6,
+      "decimals_match": true,
+      "expected_decimals": 6,
+      "label": "PYUSD",
+      "symbol_untrusted": "PYUSD"
+    },
+    "0x73a15fed60bf67631dc6cd7bc5b6e8da8190acf5": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "USD0",
+      "symbol_untrusted": "USD0"
+    },
+    "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "wstETH",
+      "symbol_untrusted": "wstETH"
+    },
+    "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "AAVE",
+      "symbol_untrusted": "AAVE"
+    },
+    "0x8236a87084f8b84306f72007f36f2618a5634494": {
+      "block": 25912299,
+      "decimals": 8,
+      "decimals_match": true,
+      "expected_decimals": 8,
+      "label": "LBTC",
+      "symbol_untrusted": "LBTC"
+    },
+    "0x8292bb45bf1ee4d140127049757c2e0ff06317ed": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "RLUSD",
+      "symbol_untrusted": "RLUSD"
+    },
+    "0x83f20f44975d03b1b09e64809b757c47f942beea": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "sDAI",
+      "symbol_untrusted": "sDAI"
+    },
+    "0x853d955acef822db058eb8505911ed77f175b99e": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "FRAX",
+      "symbol_untrusted": "FRAX"
+    },
+    "0x8d0d000ee44948fc98c9b98a4fa4921476f08b0d": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "USD1",
+      "symbol_untrusted": "USD1"
+    },
+    "0x8e870d67f660d95d5be530380d0ec0bd388289e1": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "USDP",
+      "symbol_untrusted": "USDP"
+    },
+    "0x9d39a5de30e57443bff2a8307a4256c8797a3497": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "sUSDe",
+      "symbol_untrusted": "sUSDe"
+    },
+    "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "MKR",
+      "symbol_untrusted": "MKR"
+    },
+    "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": {
+      "block": 25912299,
+      "decimals": 6,
+      "decimals_match": true,
+      "expected_decimals": 6,
+      "label": "USDC",
+      "symbol_untrusted": "USDC"
+    },
+    "0xa3931d71877c0e7a3148cb7eb4463524fec27fbd": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "sUSDS",
+      "symbol_untrusted": "sUSDS"
+    },
+    "0xae78736cd615f374d3085123a210448e74fc6393": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "rETH",
+      "symbol_untrusted": "rETH"
+    },
+    "0xae7ab96520de3a18e5e111b5eaab095312d7fe84": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "stETH",
+      "symbol_untrusted": "stETH"
+    },
+    "0xbe9895146f7af43049ca1c1ae358b0541ea49704": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "cbETH",
+      "symbol_untrusted": "cbETH"
+    },
+    "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "WETH",
+      "symbol_untrusted": "WETH"
+    },
+    "0xc139190f447e929f090edeb554d95abb8b18ac1c": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "USDtb",
+      "symbol_untrusted": "USDtb"
+    },
+    "0xc18360217d8f7ab5e7c516566761ea12ce7f9d72": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "ENS",
+      "symbol_untrusted": "ENS"
+    },
+    "0xc5f0f7b66764f6ec8c8dff7ba683102295e16409": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "FDUSD",
+      "symbol_untrusted": "FDUSD"
+    },
+    "0xcacd6fd266af91b8aed52accc382b4e165586e29": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "frxUSD",
+      "symbol_untrusted": "frxUSD"
+    },
+    "0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf": {
+      "block": 25912299,
+      "decimals": 8,
+      "decimals_match": true,
+      "expected_decimals": 8,
+      "label": "cbBTC",
+      "symbol_untrusted": "cbBTC"
+    },
+    "0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "weETH",
+      "symbol_untrusted": "weETH"
+    },
+    "0xd533a949740bb3306d119cc777fa900ba034cd52": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "CRV",
+      "symbol_untrusted": "CRV"
+    },
+    "0xdac17f958d2ee523a2206206994597c13d831ec7": {
+      "block": 25912299,
+      "decimals": 6,
+      "decimals_match": true,
+      "expected_decimals": 6,
+      "label": "USDT",
+      "symbol_untrusted": "USDT"
+    },
+    "0xdc035d45d973e3ec169d2276ddab16f1e407384f": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "USDS",
+      "symbol_untrusted": "USDS"
+    },
+    "0xf939e0a03fb07f59a73314e73794be0e57ac1b4e": {
+      "block": 25912299,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "crvUSD",
+      "symbol_untrusted": "crvUSD"
+    }
+  },
+  "window": {
+    "end_utc": "2026-09-05T16:22:48+00:00",
+    "start_utc": "2026-09-05T11:22:48+00:00"
+  }
+}

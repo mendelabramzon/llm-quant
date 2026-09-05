@@ -46,13 +46,13 @@ class RPCError(Exception):
 
 
 class RPC:
-    def __init__(self, out, key_index=0, max_credits=850000, interval=.3):
+    def __init__(self, out, key_index=0, max_credits=850000, interval=.3, rate=400):
         content = (ROOT / 'infura_keys.txt').read_text()
         self.keys = re.findall(r'"([^"\s]+)"', content)
         if not self.keys:
             raise RPCError('No keys found in infura_keys.txt')
         self.key = self.keys[key_index]
-        self.out, self.max_credits, self.interval = out, max_credits, interval
+        self.out, self.max_credits, self.interval, self.rate = out, max_credits, interval, rate
         self.lock, self.next_at, self.credits, self.counter = threading.Lock(), 0., 0, 0
         self.out.mkdir(parents=True, exist_ok=True)
 
@@ -72,20 +72,22 @@ class RPC:
                 ids = list(range(self.counter, self.counter + len(calls)))
                 self.counter += len(calls)
                 delay = max(0., self.next_at - time.monotonic())
-                self.next_at = time.monotonic() + delay + max(self.interval, estimated / 400)
+                self.next_at = time.monotonic() + delay + max(self.interval, estimated / self.rate)
             if delay:
                 time.sleep(delay)
             payload = [{'jsonrpc': '2.0', 'id': i, 'method': m, 'params': p}
                        for i, (m, p) in zip(ids, calls)]
             url = 'https://' + NETWORKS[chain][0] + '.infura.io/v3/' + self.key
             req = urllib.request.Request(url, data=json.dumps(payload).encode(),
-                                         headers={'Content-Type': 'application/json'})
+                                         headers={'Content-Type': 'application/json', 'Accept-Encoding': 'gzip'})
             started, stamp = time.monotonic(), utc()
             result, error, size, transient = None, None, 0, False
             partial = {}
             try:
-                with urllib.request.urlopen(req, timeout=40) as response:
+                with urllib.request.urlopen(req, timeout=120) as response:
                     body = response.read()
+                    if response.headers.get('Content-Encoding') == 'gzip':
+                        body = gzip.decompress(body)
                 size = len(body)
                 decoded = json.loads(body)
                 if not isinstance(decoded, list):
@@ -101,7 +103,8 @@ class RPC:
                 errors = [r['error'] for r in result if 'error' in r]
                 if errors:
                     error = self.clean(json.dumps(errors))
-                    transient = any(e.get('code') in (-32005, -32002) for e in errors)
+                    transient = any(e.get('code') in (-32005, -32002) and 'more than' not in str(e.get('message', ''))
+                                    for e in errors)  # -32005 is also 'query returned more than 10000 results', which is final
             except urllib.error.HTTPError as exc:
                 error = 'HTTP ' + str(exc.code)
                 transient = exc.code in (429, 500, 502, 503, 504)

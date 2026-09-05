@@ -1,0 +1,94 @@
+[
+  {
+    "at": "2026-09-05T18:16:16.156785+00:00",
+    "classified": 61117,
+    "classified_usd": "24168874850.08",
+    "code_sha256": {
+      "analyze_onchain.py": "29a6e2d5a6423f3dd3962c324b1a0f51940e74ab5a7e2da979a353a5f5de9266",
+      "signatures.py": "36eb778546bf142372319f375b99b06c333cff8aff7051b4dfe5af1e5704917b",
+      "tx_types.py": "46b7a3130d60df795d98e8d17b3eb9c77d6b4e45b3f44d983f436a5fa45a9fad",
+      "type_registry.py": "1d12d57b2d3a227e6751ccfbcab0328f410409c5b27552fda50d0d80f0cf6aae"
+    },
+    "coverage_count_pct": 90.45,
+    "coverage_usd_pct": 92.95,
+    "label": "round 1: inherited registry (Codex, 58 types) replayed on the day",
+    "registry_sha256": "1d12d57b2d3a227e6751ccfbcab0328f410409c5b27552fda50d0d80f0cf6aae",
+    "residue_clusters": 1765,
+    "round": 1,
+    "sum_usd": "26001438368.97",
+    "transactions": 67572,
+    "types_in_registry": 58,
+    "types_with_occurrences": 56,
+    "unknown": 6455,
+    "unknown_usd": "1832563518.89"
+  },
+  {
+    "at": "2026-09-05T18:16:27.989777+00:00",
+    "classified": 66589,
+    "classified_usd": "25858104462.86",
+    "code_sha256": {
+      "analyze_onchain.py": "29a6e2d5a6423f3dd3962c324b1a0f51940e74ab5a7e2da979a353a5f5de9266",
+      "signatures.py": "36eb778546bf142372319f375b99b06c333cff8aff7051b4dfe5af1e5704917b",
+      "tx_types.py": "46b7a3130d60df795d98e8d17b3eb9c77d6b4e45b3f44d983f436a5fa45a9fad",
+      "type_registry.py": "1d12d57b2d3a227e6751ccfbcab0328f410409c5b27552fda50d0d80f0cf6aae"
+    },
+    "coverage_count_pct": 98.55,
+    "coverage_usd_pct": 99.45,
+    "label": "round 2: first batch of day types (custody, payments, smart accounts, Aave-fork, unpriced trades)",
+    "registry_sha256": "1d12d57b2d3a227e6751ccfbcab0328f410409c5b27552fda50d0d80f0cf6aae",
+    "residue_clusters": 558,
+    "round": 2,
+    "sum_usd": "26001438368.97",
+    "transactions": 67572,
+    "types_in_registry": 71,
+    "types_with_occurrences": 69,
+    "unknown": 983,
+    "unknown_usd": "143333906.11"
+  },
+  {
+    "at": "2026-09-05T18:16:40.123957+00:00",
+    "classified": 66976,
+    "classified_usd": "25948964715.12",
+    "code_sha256": {
+      "analyze_onchain.py": "29a6e2d5a6423f3dd3962c324b1a0f51940e74ab5a7e2da979a353a5f5de9266",
+      "signatures.py": "36eb778546bf142372319f375b99b06c333cff8aff7051b4dfe5af1e5704917b",
+      "tx_types.py": "46b7a3130d60df795d98e8d17b3eb9c77d6b4e45b3f44d983f436a5fa45a9fad",
+      "type_registry.py": "1d12d57b2d3a227e6751ccfbcab0328f410409c5b27552fda50d0d80f0cf6aae"
+    },
+    "coverage_count_pct": 99.12,
+    "coverage_usd_pct": 99.8,
+    "label": "round 3: second batch (settlements, sweeps, staking pools, sUSDe claims, self-calls)",
+    "registry_sha256": "1d12d57b2d3a227e6751ccfbcab0328f410409c5b27552fda50d0d80f0cf6aae",
+    "residue_clusters": 431,
+    "round": 3,
+    "sum_usd": "26001438368.97",
+    "transactions": 67572,
+    "types_in_registry": 80,
+    "types_with_occurrences": 78,
+    "unknown": 596,
+    "unknown_usd": "52473653.85"
+  },
+  {
+    "at": "2026-09-05T18:23:27.829400+00:00",
+    "classified": 67491,
+    "classified_usd": "25976878775.19",
+    "code_sha256": {
+      "analyze_onchain.py": "29a6e2d5a6423f3dd3962c324b1a0f51940e74ab5a7e2da979a353a5f5de9266",
+      "signatures.py": "36eb778546bf142372319f375b99b06c333cff8aff7051b4dfe5af1e5704917b",
+      "tx_types.py": "8692a105da7df25683f239d2e281cc5a10ea6a389e12cd5e252606196e7e3183",
+      "type_registry.py": "bb20d351c30cc911b2a110a2afe319022ac4db4d552e3d2dc5da7e2b16258b8a"
+    },
+    "coverage_count_pct": 99.88,
+    "coverage_usd_pct": 99.91,
+    "label": "round 4: audit corrections (aggregator swaps, receipt tokens, Aave-fork tightened) and long-tail shapes",
+    "registry_sha256": "bb20d351c30cc911b2a110a2afe319022ac4db4d552e3d2dc5da7e2b16258b8a",
+    "residue_clusters": 50,
+    "round": 4,
+    "sum_usd": "26001438368.97",
+    "transactions": 67572,
+    "types_in_registry": 90,
+    "types_with_occurrences": 88,
+    "unknown": 81,
+    "unknown_usd": "24559593.78"
+  }
+]

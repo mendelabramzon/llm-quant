@@ -1,0 +1,147 @@
+{
+  "blocks": 7173,
+  "blocks_present": 7173,
+  "chain": "ethereum",
+  "chain_id": 1,
+  "collection_runs": [
+    {
+      "blocks_fetched": 7173,
+      "errors": [
+        {
+          "error": "ethereum: IncompleteRead",
+          "range": [
+            25908021,
+            25908028
+          ],
+          "task": "logs"
+        },
+        {
+          "error": "ethereum: IncompleteRead",
+          "range": [
+            25908013,
+            25908020
+          ],
+          "task": "logs"
+        },
+        {
+          "error": "ethereum: RemoteDisconnected",
+          "range": [
+            25908029,
+            25908036
+          ],
+          "task": "logs"
+        },
+        {
+          "error": "ethereum: IncompleteRead",
+          "range": [
+            25908381,
+            25908388
+          ],
+          "task": "logs"
+        },
+        {
+          "error": "ethereum: IncompleteRead",
+          "range": [
+            25908357,
+            25908364
+          ],
+          "task": "logs"
+        },
+        {
+          "error": "ethereum: IncompleteRead",
+          "range": [
+            25908701,
+            25908708
+          ],
+          "task": "logs"
+        },
+        {
+          "error": "ethereum: IncompleteRead",
+          "range": [
+            25908709,
+            25908716
+          ],
+          "task": "logs"
+        },
+        {
+          "error": "ethereum: IncompleteRead",
+          "range": [
+            25909021,
+            25909028
+          ],
+          "task": "logs"
+        },
+        {
+          "error": "ethereum: IncompleteRead",
+          "range": [
+            25909013,
+            25909020
+          ],
+          "task": "logs"
+        },
+        {
+          "error": "ethereum: Invalid batch response: [{\"code\": -32005, \"message\": \"Too Many Requests\", \"data\": {\"see\": \"[URL REDACTED]",
+          "range": [
+            25907893,
+            25907899
+          ],
+          "task": "logs"
+        }
+      ],
+      "estimated_credits": 830950,
+      "finished_at": "2026-09-05T16:46:45.736709+00:00",
+      "log_blocks_fetched": 7094,
+      "log_entries": 5879492,
+      "range_splits": 14,
+      "seconds": 3584,
+      "started_at": "2026-09-05T15:00:23.274568+00:00"
+    },
+    {
+      "blocks_fetched": 0,
+      "errors": [],
+      "estimated_credits": 2550,
+      "finished_at": "2026-09-05T17:35:50.071628+00:00",
+      "log_blocks_fetched": 79,
+      "log_entries": 83210,
+      "range_splits": 0,
+      "seconds": 35,
+      "started_at": "2026-09-05T17:35:15.039803+00:00"
+    }
+  ],
+  "complete": true,
+  "end_timestamp": 1788616800,
+  "end_utc": "2026-09-05T14:00:00+00:00",
+  "errors": {},
+  "finalized_at_start": {
+    "hash": "0xc38956362042fb1fca61608fa2d443346b0f3df24a4ab31a2c978195feb39b1a",
+    "number": 25911787,
+    "timestamp": 1788619223
+  },
+  "finalized_at_verify": {
+    "hash": "0x78c44548ea89f42aa4c10c664d69d8556e272d49325e1685f462d13038436a55",
+    "number": 25912586,
+    "timestamp": 1788628823
+  },
+  "first_block": 25904413,
+  "hash_recheck": {
+    "mismatches": [],
+    "sampled": 16
+  },
+  "key_index": 0,
+  "last_block": 25911585,
+  "logs": 5962702,
+  "logs_present": 7173,
+  "method": {
+    "blocks": "eth_getBlockByNumber(n, true) in batches of 4",
+    "logs": "eth_getLogs without address filter over ranges of up to 8 blocks, split on the 10,000-result cap",
+    "receipts": "not collected; fetched per selected transaction by the analysis"
+  },
+  "provider": "Infura",
+  "quality_issues": {},
+  "start_timestamp": 1788530400,
+  "start_utc": "2026-09-04T14:00:00+00:00",
+  "started_at": "2026-09-05T15:00:23.176247+00:00",
+  "transactions": 1793396,
+  "verified_at": "2026-09-05T17:36:30.702117+00:00",
+  "window_definition": "[start_timestamp, end_timestamp)"
+}

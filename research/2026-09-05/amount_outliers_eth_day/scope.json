@@ -1,0 +1,12 @@
+{
+  "chain": "ethereum",
+  "chain_id": 1,
+  "hours": 24,
+  "raw": "../eth_day",
+  "window_utc": "2026-09-04T14:00:00Z to 2026-09-05T14:00:00Z (exclusive)",
+  "threshold_usd": "10000",
+  "supplemental_selection": "event-supported flash principal >= 10000 or gross priced legs >= 100000",
+  "price_policy": "ETH/BTC hourly Chainlink marks at the last block of each hour, other feeds and wrapper rates at the window end; identified stablecoins without feeds at parity; implied in-sample pricing for unregistered tokens enabled (20 swaps and $100k of priced volume minimum) and labelled IMPL",
+  "llm_execution": "Claude (this session) investigates residue packets and audit samples, writes qual_notes.md, and edits scripts/type_registry.py; the registry it starts from was grown by Codex on the five-hour window (research/2026-09-05/amount_outliers_eth_5h). No external model daemon is installed.",
+  "predecessor": "research/2026-09-05/amount_outliers_eth_5h (Codex, 2026-09-05 11:22 to 16:22 UTC; rules learned there are replayed here as round 1)"
+}

@@ -1,0 +1,995 @@
+{
+  "clusters": [
+    {
+      "assets": {
+        "USDe": 9
+      },
+      "examples": [
+        "0xde017d5628fc4fb92055d6242e12c2d510f73143b8a607131cd3da79e6f12fcf",
+        "0x96c0e78e95fca861cfb2477f682ff221f206cb4852a9a4bd4870ac0db8852677",
+        "0x33ff9df3a2c473308483f035776a011a7524ddec5106bf74462f9660bfd1d79b",
+        "0x1a6ab07cf3af43b224a9b37c7664b4659d7bce8877799de37ac3c6abeb5acfb5"
+      ],
+      "id": "5c60c2f8be",
+      "representative": "0xde017d5628fc4fb92055d6242e12c2d510f73143b8a607131cd3da79e6f12fcf",
+      "selector": "0x71dc0cf9",
+      "senders": 1,
+      "shape": "transfers-only",
+      "sum_usd": "354040.43",
+      "to": "0xceda2d856238aa0d12f6329de20b9115f07c366d",
+      "transactions": 9
+    },
+    {
+      "assets": {
+        "WETH": 6
+      },
+      "examples": [
+        "0xf8da96d0de077e2f483c86fb3e9e2bdd3b500cab4b3daa8e596f75ec40d5a1c1",
+        "0xbb53c2852114e6e41cb5f912ea9f56d9550d360696a9883fb83449320d5b6f63",
+        "0x59e0cb8854284383e68e90bae6d1541e7c6a0df839a1ad19301665234abc21d8",
+        "0xf5e477699051a0327bd3309ae2cd411f2be4e5ad6afcd0d857e6ea873a37177c"
+      ],
+      "id": "2715da933b",
+      "representative": "0xf8da96d0de077e2f483c86fb3e9e2bdd3b500cab4b3daa8e596f75ec40d5a1c1",
+      "selector": "0xbcaeadb6",
+      "senders": 1,
+      "shape": "WETHDeposit; unknown=0x576dcb24693ce268755564d0b539845212a2e052e80b6a958db4920b057f367c",
+      "sum_usd": "88404.75",
+      "to": "0x09fc9b7545020f6a51d113e495e0a451597969d3",
+      "transactions": 6
+    },
+    {
+      "assets": {
+        "ETH": 5
+      },
+      "examples": [
+        "0x06b4047508a4274305b7bc26e5270fb2a0c858dc5a2bd47ce1a898b974ae7c02",
+        "0xed2741979ab8feb9ced666b56defff474015139941f70cfb6e4cbb1267bb49fe",
+        "0xfdd6d4e1e5630c8ae0b5a932d75f5e1cc8b28df752f3373cbde3a2aa9d9ff2d7",
+        "0x5e9ac0f1ef072c515e8f70b98091b89e5a6aace5854e54b55038cfb8b8171f5c"
+      ],
+      "id": "d79f2e2e18",
+      "representative": "0x06b4047508a4274305b7bc26e5270fb2a0c858dc5a2bd47ce1a898b974ae7c02",
+      "selector": "0x3ce33bff",
+      "senders": 4,
+      "shape": "SafeReceived; unknown=0x4e96fb90a89341a56db7ad2bbf04c715bbf20be6a9a9e764671f718c4697649a,0x6ded982279c8387ad8a63e73385031a3807c1862e633f06e09d11bcb6e282f60,0x831bac9533a2034226daa21109dbd4f887674f0fe4877e1a8b35b3ffe1bdce76",
+      "sum_usd": "195064.93",
+      "to": "0x0439e60f02a8900a951603950d8d4527f400c3f1",
+      "transactions": 5
+    },
+    {
+      "assets": {
+        "USDC": 2,
+        "USDT": 2
+      },
+      "examples": [
+        "0xcbb98d3f046c46b84e263402077b5a2ca6adec5bea276649f3791d8a7d0a856d",
+        "0x8f942c1c6c15f3940092fab0efc94360b74ffc093e3885952bdc19284465f39b",
+        "0x7dc57b8e3e9f2a699caac10322130aad93c5c42d135bcc76e4fa8238e91b07a2",
+        "0xa80ecfa9e717ddb6e2289360d1af67277a2428474ffbdbd2c4222ad58b6b2e07"
+      ],
+      "id": "a6c521a9a2",
+      "representative": "0xcbb98d3f046c46b84e263402077b5a2ca6adec5bea276649f3791d8a7d0a856d",
+      "selector": "0x5bebe4ee",
+      "senders": 1,
+      "shape": "transfers-only",
+      "sum_usd": "247955.63",
+      "to": "0x9188db2825bd0ad76a2ba3aba21274428dc696e5",
+      "transactions": 4
+    },
+    {
+      "assets": {
+        "USDC": 3
+      },
+      "examples": [
+        "0x543b8c6b6c919ca86889e455114d6ebd87e2c8549cfca7f6cbd4829db0cf807e",
+        "0xfe63eda39fa055e708c680d87fdd48438fe8bcf49c02bf633c742578b8ffdda6",
+        "0xd38529fbaa5b352e9f1143db4daac844e0e337dae3e8e0da73800147536fe1db"
+      ],
+      "id": "a58db0475e",
+      "representative": "0x543b8c6b6c919ca86889e455114d6ebd87e2c8549cfca7f6cbd4829db0cf807e",
+      "selector": "0x866f1f02",
+      "senders": 1,
+      "shape": "AaveWithdraw",
+      "sum_usd": "7206326.89",
+      "to": "0x4c21b7577c8fe8b0b0669165ee7c8f67fa1454cf",
+      "transactions": 3
+    },
+    {
+      "assets": {
+        "IMPL:0x0000\u2026012a": 3
+      },
+      "examples": [
+        "0x8504dbcc6e925140f38876dc69ba3aef130426440084c8bdc31abd540789fd9b",
+        "0xecbe363a2878aebaabc01404fa6ca51d0ee6e629604859d922c0c5369ada1892",
+        "0x5bf1b651b367aae900b3bdf53c56975bf0f857b7a6354085e9c8c500257a4e23"
+      ],
+      "id": "e804966209",
+      "representative": "0x8504dbcc6e925140f38876dc69ba3aef130426440084c8bdc31abd540789fd9b",
+      "selector": "0x56688700",
+      "senders": 1,
+      "shape": "Sync3",
+      "sum_usd": "9998593.00",
+      "to": "0xa19d9d64ece53a3a85e2c30725d31d09bec157a9",
+      "transactions": 3
+    },
+    {
+      "assets": {
+        "ETH": 2
+      },
+      "examples": [
+        "0x43a0c9031eb1883ff4196ce58d701cb357e7eaa57b49aa73a70ae0d774f03ff3",
+        "0x160fbf972126dfe1703dd555a8216ac2a6fe1719d5579fad507321b007e98b38"
+      ],
+      "id": "46bdda75a5",
+      "representative": "0x43a0c9031eb1883ff4196ce58d701cb357e7eaa57b49aa73a70ae0d774f03ff3",
+      "selector": "0x",
+      "senders": 1,
+      "shape": "WETHDeposit",
+      "sum_usd": "70420.48",
+      "to": "0xbb605dc51cac7eca64001651ac71c2c002308df7",
+      "transactions": 2
+    },
+    {
+      "assets": {
+        "WETH": 2
+      },
+      "examples": [
+        "0x944e3e94dca322dc9c9bb1feedba7fc96c80b0fc4f7b40bb752dee2a3a050df4",
+        "0xb2d5f8cd427fc6cec5ed7ff62d00453d5186ac7cafd5c31daf2315774d80256c"
+      ],
+      "id": "9db54c43ad",
+      "representative": "0x944e3e94dca322dc9c9bb1feedba7fc96c80b0fc4f7b40bb752dee2a3a050df4",
+      "selector": "0xc4b06ece",
+      "senders": 2,
+      "shape": "WETHDeposit; unknown=0x469059a9fd182ad3741bdd67b925e15056d35262609ea83393db7e8fb5a05ab1,0x7063ee7ac21ca792eb7d62d3a65598a5c986c4b0f7bd701aa453eb8a1387c956,0xccddf04ef3d8e97da0086a98ecc5d9facb21a818ce07ede3ab135dd12301443b",
+      "sum_usd": "48859.95",
+      "to": "0xf2e6ed63bb255e51b64337c67fb4898aa979da6b",
+      "transactions": 2
+    },
+    {
+      "assets": {
+        "ETH": 2
+      },
+      "examples": [
+        "0x604e9590419b8e151e259e948bee5512777619e218d48d0ffe44a0429d695877",
+        "0x27ac822009ab29de7a1bdd1d220ce81f3142951bb87129cb33db7e74f5137faa"
+      ],
+      "id": "9e7aa7869f",
+      "representative": "0x604e9590419b8e151e259e948bee5512777619e218d48d0ffe44a0429d695877",
+      "selector": "0x",
+      "senders": 1,
+      "shape": "WETHDeposit",
+      "sum_usd": "132078.14",
+      "to": "0xbbd8d82fea76afc62984498929a1db52cffea4f4",
+      "transactions": 2
+    },
+    {
+      "assets": {
+        "LINK": 2
+      },
+      "examples": [
+        "0x2c271b08d702d1fb098eb0438adca4e65137e7c02c98b0fa0e5e63113b426145",
+        "0xb5b2d8ad8ded6ce3cd6d915f07734c3202725f9646af9cfda20e787fcbd8db3d"
+      ],
+      "id": "ae0ca90295",
+      "representative": "0x2c271b08d702d1fb098eb0438adca4e65137e7c02c98b0fa0e5e63113b426145",
+      "selector": "0x81c197ed",
+      "senders": 2,
+      "shape": "transfers-only",
+      "sum_usd": "262743.79",
+      "to": "0xa60b5146e44ff755e32bd51532842ceb41d0c248",
+      "transactions": 2
+    },
+    {
+      "assets": {
+        "LINK": 2
+      },
+      "examples": [
+        "0x2634638463e844904e31bd14a4bf1d2d6888d82264ece221d81bba97f5be1d6b",
+        "0xec8819f42f614b1acfbeec5cd13c2f58995c778078f7b73e5b29f11e46f80041"
+      ],
+      "id": "da503b5f56",
+      "representative": "0x2634638463e844904e31bd14a4bf1d2d6888d82264ece221d81bba97f5be1d6b",
+      "selector": "0x4000aea0",
+      "senders": 2,
+      "shape": "ERC20TransferWithData,GDeposit_auu",
+      "sum_usd": "66858.46",
+      "to": "0x514910771af9ca656af840dff83e8264ecf986ca",
+      "transactions": 2
+    },
+    {
+      "assets": {
+        "WETH": 2
+      },
+      "examples": [
+        "0x72785634a1c4f2a16f35cd8cac859f1beb093b9c4d1118ea4819c475a1e1da6f",
+        "0x97956e8634ce3995a0263537cc78dc49a1c1ab76102fdab0c34ec489c2c979b0"
+      ],
+      "id": "f4977392bf",
+      "representative": "0x72785634a1c4f2a16f35cd8cac859f1beb093b9c4d1118ea4819c475a1e1da6f",
+      "selector": "0x0f129fd7",
+      "senders": 2,
+      "shape": "WETHDeposit; unknown=0x6771236b150af063b0a9c8523b694e47d0a3a8511cfe7fbbdbf65484bc0d8254",
+      "sum_usd": "32255.02",
+      "to": "0x8cc5c24a1666d3214340050315b82b2b6b0d9027",
+      "transactions": 2
+    },
+    {
+      "assets": {
+        "ETH": 2
+      },
+      "examples": [
+        "0x097f74cda0a7f98689f0d83445beff33b106407f794d8a57b8a12fe8b4cf6df2",
+        "0x878323fec91ce8394d5b4b515f5c3c4b6631c14bf2f1d84ecb99b56331bf27f5"
+      ],
+      "id": "f6ab6c4a03",
+      "representative": "0x097f74cda0a7f98689f0d83445beff33b106407f794d8a57b8a12fe8b4cf6df2",
+      "selector": "0x",
+      "senders": 2,
+      "shape": "SafeReceived",
+      "sum_usd": "181911.35",
+      "to": "0x7799905deebca738038984ce341fb1b226769195",
+      "transactions": 2
+    },
+    {
+      "assets": {
+        "LINK": 1
+      },
+      "examples": [
+        "0x63909e2b130332a1cc60b303ce528d15aa7ff41d8deeafaae339d1e70e9e3354"
+      ],
+      "id": "06b208c38a",
+      "representative": "0x63909e2b130332a1cc60b303ce528d15aa7ff41d8deeafaae339d1e70e9e3354",
+      "selector": "0xefb15bae",
+      "senders": 1,
+      "shape": "ERC20TransferWithData; unknown=0x16aadfd997cc8ab0f2890a6c7fe1ea76bdb61f8c74cc386c92818a2b1767006a,0x2522be42592f34e2ca9797604751c6950bec2b2edd55de8bdaede606557b67fe,0xa6b1f21803a1471cf6981bffc4c07ff6610f2b88efc44f62b96dca65a63d3d27,0xb4caaf29adda3eefee3ad552a8e85058589bf834c7466cae4ee58787f70589ed",
+      "sum_usd": "26558.85",
+      "to": "0xddc796a66e8b83d0bccd97df33a6ccfba8fd60ea",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "ETH": 1
+      },
+      "examples": [
+        "0x3f098987899f867c476ef41045243449b469c846ef3892e7ff0239f3f5122b60"
+      ],
+      "id": "07d08b3497",
+      "representative": "0x3f098987899f867c476ef41045243449b469c846ef3892e7ff0239f3f5122b60",
+      "selector": "0x",
+      "senders": 1,
+      "shape": "SafeReceived",
+      "sum_usd": "24505.29",
+      "to": "0xf1272dcb5172b9cf2b39b223ab394243d608edc8",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "USDC": 1
+      },
+      "examples": [
+        "0x39d280cbe69e01cfb1cabebbff1987e916c823da58cf2f79fccbff000ad4c148"
+      ],
+      "id": "1c28f1c23a",
+      "representative": "0x39d280cbe69e01cfb1cabebbff1987e916c823da58cf2f79fccbff000ad4c148",
+      "selector": "0xb1dc65a4",
+      "senders": 1,
+      "shape": "ChainlinkTransmitted; unknown=0x2717ead6b9200dd235aad468c9809ea400fe33ac69b5bfaa6d3e90fc922b6398,0x50f6fbee3ceedce6b7fd7eaef18244487867e6718aec7208187efb6b7908c14c,0xd4f851956a5d67c3997d1c9205045fef79bae2947fdee7e9e2641abc7391ef65,0xfc5e3a5bddc11d92c2dc20fae6f7d5eb989f056be35239f7de7e86150609abc0",
+      "sum_usd": "10567.08",
+      "to": "0x9a3ed7007809cfd666999e439076b4ce4120528d",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "ETH": 1
+      },
+      "examples": [
+        "0x3eca375a5109f662d66f10e221cafc325103e29bd2c4ad0d927d581a98f289e6"
+      ],
+      "id": "1fb4e4cdf2",
+      "representative": "0x3eca375a5109f662d66f10e221cafc325103e29bd2c4ad0d927d581a98f289e6",
+      "selector": "0x",
+      "senders": 1,
+      "shape": "WETHDeposit",
+      "sum_usd": "32635.49",
+      "to": "0xbbd6e0ac7d5ec6e2d0c871ea7a79f888b4dcc7af",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "ETH": 1
+      },
+      "examples": [
+        "0x40152fac441dbee060196ba37edb46e88e90e0ea1acdb5f13d4dfaa68f384ecf"
+      ],
+      "id": "225cd20b45",
+      "representative": "0x40152fac441dbee060196ba37edb46e88e90e0ea1acdb5f13d4dfaa68f384ecf",
+      "selector": "0x",
+      "senders": 1,
+      "shape": "SafeReceived",
+      "sum_usd": "13461.88",
+      "to": "0xe6e1247eef260ff75d99dec17ac0fa8fb31aa2f8",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "ETH": 1
+      },
+      "examples": [
+        "0xfe549c60027e4ce749d4a024c7fd6106558e7d86f38f5dc72b16f454aeb32681"
+      ],
+      "id": "2762cf0b5a",
+      "representative": "0xfe549c60027e4ce749d4a024c7fd6106558e7d86f38f5dc72b16f454aeb32681",
+      "selector": "0x3ce33bff",
+      "senders": 1,
+      "shape": "SafeReceived; unknown=0x012c155f3836c4edb9222305b909a109f9efa46288efffe40a0e66da3a9a9800,0x6757034e841d88190e95fa8a7570ce6cb721257474400c3282ec536eab810540,0x6ded982279c8387ad8a63e73385031a3807c1862e633f06e09d11bcb6e282f60,0x831bac9533a2034226daa21109dbd4f887674f0fe4877e1a8b35b3ffe1bdce76",
+      "sum_usd": "22076.73",
+      "to": "0x0439e60f02a8900a951603950d8d4527f400c3f1",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "IMPL:0x35d8\u20269bc0": 1
+      },
+      "examples": [
+        "0x79abe41140e4252dbd6b56aab6ded4e07ba3098758f6172496a03dbd454f74b5"
+      ],
+      "id": "3fcb5efbf9",
+      "representative": "0x79abe41140e4252dbd6b56aab6ded4e07ba3098758f6172496a03dbd454f74b5",
+      "selector": "0xaf1beac3",
+      "senders": 1,
+      "shape": "MorphoAccrueInterest,MorphoWithdrawCollateral",
+      "sum_usd": "140555.96",
+      "to": "0xa428723ee8ffd87088c36121d72100b43f11fb6a",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "ETH": 1
+      },
+      "examples": [
+        "0xd90ae22832d1b4946ad14248c692ab976e456ad7984b902a8a2aaf403cef606c"
+      ],
+      "id": "4f556fce5d",
+      "representative": "0xd90ae22832d1b4946ad14248c692ab976e456ad7984b902a8a2aaf403cef606c",
+      "selector": "0x",
+      "senders": 1,
+      "shape": "SafeReceived",
+      "sum_usd": "99025.86",
+      "to": "0x12e5179df245e1a3cdd41c024a4174b3b395155d",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "USDC": 1
+      },
+      "examples": [
+        "0x3de4c0e52ca82b938ed0437b32849f269ec176e814a7a8d32c60ca1ecddcdd8d"
+      ],
+      "id": "51f3dbbde7",
+      "representative": "0x3de4c0e52ca82b938ed0437b32849f269ec176e814a7a8d32c60ca1ecddcdd8d",
+      "selector": "0x1e10eeaf",
+      "senders": 1,
+      "shape": "Sync3; unknown=0xdef014699163b7bead46a730f8a9a0eea8d6db419a3caffda46f99d65546d90a",
+      "sum_usd": "3999437.20",
+      "to": "0xa19d9d64ece53a3a85e2c30725d31d09bec157a9",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "ETH": 1
+      },
+      "examples": [
+        "0xfc2ee3f8010052b388dab66181e06ed5d8fdc3c68a10e9bba549110f5f6295f8"
+      ],
+      "id": "5e58b1c83d",
+      "representative": "0xfc2ee3f8010052b388dab66181e06ed5d8fdc3c68a10e9bba549110f5f6295f8",
+      "selector": "0x",
+      "senders": 1,
+      "shape": "WETHDeposit",
+      "sum_usd": "76773.34",
+      "to": "0xbb6d0a1b1d267f1fea605ed502ce938cf185782a",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "ETH": 1
+      },
+      "examples": [
+        "0xc11709729f4c3897200bd562ec604e6ee5d0772d7be215c9cc0c70cd30bbd795"
+      ],
+      "id": "6637357c46",
+      "representative": "0xc11709729f4c3897200bd562ec604e6ee5d0772d7be215c9cc0c70cd30bbd795",
+      "selector": "0x",
+      "senders": 1,
+      "shape": "WETHDeposit",
+      "sum_usd": "48999.20",
+      "to": "0xbb584544fcad145f65c9ee671a527ba560021e1c",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "USDT": 1
+      },
+      "examples": [
+        "0xae8feb731ed5395675a937a731d023b48d75c9b5d99157d71cb97cee85371a7e"
+      ],
+      "id": "69397339db",
+      "representative": "0xae8feb731ed5395675a937a731d023b48d75c9b5d99157d71cb97cee85371a7e",
+      "selector": "0xa6b41ec4",
+      "senders": 1,
+      "shape": "MorphoAccrueInterest; unknown=0x003d5fea7147843a952736a57f88f9e5565759fb750f34a8e58cbc215034c64c,0x7120161a7b3d31251e01294ab351ef15a41b91659a36032e4641bb89b121e321,0xb5b9244c6ced1f40da658794a27cce7a0fb4184569b3916665b60044d25bb0b4",
+      "sum_usd": "230529.38",
+      "to": "0xf82ef4080a53b71093f9c470676fc80e2adc4263",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "ETH": 1
+      },
+      "examples": [
+        "0x918d6273203b32d1294c76639791b1738666228c933b1cb5312573dcc9bb172c"
+      ],
+      "id": "7acd231ee3",
+      "representative": "0x918d6273203b32d1294c76639791b1738666228c933b1cb5312573dcc9bb172c",
+      "selector": "0x",
+      "senders": 1,
+      "shape": "WETHDeposit",
+      "sum_usd": "19232.77",
+      "to": "0xbb0f6873d946e7d5779cc7dab1b2302283f5ba5b",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "wstETH": 1
+      },
+      "examples": [
+        "0xaf8c82263a7c5afb03e647672ce05bb259f5a8e218e6799975bd3051ef772731"
+      ],
+      "id": "8294a3dafc",
+      "representative": "0xaf8c82263a7c5afb03e647672ce05bb259f5a8e218e6799975bd3051ef772731",
+      "selector": "0x8720316d",
+      "senders": 1,
+      "shape": "MorphoAccrueInterest,MorphoWithdrawCollateral; unknown=0x7120161a7b3d31251e01294ab351ef15a41b91659a36032e4641bb89b121e321",
+      "sum_usd": "60618.87",
+      "to": "0xf820fb4680712cd7263a0d3d024d5b5aea82fd70",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "WETH": 1
+      },
+      "examples": [
+        "0x894f70a61aac7d9c5eb6182d560b083f2fe6e89a875fb3b733cde1e672a83e50"
+      ],
+      "id": "85b4ee35c1",
+      "representative": "0x894f70a61aac7d9c5eb6182d560b083f2fe6e89a875fb3b733cde1e672a83e50",
+      "selector": "0x1a1da075",
+      "senders": 1,
+      "shape": "GDeposited_aub,WETHDeposit; unknown=0x69b31548dea9b3b707b4dff357d326e3e9348b24e7a6080a218a6edeeec48f9b",
+      "sum_usd": "15022.65",
+      "to": "0xa9d1e08c7793af67e9d92fe308d5697fb81d3e43",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "USDT": 1
+      },
+      "examples": [
+        "0x1bc60d3fae8edf78ac750d3188a7fe9a662b1c560ea9fc93d414e4ad4b0d638e"
+      ],
+      "id": "8694c197f0",
+      "representative": "0x1bc60d3fae8edf78ac750d3188a7fe9a662b1c560ea9fc93d414e4ad4b0d638e",
+      "selector": "0x2213bc0b",
+      "senders": 1,
+      "shape": "transfers-only",
+      "sum_usd": "20000.88",
+      "to": "0x0000000000001ff3684f28c67538d4d072c22734",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "ETH": 1
+      },
+      "examples": [
+        "0x3a3acdeaa21f0bb3978372ec3b98f35609dec638edd62135573bc92b69006afe"
+      ],
+      "id": "8f2b7b6613",
+      "representative": "0x3a3acdeaa21f0bb3978372ec3b98f35609dec638edd62135573bc92b69006afe",
+      "selector": "0x",
+      "senders": 1,
+      "shape": "WETHDeposit",
+      "sum_usd": "32414.79",
+      "to": "0xbb065176b9542676247dfb1bee71eb89df2c9ded",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "ETH": 1
+      },
+      "examples": [
+        "0xbcf12adf0d09f69badf3016672cd5127a8efb5c4960bde1e02944aadeef52930"
+      ],
+      "id": "948d423c68",
+      "representative": "0xbcf12adf0d09f69badf3016672cd5127a8efb5c4960bde1e02944aadeef52930",
+      "selector": "0x",
+      "senders": 1,
+      "shape": "WETHDeposit",
+      "sum_usd": "33080.92",
+      "to": "0xd48f6f97dd93091197a0009eb0ca6b32e686770a",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "CRV": 1
+      },
+      "examples": [
+        "0x847f60b54bcbbb718a01ae92a76f02dbd1ea8d287086e35a26b63d710943b313"
+      ],
+      "id": "9d78678f37",
+      "representative": "0x847f60b54bcbbb718a01ae92a76f02dbd1ea8d287086e35a26b63d710943b313",
+      "selector": "0x5a7b87f2",
+      "senders": 1,
+      "shape": "RewardPaid",
+      "sum_usd": "18681.04",
+      "to": "0x3f29cb4111cbda8081642da1f75b3c12decf2516",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "ETH": 1
+      },
+      "examples": [
+        "0x04ebb144852157bf6f2627514bd54e93906db66cd4e108cd83e8082965ecd7fe"
+      ],
+      "id": "ac25c58591",
+      "representative": "0x04ebb144852157bf6f2627514bd54e93906db66cd4e108cd83e8082965ecd7fe",
+      "selector": "0x",
+      "senders": 1,
+      "shape": "WETHDeposit",
+      "sum_usd": "10983.06",
+      "to": "0x71b0299753016bb068cf2f56b39507ac3bad48c5",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "ETH": 1
+      },
+      "examples": [
+        "0x350595ce0a52b4919e0b6a8d24a7bcc3c1d946999ef62e96558536d606889649"
+      ],
+      "id": "af3baa724e",
+      "representative": "0x350595ce0a52b4919e0b6a8d24a7bcc3c1d946999ef62e96558536d606889649",
+      "selector": "0x",
+      "senders": 1,
+      "shape": "WETHDeposit",
+      "sum_usd": "14418.41",
+      "to": "0xbb244b1b15d3495fc8bc05a1bd668d63d1318c7b",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "ETH": 1
+      },
+      "examples": [
+        "0x468ad4a5560a7b419d4243cc6584bbdd2dfb21973bb0ae5f1e5ec1734358c137"
+      ],
+      "id": "b6ae822d03",
+      "representative": "0x468ad4a5560a7b419d4243cc6584bbdd2dfb21973bb0ae5f1e5ec1734358c137",
+      "selector": "0x",
+      "senders": 1,
+      "shape": "SafeReceived",
+      "sum_usd": "12266.63",
+      "to": "0x6107d7aec3d4e459526c59df545ad09cd48716f5",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "USDS": 1
+      },
+      "examples": [
+        "0x5d15ebe0ed0a82145d14a49f2327d975671a3e989c025690e72205b65dc2ed5f"
+      ],
+      "id": "bcd7d92216",
+      "representative": "0x5d15ebe0ed0a82145d14a49f2327d975671a3e989c025690e72205b65dc2ed5f",
+      "selector": "0xcef6d209",
+      "senders": 1,
+      "shape": "Withdrawn; unknown=0x40dadaa36c6c2e3d7317e24757451ffb2d603d875f0ad5e92c5dd156573b1873",
+      "sum_usd": "100000.00",
+      "to": "0xdb9b1e94b5b69df7e401ddbede43491141047db3",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "ETH": 1
+      },
+      "examples": [
+        "0xa02cd37e0d4755448b516849a404e0f822ee063ff85cd59875f8fd24dc51dd1f"
+      ],
+      "id": "be24548812",
+      "representative": "0xa02cd37e0d4755448b516849a404e0f822ee063ff85cd59875f8fd24dc51dd1f",
+      "selector": "0x",
+      "senders": 1,
+      "shape": "WETHDeposit",
+      "sum_usd": "14120.89",
+      "to": "0x4f3e9b7c9f04c557fadf937cc0979aab50b2374b",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "ETH": 1
+      },
+      "examples": [
+        "0x2942d7697e39f7533f476e3a65c42576241d0b5e19c4ed5867c12afcd3ae175e"
+      ],
+      "id": "cb9aa9edbc",
+      "representative": "0x2942d7697e39f7533f476e3a65c42576241d0b5e19c4ed5867c12afcd3ae175e",
+      "selector": "0x",
+      "senders": 1,
+      "shape": "SafeReceived",
+      "sum_usd": "46615.03",
+      "to": "0x49ebb5fa801d736fc886fa7bdfb1b9954cb284c3",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "stETH": 1
+      },
+      "examples": [
+        "0x44c463489faba871a5fabbae78c171fbd6b3aebb1d2d630ae44dcf185cef1681"
+      ],
+      "id": "d404730418",
+      "representative": "0x44c463489faba871a5fabbae78c171fbd6b3aebb1d2d630ae44dcf185cef1681",
+      "selector": "0xd9d239f6",
+      "senders": 1,
+      "shape": "ERC1155TransferSingle,LidoTransferShares; unknown=0x5e608ccf0546cfaefdb77560aed447ae9761a87d4fd1fb723755905b0c0afaef",
+      "sum_usd": "25407.79",
+      "to": "0x5bbeb889339ce028dc57a1c9a721eaa085be2368",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "ETH": 1
+      },
+      "examples": [
+        "0x6f567cd118a3e01dec11c49b54179eeb9389a13f1948f159d44819a663df8e87"
+      ],
+      "id": "d7fb1074a9",
+      "representative": "0x6f567cd118a3e01dec11c49b54179eeb9389a13f1948f159d44819a663df8e87",
+      "selector": "0x",
+      "senders": 1,
+      "shape": "SafeReceived",
+      "sum_usd": "12231.96",
+      "to": "0x83187eece14abbe704b66651ab72e40670eab50d",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "ETH": 1
+      },
+      "examples": [
+        "0x68dbb08b2dc6eb774b4d0ccd65f10b6117eefa456be2ed4888e23673c541015e"
+      ],
+      "id": "e52dd0d602",
+      "representative": "0x68dbb08b2dc6eb774b4d0ccd65f10b6117eefa456be2ed4888e23673c541015e",
+      "selector": "0x",
+      "senders": 1,
+      "shape": "SafeReceived",
+      "sum_usd": "24548.10",
+      "to": "0x739d6f5d71e35d3816fd6d7ef28d2266bb54907d",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "ETH": 1
+      },
+      "examples": [
+        "0xe4ea78d0b1f9c1d2dd40c9064df231c86ff617a70a95019c44f63a82ce388819"
+      ],
+      "id": "e7871cfccc",
+      "representative": "0xe4ea78d0b1f9c1d2dd40c9064df231c86ff617a70a95019c44f63a82ce388819",
+      "selector": "0x",
+      "senders": 1,
+      "shape": "SafeReceived",
+      "sum_usd": "323959.33",
+      "to": "0xb35f2e5c1d4f05aee27376d6b064d577b2d1861c",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "ETH": 1
+      },
+      "examples": [
+        "0x803fddbae1b536e1ec111e3b598391e99013b52a3c62f20c28f78125440fed0d"
+      ],
+      "id": "e9b5c5701f",
+      "representative": "0x803fddbae1b536e1ec111e3b598391e99013b52a3c62f20c28f78125440fed0d",
+      "selector": "0x",
+      "senders": 1,
+      "shape": "WETHDeposit",
+      "sum_usd": "10000.95",
+      "to": "0xbb80735ab7b51c29261757f35ebebdec22aadfbb",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "stETH": 1
+      },
+      "examples": [
+        "0x3a65d045484fd520584ffc30b2dbe89f7bd93ff7c63f66c242948619b6a2f3f9"
+      ],
+      "id": "eeb7d80307",
+      "representative": "0x3a65d045484fd520584ffc30b2dbe89f7bd93ff7c63f66c242948619b6a2f3f9",
+      "selector": "0x67bc251a",
+      "senders": 1,
+      "shape": "ERC1155TransferSingle,LidoTransferShares; unknown=0x4c60206a5c1de41f3376d1d60f0949d96cb682033c90b1c2d9d9a62d4c4120c0",
+      "sum_usd": "25093.54",
+      "to": "0x22d6201ff78854713ced5542658f16244335ae69",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "ETH": 1
+      },
+      "examples": [
+        "0x9488745e70c1fa56a8dd66529e789b3e2ddb94e1c4eee0ea0c1ff5cf15b5bea4"
+      ],
+      "id": "f0b447c897",
+      "representative": "0x9488745e70c1fa56a8dd66529e789b3e2ddb94e1c4eee0ea0c1ff5cf15b5bea4",
+      "selector": "0x",
+      "senders": 1,
+      "shape": "WETHDeposit",
+      "sum_usd": "39804.61",
+      "to": "0x4dfd23ec53e4df9fc9e047cfc5a79c9cb3fa1969",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "rETH": 1
+      },
+      "examples": [
+        "0xdd88e0d8d528421ca0a882a6c383517c586b45abfc1d729abd651acc6157fdb6"
+      ],
+      "id": "f3e6c22959",
+      "representative": "0xdd88e0d8d528421ca0a882a6c383517c586b45abfc1d729abd651acc6157fdb6",
+      "selector": "0xe7a050aa",
+      "senders": 1,
+      "shape": "DepositAAU; unknown=0x8be932bac54561f27260f95463d9b8ab37e06b2842e5ee2404157cc13df6eb8f,0xd2494f3479e5da49d386657c292c610b5b01df313d07c62eb0cfa49924a31be8",
+      "sum_usd": "12623.46",
+      "to": "0x858646372cc42e1a627fce94aa7a7033e7cf075a",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "USDC": 1
+      },
+      "examples": [
+        "0x1bab9965a2938e792b974fa1cbcf54cc3c944caa0219f88214ab96c422725bb3"
+      ],
+      "id": "f93f9997e1",
+      "representative": "0x1bab9965a2938e792b974fa1cbcf54cc3c944caa0219f88214ab96c422725bb3",
+      "selector": "0x7299aa31",
+      "senders": 1,
+      "shape": "MorphoAccrueInterest,MorphoSupply,MorphoWithdraw; unknown=0x7120161a7b3d31251e01294ab351ef15a41b91659a36032e4641bb89b121e321,0x89bf199df65bf65155e3e0a8abc4ad4a1be606220c8295840dba2ab5656c1f6d,0xdd8bf5226dff861316e0fa7863fdb7dc7b87c614eb29a135f524eb79d5a1189a",
+      "sum_usd": "0.00",
+      "to": "0x9651ae50a5763c6f9b883f9d50e8116281cfcab2",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "ETH": 1
+      },
+      "examples": [
+        "0x79526a34d286960019b0ed8f0fb38236c9cbb0c557ecb67b3c02a5612750ea52"
+      ],
+      "id": "fc5d3708e2",
+      "representative": "0x79526a34d286960019b0ed8f0fb38236c9cbb0c557ecb67b3c02a5612750ea52",
+      "selector": "0x",
+      "senders": 1,
+      "shape": "WETHDeposit",
+      "sum_usd": "20065.73",
+      "to": "0x5a25a84017bcc2c8fcade92896c3dd4201c60da3",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "USDT": 1
+      },
+      "examples": [
+        "0x5fb15798bf297596f25ca50bef38eeca5660b6c9cb6f540d4f11f5dae1e47752"
+      ],
+      "id": "fe24a69273",
+      "representative": "0x5fb15798bf297596f25ca50bef38eeca5660b6c9cb6f540d4f11f5dae1e47752",
+      "selector": "0x7299aa31",
+      "senders": 1,
+      "shape": "MorphoAccrueInterest,MorphoSupply,MorphoWithdraw; unknown=0x7120161a7b3d31251e01294ab351ef15a41b91659a36032e4641bb89b121e321,0x89bf199df65bf65155e3e0a8abc4ad4a1be606220c8295840dba2ab5656c1f6d,0xdd8bf5226dff861316e0fa7863fdb7dc7b87c614eb29a135f524eb79d5a1189a",
+      "sum_usd": "0.00",
+      "to": "0x28643ffd79256719d6acbcf25cb44576caebcf12",
+      "transactions": 1
+    },
+    {
+      "assets": {
+        "GHO": 1
+      },
+      "examples": [
+        "0xc29e797ecd80b0724588842e18e3c03b0d7bc7af09933b28a410191414de6001"
+      ],
+      "id": "ffdc3f3a8a",
+      "representative": "0xc29e797ecd80b0724588842e18e3c03b0d7bc7af09933b28a410191414de6001",
+      "selector": "0xb1dc65a4",
+      "senders": 1,
+      "shape": "ChainlinkTransmitted; unknown=0x1871cdf8010e63f2eb8384381a68dfa7416dc571a5517e66e88b2d2d0c0a690a,0x2d87480f50083e2b2759522a8fdda59802650a8055e609a7772cf70c07748f52,0xd4f851956a5d67c3997d1c9205045fef79bae2947fdee7e9e2641abc7391ef65",
+      "sum_usd": "57763.29",
+      "to": "0xd98e80c79a15e4dbaf4c40b6ccdf690fe619bfbb",
+      "transactions": 1
+    }
+  ],
+  "generated_at": "2026-09-05T18:23:26.243631+00:00",
+  "selected": [
+    "5c60c2f8be",
+    "2715da933b",
+    "d79f2e2e18",
+    "a6c521a9a2",
+    "a58db0475e",
+    "e804966209",
+    "46bdda75a5",
+    "9db54c43ad",
+    "9e7aa7869f",
+    "ae0ca90295",
+    "da503b5f56",
+    "f4977392bf",
+    "f6ab6c4a03",
+    "06b208c38a",
+    "07d08b3497",
+    "51f3dbbde7",
+    "e7871cfccc",
+    "69397339db",
+    "3fcb5efbf9",
+    "bcd7d92216",
+    "4f556fce5d",
+    "7acd231ee3",
+    "d7fb1074a9",
+    "5e58b1c83d",
+    "audit-aave_fork_lending_op",
+    "audit-aave_v3_op",
+    "audit-aster_style_withdrawal_observed",
+    "audit-aster_treasury_deposit",
+    "audit-aster_treasury_withdrawal",
+    "audit-atomic_arbitrage",
+    "audit-batch_payout",
+    "audit-beacon_deposit",
+    "audit-bilateral_exchange_settled",
+    "audit-bridge_in",
+    "audit-bridge_out",
+    "audit-ccip_token_send",
+    "audit-claim_distribution",
+    "audit-compound_v3_op",
+    "audit-contract_creation",
+    "audit-contract_deposit_no_event",
+    "audit-contract_deposit_recorded",
+    "audit-contract_payout_by_operator",
+    "audit-contract_token_execution",
+    "audit-contract_unwrap_payout",
+    "audit-cow_settlement",
+    "audit-custody_vault_abi_transfer",
+    "audit-custody_withdrawal_to_operator",
+    "audit-delegated_account_self_call",
+    "audit-deposit_sweep",
+    "audit-deposit_with_nft_receipt",
+    "audit-dex_swap_aggregator_event",
+    "audit-dex_swap_contract",
+    "audit-dex_swap_direct_pool",
+    "audit-dex_swap_user",
+    "audit-dolomite_account_deposit",
+    "audit-eip7702_delegated",
+    "audit-erc20_transfer_from",
+    "audit-erc4337_bundle",
+    "audit-exchange_deposit",
+    "audit-exchange_internal_transfer",
+    "audit-exchange_withdrawal",
+    "audit-flash_funded_lending",
+    "audit-flash_loan_arbitrage",
+    "audit-flash_loan_other",
+    "audit-forwarder_sweep",
+    "audit-intent_or_rfq_fill",
+    "audit-lending_with_swap",
+    "audit-lido_stake",
+    "audit-lido_withdrawal",
+    "audit-liquidity_add",
+    "audit-liquidity_collect_only",
+    "audit-liquidity_remove",
+    "audit-liquidity_v4",
+    "audit-liquidity_with_swap",
+    "audit-morpho_op",
+    "audit-native_call_into_contract_silent",
+    "audit-native_deposit_wrapped_forwarded",
+    "audit-nft_trade",
+    "audit-operator_sweep_no_events",
+    "audit-operator_token_batch",
+    "audit-operator_transfer_recorded",
+    "audit-payment_router_fee_split",
+    "audit-permit2_operator_transfer",
+    "audit-plain_transfer_eoa",
+    "audit-psm_conversion",
+    "audit-receipt_token_burned_withdrawal",
+    "audit-receipt_token_minted_deposit",
+    "audit-relay_deposit",
+    "audit-relay_settlement_withdrawal",
+    "audit-relay_style_deposit_observed",
+    "audit-relayed_payment_recorded",
+    "audit-restaking_or_lst_other",
+    "audit-safe_execution",
+    "audit-sandwich_attack",
+    "audit-sandwich_victim",
+    "audit-sender_tokens_via_contract",
+    "audit-service_deposit_with_memo",
+    "audit-smart_account_execute_transfer",
+    "audit-stablecoin_burn",
+    "audit-stablecoin_mint",
+    "audit-staking_pool_stake",
+    "audit-staking_pool_withdraw",
+    "audit-susde_unstake_claim",
+    "audit-swap_other",
+    "audit-trade_against_unpriced_token",
+    "audit-unregistered_token_mint_burn",
+    "audit-vault_deposit",
+    "audit-vault_withdraw",
+    "audit-weth_unwrap",
+    "audit-weth_wrap",
+    "audit-wrapped_btc_mint_burn",
+    "audit-wsteth_wrap_unwrap"
+  ],
+  "top_by_usd": [
+    "e804966209",
+    "a58db0475e",
+    "51f3dbbde7",
+    "5c60c2f8be",
+    "e7871cfccc",
+    "ae0ca90295",
+    "a6c521a9a2",
+    "69397339db",
+    "d79f2e2e18",
+    "f6ab6c4a03",
+    "3fcb5efbf9",
+    "9e7aa7869f",
+    "bcd7d92216",
+    "4f556fce5d",
+    "2715da933b",
+    "5e58b1c83d",
+    "46bdda75a5",
+    "da503b5f56",
+    "8294a3dafc",
+    "ffdc3f3a8a",
+    "6637357c46",
+    "9db54c43ad",
+    "cb9aa9edbc",
+    "f0b447c897",
+    "948d423c68",
+    "1fb4e4cdf2",
+    "8f2b7b6613",
+    "f4977392bf",
+    "06b208c38a",
+    "d404730418",
+    "eeb7d80307",
+    "e52dd0d602",
+    "07d08b3497",
+    "2762cf0b5a",
+    "fc5d3708e2",
+    "8694c197f0",
+    "7acd231ee3",
+    "9d78678f37",
+    "85b4ee35c1",
+    "af3baa724e",
+    "be24548812",
+    "225cd20b45",
+    "f3e6c22959",
+    "b6ae822d03",
+    "d7fb1074a9",
+    "ac25c58591",
+    "1c28f1c23a",
+    "e9b5c5701f",
+    "f93f9997e1",
+    "fe24a69273"
+  ]
+}

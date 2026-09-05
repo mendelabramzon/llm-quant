@@ -1,0 +1,1096 @@
+{
+  "assets": {
+    "AAVE": {
+      "age_seconds": 480,
+      "answer_raw": "12955295758",
+      "block": 25911585,
+      "decimals": 8,
+      "description_onchain": "AAVE / USD",
+      "expected_description": [
+        "AAVE / USD"
+      ],
+      "feed": "0x547a514d5e3769680ce22b2361c10ea13619e8a9",
+      "rejected_candidates": [],
+      "round_id": "92233720368547782750",
+      "source": "Chainlink AAVE / USD at block 25911585",
+      "updated_at": "2026-09-05T13:51:59+00:00",
+      "usd": "129.55295758",
+      "verified": true
+    },
+    "BTC": {
+      "age_seconds": 3504,
+      "answer_raw": "7971707424139",
+      "block": 25911585,
+      "decimals": 8,
+      "description_onchain": "BTC / USD",
+      "expected_description": [
+        "BTC / USD"
+      ],
+      "feed": "0xf4030086522a5beea4988f8ca5b36dbc97bee88c",
+      "rejected_candidates": [],
+      "round_id": "129127208515966885338",
+      "source": "Chainlink BTC / USD at block 25911585",
+      "updated_at": "2026-09-05T13:01:35+00:00",
+      "usd": "79717.07424139",
+      "verified": true
+    },
+    "CBETH": {
+      "block": 25911585,
+      "call": "exchangeRate()",
+      "contract": "0xbe9895146f7af43049ca1c1ae358b0541ea49704",
+      "rate": "1.138732579933467581",
+      "raw": "0x0000000000000000000000000000000000000000000000000fcd973f891933bd",
+      "source": "ETH times exchangeRate() at block 25911585",
+      "underlying": "ETH",
+      "usd": "2799.94553862541166749303400647",
+      "verified": true
+    },
+    "CRV": {
+      "age_seconds": 2064,
+      "answer_raw": "36091638",
+      "block": 25911585,
+      "decimals": 8,
+      "description_onchain": "CRV / USD",
+      "expected_description": [
+        "CRV / USD"
+      ],
+      "feed": "0xcd627aa160a6fa45eb793d19ef54f5062f20f33f",
+      "rejected_candidates": [],
+      "round_id": "36893488147419124012",
+      "source": "Chainlink CRV / USD at block 25911585",
+      "updated_at": "2026-09-05T13:25:35+00:00",
+      "usd": "0.36091638",
+      "verified": true
+    },
+    "DAI": {
+      "age_seconds": 1404,
+      "answer_raw": "99966609",
+      "block": 25911585,
+      "decimals": 8,
+      "description_onchain": "DAI / USD",
+      "expected_description": [
+        "DAI / USD"
+      ],
+      "feed": "0xaed0c38402a5d19df6e4c03f4e2dced6e29c1ee9",
+      "rejected_candidates": [],
+      "round_id": "129127208515966878405",
+      "source": "Chainlink DAI / USD at block 25911585",
+      "updated_at": "2026-09-05T13:36:35+00:00",
+      "usd": "0.99966609",
+      "verified": true
+    },
+    "ENS": {
+      "age_seconds": 9744,
+      "answer_raw": "581479281",
+      "block": 25911585,
+      "decimals": 8,
+      "description_onchain": "ENS / USD",
+      "expected_description": [
+        "ENS / USD"
+      ],
+      "feed": "0x5c00128d4d1c2f4f652c267d7bcdd7ac99c16e16",
+      "rejected_candidates": [],
+      "round_id": "36893488147419107856",
+      "source": "Chainlink ENS / USD at block 25911585",
+      "updated_at": "2026-09-05T11:17:35+00:00",
+      "usd": "5.81479281",
+      "verified": true
+    },
+    "ETH": {
+      "age_seconds": 3372,
+      "answer_raw": "245882623187",
+      "block": 25911585,
+      "decimals": 8,
+      "description_onchain": "ETH / USD",
+      "expected_description": [
+        "ETH / USD"
+      ],
+      "feed": "0x5f4ec3df9cbd43714fe2740f5e3616155c5b8419",
+      "rejected_candidates": [],
+      "round_id": "129127208515966894645",
+      "source": "Chainlink ETH / USD at block 25911585",
+      "updated_at": "2026-09-05T13:03:47+00:00",
+      "usd": "2458.82623187",
+      "verified": true
+    },
+    "LINK": {
+      "age_seconds": 3264,
+      "answer_raw": "1185134000",
+      "block": 25911585,
+      "decimals": 8,
+      "description_onchain": "LINK / USD",
+      "expected_description": [
+        "LINK / USD"
+      ],
+      "feed": "0x2c1d072e956affc0d435cb7ac38ef18d24d9127c",
+      "rejected_candidates": [],
+      "round_id": "129127208515966893216",
+      "source": "Chainlink LINK / USD at block 25911585",
+      "updated_at": "2026-09-05T13:05:35+00:00",
+      "usd": "11.85134",
+      "verified": true
+    },
+    "MKR": {
+      "age_seconds": 3432,
+      "answer_raw": "155574175100",
+      "block": 25911585,
+      "decimals": 8,
+      "description_onchain": "MKR / USD",
+      "expected_description": [
+        "MKR / USD"
+      ],
+      "feed": "0xec1d1b3b0443256cc3860e24a46f108e699484aa",
+      "rejected_candidates": [],
+      "round_id": "55340232221128677059",
+      "source": "Chainlink MKR / USD at block 25911585",
+      "updated_at": "2026-09-05T13:02:47+00:00",
+      "usd": "1555.741751",
+      "verified": true
+    },
+    "RETH": {
+      "block": 25911585,
+      "call": "getExchangeRate()",
+      "contract": "0xae78736cd615f374d3085123a210448e74fc6393",
+      "rate": "1.171088102237722636",
+      "raw": "0x00000000000000000000000000000000000000000000000010408a6c9e90d80c",
+      "source": "ETH times getExchangeRate() at block 25911585",
+      "underlying": "ETH",
+      "usd": "2879.50214561296886404608360932",
+      "verified": true
+    },
+    "SDAI": {
+      "block": 25911585,
+      "call": "convertToAssets(uint256)",
+      "contract": "0x83f20f44975d03b1b09e64809b757c47f942beea",
+      "rate": "1.180158720865568511",
+      "raw": "0x0000000000000000000000000000000000000000000000001060c41a97c586ff",
+      "source": "DAI times convertToAssets(uint256) at block 25911585",
+      "underlying": "DAI",
+      "usd": "1.17976465406708428901849199",
+      "verified": true
+    },
+    "STETH": {
+      "age_seconds": 924,
+      "answer_raw": "245573840000",
+      "block": 25911585,
+      "decimals": 8,
+      "description_onchain": "STETH / USD",
+      "expected_description": [
+        "STETH / USD"
+      ],
+      "feed": "0xcfe54b5cd566ab89272946f602d76ea879cab4a8",
+      "rejected_candidates": [],
+      "round_id": "36893488147419125053",
+      "source": "Chainlink STETH / USD at block 25911585",
+      "updated_at": "2026-09-05T13:44:35+00:00",
+      "usd": "2455.7384",
+      "verified": true
+    },
+    "SUSDE": {
+      "block": 25911585,
+      "call": "convertToAssets(uint256)",
+      "contract": "0x9d39a5de30e57443bff2a8307a4256c8797a3497",
+      "rate": "1.246634344936391394",
+      "raw": "0x000000000000000000000000000000000000000000000000114cef54eebc42e2",
+      "source": "USD times convertToAssets(uint256) at block 25911585",
+      "underlying": "USD",
+      "usd": "1.246634344936391394",
+      "verified": true
+    },
+    "SUSDS": {
+      "block": 25911585,
+      "call": "convertToAssets(uint256)",
+      "contract": "0xa3931d71877c0e7a3148cb7eb4463524fec27fbd",
+      "rate": "1.108550596191330291",
+      "raw": "0x0000000000000000000000000000000000000000000000000f625ce4d5881ff3",
+      "source": "USD times convertToAssets(uint256) at block 25911585",
+      "underlying": "USD",
+      "usd": "1.108550596191330291",
+      "verified": true
+    },
+    "UNI": {
+      "age_seconds": 1872,
+      "answer_raw": "623776310",
+      "block": 25911585,
+      "decimals": 8,
+      "description_onchain": "UNI / USD",
+      "expected_description": [
+        "UNI / USD"
+      ],
+      "feed": "0x553303d460ee0afb37edff9be42922d8ff63220e",
+      "rejected_candidates": [],
+      "round_id": "129127208515966886408",
+      "source": "Chainlink UNI / USD at block 25911585",
+      "updated_at": "2026-09-05T13:28:47+00:00",
+      "usd": "6.2377631",
+      "verified": true
+    },
+    "USDC": {
+      "age_seconds": 21564,
+      "answer_raw": "99985930",
+      "block": 25911585,
+      "decimals": 8,
+      "description_onchain": "USDC / USD",
+      "expected_description": [
+        "USDC / USD"
+      ],
+      "feed": "0x8fffffd4afb6115b954bd326cbe7b4ba576818f6",
+      "rejected_candidates": [],
+      "round_id": "55340232221128656022",
+      "source": "Chainlink USDC / USD at block 25911585",
+      "updated_at": "2026-09-05T08:00:35+00:00",
+      "usd": "0.9998593",
+      "verified": true
+    },
+    "USDT": {
+      "age_seconds": 66444,
+      "answer_raw": "100004389",
+      "block": 25911585,
+      "decimals": 8,
+      "description_onchain": "USDT / USD",
+      "expected_description": [
+        "USDT / USD"
+      ],
+      "feed": "0x3e7d1eab13ad0104d2750b8863b489d65364e32d",
+      "rejected_candidates": [],
+      "round_id": "55340232221128655638",
+      "source": "Chainlink USDT / USD at block 25911585",
+      "updated_at": "2026-09-04T19:32:35+00:00",
+      "usd": "1.00004389",
+      "verified": true
+    },
+    "WEETH": {
+      "block": 25911585,
+      "call": "getRate()",
+      "contract": "0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee",
+      "rate": "1.103004947234818922",
+      "raw": "0x0000000000000000000000000000000000000000000000000f4ea927d16e0b6a",
+      "source": "ETH times getRate() at block 25911585",
+      "underlying": "ETH",
+      "usd": "2712.09749814335798604303544414",
+      "verified": true
+    },
+    "WSTETH": {
+      "block": 25911585,
+      "call": "stEthPerToken()",
+      "contract": "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0",
+      "rate": "1.243329968432064195",
+      "raw": "0x00000000000000000000000000000000000000000000000011413204d2fda6c3",
+      "source": "STETH times stEthPerToken() at block 25911585",
+      "underlying": "STETH",
+      "usd": "3053.2931473494078349265880",
+      "verified": true
+    }
+  },
+  "assumed_parity": [
+    "FDUSD",
+    "FRAX",
+    "GHO",
+    "LUSD",
+    "PYUSD",
+    "RLUSD",
+    "TUSD",
+    "USD0",
+    "USD1",
+    "USDP",
+    "USDS",
+    "USDe",
+    "USDtb",
+    "crvUSD",
+    "frxUSD"
+  ],
+  "estimated_credits": 20880,
+  "generated_at": "2026-09-05T17:38:36.305823+00:00",
+  "hour_pins": [
+    {
+      "block": 25904711,
+      "hour": 1,
+      "timestamp": 1788533999,
+      "utc": "2026-09-04T14:59:59+00:00"
+    },
+    {
+      "block": 25905009,
+      "hour": 2,
+      "timestamp": 1788537599,
+      "utc": "2026-09-04T15:59:59+00:00"
+    },
+    {
+      "block": 25905307,
+      "hour": 3,
+      "timestamp": 1788541199,
+      "utc": "2026-09-04T16:59:59+00:00"
+    },
+    {
+      "block": 25905606,
+      "hour": 4,
+      "timestamp": 1788544799,
+      "utc": "2026-09-04T17:59:59+00:00"
+    },
+    {
+      "block": 25905903,
+      "hour": 5,
+      "timestamp": 1788548399,
+      "utc": "2026-09-04T18:59:59+00:00"
+    },
+    {
+      "block": 25906203,
+      "hour": 6,
+      "timestamp": 1788551999,
+      "utc": "2026-09-04T19:59:59+00:00"
+    },
+    {
+      "block": 25906503,
+      "hour": 7,
+      "timestamp": 1788555599,
+      "utc": "2026-09-04T20:59:59+00:00"
+    },
+    {
+      "block": 25906802,
+      "hour": 8,
+      "timestamp": 1788559199,
+      "utc": "2026-09-04T21:59:59+00:00"
+    },
+    {
+      "block": 25907102,
+      "hour": 9,
+      "timestamp": 1788562799,
+      "utc": "2026-09-04T22:59:59+00:00"
+    },
+    {
+      "block": 25907399,
+      "hour": 10,
+      "timestamp": 1788566399,
+      "utc": "2026-09-04T23:59:59+00:00"
+    },
+    {
+      "block": 25907699,
+      "hour": 11,
+      "timestamp": 1788569999,
+      "utc": "2026-09-05T00:59:59+00:00"
+    },
+    {
+      "block": 25907998,
+      "hour": 12,
+      "timestamp": 1788573599,
+      "utc": "2026-09-05T01:59:59+00:00"
+    },
+    {
+      "block": 25908298,
+      "hour": 13,
+      "timestamp": 1788577199,
+      "utc": "2026-09-05T02:59:59+00:00"
+    },
+    {
+      "block": 25908598,
+      "hour": 14,
+      "timestamp": 1788580799,
+      "utc": "2026-09-05T03:59:59+00:00"
+    },
+    {
+      "block": 25908897,
+      "hour": 15,
+      "timestamp": 1788584399,
+      "utc": "2026-09-05T04:59:59+00:00"
+    },
+    {
+      "block": 25909196,
+      "hour": 16,
+      "timestamp": 1788587999,
+      "utc": "2026-09-05T05:59:59+00:00"
+    },
+    {
+      "block": 25909496,
+      "hour": 17,
+      "timestamp": 1788591599,
+      "utc": "2026-09-05T06:59:59+00:00"
+    },
+    {
+      "block": 25909791,
+      "hour": 18,
+      "timestamp": 1788595199,
+      "utc": "2026-09-05T07:59:59+00:00"
+    },
+    {
+      "block": 25910088,
+      "hour": 19,
+      "timestamp": 1788598799,
+      "utc": "2026-09-05T08:59:59+00:00"
+    },
+    {
+      "block": 25910388,
+      "hour": 20,
+      "timestamp": 1788602399,
+      "utc": "2026-09-05T09:59:59+00:00"
+    },
+    {
+      "block": 25910687,
+      "hour": 21,
+      "timestamp": 1788605999,
+      "utc": "2026-09-05T10:59:59+00:00"
+    },
+    {
+      "block": 25910987,
+      "hour": 22,
+      "timestamp": 1788609599,
+      "utc": "2026-09-05T11:59:59+00:00"
+    },
+    {
+      "block": 25911286,
+      "hour": 23,
+      "timestamp": 1788613199,
+      "utc": "2026-09-05T12:59:59+00:00"
+    },
+    {
+      "block": 25911585,
+      "hour": 24,
+      "timestamp": 1788616799,
+      "utc": "2026-09-05T13:59:59+00:00"
+    }
+  ],
+  "hourly": {
+    "BTC": [
+      {
+        "block": 25904711,
+        "hour": 1,
+        "timestamp": 1788533999,
+        "updated_at": "2026-09-04T14:50:23+00:00",
+        "usd": "78677.706"
+      },
+      {
+        "block": 25905009,
+        "hour": 2,
+        "timestamp": 1788537599,
+        "updated_at": "2026-09-04T15:37:47+00:00",
+        "usd": "79479.11535574"
+      },
+      {
+        "block": 25905307,
+        "hour": 3,
+        "timestamp": 1788541199,
+        "updated_at": "2026-09-04T16:38:35+00:00",
+        "usd": "79698.14159702"
+      },
+      {
+        "block": 25905606,
+        "hour": 4,
+        "timestamp": 1788544799,
+        "updated_at": "2026-09-04T17:38:47+00:00",
+        "usd": "79553.26513587"
+      },
+      {
+        "block": 25905903,
+        "hour": 5,
+        "timestamp": 1788548399,
+        "updated_at": "2026-09-04T18:38:47+00:00",
+        "usd": "79581.64838275"
+      },
+      {
+        "block": 25906203,
+        "hour": 6,
+        "timestamp": 1788551999,
+        "updated_at": "2026-09-04T19:38:59+00:00",
+        "usd": "79696.79"
+      },
+      {
+        "block": 25906503,
+        "hour": 7,
+        "timestamp": 1788555599,
+        "updated_at": "2026-09-04T20:39:23+00:00",
+        "usd": "79743.15567822"
+      },
+      {
+        "block": 25906802,
+        "hour": 8,
+        "timestamp": 1788559199,
+        "updated_at": "2026-09-04T21:39:59+00:00",
+        "usd": "79810.37163912"
+      },
+      {
+        "block": 25907102,
+        "hour": 9,
+        "timestamp": 1788562799,
+        "updated_at": "2026-09-04T22:40:35+00:00",
+        "usd": "79718.94858158"
+      },
+      {
+        "block": 25907399,
+        "hour": 10,
+        "timestamp": 1788566399,
+        "updated_at": "2026-09-04T23:41:23+00:00",
+        "usd": "79689.84947374"
+      },
+      {
+        "block": 25907699,
+        "hour": 11,
+        "timestamp": 1788569999,
+        "updated_at": "2026-09-05T00:41:35+00:00",
+        "usd": "79677.18315198"
+      },
+      {
+        "block": 25907998,
+        "hour": 12,
+        "timestamp": 1788573599,
+        "updated_at": "2026-09-05T01:42:11+00:00",
+        "usd": "79686.64060454"
+      },
+      {
+        "block": 25908298,
+        "hour": 13,
+        "timestamp": 1788577199,
+        "updated_at": "2026-09-05T02:42:23+00:00",
+        "usd": "79631.11918675"
+      },
+      {
+        "block": 25908598,
+        "hour": 14,
+        "timestamp": 1788580799,
+        "updated_at": "2026-09-05T03:42:23+00:00",
+        "usd": "79634.56"
+      },
+      {
+        "block": 25908897,
+        "hour": 15,
+        "timestamp": 1788584399,
+        "updated_at": "2026-09-05T04:42:47+00:00",
+        "usd": "79546.89321332"
+      },
+      {
+        "block": 25909196,
+        "hour": 16,
+        "timestamp": 1788587999,
+        "updated_at": "2026-09-05T05:43:23+00:00",
+        "usd": "79570.97"
+      },
+      {
+        "block": 25909496,
+        "hour": 17,
+        "timestamp": 1788591599,
+        "updated_at": "2026-09-05T06:43:47+00:00",
+        "usd": "79689.59791938"
+      },
+      {
+        "block": 25909791,
+        "hour": 18,
+        "timestamp": 1788595199,
+        "updated_at": "2026-09-05T07:44:23+00:00",
+        "usd": "79735.51475182"
+      },
+      {
+        "block": 25910088,
+        "hour": 19,
+        "timestamp": 1788598799,
+        "updated_at": "2026-09-05T08:00:35+00:00",
+        "usd": "79705.366"
+      },
+      {
+        "block": 25910388,
+        "hour": 20,
+        "timestamp": 1788602399,
+        "updated_at": "2026-09-05T09:00:47+00:00",
+        "usd": "79651.86733482"
+      },
+      {
+        "block": 25910687,
+        "hour": 21,
+        "timestamp": 1788605999,
+        "updated_at": "2026-09-05T10:00:59+00:00",
+        "usd": "79639.81825326"
+      },
+      {
+        "block": 25910987,
+        "hour": 22,
+        "timestamp": 1788609599,
+        "updated_at": "2026-09-05T11:01:23+00:00",
+        "usd": "79621.258"
+      },
+      {
+        "block": 25911286,
+        "hour": 23,
+        "timestamp": 1788613199,
+        "updated_at": "2026-09-05T12:01:23+00:00",
+        "usd": "79627.91794881"
+      },
+      {
+        "block": 25911585,
+        "hour": 24,
+        "timestamp": 1788616799,
+        "updated_at": "2026-09-05T13:01:35+00:00",
+        "usd": "79717.07424139"
+      }
+    ],
+    "ETH": [
+      {
+        "block": 25904711,
+        "hour": 1,
+        "timestamp": 1788533999,
+        "updated_at": "2026-09-04T14:43:59+00:00",
+        "usd": "2440.67922051"
+      },
+      {
+        "block": 25905009,
+        "hour": 2,
+        "timestamp": 1788537599,
+        "updated_at": "2026-09-04T15:25:35+00:00",
+        "usd": "2453.36"
+      },
+      {
+        "block": 25905307,
+        "hour": 3,
+        "timestamp": 1788541199,
+        "updated_at": "2026-09-04T16:52:35+00:00",
+        "usd": "2464.01"
+      },
+      {
+        "block": 25905606,
+        "hour": 4,
+        "timestamp": 1788544799,
+        "updated_at": "2026-09-04T17:15:35+00:00",
+        "usd": "2450.52901626"
+      },
+      {
+        "block": 25905903,
+        "hour": 5,
+        "timestamp": 1788548399,
+        "updated_at": "2026-09-04T18:16:11+00:00",
+        "usd": "2446.44"
+      },
+      {
+        "block": 25906203,
+        "hour": 6,
+        "timestamp": 1788551999,
+        "updated_at": "2026-09-04T19:16:47+00:00",
+        "usd": "2454.6819131"
+      },
+      {
+        "block": 25906503,
+        "hour": 7,
+        "timestamp": 1788555599,
+        "updated_at": "2026-09-04T20:17:11+00:00",
+        "usd": "2455.20989079"
+      },
+      {
+        "block": 25906802,
+        "hour": 8,
+        "timestamp": 1788559199,
+        "updated_at": "2026-09-04T21:17:47+00:00",
+        "usd": "2454.81020198"
+      },
+      {
+        "block": 25907102,
+        "hour": 9,
+        "timestamp": 1788562799,
+        "updated_at": "2026-09-04T22:18:23+00:00",
+        "usd": "2453.04215601"
+      },
+      {
+        "block": 25907399,
+        "hour": 10,
+        "timestamp": 1788566399,
+        "updated_at": "2026-09-04T23:18:47+00:00",
+        "usd": "2451.2161264"
+      },
+      {
+        "block": 25907699,
+        "hour": 11,
+        "timestamp": 1788569999,
+        "updated_at": "2026-09-05T00:19:23+00:00",
+        "usd": "2454.78096206"
+      },
+      {
+        "block": 25907998,
+        "hour": 12,
+        "timestamp": 1788573599,
+        "updated_at": "2026-09-05T01:19:47+00:00",
+        "usd": "2454.37344904"
+      },
+      {
+        "block": 25908298,
+        "hour": 13,
+        "timestamp": 1788577199,
+        "updated_at": "2026-09-05T02:20:23+00:00",
+        "usd": "2452.97"
+      },
+      {
+        "block": 25908598,
+        "hour": 14,
+        "timestamp": 1788580799,
+        "updated_at": "2026-09-05T03:20:35+00:00",
+        "usd": "2453.13645918"
+      },
+      {
+        "block": 25908897,
+        "hour": 15,
+        "timestamp": 1788584399,
+        "updated_at": "2026-09-05T04:21:11+00:00",
+        "usd": "2452.25491086"
+      },
+      {
+        "block": 25909196,
+        "hour": 16,
+        "timestamp": 1788587999,
+        "updated_at": "2026-09-05T05:21:35+00:00",
+        "usd": "2449.96"
+      },
+      {
+        "block": 25909496,
+        "hour": 17,
+        "timestamp": 1788591599,
+        "updated_at": "2026-09-05T06:21:47+00:00",
+        "usd": "2452.11"
+      },
+      {
+        "block": 25909791,
+        "hour": 18,
+        "timestamp": 1788595199,
+        "updated_at": "2026-09-05T07:22:11+00:00",
+        "usd": "2454.87"
+      },
+      {
+        "block": 25910088,
+        "hour": 19,
+        "timestamp": 1788598799,
+        "updated_at": "2026-09-05T08:01:35+00:00",
+        "usd": "2456.4787"
+      },
+      {
+        "block": 25910388,
+        "hour": 20,
+        "timestamp": 1788602399,
+        "updated_at": "2026-09-05T09:01:47+00:00",
+        "usd": "2457.9712"
+      },
+      {
+        "block": 25910687,
+        "hour": 21,
+        "timestamp": 1788605999,
+        "updated_at": "2026-09-05T10:02:23+00:00",
+        "usd": "2458.56060451"
+      },
+      {
+        "block": 25910987,
+        "hour": 22,
+        "timestamp": 1788609599,
+        "updated_at": "2026-09-05T11:02:47+00:00",
+        "usd": "2454.62611527"
+      },
+      {
+        "block": 25911286,
+        "hour": 23,
+        "timestamp": 1788613199,
+        "updated_at": "2026-09-05T12:03:23+00:00",
+        "usd": "2455.6657"
+      },
+      {
+        "block": 25911585,
+        "hour": 24,
+        "timestamp": 1788616799,
+        "updated_at": "2026-09-05T13:03:47+00:00",
+        "usd": "2458.82623187"
+      }
+    ]
+  },
+  "method": "Chainlink aggregator proxy latestRoundData() at the pinned block; description() must match the expected pair. ETH and BTC are read at the last block of every hour; other feeds at the window end. Rate-bearing tokens use one exchange-rate call at the window end times the underlying price. Stablecoins without a feed are valued at parity by scan.",
+  "pinned_block": 25911585,
+  "registry_validation": {
+    "0x0000000000085d4780b73119b644ae5ecd22b376": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "TUSD",
+      "symbol_untrusted": "TUSD"
+    },
+    "0x18084fba666a33d37592fa2633fd49a74dd93a88": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "tBTC",
+      "symbol_untrusted": "tBTC"
+    },
+    "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "UNI",
+      "symbol_untrusted": "UNI"
+    },
+    "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599": {
+      "block": 25911585,
+      "decimals": 8,
+      "decimals_match": true,
+      "expected_decimals": 8,
+      "label": "WBTC",
+      "symbol_untrusted": "WBTC"
+    },
+    "0x40d16fc0246ad3160ccc09b8d0d3a2cd28ae6c2f": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "GHO",
+      "symbol_untrusted": "GHO"
+    },
+    "0x4c9edd5852cd905f086c759e8383e09bff1e68b3": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "USDe",
+      "symbol_untrusted": "USDe"
+    },
+    "0x514910771af9ca656af840dff83e8264ecf986ca": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "LINK",
+      "symbol_untrusted": "LINK"
+    },
+    "0x5f98805a4e8be255a32880fdec7f6728c6568ba0": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "LUSD",
+      "symbol_untrusted": "LUSD"
+    },
+    "0x6b175474e89094c44da98b954eedeac495271d0f": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "DAI",
+      "symbol_untrusted": "DAI"
+    },
+    "0x6c3ea9036406852006290770bedfcaba0e23a0e8": {
+      "block": 25911585,
+      "decimals": 6,
+      "decimals_match": true,
+      "expected_decimals": 6,
+      "label": "PYUSD",
+      "symbol_untrusted": "PYUSD"
+    },
+    "0x73a15fed60bf67631dc6cd7bc5b6e8da8190acf5": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "USD0",
+      "symbol_untrusted": "USD0"
+    },
+    "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "wstETH",
+      "symbol_untrusted": "wstETH"
+    },
+    "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "AAVE",
+      "symbol_untrusted": "AAVE"
+    },
+    "0x8236a87084f8b84306f72007f36f2618a5634494": {
+      "block": 25911585,
+      "decimals": 8,
+      "decimals_match": true,
+      "expected_decimals": 8,
+      "label": "LBTC",
+      "symbol_untrusted": "LBTC"
+    },
+    "0x8292bb45bf1ee4d140127049757c2e0ff06317ed": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "RLUSD",
+      "symbol_untrusted": "RLUSD"
+    },
+    "0x83f20f44975d03b1b09e64809b757c47f942beea": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "sDAI",
+      "symbol_untrusted": "sDAI"
+    },
+    "0x853d955acef822db058eb8505911ed77f175b99e": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "FRAX",
+      "symbol_untrusted": "FRAX"
+    },
+    "0x8d0d000ee44948fc98c9b98a4fa4921476f08b0d": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "USD1",
+      "symbol_untrusted": "USD1"
+    },
+    "0x8e870d67f660d95d5be530380d0ec0bd388289e1": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "USDP",
+      "symbol_untrusted": "USDP"
+    },
+    "0x9d39a5de30e57443bff2a8307a4256c8797a3497": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "sUSDe",
+      "symbol_untrusted": "sUSDe"
+    },
+    "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "MKR",
+      "symbol_untrusted": "MKR"
+    },
+    "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": {
+      "block": 25911585,
+      "decimals": 6,
+      "decimals_match": true,
+      "expected_decimals": 6,
+      "label": "USDC",
+      "symbol_untrusted": "USDC"
+    },
+    "0xa3931d71877c0e7a3148cb7eb4463524fec27fbd": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "sUSDS",
+      "symbol_untrusted": "sUSDS"
+    },
+    "0xae78736cd615f374d3085123a210448e74fc6393": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "rETH",
+      "symbol_untrusted": "rETH"
+    },
+    "0xae7ab96520de3a18e5e111b5eaab095312d7fe84": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "stETH",
+      "symbol_untrusted": "stETH"
+    },
+    "0xbe9895146f7af43049ca1c1ae358b0541ea49704": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "cbETH",
+      "symbol_untrusted": "cbETH"
+    },
+    "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "WETH",
+      "symbol_untrusted": "WETH"
+    },
+    "0xc139190f447e929f090edeb554d95abb8b18ac1c": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "USDtb",
+      "symbol_untrusted": "USDtb"
+    },
+    "0xc18360217d8f7ab5e7c516566761ea12ce7f9d72": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "ENS",
+      "symbol_untrusted": "ENS"
+    },
+    "0xc5f0f7b66764f6ec8c8dff7ba683102295e16409": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "FDUSD",
+      "symbol_untrusted": "FDUSD"
+    },
+    "0xcacd6fd266af91b8aed52accc382b4e165586e29": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "frxUSD",
+      "symbol_untrusted": "frxUSD"
+    },
+    "0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf": {
+      "block": 25911585,
+      "decimals": 8,
+      "decimals_match": true,
+      "expected_decimals": 8,
+      "label": "cbBTC",
+      "symbol_untrusted": "cbBTC"
+    },
+    "0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "weETH",
+      "symbol_untrusted": "weETH"
+    },
+    "0xd533a949740bb3306d119cc777fa900ba034cd52": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "CRV",
+      "symbol_untrusted": "CRV"
+    },
+    "0xdac17f958d2ee523a2206206994597c13d831ec7": {
+      "block": 25911585,
+      "decimals": 6,
+      "decimals_match": true,
+      "expected_decimals": 6,
+      "label": "USDT",
+      "symbol_untrusted": "USDT"
+    },
+    "0xdc035d45d973e3ec169d2276ddab16f1e407384f": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "USDS",
+      "symbol_untrusted": "USDS"
+    },
+    "0xf939e0a03fb07f59a73314e73794be0e57ac1b4e": {
+      "block": 25911585,
+      "decimals": 18,
+      "decimals_match": true,
+      "expected_decimals": 18,
+      "label": "crvUSD",
+      "symbol_untrusted": "crvUSD"
+    }
+  },
+  "window": {
+    "end_utc": "2026-09-05T14:00:00+00:00",
+    "start_utc": "2026-09-04T14:00:00+00:00"
+  }
+}

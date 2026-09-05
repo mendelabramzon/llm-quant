@@ -1,0 +1,58 @@
+{
+  "blocks": 1498,
+  "blocks_present": 1498,
+  "cache_reused_blocks": 784,
+  "cache_reused_log_blocks": 0,
+  "cache_source": "research/2026-09-05/eth_day",
+  "chain": "ethereum",
+  "chain_id": 1,
+  "collection_runs": [
+    {
+      "blocks_fetched": 714,
+      "errors": [],
+      "estimated_credits": 117405,
+      "finished_at": "2026-09-05T16:49:27.446101+00:00",
+      "log_blocks_fetched": 1498,
+      "log_entries": 1146927,
+      "range_splits": 0,
+      "seconds": 525,
+      "started_at": "2026-09-05T16:40:41.880734+00:00"
+    }
+  ],
+  "complete": true,
+  "end_timestamp": 1788625368,
+  "end_utc": "2026-09-05T16:22:48+00:00",
+  "errors": {},
+  "finalized_at_start": {
+    "hash": "0xd68695fe7d413fbb04a8646648dd38f0ddcb6a8975afb57ab9388203f040147a",
+    "number": 25912299,
+    "timestamp": 1788625367
+  },
+  "finalized_at_verify": {
+    "hash": "0x673b3d2843de08c7ac09b594253ad09f26fe803d21692459e37fe15f05173b18",
+    "number": 25912395,
+    "timestamp": 1788626519
+  },
+  "first_block": 25910802,
+  "hash_recheck": {
+    "mismatches": [],
+    "sampled": 16
+  },
+  "key_index": 0,
+  "last_block": 25912299,
+  "logs": 1146927,
+  "logs_present": 1498,
+  "method": {
+    "blocks": "eth_getBlockByNumber(n, true) in batches of 4",
+    "logs": "eth_getLogs without address filter over ranges of up to 8 blocks, split on the 10,000-result cap",
+    "receipts": "not collected; fetched per selected transaction by the analysis"
+  },
+  "provider": "Infura",
+  "quality_issues": {},
+  "start_timestamp": 1788607368,
+  "start_utc": "2026-09-05T11:22:48+00:00",
+  "started_at": "2026-09-05T16:40:41.518822+00:00",
+  "transactions": 392428,
+  "verified_at": "2026-09-05T16:58:41.517609+00:00",
+  "window_definition": "[start_timestamp, end_timestamp)"
+}
