@@ -1,0 +1,366 @@
+{
+  "receipt_matches_to_original_infura_logs": 60,
+  "exact_middle_replays": 20,
+  "successful_without_open_replays": 20,
+  "improved_output_destinations": 20,
+  "account_state_boundaries": 40,
+  "zero_debt_boundaries": 40,
+  "state_verified_closed_lp_positions": 17,
+  "positions_by_venue": {
+    "Uniswap v4": 7,
+    "Uniswap v3": 2,
+    "Ekubo v3": 6,
+    "Ekubo v2": 2
+  },
+  "lp_fees": [
+    {
+      "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "symbol": "USDC",
+      "raw": "1145665",
+      "amount": "1.145665"
+    },
+    {
+      "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "symbol": "USDT",
+      "raw": "27402",
+      "amount": "0.027402"
+    }
+  ],
+  "other_state_deltas": [
+    {
+      "token": "0x23878914efe38d27c4d67ab83ed1b93a74d4086a",
+      "symbol": "aEthUSDT",
+      "raw": "-4"
+    },
+    {
+      "token": "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+      "symbol": "USDe",
+      "raw": "5"
+    },
+    {
+      "token": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
+      "symbol": "aEthWETH",
+      "raw": "-79"
+    },
+    {
+      "token": "0x6b175474e89094c44da98b954eedeac495271d0f",
+      "symbol": "DAI",
+      "raw": "3155"
+    },
+    {
+      "token": "0x98c23e9d8f34fefb1b7bd6a91b7ff122f4e16f5c",
+      "symbol": "aEthUSDC",
+      "raw": "4"
+    },
+    {
+      "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "symbol": "USDC",
+      "raw": "78"
+    },
+    {
+      "token": "0xaebcdbd9f8b1422ab31073d7408c8cad83ca6a8b",
+      "symbol": "USDST",
+      "raw": "6"
+    },
+    {
+      "token": "0xcacd6fd266af91b8aed52accc382b4e165586e29",
+      "symbol": "frxUSD",
+      "raw": "6"
+    },
+    {
+      "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "symbol": "USDT",
+      "raw": "92"
+    }
+  ],
+  "output_impacts": [
+    {
+      "block": 25910849,
+      "recipient": "0xad9f96866562ae55e9423c15daf963b219f09f56",
+      "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "symbol": "USDT",
+      "actual_output_raw": "9708973201",
+      "without_open_output_raw": "9757644323",
+      "improvement_raw": "48671122",
+      "improvement_bps_of_actual_output": "50.13004052270635163328019572",
+      "actual_gas": 426594,
+      "without_open_gas": 414686,
+      "actual_output": "9708.973201",
+      "without_open_output": "9757.644323",
+      "improvement": "48.671122"
+    },
+    {
+      "block": 25910935,
+      "recipient": "0x648038b6837c4c0a4b03ba26ca7c621eb06fc7f0",
+      "token": "ETH",
+      "symbol": "ETH",
+      "actual_output_raw": "6611261179774006519",
+      "without_open_output_raw": "6622410320160302266",
+      "improvement_raw": "11149140386295747",
+      "improvement_bps_of_actual_output": "16.86386316184964169560369220",
+      "actual_gas": 250566,
+      "without_open_gas": 236740,
+      "actual_output": "6.611261179774006519",
+      "without_open_output": "6.622410320160302266",
+      "improvement": "0.011149140386295747"
+    },
+    {
+      "block": 25910990,
+      "recipient": "0xb8f275fbf7a959f4bce59999a2ef122a099e81a8",
+      "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "symbol": "USDC",
+      "actual_output_raw": "4081913495",
+      "without_open_output_raw": "4157146860",
+      "improvement_raw": "75233365",
+      "improvement_bps_of_actual_output": "184.3090626299516913206902735",
+      "actual_gas": 758555,
+      "without_open_gas": 682051,
+      "actual_output": "4081.913495",
+      "without_open_output": "4157.14686",
+      "improvement": "75.233365"
+    },
+    {
+      "block": 25910995,
+      "recipient": "0xa48e223e2a723a2f574e3a4e0b12126851b81ca4",
+      "token": "0x5886e4d8d6a41a5ea2f3f77f23d7a7e942d581f1",
+      "symbol": null,
+      "actual_output_raw": "6426902175451040765549",
+      "without_open_output_raw": "6551327815413266816661",
+      "improvement_raw": "124425639962226051112",
+      "improvement_bps_of_actual_output": "193.6012663106916588086965570",
+      "actual_gas": 468630,
+      "without_open_gas": 395519
+    },
+    {
+      "block": 25911033,
+      "recipient": "0x05e7c72498fdecf1c3638b66af2740adea8d7f8f",
+      "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "symbol": "USDT",
+      "actual_output_raw": "284938659",
+      "without_open_output_raw": "287824846",
+      "improvement_raw": "2886187",
+      "improvement_bps_of_actual_output": "101.2915204321221993257152235",
+      "actual_gas": 443174,
+      "without_open_gas": 408421,
+      "actual_output": "284.938659",
+      "without_open_output": "287.824846",
+      "improvement": "2.886187"
+    },
+    {
+      "block": 25911089,
+      "recipient": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+      "token": "0xe343167631d89b6ffc58b88d6b7fb0228795491d",
+      "symbol": "USDG",
+      "actual_output_raw": "200266664",
+      "without_open_output_raw": "204348262",
+      "improvement_raw": "4081598",
+      "improvement_bps_of_actual_output": "203.8081585061006458868261769",
+      "actual_gas": 678420,
+      "without_open_gas": 672843,
+      "actual_output": "200.266664",
+      "without_open_output": "204.348262",
+      "improvement": "4.081598"
+    },
+    {
+      "block": 25911110,
+      "recipient": "0x5c7bcd6e7de5423a257d81b442095a1a6ced35c5",
+      "token": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "symbol": "WETH",
+      "actual_output_raw": "350705423489399064",
+      "without_open_output_raw": "361547572427616768",
+      "improvement_raw": "10842148938217704",
+      "improvement_bps_of_actual_output": "309.1525882417793484798659106",
+      "actual_gas": 634337,
+      "without_open_gas": 643817,
+      "actual_output": "0.350705423489399064",
+      "without_open_output": "0.361547572427616768",
+      "improvement": "0.010842148938217704"
+    },
+    {
+      "block": 25911337,
+      "recipient": "0x2adc73d7f87e8bdbcc64b7dd7c251bbccf72a7d2",
+      "token": "0xa9e8acf069c58aec8825542845fd754e41a9489a",
+      "symbol": null,
+      "actual_output_raw": "15297025437189897905544",
+      "without_open_output_raw": "16187140632300141989443",
+      "improvement_raw": "890115195110244083899",
+      "improvement_bps_of_actual_output": "581.8877655431031869736497042",
+      "actual_gas": 343173,
+      "without_open_gas": 342828
+    },
+    {
+      "block": 25911349,
+      "recipient": "0x249a1b925e48d3dd31823a9ae76341229f298038",
+      "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "symbol": "USDT",
+      "actual_output_raw": "19815051681",
+      "without_open_output_raw": "19934080315",
+      "improvement_raw": "119028634",
+      "improvement_bps_of_actual_output": "60.06980749595149138183062809",
+      "actual_gas": 482548,
+      "without_open_gas": 470736,
+      "actual_output": "19815.051681",
+      "without_open_output": "19934.080315",
+      "improvement": "119.028634"
+    },
+    {
+      "block": 25911429,
+      "recipient": "0x40ffe85a28dc9993541449464d7529a922142960",
+      "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "symbol": "USDT",
+      "actual_output_raw": "795055028",
+      "without_open_output_raw": "799045643",
+      "improvement_raw": "3990615",
+      "improvement_bps_of_actual_output": "50.19294085893133927831722360",
+      "actual_gas": 507459,
+      "without_open_gas": 490331,
+      "actual_output": "795.055028",
+      "without_open_output": "799.045643",
+      "improvement": "3.990615"
+    },
+    {
+      "block": 25911582,
+      "recipient": "0x05e7c72498fdecf1c3638b66af2740adea8d7f8f",
+      "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "symbol": "USDT",
+      "actual_output_raw": "507710422",
+      "without_open_output_raw": "512847788",
+      "improvement_raw": "5137366",
+      "improvement_bps_of_actual_output": "101.1869321051676185603296519",
+      "actual_gas": 335383,
+      "without_open_gas": 314491,
+      "actual_output": "507.710422",
+      "without_open_output": "512.847788",
+      "improvement": "5.137366"
+    },
+    {
+      "block": 25911701,
+      "recipient": "0xfa9edea5ac3aaf4f9af53c14f623e68ad61d6c0f",
+      "token": "0xcacd6fd266af91b8aed52accc382b4e165586e29",
+      "symbol": "frxUSD",
+      "actual_output_raw": "2916100806402077535424",
+      "without_open_output_raw": "2930615945062689735697",
+      "improvement_raw": "14515138660612200273",
+      "improvement_bps_of_actual_output": "49.77584666738995201194458441",
+      "actual_gas": 218449,
+      "without_open_gas": 206550,
+      "actual_output": "2916.100806402077535424",
+      "without_open_output": "2930.615945062689735697",
+      "improvement": "14.515138660612200273"
+    },
+    {
+      "block": 25911742,
+      "recipient": "0x49fb929c2252248afbc46f2ed43873f13452ebb5",
+      "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "symbol": "USDC",
+      "actual_output_raw": "146018662",
+      "without_open_output_raw": "147234039",
+      "improvement_raw": "1215377",
+      "improvement_bps_of_actual_output": "83.23436082437188747832794140",
+      "actual_gas": 853538,
+      "without_open_gas": 869512,
+      "actual_output": "146.018662",
+      "without_open_output": "147.234039",
+      "improvement": "1.215377"
+    },
+    {
+      "block": 25911771,
+      "recipient": "0xdeedd94590291d7b2640cea472ed2288e7812b05",
+      "token": "0x6243558a24cc6116abe751f27e6d7ede50abfc76",
+      "symbol": null,
+      "actual_output_raw": "453220140805200129361125",
+      "without_open_output_raw": "467234598784744637398221",
+      "improvement_raw": "14014457979544508037096",
+      "improvement_bps_of_actual_output": "309.2196643036678967369873790",
+      "actual_gas": 1700358,
+      "without_open_gas": 1580019
+    },
+    {
+      "block": 25911802,
+      "recipient": "0xccd92b453da9d6277f48c32fb0b6b5b630da7d4d",
+      "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "symbol": "USDT",
+      "actual_output_raw": "185786410",
+      "without_open_output_raw": "195563310",
+      "improvement_raw": "9776900",
+      "improvement_bps_of_actual_output": "526.2440885746164103176330282",
+      "actual_gas": 1450426,
+      "without_open_gas": 1373235,
+      "actual_output": "185.78641",
+      "without_open_output": "195.56331",
+      "improvement": "9.7769"
+    },
+    {
+      "block": 25911874,
+      "recipient": "0x21fecf63489ab27e9483fe3ad6cfffd4e392b450",
+      "token": "0x7cf9a80db3b29ee8efe3710aadb7b95270572d47",
+      "symbol": null,
+      "actual_output_raw": "3640003920",
+      "without_open_output_raw": "3676594901",
+      "improvement_raw": "36590981",
+      "improvement_bps_of_actual_output": "100.5245648196994249390808348",
+      "actual_gas": 572076,
+      "without_open_gas": 555319
+    },
+    {
+      "block": 25911943,
+      "recipient": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+      "token": "0xe343167631d89b6ffc58b88d6b7fb0228795491d",
+      "symbol": "USDG",
+      "actual_output_raw": "1153393163",
+      "without_open_output_raw": "1176921448",
+      "improvement_raw": "23528285",
+      "improvement_bps_of_actual_output": "203.9918889305918315036864841",
+      "actual_gas": 548551,
+      "without_open_gas": 522911,
+      "actual_output": "1153.393163",
+      "without_open_output": "1176.921448",
+      "improvement": "23.528285"
+    },
+    {
+      "block": 25911995,
+      "recipient": "0x3a6fb4fab64e8fa018d1b27226cb609e4b1feade",
+      "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "symbol": "USDC",
+      "actual_output_raw": "463903962219",
+      "without_open_output_raw": "463950683007",
+      "improvement_raw": "46720788",
+      "improvement_bps_of_actual_output": "1.007121986553415736821842349",
+      "actual_gas": 4026216,
+      "without_open_gas": 4029959,
+      "actual_output": "463903.962219",
+      "without_open_output": "463950.683007",
+      "improvement": "46.720788"
+    },
+    {
+      "block": 25912028,
+      "recipient": "0xf595902166aa1d60047d6ec141803fceef03a7fd",
+      "token": "0x6b175474e89094c44da98b954eedeac495271d0f",
+      "symbol": "DAI",
+      "actual_output_raw": "5559578090455481316422",
+      "without_open_output_raw": "5614713058124916056648",
+      "improvement_raw": "55134967669434740226",
+      "improvement_bps_of_actual_output": "99.17113632073774910095106739",
+      "actual_gas": 245089,
+      "without_open_gas": 245125,
+      "actual_output": "5559.578090455481316422",
+      "without_open_output": "5614.713058124916056648",
+      "improvement": "55.134967669434740226"
+    },
+    {
+      "block": 25912097,
+      "recipient": "0x1e605e0fd524745a25fd190e88c5da67303f945b",
+      "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "symbol": "USDT",
+      "actual_output_raw": "1111465685",
+      "without_open_output_raw": "1126737495",
+      "improvement_raw": "15271810",
+      "improvement_bps_of_actual_output": "137.4024426134217539968406672",
+      "actual_gas": 366838,
+      "without_open_gas": 342238,
+      "actual_output": "1111.465685",
+      "without_open_output": "1126.737495",
+      "improvement": "15.27181"
+    }
+  ]
+}

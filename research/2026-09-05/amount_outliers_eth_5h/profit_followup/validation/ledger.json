@@ -1,0 +1,1819 @@
+{
+  "accounting_group": [
+    "0x000000000035b5e5ad9019092c665357240f594e",
+    "0x654fae4aa229d104cabead47e56703f58b174be4",
+    "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a"
+  ],
+  "summary": {
+    "gross_weth_wei": "154872896893232452",
+    "coinbase_payment_wei": "141617341946688976",
+    "gas_wei": "2176324316683585",
+    "retained_eth_wei": "11079230629859891",
+    "episodes": 20,
+    "positive_episodes": 20,
+    "median_retained_eth": "0.000244895252881224",
+    "retained_usd_study_marks": "27.23281696291684333478087096"
+  },
+  "episodes": [
+    {
+      "block": 25910849,
+      "hashes": [
+        "0x74342e719fe591b84a0a3cadab143e1cda1a5426566d66ed1bb1b9f905ca9927",
+        "0xe89173edc4548cbb3120b183d7b2cf8a5aa56f225410545d5bb9403901e3a27d",
+        "0xe490aa892b439edf2d14260624d750be012c3b5fb033f796e4ffa11773c37d2c"
+      ],
+      "indices": [
+        0,
+        1,
+        2
+      ],
+      "coinbase": "0xdadb0d80178819f2319190d340ce9a924f783711",
+      "gross_weth_wei": "10924232930832454",
+      "outer_weth_wei": "10924232930832452",
+      "helper_weth_wei": "2",
+      "coinbase_payment_wei": "10327993178323994",
+      "gas_wei": "75503899618470",
+      "retained_eth_wei": "520735852889990",
+      "eth_usd_study_mark": "2455.6657",
+      "gross_usd_study_mark": "26.8262641070557297346278",
+      "coinbase_usd_study_mark": "25.3620985978442155528058",
+      "gas_usd_study_mark": "0.185412336509319865479",
+      "retained_usd_study_mark": "1.278753172702194316343",
+      "native_deltas_wei": {
+        "0x000000000035b5e5ad9019092c665357240f594e": "-10327993178323994",
+        "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a": "0",
+        "0x654fae4aa229d104cabead47e56703f58b174be4": "-75503899618470"
+      },
+      "other_token_deltas_raw": [
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
+          "delta": "3"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "delta": "5"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "delta": "6"
+        }
+      ],
+      "gas_and_native_state_checks_passed": [
+        "0x74342e719fe591b84a0a3cadab143e1cda1a5426566d66ed1bb1b9f905ca9927",
+        "0xe490aa892b439edf2d14260624d750be012c3b5fb033f796e4ffa11773c37d2c"
+      ],
+      "middle_replay": {
+        "actual_exact_trace_gas_logs_match": true,
+        "without_open_success": true,
+        "without_open_error": null,
+        "actual_gas_used": 426594,
+        "without_open_gas_used": 414686,
+        "changed_token_cashflows": [
+          {
+            "account": "0x000000000004444c5dc75cb358380d2e3de08a90",
+            "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "actual_raw": "-9708973201",
+            "without_open_raw": "-9757644323",
+            "without_open_minus_actual_raw": "-48671122"
+          },
+          {
+            "account": "0xad9f96866562ae55e9423c15daf963b219f09f56",
+            "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "actual_raw": "9708973201",
+            "without_open_raw": "9757644323",
+            "without_open_minus_actual_raw": "48671122"
+          }
+        ]
+      },
+      "close_without_middle": {
+        "success": false,
+        "error": "execution reverted"
+      }
+    },
+    {
+      "block": 25910935,
+      "hashes": [
+        "0xac07db9dfcb250401b6d08dc1c535359ba935e5fc218cfdf3e4809ad830417b3",
+        "0xf814e3bf9b9febeda214244746db4e620240847a17cc8ac4e125248013d41b9f",
+        "0xe9261740c1496b1ea281abcd42643e9e1ddfab8447f392ddc9ac995890345aa2"
+      ],
+      "indices": [
+        0,
+        1,
+        2
+      ],
+      "coinbase": "0xdadb0d80178819f2319190d340ce9a924f783711",
+      "gross_weth_wei": "6620363423333472",
+      "outer_weth_wei": "6620363423333464",
+      "helper_weth_wei": "8",
+      "coinbase_payment_wei": "6335124842886563",
+      "gas_wei": "69048207522800",
+      "retained_eth_wei": "216190372924109",
+      "eth_usd_study_mark": "2455.6657",
+      "gross_usd_study_mark": "16.2573993802145868523104",
+      "coinbase_usd_study_mark": "15.5569487818944217499891",
+      "gas_usd_study_mark": "0.16955931486022192796",
+      "retained_usd_study_mark": "0.5308912834599431743613",
+      "native_deltas_wei": {
+        "0x000000000035b5e5ad9019092c665357240f594e": "-6335124842886563",
+        "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a": "0",
+        "0x654fae4aa229d104cabead47e56703f58b174be4": "-69048207522800"
+      },
+      "other_token_deltas_raw": [
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
+          "delta": "2"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "delta": "5"
+        }
+      ],
+      "gas_and_native_state_checks_passed": [
+        "0xac07db9dfcb250401b6d08dc1c535359ba935e5fc218cfdf3e4809ad830417b3",
+        "0xe9261740c1496b1ea281abcd42643e9e1ddfab8447f392ddc9ac995890345aa2"
+      ],
+      "middle_replay": {
+        "actual_exact_trace_gas_logs_match": true,
+        "without_open_success": true,
+        "without_open_error": null,
+        "actual_gas_used": 250566,
+        "without_open_gas_used": 236740,
+        "changed_token_cashflows": [
+          {
+            "account": "0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45",
+            "token": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "actual_raw": "6611261179774006519",
+            "without_open_raw": "6622410320160302266",
+            "without_open_minus_actual_raw": "11149140386295747"
+          },
+          {
+            "account": "0xe0554a476a092703abdb3ef35c80e0d76d32939f",
+            "token": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "actual_raw": "-2306801408529255468",
+            "without_open_raw": "-2317950548915551215",
+            "without_open_minus_actual_raw": "-11149140386295747"
+          }
+        ]
+      },
+      "close_without_middle": {
+        "success": false,
+        "error": "execution reverted"
+      }
+    },
+    {
+      "block": 25910990,
+      "hashes": [
+        "0xeaa390439220f8c77c49e33d24f5ccf65dd4a734c1ca6512314d3d7403eb6d69",
+        "0x00b7ccd9b7b6d77bec2b1cb695f2af5d131ea8ae9e49d0a394005acf40f554e0",
+        "0x7f414051379892bca5272033bda8544cbf73ccad0f28573fed1528d8cae7758c"
+      ],
+      "indices": [
+        0,
+        1,
+        2
+      ],
+      "coinbase": "0xdadb0d80178819f2319190d340ce9a924f783711",
+      "gross_weth_wei": "30262765342742129",
+      "outer_weth_wei": "30262765342742127",
+      "helper_weth_wei": "2",
+      "coinbase_payment_wei": "28733122512761238",
+      "gas_wei": "80917877744151",
+      "retained_eth_wei": "1448724952236740",
+      "eth_usd_study_mark": "2455.6657",
+      "gross_usd_study_mark": "74.3152348393205901302753",
+      "coinbase_usd_study_mark": "70.5589434084855844461366",
+      "gas_usd_study_mark": "0.1987072568931049863207",
+      "retained_usd_study_mark": "3.557584173941900697818",
+      "native_deltas_wei": {
+        "0x000000000035b5e5ad9019092c665357240f594e": "-28733122512761238",
+        "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a": "0",
+        "0x654fae4aa229d104cabead47e56703f58b174be4": "-80917877744151"
+      },
+      "other_token_deltas_raw": [
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
+          "delta": "1"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "delta": "6"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "delta": "5"
+        }
+      ],
+      "gas_and_native_state_checks_passed": [
+        "0xeaa390439220f8c77c49e33d24f5ccf65dd4a734c1ca6512314d3d7403eb6d69",
+        "0x7f414051379892bca5272033bda8544cbf73ccad0f28573fed1528d8cae7758c"
+      ],
+      "middle_replay": {
+        "actual_exact_trace_gas_logs_match": true,
+        "without_open_success": true,
+        "without_open_error": null,
+        "actual_gas_used": 758555,
+        "without_open_gas_used": 682051,
+        "changed_token_cashflows": [
+          {
+            "account": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+            "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "actual_raw": "-340516509",
+            "without_open_raw": "-415749874",
+            "without_open_minus_actual_raw": "-75233365"
+          },
+          {
+            "account": "0xb8f275fbf7a959f4bce59999a2ef122a099e81a8",
+            "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "actual_raw": "4081913495",
+            "without_open_raw": "4157146860",
+            "without_open_minus_actual_raw": "75233365"
+          }
+        ]
+      },
+      "close_without_middle": {
+        "success": false,
+        "error": "execution reverted"
+      }
+    },
+    {
+      "block": 25910995,
+      "hashes": [
+        "0xed4d95b24d00d9ce49fe3e381b5bae366535717670d0131f77cdab3e92fd72ec",
+        "0xc4a0a6f27119c7298dff9d2272825ea274745b70965830cd9cc5dfd8f1c23b16",
+        "0xb6eabef86d2ac23564ec1883fad0ed597d14474256aad623843eb31514a903fe"
+      ],
+      "indices": [
+        199,
+        200,
+        201
+      ],
+      "coinbase": "0x4838b106fce9647bdf1e7877bf73ce8b0bad5f97",
+      "gross_weth_wei": "275393970852682",
+      "outer_weth_wei": "275393699158928",
+      "helper_weth_wei": "271693754",
+      "coinbase_payment_wei": "163710602012826",
+      "gas_wei": "56532129586851",
+      "retained_eth_wei": "55151239253005",
+      "eth_usd_study_mark": "2455.6657",
+      "gross_usd_study_mark": "0.6762755282097309404074",
+      "coinbase_usd_study_mark": "0.4020185100892477682682",
+      "gas_usd_study_mark": "0.1388240115743851717107",
+      "retained_usd_study_mark": "0.1354330065460980004285",
+      "native_deltas_wei": {
+        "0x000000000035b5e5ad9019092c665357240f594e": "-163710602012826",
+        "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a": "0",
+        "0x654fae4aa229d104cabead47e56703f58b174be4": "-56532129586851"
+      },
+      "other_token_deltas_raw": [
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
+          "delta": "2"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "delta": "6"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "delta": "5"
+        }
+      ],
+      "gas_and_native_state_checks_passed": [
+        "0xed4d95b24d00d9ce49fe3e381b5bae366535717670d0131f77cdab3e92fd72ec",
+        "0xb6eabef86d2ac23564ec1883fad0ed597d14474256aad623843eb31514a903fe"
+      ],
+      "middle_replay": {
+        "actual_exact_trace_gas_logs_match": true,
+        "without_open_success": true,
+        "without_open_error": null,
+        "actual_gas_used": 468630,
+        "without_open_gas_used": 395519,
+        "changed_token_cashflows": [
+          {
+            "account": "0x000000000004444c5dc75cb358380d2e3de08a90",
+            "token": "0x5886e4d8d6a41a5ea2f3f77f23d7a7e942d581f1",
+            "actual_raw": "-6426902175451040765549",
+            "without_open_raw": "-6551327815413266816661",
+            "without_open_minus_actual_raw": "-124425639962226051112"
+          },
+          {
+            "account": "0xa48e223e2a723a2f574e3a4e0b12126851b81ca4",
+            "token": "0x5886e4d8d6a41a5ea2f3f77f23d7a7e942d581f1",
+            "actual_raw": "6426902175451040765549",
+            "without_open_raw": "6551327815413266816661",
+            "without_open_minus_actual_raw": "124425639962226051112"
+          }
+        ]
+      },
+      "close_without_middle": {
+        "success": false,
+        "error": "execution reverted"
+      }
+    },
+    {
+      "block": 25911033,
+      "hashes": [
+        "0x5653d962621406f202bfabbc6d07f7b7f63c8f3f72062af1247c37a0bfd3d4ae",
+        "0x5c72963f346b79d81d9d6cb3ebec6ff1b6863694b041de0400cd45d859e1cf36",
+        "0xe7853bfa0228443c96558bf4f8ac2920750d383f3a86748a87f6594eb2adcd99"
+      ],
+      "indices": [
+        0,
+        1,
+        2
+      ],
+      "coinbase": "0xdadb0d80178819f2319190d340ce9a924f783711",
+      "gross_weth_wei": "1168113917387547",
+      "outer_weth_wei": "1168113917387545",
+      "helper_weth_wei": "2",
+      "coinbase_payment_wei": "1075458315940995",
+      "gas_wei": "59397324354970",
+      "retained_eth_wei": "33258277091582",
+      "eth_usd_study_mark": "2455.6657",
+      "gross_usd_study_mark": "2.8684972806212327750379",
+      "coinbase_usd_study_mark": "2.6409660982360646453715",
+      "gas_usd_study_mark": "0.145859972090274453529",
+      "retained_usd_study_mark": "0.0816712102948936761374",
+      "native_deltas_wei": {
+        "0x000000000035b5e5ad9019092c665357240f594e": "-1075458315940995",
+        "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a": "0",
+        "0x654fae4aa229d104cabead47e56703f58b174be4": "-59397324354970"
+      },
+      "other_token_deltas_raw": [
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
+          "delta": "1"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "delta": "5"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xaebcdbd9f8b1422ab31073d7408c8cad83ca6a8b",
+          "delta": "6"
+        }
+      ],
+      "gas_and_native_state_checks_passed": [
+        "0x5653d962621406f202bfabbc6d07f7b7f63c8f3f72062af1247c37a0bfd3d4ae",
+        "0xe7853bfa0228443c96558bf4f8ac2920750d383f3a86748a87f6594eb2adcd99"
+      ],
+      "middle_replay": {
+        "actual_exact_trace_gas_logs_match": true,
+        "without_open_success": true,
+        "without_open_error": null,
+        "actual_gas_used": 443174,
+        "without_open_gas_used": 408421,
+        "changed_token_cashflows": [
+          {
+            "account": "0x000000000004444c5dc75cb358380d2e3de08a90",
+            "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "actual_raw": "-285366709",
+            "without_open_raw": "-288257231",
+            "without_open_minus_actual_raw": "-2890522"
+          },
+          {
+            "account": "0x05e7c72498fdecf1c3638b66af2740adea8d7f8f",
+            "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "actual_raw": "284938659",
+            "without_open_raw": "287824846",
+            "without_open_minus_actual_raw": "2886187"
+          },
+          {
+            "account": "0xad01c20d5886137e056775af56915de824c8fce5",
+            "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "actual_raw": "428050",
+            "without_open_raw": "432385",
+            "without_open_minus_actual_raw": "4335"
+          }
+        ]
+      },
+      "close_without_middle": {
+        "success": false,
+        "error": "execution reverted"
+      }
+    },
+    {
+      "block": 25911089,
+      "hashes": [
+        "0xcae0ea032c49cd58bf4dbaad0961098aceb02d45d0141fd83eab600a86327181",
+        "0xd7f63bc362c297afb5c83c85d29b189d0f24ec301c641500a1c6c15cfc08e82a",
+        "0x2ea4ca5588fcd4950f6c8a6f90ebeb71fa8a2d4009efecd9079526aa5afeb2fc"
+      ],
+      "indices": [
+        0,
+        1,
+        2
+      ],
+      "coinbase": "0xdadb0d80178819f2319190d340ce9a924f783711",
+      "gross_weth_wei": "1277654915729393",
+      "outer_weth_wei": "1277654915729391",
+      "helper_weth_wei": "2",
+      "coinbase_payment_wei": "1165186384042418",
+      "gas_wei": "62656593219615",
+      "retained_eth_wei": "49811938467360",
+      "eth_usd_study_mark": "2455.6657",
+      "gross_usd_study_mark": "3.1374933529930608719201",
+      "coinbase_usd_study_mark": "2.8613082373999932276626",
+      "gas_usd_study_mark": "0.1538636468482611227055",
+      "retained_usd_study_mark": "0.122321468744806521552",
+      "native_deltas_wei": {
+        "0x000000000035b5e5ad9019092c665357240f594e": "-1165186384042418",
+        "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a": "0",
+        "0x654fae4aa229d104cabead47e56703f58b174be4": "-62656593219615"
+      },
+      "other_token_deltas_raw": [
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
+          "delta": "2"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "delta": "6"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "delta": "5"
+        }
+      ],
+      "gas_and_native_state_checks_passed": [
+        "0xcae0ea032c49cd58bf4dbaad0961098aceb02d45d0141fd83eab600a86327181",
+        "0x2ea4ca5588fcd4950f6c8a6f90ebeb71fa8a2d4009efecd9079526aa5afeb2fc"
+      ],
+      "middle_replay": {
+        "actual_exact_trace_gas_logs_match": true,
+        "without_open_success": true,
+        "without_open_error": null,
+        "actual_gas_used": 678420,
+        "without_open_gas_used": 672843,
+        "changed_token_cashflows": [
+          {
+            "account": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+            "token": "0xe343167631d89b6ffc58b88d6b7fb0228795491d",
+            "actual_raw": "-200266664",
+            "without_open_raw": "-204348262",
+            "without_open_minus_actual_raw": "-4081598"
+          },
+          {
+            "account": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+            "token": "0xe343167631d89b6ffc58b88d6b7fb0228795491d",
+            "actual_raw": "200266664",
+            "without_open_raw": "204348262",
+            "without_open_minus_actual_raw": "4081598"
+          }
+        ]
+      },
+      "close_without_middle": {
+        "success": false,
+        "error": "execution reverted"
+      }
+    },
+    {
+      "block": 25911110,
+      "hashes": [
+        "0x15ddfa453d061993f0111e477366d8b3f756a10c108787ba88ddfdb2fbf78a8e",
+        "0xcfb4db30418a077f63f039fa05a4c00a73ac05dbec7fca5e912d4c2a38aac355",
+        "0x9461b7cf91f6c6874fbb0b09f87f071b92398154f4c428bcae387ae145b339d1"
+      ],
+      "indices": [
+        1,
+        2,
+        3
+      ],
+      "coinbase": "0xdadb0d80178819f2319190d340ce9a924f783711",
+      "gross_weth_wei": "2297990758664341",
+      "outer_weth_wei": "2297990758664339",
+      "helper_weth_wei": "2",
+      "coinbase_payment_wei": "2158156434516006",
+      "gas_wei": "63877459815792",
+      "retained_eth_wei": "75956864332543",
+      "eth_usd_study_mark": "2458.82623187",
+      "gross_usd_study_mark": "5.65035995799872413516674767",
+      "coinbase_usd_study_mark": "5.30653165366698544018231122",
+      "gas_usd_study_mark": "0.15706357382029118767969104",
+      "retained_usd_study_mark": "0.18676473051144750730474541",
+      "native_deltas_wei": {
+        "0x000000000035b5e5ad9019092c665357240f594e": "-2158156434516006",
+        "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a": "0",
+        "0x654fae4aa229d104cabead47e56703f58b174be4": "-63877459815792"
+      },
+      "other_token_deltas_raw": [
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
+          "delta": "2"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0x6b175474e89094c44da98b954eedeac495271d0f",
+          "delta": "5"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "delta": "6"
+        }
+      ],
+      "gas_and_native_state_checks_passed": [
+        "0x15ddfa453d061993f0111e477366d8b3f756a10c108787ba88ddfdb2fbf78a8e",
+        "0x9461b7cf91f6c6874fbb0b09f87f071b92398154f4c428bcae387ae145b339d1"
+      ],
+      "middle_replay": {
+        "actual_exact_trace_gas_logs_match": true,
+        "without_open_success": true,
+        "without_open_error": null,
+        "actual_gas_used": 634337,
+        "without_open_gas_used": 643817,
+        "changed_token_cashflows": [
+          {
+            "account": "0x000000000004444c5dc75cb358380d2e3de08a90",
+            "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "actual_raw": "-328420531",
+            "without_open_raw": "-355150392",
+            "without_open_minus_actual_raw": "-26729861"
+          },
+          {
+            "account": "0x5c2e112783a6854653b4bc7dc22248d3e592559c",
+            "token": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "actual_raw": "0",
+            "without_open_raw": "21722660633598",
+            "without_open_minus_actual_raw": "21722660633598"
+          },
+          {
+            "account": "0x5c7bcd6e7de5423a257d81b442095a1a6ced35c5",
+            "token": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "actual_raw": "350705423489399064",
+            "without_open_raw": "361547572427616768",
+            "without_open_minus_actual_raw": "10842148938217704"
+          },
+          {
+            "account": "0xc7bbec68d12a0d1830360f8ec58fa599ba1b0e9b",
+            "token": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "actual_raw": "-133756672946919856",
+            "without_open_raw": "-144642267206404756",
+            "without_open_minus_actual_raw": "-10885594259484900"
+          },
+          {
+            "account": "0xc7bbec68d12a0d1830360f8ec58fa599ba1b0e9b",
+            "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "actual_raw": "328420531",
+            "without_open_raw": "355150392",
+            "without_open_minus_actual_raw": "26729861"
+          },
+          {
+            "account": "0xd97c3d4e6f36d0aed73cf3bc83d38b9ce4ba91bc",
+            "token": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "actual_raw": "0",
+            "without_open_raw": "21722660633598",
+            "without_open_minus_actual_raw": "21722660633598"
+          }
+        ]
+      },
+      "close_without_middle": {
+        "success": false,
+        "error": "execution reverted"
+      }
+    },
+    {
+      "block": 25911337,
+      "hashes": [
+        "0x0cd296fb5fc64475ec5f2eadffd1ca1a4e6ceca1943d1e6e335b3fc01d0cfed4",
+        "0xe4f5790bbbe29255023f6bff438db7a2af8bbef500a8df94d7aefc6fd8fe2d3f",
+        "0x71f1ed1361ab7d018d31c2862184b83b6ebc4206951574e5ea3d7ce3ea5c3a28"
+      ],
+      "indices": [
+        47,
+        48,
+        49
+      ],
+      "coinbase": "0x4838b106fce9647bdf1e7877bf73ce8b0bad5f97",
+      "gross_weth_wei": "14943371584245954",
+      "outer_weth_wei": "14938419715420507",
+      "helper_weth_wei": "4951868825447",
+      "coinbase_payment_wei": "11097925387394569",
+      "gas_wei": "219900706005300",
+      "retained_eth_wei": "3625545490846085",
+      "eth_usd_study_mark": "2458.82623187",
+      "gross_usd_study_mark": "36.74315404392471132911335398",
+      "coinbase_usd_study_mark": "27.28787006186179809117271403",
+      "gas_usd_study_mark": "0.540697624332564479248911",
+      "retained_usd_study_mark": "8.91458635773034875869172895",
+      "native_deltas_wei": {
+        "0x000000000035b5e5ad9019092c665357240f594e": "-11097925387394569",
+        "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a": "0",
+        "0x654fae4aa229d104cabead47e56703f58b174be4": "-219900706005300"
+      },
+      "other_token_deltas_raw": [
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0x23878914efe38d27c4d67ab83ed1b93a74d4086a",
+          "delta": "-4"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
+          "delta": "-116"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0x98c23e9d8f34fefb1b7bd6a91b7ff122f4e16f5c",
+          "delta": "4"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "delta": "9"
+        }
+      ],
+      "gas_and_native_state_checks_passed": [
+        "0x0cd296fb5fc64475ec5f2eadffd1ca1a4e6ceca1943d1e6e335b3fc01d0cfed4",
+        "0x71f1ed1361ab7d018d31c2862184b83b6ebc4206951574e5ea3d7ce3ea5c3a28"
+      ],
+      "middle_replay": {
+        "actual_exact_trace_gas_logs_match": true,
+        "without_open_success": true,
+        "without_open_error": null,
+        "actual_gas_used": 343173,
+        "without_open_gas_used": 342828,
+        "changed_token_cashflows": [
+          {
+            "account": "0x000000000004444c5dc75cb358380d2e3de08a90",
+            "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "actual_raw": "-1984244721",
+            "without_open_raw": "-2099997101",
+            "without_open_minus_actual_raw": "-115752380"
+          },
+          {
+            "account": "0x2adc73d7f87e8bdbcc64b7dd7c251bbccf72a7d2",
+            "token": "0xa9e8acf069c58aec8825542845fd754e41a9489a",
+            "actual_raw": "15297025437189897905544",
+            "without_open_raw": "16187140632300141989443",
+            "without_open_minus_actual_raw": "890115195110244083899"
+          },
+          {
+            "account": "0xddd23787a6b80a794d952f5fb036d0b31a8e6aff",
+            "token": "0xa9e8acf069c58aec8825542845fd754e41a9489a",
+            "actual_raw": "-15297025437189897905544",
+            "without_open_raw": "-16187140632300141989443",
+            "without_open_minus_actual_raw": "-890115195110244083899"
+          },
+          {
+            "account": "0xddd23787a6b80a794d952f5fb036d0b31a8e6aff",
+            "token": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "actual_raw": "806890930824676223",
+            "without_open_raw": "853957372683698741",
+            "without_open_minus_actual_raw": "47066441859022518"
+          },
+          {
+            "account": "0xe0554a476a092703abdb3ef35c80e0d76d32939f",
+            "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "actual_raw": "1984244721",
+            "without_open_raw": "2099997101",
+            "without_open_minus_actual_raw": "115752380"
+          },
+          {
+            "account": "0xe0554a476a092703abdb3ef35c80e0d76d32939f",
+            "token": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "actual_raw": "-806890930824676223",
+            "without_open_raw": "-853957372683698741",
+            "without_open_minus_actual_raw": "-47066441859022518"
+          }
+        ]
+      },
+      "close_without_middle": {
+        "success": false,
+        "error": "execution reverted"
+      }
+    },
+    {
+      "block": 25911349,
+      "hashes": [
+        "0x8f5c4a2987be2029e4a6430eeed76e657277118c4afbbd93fa72f741aea0079c",
+        "0xe0697c2f09539eb759c9ca423bb6f48001916217310222fbe724478d5dddb78d",
+        "0xbfd942c15d60f697d4af3673c0cc9cd882b122332d05071c5fc8d5d0301f7790"
+      ],
+      "indices": [
+        0,
+        1,
+        2
+      ],
+      "coinbase": "0xdadb0d80178819f2319190d340ce9a924f783711",
+      "gross_weth_wei": "40092223465954210",
+      "outer_weth_wei": "40092223465954208",
+      "helper_weth_wei": "2",
+      "coinbase_payment_wei": "38219824439088852",
+      "gas_wei": "113332691688898",
+      "retained_eth_wei": "1759066335176460",
+      "eth_usd_study_mark": "2458.82623187",
+      "gross_usd_study_mark": "98.5798107520821814082626727",
+      "coinbase_usd_study_mark": "93.97590690829777829928411324",
+      "gas_usd_study_mark": "0.27866539525309753565277926",
+      "retained_usd_study_mark": "4.3252384485313055733257802",
+      "native_deltas_wei": {
+        "0x000000000035b5e5ad9019092c665357240f594e": "-38219824439088852",
+        "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a": "0",
+        "0x654fae4aa229d104cabead47e56703f58b174be4": "-113332691688898"
+      },
+      "other_token_deltas_raw": [
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
+          "delta": "2"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "delta": "4"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "delta": "6"
+        }
+      ],
+      "gas_and_native_state_checks_passed": [
+        "0x8f5c4a2987be2029e4a6430eeed76e657277118c4afbbd93fa72f741aea0079c",
+        "0xbfd942c15d60f697d4af3673c0cc9cd882b122332d05071c5fc8d5d0301f7790"
+      ],
+      "middle_replay": {
+        "actual_exact_trace_gas_logs_match": true,
+        "without_open_success": true,
+        "without_open_error": null,
+        "actual_gas_used": 482548,
+        "without_open_gas_used": 470736,
+        "changed_token_cashflows": [
+          {
+            "account": "0x000000000004444c5dc75cb358380d2e3de08a90",
+            "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "actual_raw": "-18818316441",
+            "without_open_raw": "-18937345075",
+            "without_open_minus_actual_raw": "-119028634"
+          },
+          {
+            "account": "0x249a1b925e48d3dd31823a9ae76341229f298038",
+            "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "actual_raw": "19815051681",
+            "without_open_raw": "19934080315",
+            "without_open_minus_actual_raw": "119028634"
+          }
+        ]
+      },
+      "close_without_middle": {
+        "success": false,
+        "error": "execution reverted"
+      }
+    },
+    {
+      "block": 25911429,
+      "hashes": [
+        "0x59653603f1b9818ba0003b8ac68f3155e7006204512348576f01b99fb891fb28",
+        "0xefd80d4f3104927a0a77f89f4fd8ae60d45957ec1e32eb42d1f76ba1b30f515a",
+        "0x1878a99580c43778346ea300e95ec67973eb200f6ba1767fe2c086cc71dc7363"
+      ],
+      "indices": [
+        0,
+        1,
+        2
+      ],
+      "coinbase": "0xdadb0d80178819f2319190d340ce9a924f783711",
+      "gross_weth_wei": "1498090980140530",
+      "outer_weth_wei": "1498090980140528",
+      "helper_weth_wei": "2",
+      "coinbase_payment_wei": "1359231042917397",
+      "gas_wei": "93828826742212",
+      "retained_eth_wei": "45031110480921",
+      "eth_usd_study_mark": "2455.11161674",
+      "gross_usd_study_mark": "3.6779805682764278407004722",
+      "coinbase_usd_study_mark": "3.33706392330012687494242578",
+      "gas_usd_study_mark": "0.23036024251988945052382888",
+      "retained_usd_study_mark": "0.11055640245641151523421754",
+      "native_deltas_wei": {
+        "0x000000000035b5e5ad9019092c665357240f594e": "-1359231042917397",
+        "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a": "0",
+        "0x654fae4aa229d104cabead47e56703f58b174be4": "-93828826742212"
+      },
+      "other_token_deltas_raw": [
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
+          "delta": "2"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "delta": "4"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "delta": "6"
+        }
+      ],
+      "gas_and_native_state_checks_passed": [
+        "0x59653603f1b9818ba0003b8ac68f3155e7006204512348576f01b99fb891fb28",
+        "0x1878a99580c43778346ea300e95ec67973eb200f6ba1767fe2c086cc71dc7363"
+      ],
+      "middle_replay": {
+        "actual_exact_trace_gas_logs_match": true,
+        "without_open_success": true,
+        "without_open_error": null,
+        "actual_gas_used": 507459,
+        "without_open_gas_used": 490331,
+        "changed_token_cashflows": [
+          {
+            "account": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+            "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "actual_raw": "-795055028",
+            "without_open_raw": "-799045643",
+            "without_open_minus_actual_raw": "-3990615"
+          },
+          {
+            "account": "0x40ffe85a28dc9993541449464d7529a922142960",
+            "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "actual_raw": "795055028",
+            "without_open_raw": "799045643",
+            "without_open_minus_actual_raw": "3990615"
+          }
+        ]
+      },
+      "close_without_middle": {
+        "success": false,
+        "error": "execution reverted"
+      }
+    },
+    {
+      "block": 25911582,
+      "hashes": [
+        "0x8974901eaeca380afd31024edb86f147e1be5acf42ef5ac7b5c8fdd06920d390",
+        "0x8d8439c643669fd4f74daad30a09997747fb18f30821a8c06a93382a2b685425",
+        "0x6b2409efc370499000ad679809f36705f288209c49f41e0ea9f5a188e64cb2e4"
+      ],
+      "indices": [
+        0,
+        1,
+        2
+      ],
+      "coinbase": "0x4838b106fce9647bdf1e7877bf73ce8b0bad5f97",
+      "gross_weth_wei": "1968384977333151",
+      "outer_weth_wei": "1968384977333149",
+      "helper_weth_wei": "2",
+      "coinbase_payment_wei": "1470109580440632",
+      "gas_wei": "112191807369580",
+      "retained_eth_wei": "386083589522939",
+      "eth_usd_study_mark": "2455.11161674",
+      "gross_usd_study_mark": "4.83260482406712060520854774",
+      "coinbase_usd_study_mark": "3.60928310882056311110737968",
+      "gas_usd_study_mark": "0.2754434095761122004947692",
+      "retained_usd_study_mark": "0.94787830567044529360639886",
+      "native_deltas_wei": {
+        "0x000000000035b5e5ad9019092c665357240f594e": "-1470109580440632",
+        "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a": "0",
+        "0x654fae4aa229d104cabead47e56703f58b174be4": "-112191807369580"
+      },
+      "other_token_deltas_raw": [
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
+          "delta": "2"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "delta": "5"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "delta": "6"
+        }
+      ],
+      "gas_and_native_state_checks_passed": [
+        "0x8974901eaeca380afd31024edb86f147e1be5acf42ef5ac7b5c8fdd06920d390",
+        "0x6b2409efc370499000ad679809f36705f288209c49f41e0ea9f5a188e64cb2e4"
+      ],
+      "middle_replay": {
+        "actual_exact_trace_gas_logs_match": true,
+        "without_open_success": true,
+        "without_open_error": null,
+        "actual_gas_used": 335383,
+        "without_open_gas_used": 314491,
+        "changed_token_cashflows": [
+          {
+            "account": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+            "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "actual_raw": "-508473131",
+            "without_open_raw": "-513618215",
+            "without_open_minus_actual_raw": "-5145084"
+          },
+          {
+            "account": "0x05e7c72498fdecf1c3638b66af2740adea8d7f8f",
+            "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "actual_raw": "507710422",
+            "without_open_raw": "512847788",
+            "without_open_minus_actual_raw": "5137366"
+          },
+          {
+            "account": "0xad01c20d5886137e056775af56915de824c8fce5",
+            "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "actual_raw": "762709",
+            "without_open_raw": "770427",
+            "without_open_minus_actual_raw": "7718"
+          }
+        ]
+      },
+      "close_without_middle": {
+        "success": false,
+        "error": "execution reverted"
+      }
+    },
+    {
+      "block": 25911701,
+      "hashes": [
+        "0x1c135c5fa4eda3580dfee5bb32c1ae9a418ec612afb3fa550d74b0b016190ba9",
+        "0xbedf49d7d05f42bc593d9ad9446d1239f361486f7d58addcc73fa2771f2fc69f",
+        "0x07911b27c06a75a686ac6c2c80546b3a362c37c9a997099cfd769ff8cc01fbc9"
+      ],
+      "indices": [
+        0,
+        1,
+        2
+      ],
+      "coinbase": "0xdadb0d80178819f2319190d340ce9a924f783711",
+      "gross_weth_wei": "4081116103131461",
+      "outer_weth_wei": "4081116103131459",
+      "helper_weth_wei": "2",
+      "coinbase_payment_wei": "3818773658923518",
+      "gas_wei": "94927627679904",
+      "retained_eth_wei": "167414816528039",
+      "eth_usd_study_mark": "2458.12",
+      "gross_usd_study_mark": "10.03187311542950691332",
+      "coinbase_usd_study_mark": "9.38700390647307806616",
+      "gas_usd_study_mark": "0.23334350015252562048",
+      "retained_usd_study_mark": "0.41152570880390322668",
+      "native_deltas_wei": {
+        "0x000000000035b5e5ad9019092c665357240f594e": "-3818773658923518",
+        "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a": "0",
+        "0x654fae4aa229d104cabead47e56703f58b174be4": "-94927627679904"
+      },
+      "other_token_deltas_raw": [
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
+          "delta": "2"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "delta": "5"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xcacd6fd266af91b8aed52accc382b4e165586e29",
+          "delta": "6"
+        }
+      ],
+      "gas_and_native_state_checks_passed": [
+        "0x1c135c5fa4eda3580dfee5bb32c1ae9a418ec612afb3fa550d74b0b016190ba9",
+        "0x07911b27c06a75a686ac6c2c80546b3a362c37c9a997099cfd769ff8cc01fbc9"
+      ],
+      "middle_replay": {
+        "actual_exact_trace_gas_logs_match": true,
+        "without_open_success": true,
+        "without_open_error": null,
+        "actual_gas_used": 218449,
+        "without_open_gas_used": 206550,
+        "changed_token_cashflows": [
+          {
+            "account": "0x000000000004444c5dc75cb358380d2e3de08a90",
+            "token": "0xcacd6fd266af91b8aed52accc382b4e165586e29",
+            "actual_raw": "-2963753098191714766898",
+            "without_open_raw": "-2978268236852326967171",
+            "without_open_minus_actual_raw": "-14515138660612200273"
+          },
+          {
+            "account": "0xfa9edea5ac3aaf4f9af53c14f623e68ad61d6c0f",
+            "token": "0xcacd6fd266af91b8aed52accc382b4e165586e29",
+            "actual_raw": "2916100806402077535424",
+            "without_open_raw": "2930615945062689735697",
+            "without_open_minus_actual_raw": "14515138660612200273"
+          }
+        ]
+      },
+      "close_without_middle": {
+        "success": false,
+        "error": "execution reverted"
+      }
+    },
+    {
+      "block": 25911742,
+      "hashes": [
+        "0x6942ba0394a24f417c7e78192bc361e04cd00a2655fb26741203fca0a99891aa",
+        "0x8b1f7d57194c60c1e5cf7523714a519ff1e00a01e25f84dd0c3e79aa7af75832",
+        "0xeb1ad9cf3e402277b893f3b1ec5cc4540835e58dd80ed84fc5e7ec88afa7fcf4"
+      ],
+      "indices": [
+        6,
+        7,
+        8
+      ],
+      "coinbase": "0xdadb0d80178819f2319190d340ce9a924f783711",
+      "gross_weth_wei": "417192720611521",
+      "outer_weth_wei": "417192720611519",
+      "helper_weth_wei": "2",
+      "coinbase_payment_wei": "211718601891692",
+      "gas_wei": "110358781739180",
+      "retained_eth_wei": "95115336980649",
+      "eth_usd_study_mark": "2458.12",
+      "gross_usd_study_mark": "1.02550977038959200052",
+      "coinbase_usd_study_mark": "0.52042972968200593904",
+      "gas_usd_study_mark": "0.2712751285687131416",
+      "retained_usd_study_mark": "0.23380491213887291988",
+      "native_deltas_wei": {
+        "0x000000000035b5e5ad9019092c665357240f594e": "-211718601891692",
+        "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a": "0",
+        "0x654fae4aa229d104cabead47e56703f58b174be4": "-110358781739180"
+      },
+      "other_token_deltas_raw": [
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
+          "delta": "2"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "delta": "6"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "delta": "5"
+        }
+      ],
+      "gas_and_native_state_checks_passed": [
+        "0x6942ba0394a24f417c7e78192bc361e04cd00a2655fb26741203fca0a99891aa",
+        "0xeb1ad9cf3e402277b893f3b1ec5cc4540835e58dd80ed84fc5e7ec88afa7fcf4"
+      ],
+      "middle_replay": {
+        "actual_exact_trace_gas_logs_match": true,
+        "without_open_success": true,
+        "without_open_error": null,
+        "actual_gas_used": 853538,
+        "without_open_gas_used": 869512,
+        "changed_token_cashflows": [
+          {
+            "account": "0x071e944d0ec39b4f8fdc3903824bb99c86cc41c0",
+            "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "actual_raw": "733762",
+            "without_open_raw": "739869",
+            "without_open_minus_actual_raw": "6107"
+          },
+          {
+            "account": "0x49fb929c2252248afbc46f2ed43873f13452ebb5",
+            "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "actual_raw": "146018662",
+            "without_open_raw": "147234039",
+            "without_open_minus_actual_raw": "1215377"
+          },
+          {
+            "account": "0xba1333333333a1ba1108e8412f11850a5c319ba9",
+            "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "actual_raw": "-13551665",
+            "without_open_raw": "-14773149",
+            "without_open_minus_actual_raw": "-1221484"
+          }
+        ]
+      },
+      "close_without_middle": {
+        "success": false,
+        "error": "execution reverted"
+      }
+    },
+    {
+      "block": 25911771,
+      "hashes": [
+        "0xcae533f0e6db0696acccd392d4c52ee3d6de58ac95cb6086b69b1c83caa47413",
+        "0x94eb4ae4cf65c69f032eb5bdc2f515acfdc7799568d443b45546a570e5f77046",
+        "0x3c879fa600a3fe8a5a69514e557c7ae0c0caa7d96ff4eb752ae2237b2744268a"
+      ],
+      "indices": [
+        38,
+        39,
+        40
+      ],
+      "coinbase": "0xdadb0d80178819f2319190d340ce9a924f783711",
+      "gross_weth_wei": "4458389808781124",
+      "outer_weth_wei": "4458389808781122",
+      "helper_weth_wei": "2",
+      "coinbase_payment_wei": "4164857688304808",
+      "gas_wei": "133518048729813",
+      "retained_eth_wei": "160014071746503",
+      "eth_usd_study_mark": "2458.12",
+      "gross_usd_study_mark": "10.95925715676105652688",
+      "coinbase_usd_study_mark": "10.23771998077581464096",
+      "gas_usd_study_mark": "0.32820338594372793156",
+      "retained_usd_study_mark": "0.39333379004151395436",
+      "native_deltas_wei": {
+        "0x000000000035b5e5ad9019092c665357240f594e": "-4164857688304808",
+        "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a": "0",
+        "0x654fae4aa229d104cabead47e56703f58b174be4": "-133518048729813"
+      },
+      "other_token_deltas_raw": [
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
+          "delta": "2"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "delta": "4"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "delta": "6"
+        }
+      ],
+      "gas_and_native_state_checks_passed": [
+        "0xcae533f0e6db0696acccd392d4c52ee3d6de58ac95cb6086b69b1c83caa47413",
+        "0x3c879fa600a3fe8a5a69514e557c7ae0c0caa7d96ff4eb752ae2237b2744268a"
+      ],
+      "middle_replay": {
+        "actual_exact_trace_gas_logs_match": true,
+        "without_open_success": true,
+        "without_open_error": null,
+        "actual_gas_used": 1700358,
+        "without_open_gas_used": 1580019,
+        "changed_token_cashflows": [
+          {
+            "account": "0x000000000004444c5dc75cb358380d2e3de08a90",
+            "token": "0x6243558a24cc6116abe751f27e6d7ede50abfc76",
+            "actual_raw": "-453220140805200129361125",
+            "without_open_raw": "-467234598784744637398221",
+            "without_open_minus_actual_raw": "-14014457979544508037096"
+          },
+          {
+            "account": "0x000000000004444c5dc75cb358380d2e3de08a90",
+            "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "actual_raw": "364326593",
+            "without_open_raw": "375985451",
+            "without_open_minus_actual_raw": "11658858"
+          },
+          {
+            "account": "0xdeedd94590291d7b2640cea472ed2288e7812b05",
+            "token": "0x6243558a24cc6116abe751f27e6d7ede50abfc76",
+            "actual_raw": "453220140805200129361125",
+            "without_open_raw": "467234598784744637398221",
+            "without_open_minus_actual_raw": "14014457979544508037096"
+          },
+          {
+            "account": "0xe0e0e08a6a4b9dc7bd67bcb7aade5cf48157d444",
+            "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "actual_raw": "-67297472",
+            "without_open_raw": "-78956330",
+            "without_open_minus_actual_raw": "-11658858"
+          }
+        ]
+      },
+      "close_without_middle": {
+        "success": false,
+        "error": "execution reverted"
+      }
+    },
+    {
+      "block": 25911802,
+      "hashes": [
+        "0x1aa3afeb6a85c6c3cd4b595cfeeb77a7321a2b35dd8d6c579863bda5f642d948",
+        "0x9de0b5e26a50e5cbfb3dfe2bbe0c11ac7907052223a014e6e5dfbd508a933bff",
+        "0x591ba402d0d11e079010bd91072c48d7a80f15c74bfcd31831652aecb18ed424"
+      ],
+      "indices": [
+        142,
+        143,
+        144
+      ],
+      "coinbase": "0x4838b106fce9647bdf1e7877bf73ce8b0bad5f97",
+      "gross_weth_wei": "3986537820403268",
+      "outer_weth_wei": "3986537820403266",
+      "helper_weth_wei": "2",
+      "coinbase_payment_wei": "3017888701191882",
+      "gas_wei": "107508933397586",
+      "retained_eth_wei": "861140185813800",
+      "eth_usd_study_mark": "2458.12",
+      "gross_usd_study_mark": "9.79938834708968113616",
+      "coinbase_usd_study_mark": "7.41833257417378898184",
+      "gas_usd_study_mark": "0.26426985936327409832",
+      "retained_usd_study_mark": "2.116785913552618056",
+      "native_deltas_wei": {
+        "0x000000000035b5e5ad9019092c665357240f594e": "-3017888701191882",
+        "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a": "0",
+        "0x654fae4aa229d104cabead47e56703f58b174be4": "-107508933397586"
+      },
+      "other_token_deltas_raw": [
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
+          "delta": "1"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0x6b175474e89094c44da98b954eedeac495271d0f",
+          "delta": "5"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "delta": "6"
+        }
+      ],
+      "gas_and_native_state_checks_passed": [
+        "0x1aa3afeb6a85c6c3cd4b595cfeeb77a7321a2b35dd8d6c579863bda5f642d948",
+        "0x591ba402d0d11e079010bd91072c48d7a80f15c74bfcd31831652aecb18ed424"
+      ],
+      "middle_replay": {
+        "actual_exact_trace_gas_logs_match": true,
+        "without_open_success": true,
+        "without_open_error": null,
+        "actual_gas_used": 1450426,
+        "without_open_gas_used": 1373235,
+        "changed_token_cashflows": [
+          {
+            "account": "0x000000000004444c5dc75cb358380d2e3de08a90",
+            "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "actual_raw": "-37345122",
+            "without_open_raw": "-47171152",
+            "without_open_minus_actual_raw": "-9826030"
+          },
+          {
+            "account": "0x31c241ef4d6a191ce474a02f4c5122536e5bf0dc",
+            "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "actual_raw": "466800",
+            "without_open_raw": "491365",
+            "without_open_minus_actual_raw": "24565"
+          },
+          {
+            "account": "0x616c1cd94555c5933e1ff10fa874e0b79561c926",
+            "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "actual_raw": "466800",
+            "without_open_raw": "491365",
+            "without_open_minus_actual_raw": "24565"
+          },
+          {
+            "account": "0xccd92b453da9d6277f48c32fb0b6b5b630da7d4d",
+            "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "actual_raw": "185786410",
+            "without_open_raw": "195563310",
+            "without_open_minus_actual_raw": "9776900"
+          }
+        ]
+      },
+      "close_without_middle": {
+        "success": false,
+        "error": "execution reverted"
+      }
+    },
+    {
+      "block": 25911874,
+      "hashes": [
+        "0xfbb2cdfa6f1dfeac53d2dea46e082d3ff0b721945b56f08766110172124db6f0",
+        "0x7bd7e48f286c050e8287f3ed47d424d94b10c52ba7d0906bfcbec1c8c5d08859",
+        "0x6301da10c1a3746fe0394ec7ccbf47498834211e70920cdb1d4407ead832581a"
+      ],
+      "indices": [
+        160,
+        161,
+        162
+      ],
+      "coinbase": "0x4838b106fce9647bdf1e7877bf73ce8b0bad5f97",
+      "gross_weth_wei": "373392965239085",
+      "outer_weth_wei": "373392965239083",
+      "helper_weth_wei": "2",
+      "coinbase_payment_wei": "108092095506529",
+      "gas_wei": "227133994222820",
+      "retained_eth_wei": "38166875509736",
+      "eth_usd_study_mark": "2458.12",
+      "gross_usd_study_mark": "0.91784471571349962020",
+      "coinbase_usd_study_mark": "0.26570334180650906548",
+      "gas_usd_study_mark": "0.5583226138789982984",
+      "retained_usd_study_mark": "0.09381876002799225632",
+      "native_deltas_wei": {
+        "0x000000000035b5e5ad9019092c665357240f594e": "-108092095506529",
+        "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a": "0",
+        "0x654fae4aa229d104cabead47e56703f58b174be4": "-227133994222820"
+      },
+      "other_token_deltas_raw": [
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
+          "delta": "3"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "delta": "6"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "delta": "4"
+        }
+      ],
+      "gas_and_native_state_checks_passed": [
+        "0xfbb2cdfa6f1dfeac53d2dea46e082d3ff0b721945b56f08766110172124db6f0",
+        "0x6301da10c1a3746fe0394ec7ccbf47498834211e70920cdb1d4407ead832581a"
+      ],
+      "middle_replay": {
+        "actual_exact_trace_gas_logs_match": true,
+        "without_open_success": true,
+        "without_open_error": null,
+        "actual_gas_used": 572076,
+        "without_open_gas_used": 555319,
+        "changed_token_cashflows": [
+          {
+            "account": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+            "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "actual_raw": "-187809570",
+            "without_open_raw": "-189699745",
+            "without_open_minus_actual_raw": "-1890175"
+          },
+          {
+            "account": "0x000000000004444c5dc75cb358380d2e3de08a90",
+            "token": "0x7cf9a80db3b29ee8efe3710aadb7b95270572d47",
+            "actual_raw": "-3640003920",
+            "without_open_raw": "-3676594901",
+            "without_open_minus_actual_raw": "-36590981"
+          },
+          {
+            "account": "0x000000000004444c5dc75cb358380d2e3de08a90",
+            "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "actual_raw": "187809570",
+            "without_open_raw": "189699745",
+            "without_open_minus_actual_raw": "1890175"
+          },
+          {
+            "account": "0x21fecf63489ab27e9483fe3ad6cfffd4e392b450",
+            "token": "0x7cf9a80db3b29ee8efe3710aadb7b95270572d47",
+            "actual_raw": "3640003920",
+            "without_open_raw": "3676594901",
+            "without_open_minus_actual_raw": "36590981"
+          }
+        ]
+      },
+      "close_without_middle": {
+        "success": false,
+        "error": "execution reverted"
+      }
+    },
+    {
+      "block": 25911943,
+      "hashes": [
+        "0x05dadda2e58b1ab789cc3974857c97de77e00ff8e92c5a19f1866c870104fd0b",
+        "0xd6472cd8053016ce84b86b7c84eb63ea1432e0fedf5f9d5443587b15d543f2d8",
+        "0x93730a56745d5b07553814c45372daf2ace0d2f21b864ee7fef03ff6f434e942"
+      ],
+      "indices": [
+        0,
+        1,
+        2
+      ],
+      "coinbase": "0xdadb0d80178819f2319190d340ce9a924f783711",
+      "gross_weth_wei": "9178418881227592",
+      "outer_weth_wei": "9178418881227590",
+      "helper_weth_wei": "2",
+      "coinbase_payment_wei": "8779729626134277",
+      "gas_wei": "108455424962040",
+      "retained_eth_wei": "290233830131275",
+      "eth_usd_study_mark": "2458.12",
+      "gross_usd_study_mark": "22.56165502032316844704",
+      "coinbase_usd_study_mark": "21.58162898859318897924",
+      "gas_usd_study_mark": "0.2665964492076897648",
+      "retained_usd_study_mark": "0.71342958252228970300",
+      "native_deltas_wei": {
+        "0x000000000035b5e5ad9019092c665357240f594e": "-8779729626134277",
+        "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a": "0",
+        "0x654fae4aa229d104cabead47e56703f58b174be4": "-108455424962040"
+      },
+      "other_token_deltas_raw": [
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
+          "delta": "2"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "delta": "6"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "delta": "5"
+        }
+      ],
+      "gas_and_native_state_checks_passed": [
+        "0x05dadda2e58b1ab789cc3974857c97de77e00ff8e92c5a19f1866c870104fd0b",
+        "0x93730a56745d5b07553814c45372daf2ace0d2f21b864ee7fef03ff6f434e942"
+      ],
+      "middle_replay": {
+        "actual_exact_trace_gas_logs_match": true,
+        "without_open_success": true,
+        "without_open_error": null,
+        "actual_gas_used": 548551,
+        "without_open_gas_used": 522911,
+        "changed_token_cashflows": [
+          {
+            "account": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+            "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "actual_raw": "-457213265",
+            "without_open_raw": "-480749341",
+            "without_open_minus_actual_raw": "-23536076"
+          },
+          {
+            "account": "0x025a13752ec1fb6c0e441e5d7b1678bb5f9ca62f",
+            "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "actual_raw": "1153771184",
+            "without_open_raw": "1177307260",
+            "without_open_minus_actual_raw": "23536076"
+          },
+          {
+            "account": "0x025a13752ec1fb6c0e441e5d7b1678bb5f9ca62f",
+            "token": "0xe343167631d89b6ffc58b88d6b7fb0228795491d",
+            "actual_raw": "-1153393163",
+            "without_open_raw": "-1176921448",
+            "without_open_minus_actual_raw": "-23528285"
+          },
+          {
+            "account": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+            "token": "0xe343167631d89b6ffc58b88d6b7fb0228795491d",
+            "actual_raw": "1153393163",
+            "without_open_raw": "1176921448",
+            "without_open_minus_actual_raw": "23528285"
+          }
+        ]
+      },
+      "close_without_middle": {
+        "success": false,
+        "error": "execution reverted"
+      }
+    },
+    {
+      "block": 25911995,
+      "hashes": [
+        "0x67a23ceeb08a41ac3fa9cc0fe3557610a4531b791999ff477a6a5470c5cfcd1e",
+        "0xb19179a96eb27cb0fb05f08443c9634198423adf0f8f6d0944a5ba6b9a07641f",
+        "0x90c68d21460c9752b8bbe536a8e052627b0069c71299cc908d177288d28891df"
+      ],
+      "indices": [
+        6,
+        7,
+        8
+      ],
+      "coinbase": "0xdadb0d80178819f2319190d340ce9a924f783711",
+      "gross_weth_wei": "13153583645535271",
+      "outer_weth_wei": "13153583645535269",
+      "helper_weth_wei": "2",
+      "coinbase_payment_wei": "12526810618731516",
+      "gas_wei": "77585692558689",
+      "retained_eth_wei": "549187334245066",
+      "eth_usd_study_mark": "2458.12",
+      "gross_usd_study_mark": "32.33308703076316035052",
+      "coinbase_usd_study_mark": "30.79240371811631410992",
+      "gas_usd_study_mark": "0.19071494259236460468",
+      "retained_usd_study_mark": "1.34996837005448163592",
+      "native_deltas_wei": {
+        "0x000000000035b5e5ad9019092c665357240f594e": "-12526810618731516",
+        "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a": "0",
+        "0x654fae4aa229d104cabead47e56703f58b174be4": "-77585692558689"
+      },
+      "other_token_deltas_raw": [
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+          "delta": "5"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
+          "delta": "2"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "delta": "6"
+        }
+      ],
+      "gas_and_native_state_checks_passed": [
+        "0x67a23ceeb08a41ac3fa9cc0fe3557610a4531b791999ff477a6a5470c5cfcd1e",
+        "0x90c68d21460c9752b8bbe536a8e052627b0069c71299cc908d177288d28891df"
+      ],
+      "middle_replay": {
+        "actual_exact_trace_gas_logs_match": true,
+        "without_open_success": true,
+        "without_open_error": null,
+        "actual_gas_used": 4026216,
+        "without_open_gas_used": 4029959,
+        "changed_token_cashflows": [
+          {
+            "account": "0x0000000000000000000000000000000000000000",
+            "token": "0x6b175474e89094c44da98b954eedeac495271d0f",
+            "actual_raw": "-148265473311502702404834",
+            "without_open_raw": "-148273627660502702404834",
+            "without_open_minus_actual_raw": "-8154349000000000000"
+          },
+          {
+            "account": "0x0000000000000000000000000000000000000000",
+            "token": "0xdc035d45d973e3ec169d2276ddab16f1e407384f",
+            "actual_raw": "56913387635000000000000",
+            "without_open_raw": "56921541984000000000000",
+            "without_open_minus_actual_raw": "8154349000000000000"
+          },
+          {
+            "account": "0x000000000004444c5dc75cb358380d2e3de08a90",
+            "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "actual_raw": "-77068028507",
+            "without_open_raw": "-77079070446",
+            "without_open_minus_actual_raw": "-11041939"
+          },
+          {
+            "account": "0x000000000004444c5dc75cb358380d2e3de08a90",
+            "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "actual_raw": "-109943608011",
+            "without_open_raw": "-109924414664",
+            "without_open_minus_actual_raw": "19193347"
+          },
+          {
+            "account": "0x000000000004444c5dc75cb358380d2e3de08a90",
+            "token": "0xdc035d45d973e3ec169d2276ddab16f1e407384f",
+            "actual_raw": "-56913387635968963773775",
+            "without_open_raw": "-56921541984347631000962",
+            "without_open_minus_actual_raw": "-8154348378667227187"
+          },
+          {
+            "account": "0x35c9a4dae1ff05788f24b5b32721d89340cbb636",
+            "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "actual_raw": "-18848088786",
+            "without_open_raw": "-18850789268",
+            "without_open_minus_actual_raw": "-2700482"
+          },
+          {
+            "account": "0x35c9a4dae1ff05788f24b5b32721d89340cbb636",
+            "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "actual_raw": "18844906030",
+            "without_open_raw": "18847606064",
+            "without_open_minus_actual_raw": "2700034"
+          },
+          {
+            "account": "0x37305b1cd40574e4c5ce33f8e8306be057fd7341",
+            "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "actual_raw": "-148265473312",
+            "without_open_raw": "-148273627661",
+            "without_open_minus_actual_raw": "-8154349"
+          },
+          {
+            "account": "0x3a6fb4fab64e8fa018d1b27226cb609e4b1feade",
+            "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "actual_raw": "463903962219",
+            "without_open_raw": "463950683007",
+            "without_open_minus_actual_raw": "46720788"
+          },
+          {
+            "account": "0x4f493b7de8aac7d55f71853688b1f7c8f0243c85",
+            "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "actual_raw": "-5113209776",
+            "without_open_raw": "-5113942379",
+            "without_open_minus_actual_raw": "-732603"
+          },
+          {
+            "account": "0x4f493b7de8aac7d55f71853688b1f7c8f0243c85",
+            "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "actual_raw": "5112371031",
+            "without_open_raw": "5113103514",
+            "without_open_minus_actual_raw": "732483"
+          },
+          {
+            "account": "0x52aa899454998be5b000ad077a46bbe360f4e497",
+            "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "actual_raw": "-132231053040",
+            "without_open_raw": "-132247767432",
+            "without_open_minus_actual_raw": "-16714392"
+          },
+          {
+            "account": "0x52aa899454998be5b000ad077a46bbe360f4e497",
+            "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "actual_raw": "111526796076",
+            "without_open_raw": "111543507846",
+            "without_open_minus_actual_raw": "16711770"
+          },
+          {
+            "account": "0x5b03cccab7ba3010fa5cad23746cbf0794938e96",
+            "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "actual_raw": "-77020002919",
+            "without_open_raw": "-77066716366",
+            "without_open_minus_actual_raw": "-46713447"
+          },
+          {
+            "account": "0x7718360ead37485836e7fa69deae10058813baf1",
+            "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "actual_raw": "-51488139226",
+            "without_open_raw": "-51495516249",
+            "without_open_minus_actual_raw": "-7377023"
+          },
+          {
+            "account": "0x7718360ead37485836e7fa69deae10058813baf1",
+            "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "actual_raw": "51479537793",
+            "without_open_raw": "51486913606",
+            "without_open_minus_actual_raw": "7375813"
+          },
+          {
+            "account": "0x8f10b468b06c6fd214b65f87778827f7d113f996",
+            "token": "0xdc035d45d973e3ec169d2276ddab16f1e407384f",
+            "actual_raw": "968963773775",
+            "without_open_raw": "347631000962",
+            "without_open_minus_actual_raw": "-621332772813"
+          },
+          {
+            "account": "0xf6e72db5454dd049d0788e411b06cfaf16853042",
+            "token": "0x6b175474e89094c44da98b954eedeac495271d0f",
+            "actual_raw": "148265473312000000000000",
+            "without_open_raw": "148273627661000000000000",
+            "without_open_minus_actual_raw": "8154349000000000000"
+          }
+        ]
+      },
+      "close_without_middle": {
+        "success": false,
+        "error": "execution reverted"
+      }
+    },
+    {
+      "block": 25912028,
+      "hashes": [
+        "0x10c555876d40d2dbd731e5a31eb55c58f6cf94479385f843bf04d91eb2cd86bc",
+        "0x06dd2ba089855125f975804d0330da92ac48f364a2e0901d4733ed8cc447c384",
+        "0x0de739c1ced8e47e3b3c78439a81b19978bac596d9f999c29a6af101716fbf47"
+      ],
+      "indices": [
+        36,
+        37,
+        38
+      ],
+      "coinbase": "0x4838b106fce9647bdf1e7877bf73ce8b0bad5f97",
+      "gross_weth_wei": "1958686712979092",
+      "outer_weth_wei": "1958686712979090",
+      "helper_weth_wei": "2",
+      "coinbase_payment_wei": "1335834326990170",
+      "gas_wei": "194050363144172",
+      "retained_eth_wei": "428802022844750",
+      "eth_usd_study_mark": "2460.8002",
+      "gross_usd_study_mark": "4.8199366550362921894184",
+      "coinbase_usd_study_mark": "3.287221379024275734034",
+      "gas_usd_study_mark": "0.4775191724352510864344",
+      "retained_usd_study_mark": "1.055196103576765368950",
+      "native_deltas_wei": {
+        "0x000000000035b5e5ad9019092c665357240f594e": "-1335834326990170",
+        "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a": "0",
+        "0x654fae4aa229d104cabead47e56703f58b174be4": "-194050363144172"
+      },
+      "other_token_deltas_raw": [
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
+          "delta": "2"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0x6b175474e89094c44da98b954eedeac495271d0f",
+          "delta": "3145"
+        }
+      ],
+      "gas_and_native_state_checks_passed": [
+        "0x10c555876d40d2dbd731e5a31eb55c58f6cf94479385f843bf04d91eb2cd86bc",
+        "0x0de739c1ced8e47e3b3c78439a81b19978bac596d9f999c29a6af101716fbf47"
+      ],
+      "middle_replay": {
+        "actual_exact_trace_gas_logs_match": true,
+        "without_open_success": true,
+        "without_open_error": null,
+        "actual_gas_used": 245089,
+        "without_open_gas_used": 245125,
+        "changed_token_cashflows": [
+          {
+            "account": "0x5777d92f208679db4b9778590fa3cab3ac9e2168",
+            "token": "0x6b175474e89094c44da98b954eedeac495271d0f",
+            "actual_raw": "-5559578090455481316422",
+            "without_open_raw": "-5614713058124916056648",
+            "without_open_minus_actual_raw": "-55134967669434740226"
+          },
+          {
+            "account": "0xf595902166aa1d60047d6ec141803fceef03a7fd",
+            "token": "0x6b175474e89094c44da98b954eedeac495271d0f",
+            "actual_raw": "5559578090455481316422",
+            "without_open_raw": "5614713058124916056648",
+            "without_open_minus_actual_raw": "55134967669434740226"
+          }
+        ]
+      },
+      "close_without_middle": {
+        "success": false,
+        "error": "execution reverted"
+      }
+    },
+    {
+      "block": 25912097,
+      "hashes": [
+        "0x521f8499462136e04beba6f3c58095e7c8316929c1c784c0a5f5aaa2b6dee8d0",
+        "0x1e7729f9e8278a4204e629d62f093852eb15f5c99e910344d65eaf51cd644462",
+        "0xc2ab91a8ae7574fce3cc8dbb252593f4e6d776877c9dc38b57338f9e0b4be98b"
+      ],
+      "indices": [
+        0,
+        1,
+        2
+      ],
+      "coinbase": "0xdadb0d80178819f2319190d340ce9a924f783711",
+      "gross_weth_wei": "5936991968108175",
+      "outer_weth_wei": "5936991968108173",
+      "helper_weth_wei": "2",
+      "coinbase_payment_wei": "5547793908689094",
+      "gas_wei": "115597926580742",
+      "retained_eth_wei": "273600132838339",
+      "eth_usd_study_mark": "2460.8002",
+      "gross_usd_study_mark": "14.6097510225189906616350",
+      "coinbase_usd_study_mark": "13.6520123600609042530188",
+      "gas_usd_study_mark": "0.2844634008494752297484",
+      "retained_usd_study_mark": "0.6732752616086111788678",
+      "native_deltas_wei": {
+        "0x000000000035b5e5ad9019092c665357240f594e": "-5547793908689094",
+        "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a": "0",
+        "0x654fae4aa229d104cabead47e56703f58b174be4": "-115597926580742"
+      },
+      "other_token_deltas_raw": [
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
+          "delta": "2"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "delta": "5"
+        },
+        {
+          "account": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "delta": "6"
+        }
+      ],
+      "gas_and_native_state_checks_passed": [
+        "0x521f8499462136e04beba6f3c58095e7c8316929c1c784c0a5f5aaa2b6dee8d0",
+        "0xc2ab91a8ae7574fce3cc8dbb252593f4e6d776877c9dc38b57338f9e0b4be98b"
+      ],
+      "middle_replay": {
+        "actual_exact_trace_gas_logs_match": true,
+        "without_open_success": true,
+        "without_open_error": null,
+        "actual_gas_used": 366838,
+        "without_open_gas_used": 342238,
+        "changed_token_cashflows": [
+          {
+            "account": "0x1e605e0fd524745a25fd190e88c5da67303f945b",
+            "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "actual_raw": "1111465685",
+            "without_open_raw": "1126737495",
+            "without_open_minus_actual_raw": "15271810"
+          },
+          {
+            "account": "0xe0e0e08a6a4b9dc7bd67bcb7aade5cf48157d444",
+            "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "actual_raw": "-1111465685",
+            "without_open_raw": "-1126737495",
+            "without_open_minus_actual_raw": "-15271810"
+          }
+        ]
+      },
+      "close_without_middle": {
+        "success": false,
+        "error": "execution reverted"
+      }
+    }
+  ]
+}

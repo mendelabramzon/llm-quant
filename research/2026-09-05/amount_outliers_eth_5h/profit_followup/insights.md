@@ -1,5 +1,7 @@
 The strongest lead is a repeated strategy spanning several transactions, hidden inside the lending categories. I would allocate the next research effort to reconstructing complete strategy economics and execution quality before building an ETH directional signal from these outliers.
 
+Follow-up: [the RPC accounting and counterfactual investigation](validation/findings.md) now tests the 20 sequences below. It finds approximately $27.23 retained after direct fee-recipient payments and actual gas, 17 verified brief LP positions, about $1.17 of explicit LP fees, and improved middle-order outputs in all 20 replays without the opening leg. The original hypotheses and their initial evidence are preserved below.
+
 This follow-up uses the saved five-hour window. It adds calculations over `txs_big.jsonl.gz`, `all_matches_by_hash.json.gz`, the complete `txs_all.jsonl.gz`, and raw blocks/logs for 20 selected sequences. It does not change the original classifier. [evidence.json](evidence.json) preserves the calculations, transaction hashes, matched liquidity positions and Aave events. [analyze.py](analyze.py) reproduces them offline. The trading ideas below are hypotheses; no forward-return backtest or realized-PnL reconstruction has been performed.
 
 **1. Ordinary lending is concealing a repeated trading strategy.**

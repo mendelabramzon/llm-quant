@@ -1,0 +1,812 @@
+[
+  {
+    "block": "25910849",
+    "known_uniswap_positions": [
+      {
+        "position": [
+          "0x000000000004444c5dc75cb358380d2e3de08a90",
+          "0x0fb0e40cec3bb23e13abc585958a93c796fbea56955e19a23727a716a0423239",
+          "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "-226",
+          "-225",
+          "0x5ff05"
+        ],
+        "liquidity_raw": "43427500456532",
+        "intervening_swap_same_pool": true
+      }
+    ],
+    "new_ekubo_matches": [],
+    "ekubo_events": [],
+    "lp_fees": [
+      {
+        "venue": "Uniswap v4",
+        "address": "0x000000000004444c5dc75cb358380d2e3de08a90",
+        "leg": "2",
+        "token0": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "token1": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+        "fee_pips": "7",
+        "amount0": "15368",
+        "amount1": "0"
+      }
+    ]
+  },
+  {
+    "block": "25910935",
+    "known_uniswap_positions": [
+      {
+        "position": [
+          "0xe0554a476a092703abdb3ef35c80e0d76d32939f",
+          null,
+          "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "198212",
+          "198213",
+          null
+        ],
+        "liquidity_raw": "2291969054989936766",
+        "intervening_swap_same_pool": true
+      }
+    ],
+    "new_ekubo_matches": [],
+    "ekubo_events": [],
+    "lp_fees": [
+      {
+        "venue": "Uniswap v3",
+        "address": "0xe0554a476a092703abdb3ef35c80e0d76d32939f",
+        "leg": "2",
+        "amount0": "353083",
+        "amount1": "0"
+      }
+    ]
+  },
+  {
+    "block": "25910990",
+    "known_uniswap_positions": [],
+    "new_ekubo_matches": [
+      {
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "pool_id": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "position": "0x5157e00c4447110a90ade690f0ecb93fe3bca102c60c1ba200030b1a00030b4c",
+        "liquidity": "15049665051979",
+        "middle_swap_same_pool": true
+      }
+    ],
+    "ekubo_events": [
+      {
+        "leg": "0",
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "event": "PositionUpdated",
+        "locker": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+        "poolId": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "positionId": "0x5157e00c4447110a90ade690f0ecb93fe3bca102c60c1ba200030b1a00030b4c",
+        "liquidityDelta": "15049665051979",
+        "balanceUpdate": "0x000000000000000000000000144c068500000000000000000000000000000000",
+        "stateAfter": "0x80000000400be1f8b1a15fc2000005aa00000000000000000000000000000000"
+      },
+      {
+        "leg": "2",
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "event": "PositionFeesCollected",
+        "locker": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+        "poolId": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "positionId": "0x5157e00c4447110a90ade690f0ecb93fe3bca102c60c1ba200030b1a00030b4c",
+        "amount0": "0",
+        "amount1": "2078"
+      },
+      {
+        "leg": "2",
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "event": "PositionUpdated",
+        "locker": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+        "poolId": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "positionId": "0x5157e00c4447110a90ade690f0ecb93fe3bca102c60c1ba200030b1a00030b4c",
+        "liquidityDelta": "-15049665051979",
+        "balanceUpdate": "0xffffffffffffffffffffffffffffd819ffffffffffffffffffffffffe7391505",
+        "stateAfter": "0x8000000046b697db5e03ddc300030b4b00000000000000000000000000000000"
+      }
+    ],
+    "lp_fees": [
+      {
+        "venue": "Ekubo",
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "leg": "2",
+        "pool_id": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "amount0": "0",
+        "amount1": "2078",
+        "token0": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "token1": "0xdac17f958d2ee523a2206206994597c13d831ec7"
+      }
+    ]
+  },
+  {
+    "block": "25910995",
+    "known_uniswap_positions": [
+      {
+        "position": [
+          "0x000000000004444c5dc75cb358380d2e3de08a90",
+          "0x77b480a635c038223de17d7eb3860bc8c12beb2a2b29dbfc59a3d35fd17e617f",
+          "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "190",
+          "191",
+          "0x5ff28"
+        ],
+        "liquidity_raw": "727091391572",
+        "intervening_swap_same_pool": true
+      }
+    ],
+    "new_ekubo_matches": [],
+    "ekubo_events": [],
+    "lp_fees": [
+      {
+        "venue": "Uniswap v4",
+        "address": "0x000000000004444c5dc75cb358380d2e3de08a90",
+        "leg": "2",
+        "token0": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "token1": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+        "fee_pips": "5",
+        "amount0": "0",
+        "amount1": "184"
+      }
+    ]
+  },
+  {
+    "block": "25911033",
+    "known_uniswap_positions": [
+      {
+        "position": [
+          "0x000000000004444c5dc75cb358380d2e3de08a90",
+          "0xe836920940770f97f2dc3bb729a87a655ea851dc65228465dc44051ab17eabc6",
+          "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "276222",
+          "276223",
+          "0x5ff2b"
+        ],
+        "liquidity_raw": "5737373301980087074",
+        "intervening_swap_same_pool": true
+      }
+    ],
+    "new_ekubo_matches": [],
+    "ekubo_events": [],
+    "lp_fees": [
+      {
+        "venue": "Uniswap v4",
+        "address": "0x000000000004444c5dc75cb358380d2e3de08a90",
+        "leg": "2",
+        "token0": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "token1": "0xaebcdbd9f8b1422ab31073d7408c8cad83ca6a8b",
+        "fee_pips": "1",
+        "amount0": "288",
+        "amount1": "0"
+      }
+    ]
+  },
+  {
+    "block": "25911089",
+    "known_uniswap_positions": [],
+    "new_ekubo_matches": [
+      {
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "pool_id": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "position": "0x5157e00c4447110a90ade690f0ecb93fe3bca102c60c1ba200004e2000004e52",
+        "liquidity": "8094028342025",
+        "middle_swap_same_pool": true
+      }
+    ],
+    "ekubo_events": [
+      {
+        "leg": "0",
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "event": "PositionUpdated",
+        "locker": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+        "poolId": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "positionId": "0x5157e00c4447110a90ade690f0ecb93fe3bca102c60c1ba200004e2000004e52",
+        "liquidityDelta": "8094028342025",
+        "balanceUpdate": "0x0000000000000000000000000bf0dd5a00000000000000000000000000000000",
+        "stateAfter": "0x80000000400be1f8b1a15fc2000005aa00000000000000000000000000000000"
+      },
+      {
+        "leg": "2",
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "event": "PositionFeesCollected",
+        "locker": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+        "poolId": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "positionId": "0x5157e00c4447110a90ade690f0ecb93fe3bca102c60c1ba200004e2000004e52",
+        "amount0": "0",
+        "amount1": "1021"
+      },
+      {
+        "leg": "2",
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "event": "PositionUpdated",
+        "locker": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+        "poolId": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "positionId": "0x5157e00c4447110a90ade690f0ecb93fe3bca102c60c1ba200004e2000004e52",
+        "liquidityDelta": "-8094028342025",
+        "balanceUpdate": "0xffffffffffffffffffffffffffffe888fffffffffffffffffffffffff3d165f1",
+        "stateAfter": "0x8000000040a513582749a84300004e5100000000000000000000000000000000"
+      }
+    ],
+    "lp_fees": [
+      {
+        "venue": "Ekubo",
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "leg": "2",
+        "pool_id": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "amount0": "0",
+        "amount1": "1021",
+        "token0": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "token1": "0xdac17f958d2ee523a2206206994597c13d831ec7"
+      }
+    ]
+  },
+  {
+    "block": "25911110",
+    "known_uniswap_positions": [],
+    "new_ekubo_matches": [],
+    "ekubo_events": [],
+    "lp_fees": []
+  },
+  {
+    "block": "25911337",
+    "known_uniswap_positions": [
+      {
+        "position": [
+          "0x000000000004444c5dc75cb358380d2e3de08a90",
+          "0x8aa4e11cbdf30eedc92100f4c8a31ff748e201d44712cc8c90d189edaa8e4e47",
+          "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "565",
+          "566",
+          "0x5ff55"
+        ],
+        "liquidity_raw": "40827491037138",
+        "intervening_swap_same_pool": true
+      }
+    ],
+    "new_ekubo_matches": [],
+    "ekubo_events": [],
+    "lp_fees": [
+      {
+        "venue": "Uniswap v4",
+        "address": "0x000000000004444c5dc75cb358380d2e3de08a90",
+        "leg": "2",
+        "token0": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "token1": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+        "fee_pips": "10",
+        "amount0": "0",
+        "amount1": "20768"
+      }
+    ]
+  },
+  {
+    "block": "25911349",
+    "known_uniswap_positions": [
+      {
+        "position": [
+          "0x000000000004444c5dc75cb358380d2e3de08a90",
+          "0x0fb0e40cec3bb23e13abc585958a93c796fbea56955e19a23727a716a0423239",
+          "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "-82",
+          "-81",
+          "0x5ff57"
+        ],
+        "liquidity_raw": "297864302851667",
+        "intervening_swap_same_pool": true
+      }
+    ],
+    "new_ekubo_matches": [],
+    "ekubo_events": [],
+    "lp_fees": [
+      {
+        "venue": "Uniswap v4",
+        "address": "0x000000000004444c5dc75cb358380d2e3de08a90",
+        "leg": "2",
+        "token0": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "token1": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+        "fee_pips": "7",
+        "amount0": "104665",
+        "amount1": "0"
+      }
+    ]
+  },
+  {
+    "block": "25911429",
+    "known_uniswap_positions": [],
+    "new_ekubo_matches": [
+      {
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "pool_id": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "position": "0x5157e00c4447110a90ade690f0ecb93fe3bca102c60c1ba2ffffebb0ffffebe2",
+        "liquidity": "31885568320202",
+        "middle_swap_same_pool": true
+      }
+    ],
+    "ekubo_events": [
+      {
+        "leg": "0",
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "event": "PositionUpdated",
+        "locker": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+        "poolId": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "positionId": "0x5157e00c4447110a90ade690f0ecb93fe3bca102c60c1ba2ffffebb0ffffebe2",
+        "liquidityDelta": "31885568320202",
+        "balanceUpdate": "0x000000000000000000000000000000000000000000000000000000002f63f0e0",
+        "stateAfter": "0x7ff7cf5f8d39bd05ade4d8ccfffffc1700000000000000000000000000000000"
+      },
+      {
+        "leg": "2",
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "event": "PositionFeesCollected",
+        "locker": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+        "poolId": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "positionId": "0x5157e00c4447110a90ade690f0ecb93fe3bca102c60c1ba2ffffebb0ffffebe2",
+        "amount0": "3995",
+        "amount1": "0"
+      },
+      {
+        "leg": "2",
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "event": "PositionUpdated",
+        "locker": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+        "poolId": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "positionId": "0x5157e00c4447110a90ade690f0ecb93fe3bca102c60c1ba2ffffebb0ffffebe2",
+        "liquidityDelta": "-31885568320202",
+        "balanceUpdate": "0xffffffffffffffffffffffffd05d7abcffffffffffffffffffffffffffffa2d5",
+        "stateAfter": "0x7fd574fb8e9d181b251d0151ffffebb000000000000000000000000000000000"
+      }
+    ],
+    "lp_fees": [
+      {
+        "venue": "Ekubo",
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "leg": "2",
+        "pool_id": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "amount0": "3995",
+        "amount1": "0",
+        "token0": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "token1": "0xdac17f958d2ee523a2206206994597c13d831ec7"
+      }
+    ]
+  },
+  {
+    "block": "25911582",
+    "known_uniswap_positions": [],
+    "new_ekubo_matches": [
+      {
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "pool_id": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "position": "0x5157e00c4447110a90ade690f0ecb93fe3bca102c60c1ba2ffffd7f6ffffd828",
+        "liquidity": "20443797751500",
+        "middle_swap_same_pool": true
+      }
+    ],
+    "ekubo_events": [
+      {
+        "leg": "0",
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "event": "PositionUpdated",
+        "locker": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+        "poolId": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "positionId": "0x5157e00c4447110a90ade690f0ecb93fe3bca102c60c1ba2ffffd7f6ffffd828",
+        "liquidityDelta": "20443797751500",
+        "balanceUpdate": "0x000000000000000000000000000000000000000000000000000000001e4eeac2",
+        "stateAfter": "0x7ff7cf5f8d39bd05ade4d8ccfffffc1700000000000000000000000000000000"
+      },
+      {
+        "leg": "2",
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "event": "PositionFeesCollected",
+        "locker": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+        "poolId": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "positionId": "0x5157e00c4447110a90ade690f0ecb93fe3bca102c60c1ba2ffffd7f6ffffd828",
+        "amount0": "2568",
+        "amount1": "0"
+      },
+      {
+        "leg": "2",
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "event": "PositionUpdated",
+        "locker": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+        "poolId": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "positionId": "0x5157e00c4447110a90ade690f0ecb93fe3bca102c60c1ba2ffffd7f6ffffd828",
+        "liquidityDelta": "-20443797751500",
+        "balanceUpdate": "0xffffffffffffffffffffffffe1619387ffffffffffffffffffffffffffffc46a",
+        "stateAfter": "0x7fac3f31e1c163407c402c56ffffd7f600000000000000000000000000000000"
+      }
+    ],
+    "lp_fees": [
+      {
+        "venue": "Ekubo",
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "leg": "2",
+        "pool_id": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "amount0": "2568",
+        "amount1": "0",
+        "token0": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "token1": "0xdac17f958d2ee523a2206206994597c13d831ec7"
+      }
+    ]
+  },
+  {
+    "block": "25911701",
+    "known_uniswap_positions": [
+      {
+        "position": [
+          "0x000000000004444c5dc75cb358380d2e3de08a90",
+          "0x76dbd3b36d5f0a1fa1c38b75984a9ed57aa1a36a6dbab77b9503ef9349dbb617",
+          "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "276274",
+          "276276",
+          "0x5ff9a"
+        ],
+        "liquidity_raw": "29717725138840903845",
+        "intervening_swap_same_pool": true
+      }
+    ],
+    "new_ekubo_matches": [],
+    "ekubo_events": [],
+    "lp_fees": [
+      {
+        "venue": "Uniswap v4",
+        "address": "0x000000000004444c5dc75cb358380d2e3de08a90",
+        "leg": "2",
+        "token0": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "token1": "0xcacd6fd266af91b8aed52accc382b4e165586e29",
+        "fee_pips": "80",
+        "amount0": "238289",
+        "amount1": "0"
+      }
+    ]
+  },
+  {
+    "block": "25911742",
+    "known_uniswap_positions": [],
+    "new_ekubo_matches": [],
+    "ekubo_events": [],
+    "lp_fees": []
+  },
+  {
+    "block": "25911771",
+    "known_uniswap_positions": [],
+    "new_ekubo_matches": [
+      {
+        "address": "0xe0e0e08a6a4b9dc7bd67bcb7aade5cf48157d444",
+        "pool_id": "0xca5b3ef9770bb95940bd4e0bff5ead70a5973d904a8b370b52147820e61a2ff6",
+        "position": [
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "-159950",
+          "-159900"
+        ],
+        "liquidity": "2916078760208",
+        "middle_swap_same_pool": true
+      }
+    ],
+    "ekubo_events": [
+      {
+        "leg": "0",
+        "address": "0xe0e0e08a6a4b9dc7bd67bcb7aade5cf48157d444",
+        "event": "PositionUpdated",
+        "locker": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+        "poolId": "0xca5b3ef9770bb95940bd4e0bff5ead70a5973d904a8b370b52147820e61a2ff6",
+        "params": [
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          [
+            "-159950",
+            "-159900"
+          ],
+          "2916078760208"
+        ],
+        "delta0": "0",
+        "delta1": "67299492"
+      },
+      {
+        "leg": "2",
+        "address": "0xe0e0e08a6a4b9dc7bd67bcb7aade5cf48157d444",
+        "event": "PositionFeesCollected",
+        "poolId": "0xca5b3ef9770bb95940bd4e0bff5ead70a5973d904a8b370b52147820e61a2ff6",
+        "positionKey": [
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          [
+            "-159950",
+            "-159900"
+          ]
+        ],
+        "amount0": "394",
+        "amount1": "0"
+      },
+      {
+        "leg": "2",
+        "address": "0xe0e0e08a6a4b9dc7bd67bcb7aade5cf48157d444",
+        "event": "PositionUpdated",
+        "locker": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+        "poolId": "0xca5b3ef9770bb95940bd4e0bff5ead70a5973d904a8b370b52147820e61a2ff6",
+        "params": [
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          [
+            "-159950",
+            "-159900"
+          ],
+          "-2916078760208"
+        ],
+        "delta0": "-78967991",
+        "delta1": "-2018"
+      }
+    ],
+    "lp_fees": [
+      {
+        "venue": "Ekubo",
+        "address": "0xe0e0e08a6a4b9dc7bd67bcb7aade5cf48157d444",
+        "leg": "2",
+        "pool_id": "0xca5b3ef9770bb95940bd4e0bff5ead70a5973d904a8b370b52147820e61a2ff6",
+        "amount0": "394",
+        "amount1": "0",
+        "token0": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "token1": "0xdac17f958d2ee523a2206206994597c13d831ec7"
+      }
+    ]
+  },
+  {
+    "block": "25911802",
+    "known_uniswap_positions": [
+      {
+        "position": [
+          "0x000000000004444c5dc75cb358380d2e3de08a90",
+          "0x77b480a635c038223de17d7eb3860bc8c12beb2a2b29dbfc59a3d35fd17e617f",
+          "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "-2338",
+          "-2337",
+          "0x5ffad"
+        ],
+        "liquidity_raw": "839586675973",
+        "intervening_swap_same_pool": true
+      }
+    ],
+    "new_ekubo_matches": [],
+    "ekubo_events": [],
+    "lp_fees": [
+      {
+        "venue": "Uniswap v4",
+        "address": "0x000000000004444c5dc75cb358380d2e3de08a90",
+        "leg": "2",
+        "token0": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "token1": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+        "fee_pips": "5",
+        "amount0": "236",
+        "amount1": "0"
+      }
+    ]
+  },
+  {
+    "block": "25911874",
+    "known_uniswap_positions": [],
+    "new_ekubo_matches": [
+      {
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "pool_id": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "position": "0x5157e00c4447110a90ade690f0ecb93fe3bca102c60c1ba2000026480000267a",
+        "liquidity": "7549608442060",
+        "middle_swap_same_pool": true
+      }
+    ],
+    "ekubo_events": [
+      {
+        "leg": "0",
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "event": "PositionUpdated",
+        "locker": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+        "poolId": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "positionId": "0x5157e00c4447110a90ade690f0ecb93fe3bca102c60c1ba2000026480000267a",
+        "liquidityDelta": "7549608442060",
+        "balanceUpdate": "0x0000000000000000000000000b31d52500000000000000000000000000000000",
+        "stateAfter": "0x80000000400be1f8b1a15fc2000005aa00000000000000000000000000000000"
+      },
+      {
+        "leg": "2",
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "event": "PositionFeesCollected",
+        "locker": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+        "poolId": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "positionId": "0x5157e00c4447110a90ade690f0ecb93fe3bca102c60c1ba2000026480000267a",
+        "amount0": "0",
+        "amount1": "948"
+      },
+      {
+        "leg": "2",
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "event": "PositionUpdated",
+        "locker": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+        "poolId": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "positionId": "0x5157e00c4447110a90ade690f0ecb93fe3bca102c60c1ba2000026480000267a",
+        "liquidityDelta": "-7549608442060",
+        "balanceUpdate": "0xffffffffffffffffffffffffffffe9fefffffffffffffffffffffffff4b1f56c",
+        "stateAfter": "0x800000004050e3e28f86a9e90000267900000000000000000000000000000000"
+      }
+    ],
+    "lp_fees": [
+      {
+        "venue": "Ekubo",
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "leg": "2",
+        "pool_id": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "amount0": "0",
+        "amount1": "948",
+        "token0": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "token1": "0xdac17f958d2ee523a2206206994597c13d831ec7"
+      }
+    ]
+  },
+  {
+    "block": "25911943",
+    "known_uniswap_positions": [],
+    "new_ekubo_matches": [
+      {
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "pool_id": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "position": "0x5157e00c4447110a90ade690f0ecb93fe3bca102c60c1ba20000c3500000c382",
+        "liquidity": "18752313069729",
+        "middle_swap_same_pool": true
+      }
+    ],
+    "ekubo_events": [
+      {
+        "leg": "0",
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "event": "PositionUpdated",
+        "locker": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+        "poolId": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "positionId": "0x5157e00c4447110a90ade690f0ecb93fe3bca102c60c1ba20000c3500000c382",
+        "liquidityDelta": "18752313069729",
+        "balanceUpdate": "0x0000000000000000000000001b40bae600000000000000000000000000000000",
+        "stateAfter": "0x80000000400be1f8b1a15fc2000005aa00000000000000000000000000000000"
+      },
+      {
+        "leg": "2",
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "event": "PositionFeesCollected",
+        "locker": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+        "poolId": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "positionId": "0x5157e00c4447110a90ade690f0ecb93fe3bca102c60c1ba20000c3500000c382",
+        "amount0": "0",
+        "amount1": "2403"
+      },
+      {
+        "leg": "2",
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "event": "PositionUpdated",
+        "locker": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+        "poolId": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "positionId": "0x5157e00c4447110a90ade690f0ecb93fe3bca102c60c1ba20000c3500000c382",
+        "liquidityDelta": "-18752313069729",
+        "balanceUpdate": "0xffffffffffffffffffffffffffffca6cffffffffffffffffffffffffe3599a2a",
+        "stateAfter": "0x80000000419f2ec485c6b4c10000c38100000000000000000000000000000000"
+      }
+    ],
+    "lp_fees": [
+      {
+        "venue": "Ekubo",
+        "address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "leg": "2",
+        "pool_id": "0x6fde3244f6fa747ae318aba6e982a4281febad4d22e3b134aa299a83a951895d",
+        "amount0": "0",
+        "amount1": "2403",
+        "token0": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "token1": "0xdac17f958d2ee523a2206206994597c13d831ec7"
+      }
+    ]
+  },
+  {
+    "block": "25911995",
+    "known_uniswap_positions": [],
+    "new_ekubo_matches": [],
+    "ekubo_events": [],
+    "lp_fees": []
+  },
+  {
+    "block": "25912028",
+    "known_uniswap_positions": [
+      {
+        "position": [
+          "0x5777d92f208679db4b9778590fa3cab3ac9e2168",
+          null,
+          "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          "-276225",
+          "-276224",
+          null
+        ],
+        "liquidity_raw": "111768588265322375678",
+        "intervening_swap_same_pool": true
+      }
+    ],
+    "new_ekubo_matches": [],
+    "ekubo_events": [],
+    "lp_fees": [
+      {
+        "venue": "Uniswap v3",
+        "address": "0x5777d92f208679db4b9778590fa3cab3ac9e2168",
+        "leg": "2",
+        "amount0": "0",
+        "amount1": "421145"
+      }
+    ]
+  },
+  {
+    "block": "25912097",
+    "known_uniswap_positions": [],
+    "new_ekubo_matches": [
+      {
+        "address": "0xe0e0e08a6a4b9dc7bd67bcb7aade5cf48157d444",
+        "pool_id": "0xca5b3ef9770bb95940bd4e0bff5ead70a5973d904a8b370b52147820e61a2ff6",
+        "position": [
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "-13850",
+          "-13800"
+        ],
+        "liquidity": "44768377529055",
+        "middle_swap_same_pool": true
+      }
+    ],
+    "ekubo_events": [
+      {
+        "leg": "0",
+        "address": "0xe0e0e08a6a4b9dc7bd67bcb7aade5cf48157d444",
+        "event": "PositionUpdated",
+        "locker": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+        "poolId": "0xca5b3ef9770bb95940bd4e0bff5ead70a5973d904a8b370b52147820e61a2ff6",
+        "params": [
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          [
+            "-13850",
+            "-13800"
+          ],
+          "44768377529055"
+        ],
+        "delta0": "0",
+        "delta1": "1111499029"
+      },
+      {
+        "leg": "2",
+        "address": "0xe0e0e08a6a4b9dc7bd67bcb7aade5cf48157d444",
+        "event": "PositionFeesCollected",
+        "poolId": "0xca5b3ef9770bb95940bd4e0bff5ead70a5973d904a8b370b52147820e61a2ff6",
+        "positionKey": [
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+          [
+            "-13850",
+            "-13800"
+          ]
+        ],
+        "amount0": "5634",
+        "amount1": "0"
+      },
+      {
+        "leg": "2",
+        "address": "0xe0e0e08a6a4b9dc7bd67bcb7aade5cf48157d444",
+        "event": "PositionUpdated",
+        "locker": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+        "poolId": "0xca5b3ef9770bb95940bd4e0bff5ead70a5973d904a8b370b52147820e61a2ff6",
+        "params": [
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          [
+            "-13850",
+            "-13800"
+          ],
+          "-44768377529055"
+        ],
+        "delta0": "-1126932763",
+        "delta1": "-33342"
+      }
+    ],
+    "lp_fees": [
+      {
+        "venue": "Ekubo",
+        "address": "0xe0e0e08a6a4b9dc7bd67bcb7aade5cf48157d444",
+        "leg": "2",
+        "pool_id": "0xca5b3ef9770bb95940bd4e0bff5ead70a5973d904a8b370b52147820e61a2ff6",
+        "amount0": "5634",
+        "amount1": "0",
+        "token0": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "token1": "0xdac17f958d2ee523a2206206994597c13d831ec7"
+      }
+    ]
+  }
+]
