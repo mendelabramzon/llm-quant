@@ -1,0 +1,55 @@
+{
+  "source": "research/2026-09-06/live/midnight_2026-09-06.json",
+  "source_sha256": "d784f30fe774e57c470d32adf39d47f2bc8ba52942a5436fa0d3b5645c83e7b5",
+  "observed_event_count": 74,
+  "independently_matched_rpc_logs": 74,
+  "end_of_timestamp_count": 64,
+  "baseline": {
+    "block": 25914352,
+    "utc": "2026-09-05T23:15:23+00:00",
+    "supply_apr": 0.03595019670229202,
+    "borrow_apr": 0.04274641344050546
+  },
+  "integral_interval_seconds": 4452,
+  "incremental_supply_return": 5.954795445156092e-06,
+  "incremental_borrow_cost": 6.437045868520864e-06,
+  "incremental_supply_per_million": 5.954795445156091,
+  "incremental_borrow_per_million": 6.437045868520864,
+  "source_operations": [
+    {
+      "block": 25914447,
+      "utc": "2026-09-05T23:34:35+00:00",
+      "kind": "withdraw",
+      "user": "aave_leg",
+      "usd": 151000000,
+      "tx": "0x03cbb74fe6dbeb432d279123dd7ca8d4832a61b1cd54a52a5a4b71ffbfc2e85e"
+    },
+    {
+      "block": 25914616,
+      "utc": "2026-09-06T00:08:23+00:00",
+      "kind": "supply",
+      "user": "aave_leg",
+      "usd": 151000000,
+      "tx": "0x31dba305f41bd1bdf02540b98f65380b4196e3f3d7bfc682843e8caa432494bc"
+    }
+  ],
+  "index_check": {
+    "start": {
+      "number": 25914446,
+      "hash": "0x8c3e6e4755c3e8059122c6871e4bae36a77cc168b43366a4af4fbd1099272bee",
+      "timestamp": 1788651263,
+      "base_fee": 50481314
+    },
+    "end": {
+      "number": 25914616,
+      "hash": "0xf57c75317897974c963eb186f34e203e292a998ba69e289e2d1d47d375d4135d",
+      "timestamp": 1788653303,
+      "base_fee": 50970364
+    },
+    "elapsed_seconds": 2040,
+    "supply_return": 8.280206431725807e-06,
+    "borrow_return": 9.202168107082605e-06,
+    "excess_supply_return": 5.954660982947405e-06,
+    "excess_borrow_cost": 6.436989155451735e-06
+  }
+}

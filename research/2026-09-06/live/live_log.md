@@ -1,0 +1,849 @@
+Live log started 2026-09-06T11:49:53+00:00 UTC at block 25917895. One line per block with anything notable; a rolling re-analysis of the trailing 1.0 h every 10 blocks rewrites the sections above.
+
+- **25918028** 11:32:59 base 0.05 gwei, 23 txs, bobTheBuilder.xyz
+- **25918029** 11:33:11 base 0.04 gwei, 378 txs, erigon-3.6.0-ecc2ad99
+- **25918030** 11:33:23 base 0.04 gwei, 483 txs, Titan (titanbuilder.xyz)
+  - transfer $11.4M sUSDe [0xa711…6d69](https://etherscan.io/address/0xa711a3a64f2b2d7e05dc3f564d3862d7499c6d69) → [0xb221…dc61](https://etherscan.io/address/0xb22161a2222ae7008cb3c54f819025031b1bdc61) ([0x054d…b60b](https://etherscan.io/tx/0x054d26e60bb91ede47184e931bb99337598565a922a447e20cccc9023356b60b))
+- **25918031** 11:33:35 base 0.05 gwei, 271 txs, Titan (titanbuilder.xyz)
+- **25918032** 11:33:47 base 0.05 gwei, 213 txs, Titan (titanbuilder.xyz)
+- **25918033** 11:33:59 base 0.05 gwei, 277 txs, Titan (titanbuilder.xyz)
+- **25918034** 11:34:11 base 0.05 gwei, 391 txs, Eureka (eurekabuilder.xyz)
+- **25918035** 11:34:23 base 0.05 gwei, 244 txs,  Quasar (quasar.win) 
+- **25918036** 11:34:35 base 0.05 gwei, 325 txs, Eureka (eurekabuilder.xyz)
+  - JIT 1 episode(s), $25 of swaps bracketed, fees taken $1
+- **25918037** 11:34:47 base 0.05 gwei, 194 txs, Titan (titanbuilder.xyz)
+- **25918038** 11:34:59 base 0.05 gwei, 271 txs, Titan (titanbuilder.xyz)
+  - transfer $11.4M sUSDe [0xb221…dc61](https://etherscan.io/address/0xb22161a2222ae7008cb3c54f819025031b1bdc61) → [0x31b7…b95a](https://etherscan.io/address/0x31b7d5a2b1ce1871dd642f6aecc0ef68d126b95a) ([0xb19f…c377](https://etherscan.io/tx/0xb19fb0edef0d74a6e5f28909d72333409aff35a656affdfaaf12bf72ad6fc377))
+- **25918039** 11:35:11 base 0.05 gwei, 260 txs, Titan (titanbuilder.xyz)
+  - JIT 3 episode(s), $555 of swaps bracketed, fees taken $0
+- **25918040** 11:35:23 base 0.05 gwei, 218 txs, Titan (titanbuilder.xyz)
+- **25918041** 11:35:35 base 0.05 gwei, 242 txs, Titan (titanbuilder.xyz)
+- **25918042** 11:35:47 base 0.05 gwei, 293 txs,  Quasar (quasar.win) 
+  - transfer $11.4M sUSDe [0x31b7…b95a](https://etherscan.io/address/0x31b7d5a2b1ce1871dd642f6aecc0ef68d126b95a) → [0x211c…e5d2](https://etherscan.io/address/0x211cc4dd073734da055fbf44a2b4667d5e5fe5d2) ([0x74ae…fb3f](https://etherscan.io/tx/0x74ae722379a0134bd96957bb18dd5d5f9dcf5c16d09e4fcc23d5145d3fbdfb3f))
+  - bridge OFT $11.4M sUSDe → eid 30383 ([0x74ae…fb3f](https://etherscan.io/tx/0x74ae722379a0134bd96957bb18dd5d5f9dcf5c16d09e4fcc23d5145d3fbdfb3f))
+- **25918043** 11:35:59 base 0.05 gwei, 148 txs, Titan (titanbuilder.xyz)
+- **25918044** 11:36:11 base 0.05 gwei, 92 txs, gethgo1.25.10linux
+- **25918045** 11:36:23 base 0.05 gwei, 231 txs, BuilderNet
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) ([0x2c86…6efe](https://etherscan.io/tx/0x2c861655ffbd96362731d04337d20dae58eb0ecb3abcd86ac460f4f90de06efe))
+  - transfer $25.0M WETH [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x2c86…6efe](https://etherscan.io/tx/0x2c861655ffbd96362731d04337d20dae58eb0ecb3abcd86ac460f4f90de06efe))
+- **25918046** 11:36:35 base 0.05 gwei, 258 txs, Titan (titanbuilder.xyz)
+- **25918047** 11:36:47 base 0.05 gwei, 195 txs, BuilderNet
+- **25918048** 11:36:59 base 0.05 gwei, 225 txs, Titan (titanbuilder.xyz)
+- **25918049** 11:37:11 base 0.05 gwei, 223 txs, bombora.build 
+- **25918050** 11:37:23 base 0.05 gwei, 281 txs, Titan (titanbuilder.xyz)
+- **25918051** 11:37:35 base 0.05 gwei, 152 txs, Titan (titanbuilder.xyz)
+- **25918052** 11:37:47 base 0.05 gwei, 244 txs, Titan (titanbuilder.xyz)
+- **25918053** 11:37:59 base 0.05 gwei, 192 txs, Eureka (eurekabuilder.xyz)
+- **25918054** 11:38:11 base 0.05 gwei, 241 txs, Titan (titanbuilder.xyz)
+- **25918055** 11:38:23 base 0.05 gwei, 163 txs, Titan (titanbuilder.xyz)
+- **25918056** 11:38:35 base 0.05 gwei, 200 txs, Titan (titanbuilder.xyz)
+- **25918057** 11:38:47 base 0.05 gwei, 60 txs, gethgo1.26.4linux
+- **25918058** 11:38:59 base 0.04 gwei, 273 txs, BuilderNet
+- **25918059** 11:39:11 base 0.05 gwei, 235 txs, Eureka (eurekabuilder.xyz)
+- **25918060** 11:39:23 base 0.05 gwei, 278 txs, BuilderNet
+  - transfer $10.0M USDT [0xcffa…0703](https://etherscan.io/address/0xcffad3200574698b78f32232aa9d63eabd290703) → [0xde46…3aea](https://etherscan.io/address/0xde46bd6efc4e44ba1b75ab5e9d12f49ee60d3aea) ([0x3906…6a9d](https://etherscan.io/tx/0x3906c5b640fc5da9a73f06b179b3b6863a10c19b283a9d9f9b168e9e1ed96a9d))
+- **25918061** 11:39:35 base 0.05 gwei, 76 txs, BuilderNet
+- **25918062** 11:39:47 base 0.05 gwei, 349 txs,  Quasar (quasar.win) 
+- **25918063** 11:39:59 base 0.05 gwei, 192 txs, Titan (titanbuilder.xyz)
+- **25918064** 11:40:11 base 0.05 gwei, 256 txs, Eureka (eurekabuilder.xyz)
+- **25918065** 11:40:23 base 0.05 gwei, 183 txs, bombora.build 
+- **25918066** 11:40:35 base 0.05 gwei, 301 txs, Eureka (eurekabuilder.xyz)
+- **25918067** 11:40:47 base 0.06 gwei, 171 txs,  Quasar (quasar.win) 
+- **25918068** 11:40:59 base 0.06 gwei, 112 txs, Powered by bloXroute
+- **25918069** 11:41:11 base 0.06 gwei, 118 txs, Nethermind v1.39.0
+- **25918070** 11:41:23 base 0.05 gwei, 266 txs, Eureka (eurekabuilder.xyz)
+  - transfer $80.9M WBTC [0x6cbe…b30c](https://etherscan.io/address/0x6cbe98eb2cdf0bc2e52a9b3ed014cd1740a4b30c) → [0xa0f1…75ea](https://etherscan.io/address/0xa0f1c3ad83e07d97b5e7030e177718be175275ea) ([0xeb9d…f7df](https://etherscan.io/tx/0xeb9d2308f6792efed345ef93b99f458dc2a5fab1dce269d19c9794a474aaf7df))
+  - transfer $80.9M WBTC [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0xa0f1…75ea](https://etherscan.io/address/0xa0f1c3ad83e07d97b5e7030e177718be175275ea) ([0xeb9d…f7df](https://etherscan.io/tx/0xeb9d2308f6792efed345ef93b99f458dc2a5fab1dce269d19c9794a474aaf7df))
+  - transfer $80.9M WBTC [0xa0f1…75ea](https://etherscan.io/address/0xa0f1c3ad83e07d97b5e7030e177718be175275ea) → [0xb40d…ec54](https://etherscan.io/address/0xb40dc920dfc7bd7d68322a0e1b8a05557adbec54) ([0xeb9d…f7df](https://etherscan.io/tx/0xeb9d2308f6792efed345ef93b99f458dc2a5fab1dce269d19c9794a474aaf7df))
+  - transfer $80.9M WBTC [0xb40d…ec54](https://etherscan.io/address/0xb40dc920dfc7bd7d68322a0e1b8a05557adbec54) → [0x6cbe…b30c](https://etherscan.io/address/0x6cbe98eb2cdf0bc2e52a9b3ed014cd1740a4b30c) ([0xeb9d…f7df](https://etherscan.io/tx/0xeb9d2308f6792efed345ef93b99f458dc2a5fab1dce269d19c9794a474aaf7df))
+  - transfer $80.9M WBTC [0xa0f1…75ea](https://etherscan.io/address/0xa0f1c3ad83e07d97b5e7030e177718be175275ea) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0xeb9d…f7df](https://etherscan.io/tx/0xeb9d2308f6792efed345ef93b99f458dc2a5fab1dce269d19c9794a474aaf7df))
+- **25918071** 11:41:35 base 0.05 gwei, 300 txs, Titan (titanbuilder.xyz)
+- **25918072** 11:41:47 base 0.06 gwei, 317 txs,  Quasar (quasar.win) 
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) ([0x569c…dc36](https://etherscan.io/tx/0x569cd5d1d231a2d5107f39aa927cb560efbc96685cc5e15623d4f4595a6fdc36))
+  - transfer $25.0M WETH [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x569c…dc36](https://etherscan.io/tx/0x569cd5d1d231a2d5107f39aa927cb560efbc96685cc5e15623d4f4595a6fdc36))
+- **25918073** 11:41:59 base 0.06 gwei, 225 txs,  Quasar (quasar.win) 
+- **25918074** 11:42:11 base 0.06 gwei, 130 txs, beaverbuild.org
+- **25918075** 11:42:23 base 0.05 gwei, 316 txs,  Quasar (quasar.win) 
+- **25918076** 11:42:35 base 0.06 gwei, 159 txs, BuilderNet
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) ([0x61fb…cb31](https://etherscan.io/tx/0x61fbcab652639054c2b12706b44f43c723978a1417101f3716c82d62b89fcb31))
+  - transfer $25.0M WETH [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x61fb…cb31](https://etherscan.io/tx/0x61fbcab652639054c2b12706b44f43c723978a1417101f3716c82d62b89fcb31))
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) ([0xbc16…885c](https://etherscan.io/tx/0xbc16eeccfc9704c732e4abfaf2812e5c29a7a33e424021724946b31a1614885c))
+  - transfer $25.0M WETH [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0xbc16…885c](https://etherscan.io/tx/0xbc16eeccfc9704c732e4abfaf2812e5c29a7a33e424021724946b31a1614885c))
+- **25918077** 11:42:47 base 0.06 gwei, 293 txs,  Quasar (quasar.win) 
+- **25918078** 11:42:59 base 0.06 gwei, 322 txs, Titan (titanbuilder.xyz)
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) ([0x2b26…5a3e](https://etherscan.io/tx/0x2b263ec7f2f6c42cc34cc93fc575b1a9a54607b76398c9704a1365c8b56c5a3e))
+  - transfer $25.0M WETH [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x2b26…5a3e](https://etherscan.io/tx/0x2b263ec7f2f6c42cc34cc93fc575b1a9a54607b76398c9704a1365c8b56c5a3e))
+  - transfer $10.0M USDT [0xde46…3aea](https://etherscan.io/address/0xde46bd6efc4e44ba1b75ab5e9d12f49ee60d3aea) → [Binance 14 (memory)](https://etherscan.io/address/0x28c6c06298d514db089934071355e5743bf21d60) ([0xd881…9dbc](https://etherscan.io/tx/0xd881dcaa5cb066e25ee4927c29780be59653e0eb1b155198c41c258cc0be9dbc))
+- **25918079** 11:43:11 base 0.06 gwei, 178 txs, Titan (titanbuilder.xyz)
+- **25918080** 11:43:23 base 0.06 gwei, 244 txs,  Quasar (quasar.win) 
+- **25918081** 11:43:35 base 0.06 gwei, 219 txs, BuilderNet
+- **25918082** 11:43:47 base 0.06 gwei, 72 txs, gethgo1.26.4linux
+- **25918083** 11:43:59 base 0.05 gwei, 252 txs, Titan (titanbuilder.xyz)
+- **25918084** 11:44:11 base 0.06 gwei, 187 txs, Titan (titanbuilder.xyz)
+  - JIT 2 episode(s), $22k of swaps bracketed, fees taken $0
+- **25918085** 11:44:23 base 0.06 gwei, 222 txs, Eureka (eurekabuilder.xyz)
+- **25918086** 11:44:35 base 0.07 gwei, 142 txs, BuilderNet
+- **25918087** 11:44:47 base 0.07 gwei, 152 txs, BuilderNet
+- **25918088** 11:44:59 base 0.06 gwei, 366 txs, Eureka (eurekabuilder.xyz)
+- **25918089** 11:45:11 base 0.06 gwei, 246 txs, Titan (titanbuilder.xyz)
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) ([0xd549…746a](https://etherscan.io/tx/0xd549bd8b6c3bf46f8f5ac72feab95f64e4f7ec63f764cd7ca2e6a293eca4746a))
+  - transfer $25.0M WETH [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0xd549…746a](https://etherscan.io/tx/0xd549bd8b6c3bf46f8f5ac72feab95f64e4f7ec63f764cd7ca2e6a293eca4746a))
+- **25918090** 11:45:23 base 0.07 gwei, 65 txs, BuilderNet
+- **25918091** 11:45:35 base 0.06 gwei, 219 txs, Titan (titanbuilder.xyz)
+- **25918092** 11:45:47 base 0.06 gwei, 233 txs, BuilderNet
+- **25918093** 11:45:59 base 0.06 gwei, 229 txs, Titan (titanbuilder.xyz)
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) ([0x43ea…8a63](https://etherscan.io/tx/0x43ea9ae729492b7ec75b56ab97ce6c364487e6336a500b45f2724bb0ffe38a63))
+  - transfer $25.0M WETH [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x43ea…8a63](https://etherscan.io/tx/0x43ea9ae729492b7ec75b56ab97ce6c364487e6336a500b45f2724bb0ffe38a63))
+- **25918094** 11:46:11 base 0.06 gwei, 225 txs, Titan (titanbuilder.xyz)
+- **25918095** 11:46:23 base 0.07 gwei, 114 txs, Titan (titanbuilder.xyz)
+- **25918096** 11:46:35 base 0.07 gwei, 256 txs, BuilderNet
+  - JIT 3 episode(s), $9 of swaps bracketed, fees taken $0
+- **25918097** 11:46:47 base 0.07 gwei, 427 txs, BuilderNet
+- **25918098** 11:46:59 base 0.08 gwei, 235 txs, Titan (titanbuilder.xyz)
+- **25918099** 11:47:11 base 0.07 gwei, 284 txs, Eureka (eurekabuilder.xyz)
+- **25918100** 11:47:23 base 0.08 gwei, 215 txs, Eureka (eurekabuilder.xyz)
+- **25918101** 11:47:35 base 0.08 gwei, 230 txs, Titan (titanbuilder.xyz)
+- **25918102** 11:47:47 base 0.08 gwei, 175 txs, Titan (titanbuilder.xyz)
+- **25918103** 11:47:59 base 0.07 gwei, 220 txs, Titan (titanbuilder.xyz)
+  - JIT 3 episode(s), $537 of swaps bracketed, fees taken $0
+- **25918104** 11:48:11 base 0.07 gwei, 285 txs, bombora.build 
+- **25918105** 11:48:23 base 0.07 gwei, 251 txs, Titan (titanbuilder.xyz)
+- **25918106** 11:48:35 base 0.07 gwei, 270 txs, Titan (titanbuilder.xyz)
+  - JIT 1 episode(s), $122 of swaps bracketed, fees taken $1
+- **25918107** 11:48:47 base 0.08 gwei, 250 txs, Titan (titanbuilder.xyz)
+  - lending Aave v3 supply $1.8M WETH account [0x76f3…5b1a](https://etherscan.io/address/0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a) ([0xc530…d61a](https://etherscan.io/tx/0xc5305434a9304ca1426be2fbe91d269a73a87a8232c6bad02b5eeb35b414d61a))
+  - lending Aave v3 withdraw $1.8M WETH account [0x76f3…5b1a](https://etherscan.io/address/0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a) ([0x7eff…873b](https://etherscan.io/tx/0x7eff58619d6b77a31ed1bf17b63a55d220b3e78886631bbdf5e536a80731873b))
+- **25918108** 11:48:59 base 0.07 gwei, 259 txs, bombora.build 
+- **25918109** 11:49:11 base 0.07 gwei, 216 txs, BuilderNet
+- **25918110** 11:49:23 base 0.07 gwei, 334 txs,  Quasar (quasar.win) 
+- **25918111** 11:49:35 base 0.07 gwei, 256 txs, Titan (titanbuilder.xyz)
+- **25918112** 11:49:47 base 0.07 gwei, 15 txs, bobTheBuilder.xyz
+  - transfer $8.3M wstETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) ([0x894e…8c19](https://etherscan.io/tx/0x894e3cbad4ea38428a93326dde7b81fd85f8e7801b3216f03aecc77ce3878c19))
+  - transfer $8.3M wstETH [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) → [0x0b92…9371](https://etherscan.io/address/0x0b925ed163218f6662a35e0f0371ac234f9e9371) ([0x894e…8c19](https://etherscan.io/tx/0x894e3cbad4ea38428a93326dde7b81fd85f8e7801b3216f03aecc77ce3878c19))
+  - transfer $8.3M wstETH [0x0b92…9371](https://etherscan.io/address/0x0b925ed163218f6662a35e0f0371ac234f9e9371) → [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) ([0x894e…8c19](https://etherscan.io/tx/0x894e3cbad4ea38428a93326dde7b81fd85f8e7801b3216f03aecc77ce3878c19))
+  - transfer $8.3M wstETH [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x894e…8c19](https://etherscan.io/tx/0x894e3cbad4ea38428a93326dde7b81fd85f8e7801b3216f03aecc77ce3878c19))
+  - transfer $8.3M wstETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) ([0xaefd…99d7](https://etherscan.io/tx/0xaefd5edf6bf93020a6ff4e732d86b184962f4ce3d34582cb98b683d7949199d7))
+  - transfer $8.3M wstETH [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) → [0x0b92…9371](https://etherscan.io/address/0x0b925ed163218f6662a35e0f0371ac234f9e9371) ([0xaefd…99d7](https://etherscan.io/tx/0xaefd5edf6bf93020a6ff4e732d86b184962f4ce3d34582cb98b683d7949199d7))
+  - transfer $8.3M wstETH [0x0b92…9371](https://etherscan.io/address/0x0b925ed163218f6662a35e0f0371ac234f9e9371) → [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) ([0xaefd…99d7](https://etherscan.io/tx/0xaefd5edf6bf93020a6ff4e732d86b184962f4ce3d34582cb98b683d7949199d7))
+  - transfer $8.3M wstETH [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0xaefd…99d7](https://etherscan.io/tx/0xaefd5edf6bf93020a6ff4e732d86b184962f4ce3d34582cb98b683d7949199d7))
+  - transfer $6.5M USDC [0x52aa…e497](https://etherscan.io/address/0x52aa899454998be5b000ad077a46bbe360f4e497) → [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) ([0xaefd…99d7](https://etherscan.io/tx/0xaefd5edf6bf93020a6ff4e732d86b184962f4ce3d34582cb98b683d7949199d7))
+  - transfer $6.5M USDC [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) → [0x98c2…6f5c](https://etherscan.io/address/0x98c23e9d8f34fefb1b7bd6a91b7ff122f4e16f5c) ([0xaefd…99d7](https://etherscan.io/tx/0xaefd5edf6bf93020a6ff4e732d86b184962f4ce3d34582cb98b683d7949199d7))
+  - transfer $6.5M USDC [0x98c2…6f5c](https://etherscan.io/address/0x98c23e9d8f34fefb1b7bd6a91b7ff122f4e16f5c) → [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) ([0x894e…8c19](https://etherscan.io/tx/0x894e3cbad4ea38428a93326dde7b81fd85f8e7801b3216f03aecc77ce3878c19))
+  - transfer $6.5M USDC [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) → [0x52aa…e497](https://etherscan.io/address/0x52aa899454998be5b000ad077a46bbe360f4e497) ([0x894e…8c19](https://etherscan.io/tx/0x894e3cbad4ea38428a93326dde7b81fd85f8e7801b3216f03aecc77ce3878c19))
+  - transfer $6.5M USDT [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) → [0x52aa…e497](https://etherscan.io/address/0x52aa899454998be5b000ad077a46bbe360f4e497) ([0xaefd…99d7](https://etherscan.io/tx/0xaefd5edf6bf93020a6ff4e732d86b184962f4ce3d34582cb98b683d7949199d7))
+  - transfer $6.5M USDT [0x52aa…e497](https://etherscan.io/address/0x52aa899454998be5b000ad077a46bbe360f4e497) → [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) ([0x894e…8c19](https://etherscan.io/tx/0x894e3cbad4ea38428a93326dde7b81fd85f8e7801b3216f03aecc77ce3878c19))
+  - transfer $6.5M USDT [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) → [0x0000…8a90](https://etherscan.io/address/0x000000000004444c5dc75cb358380d2e3de08a90) ([0x894e…8c19](https://etherscan.io/tx/0x894e3cbad4ea38428a93326dde7b81fd85f8e7801b3216f03aecc77ce3878c19))
+  - transfer $6.5M USDC [0x0000…8a90](https://etherscan.io/address/0x000000000004444c5dc75cb358380d2e3de08a90) → [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) ([0x894e…8c19](https://etherscan.io/tx/0x894e3cbad4ea38428a93326dde7b81fd85f8e7801b3216f03aecc77ce3878c19))
+  - transfer $6.5M USDT [0x0000…8a90](https://etherscan.io/address/0x000000000004444c5dc75cb358380d2e3de08a90) → [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) ([0xaefd…99d7](https://etherscan.io/tx/0xaefd5edf6bf93020a6ff4e732d86b184962f4ce3d34582cb98b683d7949199d7))
+  - transfer $6.5M USDC [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) → [0x0000…8a90](https://etherscan.io/address/0x000000000004444c5dc75cb358380d2e3de08a90) ([0xaefd…99d7](https://etherscan.io/tx/0xaefd5edf6bf93020a6ff4e732d86b184962f4ce3d34582cb98b683d7949199d7))
+  - transfer $6.5M USDC [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) → [0x98c2…6f5c](https://etherscan.io/address/0x98c23e9d8f34fefb1b7bd6a91b7ff122f4e16f5c) ([0x894e…8c19](https://etherscan.io/tx/0x894e3cbad4ea38428a93326dde7b81fd85f8e7801b3216f03aecc77ce3878c19))
+  - transfer $6.5M USDC [0x98c2…6f5c](https://etherscan.io/address/0x98c23e9d8f34fefb1b7bd6a91b7ff122f4e16f5c) → [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) ([0xaefd…99d7](https://etherscan.io/tx/0xaefd5edf6bf93020a6ff4e732d86b184962f4ce3d34582cb98b683d7949199d7))
+  - lending Aave v3 supply $8.3M wstETH account [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) ([0x894e…8c19](https://etherscan.io/tx/0x894e3cbad4ea38428a93326dde7b81fd85f8e7801b3216f03aecc77ce3878c19))
+  - lending Aave v3 borrow $6.5M USDC account [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) ([0x894e…8c19](https://etherscan.io/tx/0x894e3cbad4ea38428a93326dde7b81fd85f8e7801b3216f03aecc77ce3878c19))
+  - lending Aave v3 repay $6.5M USDC account [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) ([0x894e…8c19](https://etherscan.io/tx/0x894e3cbad4ea38428a93326dde7b81fd85f8e7801b3216f03aecc77ce3878c19))
+  - lending Aave v3 withdraw $8.3M wstETH account [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) ([0x894e…8c19](https://etherscan.io/tx/0x894e3cbad4ea38428a93326dde7b81fd85f8e7801b3216f03aecc77ce3878c19))
+  - lending Aave v3 supply $8.3M wstETH account [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) ([0xaefd…99d7](https://etherscan.io/tx/0xaefd5edf6bf93020a6ff4e732d86b184962f4ce3d34582cb98b683d7949199d7))
+  - lending Aave v3 borrow $6.5M USDC account [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) ([0xaefd…99d7](https://etherscan.io/tx/0xaefd5edf6bf93020a6ff4e732d86b184962f4ce3d34582cb98b683d7949199d7))
+  - lending Aave v3 repay $6.5M USDC account [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) ([0xaefd…99d7](https://etherscan.io/tx/0xaefd5edf6bf93020a6ff4e732d86b184962f4ce3d34582cb98b683d7949199d7))
+  - lending Aave v3 withdraw $8.3M wstETH account [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) ([0xaefd…99d7](https://etherscan.io/tx/0xaefd5edf6bf93020a6ff4e732d86b184962f4ce3d34582cb98b683d7949199d7))
+  - swap $6.5M USDT → USDC on uniswap_v4 by [0xaf60…82fb](https://etherscan.io/address/0xaf606275e24fd27206df317b075a48c0750f82fb) ([0x894e…8c19](https://etherscan.io/tx/0x894e3cbad4ea38428a93326dde7b81fd85f8e7801b3216f03aecc77ce3878c19))
+  - swap $6.5M USDC → USDT on uniswap_v4 by [0xaf60…82fb](https://etherscan.io/address/0xaf606275e24fd27206df317b075a48c0750f82fb) ([0xaefd…99d7](https://etherscan.io/tx/0xaefd5edf6bf93020a6ff4e732d86b184962f4ce3d34582cb98b683d7949199d7))
+  - JIT 1 episode(s), $14k of swaps bracketed, fees taken $0
+- **25918113** 11:49:59 base 0.06 gwei, 463 txs, Titan (titanbuilder.xyz)
+  - JIT 1 episode(s), $430 of swaps bracketed, fees taken $0
+- **25918114** 11:50:11 base 0.07 gwei, 320 txs,  Quasar (quasar.win) 
+  - JIT 1 episode(s), $242 of swaps bracketed, fees taken $0
+- **25918115** 11:50:23 base 0.07 gwei, 205 txs, Titan (titanbuilder.xyz)
+- **25918116** 11:50:35 base 0.08 gwei, 307 txs, Titan (titanbuilder.xyz)
+- **25918117** 11:50:47 base 0.08 gwei, 160 txs, Titan (titanbuilder.xyz)
+- **25918118** 11:50:59 base 0.07 gwei, 247 txs, Titan (titanbuilder.xyz)
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) ([0xf0ef…1575](https://etherscan.io/tx/0xf0ef15f24a1c75cb5a0efd89d6c5c3b4a7c241d389bc6658aa524c8715931575))
+  - transfer $25.0M WETH [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0xf0ef…1575](https://etherscan.io/tx/0xf0ef15f24a1c75cb5a0efd89d6c5c3b4a7c241d389bc6658aa524c8715931575))
+- **25918119** 11:51:11 base 0.07 gwei, 268 txs, Titan (titanbuilder.xyz)
+- **25918120** 11:51:23 base 0.08 gwei, 241 txs, Titan (titanbuilder.xyz)
+- **25918121** 11:51:35 base 0.08 gwei, 226 txs, Titan (titanbuilder.xyz)
+- **25918122** 11:51:47 base 0.08 gwei, 285 txs, BuilderNet
+- **25918123** 11:51:59 base 0.08 gwei, 230 txs,  Quasar (quasar.win) 
+- **25918124** 11:52:11 base 0.08 gwei, 251 txs, Titan (titanbuilder.xyz)
+- **25918125** 11:52:23 base 0.08 gwei, 258 txs, Eureka (eurekabuilder.xyz)
+- **25918126** 11:52:35 base 0.08 gwei, 204 txs,  Quasar (quasar.win) 
+- **25918127** 11:52:47 base 0.08 gwei, 219 txs, Titan (titanbuilder.xyz)
+- **25918128** 11:52:59 base 0.07 gwei, 276 txs,  Quasar (quasar.win) 
+- **25918129** 11:53:11 base 0.07 gwei, 274 txs, Titan (titanbuilder.xyz)
+- **25918130** 11:53:23 base 0.07 gwei, 164 txs, Titan (titanbuilder.xyz)
+- **25918131** 11:53:35 base 0.07 gwei, 250 txs, Titan (titanbuilder.xyz)
+  - JIT 2 episode(s), $263 of swaps bracketed, fees taken $0
+- **25918132** 11:53:47 base 0.07 gwei, 188 txs, Eureka (eurekabuilder.xyz)
+- **25918133** 11:53:59 base 0.07 gwei, 76 txs, 0xe556…1f58
+- **25918134** 11:54:11 base 0.06 gwei, 298 txs, Titan (titanbuilder.xyz)
+- **25918135** 11:54:23 base 0.07 gwei, 228 txs,  Quasar (quasar.win) 
+- **25918136** 11:54:35 base 0.07 gwei, 160 txs, Nethermind v1.39.2
+- **25918137** 11:54:47 base 0.06 gwei, 310 txs, Titan (titanbuilder.xyz)
+- **25918138** 11:54:59 base 0.06 gwei, 218 txs,  Quasar (quasar.win) 
+- **25918139** 11:55:11 base 0.06 gwei, 198 txs,  Quasar (quasar.win) 
+- re-analysed blocks 25917839 to 25918139 at 12:00:02 UTC: 6837 priced swaps, 28 JIT episodes, 5 lending ops ≥$250k, exchange net $20.8M stables / $99k ETH
+- **25918140** 11:55:23 base 0.06 gwei, 212 txs, Titan (titanbuilder.xyz)
+- **25918141** 11:55:35 base 0.06 gwei, 207 txs, bombora.build 
+- **25918142** 11:55:47 base 0.06 gwei, 225 txs, Titan (titanbuilder.xyz)
+- **25918143** 11:55:59 base 0.07 gwei, 240 txs,  Quasar (quasar.win) 
+- **25918144** 11:56:11 base 0.07 gwei, 190 txs, Titan (titanbuilder.xyz)
+- **25918145** 11:56:23 base 0.07 gwei, 208 txs, Titan (titanbuilder.xyz)
+- **25918146** 11:56:35 base 0.07 gwei, 261 txs, Eureka (eurekabuilder.xyz)
+- **25918147** 11:56:47 base 0.07 gwei, 219 txs, Titan (titanbuilder.xyz)
+- **25918148** 11:56:59 base 0.07 gwei, 237 txs,  Quasar (quasar.win) 
+- **25918149** 11:57:11 base 0.07 gwei, 202 txs, Eureka (eurekabuilder.xyz)
+- **25918150** 11:57:23 base 0.07 gwei, 199 txs,  Quasar (quasar.win) 
+- **25918151** 11:57:35 base 0.07 gwei, 89 txs, 0x08a9…6eac
+- **25918152** 11:57:47 base 0.06 gwei, 76 txs, Titan (titanbuilder.xyz)
+- **25918153** 11:57:59 base 0.05 gwei, 369 txs, Titan (titanbuilder.xyz)
+- **25918154** 11:58:11 base 0.06 gwei, 193 txs, Titan (titanbuilder.xyz)
+- **25918155** 11:58:23 base 0.06 gwei, 174 txs, Titan (titanbuilder.xyz)
+- **25918156** 11:58:35 base 0.06 gwei, 228 txs, Titan (titanbuilder.xyz)
+- **25918157** 11:58:47 base 0.06 gwei, 221 txs, Titan (titanbuilder.xyz)
+- **25918158** 11:58:59 base 0.06 gwei, 135 txs, BuilderNet
+- **25918159** 11:59:11 base 0.06 gwei, 239 txs, Titan (titanbuilder.xyz)
+- **25918160** 11:59:23 base 0.06 gwei, 149 txs, BuilderNet
+- **25918161** 11:59:35 base 0.05 gwei, 108 txs, gethgo1.26.4linux
+- **25918162** 11:59:47 base 0.05 gwei, 329 txs, Titan (titanbuilder.xyz)
+  - transfer $440.8M WBTC [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) ([0x32ec…67ab](https://etherscan.io/tx/0x32ecec4526762575d12ceaa2bb0da6e050c1cdbc4118dab017d06f1bce3667ab))
+  - transfer $440.8M WBTC [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x32ec…67ab](https://etherscan.io/tx/0x32ecec4526762575d12ceaa2bb0da6e050c1cdbc4118dab017d06f1bce3667ab))
+  - transfer $106.5M USDC [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) ([0x32ec…67ab](https://etherscan.io/tx/0x32ecec4526762575d12ceaa2bb0da6e050c1cdbc4118dab017d06f1bce3667ab))
+  - transfer $106.5M USDC [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x32ec…67ab](https://etherscan.io/tx/0x32ecec4526762575d12ceaa2bb0da6e050c1cdbc4118dab017d06f1bce3667ab))
+  - transfer $27.5M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) ([0x32ec…67ab](https://etherscan.io/tx/0x32ecec4526762575d12ceaa2bb0da6e050c1cdbc4118dab017d06f1bce3667ab))
+  - transfer $27.5M WETH [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x32ec…67ab](https://etherscan.io/tx/0x32ecec4526762575d12ceaa2bb0da6e050c1cdbc4118dab017d06f1bce3667ab))
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) ([0xa2b8…826c](https://etherscan.io/tx/0xa2b849d48753d69338d1252d7c4c5d9867f91c694f29882deb062235d033826c))
+  - transfer $25.0M WETH [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0xa2b8…826c](https://etherscan.io/tx/0xa2b849d48753d69338d1252d7c4c5d9867f91c694f29882deb062235d033826c))
+  - transfer $13.8M WBTC [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) → [0xbb2b…d940](https://etherscan.io/address/0xbb2b8038a1640196fbe3e38816f3e67cba72d940) ([0x32ec…67ab](https://etherscan.io/tx/0x32ecec4526762575d12ceaa2bb0da6e050c1cdbc4118dab017d06f1bce3667ab))
+  - transfer $13.8M WBTC [0xbb2b…d940](https://etherscan.io/address/0xbb2b8038a1640196fbe3e38816f3e67cba72d940) → [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) ([0x32ec…67ab](https://etherscan.io/tx/0x32ecec4526762575d12ceaa2bb0da6e050c1cdbc4118dab017d06f1bce3667ab))
+  - transfer $13.7M WETH [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) → [0xb4e1…c9dc](https://etherscan.io/address/0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc) ([0x32ec…67ab](https://etherscan.io/tx/0x32ecec4526762575d12ceaa2bb0da6e050c1cdbc4118dab017d06f1bce3667ab))
+  - transfer $13.7M WETH [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) → [0xbb2b…d940](https://etherscan.io/address/0xbb2b8038a1640196fbe3e38816f3e67cba72d940) ([0x32ec…67ab](https://etherscan.io/tx/0x32ecec4526762575d12ceaa2bb0da6e050c1cdbc4118dab017d06f1bce3667ab))
+  - transfer $13.7M WETH [0xb4e1…c9dc](https://etherscan.io/address/0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc) → [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) ([0x32ec…67ab](https://etherscan.io/tx/0x32ecec4526762575d12ceaa2bb0da6e050c1cdbc4118dab017d06f1bce3667ab))
+  - transfer $13.7M WETH [0xbb2b…d940](https://etherscan.io/address/0xbb2b8038a1640196fbe3e38816f3e67cba72d940) → [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) ([0x32ec…67ab](https://etherscan.io/tx/0x32ecec4526762575d12ceaa2bb0da6e050c1cdbc4118dab017d06f1bce3667ab))
+  - transfer $13.7M USDC [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) → [0xb4e1…c9dc](https://etherscan.io/address/0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc) ([0x32ec…67ab](https://etherscan.io/tx/0x32ecec4526762575d12ceaa2bb0da6e050c1cdbc4118dab017d06f1bce3667ab))
+  - transfer $13.7M USDC [0xb4e1…c9dc](https://etherscan.io/address/0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc) → [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) ([0x32ec…67ab](https://etherscan.io/tx/0x32ecec4526762575d12ceaa2bb0da6e050c1cdbc4118dab017d06f1bce3667ab))
+- **25918163** 11:59:59 base 0.05 gwei, 260 txs, BuilderNet
+- re-analysed blocks 25917863 to 25918163 at 12:01:03 UTC: 6757 priced swaps, 25 JIT episodes, 6 lending ops ≥$250k, exchange net $17.6M stables / $-249k ETH
+- **25918164** 12:00:11 base 0.05 gwei, 396 txs, Titan (titanbuilder.xyz)
+- **25918165** 12:00:23 base 0.06 gwei, 233 txs, BuilderNet
+- **25918166** 12:00:35 base 0.06 gwei, 458 txs,  Quasar (quasar.win) 
+- **25918167** 12:00:47 base 0.06 gwei, 241 txs, Titan (titanbuilder.xyz)
+- **25918168** 12:00:59 base 0.06 gwei, 218 txs, BuilderNet
+  - transfer $7.2M USDC [hot wallet (day study, unidentified)](https://etherscan.io/address/0x05ff6964d21e5dae3b1010d5ae0465b3c450f381) → [0x2744…a22b](https://etherscan.io/address/0x2744dfd9898f0babbc570cc594bbbc84b487a22b) ([0x6c3d…222f](https://etherscan.io/tx/0x6c3d91e46c79da5de6263a06743601f4b033a0a09510a8d7c274ad164201222f))
+- **25918169** 12:01:11 base 0.06 gwei, 329 txs,  Quasar (quasar.win) 
+- **25918170** 12:01:23 base 0.07 gwei, 252 txs, Titan (titanbuilder.xyz)
+- **25918171** 12:01:35 base 0.06 gwei, 216 txs, Titan (titanbuilder.xyz)
+- **25918172** 12:01:47 base 0.06 gwei, 116 txs, gethgo1.26.4linux
+- **25918173** 12:01:59 base 0.06 gwei, 276 txs, Titan (titanbuilder.xyz)
+- re-analysed blocks 25917873 to 25918173 at 12:02:10 UTC: 6742 priced swaps, 19 JIT episodes, 6 lending ops ≥$250k, exchange net $11.6M stables / $-558k ETH
+- **25918174** 12:02:11 base 0.06 gwei, 248 txs, Titan (titanbuilder.xyz)
+- **25918175** 12:02:23 base 0.06 gwei, 226 txs, Titan (titanbuilder.xyz)
+  - JIT 2 episode(s), $3910 of swaps bracketed, fees taken $0
+- **25918176** 12:02:35 base 0.06 gwei, 242 txs, Titan (titanbuilder.xyz)
+- **25918177** 12:02:47 base 0.06 gwei, 210 txs, 0x388c…9297
+- **25918178** 12:02:59 base 0.06 gwei, 206 txs, BuilderNet
+- **25918179** 12:03:11 base 0.06 gwei, 341 txs, Eureka (eurekabuilder.xyz)
+- **25918180** 12:03:23 base 0.06 gwei, 287 txs, Titan (titanbuilder.xyz)
+- **25918181** 12:03:35 base 0.06 gwei, 190 txs, Titan (titanbuilder.xyz)
+- **25918182** 12:03:47 base 0.06 gwei, 250 txs, bombora.build 
+  - JIT 3 episode(s), $120 of swaps bracketed, fees taken $0
+- **25918183** 12:03:59 base 0.06 gwei, 242 txs, Titan (titanbuilder.xyz)
+  - lending Aave v3 supply $1.0M USDT account [0x4d43…c672](https://etherscan.io/address/0x4d431856295413906075dd40266d83624e09c672) ([0xd676…c2fa](https://etherscan.io/tx/0xd676e3335d67baf681d6040b6e2e3122cd7ac814d3a59c17651019284081c2fa))
+- re-analysed blocks 25917883 to 25918183 at 12:04:21 UTC: 6688 priced swaps, 23 JIT episodes, 7 lending ops ≥$250k, exchange net $3.1M stables / $-1.0M ETH
+- **25918184** 12:04:11 base 0.06 gwei, 207 txs, BuilderNet
+- **25918185** 12:04:23 base 0.06 gwei, 293 txs, Titan (titanbuilder.xyz)
+- **25918186** 12:04:35 base 0.06 gwei, 319 txs, Titan (titanbuilder.xyz)
+- **25918187** 12:04:47 base 0.06 gwei, 395 txs,  Quasar (quasar.win) 
+- **25918188** 12:04:59 base 0.06 gwei, 249 txs,  Quasar (quasar.win) 
+- **25918189** 12:05:11 base 0.06 gwei, 317 txs, BuilderNet
+- **25918190** 12:05:23 base 0.07 gwei, 140 txs, BuilderNet
+- **25918191** 12:05:35 base 0.06 gwei, 412 txs, Titan (titanbuilder.xyz)
+  - swap $2.5M WETH → 0x622b…bf2d on uniswap_v2_like by [0x5afe…6f32](https://etherscan.io/address/0x5afec0de001999766fb883860cae06f5932e6f32) ([0x4141…a858](https://etherscan.io/tx/0x4141c0449ead1777e6a1dbaef6e4079f348711fd3019dbc9b3b8da144e70a858))
+  - swap $2.5M 0x622b…bf2d → WETH on uniswap_v2_like by [0x5afe…6f32](https://etherscan.io/address/0x5afec0de001999766fb883860cae06f5932e6f32) ([0x4141…a858](https://etherscan.io/tx/0x4141c0449ead1777e6a1dbaef6e4079f348711fd3019dbc9b3b8da144e70a858))
+- **25918192** 12:05:47 base 0.07 gwei, 266 txs, Titan (titanbuilder.xyz)
+- **25918193** 12:05:59 base 0.07 gwei, 229 txs, Titan (titanbuilder.xyz)
+- **25918194** 12:06:11 base 0.07 gwei, 313 txs, Titan (titanbuilder.xyz)
+- re-analysed blocks 25917894 to 25918194 at 12:06:26 UTC: 6699 priced swaps, 23 JIT episodes, 7 lending ops ≥$250k, exchange net $3.5M stables / $-734k ETH
+- **25918195** 12:06:23 base 0.07 gwei, 256 txs, Titan (titanbuilder.xyz)
+- **25918196** 12:06:35 base 0.07 gwei, 285 txs, 0x345d…78ee
+- **25918197** 12:06:47 base 0.07 gwei, 330 txs, Titan (titanbuilder.xyz)
+  - JIT 1 episode(s), $25 of swaps bracketed, fees taken $0
+- **25918198** 12:06:59 base 0.07 gwei, 248 txs, Titan (titanbuilder.xyz)
+- **25918199** 12:07:11 base 0.07 gwei, 209 txs, Titan (titanbuilder.xyz)
+- **25918200** 12:07:23 base 0.07 gwei, 71 txs, Titan (titanbuilder.xyz)
+- **25918201** 12:07:35 base 0.07 gwei, 354 txs, Titan (titanbuilder.xyz)
+- **25918202** 12:07:47 base 0.07 gwei, 334 txs, Eureka (eurekabuilder.xyz)
+- **25918203** 12:07:59 base 0.07 gwei, 196 txs, Titan (titanbuilder.xyz)
+- **25918204** 12:08:11 base 0.07 gwei, 247 txs, Titan (titanbuilder.xyz)
+- **25918205** 12:08:23 base 0.07 gwei, 256 txs,  Quasar (quasar.win) 
+- re-analysed blocks 25918028 to 25918205 at 12:08:37 UTC: 6968 priced swaps, 24 JIT episodes, 7 lending ops ≥$250k, exchange net $5.6M stables / $-534k ETH
+- **25918206** 12:08:35 base 0.07 gwei, 149 txs, BuilderNet
+  - JIT 1 episode(s), $349 of swaps bracketed, fees taken $0
+- **25918207** 12:08:47 base 0.07 gwei, 311 txs, BuilderNet
+  - lending Aave v3 supply $1.2M wstETH account [0xf8f5…e912](https://etherscan.io/address/0xf8f59620f260583e833d43a1940e6d210d0ce912) ([0x3f20…d166](https://etherscan.io/tx/0x3f209443b4f59a1af4859a3340d12a0a41b481a4bf01134ec615adaf950ad166))
+  - lending Aave v3 borrow $1.0M WETH account [0xf8f5…e912](https://etherscan.io/address/0xf8f59620f260583e833d43a1940e6d210d0ce912) ([0x3f20…d166](https://etherscan.io/tx/0x3f209443b4f59a1af4859a3340d12a0a41b481a4bf01134ec615adaf950ad166))
+- **25918208** 12:08:59 base 0.07 gwei, 159 txs, Builder+ btcs.com | ethgas.com
+- **25918209** 12:09:11 base 0.07 gwei, 192 txs, Titan (titanbuilder.xyz)
+  - transfer $11.4M sUSDe [0xa711…6d69](https://etherscan.io/address/0xa711a3a64f2b2d7e05dc3f564d3862d7499c6d69) → [0xb221…dc61](https://etherscan.io/address/0xb22161a2222ae7008cb3c54f819025031b1bdc61) ([0x6e94…a609](https://etherscan.io/tx/0x6e94f243d8f5a82429b8f68570895300cc8d8748930705bc170ee5910f07a609))
+- **25918210** 12:09:23 base 0.07 gwei, 310 txs, Titan (titanbuilder.xyz)
+- **25918211** 12:09:35 base 0.07 gwei, 78 txs, Nethermind v1.39.3
+- **25918212** 12:09:47 base 0.06 gwei, 141 txs, Titan (titanbuilder.xyz)
+  - transfer $5.0M ETH [0x8d6e…8b59](https://etherscan.io/address/0x8d6ecbc74a448ed85a19d68d27be078fd4b88b59) → [0xef25…e815](https://etherscan.io/address/0xef25d6f7e6bf59f21cceeb8d5f78f9f59db7e815) ([0xcdaf…5630](https://etherscan.io/tx/0xcdaf1a32c101189a663997d8ef049345b3877976333fc33ea4f4aae60c735630))
+- **25918213** 12:09:59 base 0.06 gwei, 406 txs, Titan (titanbuilder.xyz)
+  - transfer $107.4M USDC [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x0000…0cac](https://etherscan.io/address/0x00000f91109c4d0007e90000d9facad5298a0cac) ([0x90fa…06d4](https://etherscan.io/tx/0x90fade6b63402923f658fdde6b32a210b81640cbbd27328f3507e4135c1206d4))
+  - transfer $107.4M USDC [0x0000…0cac](https://etherscan.io/address/0x00000f91109c4d0007e90000d9facad5298a0cac) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x90fa…06d4](https://etherscan.io/tx/0x90fade6b63402923f658fdde6b32a210b81640cbbd27328f3507e4135c1206d4))
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) ([0x4aec…9536](https://etherscan.io/tx/0x4aece014ae05115250f9d386eb768bf03a05e4deb3a2b65eb8441bde31439536))
+  - transfer $25.0M WETH [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x4aec…9536](https://etherscan.io/tx/0x4aece014ae05115250f9d386eb768bf03a05e4deb3a2b65eb8441bde31439536))
+- **25918214** 12:10:11 base 0.07 gwei, 218 txs, Titan (titanbuilder.xyz)
+- **25918215** 12:10:23 base 0.07 gwei, 203 txs, Titan (titanbuilder.xyz)
+- re-analysed blocks 25918028 to 25918215 at 12:10:39 UTC: 7444 priced swaps, 25 JIT episodes, 9 lending ops ≥$250k, exchange net $8.8M stables / $-540k ETH
+- **25918216** 12:10:35 base 0.07 gwei, 266 txs, Titan (titanbuilder.xyz)
+- **25918217** 12:10:47 base 0.07 gwei, 253 txs, Titan (titanbuilder.xyz)
+  - transfer $11.4M sUSDe [0xb221…dc61](https://etherscan.io/address/0xb22161a2222ae7008cb3c54f819025031b1bdc61) → [0x31b7…b95a](https://etherscan.io/address/0x31b7d5a2b1ce1871dd642f6aecc0ef68d126b95a) ([0x932e…8a3e](https://etherscan.io/tx/0x932e78816646c1dbb925b1cf76c8649a0eb849d81a04714a4cb4dedf96448a3e))
+- **25918218** 12:10:59 base 0.07 gwei, 324 txs,  Quasar (quasar.win) 
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) ([0xf383…becc](https://etherscan.io/tx/0xf3838b61a0ff35d400529691649ce81eb5716143725dac7601978e3b0f87becc))
+  - transfer $25.0M WETH [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0xf383…becc](https://etherscan.io/tx/0xf3838b61a0ff35d400529691649ce81eb5716143725dac7601978e3b0f87becc))
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) ([0xa86f…e050](https://etherscan.io/tx/0xa86f6873467d807485c06f494058d0131a7555a4dbc1b73eba2010fe78b1e050))
+  - transfer $25.0M WETH [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0xa86f…e050](https://etherscan.io/tx/0xa86f6873467d807485c06f494058d0131a7555a4dbc1b73eba2010fe78b1e050))
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) ([0x0b0a…257e](https://etherscan.io/tx/0x0b0a89fe13bd11078986e46ece5bd5cc61fde8a6a8535010606dcd0d4a5c257e))
+  - transfer $25.0M WETH [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x0b0a…257e](https://etherscan.io/tx/0x0b0a89fe13bd11078986e46ece5bd5cc61fde8a6a8535010606dcd0d4a5c257e))
+- **25918219** 12:11:11 base 0.07 gwei, 127 txs, besu 26.8.0
+- **25918220** 12:11:23 base 0.06 gwei, 117 txs, Nethermind v1.39.3
+- **25918221** 12:11:35 base 0.05 gwei, 179 txs, BuilderNet
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) ([0xd89d…7f78](https://etherscan.io/tx/0xd89d1f40d68fda5bc7421401187b134d5a4b8c7d8e1ed1dd0cd17c63c0ba7f78))
+  - transfer $25.0M WETH [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0xd89d…7f78](https://etherscan.io/tx/0xd89d1f40d68fda5bc7421401187b134d5a4b8c7d8e1ed1dd0cd17c63c0ba7f78))
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) ([0xaa98…6ffb](https://etherscan.io/tx/0xaa987caa52c1e73269da2f1ed80e850e2113dacbca2bd789aebc46401bab6ffb))
+  - transfer $25.0M WETH [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0xaa98…6ffb](https://etherscan.io/tx/0xaa987caa52c1e73269da2f1ed80e850e2113dacbca2bd789aebc46401bab6ffb))
+- **25918222** 12:11:47 base 0.05 gwei, 397 txs, Titan (titanbuilder.xyz)
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) ([0x9bc4…c24e](https://etherscan.io/tx/0x9bc4bae30c9a3492d2f1eb73296298fd25fc872edeeac480968210405ff1c24e))
+  - transfer $25.0M WETH [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x9bc4…c24e](https://etherscan.io/tx/0x9bc4bae30c9a3492d2f1eb73296298fd25fc872edeeac480968210405ff1c24e))
+- **25918223** 12:11:59 base 0.06 gwei, 210 txs, Titan (titanbuilder.xyz)
+  - transfer $6.0M sUSDe [0x31b7…b95a](https://etherscan.io/address/0x31b7d5a2b1ce1871dd642f6aecc0ef68d126b95a) → [0x211c…e5d2](https://etherscan.io/address/0x211cc4dd073734da055fbf44a2b4667d5e5fe5d2) ([0xb635…f9ac](https://etherscan.io/tx/0xb635b559de6ff4a3c5620cf6cc7a82a32356c37a19f5900805d9f7e81678f9ac))
+  - bridge OFT $6.0M sUSDe → eid 30383 ([0xb635…f9ac](https://etherscan.io/tx/0xb635b559de6ff4a3c5620cf6cc7a82a32356c37a19f5900805d9f7e81678f9ac))
+  - JIT 3 episode(s), $420 of swaps bracketed, fees taken $0
+- **25918224** 12:12:11 base 0.06 gwei, 246 txs, Titan (titanbuilder.xyz)
+  - lending Aave v3 supply $1.0M wstETH account [0xf8f5…e912](https://etherscan.io/address/0xf8f59620f260583e833d43a1940e6d210d0ce912) ([0xf717…7a02](https://etherscan.io/tx/0xf7170ba1349552480043c2cf2549fecf440ff66812716a008e8b3fbfc47d7a02))
+- **25918225** 12:12:23 base 0.06 gwei, 316 txs, Eureka (eurekabuilder.xyz)
+- re-analysed blocks 25918028 to 25918225 at 12:12:38 UTC: 7886 priced swaps, 28 JIT episodes, 11 lending ops ≥$250k, exchange net $5.7M stables / $-616k ETH
+- **25918226** 12:12:35 base 0.07 gwei, 199 txs, BuilderNet
+- **25918227** 12:12:47 base 0.06 gwei, 184 txs, BuilderNet
+- **25918228** 12:12:59 base 0.06 gwei, 295 txs, Titan (titanbuilder.xyz)
+- **25918229** 12:13:11 base 0.06 gwei, 356 txs, Titan (titanbuilder.xyz)
+- **25918230** 12:13:23 base 0.07 gwei, 211 txs, Titan (titanbuilder.xyz)
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) ([0x351e…bf80](https://etherscan.io/tx/0x351e4a75229489e6baa407bb9d1f8c3028b931a60085187a934bacd9bd73bf80))
+  - transfer $25.0M WETH [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x351e…bf80](https://etherscan.io/tx/0x351e4a75229489e6baa407bb9d1f8c3028b931a60085187a934bacd9bd73bf80))
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) ([0xfade…8cb5](https://etherscan.io/tx/0xfadeaa5d26ae5fd9d7109d7c067610eb03c46424acbd49ce2dd29019f7368cb5))
+  - transfer $25.0M WETH [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0xfade…8cb5](https://etherscan.io/tx/0xfadeaa5d26ae5fd9d7109d7c067610eb03c46424acbd49ce2dd29019f7368cb5))
+- **25918231** 12:13:35 base 0.07 gwei, 186 txs, Titan (titanbuilder.xyz)
+- **25918232** 12:13:47 base 0.06 gwei, 187 txs, BuilderNet
+  - swap $2.2M USDS → USDT on uniswap_v4 by [0x63d7…b51d](https://etherscan.io/address/0x63d7325a767846c810276d09d032aa3b846ab51d) ([0xe6ba…6223](https://etherscan.io/tx/0xe6baa9974d31f32a4326fa79f54160490ec416199663d65b6da611648f9b6223))
+- **25918233** 12:13:59 base 0.06 gwei, 76 txs, BuilderNet
+- **25918234** 12:14:11 base 0.06 gwei, 352 txs, Titan (titanbuilder.xyz)
+- **25918235** 12:14:23 base 0.06 gwei, 198 txs, Titan (titanbuilder.xyz)
+- re-analysed blocks 25918028 to 25918235 at 12:14:37 UTC: 8292 priced swaps, 28 JIT episodes, 12 lending ops ≥$250k, exchange net $6.4M stables / $-569k ETH
+- **25918236** 12:14:35 base 0.06 gwei, 70 txs, BuilderNet
+- **25918237** 12:14:47 base 0.06 gwei, 451 txs, Titan (titanbuilder.xyz)
+- **25918238** 12:14:59 base 0.06 gwei, 218 txs, Titan (titanbuilder.xyz)
+- **25918239** 12:15:11 base 0.06 gwei, 280 txs, Titan (titanbuilder.xyz)
+- **25918240** 12:15:23 base 0.07 gwei, 266 txs, Titan (titanbuilder.xyz)
+- **25918241** 12:15:35 base 0.07 gwei, 330 txs, Eureka (eurekabuilder.xyz)
+- **25918242** 12:15:47 base 0.07 gwei, 226 txs, Titan (titanbuilder.xyz)
+- **25918243** 12:15:59 base 0.07 gwei, 231 txs, Titan (titanbuilder.xyz)
+- **25918244** 12:16:11 base 0.08 gwei, 244 txs, Titan (titanbuilder.xyz)
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) ([0xff3f…c3a3](https://etherscan.io/tx/0xff3fa97eb7708de200e04be0ef7bd0cd1ca16055fc34da011db0cf679103c3a3))
+  - transfer $25.0M WETH [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0xff3f…c3a3](https://etherscan.io/tx/0xff3fa97eb7708de200e04be0ef7bd0cd1ca16055fc34da011db0cf679103c3a3))
+- **25918245** 12:16:23 base 0.08 gwei, 284 txs, Eureka (eurekabuilder.xyz)
+- re-analysed blocks 25918028 to 25918245 at 12:16:42 UTC: 8928 priced swaps, 28 JIT episodes, 13 lending ops ≥$250k, exchange net $6.1M stables / $-571k ETH
+- **25918246** 12:16:35 base 0.09 gwei, 248 txs, Titan (titanbuilder.xyz)
+- **25918247** 12:16:47 base 0.10 gwei, 126 txs, Titan (titanbuilder.xyz)
+- **25918248** 12:16:59 base 0.10 gwei, 421 txs,  Quasar (quasar.win) 
+- **25918249** 12:17:11 base 0.10 gwei, 124 txs, BuilderNet
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) ([0x626b…5e4e](https://etherscan.io/tx/0x626be59ef79a787510260289ff197d308444218247f6bc41097c5d5ca43c5e4e))
+  - transfer $25.0M WETH [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x626b…5e4e](https://etherscan.io/tx/0x626be59ef79a787510260289ff197d308444218247f6bc41097c5d5ca43c5e4e))
+- **25918250** 12:17:23 base 0.10 gwei, 293 txs, BuilderNet
+- **25918251** 12:17:35 base 0.11 gwei, 353 txs, Titan (titanbuilder.xyz)
+- **25918252** 12:17:47 base 0.11 gwei, 409 txs,  Quasar (quasar.win) 
+- **25918253** 12:17:59 base 0.12 gwei, 84 txs, Nethermind v1.37.1
+- **25918254** 12:18:11 base 0.11 gwei, 388 txs, Titan (titanbuilder.xyz)
+- **25918255** 12:18:23 base 0.11 gwei, 265 txs, Titan (titanbuilder.xyz)
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) ([0x48e7…3e71](https://etherscan.io/tx/0x48e76f2a95b299a50b500fef292aec3d18c13275d8db0d039226523568a93e71))
+  - transfer $25.0M WETH [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x48e7…3e71](https://etherscan.io/tx/0x48e76f2a95b299a50b500fef292aec3d18c13275d8db0d039226523568a93e71))
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) ([0x79b6…ef44](https://etherscan.io/tx/0x79b6e003c7875cd6b8f6a5d5a12185bc1f77923d0885d415fc58ad518bceef44))
+  - transfer $25.0M WETH [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x79b6…ef44](https://etherscan.io/tx/0x79b6e003c7875cd6b8f6a5d5a12185bc1f77923d0885d415fc58ad518bceef44))
+- **25918256** 12:18:35 base 0.12 gwei, 198 txs, Titan (titanbuilder.xyz)
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) ([0x1ce1…94c0](https://etherscan.io/tx/0x1ce14251154eaa92ad3afbf54ca108bcf95b91229973e29e3988bf4ccbe894c0))
+  - transfer $25.0M WETH [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x1ce1…94c0](https://etherscan.io/tx/0x1ce14251154eaa92ad3afbf54ca108bcf95b91229973e29e3988bf4ccbe894c0))
+- re-analysed blocks 25918028 to 25918256 at 12:18:52 UTC: 9543 priced swaps, 28 JIT episodes, 14 lending ops ≥$250k, exchange net $6.1M stables / $375k ETH
+- **25918257** 12:18:47 base 0.12 gwei, 114 txs, BuilderNet
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) ([0x53f3…b76c](https://etherscan.io/tx/0x53f35442939398107ff25290484902a29eb515aa7683724a7928f117e80bb76c))
+  - transfer $25.0M WETH [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x53f3…b76c](https://etherscan.io/tx/0x53f35442939398107ff25290484902a29eb515aa7683724a7928f117e80bb76c))
+- **25918258** 12:18:59 base 0.12 gwei, 276 txs, Titan (titanbuilder.xyz)
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) ([0x6afb…bbd4](https://etherscan.io/tx/0x6afb8db6c1a4d5f1ed76b7b8c9b0eb7fd0733844f3f0551c7500c02facb3bbd4))
+  - transfer $25.0M WETH [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x6afb…bbd4](https://etherscan.io/tx/0x6afb8db6c1a4d5f1ed76b7b8c9b0eb7fd0733844f3f0551c7500c02facb3bbd4))
+- **25918259** 12:19:11 base 0.12 gwei, 151 txs, Titan (titanbuilder.xyz)
+- **25918260** 12:19:23 base 0.12 gwei, 309 txs,  Quasar (quasar.win) 
+- **25918261** 12:19:35 base 0.12 gwei, 258 txs, Titan (titanbuilder.xyz)
+- **25918262** 12:19:47 base 0.13 gwei, 221 txs, BuilderNet
+- **25918263** 12:19:59 base 0.13 gwei, 186 txs, Titan (titanbuilder.xyz)
+- **25918264** 12:20:11 base 0.13 gwei, 265 txs, Titan (titanbuilder.xyz)
+- **25918265** 12:20:23 base 0.14 gwei, 176 txs, BuilderNet
+- **25918266** 12:20:35 base 0.14 gwei, 275 txs, Titan (titanbuilder.xyz)
+- re-analysed blocks 25918028 to 25918266 at 12:20:55 UTC: 10074 priced swaps, 28 JIT episodes, 14 lending ops ≥$250k, exchange net $5.2M stables / $1.2M ETH
+- **25918267** 12:20:47 base 0.14 gwei, 200 txs, Titan (titanbuilder.xyz)
+- **25918268** 12:20:59 base 0.14 gwei, 163 txs, 0xd73d…be4a
+- **25918269** 12:21:11 base 0.13 gwei, 321 txs, Titan (titanbuilder.xyz)
+- **25918270** 12:21:23 base 0.14 gwei, 136 txs, BuilderNet
+- **25918271** 12:21:35 base 0.13 gwei, 291 txs,  Quasar (quasar.win) 
+- **25918272** 12:21:47 base 0.14 gwei, 234 txs, Titan (titanbuilder.xyz)
+- **25918273** 12:21:59 base 0.14 gwei, 280 txs, Eureka (eurekabuilder.xyz)
+- **25918274** 12:22:11 base 0.14 gwei, 239 txs,  Quasar (quasar.win) 
+  - transfer $17.7M stETH [0x889e…f9b1](https://etherscan.io/address/0x889edc2edab5f40e902b864ad4d7ade8e412f9b1) → [0xe76c…573a](https://etherscan.io/address/0xe76c52750019b80b43e36df30bf4060eb73f573a) ([0x314f…4de4](https://etherscan.io/tx/0x314f6a49de7906164617d8ecd026f17c72d8a88933097ef6d895beb11be04de4))
+- **25918275** 12:22:23 base 0.14 gwei, 210 txs, Eureka (eurekabuilder.xyz)
+  - transfer $40.1M USDT [Binance 14 (memory)](https://etherscan.io/address/0x28c6c06298d514db089934071355e5743bf21d60) → [Binance 16 (memory)](https://etherscan.io/address/0xdfd5293d8e347dfe59e90efd55b2956a1343963d) ([0x8c8f…d27a](https://etherscan.io/tx/0x8c8f5b04f36764cd6ae9fab5ca4155de7fb43e6acf7c329968a0df316559d27a))
+- **25918276** 12:22:35 base 0.14 gwei, 159 txs, BuilderNet
+- **25918277** 12:22:47 base 0.15 gwei, 281 txs, Titan (titanbuilder.xyz)
+- re-analysed blocks 25918028 to 25918277 at 12:23:01 UTC: 10605 priced swaps, 28 JIT episodes, 14 lending ops ≥$250k, exchange net $3.9M stables / $1.8M ETH
+- **25918278** 12:22:59 base 0.15 gwei, 260 txs, Eureka (eurekabuilder.xyz)
+- **25918279** 12:23:11 base 0.15 gwei, 85 txs, BuilderNet
+- **25918280** 12:23:23 base 0.14 gwei, 261 txs, Titan (titanbuilder.xyz)
+- **25918281** 12:23:35 base 0.14 gwei, 327 txs, Eureka (eurekabuilder.xyz)
+- **25918282** 12:23:47 base 0.16 gwei, 94 txs, Eureka (eurekabuilder.xyz)
+- **25918283** 12:23:59 base 0.15 gwei, 288 txs, Titan (titanbuilder.xyz)
+- **25918284** 12:24:11 base 0.15 gwei, 129 txs, BuilderNet
+  - JIT 1 episode(s), $115 of swaps bracketed, fees taken $0
+- **25918285** 12:24:23 base 0.14 gwei, 308 txs, Titan (titanbuilder.xyz)
+- **25918286** 12:24:35 base 0.15 gwei, 65 txs, gethgo1.25.1linux
+- **25918287** 12:24:47 base 0.13 gwei, 284 txs, Titan (titanbuilder.xyz)
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) ([0x3469…452f](https://etherscan.io/tx/0x3469920abb89533567168bdfd27c4df1919389534f9e6ae127ceae9419ae452f))
+  - transfer $25.0M WETH [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x3469…452f](https://etherscan.io/tx/0x3469920abb89533567168bdfd27c4df1919389534f9e6ae127ceae9419ae452f))
+- re-analysed blocks 25918028 to 25918287 at 12:25:02 UTC: 11128 priced swaps, 29 JIT episodes, 14 lending ops ≥$250k, exchange net $4.2M stables / $2.0M ETH
+- **25918288** 12:24:59 base 0.14 gwei, 230 txs, Titan (titanbuilder.xyz)
+- **25918289** 12:25:11 base 0.14 gwei, 278 txs, Titan (titanbuilder.xyz)
+- **25918290** 12:25:23 base 0.14 gwei, 209 txs, Titan (titanbuilder.xyz)
+- **25918291** 12:25:35 base 0.13 gwei, 239 txs, Titan (titanbuilder.xyz)
+- **25918292** 12:25:47 base 0.14 gwei, 97 txs, Eureka (eurekabuilder.xyz)
+- **25918293** 12:25:59 base 0.13 gwei, 419 txs, Titan (titanbuilder.xyz)
+- **25918294** 12:26:11 base 0.13 gwei, 117 txs, BuilderNet
+- **25918295** 12:26:23 base 0.13 gwei, 358 txs, Titan (titanbuilder.xyz)
+- **25918296** 12:26:35 base 0.13 gwei, 218 txs, Titan (titanbuilder.xyz)
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) ([0x2ccd…2544](https://etherscan.io/tx/0x2ccdffee6d59e80751d1052fcd0e16d36c740108f8304caad6776b99dd462544))
+  - transfer $25.0M WETH [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x2ccd…2544](https://etherscan.io/tx/0x2ccdffee6d59e80751d1052fcd0e16d36c740108f8304caad6776b99dd462544))
+- **25918297** 12:26:47 base 0.13 gwei, 228 txs, Titan (titanbuilder.xyz)
+- re-analysed blocks 25918028 to 25918297 at 12:27:06 UTC: 11633 priced swaps, 29 JIT episodes, 17 lending ops ≥$250k, exchange net $5.4M stables / $2.4M ETH
+- **25918298** 12:26:59 base 0.13 gwei, 358 txs, Eureka (eurekabuilder.xyz)
+- **25918299** 12:27:11 base 0.13 gwei, 240 txs, Titan (titanbuilder.xyz)
+- **25918300** 12:27:23 base 0.13 gwei, 224 txs, BuilderNet
+- **25918301** 12:27:35 base 0.13 gwei, 230 txs, BuilderNet
+- **25918302** 12:27:47 base 0.13 gwei, 445 txs, bombora.build 
+- **25918303** 12:27:59 base 0.13 gwei, 257 txs, Titan (titanbuilder.xyz)
+- **25918304** 12:28:11 base 0.13 gwei, 181 txs, BuilderNet
+- **25918305** 12:28:23 base 0.13 gwei, 138 txs, ethgas-realtime-rpc
+- **25918306** 12:28:35 base 0.12 gwei, 264 txs, Titan (titanbuilder.xyz)
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) ([0xccb5…b0f9](https://etherscan.io/tx/0xccb53dd1da1a4fc5d5908b471081266b6ab3cb0570b0d23f4e500de0ca78b0f9))
+  - transfer $25.0M WETH [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0xccb5…b0f9](https://etherscan.io/tx/0xccb53dd1da1a4fc5d5908b471081266b6ab3cb0570b0d23f4e500de0ca78b0f9))
+- **25918307** 12:28:47 base 0.12 gwei, 233 txs, Eureka (eurekabuilder.xyz)
+- **25918308** 12:28:59 base 0.12 gwei, 243 txs, Titan (titanbuilder.xyz)
+- re-analysed blocks 25918028 to 25918308 at 12:29:12 UTC: 12179 priced swaps, 29 JIT episodes, 17 lending ops ≥$250k, exchange net $7.2M stables / $2.3M ETH
+- **25918309** 12:29:11 base 0.12 gwei, 197 txs, Titan (titanbuilder.xyz)
+- **25918310** 12:29:23 base 0.11 gwei, 210 txs, Titan (titanbuilder.xyz)
+- **25918311** 12:29:35 base 0.11 gwei, 204 txs, Titan (titanbuilder.xyz)
+- **25918312** 12:29:47 base 0.11 gwei, 214 txs, Titan (titanbuilder.xyz)
+- **25918313** 12:29:59 base 0.11 gwei, 161 txs, besu 26.5.0-RC2
+- **25918314** 12:30:11 base 0.10 gwei, 363 txs, BuilderNet
+- **25918315** 12:30:23 base 0.10 gwei, 384 txs, Titan (titanbuilder.xyz)
+- **25918316** 12:30:35 base 0.11 gwei, 218 txs, beaverbuild.org
+- **25918317** 12:30:47 base 0.10 gwei, 314 txs, Titan (titanbuilder.xyz)
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) ([0x88fd…1af4](https://etherscan.io/tx/0x88fd29836217ed825083e34d5502d2db1a397dcbb35f4c894da739e5f8581af4))
+  - transfer $25.0M WETH [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x88fd…1af4](https://etherscan.io/tx/0x88fd29836217ed825083e34d5502d2db1a397dcbb35f4c894da739e5f8581af4))
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) ([0x783f…34fe](https://etherscan.io/tx/0x783f6aa3f512f69a6a281a4027829882b8148f0f9c986f0cded25497944334fe))
+  - transfer $25.0M WETH [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x783f…34fe](https://etherscan.io/tx/0x783f6aa3f512f69a6a281a4027829882b8148f0f9c986f0cded25497944334fe))
+- **25918318** 12:30:59 base 0.10 gwei, 188 txs, besu 26.7.1
+- re-analysed blocks 25918028 to 25918318 at 12:31:19 UTC: 12572 priced swaps, 29 JIT episodes, 17 lending ops ≥$250k, exchange net $6.8M stables / $2.3M ETH
+- **25918319** 12:31:11 base 0.09 gwei, 388 txs, Titan (titanbuilder.xyz)
+- **25918320** 12:31:23 base 0.10 gwei, 110 txs, gethgo1.25.1linux
+- **25918321** 12:31:35 base 0.09 gwei, 373 txs, BuilderNet
+- **25918322** 12:31:47 base 0.09 gwei, 236 txs, BuilderNet
+- **25918323** 12:31:59 base 0.09 gwei, 164 txs, BuilderNet
+  - JIT 1 episode(s), $0 of swaps bracketed, fees taken $0
+- **25918324** 12:32:11 base 0.09 gwei, 223 txs, BuilderNet
+- **25918325** 12:32:23 base 0.09 gwei, 229 txs, Titan (titanbuilder.xyz)
+- **25918326** 12:32:35 base 0.09 gwei, 392 txs, Nethermind v1.37.1
+- **25918327** 12:32:47 base 0.09 gwei, 212 txs, Titan (titanbuilder.xyz)
+  - JIT 1 episode(s), $299 of swaps bracketed, fees taken $2
+- **25918328** 12:32:59 base 0.10 gwei, 401 txs, Titan (titanbuilder.xyz)
+- re-analysed blocks 25918028 to 25918328 at 12:33:15 UTC: 13120 priced swaps, 31 JIT episodes, 18 lending ops ≥$250k, exchange net $6.1M stables / $2.1M ETH
+- **25918329** 12:33:11 base 0.10 gwei, 309 txs, Titan (titanbuilder.xyz)
+- **25918330** 12:33:23 base 0.10 gwei, 124 txs, Nethermind v1.39.3
+- **25918331** 12:33:35 base 0.10 gwei, 373 txs, Titan (titanbuilder.xyz)
+- **25918332** 12:33:47 base 0.10 gwei, 270 txs, BuilderNet
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) ([0xf1cf…3ac1](https://etherscan.io/tx/0xf1cffdd5f00c7ee660c6b1e5228f8d55c91c6e981814b67bfcd5f759150c3ac1))
+  - transfer $25.0M WETH [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0xf1cf…3ac1](https://etherscan.io/tx/0xf1cffdd5f00c7ee660c6b1e5228f8d55c91c6e981814b67bfcd5f759150c3ac1))
+- **25918333** 12:33:59 base 0.10 gwei, 262 txs,  Quasar (quasar.win) 
+- **25918334** 12:34:11 base 0.10 gwei, 98 txs, Bitget(https://www.bitget.com/)
+- **25918335** 12:34:23 base 0.09 gwei, 348 txs, Titan (titanbuilder.xyz)
+- **25918336** 12:34:35 base 0.10 gwei, 450 txs,  Quasar (quasar.win) 
+- **25918337** 12:34:47 base 0.10 gwei, 295 txs, Titan (titanbuilder.xyz)
+- **25918338** 12:34:59 base 0.09 gwei, 211 txs,  Quasar (quasar.win) 
+- **25918339** 12:35:11 base 0.09 gwei, 116 txs, Nethermind v1.35.3
+- re-analysed blocks 25918039 to 25918339 at 12:35:25 UTC: 13089 priced swaps, 30 JIT episodes, 17 lending ops ≥$250k, exchange net $6.2M stables / $2.2M ETH
+- **25918340** 12:35:23 base 0.08 gwei, 302 txs, Titan (titanbuilder.xyz)
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) ([0x7e29…c918](https://etherscan.io/tx/0x7e29d8d60fe81db55dc89fe25cabd579ec587972b4e484fb0549d6f7d0e8c918))
+  - transfer $25.0M WETH [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x7e29…c918](https://etherscan.io/tx/0x7e29d8d60fe81db55dc89fe25cabd579ec587972b4e484fb0549d6f7d0e8c918))
+- **25918341** 12:35:35 base 0.09 gwei, 109 txs, builder.ultrasound.money
+- **25918342** 12:35:47 base 0.08 gwei, 340 txs, BuilderNet
+- **25918343** 12:35:59 base 0.09 gwei, 197 txs, bombora.build 
+- **25918344** 12:36:11 base 0.09 gwei, 229 txs, BuilderNet
+- **25918345** 12:36:23 base 0.09 gwei, 261 txs, Titan (titanbuilder.xyz)
+- **25918346** 12:36:35 base 0.09 gwei, 273 txs, Titan (titanbuilder.xyz)
+- **25918347** 12:36:47 base 0.09 gwei, 55 txs, gethgo1.25.12linux
+- **25918348** 12:36:59 base 0.08 gwei, 467 txs, BuilderNet
+- **25918349** 12:37:11 base 0.08 gwei, 309 txs, Titan (titanbuilder.xyz)
+- re-analysed blocks 25918049 to 25918349 at 12:37:33 UTC: 13151 priced swaps, 27 JIT episodes, 17 lending ops ≥$250k, exchange net $5.8M stables / $2.0M ETH
+- **25918350** 12:37:23 base 0.08 gwei, 249 txs, Titan (titanbuilder.xyz)
+  - JIT 1 episode(s), $0 of swaps bracketed, fees taken $0
+- **25918351** 12:37:35 base 0.08 gwei, 163 txs, boba-builder.com
+- **25918352** 12:37:47 base 0.08 gwei, 285 txs, BuilderNet
+- **25918353** 12:37:59 base 0.08 gwei, 133 txs, Titan (titanbuilder.xyz)
+- **25918354** 12:38:11 base 0.08 gwei, 460 txs, Titan (titanbuilder.xyz)
+- **25918355** 12:38:23 base 0.08 gwei, 225 txs, Eureka (eurekabuilder.xyz)
+- **25918356** 12:38:35 base 0.08 gwei, 289 txs, Titan (titanbuilder.xyz)
+- **25918357** 12:38:47 base 0.08 gwei, 187 txs, Titan (titanbuilder.xyz)
+- **25918358** 12:38:59 base 0.08 gwei, 279 txs,  Quasar (quasar.win) 
+- **25918359** 12:39:11 base 0.08 gwei, 285 txs, Titan (titanbuilder.xyz)
+- re-analysed blocks 25918059 to 25918359 at 12:39:26 UTC: 13354 priced swaps, 28 JIT episodes, 17 lending ops ≥$250k, exchange net $6.3M stables / $2.0M ETH
+- **25918360** 12:39:23 base 0.07 gwei, 234 txs, Titan (titanbuilder.xyz)
+- **25918361** 12:39:35 base 0.07 gwei, 85 txs, gethgo1.25.12linux
+- **25918362** 12:39:47 base 0.06 gwei, 322 txs, Titan (titanbuilder.xyz)
+  - transfer $440.8M WBTC [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) ([0xc1b2…7b19](https://etherscan.io/tx/0xc1b20f69a3368085001ea095effc28b8e050be7af52aa87bd020964cc4007b19))
+  - transfer $440.8M WBTC [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0xc1b2…7b19](https://etherscan.io/tx/0xc1b20f69a3368085001ea095effc28b8e050be7af52aa87bd020964cc4007b19))
+  - transfer $106.2M USDC [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) ([0xc1b2…7b19](https://etherscan.io/tx/0xc1b20f69a3368085001ea095effc28b8e050be7af52aa87bd020964cc4007b19))
+  - transfer $106.2M USDC [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0xc1b2…7b19](https://etherscan.io/tx/0xc1b20f69a3368085001ea095effc28b8e050be7af52aa87bd020964cc4007b19))
+  - transfer $27.5M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) ([0xc1b2…7b19](https://etherscan.io/tx/0xc1b20f69a3368085001ea095effc28b8e050be7af52aa87bd020964cc4007b19))
+  - transfer $27.5M WETH [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0xc1b2…7b19](https://etherscan.io/tx/0xc1b20f69a3368085001ea095effc28b8e050be7af52aa87bd020964cc4007b19))
+  - transfer $13.8M WBTC [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) → [0xbb2b…d940](https://etherscan.io/address/0xbb2b8038a1640196fbe3e38816f3e67cba72d940) ([0xc1b2…7b19](https://etherscan.io/tx/0xc1b20f69a3368085001ea095effc28b8e050be7af52aa87bd020964cc4007b19))
+  - transfer $13.8M WBTC [0xbb2b…d940](https://etherscan.io/address/0xbb2b8038a1640196fbe3e38816f3e67cba72d940) → [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) ([0xc1b2…7b19](https://etherscan.io/tx/0xc1b20f69a3368085001ea095effc28b8e050be7af52aa87bd020964cc4007b19))
+  - transfer $13.7M WETH [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) → [0xb4e1…c9dc](https://etherscan.io/address/0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc) ([0xc1b2…7b19](https://etherscan.io/tx/0xc1b20f69a3368085001ea095effc28b8e050be7af52aa87bd020964cc4007b19))
+  - transfer $13.7M WETH [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) → [0xbb2b…d940](https://etherscan.io/address/0xbb2b8038a1640196fbe3e38816f3e67cba72d940) ([0xc1b2…7b19](https://etherscan.io/tx/0xc1b20f69a3368085001ea095effc28b8e050be7af52aa87bd020964cc4007b19))
+  - transfer $13.7M WETH [0xb4e1…c9dc](https://etherscan.io/address/0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc) → [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) ([0xc1b2…7b19](https://etherscan.io/tx/0xc1b20f69a3368085001ea095effc28b8e050be7af52aa87bd020964cc4007b19))
+  - transfer $13.7M WETH [0xbb2b…d940](https://etherscan.io/address/0xbb2b8038a1640196fbe3e38816f3e67cba72d940) → [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) ([0xc1b2…7b19](https://etherscan.io/tx/0xc1b20f69a3368085001ea095effc28b8e050be7af52aa87bd020964cc4007b19))
+  - transfer $13.7M USDC [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) → [0xb4e1…c9dc](https://etherscan.io/address/0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc) ([0xc1b2…7b19](https://etherscan.io/tx/0xc1b20f69a3368085001ea095effc28b8e050be7af52aa87bd020964cc4007b19))
+  - transfer $13.7M USDC [0xb4e1…c9dc](https://etherscan.io/address/0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc) → [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) ([0xc1b2…7b19](https://etherscan.io/tx/0xc1b20f69a3368085001ea095effc28b8e050be7af52aa87bd020964cc4007b19))
+- **25918363** 12:39:59 base 0.07 gwei, 198 txs, Titan (titanbuilder.xyz)
+- **25918364** 12:40:11 base 0.07 gwei, 276 txs, Titan (titanbuilder.xyz)
+- **25918365** 12:40:23 base 0.07 gwei, 252 txs, Titan (titanbuilder.xyz)
+- **25918366** 12:40:35 base 0.07 gwei, 363 txs, Titan (titanbuilder.xyz)
+- **25918367** 12:40:47 base 0.07 gwei, 143 txs, BuilderNet
+  - JIT 1 episode(s), $976 of swaps bracketed, fees taken $0
+- **25918368** 12:40:59 base 0.07 gwei, 225 txs, BuilderNet
+- **25918369** 12:41:11 base 0.07 gwei, 481 txs, Eureka (eurekabuilder.xyz)
+- re-analysed blocks 25918069 to 25918369 at 12:41:34 UTC: 13439 priced swaps, 29 JIT episodes, 18 lending ops ≥$250k, exchange net $6.4M stables / $2.1M ETH
+- **25918370** 12:41:23 base 0.07 gwei, 169 txs, besu 26.8.1
+- **25918371** 12:41:35 base 0.07 gwei, 99 txs, BuilderNet
+  - transfer $80.9M WBTC [0x6cbe…b30c](https://etherscan.io/address/0x6cbe98eb2cdf0bc2e52a9b3ed014cd1740a4b30c) → [0x0000…e69d](https://etherscan.io/address/0x0000000000be226afde21672a5e4adc45692e69d) ([0x261c…067d](https://etherscan.io/tx/0x261cbff0dfe8dfafeee319753ecd1fba09614700eba611bf5366a8e724d5067d))
+  - transfer $80.9M WBTC [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x0000…e69d](https://etherscan.io/address/0x0000000000be226afde21672a5e4adc45692e69d) ([0x261c…067d](https://etherscan.io/tx/0x261cbff0dfe8dfafeee319753ecd1fba09614700eba611bf5366a8e724d5067d))
+  - transfer $80.9M WBTC [0x0000…e69d](https://etherscan.io/address/0x0000000000be226afde21672a5e4adc45692e69d) → [0xb40d…ec54](https://etherscan.io/address/0xb40dc920dfc7bd7d68322a0e1b8a05557adbec54) ([0x261c…067d](https://etherscan.io/tx/0x261cbff0dfe8dfafeee319753ecd1fba09614700eba611bf5366a8e724d5067d))
+  - transfer $80.9M WBTC [0xb40d…ec54](https://etherscan.io/address/0xb40dc920dfc7bd7d68322a0e1b8a05557adbec54) → [0x6cbe…b30c](https://etherscan.io/address/0x6cbe98eb2cdf0bc2e52a9b3ed014cd1740a4b30c) ([0x261c…067d](https://etherscan.io/tx/0x261cbff0dfe8dfafeee319753ecd1fba09614700eba611bf5366a8e724d5067d))
+  - transfer $80.9M WBTC [0x0000…e69d](https://etherscan.io/address/0x0000000000be226afde21672a5e4adc45692e69d) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x261c…067d](https://etherscan.io/tx/0x261cbff0dfe8dfafeee319753ecd1fba09614700eba611bf5366a8e724d5067d))
+  - lending Aave v3 supply $1.8M WETH account [0x76f3…5b1a](https://etherscan.io/address/0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a) ([0x1a62…1eb9](https://etherscan.io/tx/0x1a62db3938cd349663a5d6ac4894582746199c629b757deef33a7826a9c51eb9))
+  - lending Aave v3 withdraw $1.8M WETH account [0x76f3…5b1a](https://etherscan.io/address/0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a) ([0x45b7…b7c2](https://etherscan.io/tx/0x45b7e9bab8e9ea5fd196cef98347c93d9bc98cae179a4f86dc1130cd2953b7c2))
+  - JIT 1 episode(s), $22k of swaps bracketed, fees taken $2
+- **25918372** 12:41:47 base 0.07 gwei, 459 txs, Titan (titanbuilder.xyz)
+- **25918373** 12:42:11 base 0.07 gwei, 447 txs,  Quasar (quasar.win) 
+- **25918374** 12:42:23 base 0.08 gwei, 254 txs, Titan (titanbuilder.xyz)
+- **25918375** 12:42:35 base 0.08 gwei, 259 txs, Titan (titanbuilder.xyz)
+- **25918376** 12:42:47 base 0.08 gwei, 247 txs, Titan (titanbuilder.xyz)
+  - JIT 1 episode(s), $943 of swaps bracketed, fees taken $10
+- **25918377** 12:42:59 base 0.09 gwei, 268 txs,  Quasar (quasar.win) 
+- **25918378** 12:43:11 base 0.08 gwei, 286 txs, Titan (titanbuilder.xyz)
+- **25918379** 12:43:23 base 0.08 gwei, 211 txs, Titan (titanbuilder.xyz)
+  - JIT 1 episode(s), $1346 of swaps bracketed, fees taken $0
+- re-analysed blocks 25918079 to 25918379 at 12:43:43 UTC: 13495 priced swaps, 32 JIT episodes, 19 lending ops ≥$250k, exchange net $-5.0M stables / $2.2M ETH
+- **25918380** 12:43:35 base 0.09 gwei, 285 txs,  Quasar (quasar.win) 
+- **25918381** 12:43:47 base 0.09 gwei, 265 txs,  Quasar (quasar.win) 
+- **25918382** 12:43:59 base 0.09 gwei, 235 txs, Titan (titanbuilder.xyz)
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) ([0x26d8…0e31](https://etherscan.io/tx/0x26d863d814b01f6ba35375c3b1b3f049c12d03662d2331e6f54fb8534ea80e31))
+  - transfer $25.0M WETH [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x26d8…0e31](https://etherscan.io/tx/0x26d863d814b01f6ba35375c3b1b3f049c12d03662d2331e6f54fb8534ea80e31))
+- **25918383** 12:44:11 base 0.09 gwei, 166 txs, Titan (titanbuilder.xyz)
+- **25918384** 12:44:23 base 0.09 gwei, 151 txs, 0x388c…9297
+- **25918385** 12:44:35 base 0.08 gwei, 354 txs, Titan (titanbuilder.xyz)
+- **25918386** 12:44:47 base 0.09 gwei, 246 txs, Eureka (eurekabuilder.xyz)
+- **25918387** 12:44:59 base 0.09 gwei, 49 txs, gethgo1.26.4linux
+- **25918388** 12:45:11 base 0.08 gwei, 325 txs, BuilderNet
+  - JIT 1 episode(s), $243 of swaps bracketed, fees taken $0
+- **25918389** 12:45:23 base 0.09 gwei, 216 txs, bombora.build 
+- **25918390** 12:45:35 base 0.08 gwei, 246 txs, Titan (titanbuilder.xyz)
+- re-analysed blocks 25918090 to 25918390 at 12:45:50 UTC: 13320 priced swaps, 31 JIT episodes, 19 lending ops ≥$250k, exchange net $-3.4M stables / $2.1M ETH
+- **25918391** 12:45:47 base 0.08 gwei, 215 txs, Titan (titanbuilder.xyz)
+- **25918392** 12:45:59 base 0.08 gwei, 228 txs,  Quasar (quasar.win) 
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) ([0x038b…9d83](https://etherscan.io/tx/0x038ba39dfe22159c192a160ac00d9ad4b1418236c2a0b53f97609cb3bc329d83))
+  - transfer $25.0M WETH [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x038b…9d83](https://etherscan.io/tx/0x038ba39dfe22159c192a160ac00d9ad4b1418236c2a0b53f97609cb3bc329d83))
+- **25918393** 12:46:11 base 0.08 gwei, 271 txs, Titan (titanbuilder.xyz)
+  - JIT 4 episode(s), $0 of swaps bracketed, fees taken $0
+- **25918394** 12:46:23 base 0.09 gwei, 311 txs, Eureka (eurekabuilder.xyz)
+- **25918395** 12:46:35 base 0.09 gwei, 130 txs, Nethermind v1.39.3
+- **25918396** 12:46:47 base 0.08 gwei, 368 txs, Titan (titanbuilder.xyz)
+- **25918397** 12:46:59 base 0.09 gwei, 101 txs, BuilderNet
+- **25918398** 12:47:11 base 0.08 gwei, 382 txs, Titan (titanbuilder.xyz)
+- **25918399** 12:47:23 base 0.09 gwei, 219 txs, Titan (titanbuilder.xyz)
+  - JIT 1 episode(s), $299 of swaps bracketed, fees taken $3
+- **25918400** 12:47:35 base 0.09 gwei, 394 txs,  Quasar (quasar.win) 
+- re-analysed blocks 25918100 to 25918400 at 12:47:56 UTC: 13134 priced swaps, 33 JIT episodes, 19 lending ops ≥$250k, exchange net $-3.8M stables / $2.0M ETH
+- **25918401** 12:47:47 base 0.09 gwei, 189 txs, boba-builder.com
+- **25918402** 12:47:59 base 0.08 gwei, 308 txs, bombora.build 
+- **25918403** 12:48:11 base 0.08 gwei, 449 txs, Titan (titanbuilder.xyz)
+- **25918404** 12:48:23 base 0.09 gwei, 77 txs, BuilderNet
+- **25918405** 12:48:35 base 0.08 gwei, 427 txs, Titan (titanbuilder.xyz)
+- **25918406** 12:48:47 base 0.08 gwei, 149 txs, Nethermind v1.38.1
+- **25918407** 12:48:59 base 0.08 gwei, 185 txs, 0xe940…4a3c
+- **25918408** 12:49:11 base 0.07 gwei, 293 txs, Builder+ btcs.com | ethgas.com
+- **25918409** 12:49:23 base 0.08 gwei, 409 txs, Titan (titanbuilder.xyz)
+  - transfer $107.2M USDC [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0xd1c6…c7eb](https://etherscan.io/address/0xd1c6aca7ea7ed44e1873dafa054c28ceb690c7eb) ([0xc037…ee54](https://etherscan.io/tx/0xc03748d3af2696a6055ea391fda63c9c77e480c6c79fc802ebcb55ace6ddee54))
+  - transfer $107.2M USDC [0xd1c6…c7eb](https://etherscan.io/address/0xd1c6aca7ea7ed44e1873dafa054c28ceb690c7eb) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0xc037…ee54](https://etherscan.io/tx/0xc03748d3af2696a6055ea391fda63c9c77e480c6c79fc802ebcb55ace6ddee54))
+- **25918410** 12:49:35 base 0.08 gwei, 145 txs, Titan (titanbuilder.xyz)
+  - lending Aave v3 supply $1.8M WETH account [0x76f3…5b1a](https://etherscan.io/address/0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a) ([0xfb17…7b37](https://etherscan.io/tx/0xfb1789dba534d9cc106c49f50dda4964661e15bdddd21de59e691ad968fd7b37))
+  - lending Aave v3 borrow $1.3M USDC account [0x76f3…5b1a](https://etherscan.io/address/0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a) ([0xfb17…7b37](https://etherscan.io/tx/0xfb1789dba534d9cc106c49f50dda4964661e15bdddd21de59e691ad968fd7b37))
+  - lending Aave v3 repay $1.3M USDC account [0x76f3…5b1a](https://etherscan.io/address/0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a) ([0xbb57…bd5b](https://etherscan.io/tx/0xbb575ee19af9283b14bc514eb3d3299325d89e120d601d236cce54e90950bd5b))
+  - lending Aave v3 withdraw $1.8M WETH account [0x76f3…5b1a](https://etherscan.io/address/0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a) ([0xbb57…bd5b](https://etherscan.io/tx/0xbb575ee19af9283b14bc514eb3d3299325d89e120d601d236cce54e90950bd5b))
+  - JIT 1 episode(s), $50k of swaps bracketed, fees taken $0
+- re-analysed blocks 25918110 to 25918410 at 12:49:52 UTC: 13107 priced swaps, 30 JIT episodes, 19 lending ops ≥$250k, exchange net $-3.4M stables / $2.1M ETH
+- **25918411** 12:49:47 base 0.08 gwei, 392 txs, Titan (titanbuilder.xyz)
+- **25918412** 12:49:59 base 0.08 gwei, 167 txs, 0xe940…4a3c
+- **25918413** 12:50:11 base 0.08 gwei, 182 txs, 0xa559…8a15
+- **25918414** 12:50:23 base 0.07 gwei, 314 txs, BuilderNet
+- **25918415** 12:50:35 base 0.08 gwei, 416 txs, Titan (titanbuilder.xyz)
+- **25918416** 12:50:47 base 0.09 gwei, 197 txs, Titan (titanbuilder.xyz)
+- **25918417** 12:50:59 base 0.08 gwei, 218 txs, Titan (titanbuilder.xyz)
+- **25918418** 12:51:11 base 0.08 gwei, 207 txs, BuilderNet
+- **25918419** 12:51:23 base 0.08 gwei, 416 txs, Eureka (eurekabuilder.xyz)
+- **25918420** 12:51:35 base 0.08 gwei, 66 txs, reth/v2.5.2/linux
+- re-analysed blocks 25918120 to 25918420 at 12:51:55 UTC: 13197 priced swaps, 27 JIT episodes, 19 lending ops ≥$250k, exchange net $-4.7M stables / $2.0M ETH
+- **25918421** 12:51:47 base 0.07 gwei, 110 txs, gethgo1.25.12linux
+- **25918422** 12:51:59 base 0.07 gwei, 416 txs, Titan (titanbuilder.xyz)
+- **25918423** 12:52:11 base 0.07 gwei, 327 txs, Titan (titanbuilder.xyz)
+  - JIT 1 episode(s), $2141 of swaps bracketed, fees taken $0
+- **25918424** 12:52:23 base 0.07 gwei, 290 txs, bombora.build 
+- **25918425** 12:52:35 base 0.07 gwei, 310 txs, BuilderNet
+- **25918426** 12:52:47 base 0.07 gwei, 112 txs, gethgo1.26.4linux
+- **25918427** 12:52:59 base 0.06 gwei, 152 txs, gethgo1.25.10linux
+- **25918428** 12:53:11 base 0.06 gwei, 127 txs, gethgo1.25.10linux
+- **25918429** 12:53:23 base 0.05 gwei, 329 txs, Titan (titanbuilder.xyz)
+  - transfer $25.1M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x0000…0cac](https://etherscan.io/address/0x00000f91109c4d0007e90000d9facad5298a0cac) ([0xaad5…69c3](https://etherscan.io/tx/0xaad5846efd195c92f3d9d6f9c311193e66d5548637f596a9932219f2f38369c3))
+  - transfer $25.1M WETH [0x0000…0cac](https://etherscan.io/address/0x00000f91109c4d0007e90000d9facad5298a0cac) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0xaad5…69c3](https://etherscan.io/tx/0xaad5846efd195c92f3d9d6f9c311193e66d5548637f596a9932219f2f38369c3))
+- **25918430** 12:53:35 base 0.06 gwei, 332 txs, BuilderNet
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) ([0x6663…109d](https://etherscan.io/tx/0x66631101b8e7e59725fa789e7fc2946c5729eb58bb7078a4196f539802c7109d))
+  - transfer $25.0M WETH [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x6663…109d](https://etherscan.io/tx/0x66631101b8e7e59725fa789e7fc2946c5729eb58bb7078a4196f539802c7109d))
+- re-analysed blocks 25918130 to 25918430 at 12:53:56 UTC: 13239 priced swaps, 28 JIT episodes, 18 lending ops ≥$250k, exchange net $-9.7M stables / $2.0M ETH
+- **25918431** 12:53:47 base 0.07 gwei, 198 txs, BuilderNet
+- **25918432** 12:53:59 base 0.06 gwei, 119 txs, BuilderNet
+- **25918433** 12:54:11 base 0.06 gwei, 460 txs, Titan (titanbuilder.xyz)
+- **25918434** 12:54:23 base 0.07 gwei, 76 txs, Titan (titanbuilder.xyz)
+- **25918435** 12:54:35 base 0.06 gwei, 406 txs, Titan (titanbuilder.xyz)
+- **25918436** 12:54:47 base 0.07 gwei, 277 txs, Titan (titanbuilder.xyz)
+  - transfer $107.2M USDC [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0xd1c6…c7eb](https://etherscan.io/address/0xd1c6aca7ea7ed44e1873dafa054c28ceb690c7eb) ([0x7c8d…48d5](https://etherscan.io/tx/0x7c8d00d2a8c99200a1e59951bf4ae0f25ffbb1b9f6f113f642ff18d77ff948d5))
+  - transfer $107.2M USDC [0xd1c6…c7eb](https://etherscan.io/address/0xd1c6aca7ea7ed44e1873dafa054c28ceb690c7eb) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x7c8d…48d5](https://etherscan.io/tx/0x7c8d00d2a8c99200a1e59951bf4ae0f25ffbb1b9f6f113f642ff18d77ff948d5))
+- **25918437** 12:54:59 base 0.07 gwei, 180 txs, Titan (titanbuilder.xyz)
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) ([0xec27…6455](https://etherscan.io/tx/0xec27f39add3fc80bc886170e615ccb662d82a18e46764c81b7f95ad9a36c6455))
+  - transfer $25.0M WETH [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0xec27…6455](https://etherscan.io/tx/0xec27f39add3fc80bc886170e615ccb662d82a18e46764c81b7f95ad9a36c6455))
+- **25918438** 12:55:11 base 0.07 gwei, 233 txs, Titan (titanbuilder.xyz)
+- **25918439** 12:55:23 base 0.07 gwei, 326 txs, BuilderNet
+- **25918440** 12:55:35 base 0.07 gwei, 265 txs, Titan (titanbuilder.xyz)
+- re-analysed blocks 25918140 to 25918440 at 12:55:56 UTC: 13365 priced swaps, 26 JIT episodes, 18 lending ops ≥$250k, exchange net $-12.0M stables / $2.1M ETH
+- **25918441** 12:55:47 base 0.07 gwei, 217 txs, Titan (titanbuilder.xyz)
+- **25918442** 12:55:59 base 0.08 gwei, 156 txs, Titan (titanbuilder.xyz)
+- **25918443** 12:56:11 base 0.07 gwei, 295 txs, Eureka (eurekabuilder.xyz)
+- **25918444** 12:56:23 base 0.08 gwei, 192 txs, Titan (titanbuilder.xyz)
+- **25918445** 12:56:35 base 0.08 gwei, 361 txs,  Quasar (quasar.win) 
+- **25918446** 12:56:47 base 0.08 gwei, 202 txs, Titan (titanbuilder.xyz)
+- **25918447** 12:56:59 base 0.08 gwei, 141 txs, Titan (titanbuilder.xyz)
+- **25918448** 12:57:11 base 0.08 gwei, 297 txs, Titan (titanbuilder.xyz)
+  - JIT 1 episode(s), $167 of swaps bracketed, fees taken $1
+- **25918449** 12:57:23 base 0.09 gwei, 201 txs, Titan (titanbuilder.xyz)
+- **25918450** 12:57:35 base 0.08 gwei, 278 txs, Eureka (eurekabuilder.xyz)
+- re-analysed blocks 25918150 to 25918450 at 12:57:55 UTC: 13491 priced swaps, 27 JIT episodes, 17 lending ops ≥$250k, exchange net $-11.9M stables / $2.0M ETH
+- **25918451** 12:57:47 base 0.08 gwei, 218 txs, Titan (titanbuilder.xyz)
+- **25918452** 12:57:59 base 0.09 gwei, 175 txs, Titan (titanbuilder.xyz)
+- **25918453** 12:58:11 base 0.09 gwei, 212 txs, bombora.build 
+- **25918454** 12:58:23 base 0.09 gwei, 233 txs, Titan (titanbuilder.xyz)
+- **25918455** 12:58:35 base 0.09 gwei, 354 txs, Titan (titanbuilder.xyz)
+- **25918456** 12:58:47 base 0.09 gwei, 184 txs, Titan (titanbuilder.xyz)
+- **25918457** 12:58:59 base 0.09 gwei, 276 txs,  Quasar (quasar.win) 
+- **25918458** 12:59:11 base 0.08 gwei, 75 txs, BuilderNet
+  - JIT 1 episode(s), $4833 of swaps bracketed, fees taken $0
+- **25918459** 12:59:23 base 0.08 gwei, 323 txs, Titan (titanbuilder.xyz)
+- **25918460** 12:59:35 base 0.08 gwei, 299 txs, Eureka (eurekabuilder.xyz)
+- re-analysed blocks 25918160 to 25918460 at 12:59:52 UTC: 13491 priced swaps, 28 JIT episodes, 17 lending ops ≥$250k, exchange net $-9.8M stables / $2.4M ETH
+- **25918461** 12:59:47 base 0.08 gwei, 185 txs, Eureka (eurekabuilder.xyz)
+- **25918462** 12:59:59 base 0.08 gwei, 238 txs,  Quasar (quasar.win) 
+  - JIT 1 episode(s), $97 of swaps bracketed, fees taken $0
+- **25918463** 13:00:11 base 0.07 gwei, 469 txs, Titan (titanbuilder.xyz)
+- **25918464** 13:00:23 base 0.08 gwei, 283 txs, Eureka (eurekabuilder.xyz)
+- **25918465** 13:00:35 base 0.08 gwei, 223 txs, bombora.build 
+- **25918466** 13:00:47 base 0.08 gwei, 302 txs, bombora.build 
+- **25918467** 13:00:59 base 0.08 gwei, 366 txs,  Quasar (quasar.win) 
+- **25918468** 13:01:11 base 0.08 gwei, 254 txs, Titan (titanbuilder.xyz)
+- **25918469** 13:01:23 base 0.07 gwei, 225 txs, Titan (titanbuilder.xyz)
+- **25918470** 13:01:35 base 0.07 gwei, 398 txs,  Quasar (quasar.win) 
+- **25918471** 13:01:47 base 0.07 gwei, 218 txs, Titan (titanbuilder.xyz)
+- re-analysed blocks 25918171 to 25918471 at 13:02:05 UTC: 13440 priced swaps, 29 JIT episodes, 16 lending ops ≥$250k, exchange net $-1.2M stables / $2.6M ETH
+- **25918472** 13:01:59 base 0.07 gwei, 322 txs, Titan (titanbuilder.xyz)
+- **25918473** 13:02:11 base 0.07 gwei, 181 txs, Titan (titanbuilder.xyz)
+- **25918474** 13:02:23 base 0.07 gwei, 402 txs, Eureka (eurekabuilder.xyz)
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) ([0x4f66…5e8d](https://etherscan.io/tx/0x4f6610749130c123c704d520fa5ccf8d56035d9820a3b53d245c4a1818235e8d))
+  - transfer $25.0M WETH [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x4f66…5e8d](https://etherscan.io/tx/0x4f6610749130c123c704d520fa5ccf8d56035d9820a3b53d245c4a1818235e8d))
+- **25918475** 13:02:35 base 0.07 gwei, 284 txs, Titan (titanbuilder.xyz)
+- **25918476** 13:02:47 base 0.07 gwei, 171 txs, Titan (titanbuilder.xyz)
+- **25918477** 13:02:59 base 0.07 gwei, 220 txs, Titan (titanbuilder.xyz)
+- **25918478** 13:03:11 base 0.07 gwei, 228 txs, Titan (titanbuilder.xyz)
+- **25918479** 13:03:23 base 0.07 gwei, 232 txs, Titan (titanbuilder.xyz)
+- **25918480** 13:03:35 base 0.06 gwei, 208 txs, Titan (titanbuilder.xyz)
+- **25918481** 13:03:47 base 0.06 gwei, 401 txs, bombora.build 
+- re-analysed blocks 25918181 to 25918481 at 13:04:08 UTC: 13503 priced swaps, 27 JIT episodes, 17 lending ops ≥$250k, exchange net $-4.6M stables / $2.8M ETH
+- **25918482** 13:03:59 base 0.06 gwei, 335 txs, Titan (titanbuilder.xyz)
+- **25918483** 13:04:11 base 0.06 gwei, 261 txs, Titan (titanbuilder.xyz)
+- **25918484** 13:04:23 base 0.06 gwei, 261 txs, bombora.build 
+- **25918485** 13:04:35 base 0.06 gwei, 245 txs, bombora.build 
+- **25918486** 13:04:47 base 0.06 gwei, 190 txs, ethgas-realtime-rpc
+- **25918487** 13:04:59 base 0.06 gwei, 389 txs, Titan (titanbuilder.xyz)
+- **25918488** 13:05:11 base 0.06 gwei, 324 txs, Titan (titanbuilder.xyz)
+- **25918489** 13:05:23 base 0.06 gwei, 303 txs, Titan (titanbuilder.xyz)
+- **25918490** 13:05:35 base 0.06 gwei, 318 txs, bombora.build 
+- **25918491** 13:05:47 base 0.06 gwei, 255 txs, Titan (titanbuilder.xyz)
+- re-analysed blocks 25918191 to 25918491 at 13:06:04 UTC: 13552 priced swaps, 24 JIT episodes, 17 lending ops ≥$250k, exchange net $-4.8M stables / $3.1M ETH
+- **25918492** 13:05:59 base 0.06 gwei, 179 txs, besu 26.8.1
+- **25918493** 13:06:11 base 0.06 gwei, 389 txs, Titan (titanbuilder.xyz)
+- **25918494** 13:06:23 base 0.07 gwei, 213 txs, Titan (titanbuilder.xyz)
+- **25918495** 13:06:35 base 0.07 gwei, 185 txs, BuilderNet
+- **25918496** 13:06:47 base 0.06 gwei, 176 txs, BuilderNet
+- **25918497** 13:06:59 base 0.07 gwei, 170 txs, BuilderNet
+- **25918498** 13:07:11 base 0.06 gwei, 705 txs, Eureka (eurekabuilder.xyz)
+- **25918499** 13:07:23 base 0.07 gwei, 94 txs, Titan (titanbuilder.xyz)
+- **25918500** 13:07:35 base 0.06 gwei, 431 txs, Titan (titanbuilder.xyz)
+- **25918501** 13:07:47 base 0.07 gwei, 91 txs, BuilderNet
+- re-analysed blocks 25918201 to 25918501 at 13:08:08 UTC: 13613 priced swaps, 23 JIT episodes, 18 lending ops ≥$250k, exchange net $-6.8M stables / $2.9M ETH
+- **25918502** 13:07:59 base 0.06 gwei, 421 txs, Titan (titanbuilder.xyz)
+- **25918503** 13:08:11 base 0.06 gwei, 258 txs, BuilderNet
+- **25918504** 13:08:23 base 0.07 gwei, 328 txs, Titan (titanbuilder.xyz)
+- **25918505** 13:08:35 base 0.07 gwei, 383 txs,  Quasar (quasar.win) 
+- **25918506** 13:08:47 base 0.07 gwei, 256 txs, Titan (titanbuilder.xyz)
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) ([0xc800…8098](https://etherscan.io/tx/0xc8005c1a7e33396237d7d8a4cfe91b5d158daa53c90b3c84992bc45a89d48098))
+  - transfer $25.0M WETH [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0xc800…8098](https://etherscan.io/tx/0xc8005c1a7e33396237d7d8a4cfe91b5d158daa53c90b3c84992bc45a89d48098))
+- **25918507** 13:08:59 base 0.07 gwei, 211 txs,  Quasar (quasar.win) 
+- **25918508** 13:09:11 base 0.06 gwei, 289 txs,  Quasar (quasar.win) 
+- **25918509** 13:09:23 base 0.06 gwei, 261 txs, Eureka (eurekabuilder.xyz)
+- **25918510** 13:09:35 base 0.06 gwei, 264 txs, Titan (titanbuilder.xyz)
+- **25918511** 13:09:47 base 0.06 gwei, 184 txs, Titan (titanbuilder.xyz)
+- re-analysed blocks 25918211 to 25918511 at 13:10:04 UTC: 13690 priced swaps, 22 JIT episodes, 20 lending ops ≥$250k, exchange net $-10.0M stables / $2.9M ETH
+- **25918512** 13:09:59 base 0.06 gwei, 202 txs, Titan (titanbuilder.xyz)
+  - JIT 1 episode(s), $0 of swaps bracketed, fees taken $0
+- **25918513** 13:10:11 base 0.06 gwei, 236 txs, Builder+ www.btcs.com/builder
+  - JIT 1 episode(s), $192 of swaps bracketed, fees taken $1
+- **25918514** 13:10:23 base 0.06 gwei, 306 txs,  Quasar (quasar.win) 
+- **25918515** 13:10:35 base 0.06 gwei, 251 txs, Titan (titanbuilder.xyz)
+- **25918516** 13:10:47 base 0.07 gwei, 240 txs, bombora.build 
+- **25918517** 13:10:59 base 0.06 gwei, 303 txs,  Quasar (quasar.win) 
+- **25918518** 13:11:11 base 0.06 gwei, 272 txs, Eureka (eurekabuilder.xyz)
+- **25918519** 13:11:23 base 0.06 gwei, 81 txs, Nethermind v1.38.1
+- **25918520** 13:11:35 base 0.06 gwei, 318 txs, Eureka (eurekabuilder.xyz)
+  - transfer $107.2M USDC [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x7966…ee94](https://etherscan.io/address/0x7966319bab61f7d6473a64277897885893c2ee94) ([0xfb7d…1818](https://etherscan.io/tx/0xfb7de02d97d4b5348ad0033c8e568cf3b5baba0148b315a1d0f82affaded1818))
+  - transfer $107.2M USDC [0x7966…ee94](https://etherscan.io/address/0x7966319bab61f7d6473a64277897885893c2ee94) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0xfb7d…1818](https://etherscan.io/tx/0xfb7de02d97d4b5348ad0033c8e568cf3b5baba0148b315a1d0f82affaded1818))
+- **25918521** 13:11:47 base 0.06 gwei, 257 txs,  Quasar (quasar.win) 
+- re-analysed blocks 25918221 to 25918521 at 13:12:08 UTC: 13752 priced swaps, 24 JIT episodes, 20 lending ops ≥$250k, exchange net $-4.7M stables / $3.1M ETH
+- **25918522** 13:11:59 base 0.06 gwei, 168 txs, BuilderNet
+- **25918523** 13:12:11 base 0.06 gwei, 320 txs, Titan (titanbuilder.xyz)
+- **25918524** 13:12:23 base 0.06 gwei, 205 txs, Titan (titanbuilder.xyz)
+  - JIT 1 episode(s), $50 of swaps bracketed, fees taken $6
+- **25918525** 13:12:35 base 0.06 gwei, 289 txs, Titan (titanbuilder.xyz)
+- **25918526** 13:12:47 base 0.06 gwei, 66 txs, BuilderNet
+- **25918527** 13:12:59 base 0.06 gwei, 457 txs, Titan (titanbuilder.xyz)
+  - transfer $440.8M WBTC [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) ([0x4cdc…98c5](https://etherscan.io/tx/0x4cdcb7bbde937c4f4cef871232e604d4314619b8d3af9036ddc35852609a98c5))
+  - transfer $440.8M WBTC [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x4cdc…98c5](https://etherscan.io/tx/0x4cdcb7bbde937c4f4cef871232e604d4314619b8d3af9036ddc35852609a98c5))
+  - transfer $106.0M USDC [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) ([0x4cdc…98c5](https://etherscan.io/tx/0x4cdcb7bbde937c4f4cef871232e604d4314619b8d3af9036ddc35852609a98c5))
+  - transfer $106.0M USDC [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x4cdc…98c5](https://etherscan.io/tx/0x4cdcb7bbde937c4f4cef871232e604d4314619b8d3af9036ddc35852609a98c5))
+  - transfer $27.5M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) ([0x4cdc…98c5](https://etherscan.io/tx/0x4cdcb7bbde937c4f4cef871232e604d4314619b8d3af9036ddc35852609a98c5))
+  - transfer $27.5M WETH [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x4cdc…98c5](https://etherscan.io/tx/0x4cdcb7bbde937c4f4cef871232e604d4314619b8d3af9036ddc35852609a98c5))
+  - transfer $13.8M WBTC [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) → [0xbb2b…d940](https://etherscan.io/address/0xbb2b8038a1640196fbe3e38816f3e67cba72d940) ([0x4cdc…98c5](https://etherscan.io/tx/0x4cdcb7bbde937c4f4cef871232e604d4314619b8d3af9036ddc35852609a98c5))
+  - transfer $13.8M WBTC [0xbb2b…d940](https://etherscan.io/address/0xbb2b8038a1640196fbe3e38816f3e67cba72d940) → [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) ([0x4cdc…98c5](https://etherscan.io/tx/0x4cdcb7bbde937c4f4cef871232e604d4314619b8d3af9036ddc35852609a98c5))
+  - transfer $13.7M WETH [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) → [0xb4e1…c9dc](https://etherscan.io/address/0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc) ([0x4cdc…98c5](https://etherscan.io/tx/0x4cdcb7bbde937c4f4cef871232e604d4314619b8d3af9036ddc35852609a98c5))
+  - transfer $13.7M WETH [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) → [0xbb2b…d940](https://etherscan.io/address/0xbb2b8038a1640196fbe3e38816f3e67cba72d940) ([0x4cdc…98c5](https://etherscan.io/tx/0x4cdcb7bbde937c4f4cef871232e604d4314619b8d3af9036ddc35852609a98c5))
+  - transfer $13.7M WETH [0xb4e1…c9dc](https://etherscan.io/address/0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc) → [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) ([0x4cdc…98c5](https://etherscan.io/tx/0x4cdcb7bbde937c4f4cef871232e604d4314619b8d3af9036ddc35852609a98c5))
+  - transfer $13.7M WETH [0xbb2b…d940](https://etherscan.io/address/0xbb2b8038a1640196fbe3e38816f3e67cba72d940) → [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) ([0x4cdc…98c5](https://etherscan.io/tx/0x4cdcb7bbde937c4f4cef871232e604d4314619b8d3af9036ddc35852609a98c5))
+  - transfer $13.7M USDC [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) → [0xb4e1…c9dc](https://etherscan.io/address/0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc) ([0x4cdc…98c5](https://etherscan.io/tx/0x4cdcb7bbde937c4f4cef871232e604d4314619b8d3af9036ddc35852609a98c5))
+  - transfer $13.7M USDC [0xb4e1…c9dc](https://etherscan.io/address/0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc) → [0x0fd3…c83d](https://etherscan.io/address/0x0fd368edd39d47823948d2cc54415dd2f151c83d) ([0x4cdc…98c5](https://etherscan.io/tx/0x4cdcb7bbde937c4f4cef871232e604d4314619b8d3af9036ddc35852609a98c5))
+- **25918528** 13:13:11 base 0.06 gwei, 250 txs, Titan (titanbuilder.xyz)
+- **25918529** 13:13:23 base 0.06 gwei, 202 txs, Titan (titanbuilder.xyz)
+- **25918530** 13:13:35 base 0.06 gwei, 284 txs, bombora.build 
+- **25918531** 13:13:47 base 0.06 gwei, 190 txs, BuilderNet
+  - JIT 1 episode(s), $71 of swaps bracketed, fees taken $8
+- re-analysed blocks 25918231 to 25918531 at 13:14:03 UTC: 13681 priced swaps, 23 JIT episodes, 19 lending ops ≥$250k, exchange net $2.2M stables / $3.2M ETH
+- **25918532** 13:13:59 base 0.06 gwei, 208 txs, Titan (titanbuilder.xyz)
+- **25918533** 13:14:11 base 0.06 gwei, 242 txs, Titan (titanbuilder.xyz)
+- **25918534** 13:14:23 base 0.07 gwei, 53 txs, BuilderNet
+- **25918535** 13:14:35 base 0.06 gwei, 432 txs, Titan (titanbuilder.xyz)
+- **25918536** 13:14:47 base 0.07 gwei, 227 txs, Titan (titanbuilder.xyz)
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) ([0x57d5…9733](https://etherscan.io/tx/0x57d5f6ed39c7a4e28ccd590724a05a2275afa6e83298a728b0d7a658bb1d9733))
+  - transfer $25.0M WETH [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x57d5…9733](https://etherscan.io/tx/0x57d5f6ed39c7a4e28ccd590724a05a2275afa6e83298a728b0d7a658bb1d9733))
+- **25918537** 13:14:59 base 0.07 gwei, 426 txs, bombora.build 
+- **25918538** 13:15:11 base 0.07 gwei, 243 txs, Eureka (eurekabuilder.xyz)
+  - JIT 6 episode(s), $30 of swaps bracketed, fees taken $0
+- **25918539** 13:15:23 base 0.07 gwei, 80 txs, gethgo1.26.4linux
+- **25918540** 13:15:35 base 0.06 gwei, 290 txs, Titan (titanbuilder.xyz)
+- **25918541** 13:15:47 base 0.06 gwei, 261 txs, bombora.build 
+- re-analysed blocks 25918241 to 25918541 at 13:16:05 UTC: 13527 priced swaps, 29 JIT episodes, 17 lending ops ≥$250k, exchange net $-55k stables / $3.1M ETH
+- **25918542** 13:15:59 base 0.06 gwei, 441 txs, BuilderNet
+  - JIT 1 episode(s), $579 of swaps bracketed, fees taken $0
+- **25918543** 13:16:11 base 0.06 gwei, 251 txs, Titan (titanbuilder.xyz)
+- **25918544** 13:16:23 base 0.07 gwei, 261 txs, bombora.build 
+- **25918545** 13:16:35 base 0.07 gwei, 216 txs, BuilderNet
+- **25918546** 13:16:47 base 0.07 gwei, 344 txs, Titan (titanbuilder.xyz)
+- **25918547** 13:16:59 base 0.07 gwei, 205 txs, Titan (titanbuilder.xyz)
+- **25918548** 13:17:11 base 0.07 gwei, 268 txs, Eureka (eurekabuilder.xyz)
+- **25918549** 13:17:23 base 0.07 gwei, 232 txs, Titan (titanbuilder.xyz)
+- **25918550** 13:17:35 base 0.07 gwei, 196 txs, Titan (titanbuilder.xyz)
+  - JIT 1 episode(s), $56 of swaps bracketed, fees taken $7
+- **25918551** 13:17:47 base 0.06 gwei, 147 txs, Nethermind v1.36.0
+- re-analysed blocks 25918251 to 25918551 at 13:18:06 UTC: 13295 priced swaps, 31 JIT episodes, 16 lending ops ≥$250k, exchange net $-234k stables / $2.2M ETH
+- **25918552** 13:17:59 base 0.06 gwei, 130 txs, Titan (titanbuilder.xyz)
+- **25918553** 13:18:11 base 0.06 gwei, 396 txs, Eureka (eurekabuilder.xyz)
+- **25918554** 13:18:23 base 0.07 gwei, 248 txs, Titan (titanbuilder.xyz)
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) ([0x57fb…fd5f](https://etherscan.io/tx/0x57fb54e8a4885f7187ae538e28c7a81e8ba362553a1d87d971b4f46248f1fd5f))
+  - transfer $25.0M WETH [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x57fb…fd5f](https://etherscan.io/tx/0x57fb54e8a4885f7187ae538e28c7a81e8ba362553a1d87d971b4f46248f1fd5f))
+- **25918555** 13:18:35 base 0.07 gwei, 318 txs,  Quasar (quasar.win) 
+- **25918556** 13:18:47 base 0.07 gwei, 218 txs, Titan (titanbuilder.xyz)
+- **25918557** 13:18:59 base 0.07 gwei, 257 txs, Titan (titanbuilder.xyz)
+- **25918558** 13:19:11 base 0.07 gwei, 195 txs, BuilderNet
+- **25918559** 13:19:23 base 0.07 gwei, 205 txs, Titan (titanbuilder.xyz)
+- **25918560** 13:19:35 base 0.07 gwei, 257 txs, Eureka (eurekabuilder.xyz)
+- **25918561** 13:19:47 base 0.07 gwei, 227 txs, Eureka (eurekabuilder.xyz)
+- re-analysed blocks 25918261 to 25918561 at 13:20:07 UTC: 13254 priced swaps, 31 JIT episodes, 17 lending ops ≥$250k, exchange net $134k stables / $-800k ETH
+- **25918562** 13:19:59 base 0.07 gwei, 196 txs, Titan (titanbuilder.xyz)
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) ([0x8cdd…419d](https://etherscan.io/tx/0x8cdd4a202e806b783640add949b049bd157ba84ec94d8fd1c404393454c5419d))
+  - transfer $25.0M WETH [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x8cdd…419d](https://etherscan.io/tx/0x8cdd4a202e806b783640add949b049bd157ba84ec94d8fd1c404393454c5419d))
+- **25918563** 13:20:11 base 0.07 gwei, 263 txs, Titan (titanbuilder.xyz)
+- **25918564** 13:20:23 base 0.07 gwei, 170 txs, Titan (titanbuilder.xyz)
+- **25918565** 13:20:35 base 0.07 gwei, 341 txs, Titan (titanbuilder.xyz)
+- **25918566** 13:20:47 base 0.07 gwei, 378 txs,  Quasar (quasar.win) 
+- **25918567** 13:20:59 base 0.07 gwei, 210 txs, Eureka (eurekabuilder.xyz)
+- **25918568** 13:21:11 base 0.07 gwei, 216 txs, Titan (titanbuilder.xyz)
+- **25918569** 13:21:23 base 0.07 gwei, 267 txs, Titan (titanbuilder.xyz)
+  - transfer $25.0M WETH [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) → [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) ([0x932c…c629](https://etherscan.io/tx/0x932c7999b633ec3e125f3bb82abbf9024d049616c18f5d522f18635b4c0ec629))
+  - transfer $25.0M WETH [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) ([0x932c…c629](https://etherscan.io/tx/0x932c7999b633ec3e125f3bb82abbf9024d049616c18f5d522f18635b4c0ec629))
+- **25918570** 13:21:35 base 0.07 gwei, 234 txs,  Quasar (quasar.win) 
+- **25918571** 13:21:47 base 0.07 gwei, 248 txs, Eureka (eurekabuilder.xyz)
+- re-analysed blocks 25918271 to 25918571 at 13:22:02 UTC: 13248 priced swaps, 31 JIT episodes, 17 lending ops ≥$250k, exchange net $5.5M stables / $148k ETH
+- **25918572** 13:21:59 base 0.07 gwei, 213 txs, Titan (titanbuilder.xyz)
+- **25918573** 13:22:11 base 0.07 gwei, 271 txs, Titan (titanbuilder.xyz)
+- **25918574** 13:22:23 base 0.07 gwei, 334 txs, Titan (titanbuilder.xyz)
+- **25918575** 13:22:35 base 0.07 gwei, 460 txs, Titan (titanbuilder.xyz)
+- **25918576** 13:22:47 base 0.07 gwei, 319 txs, Titan (titanbuilder.xyz)
+- **25918577** 13:22:59 base 0.07 gwei, 317 txs, Titan (titanbuilder.xyz)
+- **25918578** 13:23:11 base 0.08 gwei, 310 txs, Titan (titanbuilder.xyz)
+  - JIT 3 episode(s), $6 of swaps bracketed, fees taken $0
+- **25918579** 13:23:23 base 0.08 gwei, 110 txs, gethgo1.25.10linux
+- **25918580** 13:23:35 base 0.07 gwei, 343 txs, Titan (titanbuilder.xyz)
+- **25918581** 13:23:47 base 0.07 gwei, 267 txs, Titan (titanbuilder.xyz)
+- re-analysed blocks 25918281 to 25918581 at 13:24:07 UTC: 13274 priced swaps, 34 JIT episodes, 17 lending ops ≥$250k, exchange net $8.5M stables / $-1.0M ETH
+- **25918582** 13:23:59 base 0.07 gwei, 79 txs, BuilderNet
+- **25918583** 13:24:11 base 0.07 gwei, 433 txs, Titan (titanbuilder.xyz)
+- **25918584** 13:24:23 base 0.08 gwei, 289 txs, Titan (titanbuilder.xyz)
+- **25918585** 13:24:35 base 0.08 gwei, 325 txs, Titan (titanbuilder.xyz)
+- **25918586** 13:24:47 base 0.08 gwei, 225 txs, Titan (titanbuilder.xyz)
+- **25918587** 13:24:59 base 0.08 gwei, 392 txs,  Quasar (quasar.win) 

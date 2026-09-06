@@ -1,0 +1,13 @@
+== 1. Balancer v2 rate-cache staleness ==
+  0 pools mispricing a token by >0.1 bp
+
+== 2. Uniswap-v2 / Sushi rebasing reserve-vs-balance drift (skimmable) ==
+  Sushi stETH/WETH 0xe43d6aafce76f53670c4b7d6b38a7d8a67a4b670: reserve 0.008196 actual 0.008198 skimmable 0.000002 (1.8 bps of pool)
+  UniV2 aEthWETH/WETH 0x8c253ff03d250f9092bf3051f86f5860ea1d0100: reserve 0.000131 actual 0.000131 skimmable 0.000000 (9.6 bps of pool)
+  UniV2 stETH/USDT 0x648ef94c6d205016a385fb4c54ab6e422f5142c5: reserve 0.001084 actual 0.001084 skimmable 0.000000 (0.6 bps of pool)
+  Sushi stETH/USDC 0x3cfabf0a09b8ea1d655e82a7e5786de66eea9261: reserve 0.000015 actual 0.000015 skimmable 0.000000 (6.1 bps of pool)
+  UniV2 stETH/WBTC 0xbe29fbca6bc1ed8dad90a0f0207feb06177d97f8: reserve 0.000000 actual 0.000000 skimmable 0.000000 (16.4 bps of pool)
+  5 pairs with skimmable excess
+
+== 3. Curve round-trip leaks (A->B->A > input) ==
+  0 leaks of 71 pools tested

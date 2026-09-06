@@ -1,0 +1,189 @@
+{
+  "method": "Combined transaction-specific native balance changes of sender, execution contract and explicit non-builder payout recipients; cross-checked against successful native call flows minus receipt gas. Gross adds back gas and direct builder payment; pool fees already reflected in settlements. Token deltas are dust only.",
+  "limitation": "The five transactions only, excluding infrastructure and any other successful or failed transactions. Does not establish common ownership of different execution contracts. USD values mark native ETH at the historical Chainlink ETH/USD price; stablecoin dust excluded.",
+  "rows": [
+    {
+      "hash": "0x48e76f2a95b299a50b500fef292aec3d18c13275d8db0d039226523568a93e71",
+      "block": 25918255,
+      "transaction_index": 7,
+      "sender": "0xf07b4d27cae6571857e51ab3fb209f5226de2d88",
+      "bot": "0x06cff7088619c7178f5e14f0b119458d08d2f5ef",
+      "builder": "0x4838b106fce9647bdf1e7877bf73ce8b0bad5f97",
+      "accounted_addresses": [
+        "0x06cff7088619c7178f5e14f0b119458d08d2f5ef",
+        "0xf07b4d27cae6571857e51ab3fb209f5226de2d88"
+      ],
+      "gas_used": 671325,
+      "effective_gas_price_wei": 112502093,
+      "priority_fee_wei": 0,
+      "eth_usd": "2501.73911263",
+      "eth_usd_updated_at": 1788696119,
+      "token_dust_net": {
+        "WETH": "0",
+        "STONKREUM": "0",
+        "USDC": "-0.000002"
+      },
+      "gross_wei": "4931054578777585",
+      "builder_payment_wei": "2958515428590071",
+      "gas_wei": "75525467583225",
+      "net_wei": "1897013682604289",
+      "gross_eth": "0.004931054578777585",
+      "builder_payment_eth": "0.002958515428590071",
+      "gas_eth": "0.000075525467583225",
+      "net_eth": "0.001897013682604289",
+      "gross_usd": "12.33621210624113392803439855",
+      "builder_payment_usd": "7.40143376302308835556869673",
+      "gas_usd": "0.18894501625262314217363175",
+      "net_usd": "4.74583332696542243029207007"
+    },
+    {
+      "hash": "0x79b6e003c7875cd6b8f6a5d5a12185bc1f77923d0885d415fc58ad518bceef44",
+      "block": 25918255,
+      "transaction_index": 85,
+      "sender": "0xae0cc0d6e76c2b13451ab90cd13a5fa71a5c59ba",
+      "bot": "0xd226997439ecfbeff8e110c8c78c8a7eefd19f89",
+      "builder": "0x4838b106fce9647bdf1e7877bf73ce8b0bad5f97",
+      "accounted_addresses": [
+        "0xae0cc0d6e76c2b13451ab90cd13a5fa71a5c59ba",
+        "0xd226997439ecfbeff8e110c8c78c8a7eefd19f89"
+      ],
+      "gas_used": 447542,
+      "effective_gas_price_wei": 112502093,
+      "priority_fee_wei": 0,
+      "eth_usd": "2501.73911263",
+      "eth_usd_updated_at": 1788696119,
+      "token_dust_net": {
+        "WETH": "0",
+        "STONKREUM": "0",
+        "USDC": "0"
+      },
+      "gross_wei": "308952783866667",
+      "builder_payment_wei": "188777340869660",
+      "gas_wei": "50349411705406",
+      "net_wei": "69826031291601",
+      "gross_eth": "0.000308952783866667",
+      "builder_payment_eth": "0.00018877734086966",
+      "gas_eth": "0.000050349411705406",
+      "net_eth": "0.000069826031291601",
+      "gross_usd": "0.77291926335516368081570421",
+      "builder_payment_usd": "0.4722716572319142408898058",
+      "gas_usd": "0.12596109256132494141387778",
+      "net_usd": "0.17468651356192449851202063"
+    },
+    {
+      "hash": "0x1ce14251154eaa92ad3afbf54ca108bcf95b91229973e29e3988bf4ccbe894c0",
+      "block": 25918256,
+      "transaction_index": 110,
+      "sender": "0xd7e1236c08731c3632519dcd1a581bfe6876a3b2",
+      "bot": "0x06cff7088619c7178f5e14f0b119458d08d2f5ef",
+      "builder": "0x4838b106fce9647bdf1e7877bf73ce8b0bad5f97",
+      "accounted_addresses": [
+        "0x06cff7088619c7178f5e14f0b119458d08d2f5ef",
+        "0xd7e1236c08731c3632519dcd1a581bfe6876a3b2"
+      ],
+      "gas_used": 1095343,
+      "effective_gas_price_wei": 115098242,
+      "priority_fee_wei": 0,
+      "eth_usd": "2501.73911263",
+      "eth_usd_updated_at": 1788696119,
+      "token_dust_net": {
+        "WETH": "0",
+        "STONKREUM": "0",
+        "USDC": "0.000001",
+        "USDT": "0",
+        "USDS": "0"
+      },
+      "gross_wei": "39084517925538714",
+      "builder_payment_wei": "26083216811210288",
+      "gas_wei": "126072053687006",
+      "net_wei": "12875229060641420",
+      "gross_eth": "0.039084517925538714",
+      "builder_payment_eth": "0.026083216811210288",
+      "gas_eth": "0.000126072053687006",
+      "net_eth": "0.01287522906064142",
+      "gross_usd": "97.77926719260855077707135782",
+      "builder_payment_usd": "65.25340367981312413744673744",
+      "gas_usd": "0.31539938771837211020148578",
+      "net_usd": "32.2104641250770545294231346"
+    },
+    {
+      "hash": "0x53f35442939398107ff25290484902a29eb515aa7683724a7928f117e80bb76c",
+      "block": 25918257,
+      "transaction_index": 109,
+      "sender": "0xdf8adfe10d4a4d9f0fc4d3e377a6e8d5730eb40c",
+      "bot": "0x06cff7088619c7178f5e14f0b119458d08d2f5ef",
+      "builder": "0xdadb0d80178819f2319190d340ce9a924f783711",
+      "accounted_addresses": [
+        "0x06cff7088619c7178f5e14f0b119458d08d2f5ef",
+        "0xd3c9ba180b831e75c361baf68694d45e7ba53418",
+        "0xdf8adfe10d4a4d9f0fc4d3e377a6e8d5730eb40c"
+      ],
+      "gas_used": 381097,
+      "effective_gas_price_wei": 121641568,
+      "priority_fee_wei": 0,
+      "eth_usd": "2501.73911263",
+      "eth_usd_updated_at": 1788696119,
+      "token_dust_net": {
+        "WETH": "0",
+        "MUon": "0",
+        "USDT": "0"
+      },
+      "gross_wei": "334075466649250",
+      "builder_payment_wei": "60106296050297",
+      "gas_wei": "46357236640096",
+      "net_wei": "227611933958857",
+      "gross_eth": "0.00033407546664925",
+      "builder_payment_eth": "0.000060106296050297",
+      "gas_eth": "0.000046357236640096",
+      "net_eth": "0.000227611933958857",
+      "gross_usd": "0.8357696614865478544550275",
+      "builder_payment_usd": "0.15037027174434609062795111",
+      "gas_usd": "0.11597371205597268971801248",
+      "net_usd": "0.56942567768622907410906391"
+    },
+    {
+      "hash": "0x6afb8db6c1a4d5f1ed76b7b8c9b0eb7fd0733844f3f0551c7500c02facb3bbd4",
+      "block": 25918258,
+      "transaction_index": 19,
+      "sender": "0xae0cc0d6e76c2b13451ab90cd13a5fa71a5c59ba",
+      "bot": "0xd226997439ecfbeff8e110c8c78c8a7eefd19f89",
+      "builder": "0x4838b106fce9647bdf1e7877bf73ce8b0bad5f97",
+      "accounted_addresses": [
+        "0xae0cc0d6e76c2b13451ab90cd13a5fa71a5c59ba",
+        "0xd226997439ecfbeff8e110c8c78c8a7eefd19f89"
+      ],
+      "gas_used": 346773,
+      "effective_gas_price_wei": 117435725,
+      "priority_fee_wei": 0,
+      "eth_usd": "2501.73911263",
+      "eth_usd_updated_at": 1788696119,
+      "token_dust_net": {
+        "WETH": "0",
+        "USDS": "0",
+        "USDT": "-0.000001"
+      },
+      "gross_wei": "59885853355088",
+      "builder_payment_wei": "3487247629429",
+      "gas_wei": "40723538665425",
+      "net_wei": "15675067060234",
+      "gross_eth": "0.000059885853355088",
+      "builder_payment_eth": "0.000003487247629429",
+      "gas_eth": "0.000040723538665425",
+      "net_eth": "0.000015675067060234",
+      "gross_usd": "0.14981878163164816141556144",
+      "builder_payment_usd": "0.00872418378996877753358827",
+      "gas_usd": "0.10187966948399383396181775",
+      "net_usd": "0.03921492835768554992015542"
+    }
+  ],
+  "totals": {
+    "gross_usd": "111.8739870053230444017920495",
+    "builder_payment_usd": "73.28620355560244160206677935",
+    "gas_usd": "0.84815887807228671746882554",
+    "net_usd": "37.73962457164831608225644463",
+    "gross_eth": "0.044718486608187304",
+    "builder_payment_eth": "0.029294103124349745",
+    "gas_eth": "0.000339027708281158",
+    "net_eth": "0.015085355775556401"
+  }
+}

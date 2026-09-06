@@ -1,0 +1,1559 @@
+{
+  "head": {
+    "number": 25918293,
+    "hash": "0x8fa3cfb7ccd4564e0ac14af3d412245cb5edafa57dfdc133b80a63d7deb61cc3",
+    "timestamp": 1788697559,
+    "base_fee": 130291358
+  },
+  "history_headers": [
+    {
+      "number": 25916499,
+      "hash": "0xd1e588957db5929c976ff3e6fac20b28f61260860fa3bf3a3f3d131f54646511",
+      "timestamp": 1788675959,
+      "base_fee": 48716237
+    },
+    {
+      "number": 25911116,
+      "hash": "0x1ed9e5ef4dbe0694eb6bdc870abcfc3cce45abdf2789c5a935982fd990aec9af",
+      "timestamp": 1788611159,
+      "base_fee": 49777607
+    }
+  ],
+  "lending": [
+    {
+      "venue": "Aave v3",
+      "symbol": "USDC",
+      "pool": "0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+      "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "a_token": "0x98c23e9d8f34fefb1b7bd6a91b7ff122f4e16f5c",
+      "debt_token": "0x72e95b8931767c79ba4eee721354d6e99a61d004",
+      "strategy": "0x9ec6f08190dea04a54f8afc53db96134e5e3fdfb",
+      "supply_apr": 0.035971163853349836,
+      "borrow_apr": 0.0427588770700011,
+      "supplied": 2304492043.372724,
+      "borrowed": 2154079497.997886,
+      "cash": 150448624.441837,
+      "rate_cash": 150416922.766761,
+      "unbacked": 0.0,
+      "reserve_factor": 0.1,
+      "supply_cap": 2500000000,
+      "active": true,
+      "frozen": false,
+      "paused": false,
+      "curve": {
+        "optimal": 0.94,
+        "base": 0.0,
+        "slope1": 0.043,
+        "slope2": 0.1
+      },
+      "realized_supply_history": [
+        {
+          "block": 25916499,
+          "elapsed_seconds": 21600,
+          "start_index": "1184588947271491802350761198",
+          "end_index": "1184618166696564251725534624",
+          "return": 2.466629892145421e-05,
+          "simple_annualized": 0.036012796425323144
+        },
+        {
+          "block": 25911116,
+          "elapsed_seconds": 86400,
+          "start_index": "1184494436375335396461972261",
+          "end_index": "1184618166696564251725534624",
+          "return": 0.00010445833887365626,
+          "simple_annualized": 0.03812729368888453
+        }
+      ],
+      "model_minus_stored_rate_bps": 2.5050087004707677e-07,
+      "supply_to_kink": 0,
+      "supply_size_scenarios": [
+        {
+          "added": 10000,
+          "supply_apr": 0.03597085169800842
+        },
+        {
+          "added": 100000,
+          "supply_apr": 0.035968042257353214
+        },
+        {
+          "added": 1000000,
+          "supply_apr": 0.035939965944298526
+        },
+        {
+          "added": 10000000,
+          "supply_apr": 0.035661001761458165
+        }
+      ]
+    },
+    {
+      "venue": "Aave v3",
+      "symbol": "USDT",
+      "pool": "0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+      "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "a_token": "0x23878914efe38d27c4d67ab83ed1b93a74d4086a",
+      "debt_token": "0x6df1c1e379bc5a00a7b4c6e67a203333772f45a8",
+      "strategy": "0x9ec6f08190dea04a54f8afc53db96134e5e3fdfb",
+      "supply_apr": 0.03565907510035472,
+      "borrow_apr": 0.04257298322201398,
+      "supplied": 2965496771.388924,
+      "borrowed": 2759889537.441077,
+      "cash": 205613905.906883,
+      "rate_cash": 205612443.382051,
+      "unbacked": 0.0,
+      "reserve_factor": 0.1,
+      "supply_cap": 3480000000,
+      "active": true,
+      "frozen": false,
+      "paused": false,
+      "curve": {
+        "optimal": 0.94,
+        "base": 0.0,
+        "slope1": 0.043,
+        "slope2": 0.1
+      },
+      "realized_supply_history": [
+        {
+          "block": 25916499,
+          "elapsed_seconds": 21600,
+          "start_index": "1174348971047315490575596258",
+          "end_index": "1174379343404753648641073021",
+          "return": 2.58631447610255e-05,
+          "simple_annualized": 0.03776019135109723
+        },
+        {
+          "block": 25911116,
+          "elapsed_seconds": 86400,
+          "start_index": "1174257774147524551355631799",
+          "end_index": "1174379343404753648641073021",
+          "return": 0.00010352859474773575,
+          "simple_annualized": 0.03778793708292355
+        }
+      ],
+      "model_minus_stored_rate_bps": 1.02711658622745e-07,
+      "supply_to_kink": 0,
+      "supply_size_scenarios": [
+        {
+          "added": 10000,
+          "supply_apr": 0.035658834619167974
+        },
+        {
+          "added": 100000,
+          "supply_apr": 0.03565667030552192
+        },
+        {
+          "added": 1000000,
+          "supply_apr": 0.03563503800223966
+        },
+        {
+          "added": 10000000,
+          "supply_apr": 0.035419793441636545
+        }
+      ]
+    },
+    {
+      "venue": "Aave v3",
+      "symbol": "DAI",
+      "pool": "0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+      "token": "0x6b175474e89094c44da98b954eedeac495271d0f",
+      "a_token": "0x018008bfb33d285247a21d44e50697654f754e63",
+      "debt_token": "0xcf8d0c70c850859266f5c338b38f9d663181c314",
+      "strategy": "0x9ec6f08190dea04a54f8afc53db96134e5e3fdfb",
+      "supply_apr": 0.030279044598011992,
+      "borrow_apr": 0.046842060365790264,
+      "supplied": 131804169.24864261,
+      "borrowed": 113599594.1776963,
+      "cash": 18202740.110775825,
+      "rate_cash": 18202698.661486357,
+      "unbacked": 0.0,
+      "reserve_factor": 0.25,
+      "supply_cap": 200000000,
+      "active": true,
+      "frozen": false,
+      "paused": false,
+      "curve": {
+        "optimal": 0.92,
+        "base": 0.0,
+        "slope1": 0.05,
+        "slope2": 0.35
+      },
+      "realized_supply_history": [
+        {
+          "block": 25916499,
+          "elapsed_seconds": 21600,
+          "start_index": "1173298593004596101394973916",
+          "end_index": "1173322687836775458520757208",
+          "return": 2.053597636868788e-05,
+          "simple_annualized": 0.02998252549828431
+        },
+        {
+          "block": 25911116,
+          "elapsed_seconds": 86400,
+          "start_index": "1173226599123814590927719474",
+          "end_index": "1173322687836775458520757208",
+          "return": 8.19012397371729e-05,
+          "simple_annualized": 0.02989395250406811
+        }
+      ],
+      "model_minus_stored_rate_bps": 0.00620646648078621,
+      "supply_to_kink": 0,
+      "supply_size_scenarios": [
+        {
+          "added": 10000,
+          "supply_apr": 0.030275071057577492
+        },
+        {
+          "added": 100000,
+          "supply_apr": 0.03023377038335502
+        },
+        {
+          "added": 1000000,
+          "supply_apr": 0.02982537094289277
+        },
+        {
+          "added": 10000000,
+          "supply_apr": 0.02615956355377698
+        }
+      ]
+    },
+    {
+      "venue": "Aave v3",
+      "symbol": "PYUSD",
+      "pool": "0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+      "token": "0x6c3ea9036406852006290770bedfcaba0e23a0e8",
+      "a_token": "0x0c0d01abf3e6adfca0989ebba9d6e85dd58eab1e",
+      "debt_token": "0x57b67e4de077085fd0af2174e9c14871be664546",
+      "strategy": "0x9ec6f08190dea04a54f8afc53db96134e5e3fdfb",
+      "supply_apr": 0.037215684941680933,
+      "borrow_apr": 0.04816031299394502,
+      "supplied": 7770974.945927,
+      "borrowed": 6672278.449483,
+      "cash": 1098788.245368,
+      "rate_cash": 1098766.177438,
+      "unbacked": 0.0,
+      "reserve_factor": 0.1,
+      "supply_cap": 21000000,
+      "active": true,
+      "frozen": false,
+      "paused": false,
+      "curve": {
+        "optimal": 0.9,
+        "base": 0.01,
+        "slope1": 0.04,
+        "slope2": 0.5
+      },
+      "realized_supply_history": [
+        {
+          "block": 25916499,
+          "elapsed_seconds": 21600,
+          "start_index": "1088088459735484701467101730",
+          "end_index": "1088120609727020935482266524",
+          "return": 2.9547222239678663e-05,
+          "simple_annualized": 0.04313894446993085
+        },
+        {
+          "block": 25911116,
+          "elapsed_seconds": 86400,
+          "start_index": "1087976453630039619118557419",
+          "end_index": "1088120609727020935482266524",
+          "return": 0.00013249928020072377,
+          "simple_annualized": 0.04836223727326418
+        }
+      ],
+      "model_minus_stored_rate_bps": 0.0006861679539837962,
+      "supply_to_kink": 0,
+      "supply_size_scenarios": [
+        {
+          "added": 10000,
+          "supply_apr": 0.037130075935772895
+        },
+        {
+          "added": 100000,
+          "supply_apr": 0.03637305225599479
+        },
+        {
+          "added": 1000000,
+          "supply_apr": 0.029994032868451898
+        },
+        {
+          "added": 10000000,
+          "supply_apr": 0.00901786506578508
+        }
+      ]
+    },
+    {
+      "venue": "Aave v3",
+      "symbol": "RLUSD",
+      "pool": "0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+      "token": "0x8292bb45bf1ee4d140127049757c2e0ff06317ed",
+      "a_token": "0xfa82580c16a31d0c1bc632a36f82e83efef3eec0",
+      "debt_token": "0xbdfe7ad7976d5d7e0965ea83a81ca1bcff7e84a9",
+      "strategy": "0x9ec6f08190dea04a54f8afc53db96134e5e3fdfb",
+      "supply_apr": 0.021732068676669932,
+      "borrow_apr": 0.04420424180691595,
+      "supplied": 4642291.667638909,
+      "borrowed": 2852894.11629809,
+      "cash": 1789446.9888020484,
+      "rate_cash": 1789446.9888020484,
+      "unbacked": 0.0,
+      "reserve_factor": 0.2,
+      "supply_cap": 100000000,
+      "active": true,
+      "frozen": false,
+      "paused": false,
+      "curve": {
+        "optimal": 0.8,
+        "base": 0.025,
+        "slope1": 0.025,
+        "slope2": 0.5
+      },
+      "realized_supply_history": [
+        {
+          "block": 25916499,
+          "elapsed_seconds": 21600,
+          "start_index": "1017852985575598476359479902",
+          "end_index": "1017868136866104223163098276",
+          "return": 1.4885539189314957e-05,
+          "simple_annualized": 0.02173288721639984
+        },
+        {
+          "block": 25911116,
+          "elapsed_seconds": 86400,
+          "start_index": "1017807490454185134390111068",
+          "end_index": "1017868136866104223163098276",
+          "return": 5.958534643130401e-05,
+          "simple_annualized": 0.021748651447425965
+        }
+      ],
+      "model_minus_stored_rate_bps": 0.0010530602376560005,
+      "supply_to_kink": 0,
+      "supply_size_scenarios": [
+        {
+          "added": 10000,
+          "supply_apr": 0.021665211356266936
+        },
+        {
+          "added": 100000,
+          "supply_apr": 0.021079026023424874
+        },
+        {
+          "added": 1000000,
+          "supply_apr": 0.016503798807137007
+        },
+        {
+          "added": 10000000,
+          "supply_apr": 0.004845825777878567
+        }
+      ]
+    },
+    {
+      "venue": "Aave v3",
+      "symbol": "USDS",
+      "pool": "0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+      "token": "0xdc035d45d973e3ec169d2276ddab16f1e407384f",
+      "a_token": "0x32a6268f9ba3642dda7892add74f1d34469a4259",
+      "debt_token": "0x490e0e6255bf65b43e2e02f7acb783c5e04572ff",
+      "strategy": "0x9ec6f08190dea04a54f8afc53db96134e5e3fdfb",
+      "supply_apr": 0.001230923373752849,
+      "borrow_apr": 0.05524219894493003,
+      "supplied": 11278227.757406546,
+      "borrowed": 335084.62012105813,
+      "cash": 10943228.81293932,
+      "rate_cash": 10943228.81293932,
+      "unbacked": 0.0,
+      "reserve_factor": 0.25,
+      "supply_cap": 50000000,
+      "active": true,
+      "frozen": false,
+      "paused": false,
+      "curve": {
+        "optimal": 0.92,
+        "base": 0.055,
+        "slope1": 0.0075,
+        "slope2": 0.35
+      },
+      "realized_supply_history": [
+        {
+          "block": 25916499,
+          "elapsed_seconds": 21600,
+          "start_index": "1039492841360389949475183817",
+          "end_index": "1039493717727122225485105394",
+          "return": 8.430714454263139e-07,
+          "simple_annualized": 0.0012308843103224184
+        },
+        {
+          "block": 25911116,
+          "elapsed_seconds": 86400,
+          "start_index": "1039490212437061781264554285",
+          "end_index": "1039493717727122225485105394",
+          "return": 3.3721241609636184e-06,
+          "simple_annualized": 0.0012308253187517208
+        }
+      ],
+      "model_minus_stored_rate_bps": 0.00032844448993440273,
+      "supply_to_kink": 0,
+      "supply_size_scenarios": [
+        {
+          "added": 10000,
+          "supply_apr": 0.0012298609717940174
+        },
+        {
+          "added": 100000,
+          "supply_apr": 0.0012200907605969585
+        },
+        {
+          "added": 1000000,
+          "supply_apr": 0.0011302979557176074
+        },
+        {
+          "added": 10000000,
+          "supply_apr": 0.0006511091094120739
+        }
+      ]
+    },
+    {
+      "venue": "Aave v3",
+      "symbol": "USDe",
+      "pool": "0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+      "token": "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+      "a_token": "0x4f5923fc5fd4a93352581b38b7cd26943012decf",
+      "debt_token": "0x015396e1f286289ae23a762088e863b3ec465145",
+      "strategy": "0x9ec6f08190dea04a54f8afc53db96134e5e3fdfb",
+      "supply_apr": 0.01781226105117684,
+      "borrow_apr": 0.05452037167632176,
+      "supplied": 646675300.116068,
+      "borrowed": 281699623.46953547,
+      "cash": 364977021.1522585,
+      "rate_cash": 364977014.66671413,
+      "unbacked": 0.0,
+      "reserve_factor": 0.25,
+      "supply_cap": 902000000,
+      "active": true,
+      "frozen": false,
+      "paused": false,
+      "curve": {
+        "optimal": 0.9,
+        "base": 0.04,
+        "slope1": 0.03,
+        "slope2": 0.12
+      },
+      "realized_supply_history": [
+        {
+          "block": 25916499,
+          "elapsed_seconds": 21600,
+          "start_index": "1072623818042029179957633735",
+          "end_index": "1072636943125920682137947104",
+          "return": 1.2236427786454293e-05,
+          "simple_annualized": 0.01786518456822327
+        },
+        {
+          "block": 25911116,
+          "elapsed_seconds": 86400,
+          "start_index": "1072583140982408723958332615",
+          "end_index": "1072636943125920682137947104",
+          "return": 5.0161280236681045e-05,
+          "simple_annualized": 0.018308867286388582
+        }
+      ],
+      "model_minus_stored_rate_bps": 5.860147291036899e-05,
+      "supply_to_kink": 0,
+      "supply_size_scenarios": [
+        {
+          "added": 10000,
+          "supply_apr": 0.017811918116074424
+        },
+        {
+          "added": 100000,
+          "supply_apr": 0.017808779546243495
+        },
+        {
+          "added": 1000000,
+          "supply_apr": 0.017777451896794486
+        },
+        {
+          "added": 10000000,
+          "supply_apr": 0.017469876862471954
+        }
+      ]
+    },
+    {
+      "venue": "SparkLend",
+      "symbol": "USDC",
+      "pool": "0xc13e21b648a5ee794902342038ff3adab66be987",
+      "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "a_token": "0x377c3bd93f2a2984e1e7be6a5c22c525ed4a4815",
+      "debt_token": "0x7b70d04099cb9cfb1db7b6820badafb4c5c70a67",
+      "strategy": "0xde99e49e9e42b1d8490c38926e6c9a79010e6ef2",
+      "supply_apr": 0.035419146967373534,
+      "borrow_apr": 0.042683052972718676,
+      "supplied": 25644286.682213,
+      "borrowed": 23646040.826721,
+      "cash": 1999878.053528,
+      "rate_cash": 1999878.053528,
+      "unbacked": 0.0,
+      "reserve_factor": 0.1,
+      "supply_cap": 68719476735,
+      "active": true,
+      "frozen": false,
+      "paused": false,
+      "curve": {
+        "optimal": 0.98,
+        "base": 0.0,
+        "slope1": 0.04536714385712317,
+        "slope2": 0.15
+      },
+      "realized_supply_history": [
+        {
+          "block": 25916499,
+          "elapsed_seconds": 21600,
+          "start_index": "1178955306044356451028005186",
+          "end_index": "1178983906564878196627416174",
+          "return": 2.4259206752889026e-05,
+          "simple_annualized": 0.035418441859217976
+        },
+        {
+          "block": 25911116,
+          "elapsed_seconds": 86400,
+          "start_index": "1178869508134447867241923458",
+          "end_index": "1178983906564878196627416174",
+          "return": 9.70407917423906e-05,
+          "simple_annualized": 0.035419888985972564
+        }
+      ],
+      "model_minus_stored_rate_bps": 9.510201640083871e-05,
+      "supply_to_kink": 0,
+      "supply_size_scenarios": [
+        {
+          "added": 10000,
+          "supply_apr": 0.0353915509539401
+        },
+        {
+          "added": 100000,
+          "supply_apr": 0.035144546970111226
+        },
+        {
+          "added": 1000000,
+          "supply_apr": 0.032810537098175996
+        },
+        {
+          "added": 10000000,
+          "supply_apr": 0.018333910783854535
+        }
+      ]
+    },
+    {
+      "venue": "SparkLend",
+      "symbol": "USDT",
+      "pool": "0xc13e21b648a5ee794902342038ff3adab66be987",
+      "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "a_token": "0xe7df13b8e3d6740fe17cbe928c7334243d86c92f",
+      "debt_token": "0x529b6158d1d2992e3129f7c69e81a7c677dc3b12",
+      "strategy": "0x4e494988e68e6fc52309be4937869e27f0c304ac",
+      "supply_apr": 0.0261859060725217,
+      "borrow_apr": 0.03516128648390214,
+      "supplied": 387268677.524618,
+      "borrowed": 320477891.233058,
+      "cash": 66813362.672772,
+      "rate_cash": 66813362.672772,
+      "unbacked": 0.0,
+      "reserve_factor": 0.1,
+      "supply_cap": 68719476735,
+      "active": true,
+      "frozen": false,
+      "paused": false,
+      "curve": {
+        "optimal": 0.95,
+        "base": 0.0,
+        "slope1": 0.04036714385712317,
+        "slope2": 0.15
+      },
+      "realized_supply_history": [
+        {
+          "block": 25916499,
+          "elapsed_seconds": 21600,
+          "start_index": "1163961229897471561246618336",
+          "end_index": "1163999135396718504183377844",
+          "return": 3.25659465910921e-05,
+          "simple_annualized": 0.04754628202299446
+        },
+        {
+          "block": 25911116,
+          "elapsed_seconds": 86400,
+          "start_index": "1163849252861898586050402479",
+          "end_index": "1163999135396718504183377844",
+          "return": 0.00012878174252495145,
+          "simple_annualized": 0.04700533602160728
+        }
+      ],
+      "model_minus_stored_rate_bps": 5.439704475057594e-05,
+      "supply_to_kink": 0,
+      "supply_size_scenarios": [
+        {
+          "added": 10000,
+          "supply_apr": 0.02618455930521976
+        },
+        {
+          "added": 100000,
+          "supply_apr": 0.026172394154014046
+        },
+        {
+          "added": 1000000,
+          "supply_apr": 0.02605120751449529
+        },
+        {
+          "added": 10000000,
+          "supply_apr": 0.02488427923827024
+        }
+      ]
+    },
+    {
+      "venue": "SparkLend",
+      "symbol": "DAI",
+      "pool": "0xc13e21b648a5ee794902342038ff3adab66be987",
+      "token": "0x6b175474e89094c44da98b954eedeac495271d0f",
+      "a_token": "0x4dedf26112b3ec8ec46e7e31ea5e123490b05b8b",
+      "debt_token": "0xf705d2b7e92b3f38e6ae7afadaa2fee110fe5914",
+      "strategy": "0x8a95998639a34462a1fdaaaa5506f66f90ef2fdd",
+      "supply_apr": 0.024592051238227036,
+      "borrow_apr": 0.04043429605823429,
+      "supplied": 308343103.7443088,
+      "borrowed": 208614003.882667,
+      "cash": 100088284.93436654,
+      "rate_cash": 100088284.93436654,
+      "unbacked": 0.0,
+      "reserve_factor": 0.1,
+      "supply_cap": 0,
+      "active": true,
+      "frozen": false,
+      "paused": false,
+      "curve": {
+        "optimal": 0.8,
+        "base": 0.0,
+        "slope1": 0.04786714385712317,
+        "slope2": 0.15
+      },
+      "realized_supply_history": [
+        {
+          "block": 25916499,
+          "elapsed_seconds": 21600,
+          "start_index": "1181853556278027317365079955",
+          "end_index": "1181873463384403226819041118",
+          "return": 1.6843970448083476e-05,
+          "simple_annualized": 0.024592196854201876
+        },
+        {
+          "block": 25911116,
+          "elapsed_seconds": 86400,
+          "start_index": "1181793837905226018662649850",
+          "end_index": "1181873463384403226819041118",
+          "return": 6.737679333169253e-05,
+          "simple_annualized": 0.024592529566067774
+        }
+      ],
+      "model_minus_stored_rate_bps": 0.0014156993741534785,
+      "supply_to_kink": 0,
+      "supply_size_scenarios": [
+        {
+          "added": 10000,
+          "supply_apr": 0.02459059962283324
+        },
+        {
+          "added": 100000,
+          "supply_apr": 0.02457626791911304
+        },
+        {
+          "added": 1000000,
+          "supply_apr": 0.024433637377749267
+        },
+        {
+          "added": 10000000,
+          "supply_apr": 0.023073134048918222
+        }
+      ]
+    },
+    {
+      "venue": "SparkLend",
+      "symbol": "USDS",
+      "pool": "0xc13e21b648a5ee794902342038ff3adab66be987",
+      "token": "0xdc035d45d973e3ec169d2276ddab16f1e407384f",
+      "a_token": "0xc02ab1a5eaa8d1b114ef786d9bde108cd4364359",
+      "debt_token": "0x8c147debea24fb98ade8dda4bf142992928b449e",
+      "strategy": "0x8a95998639a34462a1fdaaaa5506f66f90ef2fdd",
+      "supply_apr": 0.023184556316227182,
+      "borrow_apr": 0.03926014540593333,
+      "supplied": 713206390.1240884,
+      "borrowed": 467991667.45740324,
+      "cash": 245243021.38437277,
+      "rate_cash": 245243021.38437277,
+      "unbacked": 0.0,
+      "reserve_factor": 0.1,
+      "supply_cap": 0,
+      "active": true,
+      "frozen": false,
+      "paused": false,
+      "curve": {
+        "optimal": 0.8,
+        "base": 0.0,
+        "slope1": 0.04786714385712317,
+        "slope2": 0.15
+      },
+      "realized_supply_history": [
+        {
+          "block": 25916499,
+          "elapsed_seconds": 21600,
+          "start_index": "1040579584518012147411095083",
+          "end_index": "1040596109954244114433922743",
+          "return": 1.5880992168053604e-05,
+          "simple_annualized": 0.023186248565358263
+        },
+        {
+          "block": 25911116,
+          "elapsed_seconds": 86400,
+          "start_index": "1040530014346326023340740066",
+          "end_index": "1040596109954244114433922743",
+          "return": 6.352109694751399e-05,
+          "simple_annualized": 0.023185200385842607
+        }
+      ],
+      "model_minus_stored_rate_bps": 0.0013743516134867573,
+      "supply_to_kink": 0,
+      "supply_size_scenarios": [
+        {
+          "added": 10000,
+          "supply_apr": 0.023184043637014477
+        },
+        {
+          "added": 100000,
+          "supply_apr": 0.023178193837947687
+        },
+        {
+          "added": 1000000,
+          "supply_apr": 0.023119817419649726
+        },
+        {
+          "added": 10000000,
+          "supply_apr": 0.02254798731604262
+        }
+      ]
+    },
+    {
+      "venue": "SparkLend",
+      "symbol": "PYUSD",
+      "pool": "0xc13e21b648a5ee794902342038ff3adab66be987",
+      "token": "0x6c3ea9036406852006290770bedfcaba0e23a0e8",
+      "a_token": "0x779224df1c756b4edd899854f32a53e8c2b2ce5d",
+      "debt_token": "0x3357d2db7763d6cd3a99f0763ebf87e0096d95f9",
+      "strategy": "0xdf7dedcfd522b1ee8da2c8526f642745800c8035",
+      "supply_apr": 0.005793053919507391,
+      "borrow_apr": 0.0388547492542906,
+      "supplied": 100001074.845164,
+      "borrowed": 16567471.725397,
+      "cash": 83434639.935662,
+      "rate_cash": 83434639.935662,
+      "unbacked": 0.0,
+      "reserve_factor": 0.1,
+      "supply_cap": 68719476735,
+      "active": true,
+      "frozen": false,
+      "paused": false,
+      "curve": {
+        "optimal": 0.95,
+        "base": 0.035367143857123175,
+        "slope1": 0.02,
+        "slope2": 0.15
+      },
+      "realized_supply_history": [
+        {
+          "block": 25916499,
+          "elapsed_seconds": 21600,
+          "start_index": "1012481269040684684062155223",
+          "end_index": "1012485286382346707567475318",
+          "return": 3.9678182548798105e-06,
+          "simple_annualized": 0.005793014652124523
+        },
+        {
+          "block": 25911116,
+          "elapsed_seconds": 86400,
+          "start_index": "1012469277866635831627996179",
+          "end_index": "1012485286382346707567475318",
+          "return": 1.5811359476118948e-05,
+          "simple_annualized": 0.0057711462087834155
+        }
+      ],
+      "model_minus_stored_rate_bps": 0.0037965302341746304,
+      "supply_to_kink": 0,
+      "supply_size_scenarios": [
+        {
+          "added": 10000,
+          "supply_apr": 0.005792802306077671
+        },
+        {
+          "added": 100000,
+          "supply_apr": 0.005787127050643748
+        },
+        {
+          "added": 1000000,
+          "supply_apr": 0.0057309761435042905
+        },
+        {
+          "added": 10000000,
+          "supply_apr": 0.005223789511749992
+        }
+      ]
+    }
+  ],
+  "compound": [
+    {
+      "venue": "Compound v3",
+      "symbol": "USDC",
+      "contract": "0xc3d688b66703497daa19211eedff47f25384cdc3",
+      "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "supplied": 372918302.304898,
+      "borrowed": 337532174.312162,
+      "utilization": 0.9051099443257988,
+      "curve": {
+        "base": 0,
+        "low": 1141552511,
+        "high": 101344495180,
+        "kink": 0.9
+      },
+      "supply_paused": false,
+      "withdraw_paused": false,
+      "cash": 43660124.050503,
+      "supply_apr": 0.048731382022032,
+      "borrow_apr": 0.058395999473856,
+      "spot_history": [
+        {
+          "block": 25916499,
+          "timestamp": 1788675959,
+          "supply_apr": 0.053178113462976
+        },
+        {
+          "block": 25911116,
+          "timestamp": 1788611159,
+          "supply_apr": 0.0445172259636
+        }
+      ],
+      "size_scenarios": [
+        {
+          "added": 0,
+          "supply_apr": 0.048732328795824
+        },
+        {
+          "added": 10000,
+          "supply_apr": 0.048654760737312
+        },
+        {
+          "added": 100000,
+          "supply_apr": 0.0479568354084
+        },
+        {
+          "added": 1000000,
+          "supply_apr": 0.040996060449264
+        },
+        {
+          "added": 10000000,
+          "supply_apr": 0.031733030746944
+        },
+        {
+          "added": 25000000,
+          "supply_apr": 0.030536816718816
+        },
+        {
+          "added": 50000000,
+          "supply_apr": 0.028731691663776
+        }
+      ]
+    },
+    {
+      "venue": "Compound v3",
+      "symbol": "USDT",
+      "contract": "0x3afdc9bca9213a35503b077a6072f3d0d5ab0840",
+      "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "supplied": 185282222.394643,
+      "borrowed": 154019877.850163,
+      "utilization": 0.8312676208343625,
+      "curve": {
+        "base": 0,
+        "low": 1141552511,
+        "high": 101344495180,
+        "kink": 0.9
+      },
+      "supply_paused": false,
+      "withdraw_paused": false,
+      "cash": 32482454.413871,
+      "supply_apr": 0.029925634311504,
+      "borrow_apr": 0.038090951924832,
+      "spot_history": [
+        {
+          "block": 25916499,
+          "timestamp": 1788675959,
+          "supply_apr": 0.029925598801968
+        },
+        {
+          "block": 25911116,
+          "timestamp": 1788611159,
+          "supply_apr": 0.029796110030736
+        }
+      ],
+      "size_scenarios": [
+        {
+          "added": 0,
+          "supply_apr": 0.029925783098352
+        },
+        {
+          "added": 10000,
+          "supply_apr": 0.029924168045184
+        },
+        {
+          "added": 100000,
+          "supply_apr": 0.029909640356064
+        },
+        {
+          "added": 1000000,
+          "supply_apr": 0.029765135529216
+        },
+        {
+          "added": 10000000,
+          "supply_apr": 0.028393345420272
+        },
+        {
+          "added": 25000000,
+          "supply_apr": 0.026367971269824
+        },
+        {
+          "added": 50000000,
+          "supply_apr": 0.023566232676096
+        }
+      ]
+    }
+  ],
+  "gas_assumption": {
+    "units": 600000,
+    "tip_gwei": 0.1,
+    "eth_usd": 2501.73911263,
+    "feed_updated": 1788696119,
+    "usd": 0.3456773385655666
+  },
+  "same_asset_allocation": [
+    {
+      "asset": "USDC",
+      "source": "Aave v3",
+      "destination": "Compound v3",
+      "baseline_apr": 0.035971163853349836,
+      "source_cash": 150448624.441837,
+      "destination_cash": 43660124.050503,
+      "scenarios": [
+        {
+          "added": 0,
+          "supply_apr": 0.048732328795824,
+          "incremental_apr": 0.012761164942474167,
+          "incremental_daily": 0.0,
+          "gas_break_even_days": null,
+          "seven_day_net_at_static_rates": 0.0
+        },
+        {
+          "added": 10000,
+          "supply_apr": 0.048654760737312,
+          "incremental_apr": 0.012683596883962166,
+          "incremental_daily": 0.34749580504005934,
+          "gas_break_even_days": 0.9947669397785015,
+          "seven_day_net_at_static_rates": 2.086793296714849
+        },
+        {
+          "added": 100000,
+          "supply_apr": 0.0479568354084,
+          "incremental_apr": 0.011985671555050162,
+          "incremental_daily": 3.2837456315205924,
+          "gas_break_even_days": 0.10526921916466929,
+          "seven_day_net_at_static_rates": 22.640542082078582
+        },
+        {
+          "added": 1000000,
+          "supply_apr": 0.040996060449264,
+          "incremental_apr": 0.005024896595914166,
+          "incremental_daily": 13.766839988805934,
+          "gas_break_even_days": 0.025109417909022193,
+          "seven_day_net_at_static_rates": 96.02220258307598
+        },
+        {
+          "added": 10000000,
+          "supply_apr": 0.031733030746944,
+          "incremental_apr": -0.004238133106405834,
+          "incremental_daily": -116.11323579194065,
+          "gas_break_even_days": null,
+          "seven_day_net_at_static_rates": -813.1383278821501
+        },
+        {
+          "added": 25000000,
+          "supply_apr": 0.030536816718816,
+          "incremental_apr": -0.0054343471345338346,
+          "incremental_daily": -372.21555715985164,
+          "gas_break_even_days": null,
+          "seven_day_net_at_static_rates": -2605.8545774575273
+        },
+        {
+          "added": 50000000,
+          "supply_apr": 0.028731691663776,
+          "incremental_apr": -0.007239472189573836,
+          "incremental_daily": -991.7085191197036,
+          "gas_break_even_days": null,
+          "seven_day_net_at_static_rates": -6942.305311176492
+        }
+      ],
+      "static_state_grid_optimum": {
+        "amount": 830000.0,
+        "annual_increment": 5259.827540305551
+      }
+    },
+    {
+      "asset": "USDT",
+      "source": "Aave v3",
+      "destination": "Compound v3",
+      "baseline_apr": 0.03565907510035472,
+      "source_cash": 205613905.906883,
+      "destination_cash": 32482454.413871,
+      "scenarios": [
+        {
+          "added": 0,
+          "supply_apr": 0.029925783098352,
+          "incremental_apr": -0.005733292002002722,
+          "incremental_daily": -0.0,
+          "gas_break_even_days": null,
+          "seven_day_net_at_static_rates": -0.0
+        },
+        {
+          "added": 10000,
+          "supply_apr": 0.029924168045184,
+          "incremental_apr": -0.005734907055170723,
+          "incremental_daily": -0.15712074123755404,
+          "gas_break_even_days": null,
+          "seven_day_net_at_static_rates": -1.4455225272284449
+        },
+        {
+          "added": 100000,
+          "supply_apr": 0.029909640356064,
+          "incremental_apr": -0.005749434744290724,
+          "incremental_daily": -1.5751876011755408,
+          "gas_break_even_days": null,
+          "seven_day_net_at_static_rates": -11.371990546794352
+        },
+        {
+          "added": 1000000,
+          "supply_apr": 0.029765135529216,
+          "incremental_apr": -0.005893939571138724,
+          "incremental_daily": -16.14777964695541,
+          "gas_break_even_days": null,
+          "seven_day_net_at_static_rates": -113.38013486725342
+        },
+        {
+          "added": 10000000,
+          "supply_apr": 0.028393345420272,
+          "incremental_apr": -0.007265729680082721,
+          "incremental_daily": -199.06108712555402,
+          "gas_break_even_days": null,
+          "seven_day_net_at_static_rates": -1393.7732872174438
+        },
+        {
+          "added": 25000000,
+          "supply_apr": 0.026367971269824,
+          "incremental_apr": -0.009291103830530723,
+          "incremental_daily": -636.3769746938851,
+          "gas_break_even_days": null,
+          "seven_day_net_at_static_rates": -4454.984500195762
+        },
+        {
+          "added": 50000000,
+          "supply_apr": 0.023566232676096,
+          "incremental_apr": -0.012092842424258721,
+          "incremental_daily": -1656.5537567477702,
+          "gas_break_even_days": null,
+          "seven_day_net_at_static_rates": -11596.221974572958
+        }
+      ],
+      "static_state_grid_optimum": {
+        "amount": 0.0,
+        "annual_increment": -0.0
+      }
+    }
+  ],
+  "all_same_asset_routes": [
+    {
+      "symbol": "USDC",
+      "from": "Aave v3",
+      "to": "Compound v3",
+      "source_apr": 0.035971163853349836,
+      "destination_spot_apr": 0.048731382022032,
+      "source_cash": 150448624.441837,
+      "destination_deposit_headroom": 100000000,
+      "scenarios": [
+        {
+          "amount": 10000,
+          "post_deposit_apr": 0.048654760794475886,
+          "incremental_daily": 0.34749580660619317,
+          "seven_day_net_static": 2.0867933076777856,
+          "break_even_days": 0.9947669352951721
+        },
+        {
+          "amount": 100000,
+          "post_deposit_apr": 0.04795683544640677,
+          "incremental_daily": 3.2837456419334066,
+          "seven_day_net_static": 22.64054215496828,
+          "break_even_days": 0.10526921883085877
+        },
+        {
+          "amount": 1000000,
+          "post_deposit_apr": 0.04099606049673042,
+          "incremental_daily": 13.766840118850922,
+          "seven_day_net_static": 96.02220349339089,
+          "break_even_days": 0.0251094176718324
+        },
+        {
+          "amount": 10000000,
+          "post_deposit_apr": 0.0317330307735969,
+          "incremental_daily": -116.11323506172435,
+          "seven_day_net_static": -813.138322770636,
+          "break_even_days": null
+        }
+      ]
+    },
+    {
+      "symbol": "USDS",
+      "from": "Aave v3",
+      "to": "SparkLend",
+      "source_apr": 0.001230923373752849,
+      "destination_spot_apr": 0.023184556316227182,
+      "source_cash": 10943228.81293932,
+      "destination_deposit_headroom": 100000000,
+      "scenarios": [
+        {
+          "amount": 10000,
+          "post_deposit_apr": 0.023184043637014477,
+          "incremental_daily": 0.6014553496784008,
+          "seven_day_net_static": 3.864510109183239,
+          "break_even_days": 0.5747348306909248
+        },
+        {
+          "amount": 100000,
+          "post_deposit_apr": 0.023178193837947687,
+          "incremental_daily": 6.012950812108174,
+          "seven_day_net_static": 41.74497834619165,
+          "break_even_days": 0.057488801982128676
+        },
+        {
+          "amount": 1000000,
+          "post_deposit_apr": 0.023119817419649726,
+          "incremental_daily": 59.96957272848459,
+          "seven_day_net_static": 419.4413317608266,
+          "break_even_days": 0.005764212130218753
+        },
+        {
+          "amount": 10000000,
+          "post_deposit_apr": 0.02254798731604262,
+          "incremental_daily": 584.0291491038294,
+          "seven_day_net_static": 4087.85836638824,
+          "break_even_days": 0.0005918837083662611
+        }
+      ]
+    },
+    {
+      "symbol": "USDC",
+      "from": "SparkLend",
+      "to": "Aave v3",
+      "source_apr": 0.035419146967373534,
+      "destination_spot_apr": 0.035971163853349836,
+      "source_cash": 1999878.053528,
+      "destination_deposit_headroom": 195507956.62727594,
+      "scenarios": [
+        {
+          "amount": 10000,
+          "post_deposit_apr": 0.03597085169800842,
+          "incremental_daily": 0.015115198099585917,
+          "seven_day_net_static": -0.2398709518684652,
+          "break_even_days": 22.86952088143896
+        },
+        {
+          "amount": 100000,
+          "post_deposit_apr": 0.035968042257353214,
+          "incremental_daily": 0.15038227122730954,
+          "seven_day_net_static": 0.7069985600256002,
+          "break_even_days": 2.2986575195626604
+        },
+        {
+          "amount": 1000000,
+          "post_deposit_apr": 0.035939965944298526,
+          "incremental_daily": 1.4269013066438125,
+          "seven_day_net_static": 9.64263180794112,
+          "break_even_days": 0.2422573565221744
+        }
+      ]
+    },
+    {
+      "symbol": "USDC",
+      "from": "SparkLend",
+      "to": "Compound v3",
+      "source_apr": 0.035419146967373534,
+      "destination_spot_apr": 0.048731382022032,
+      "source_cash": 1999878.053528,
+      "destination_deposit_headroom": 100000000,
+      "scenarios": [
+        {
+          "amount": 10000,
+          "post_deposit_apr": 0.048654760794475886,
+          "incremental_daily": 0.3626195569069138,
+          "seven_day_net_static": 2.19265955978283,
+          "break_even_days": 0.9532782553542849
+        },
+        {
+          "amount": 100000,
+          "post_deposit_apr": 0.04795683544640677,
+          "incremental_daily": 3.4349831449406127,
+          "seven_day_net_static": 23.699204676018724,
+          "break_even_days": 0.10063436237662907
+        },
+        {
+          "amount": 1000000,
+          "post_deposit_apr": 0.04099606049673042,
+          "incremental_daily": 15.279215148922981,
+          "seven_day_net_static": 106.6088287038953,
+          "break_even_days": 0.022624024545523407
+        }
+      ]
+    },
+    {
+      "symbol": "USDT",
+      "from": "SparkLend",
+      "to": "Aave v3",
+      "source_apr": 0.0261859060725217,
+      "destination_spot_apr": 0.03565907510035472,
+      "source_cash": 66813362.672772,
+      "destination_deposit_headroom": 514503228.6110759,
+      "scenarios": [
+        {
+          "amount": 10000,
+          "post_deposit_apr": 0.035658834619167974,
+          "incremental_daily": 0.25953228894921304,
+          "seven_day_net_static": 1.4710486840789248,
+          "break_even_days": 1.3319242086028493
+        },
+        {
+          "amount": 100000,
+          "post_deposit_apr": 0.03565667030552192,
+          "incremental_daily": 2.594729926849376,
+          "seven_day_net_static": 17.817432149380068,
+          "break_even_days": 0.13322285876021853
+        },
+        {
+          "amount": 1000000,
+          "post_deposit_apr": 0.03563503800223966,
+          "incremental_daily": 25.888032684158798,
+          "seven_day_net_static": 180.87055145054603,
+          "break_even_days": 0.01335278515686867
+        },
+        {
+          "amount": 10000000,
+          "post_deposit_apr": 0.035419793441636545,
+          "incremental_daily": 252.98321559218755,
+          "seven_day_net_static": 1770.5368318067472,
+          "break_even_days": 0.0013664042405200638
+        }
+      ]
+    },
+    {
+      "symbol": "USDT",
+      "from": "SparkLend",
+      "to": "Compound v3",
+      "source_apr": 0.0261859060725217,
+      "destination_spot_apr": 0.029925634311504,
+      "source_cash": 66813362.672772,
+      "destination_deposit_headroom": 100000000,
+      "scenarios": [
+        {
+          "amount": 10000,
+          "post_deposit_apr": 0.029924168046180744,
+          "incremental_daily": 0.1024181362646314,
+          "seven_day_net_static": 0.3712496152868532,
+          "break_even_days": 3.3751574786753977
+        },
+        {
+          "amount": 100000,
+          "post_deposit_apr": 0.029909640357984064,
+          "incremental_daily": 1.020201174099278,
+          "seven_day_net_static": 6.795730880129379,
+          "break_even_days": 0.33883252376254175
+        },
+        {
+          "amount": 1000000,
+          "post_deposit_apr": 0.02976513555244681,
+          "incremental_daily": 9.806108164178383,
+          "seven_day_net_static": 68.29707981068312,
+          "break_even_days": 0.0352512263558669
+        },
+        {
+          "amount": 10000000,
+          "post_deposit_apr": 0.02839334544945088,
+          "incremental_daily": 60.47779114874468,
+          "seven_day_net_static": 422.99886070264716,
+          "break_even_days": 0.00571577321194446
+        }
+      ]
+    },
+    {
+      "symbol": "DAI",
+      "from": "SparkLend",
+      "to": "Aave v3",
+      "source_apr": 0.024592051238227036,
+      "destination_spot_apr": 0.030279044598011992,
+      "source_cash": 100088284.93436654,
+      "destination_deposit_headroom": 68195830.75135739,
+      "scenarios": [
+        {
+          "amount": 10000,
+          "post_deposit_apr": 0.030275071057577492,
+          "incremental_daily": 0.15569917313288922,
+          "seven_day_net_static": 0.744216873364658,
+          "break_even_days": 2.2201616849341326
+        },
+        {
+          "amount": 100000,
+          "post_deposit_apr": 0.03023377038335502,
+          "incremental_daily": 1.5456764781172565,
+          "seven_day_net_static": 10.474058008255229,
+          "break_even_days": 0.223641456319906
+        },
+        {
+          "amount": 1000000,
+          "post_deposit_apr": 0.02982537094289277,
+          "incremental_daily": 14.33786220456366,
+          "seven_day_net_static": 100.01935809338005,
+          "break_even_days": 0.02410940582589359
+        },
+        {
+          "amount": 10000000,
+          "post_deposit_apr": 0.02615956355377698,
+          "incremental_daily": 42.94554289177928,
+          "seven_day_net_static": 300.27312290388943,
+          "break_even_days": 0.008049201739902485
+        }
+      ]
+    },
+    {
+      "symbol": "PYUSD",
+      "from": "SparkLend",
+      "to": "Aave v3",
+      "source_apr": 0.005793053919507391,
+      "destination_spot_apr": 0.037215684941680933,
+      "source_cash": 83434639.935662,
+      "destination_deposit_headroom": 13229025.054073,
+      "scenarios": [
+        {
+          "amount": 10000,
+          "post_deposit_apr": 0.037130075935772895,
+          "incremental_daily": 0.8585485483908356,
+          "seven_day_net_static": 5.664162500170282,
+          "break_even_days": 0.4026299260693694
+        },
+        {
+          "amount": 100000,
+          "post_deposit_apr": 0.03637305225599479,
+          "incremental_daily": 8.378081736023946,
+          "seven_day_net_static": 58.300894813602056,
+          "break_even_days": 0.04125972381950257
+        },
+        {
+          "amount": 1000000,
+          "post_deposit_apr": 0.029994032868451898,
+          "incremental_daily": 66.30405191491646,
+          "seven_day_net_static": 463.78268606584965,
+          "break_even_days": 0.005213517554087813
+        },
+        {
+          "amount": 10000000,
+          "post_deposit_apr": 0.00901786506578508,
+          "incremental_daily": 88.3509903089778,
+          "seven_day_net_static": 618.1112548242791,
+          "break_even_days": 0.003912546281107622
+        }
+      ]
+    },
+    {
+      "symbol": "USDT",
+      "from": "Compound v3",
+      "to": "Aave v3",
+      "source_apr": 0.029925634311504,
+      "destination_spot_apr": 0.03565907510035472,
+      "source_cash": 32482454.413871,
+      "destination_deposit_headroom": 514503228.6110759,
+      "scenarios": [
+        {
+          "amount": 10000,
+          "post_deposit_apr": 0.035658834619167974,
+          "incremental_daily": 0.15707398103188971,
+          "seven_day_net_static": 0.7538405286576614,
+          "break_even_days": 2.200729467061677
+        },
+        {
+          "amount": 100000,
+          "post_deposit_apr": 0.03565667030552192,
+          "incremental_daily": 1.5701468476761433,
+          "seven_day_net_static": 10.645350595167436,
+          "break_even_days": 0.22015605678996059
+        },
+        {
+          "amount": 1000000,
+          "post_deposit_apr": 0.03563503800223966,
+          "incremental_daily": 15.642201892426469,
+          "seven_day_net_static": 109.14973590841971,
+          "break_even_days": 0.022099020390021575
+        },
+        {
+          "amount": 10000000,
+          "post_deposit_apr": 0.035419793441636545,
+          "incremental_daily": 150.52490767486427,
+          "seven_day_net_static": 1053.3286763854844,
+          "break_even_days": 0.002296479326280233
+        }
+      ]
+    }
+  ],
+  "savings_usds": {
+    "vault": "0xa3931d71877c0e7a3148cb7eb4463524fec27fbd",
+    "asset": "USDS",
+    "ssr_ray": "1000000001121484774769253326",
+    "apy": 0.03599999699843874,
+    "max_deposit_raw": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+    "total_assets": 4660001307.058679,
+    "history": [
+      {
+        "block": 25916499,
+        "share_return": 2.42243645265372e-05
+      },
+      {
+        "block": 25911116,
+        "share_return": 9.690097908232609e-05
+      }
+    ]
+  },
+  "redemption": {
+    "cooldown_seconds": 86400,
+    "buy_pool": "0x167478921b907422f8e88b43c4af2b8bea278d3a",
+    "exit_pool": "0x5b03cccab7ba3010fa5cad23746cbf0794938e96",
+    "start_asset": "sDAI, valued by redeemable DAI",
+    "end_asset": "USDT",
+    "stablecoin_parity_assumed": true,
+    "future_exit_price_guaranteed": false,
+    "includes_DAI_USDT_basis_hedge": false,
+    "capital_hurdle_apr": 0.05,
+    "gas_budget_usd": 0.3456773385655666,
+    "scenarios": [
+      {
+        "cost_dai": 10000.0,
+        "input_sdai_raw": "8473166958041040316742",
+        "bought_susde_raw": "8022940176366236392162",
+        "locked_usde": 10002.807787394437,
+        "quoted_usdt_exit": 10001.912281,
+        "entry_discount_bps": 2.807787394436545,
+        "quoted_pnl_before_gas_and_carry": 1.912281000000803,
+        "capital_cost": 1.36986301369863,
+        "screened_net": 0.19674064773660638,
+        "exit_price_haircut_10bps_net": -9.805171633264235
+      },
+      {
+        "cost_dai": 100000.0,
+        "input_sdai_raw": "84731669580410403167423",
+        "bought_susde_raw": "80225508081057823209960",
+        "locked_usde": 100023.22332463673,
+        "quoted_usdt_exit": 100010.721392,
+        "entry_discount_bps": 2.3223324636734155,
+        "quoted_pnl_before_gas_and_carry": 10.721392000006745,
+        "capital_cost": 13.698630136986301,
+        "screened_net": -3.322915475545123,
+        "exit_price_haircut_10bps_net": -103.33363686754335
+      },
+      {
+        "cost_dai": 250000.0,
+        "input_sdai_raw": "211829173951026007918559",
+        "bought_susde_raw": "200548346458185430428293",
+        "locked_usde": 250038.82836000362,
+        "quoted_usdt_exit": 249968.667954,
+        "entry_discount_bps": 1.5531344001451508,
+        "quoted_pnl_before_gas_and_carry": -31.3320459999959,
+        "capital_cost": 34.24657534246575,
+        "screened_net": -65.92429868102721,
+        "exit_price_haircut_10bps_net": -315.89296663502995
+      },
+      {
+        "cost_dai": 500000.0,
+        "input_sdai_raw": "423658347902052015837118",
+        "bought_susde_raw": "401048198624429518795588",
+        "locked_usde": 500017.19520958693,
+        "quoted_usdt_exit": 372676.968015,
+        "entry_discount_bps": 0.34390419173968567,
+        "quoted_pnl_before_gas_and_carry": -127323.03198500001,
+        "capital_cost": 68.4931506849315,
+        "screened_net": -127391.8708130235,
+        "exit_price_haircut_10bps_net": -127764.54778103848
+      }
+    ]
+  },
+  "midnight": {
+    "source": "research/2026-09-06/live/midnight_2026-09-06.json",
+    "source_sha256": "d784f30fe774e57c470d32adf39d47f2bc8ba52942a5436fa0d3b5645c83e7b5",
+    "observed_event_count": 74,
+    "independently_matched_rpc_logs": 74,
+    "end_of_timestamp_count": 64,
+    "baseline": {
+      "block": 25914352,
+      "utc": "2026-09-05T23:15:23+00:00",
+      "supply_apr": 0.03595019670229202,
+      "borrow_apr": 0.04274641344050546
+    },
+    "integral_interval_seconds": 4452,
+    "incremental_supply_return": 5.954795445156092e-06,
+    "incremental_borrow_cost": 6.437045868520864e-06,
+    "incremental_supply_per_million": 5.954795445156091,
+    "incremental_borrow_per_million": 6.437045868520864,
+    "source_operations": [
+      {
+        "block": 25914447,
+        "utc": "2026-09-05T23:34:35+00:00",
+        "kind": "withdraw",
+        "user": "aave_leg",
+        "usd": 151000000,
+        "tx": "0x03cbb74fe6dbeb432d279123dd7ca8d4832a61b1cd54a52a5a4b71ffbfc2e85e"
+      },
+      {
+        "block": 25914616,
+        "utc": "2026-09-06T00:08:23+00:00",
+        "kind": "supply",
+        "user": "aave_leg",
+        "usd": 151000000,
+        "tx": "0x31dba305f41bd1bdf02540b98f65380b4196e3f3d7bfc682843e8caa432494bc"
+      }
+    ],
+    "index_check": {
+      "start": {
+        "number": 25914446,
+        "hash": "0x8c3e6e4755c3e8059122c6871e4bae36a77cc168b43366a4af4fbd1099272bee",
+        "timestamp": 1788651263,
+        "base_fee": 50481314
+      },
+      "end": {
+        "number": 25914616,
+        "hash": "0xf57c75317897974c963eb186f34e203e292a998ba69e289e2d1d47d375d4135d",
+        "timestamp": 1788653303,
+        "base_fee": 50970364
+      },
+      "elapsed_seconds": 2040,
+      "supply_return": 8.280206431725807e-06,
+      "borrow_return": 9.202168107082605e-06,
+      "excess_supply_return": 5.954660982947405e-06,
+      "excess_borrow_cost": 6.436989155451735e-06
+    }
+  },
+  "limitations": [
+    "Read-only screen; companion fork tests simulate funded deposits but no live execution",
+    "Future rates, withdrawals and DEX exit prices are uncertain",
+    "No reward tokens, leverage, assumed hedge, or wallet balance in PnL",
+    "RPC-provider evidence; finalized hash pinned, not local consensus verification"
+  ]
+}

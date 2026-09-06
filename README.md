@@ -87,6 +87,23 @@ Outputs live in `research/2026-09-05/amount_outliers_eth_day/`: `letter.md` and 
 Codex's five-hour run (`research/2026-09-05/eth_5h`, `research/2026-09-05/amount_outliers_eth_5h`) is kept as the origin of the inherited registry; its `method.md` describes the learning cycle and its `round_0X/` archives its discovery and audit rounds.
 
 
+## Live scan: a trailing hour, then the head, block by block
+
+`scripts/live_collect.py` pulls a trailing window of full blocks and unfiltered logs up to the current head (not the finalized block) and can keep tailing it with a parent-hash recheck for reorgs; `scripts/live_rpc.py` rotates across every local Infura key and parks throttled ones. `scripts/live_scan.py` decodes value legs, swaps (Uniswap v2/v3/v4, Curve, Balancer), liquidity changes, Aave/SparkLend/Morpho events, CCTP and OFT sends, WETH, Lido and issuance events, and aggregates them into the features a patient actor can use: passive LP fee yield per pool net of just-in-time liquidity, lending rates and utilisation shocks per reserve, health factors of the borrowers active in the window, borrow and withdraw proceeds followed to exchange wallets, exchange net flow, round trips, scheduled flow, stablecoin and LST implied prices against NAV, bridge destinations and the gas market. `head` reads prices (Chainlink with description checks), NAV rates, lending reserves on Aave, SparkLend and Compound v3, Sky and Ethena rates, and health factors at the head. `midnight` checks the 23:30 to 00:20 UTC balance routine for any date with four log queries. `live` tails the chain, writes one line per block with anything notable to `live_log.md`, and re-analyses the trailing hour every ten blocks. Uniswap v4 swaps are valued only from a leg whose tokens verifiably moved through the PoolManager, because hook pools emit deltas that never settle.
+
+```sh
+uv run --with pycryptodome python scripts/live_collect.py collect --out research/2026-09-06/live --hours 1   # ~38k credits per hour of blocks
+uv run --with pycryptodome python scripts/live_scan.py head --out research/2026-09-06/live                  # ~35k credits
+uv run --with pycryptodome python scripts/live_scan.py analyze --out research/2026-09-06/live               # offline, ~2 s
+uv run --with pycryptodome python scripts/live_scan.py head --out research/2026-09-06/live                  # second pass: fee tiers, Morpho markets, health factors
+uv run --with pycryptodome python scripts/live_scan.py analyze --out research/2026-09-06/live && uv run --with pycryptodome python scripts/live_scan.py render --out research/2026-09-06/live
+uv run --with pycryptodome python scripts/live_scan.py midnight --out research/2026-09-06/live --date 2026-09-06
+uv run --with pycryptodome python scripts/live_scan.py live --out research/2026-09-06/live --hours 1 --every 10
+uv run --with pycryptodome python scripts/live_scan.py show --out research/2026-09-06/live <tx hash>
+```
+
+Outputs live in `research/2026-09-06/live/`: `report.md` is the deliverable (the LLM's `insights.md` followed by the deterministic tables and the live log); `analysis.json`, `head_state.json`, `pools.json`, `markets.json` and `midnight_<date>.json` are the quant artifacts. The raw blocks and logs (about 41 MB per hour) and the logs of the collectors are ignored by git. The first hour (2026-09-06 10:06 to 11:06 UTC) confirmed that the midnight Aave/PSM balance routine is daily, found a bot cycling about $3.5B of fee-free flash liquidity thirty times an hour for about $760 a run, and measured the cross-venue stablecoin rate dispersion; the narrative and the requests to the quant step are in `insights.md`.
+
 ## Completed five-hour Ethereum mainnet study
 
 The [five-hour research memo](research/2026-09-05/amount_outliers_eth_5h/letter.md) covers 5 September 2026, 11:22:48–16:22:48 UTC: 392,428 transactions, 10,170 amount candidates, 54 observed primary categories, and 90.07% rule coverage. Twelve rules were learned through qualitative investigation. The [full report](research/2026-09-05/amount_outliers_eth_5h/report.md), [notes](research/2026-09-05/amount_outliers_eth_5h/qual_notes.md) and [validation](research/2026-09-05/amount_outliers_eth_5h/validation.json) retain evidence and uncertainty.

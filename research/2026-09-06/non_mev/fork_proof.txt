@@ -1,0 +1,44 @@
+Compiling 1 files with Solc 0.8.24
+Solc 0.8.24 finished in 694.69ms
+Compiler run successful!
+
+Ran 5 tests for test/PatientSupply.t.sol:PatientSupplyTest
+[PASS] test_100kPaysMoreOnStaticFork() (gas: 757368)
+Logs:
+  principal USDC: 100000.000000
+  Aave one-day interest USDC: 9.854257
+  Compound one-day interest USDC: 13.138858
+  Compound post-deposit APR fraction: 0.047956835408400000
+  incremental USDC before gas: 3.284601
+  internal supply+accrue+withdraw gas, excludes approval/tx overhead: 169760
+
+[PASS] test_10mDestroysRateAdvantage() (gas: 756894)
+Logs:
+  principal USDC: 10000000.000000
+  Aave one-day interest USDC: 977.013745
+  Compound one-day interest USDC: 869.398101
+  Compound post-deposit APR fraction: 0.031733030746944000
+  incremental USDC before gas: -107.615644
+  internal supply+accrue+withdraw gas, excludes approval/tx overhead: 169394
+
+[PASS] test_1mPaysMoreOnStaticFork() (gas: 757406)
+Logs:
+  principal USDC: 1000000.000000
+  Aave one-day interest USDC: 98.465658
+  Compound one-day interest USDC: 112.317973
+  Compound post-deposit APR fraction: 0.040996060449264000
+  incremental USDC before gas: 13.852315
+  internal supply+accrue+withdraw gas, excludes approval/tx overhead: 169760
+
+[PASS] test_LaterSupplyCanReverseTheAdvantage() (gas: 995795)
+Logs:
+  Compound interest after another 10m arrives at hour one: 87.780696
+  Aave unchanged-fork alternative: 98.465658
+
+[PASS] test_UsdsSavingsRedeemsSameUnderlying() (gas: 374896)
+Logs:
+  USDS one-day savings interest, unchanged governance rate: 96.900979082331634798
+
+Suite result: ok. 5 passed; 0 failed; 0 skipped; finished in 2.64s (2.65s CPU time)
+
+Ran 1 test suite in 2.97s (2.64s CPU time): 5 tests passed, 0 failed, 0 skipped (5 total tests)

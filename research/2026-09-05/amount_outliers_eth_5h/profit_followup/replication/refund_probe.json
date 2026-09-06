@@ -1,0 +1,67 @@
+[
+  {
+    "observed_at": "2026-09-06T07:51:06.287338+00:00",
+    "endpoint": "https://relay.flashbots.net",
+    "method": "flashbots_getFeeRefundsByBlock",
+    "params": [
+      {
+        "block_number": "0x18b5e41"
+      }
+    ],
+    "response": {
+      "jsonrpc": "2.0",
+      "error": {
+        "code": -32603,
+        "message": "json: cannot unmarshal non-string into Go value of type hexutil.Uint64"
+      },
+      "id": 1
+    }
+  },
+  {
+    "observed_at": "2026-09-06T07:51:06.866740+00:00",
+    "endpoint": "https://relay.flashbots.net",
+    "method": "flashbots_getFeeRefundTotalsByRecipient",
+    "params": [
+      "0x654fae4aa229d104cabead47e56703f58b174be4"
+    ],
+    "response": {
+      "jsonrpc": "2.0",
+      "result": {
+        "maxBlockNumber": "0x18b731d",
+        "pending": "0x1aef86da287ce2fb",
+        "received": "0x199975b9c516736a1"
+      },
+      "id": 1
+    }
+  },
+  {
+    "observed_at": "2026-09-06T07:51:22.899748+00:00",
+    "endpoint": "https://relay.flashbots.net",
+    "method": "flashbots_getFeeRefundsByBlock",
+    "params": [
+      "0x18b5e41"
+    ],
+    "response": {
+      "jsonrpc": "2.0",
+      "result": {
+        "refunds": [
+          {
+            "amount": "0x1cd107d27ed05c",
+            "blockNumber": "0x18b5e41",
+            "hash": "0x7abc94794c83c2ff4e0ce6ba99e7a43b120bb16031249dfaba05ac2ab4588944",
+            "recipient": "0x654fae4aa229d104cabead47e56703f58b174be4",
+            "status": "pending"
+          },
+          {
+            "amount": "0x123b204b1e9af",
+            "blockNumber": "0x18b5e41",
+            "hash": "0x896a9457d0e3623ab675f43bb36ff55e5e7526f0eaf6246ba4a24d4fb2f0a5f9",
+            "recipient": "0x1f329ce040f2dfbb98b8e9df3b417e9e1e7d806a",
+            "status": "pending"
+          }
+        ]
+      },
+      "id": 1
+    }
+  }
+]

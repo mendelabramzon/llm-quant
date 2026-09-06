@@ -1,0 +1,37 @@
+wstETH atomic flash-arb — mainnet fork at block 25918423 (2026-09-06), forge test. Read-only; not broadcast.
+
+Ran 3 tests for test/WstEthFlash.t.sol:WstEthFlashTest
+[PASS] test_DislocationSweep() (gas: 10356045)
+Logs:
+  wstETH dumped | wstETH dislocation bps | WETH profit | profit bps on flash
+  dumped wstETH (arb reverted, no edge): 300.000000000000000000
+    wstETH dislocation (bps): 0
+  dumped wstETH (arb reverted, no edge): 400.000000000000000000
+    wstETH dislocation (bps): 1
+  dumped wstETH: 500.000000000000000000
+    wstETH dislocation (bps): 1
+    WETH profit: 0.003956506830394992
+    profit on flash (bps): 0
+  dumped wstETH: 600.000000000000000000
+    wstETH dislocation (bps): 2
+    WETH profit: 0.017273327601460077
+    profit on flash (bps): 0
+  dumped wstETH: 700.000000000000000000
+    wstETH dislocation (bps): 132
+    WETH profit: 1.113085268352316809
+    profit on flash (bps): 55
+
+[PASS] test_Dislocation_capturedInOneTx() (gas: 1917026)
+Logs:
+  flash-borrowed WETH: 200.000000000000000000
+  owner WETH profit (own capital = 0): 0.003956506830394992
+  profit in USD (ETH=2500): 9.891267075987480000
+
+[PASS] test_NaturalMarket_noEdge() (gas: 1761094)
+Suite result: ok. 3 passed; 0 failed; 0 skipped; finished in 10.01ms (12.48ms CPU time)
+
+=== gas ===
+| src/WstEthFlashArb.sol:WstEthFlashArb Contract |                 |        |        |        |         |
++=======================================================================================================+
+| Deployment Cost                                | Deployment Size |        |        |        |         |
+|------------------------------------------------+-----------------+--------+--------+--------+---------|
