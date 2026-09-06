@@ -1,0 +1,1942 @@
+{
+ "block": 25918580,
+ "markets": [
+  {
+   "market": "0x0bef762d2094ac80821c657dea6783fc43435292",
+   "sy": "0xa7606952845269dc7377cba3c7c7bda133dd97f7",
+   "pt": "0xa4b3a2eec53863fe2c9ab0041d480cf964942e84",
+   "yt": "0xa91277e31f6be8c33850dde8dfacb27bad1be6fb",
+   "expiry": 1796256000,
+   "is_expired": 0,
+   "pt_symbol": "PT-USDx-3DEC2026",
+   "sy_symbol": "SY-USDx",
+   "pt_to_asset": 0.9670288009290468,
+   "pt_to_sy": 0.9670288009290468,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.0,
+   "sy_asset": {
+    "type": 0,
+    "address": "0xa1fa7777974312f7d801a8880714a218f76233f8",
+    "decimals": 18
+   },
+   "days_to_maturity": 87.44195601851852,
+   "implied_apy": 0.15021435717284626,
+   "implied_apr_simple": 0.1423207858813028,
+   "api": {
+    "name": "USDx",
+    "implied_apy": 0.15021469812803945,
+    "underlying_apy": null,
+    "liquidity_usd": 1314471.7063588006,
+    "aggregated_apy": 0.11101654979590823
+   }
+  },
+  {
+   "market": "0x0e201d27ded56cf4a0da8853d7604743de217435",
+   "sy": "0xa99a50d95003e7687d7962f29aad6cdd3655d411",
+   "pt": "0x44db865cc6d5768703fb5bf73dfb7a5a0f95c1fc",
+   "yt": "0x7cf9ea7bc05c6b3f8517b71f8d87feecb006def4",
+   "expiry": 1793836800,
+   "is_expired": 0,
+   "pt_symbol": "PT-ROY-ST-apyUSD-5NOV2026",
+   "sy_symbol": "SY-ROY-ST-apyUSD",
+   "pt_to_asset": 0.9780172718747508,
+   "pt_to_sy": 0.8442053363444576,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.1585063843705607,
+   "sy_asset": {
+    "type": 1,
+    "address": "0xbd373c9d3d8976a4fecc504a93c768bbe8c3227c",
+    "decimals": 18
+   },
+   "days_to_maturity": 59.44195601851852,
+   "implied_apy": 0.14624281168293973,
+   "implied_apr_simple": 0.13801771614376432,
+   "api": {
+    "name": "srRoyAPYUSD",
+    "implied_apy": 0.1460663967415714,
+    "underlying_apy": null,
+    "liquidity_usd": 143651.31893429006,
+    "aggregated_apy": 0.15906447151697456
+   }
+  },
+  {
+   "market": "0x13285bcbc27f92b47b4edb99d744c07b48c977c0",
+   "sy": "0x9487bd5a3b16ecb5f3184453e3ee75b800141648",
+   "pt": "0xecfafdc7741323a945a163ed068b5a3c43483957",
+   "yt": "0xa8bd3b21291ace53927b35563fc80615919e63d7",
+   "expiry": 1796860800,
+   "is_expired": 0,
+   "pt_symbol": "PT-reUSD-10DEC2026",
+   "sy_symbol": "SY-reUSD",
+   "pt_to_asset": 0.973615295005031,
+   "pt_to_sy": 885790898955.4009,
+   "oracle_state": {
+    "increase_cardinality_required": false,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.099148e-12,
+   "sy_asset": {
+    "type": 0,
+    "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "decimals": 6
+   },
+   "days_to_maturity": 94.44195601851852,
+   "implied_apy": 0.10886969136378832,
+   "implied_apr_simple": 0.10473521921711529,
+   "api": {
+    "name": "reUSD",
+    "implied_apy": 0.10886991609062613,
+    "underlying_apy": null,
+    "liquidity_usd": 10629391.99119175,
+    "aggregated_apy": 0.09124016055529993
+   }
+  },
+  {
+   "market": "0x16d3126ee82ee36816499fb9db6f647c6addd09c",
+   "sy": "0xa0a2c8c94bf30227f84af6e054025945a51d0eff",
+   "pt": "0x6a0efc272e8dd4fc5affea17376dcf107cbcbc0f",
+   "yt": "0xdfaacdd9035febaba7e582f660da3c43fb85e292",
+   "expiry": 1816214400,
+   "is_expired": 0,
+   "pt_symbol": "PT-sUSN-22JUL2027",
+   "sy_symbol": "SY-sUSN",
+   "pt_to_asset": 0.9304259471713339,
+   "pt_to_sy": 0.7624332574406455,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.220337568031345,
+   "sy_asset": {
+    "type": 0,
+    "address": "0xda67b4284609d2d48e5d10cfac411572727dc1ed",
+    "decimals": 18
+   },
+   "days_to_maturity": 318.4419560185185,
+   "implied_apy": 0.0861682048590744,
+   "implied_apr_simple": 0.08570932422993827,
+   "api": {
+    "name": "sUSN",
+    "implied_apy": 0.08616825707050735,
+    "underlying_apy": null,
+    "liquidity_usd": 1197351.5900100216,
+    "aggregated_apy": 0.08468785222057483
+   }
+  },
+  {
+   "market": "0x1f34887b270bfaf56cf7973572654874c8ed740e",
+   "sy": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+   "pt": "0xe3cdf5b8d7aedfc9f768dbdcc334146fae989188",
+   "yt": "0x30aa5125e9f3d958911b180e1bbc83d7086e6a7e",
+   "expiry": 1792627200,
+   "is_expired": 0,
+   "pt_symbol": "PT-siUSD-22OCT2026",
+   "sy_symbol": "SY-siUSD",
+   "pt_to_asset": 0.9889797653663367,
+   "pt_to_sy": 0.9092469923950618,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.087690994458227,
+   "sy_asset": {
+    "type": 0,
+    "address": "0x48f9e38f3070ad8945dfeae3fa70987722e3d89c",
+    "decimals": 18
+   },
+   "days_to_maturity": 45.44195601851852,
+   "implied_apy": 0.09308978655982014,
+   "implied_apr_simple": 0.0895033483481293,
+   "api": {
+    "name": "siUSD",
+    "implied_apy": 0.09321455825463176,
+    "underlying_apy": null,
+    "liquidity_usd": 3067469.497066892,
+    "aggregated_apy": 0.0933726799866621
+   }
+  },
+  {
+   "market": "0x22fcdf7be34a72bddbf4a6eeeb489b1f29062f0b",
+   "sy": "0x9845bbb51d326fe4d5e7cbd47ce157a33d7936ef",
+   "pt": "0x17c47b0cedec9b41e639f5ec1a053e9135db2a6d",
+   "yt": "0x9dafdd6a02d49d821f140cb6863f185223fc5f58",
+   "expiry": 1792627200,
+   "is_expired": 0,
+   "pt_symbol": "PT-SY SIERRA-22OCT2026",
+   "sy_symbol": "SY SIERRA",
+   "pt_to_asset": 0.9903108610288801,
+   "pt_to_sy": 0.9568168177675027,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.0350057008190214,
+   "sy_asset": {
+    "type": 0,
+    "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "decimals": 6
+   },
+   "days_to_maturity": 45.44195601851852,
+   "implied_apy": 0.08134412180428763,
+   "implied_apr_simple": 0.07858677926099535,
+   "api": {
+    "name": "SIERRA",
+    "implied_apy": 0.08134446652761174,
+    "underlying_apy": null,
+    "liquidity_usd": 14747534.590178225,
+    "aggregated_apy": 0.06699884644048136
+   }
+  },
+  {
+   "market": "0x30ee7618e0ef0682f0f354d6f84be87de6b8878c",
+   "sy": "0xe22deabf5b174437092ae9ac79761b03ef178ca8",
+   "pt": "0xeccde3a92f8ad4884a2613d9ef1556103c26728f",
+   "yt": "0x4f93641804ddd289ce8917533169a767ce17cd9a",
+   "expiry": 1797465600,
+   "is_expired": 0,
+   "pt_symbol": "PT-WOUSD-17DEC2026",
+   "sy_symbol": "SY-WOUSD",
+   "pt_to_asset": 0.9825687519055556,
+   "pt_to_sy": 0.752115454985718,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.3064068094760979,
+   "sy_asset": {
+    "type": 0,
+    "address": "0x2a8e1e676ec238d8a992307b495b45b3feaa5e86",
+    "decimals": 18
+   },
+   "days_to_maturity": 101.44195601851852,
+   "implied_apy": 0.06531735770234715,
+   "implied_apr_simple": 0.06383234295906237,
+   "api": {
+    "name": "WOUSD",
+    "implied_apy": 0.06531748076883837,
+    "underlying_apy": null,
+    "liquidity_usd": 125230.14125480759,
+    "aggregated_apy": 0.06520474152969324
+   }
+  },
+  {
+   "market": "0x34280882267ffa6383b363e278b027be083bbe3b",
+   "sy": "0xcbc72d92b2dc8187414f6734718563898740c0bc",
+   "pt": "0xb253eff1104802b97ac7e3ac9fdd73aece295a2c",
+   "yt": "0x04b7fa1e727d7290d6e24fa9b426d0c940283a95",
+   "expiry": 1830124800,
+   "is_expired": 0,
+   "pt_symbol": "PT-stETH-30DEC2027",
+   "sy_symbol": "SY-stETH",
+   "pt_to_asset": 0.973525318345733,
+   "pt_to_sy": 0.7829504741507283,
+   "oracle_state": {
+    "increase_cardinality_required": false,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.2434060013843435,
+   "sy_asset": {
+    "type": 0,
+    "address": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+    "decimals": 18
+   },
+   "days_to_maturity": 479.4419560185185,
+   "implied_apy": 0.020636882978497972,
+   "implied_apr_simple": 0.020703335687855276,
+   "api": {
+    "name": "wstETH",
+    "implied_apy": 0.020636891031431626,
+    "underlying_apy": null,
+    "liquidity_usd": 4881082.490821656,
+    "aggregated_apy": 0.025377652160578246
+   }
+  },
+  {
+   "market": "0x384509537ce5daa5740baeb6d1ee0eb2847ea8a8",
+   "sy": "0x3aecaedfb92efbbac95e5c458c56e94070cb9179",
+   "pt": "0x1cfaed2df5ee27b078e96fafa10709c5548fc1b7",
+   "yt": "0x775f0f7690c2ceed13d20f9a302d1e8069d56b3b",
+   "expiry": 1795651200,
+   "is_expired": 0,
+   "pt_symbol": "PT-superWETH-26NOV2026",
+   "sy_symbol": "SY-superWETH",
+   "pt_to_asset": 0.9928174061168111,
+   "pt_to_sy": 0.9826427425599826,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.0103543873232315,
+   "sy_asset": {
+    "type": 0,
+    "address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+    "decimals": 18
+   },
+   "days_to_maturity": 80.44195601851852,
+   "implied_apy": 0.033248936946030705,
+   "implied_apr_simple": 0.03282631788709723,
+   "api": {
+    "name": "superWETH",
+    "implied_apy": 0.033249014759452855,
+    "underlying_apy": null,
+    "liquidity_usd": 524275.59337229177,
+    "aggregated_apy": 0.03216983219661571
+   }
+  },
+  {
+   "market": "0x392ac82951ef3b32512bc5be0dfb6a762c43bb81",
+   "sy": "0x3870cf5e2eab623a74d2af1007295963b1c5a12f",
+   "pt": "0xcc8ca5c2a0862a37ee3946b80e12ebb2bfb524f0",
+   "yt": "0x729c3798d061eb9fbd88f1348aa73a244ec166e9",
+   "expiry": 1793232000,
+   "is_expired": 0,
+   "pt_symbol": "PT-mixWETH-29OCT2026",
+   "sy_symbol": "SY-mixWETH",
+   "pt_to_asset": 0.9971607366713,
+   "pt_to_sy": 0.9925512154223266,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.0046441142556175,
+   "sy_asset": {
+    "type": 0,
+    "address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+    "decimals": 18
+   },
+   "days_to_maturity": 52.44195601851852,
+   "implied_apy": 0.019986707991277664,
+   "implied_apr_simple": 0.01981775640907998,
+   "api": {
+    "name": "mixWETH",
+    "implied_apy": 0.019986779287444856,
+    "underlying_apy": null,
+    "liquidity_usd": 68599.08852840286,
+    "aggregated_apy": 0.015133962880577452
+   }
+  },
+  {
+   "market": "0x3ffdf143cbe1e594fba183e2b9035eb027a732ec",
+   "sy": "0xf5145335540c4116956c0936b7db08d1a862a2d9",
+   "pt": "0xc83f11814428b91b7f176ba927c57043e89786cb",
+   "yt": "0xafb351cdcd9600fa75d29d5eac3d867e7870f69b",
+   "expiry": 1795651200,
+   "is_expired": 0,
+   "pt_symbol": "PT-USP-26NOV2026",
+   "sy_symbol": "SY-USP",
+   "pt_to_asset": 0.9645612295273409,
+   "pt_to_sy": 853633290671.2,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.129948e-12,
+   "sy_asset": {
+    "type": 0,
+    "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "decimals": 6
+   },
+   "days_to_maturity": 80.44195601851852,
+   "implied_apy": 0.17788388079594086,
+   "implied_apr_simple": 0.16670901540026248,
+   "api": {
+    "name": "USP",
+    "implied_apy": 0.17788432480987315,
+    "underlying_apy": null,
+    "liquidity_usd": 50397.30650378803,
+    "aggregated_apy": 0.210230409231291
+   }
+  },
+  {
+   "market": "0x440a67f76f569b67a993aeaff58d198705ec5fe4",
+   "sy": "0x797f9d67a878250e0aa572c41a8a4e862ad09d5c",
+   "pt": "0x42959e174fe28029de5ce250b58699229a3362b0",
+   "yt": "0xfa780e1c8169c83dd63ccd22a4b89e2fefdb97b2",
+   "expiry": 1790208000,
+   "is_expired": 0,
+   "pt_symbol": "PT-sYUSD-24SEP2026",
+   "sy_symbol": "SY-sYUSD",
+   "pt_to_asset": 0.9973190228616552,
+   "pt_to_sy": 0.9483812652068048,
+   "oracle_state": {
+    "increase_cardinality_required": false,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.0516013542762035,
+   "sy_asset": {
+    "type": 0,
+    "address": "0x4274cd7277c7bb0806bd5fe84b9adae466a8da0a",
+    "decimals": 18
+   },
+   "days_to_maturity": 17.441956018518518,
+   "implied_apy": 0.057786956179997295,
+   "implied_apr_simple": 0.05625442438307235,
+   "api": {
+    "name": "sYUSD",
+    "implied_apy": 0.05778758758189828,
+    "underlying_apy": null,
+    "liquidity_usd": 2137515.0011867248,
+    "aggregated_apy": 0.03956799981892353
+   }
+  },
+  {
+   "market": "0x47ad2cd1dd15739a7a035b9d3b7828d916fef77e",
+   "sy": "0xbf98480425a29197e5d99d003017f63a1e595d02",
+   "pt": "0xb195b618ea52b77cb2a58846f452f59f8dfa9390",
+   "yt": "0x89e6e5f7c3a60e7d6347f054051a29a272f4ce44",
+   "expiry": 1795651200,
+   "is_expired": 0,
+   "pt_symbol": "PT-sUSDE-26NOV2026",
+   "sy_symbol": "SY-sUSDE",
+   "pt_to_asset": 0.989500744336011,
+   "pt_to_sy": 0.793643837939353,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.2467818649045248,
+   "sy_asset": {
+    "type": 0,
+    "address": "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+    "decimals": 18
+   },
+   "days_to_maturity": 80.44195601851852,
+   "implied_apy": 0.049056853684739554,
+   "implied_apr_simple": 0.04814515931220377,
+   "api": {
+    "name": "sUSDe",
+    "implied_apy": 0.049056969362888614,
+    "underlying_apy": null,
+    "liquidity_usd": 3669035.849643996,
+    "aggregated_apy": 0.053606335825109555
+   }
+  },
+  {
+   "market": "0x4a5067c3ff1abb7449244025b0e37feaf77d8e3e",
+   "sy": "0xea3bc608f32847b97965c5e1648bdfcd4c2c40d0",
+   "pt": "0x7f47c3e6b2c00fc4eb4d5ae50d0ab0ab6888eb4d",
+   "yt": "0x5cffcc9ddef0fdcf395e2ea24ca5ed5a12032706",
+   "expiry": 1797465600,
+   "is_expired": 0,
+   "pt_symbol": "PT-USD3-17DEC2026",
+   "sy_symbol": "SY-USD3",
+   "pt_to_asset": 0.9645312244667447,
+   "pt_to_sy": 0.8207285802438876,
+   "oracle_state": {
+    "increase_cardinality_required": false,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.1752133990266607,
+   "sy_asset": {
+    "type": 0,
+    "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "decimals": 6
+   },
+   "days_to_maturity": 101.44195601851852,
+   "implied_apy": 0.13875897839997875,
+   "implied_apr_simple": 0.13231380356099423,
+   "api": {
+    "name": "USD3",
+    "implied_apy": 0.1387592327407603,
+    "underlying_apy": null,
+    "liquidity_usd": 6685098.898391795,
+    "aggregated_apy": 0.11914385132506819
+   }
+  },
+  {
+   "market": "0x4af2e5411636b5bc460ebf44b83fd1f4e8c7b783",
+   "sy": "0x57badd19a4756d0190bfcd8f444ae6ebcdb38e86",
+   "pt": "0x5e1ff5c857f1d2251600507f2031d2aa2a5fc468",
+   "yt": "0x58ca8ac7214189cc4db18de660d653da44fd728a",
+   "expiry": 1789603200,
+   "is_expired": 0,
+   "pt_symbol": "PT-nOPAL-17SEP2026",
+   "sy_symbol": "SY-nOPAL",
+   "pt_to_asset": 0.9961475298149531,
+   "pt_to_sy": 0.9109666794831972,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.093506,
+   "sy_asset": {
+    "type": 0,
+    "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "decimals": 6
+   },
+   "days_to_maturity": 10.44195601851852,
+   "implied_apy": 0.14444944106036472,
+   "implied_apr_simple": 0.1351844158668439,
+   "api": {
+    "name": "nOPAL",
+    "implied_apy": 0.1444521829450398,
+    "underlying_apy": null,
+    "liquidity_usd": 2773705.619278535,
+    "aggregated_apy": 0.13969136830160117
+   }
+  },
+  {
+   "market": "0x4b912476356c914b154524c59b5a438a88e99429",
+   "sy": "0x0e012d6a77a7f6c91de7cb74c2732553876d1d61",
+   "pt": "0x45c00ec1a2797b507d3e955b208fb275795da669",
+   "yt": "0x89c7d1cdb6b2a5c09f25de59fd4bee47921bbf4d",
+   "expiry": 1793232000,
+   "is_expired": 0,
+   "pt_symbol": "PT-mixUSDC-29OCT2026",
+   "sy_symbol": "SY-mixUSDC",
+   "pt_to_asset": 0.9930144531356534,
+   "pt_to_sy": 975743788086.5219,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.0177e-12,
+   "sy_asset": {
+    "type": 0,
+    "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "decimals": 6
+   },
+   "days_to_maturity": 52.44195601851852,
+   "implied_apy": 0.050000405739718534,
+   "implied_apr_simple": 0.04896196323576105,
+   "api": {
+    "name": "mixUSDC",
+    "implied_apy": 0.05000058669028662,
+    "underlying_apy": null,
+    "liquidity_usd": 52053.87570031776,
+    "aggregated_apy": 0.05515539361470208
+   }
+  },
+  {
+   "market": "0x4ccf6deb3d1895373f604b418ff55d8adae8b846",
+   "sy": "0x7a7de491e1be5287874904e2b7c8488249a4d0a9",
+   "pt": "0xba96292ee7673e3b546cc90db6d97111cd9a314f",
+   "yt": "0x480c3c9470fa4bbda030f6396fa4b17adefc1ce0",
+   "expiry": 1799884800,
+   "is_expired": 0,
+   "pt_symbol": "PT-USDat-14JAN2027",
+   "sy_symbol": "SY-USDat",
+   "pt_to_asset": 0.9785718662708112,
+   "pt_to_sy": 0.9785718662708112,
+   "oracle_state": {
+    "increase_cardinality_required": false,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.0,
+   "sy_asset": {
+    "type": 0,
+    "address": "0x23238f20b894f29041f48d88ee91131c395aaa71",
+    "decimals": 6
+   },
+   "days_to_maturity": 129.4419560185185,
+   "implied_apy": 0.06298368994245496,
+   "implied_apr_simple": 0.061746084053116844,
+   "api": {
+    "name": "USDat",
+    "implied_apy": 0.06298378283879003,
+    "underlying_apy": null,
+    "liquidity_usd": 5808722.616170141,
+    "aggregated_apy": 0.02570493518630608
+   }
+  },
+  {
+   "market": "0x50d746e1c7987396b47b0a95ebd94bccaaf7a2d9",
+   "sy": "0x39fb0bb5d696ec6da2d827649cf3a3f00299d2dd",
+   "pt": "0xf6e9dd9696bf932864ebbcd34395221a16f3c62b",
+   "yt": "0x4f26c150c90f1bfe2009cd26bd1d998a800dbbb4",
+   "expiry": 1798675200,
+   "is_expired": 0,
+   "pt_symbol": "PT-sAID-31DEC2026",
+   "sy_symbol": "SY-sAID",
+   "pt_to_asset": 0.9744901880054093,
+   "pt_to_sy": 0.9048026485186106,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.0770196015682478,
+   "sy_asset": {
+    "type": 0,
+    "address": "0x18f52b3fb465118731d9e0d276d4eb3599d57596",
+    "decimals": 18
+   },
+   "days_to_maturity": 115.44195601851852,
+   "implied_apy": 0.08513299221153936,
+   "implied_apr_simple": 0.08276733562892362,
+   "api": {
+    "name": "sAID",
+    "implied_apy": 0.08513313444767956,
+    "underlying_apy": null,
+    "liquidity_usd": 69636.55470398752,
+    "aggregated_apy": 0.10691139682886097
+   }
+  },
+  {
+   "market": "0x5949c3bfdf9babd759170a3a75c4fe52b03e6797",
+   "sy": "0x464a2b93b6633707470bcd2c81d34519f38e1e9c",
+   "pt": "0xd70be760f0bc3009db4563fe0b9eee54883adb50",
+   "yt": "0x56467eef9be9bcd025c24d4437525e02acbe310b",
+   "expiry": 1793836800,
+   "is_expired": 0,
+   "pt_symbol": "PT-ROY-JT-apyUSD-5NOV2026",
+   "sy_symbol": "SY-ROY-JT-apyUSD",
+   "pt_to_asset": 0.8016741370726194,
+   "pt_to_sy": 0.9535577022677935,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 0.8407190620620464,
+   "sy_asset": {
+    "type": 1,
+    "address": "0xab2ab53e1e2e2c5d7202918ec8c873712bcc4a2d",
+    "decimals": 18
+   },
+   "days_to_maturity": 59.44195601851852,
+   "implied_apy": 2.8859363368449844,
+   "implied_apr_simple": 1.5190821201036118,
+   "api": {
+    "name": "jrRoyAPYUSD",
+    "implied_apy": 0.19154132051286488,
+    "underlying_apy": null,
+    "liquidity_usd": 979782.847294604,
+    "aggregated_apy": 0.07761109667276557
+   }
+  },
+  {
+   "market": "0x5e572498e9f83650f0ff24194999bddb4b390928",
+   "sy": "0x3b184870f40ca026341593cedb37ab09e611e928",
+   "pt": "0x06ebad062fd573ca31a72d6dfb0f425da2153985",
+   "yt": "0x96dcb9501bcc8128b7683980a63250448ea5334b",
+   "expiry": 1796256000,
+   "is_expired": 0,
+   "pt_symbol": "PT-sUSDx-3DEC2026",
+   "sy_symbol": "SY-sUSDx",
+   "pt_to_asset": 0.9596942976021398,
+   "pt_to_sy": 0.9436830773492141,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.0169667345290336,
+   "sy_asset": {
+    "type": 0,
+    "address": "0xa1fa7777974312f7d801a8880714a218f76233f8",
+    "decimals": 18
+   },
+   "days_to_maturity": 87.44195601851852,
+   "implied_apy": 0.18735543827232815,
+   "implied_apr_simple": 0.1753099557590564,
+   "api": {
+    "name": "sUSDx",
+    "implied_apy": 0.18735587016317345,
+    "underlying_apy": null,
+    "liquidity_usd": 2567472.654504587,
+    "aggregated_apy": 0.24229105593316894
+   }
+  },
+  {
+   "market": "0x61703e1ea2887fffd4b5f777bafd6abd7122bcf9",
+   "sy": "0x4d654f255d54637112844bd8802b716170904fee",
+   "pt": "0xd4e6ea03d2e8bfeb5fa5c03ae9352514b1829218",
+   "yt": "0x6316ebb9ef25bd9bb0432b291ee737066560138b",
+   "expiry": 1795651200,
+   "is_expired": 0,
+   "pt_symbol": "PT-superUSDC-26NOV2026",
+   "sy_symbol": "SY-superUSDC",
+   "pt_to_asset": 0.9834196067666775,
+   "pt_to_sy": 0.9557227611485913,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.02898,
+   "sy_asset": {
+    "type": 0,
+    "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "decimals": 6
+   },
+   "days_to_maturity": 80.44195601851852,
+   "implied_apy": 0.07881487305632406,
+   "implied_apr_simple": 0.07650084034761243,
+   "api": {
+    "name": "superUSDC",
+    "implied_apy": 0.07881506149548034,
+    "underlying_apy": null,
+    "liquidity_usd": 763840.946387878,
+    "aggregated_apy": 0.08758903236635357
+   }
+  },
+  {
+   "market": "0x66ec657c59cdcaf171ab43b83da3942758bf8a97",
+   "sy": "0xc9bfebc79a722c05dc34bd2a227ef2db19fd1b8e",
+   "pt": "0x59bc9fae5d62b19d4f8d07d758047acb9ee19d34",
+   "yt": "0xfe6040719cca36aeb85e352f48fe956057728814",
+   "expiry": 1792627200,
+   "is_expired": 0,
+   "pt_symbol": "PT-srUSDe-22OCT2026",
+   "sy_symbol": "SY-srUSDe",
+   "pt_to_asset": 0.9934991429503108,
+   "pt_to_sy": 0.9629980041299816,
+   "oracle_state": {
+    "increase_cardinality_required": false,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.0316731069945315,
+   "sy_asset": {
+    "type": 0,
+    "address": "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+    "decimals": 18
+   },
+   "days_to_maturity": 45.44195601851852,
+   "implied_apy": 0.053783276564365545,
+   "implied_apr_simple": 0.052558016496248215,
+   "api": {
+    "name": "srUSDe",
+    "implied_apy": 0.054073495377109815,
+    "underlying_apy": null,
+    "liquidity_usd": 4293263.300659556,
+    "aggregated_apy": 0.05294492506647712
+   }
+  },
+  {
+   "market": "0x78f6927ab0600c445178645f3c64afec85f6dd8a",
+   "sy": "0x4f6673346ab4813f1665327ab39087008cc7d76f",
+   "pt": "0x9786a09cbb2efb23046542576ffd9a235aa3ca07",
+   "yt": "0xfed516abb3dd311b370a774209c2b56738d86334",
+   "expiry": 1792627200,
+   "is_expired": 0,
+   "pt_symbol": "PT-jrUSDe-22OCT2026",
+   "sy_symbol": "SY-jrUSDe",
+   "pt_to_asset": 0.9908084742938389,
+   "pt_to_sy": 0.9216065553148992,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.075088353679618,
+   "sy_asset": {
+    "type": 0,
+    "address": "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+    "decimals": 18
+   },
+   "days_to_maturity": 45.44195601851852,
+   "implied_apy": 0.07698965297120508,
+   "implied_apr_simple": 0.07451329031795514,
+   "api": {
+    "name": "jrUSDe",
+    "implied_apy": 0.07698997859173695,
+    "underlying_apy": null,
+    "liquidity_usd": 785520.802983304,
+    "aggregated_apy": 0.08351952980601327
+   }
+  },
+  {
+   "market": "0x7972de1c2f9f11f622a188fbae8c0a943880424f",
+   "sy": "0x77d2bc95ab51b75960ec3a01e112460ea7bafb20",
+   "pt": "0x41f45d21502bde8211e94d94ef2eeebcfc48a6ac",
+   "yt": "0xc7aa07578e1f7b3e2c567f8fece72ee1fd218437",
+   "expiry": 1797465600,
+   "is_expired": 0,
+   "pt_symbol": "PT-sUSD3-17DEC2026",
+   "sy_symbol": "SY-sUSD3",
+   "pt_to_asset": 0.9461105603037188,
+   "pt_to_sy": 0.7231719529737752,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.308278835224723,
+   "sy_asset": {
+    "type": 0,
+    "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "decimals": 6
+   },
+   "days_to_maturity": 101.44195601851852,
+   "implied_apy": 0.22057336373668135,
+   "implied_apr_simple": 0.20494485863376302,
+   "api": {
+    "name": "sUSD3",
+    "implied_apy": 0.22057380791825398,
+    "underlying_apy": null,
+    "liquidity_usd": 1097109.7564276177,
+    "aggregated_apy": 0.21684276110282585
+   }
+  },
+  {
+   "market": "0x79a8b102dd39329aafecc69499c0f6d07f2f959d",
+   "sy": "0x253008ba4ae2f3e6488dc998a5321d4eb1a0c905",
+   "pt": "0xa32877eee252d78d5e4fa00285d4cc2066d15bac",
+   "yt": "0x0a35ccc9651634efe92e266fcc2c691b106b1bbf",
+   "expiry": 1795651200,
+   "is_expired": 0,
+   "pt_symbol": "PT-SY pufETH-26NOV2026",
+   "sy_symbol": "SY pufETH",
+   "pt_to_asset": 0.9929908510889216,
+   "pt_to_sy": 0.9172787617054644,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.0825398914095516,
+   "sy_asset": {
+    "type": 0,
+    "address": "0x0000000000000000000000000000000000000000",
+    "decimals": 18
+   },
+   "days_to_maturity": 80.44195601851852,
+   "implied_apy": 0.032430288380869365,
+   "implied_apr_simple": 0.03202803406642873,
+   "api": {
+    "name": "pufETH",
+    "implied_apy": 0.032430364248473564,
+    "underlying_apy": null,
+    "liquidity_usd": 291923.9665910422,
+    "aggregated_apy": 0.01802701229792019
+   }
+  },
+  {
+   "market": "0x8308e53f584a7e5f0c581059d9ba971c0bec9454",
+   "sy": "0x13945b761b2ed3219a497a46d15a8923f418d2ab",
+   "pt": "0x079c3469143804af5d0d645a878c371dbe8d038e",
+   "yt": "0x1964590af52cd77c2f30970bdbcb4d6e3dbdc615",
+   "expiry": 1793232000,
+   "is_expired": 0,
+   "pt_symbol": "PT-fxSAVE-29OCT2026",
+   "sy_symbol": "SY-fxSAVE",
+   "pt_to_asset": 0.9883860226082636,
+   "pt_to_sy": 0.8943479183787542,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.105147115900911,
+   "sy_asset": {
+    "type": 0,
+    "address": "0x65c9a641afceb9c0e6034e558a319488fa0fa3be",
+    "decimals": 18
+   },
+   "days_to_maturity": 52.44195601851852,
+   "implied_apy": 0.08470410432214148,
+   "implied_apr_simple": 0.08178400298615916,
+   "api": {
+    "name": "fxSAVE",
+    "implied_apy": 0.0847044158344854,
+    "underlying_apy": null,
+    "liquidity_usd": 770749.3441361464,
+    "aggregated_apy": 0.13872955840118595
+   }
+  },
+  {
+   "market": "0x84cda226022b5d6012b418e76b815b967ecc785b",
+   "sy": "0xa780d7f775b4eff6846a8c28981f086bc6a7d637",
+   "pt": "0x5987440ec8fa7f8976fe5d324e052a3140c9f333",
+   "yt": "0xd94d3b841ea48a0e0b3cfc75296686d19af3cf8a",
+   "expiry": 1797465600,
+   "is_expired": 0,
+   "pt_symbol": "PT-sUSDf-17DEC2026",
+   "sy_symbol": "SY-sUSDf",
+   "pt_to_asset": 0.985404814325097,
+   "pt_to_sy": 0.8694431112684514,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.133374687260983,
+   "sy_asset": {
+    "type": 0,
+    "address": "0xfa2b947eec368f42195f24f36d2af29f7c24cec2",
+    "decimals": 18
+   },
+   "days_to_maturity": 101.44195601851852,
+   "implied_apy": 0.05432651273208555,
+   "implied_apr_simple": 0.053293003163882594,
+   "api": {
+    "name": "sUSDf",
+    "implied_apy": 0.05432661456610788,
+    "underlying_apy": null,
+    "liquidity_usd": 249849.291723627,
+    "aggregated_apy": 0.049637845560945144
+   }
+  },
+  {
+   "market": "0x8ce3a13852d13e0e991c677a8c6137584e2b7635",
+   "sy": "0x3aaaf43a1f8d327fdf24dc93654eb17e319883c5",
+   "pt": "0x599ef448e1d3378ed2dd7982d4b00615d9e5bf77",
+   "yt": "0x2875133b91909eb332fcf1e8664d0965a5fc5ca9",
+   "expiry": 1795651200,
+   "is_expired": 0,
+   "pt_symbol": "PT-STRCx-26NOV2026",
+   "sy_symbol": "SY-STRCx",
+   "pt_to_asset": 0.9512120578712304,
+   "pt_to_sy": 0.9512120578712304,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.0,
+   "sy_asset": {
+    "type": 0,
+    "address": "0x1aad217b8f78dba5e6693460e8470f8b1a3977f3",
+    "decimals": 18
+   },
+   "days_to_maturity": 80.44195601851852,
+   "implied_apy": 0.2547727740375989,
+   "implied_apr_simple": 0.23272626264950544,
+   "api": {
+    "name": "STRCx",
+    "implied_apy": 0.25483162308601104,
+    "underlying_apy": null,
+    "liquidity_usd": 1453150.9061564514,
+    "aggregated_apy": 0.3014487870178333
+   }
+  },
+  {
+   "market": "0x90b70c407f1077f8eb92bf423b44cd92329b737a",
+   "sy": "0x47dfd0c8eee949748c1d5cb6b695a4aba5fe7379",
+   "pt": "0x2ae4f59e500b6ddeb88c480edf277eda54a00205",
+   "yt": "0xfd9aa51f530369ff5024bc3f6d6f3a00a789f94a",
+   "expiry": 1796860800,
+   "is_expired": 0,
+   "pt_symbol": "PT-reUSDe-10DEC2026",
+   "sy_symbol": "SY-reUSDe",
+   "pt_to_asset": 0.9576956547429751,
+   "pt_to_sy": 0.6777385760442126,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.4130753192961223,
+   "sy_asset": {
+    "type": 0,
+    "address": "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+    "decimals": 18
+   },
+   "days_to_maturity": 94.44195601851852,
+   "implied_apy": 0.18182191032814798,
+   "implied_apr_simple": 0.17072037344026597,
+   "api": {
+    "name": "reUSDe",
+    "implied_apy": 0.18182229751294043,
+    "underlying_apy": null,
+    "liquidity_usd": 4575055.420017851,
+    "aggregated_apy": 0.17608508240226378
+   }
+  },
+  {
+   "market": "0x932a3432ee6a2556b5de0020845f62081c637a2c",
+   "sy": "0x0280c2534ff412086c64ad46df873ef86605bb6f",
+   "pt": "0xec583f0b31d71a6b661f857391865174d8035778",
+   "yt": "0x7ba8e04f6c01e0f1d60398bbecdf6b6f7d8ed419",
+   "expiry": 1790208000,
+   "is_expired": 0,
+   "pt_symbol": "PT-eEARN-24SEP2026",
+   "sy_symbol": "SY-eEARN",
+   "pt_to_asset": 0.9953644056186939,
+   "pt_to_sy": 0.9559325208298226,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.0412496530138355,
+   "sy_asset": {
+    "type": 0,
+    "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "decimals": 6
+   },
+   "days_to_maturity": 17.441956018518518,
+   "implied_apy": 0.10211663754517142,
+   "implied_apr_simple": 0.09745878637930795,
+   "api": {
+    "name": "eEARN",
+    "implied_apy": 0.10211777615095907,
+    "underlying_apy": null,
+    "liquidity_usd": 1012764.7641597036,
+    "aggregated_apy": 0.09987083921139325
+   }
+  },
+  {
+   "market": "0x9c560ebaf78e596cbcc27411d633a74d628dd7dc",
+   "sy": "0xbe3d4ec488a0a042bb86f9176c24f8cd54018ba7",
+   "pt": "0xdc169abe56461a2e0c034da431ac2a3ebf596094",
+   "yt": "0xc7b8551c6b286ce0b44952320e940bd3dee58a09",
+   "expiry": 1795651200,
+   "is_expired": 0,
+   "pt_symbol": "PT-sUSDS-26NOV2026",
+   "sy_symbol": "SY-sUSDS",
+   "pt_to_asset": 0.9893759106085556,
+   "pt_to_sy": 0.8924107522663101,
+   "oracle_state": {
+    "increase_cardinality_required": false,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.1086553003714925,
+   "sy_asset": {
+    "type": 0,
+    "address": "0xdc035d45d973e3ec169d2276ddab16f1e407384f",
+    "decimals": 18
+   },
+   "days_to_maturity": 80.44195601851852,
+   "implied_apy": 0.04965758018900379,
+   "implied_apr_simple": 0.048723741052498326,
+   "api": {
+    "name": "sUSDS",
+    "implied_apy": 0.04965769731694425,
+    "underlying_apy": null,
+    "liquidity_usd": 3461723.080117802,
+    "aggregated_apy": 0.047156020958261144
+   }
+  },
+  {
+   "market": "0xa268168e73791e2a0ab48ded41ecf6dc923cd17f",
+   "sy": "0xe1e22d55e23900f30599d8bee74a0801f09b4e58",
+   "pt": "0x3069a30121dbbf37c88003b41204d6afaac7acbd",
+   "yt": "0x57947d28d4dd1873ad20cc717d866d078a677c08",
+   "expiry": 1790208000,
+   "is_expired": 0,
+   "pt_symbol": "PT-mAPOLLO-24SEP2026",
+   "sy_symbol": "SY-mAPOLLO",
+   "pt_to_asset": 0.99626879563188,
+   "pt_to_sy": 892498847170.243,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.116269e-12,
+   "sy_asset": {
+    "type": 0,
+    "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "decimals": 6
+   },
+   "days_to_maturity": 17.441956018518518,
+   "implied_apy": 0.08136839789903783,
+   "implied_apr_simple": 0.07837367049867855,
+   "api": {
+    "name": "mAPOLLO",
+    "implied_apy": 0.08136929670510407,
+    "underlying_apy": null,
+    "liquidity_usd": 2896548.4823194114,
+    "aggregated_apy": 0.07790981731853713
+   }
+  },
+  {
+   "market": "0xac028348c46d3455899a2b9b50077c11960eaddb",
+   "sy": "0x7e8a16e87fa6b0f2e657db47f3dbfe2e981ef211",
+   "pt": "0x74299580811e1c3c1a2831db079ba0a8f513998f",
+   "yt": "0xc4bb3ec6588ff14d7676445a40f2716e690a3203",
+   "expiry": 1795651200,
+   "is_expired": 0,
+   "pt_symbol": "PT-strUSD-26NOV2026",
+   "sy_symbol": "SY-strUSD",
+   "pt_to_asset": 0.9757147119191137,
+   "pt_to_sy": 0.9565031064449893,
+   "oracle_state": {
+    "increase_cardinality_required": false,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.0200852515215844,
+   "sy_asset": {
+    "type": 0,
+    "address": "0xd0580192e98ea6ceb9c7b6191ed2e27560911697",
+    "decimals": 18
+   },
+   "days_to_maturity": 80.44195601851852,
+   "implied_apy": 0.11801296364304736,
+   "implied_apr_simple": 0.11293554405467864,
+   "api": {
+    "name": "strUSD",
+    "implied_apy": 0.11801325080152458,
+    "underlying_apy": null,
+    "liquidity_usd": 7134257.694700167,
+    "aggregated_apy": 0.11080305056238225
+   }
+  },
+  {
+   "market": "0xaf0349fb9b1ba07d34381870c59b560b31412660",
+   "sy": "0x4f116ee5bcd227d1a1c4f57918d694a4abe7b3fc",
+   "pt": "0xaf687b5ecb525ccea96115088999b4ed80c388b6",
+   "yt": "0x7fbc01c63b0ac372ec75907f3a1d8adc8cf28e1f",
+   "expiry": 1793836800,
+   "is_expired": 0,
+   "pt_symbol": "PT-apxUSD-5NOV2026",
+   "sy_symbol": "SY-apxUSD",
+   "pt_to_asset": 0.9842783779567987,
+   "pt_to_sy": 0.9842783779567987,
+   "oracle_state": {
+    "increase_cardinality_required": false,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.0,
+   "sy_asset": {
+    "type": 0,
+    "address": "0x98a878b1cd98131b271883b390f68d2c90674665",
+    "decimals": 18
+   },
+   "days_to_maturity": 59.44195601851852,
+   "implied_apy": 0.10219610960422099,
+   "implied_apr_simple": 0.0980797113197614,
+   "api": {
+    "name": "apxUSD",
+    "implied_apy": 0.10219644379958148,
+    "underlying_apy": null,
+    "liquidity_usd": 1887190.2899269832,
+    "aggregated_apy": 0.04886361587089799
+   }
+  },
+  {
+   "market": "0xb6fe0f0811931a38aa97534bac3c147437223e38",
+   "sy": "0x8917f8c7feb840b5837edc7e128123baa2f289f9",
+   "pt": "0x0b985c624bb2949432cce77cfd246f01390a0517",
+   "yt": "0xc38901aa77112efc519a1f8bd501eb2f68055689",
+   "expiry": 1799884800,
+   "is_expired": 0,
+   "pt_symbol": "PT-sUSDat-14JAN2027",
+   "sy_symbol": "SY-sUSDat",
+   "pt_to_asset": 0.9598397424017262,
+   "pt_to_sy": 945818922691.7439,
+   "oracle_state": {
+    "increase_cardinality_required": false,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.014824e-12,
+   "sy_asset": {
+    "type": 0,
+    "address": "0x23238f20b894f29041f48d88ee91131c395aaa71",
+    "decimals": 6
+   },
+   "days_to_maturity": 129.4419560185185,
+   "implied_apy": 0.1225248599673836,
+   "implied_apr_simple": 0.11798194710327226,
+   "api": {
+    "name": "sUSDat",
+    "implied_apy": 0.11820812253914958,
+    "underlying_apy": null,
+    "liquidity_usd": 1267601.8624106061,
+    "aggregated_apy": 0.09146996958046048
+   }
+  },
+  {
+   "market": "0xbeab098b510f758cd35122ee345957b8eccbb322",
+   "sy": "0xdd0c9da25f8eb47116f3bed8a311899a5eb449b4",
+   "pt": "0x459bcab2490843ad1fe1e4feff7f7ea16a14408b",
+   "yt": "0xc08aaed663c1c257f677f9d4b92a7a265967e54f",
+   "expiry": 1795651200,
+   "is_expired": 0,
+   "pt_symbol": "PT-sUSDD-26NOV2026",
+   "sy_symbol": "SY-sUSDD",
+   "pt_to_asset": 0.9889973993125921,
+   "pt_to_sy": 0.9289025191933551,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.0646944957921123,
+   "sy_asset": {
+    "type": 0,
+    "address": "0x4f8e5de400de08b164e7421b3ee387f461becd1a",
+    "decimals": 18
+   },
+   "days_to_maturity": 80.44195601851852,
+   "implied_apy": 0.05148162525937261,
+   "implied_apr_simple": 0.050478965282069105,
+   "api": {
+    "name": "sUSDD",
+    "implied_apy": 0.05148174679430517,
+    "underlying_apy": null,
+    "liquidity_usd": 108437.21162180878,
+    "aggregated_apy": 0.11439553428007432
+   }
+  },
+  {
+   "market": "0xc5f938a8ef5f3bf9e72f5aa094baf5e03f4727d3",
+   "sy": "0x04f8dca7bccd8997ac57ca6fef7c705e17d6bcb6",
+   "pt": "0xb5be35d8ff83d431899b95851cb17a2b4bcef150",
+   "yt": "0x85cc1b74fc95abb6b9b6060c56334ba3e4b88ed4",
+   "expiry": 1793836800,
+   "is_expired": 0,
+   "pt_symbol": "PT-apyUSD-5NOV2026",
+   "sy_symbol": "SY-apyUSD",
+   "pt_to_asset": 0.9788689532140914,
+   "pt_to_sy": 0.6878759557527486,
+   "oracle_state": {
+    "increase_cardinality_required": false,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.4230312093739435,
+   "sy_asset": {
+    "type": 0,
+    "address": "0x98a878b1cd98131b271883b390f68d2c90674665",
+    "decimals": 18
+   },
+   "days_to_maturity": 59.44195601851852,
+   "implied_apy": 0.14013257746152097,
+   "implied_apr_simple": 0.13255503532772694,
+   "api": {
+    "name": "apyUSD",
+    "implied_apy": 0.14013304338389387,
+    "underlying_apy": null,
+    "liquidity_usd": 21372644.339141164,
+    "aggregated_apy": 0.1366952994452484
+   }
+  },
+  {
+   "market": "0xdf014ab15b68e3b8db53e8d307d01b81cce98739",
+   "sy": "0x457904b54f47dd7a91253f225237a5b02ca059d6",
+   "pt": "0xfae86383d512722a50192d9e6b414dc3f067519c",
+   "yt": "0x30a199e71f1b9b546e9fac63ab2512c05e661161",
+   "expiry": 1790208000,
+   "is_expired": 0,
+   "pt_symbol": "PT-mHYPER-24SEP2026",
+   "sy_symbol": "SY-mHYPER",
+   "pt_to_asset": 0.9960192185598995,
+   "pt_to_sy": 885482648573.2087,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.124832e-12,
+   "sy_asset": {
+    "type": 0,
+    "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "decimals": 6
+   },
+   "days_to_maturity": 17.441956018518518,
+   "implied_apy": 0.08705290630957263,
+   "implied_apr_simple": 0.0836369703969112,
+   "api": {
+    "name": "mHYPER",
+    "implied_apy": 0.08705387039758161,
+    "underlying_apy": null,
+    "liquidity_usd": 1316436.0020790477,
+    "aggregated_apy": 0.07205585825405486
+   }
+  },
+  {
+   "market": "0xdf2e3e0250f679d6284a39a0c1a16a850a9d7aa6",
+   "sy": "0x9d0fc59f88acb85520a8cfb74c7fe141d8563185",
+   "pt": "0x2c3e7c0fab3d546ea0715d2a96fbdf598711a062",
+   "yt": "0xf26e7953bab8b301945bb551b4607dffa8500de0",
+   "expiry": 1799884800,
+   "is_expired": 0,
+   "pt_symbol": "PT-srUSDat-14JAN2027",
+   "sy_symbol": "SY-srUSDat",
+   "pt_to_asset": 0.9697836382846289,
+   "pt_to_sy": 944275913045.5299,
+   "oracle_state": {
+    "increase_cardinality_required": false,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.027013e-12,
+   "sy_asset": {
+    "type": 0,
+    "address": "0x23238f20b894f29041f48d88ee91131c395aaa71",
+    "decimals": 6
+   },
+   "days_to_maturity": 129.4419560185185,
+   "implied_apy": 0.09037078465811677,
+   "implied_apr_simple": 0.08785876930557308,
+   "api": {
+    "name": "srUSDat",
+    "implied_apy": 0.09037091963344968,
+    "underlying_apy": null,
+    "liquidity_usd": 300279.01134654786,
+    "aggregated_apy": 0.10946290828471755
+   }
+  },
+  {
+   "market": "0xeb603c5a42d49d3b2e078191c23bf3f5d25bc219",
+   "sy": "0xa73fb4f3a3f3889e41387973afc542fa06785981",
+   "pt": "0x2a21f68b60156860615bd27ac958df817df45aa3",
+   "yt": "0xc802c127ac01e06610a6a5c12ce5b70ce93924e4",
+   "expiry": 1801699200,
+   "is_expired": 0,
+   "pt_symbol": "PT-sBOLD-4FEB2027",
+   "sy_symbol": "SY-sBOLD",
+   "pt_to_asset": 0.975145558619398,
+   "pt_to_sy": 0.8993676767635415,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.0842568437955769,
+   "sy_asset": {
+    "type": 0,
+    "address": "0x6440f144b7e50d6a8439336510312d2f54beb01d",
+    "decimals": 18
+   },
+   "days_to_maturity": 150.4419560185185,
+   "implied_apy": 0.06296641341111875,
+   "implied_apr_simple": 0.061838429667295074,
+   "api": {
+    "name": "sBOLD",
+    "implied_apy": 0.06296649331648796,
+    "underlying_apy": null,
+    "liquidity_usd": 284481.4840793302,
+    "aggregated_apy": 0.04517664470836445
+   }
+  },
+  {
+   "market": "0xeff6a9ff1f17adbe88c1a923fc197b00ef5f4ce2",
+   "sy": "0x95fc228a926828b4d95f52c1d52b345e743153f0",
+   "pt": "0xc8ff5a1d899c2a453c6f10f4ea87978726cf9f63",
+   "yt": "0x5ec5f15917275469dc009deaaa3d00538a45f187",
+   "expiry": 1790208000,
+   "is_expired": 0,
+   "pt_symbol": "PT-mHyperBTC-24SEP2026",
+   "sy_symbol": "SY-mHyperBTC",
+   "pt_to_asset": 0.9986563459937663,
+   "pt_to_sy": 9741279123.157267,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.02517989e-10,
+   "sy_asset": {
+    "type": 0,
+    "address": "0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf",
+    "decimals": 8
+   },
+   "days_to_maturity": 17.441956018518518,
+   "implied_apy": 0.028536535799285723,
+   "implied_apr_simple": 0.02815587721924894,
+   "api": {
+    "name": "mHyperBTC",
+    "implied_apy": 0.028536843289141745,
+    "underlying_apy": null,
+    "liquidity_usd": 2614719.082649266,
+    "aggregated_apy": 0.020713599629239583
+   }
+  },
+  {
+   "market": "0xf1e067f8334a5a21da018a15e29cb78252190a1b",
+   "sy": "0xa36ecca8b7624d224f01cd6649c8afad3da12c3d",
+   "pt": "0xb9b3a5823dfdb39389f50742ee7bb81cf0be56cb",
+   "yt": "0xd29025e0665774f66355656732cbec826d4425ab",
+   "expiry": 1790208000,
+   "is_expired": 0,
+   "pt_symbol": "PT-sENA-24SEP2026",
+   "sy_symbol": "SY-sENA",
+   "pt_to_asset": 0.9936828185211306,
+   "pt_to_sy": 0.9758545871550908,
+   "oracle_state": {
+    "increase_cardinality_required": false,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.0182693524226947,
+   "sy_asset": {
+    "type": 0,
+    "address": "0x57e114b691db790c35207b2e685d4a43181e6061",
+    "decimals": 18
+   },
+   "days_to_maturity": 17.441956018518518,
+   "implied_apy": 0.14181162914422485,
+   "implied_apr_simple": 0.13303724728927185,
+   "api": {
+    "name": "sENA",
+    "implied_apy": 0.14181323802967793,
+    "underlying_apy": null,
+    "liquidity_usd": 4979026.342268156,
+    "aggregated_apy": 0.05812857018662971
+   }
+  },
+  {
+   "market": "0xf80b67a32df07960c731794769309e3d30e9717f",
+   "sy": "0xc1799cab1f201946f7cfafbaf1bcc089b2f08927",
+   "pt": "0xc1906aecf868749a2dee203f59b904c0cf212140",
+   "yt": "0xb4d8860895dff6e30c6872075a7bdfff53b5e772",
+   "expiry": 1790208000,
+   "is_expired": 0,
+   "pt_symbol": "PT-USDG-24SEP2026",
+   "sy_symbol": "SY-USDG",
+   "pt_to_asset": 0.998249778505667,
+   "pt_to_sy": 0.998249778505667,
+   "oracle_state": {
+    "increase_cardinality_required": false,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.0,
+   "sy_asset": {
+    "type": 0,
+    "address": "0xe343167631d89b6ffc58b88d6b7fb0228795491d",
+    "decimals": 6
+   },
+   "days_to_maturity": 17.441956018518518,
+   "implied_apy": 0.03733838811224266,
+   "implied_apr_simple": 0.03669031733452557,
+   "api": {
+    "name": "USDG",
+    "implied_apy": 0.037338792153301714,
+    "underlying_apy": null,
+    "liquidity_usd": 1004780.1893210777,
+    "aggregated_apy": 0.04846368202731691
+   }
+  },
+  {
+   "market": "0xfce3f966a131c46a51b896ceea3917bc4c302577",
+   "sy": "0x5271be3516a36316465ee50c4288ce91e58f7759",
+   "pt": "0x77db49ac43107f0cef6f65837aa55ee8ae4cd9fa",
+   "yt": "0x2263fdec108939ae8fd0ab41901fa9755203b232",
+   "expiry": 1792022400,
+   "is_expired": 0,
+   "pt_symbol": "PT-ynRWAx-15OCT2026",
+   "sy_symbol": "SY-ynRWAx",
+   "pt_to_asset": 0.9899136854830322,
+   "pt_to_sy": 902556998693.4869,
+   "oracle_state": {
+    "increase_cardinality_required": true,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.096788e-12,
+   "sy_asset": {
+    "type": 0,
+    "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "decimals": 6
+   },
+   "days_to_maturity": 38.44195601851852,
+   "implied_apy": 0.10103883460618412,
+   "implied_apr_simple": 0.09674367146151847,
+   "api": {
+    "name": "ynRWAx",
+    "implied_apy": 0.10103934531028225,
+    "underlying_apy": null,
+    "liquidity_usd": 604913.8108762698,
+    "aggregated_apy": 0.043637800801508385
+   }
+  },
+  {
+   "market": "0xfcf009cb3135da12a6eb1f73f3ee05392a7bc947",
+   "sy": "0xa09482f2f6cb5f2177b05144bc276d06b8b818eb",
+   "pt": "0x7191878f1fe834b28f4d0cead0e4375b814c4abb",
+   "yt": "0x1fcdb1e747419bb8d1a029c4d1f83b41e8afe8ce",
+   "expiry": 1795651200,
+   "is_expired": 0,
+   "pt_symbol": "PT-trUSD-26NOV2026",
+   "sy_symbol": "SY-trUSD",
+   "pt_to_asset": 0.9789916027512386,
+   "pt_to_sy": 0.9789916027512386,
+   "oracle_state": {
+    "increase_cardinality_required": false,
+    "cardinality_required": 83,
+    "oldest_observation_satisfied": true
+   },
+   "sy_exchange_rate": 1.0,
+   "sy_asset": {
+    "type": 0,
+    "address": "0xd0580192e98ea6ceb9c7b6191ed2e27560911697",
+    "decimals": 18
+   },
+   "days_to_maturity": 80.44195601851852,
+   "implied_apy": 0.10113311216609056,
+   "implied_apr_simple": 0.09736978171033808,
+   "api": {
+    "name": "trUSD",
+    "implied_apy": 0.10113335641858079,
+    "underlying_apy": null,
+    "liquidity_usd": 2616849.131671464,
+    "aggregated_apy": 0.026669709598354064
+   }
+  }
+ ],
+ "tokens": {
+  "0x0280c2534ff412086c64ad46df873ef86605bb6f": {
+   "symbol": "SY-eEARN",
+   "name": "SY Ember Earn",
+   "decimals": 6
+  },
+  "0x04f8dca7bccd8997ac57ca6fef7c705e17d6bcb6": {
+   "symbol": "SY-apyUSD",
+   "name": "SY apyUSD",
+   "decimals": 18
+  },
+  "0x06ebad062fd573ca31a72d6dfb0f425da2153985": {
+   "symbol": "PT-sUSDx-3DEC2026",
+   "name": "PT Staked USDx 3DEC2026",
+   "decimals": 18
+  },
+  "0x079c3469143804af5d0d645a878c371dbe8d038e": {
+   "symbol": "PT-fxSAVE-29OCT2026",
+   "name": "PT f(x) USD Saving 29OCT2026",
+   "decimals": 18
+  },
+  "0x0b985c624bb2949432cce77cfd246f01390a0517": {
+   "symbol": "PT-sUSDat-14JAN2027",
+   "name": "PT Staked USDat 14JAN2027",
+   "decimals": 6
+  },
+  "0x0e012d6a77a7f6c91de7cb74c2732553876d1d61": {
+   "symbol": "SY-mixUSDC",
+   "name": "SY USDC Mix Yield Token",
+   "decimals": 18
+  },
+  "0x13945b761b2ed3219a497a46d15a8923f418d2ab": {
+   "symbol": "SY-fxSAVE",
+   "name": "SY f(x) USD Saving",
+   "decimals": 18
+  },
+  "0x17c47b0cedec9b41e639f5ec1a053e9135db2a6d": {
+   "symbol": "PT-SY SIERRA-22OCT2026",
+   "name": "PT Sierra 22OCT2026",
+   "decimals": 6
+  },
+  "0x1cfaed2df5ee27b078e96fafa10709c5548fc1b7": {
+   "symbol": "PT-superWETH-26NOV2026",
+   "name": "PT Flagship WETH SuperVault 26NOV2026",
+   "decimals": 18
+  },
+  "0x253008ba4ae2f3e6488dc998a5321d4eb1a0c905": {
+   "symbol": "SY pufETH",
+   "name": "SY Puffer ETH",
+   "decimals": 18
+  },
+  "0x2a21f68b60156860615bd27ac958df817df45aa3": {
+   "symbol": "PT-sBOLD-4FEB2027",
+   "name": "PT sBold 4FEB2027",
+   "decimals": 18
+  },
+  "0x2ae4f59e500b6ddeb88c480edf277eda54a00205": {
+   "symbol": "PT-reUSDe-10DEC2026",
+   "name": "PT reUSDe 10DEC2026",
+   "decimals": 18
+  },
+  "0x2c3e7c0fab3d546ea0715d2a96fbdf598711a062": {
+   "symbol": "PT-srUSDat-14JAN2027",
+   "name": "PT Strata Senior USDat 14JAN2027",
+   "decimals": 6
+  },
+  "0x3069a30121dbbf37c88003b41204d6afaac7acbd": {
+   "symbol": "PT-mAPOLLO-24SEP2026",
+   "name": "PT Midas Apollo Crypto 24SEP2026",
+   "decimals": 6
+  },
+  "0x3870cf5e2eab623a74d2af1007295963b1c5a12f": {
+   "symbol": "SY-mixWETH",
+   "name": "SY WETH Mix Yield Token",
+   "decimals": 18
+  },
+  "0x39fb0bb5d696ec6da2d827649cf3a3f00299d2dd": {
+   "symbol": "SY-sAID",
+   "name": "SY Staked AI Dollar",
+   "decimals": 18
+  },
+  "0x3aaaf43a1f8d327fdf24dc93654eb17e319883c5": {
+   "symbol": "SY-STRCx",
+   "name": "SY Strategy PP Variable xStock",
+   "decimals": 18
+  },
+  "0x3aecaedfb92efbbac95e5c458c56e94070cb9179": {
+   "symbol": "SY-superWETH",
+   "name": "SY Flagship WETH SuperVault",
+   "decimals": 18
+  },
+  "0x3b184870f40ca026341593cedb37ab09e611e928": {
+   "symbol": "SY-sUSDx",
+   "name": "SY Staked USDx",
+   "decimals": 18
+  },
+  "0x41f45d21502bde8211e94d94ef2eeebcfc48a6ac": {
+   "symbol": "PT-sUSD3-17DEC2026",
+   "name": "PT sUSD3 17DEC2026",
+   "decimals": 6
+  },
+  "0x42959e174fe28029de5ce250b58699229a3362b0": {
+   "symbol": "PT-sYUSD-24SEP2026",
+   "name": "PT Staked YUSD 24SEP2026",
+   "decimals": 18
+  },
+  "0x44db865cc6d5768703fb5bf73dfb7a5a0f95c1fc": {
+   "symbol": "PT-ROY-ST-apyUSD-5NOV2026",
+   "name": "PT Royco Senior Tranche apyUSD 5NOV2026",
+   "decimals": 18
+  },
+  "0x457904b54f47dd7a91253f225237a5b02ca059d6": {
+   "symbol": "SY-mHYPER",
+   "name": "SY Midas Hyperithm",
+   "decimals": 18
+  },
+  "0x459bcab2490843ad1fe1e4feff7f7ea16a14408b": {
+   "symbol": "PT-sUSDD-26NOV2026",
+   "name": "PT Savings Usdd 26NOV2026",
+   "decimals": 18
+  },
+  "0x45c00ec1a2797b507d3e955b208fb275795da669": {
+   "symbol": "PT-mixUSDC-29OCT2026",
+   "name": "PT USDC Mix Yield Token 29OCT2026",
+   "decimals": 6
+  },
+  "0x464a2b93b6633707470bcd2c81d34519f38e1e9c": {
+   "symbol": "SY-ROY-JT-apyUSD",
+   "name": "SY Royco Junior Tranche apyUSD",
+   "decimals": 18
+  },
+  "0x47dfd0c8eee949748c1d5cb6b695a4aba5fe7379": {
+   "symbol": "SY-reUSDe",
+   "name": "SY reUSDe",
+   "decimals": 18
+  },
+  "0x4d654f255d54637112844bd8802b716170904fee": {
+   "symbol": "SY-superUSDC",
+   "name": "SY Flagship USDC SuperVault",
+   "decimals": 6
+  },
+  "0x4f116ee5bcd227d1a1c4f57918d694a4abe7b3fc": {
+   "symbol": "SY-apxUSD",
+   "name": "SY apxUSD",
+   "decimals": 18
+  },
+  "0x4f6673346ab4813f1665327ab39087008cc7d76f": {
+   "symbol": "SY-jrUSDe",
+   "name": "SY Strata Junior USDe",
+   "decimals": 18
+  },
+  "0x5271be3516a36316465ee50c4288ce91e58f7759": {
+   "symbol": "SY-ynRWAx",
+   "name": "SY YieldNest RWA MAX",
+   "decimals": 18
+  },
+  "0x57badd19a4756d0190bfcd8f444ae6ebcdb38e86": {
+   "symbol": "SY-nOPAL",
+   "name": "SY Nest BlackOpal LiquidStone II Vault",
+   "decimals": 6
+  },
+  "0x5987440ec8fa7f8976fe5d324e052a3140c9f333": {
+   "symbol": "PT-sUSDf-17DEC2026",
+   "name": "PT Staked Falcon USD 17DEC2026",
+   "decimals": 18
+  },
+  "0x599ef448e1d3378ed2dd7982d4b00615d9e5bf77": {
+   "symbol": "PT-STRCx-26NOV2026",
+   "name": "PT Strategy PP Variable xStock 26NOV2026",
+   "decimals": 18
+  },
+  "0x59bc9fae5d62b19d4f8d07d758047acb9ee19d34": {
+   "symbol": "PT-srUSDe-22OCT2026",
+   "name": "PT Strata Senior USDe 22OCT2026",
+   "decimals": 18
+  },
+  "0x5e1ff5c857f1d2251600507f2031d2aa2a5fc468": {
+   "symbol": "PT-nOPAL-17SEP2026",
+   "name": "PT Nest BlackOpal LiquidStone II Vault 17SEP2026",
+   "decimals": 6
+  },
+  "0x6a0efc272e8dd4fc5affea17376dcf107cbcbc0f": {
+   "symbol": "PT-sUSN-22JUL2027",
+   "name": "PT Staked USN 22JUL2027",
+   "decimals": 18
+  },
+  "0x7191878f1fe834b28f4d0cead0e4375b814c4abb": {
+   "symbol": "PT-trUSD-26NOV2026",
+   "name": "PT trUSD 26NOV2026",
+   "decimals": 18
+  },
+  "0x74299580811e1c3c1a2831db079ba0a8f513998f": {
+   "symbol": "PT-strUSD-26NOV2026",
+   "name": "PT Staked trUSD 26NOV2026",
+   "decimals": 18
+  },
+  "0x77d2bc95ab51b75960ec3a01e112460ea7bafb20": {
+   "symbol": "SY-sUSD3",
+   "name": "SY sUSD3",
+   "decimals": 6
+  },
+  "0x77db49ac43107f0cef6f65837aa55ee8ae4cd9fa": {
+   "symbol": "PT-ynRWAx-15OCT2026",
+   "name": "PT YieldNest RWA MAX 15OCT2026",
+   "decimals": 6
+  },
+  "0x797f9d67a878250e0aa572c41a8a4e862ad09d5c": {
+   "symbol": "SY-sYUSD",
+   "name": "SY Staked YUSD",
+   "decimals": 18
+  },
+  "0x7a7de491e1be5287874904e2b7c8488249a4d0a9": {
+   "symbol": "SY-USDat",
+   "name": "SY USDat",
+   "decimals": 6
+  },
+  "0x7e8a16e87fa6b0f2e657db47f3dbfe2e981ef211": {
+   "symbol": "SY-strUSD",
+   "name": "SY Staked trUSD",
+   "decimals": 18
+  },
+  "0x7f47c3e6b2c00fc4eb4d5ae50d0ab0ab6888eb4d": {
+   "symbol": "PT-USD3-17DEC2026",
+   "name": "PT USD3 17DEC2026",
+   "decimals": 6
+  },
+  "0x8917f8c7feb840b5837edc7e128123baa2f289f9": {
+   "symbol": "SY-sUSDat",
+   "name": "SY Staked USDat",
+   "decimals": 18
+  },
+  "0x9487bd5a3b16ecb5f3184453e3ee75b800141648": {
+   "symbol": "SY-reUSD",
+   "name": "SY reUSD",
+   "decimals": 18
+  },
+  "0x95fc228a926828b4d95f52c1d52b345e743153f0": {
+   "symbol": "SY-mHyperBTC",
+   "name": "SY Midas Hyperithm BTC",
+   "decimals": 18
+  },
+  "0x9786a09cbb2efb23046542576ffd9a235aa3ca07": {
+   "symbol": "PT-jrUSDe-22OCT2026",
+   "name": "PT Strata Junior USDe 22OCT2026",
+   "decimals": 18
+  },
+  "0x9845bbb51d326fe4d5e7cbd47ce157a33d7936ef": {
+   "symbol": "SY SIERRA",
+   "name": "SY Sierra",
+   "decimals": 6
+  },
+  "0x9d0fc59f88acb85520a8cfb74c7fe141d8563185": {
+   "symbol": "SY-srUSDat",
+   "name": "SY Strata Senior USDat",
+   "decimals": 18
+  },
+  "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920": {
+   "symbol": "SY-siUSD",
+   "name": "SY Staked infiniFi USD",
+   "decimals": 18
+  },
+  "0xa09482f2f6cb5f2177b05144bc276d06b8b818eb": {
+   "symbol": "SY-trUSD",
+   "name": "SY trUSD",
+   "decimals": 18
+  },
+  "0xa0a2c8c94bf30227f84af6e054025945a51d0eff": {
+   "symbol": "SY-sUSN",
+   "name": "SY Staked USN",
+   "decimals": 18
+  },
+  "0xa32877eee252d78d5e4fa00285d4cc2066d15bac": {
+   "symbol": "PT-SY pufETH-26NOV2026",
+   "name": "PT Puffer ETH 26NOV2026",
+   "decimals": 18
+  },
+  "0xa36ecca8b7624d224f01cd6649c8afad3da12c3d": {
+   "symbol": "SY-sENA",
+   "name": "SY Staked ENA",
+   "decimals": 18
+  },
+  "0xa4b3a2eec53863fe2c9ab0041d480cf964942e84": {
+   "symbol": "PT-USDx-3DEC2026",
+   "name": "PT USDx 3DEC2026",
+   "decimals": 18
+  },
+  "0xa73fb4f3a3f3889e41387973afc542fa06785981": {
+   "symbol": "SY-sBOLD",
+   "name": "SY sBold",
+   "decimals": 18
+  },
+  "0xa7606952845269dc7377cba3c7c7bda133dd97f7": {
+   "symbol": "SY-USDx",
+   "name": "SY USDx",
+   "decimals": 18
+  },
+  "0xa780d7f775b4eff6846a8c28981f086bc6a7d637": {
+   "symbol": "SY-sUSDf",
+   "name": "SY Staked Falcon USD",
+   "decimals": 18
+  },
+  "0xa99a50d95003e7687d7962f29aad6cdd3655d411": {
+   "symbol": "SY-ROY-ST-apyUSD",
+   "name": "SY Royco Senior Tranche apyUSD",
+   "decimals": 18
+  },
+  "0xaf687b5ecb525ccea96115088999b4ed80c388b6": {
+   "symbol": "PT-apxUSD-5NOV2026",
+   "name": "PT apxUSD 5NOV2026",
+   "decimals": 18
+  },
+  "0xb195b618ea52b77cb2a58846f452f59f8dfa9390": {
+   "symbol": "PT-sUSDE-26NOV2026",
+   "name": "PT Ethena sUSDE 26NOV2026",
+   "decimals": 18
+  },
+  "0xb253eff1104802b97ac7e3ac9fdd73aece295a2c": {
+   "symbol": "PT-stETH-30DEC2027",
+   "name": "PT stETH 30DEC2027",
+   "decimals": 18
+  },
+  "0xb5be35d8ff83d431899b95851cb17a2b4bcef150": {
+   "symbol": "PT-apyUSD-5NOV2026",
+   "name": "PT apyUSD 5NOV2026",
+   "decimals": 18
+  },
+  "0xb9b3a5823dfdb39389f50742ee7bb81cf0be56cb": {
+   "symbol": "PT-sENA-24SEP2026",
+   "name": "PT Staked ENA 24SEP2026",
+   "decimals": 18
+  },
+  "0xba96292ee7673e3b546cc90db6d97111cd9a314f": {
+   "symbol": "PT-USDat-14JAN2027",
+   "name": "PT USDat 14JAN2027",
+   "decimals": 6
+  },
+  "0xbe3d4ec488a0a042bb86f9176c24f8cd54018ba7": {
+   "symbol": "SY-sUSDS",
+   "name": "SY Savings USDS",
+   "decimals": 18
+  },
+  "0xbf98480425a29197e5d99d003017f63a1e595d02": {
+   "symbol": "SY-sUSDE",
+   "name": "SY Ethena sUSDE",
+   "decimals": 18
+  },
+  "0xc1799cab1f201946f7cfafbaf1bcc089b2f08927": {
+   "symbol": "SY-USDG",
+   "name": "SY Global Dollar",
+   "decimals": 6
+  },
+  "0xc1906aecf868749a2dee203f59b904c0cf212140": {
+   "symbol": "PT-USDG-24SEP2026",
+   "name": "PT Global Dollar 24SEP2026",
+   "decimals": 6
+  },
+  "0xc83f11814428b91b7f176ba927c57043e89786cb": {
+   "symbol": "PT-USP-26NOV2026",
+   "name": "PT USP Yield Optimized Stablecoin 26NOV2026",
+   "decimals": 6
+  },
+  "0xc8ff5a1d899c2a453c6f10f4ea87978726cf9f63": {
+   "symbol": "PT-mHyperBTC-24SEP2026",
+   "name": "PT Midas Hyperithm BTC 24SEP2026",
+   "decimals": 8
+  },
+  "0xc9bfebc79a722c05dc34bd2a227ef2db19fd1b8e": {
+   "symbol": "SY-srUSDe",
+   "name": "SY Strata Senior USDe",
+   "decimals": 18
+  },
+  "0xcbc72d92b2dc8187414f6734718563898740c0bc": {
+   "symbol": "SY-stETH",
+   "name": "SY stETH",
+   "decimals": 18
+  },
+  "0xcc8ca5c2a0862a37ee3946b80e12ebb2bfb524f0": {
+   "symbol": "PT-mixWETH-29OCT2026",
+   "name": "PT WETH Mix Yield Token 29OCT2026",
+   "decimals": 18
+  },
+  "0xd4e6ea03d2e8bfeb5fa5c03ae9352514b1829218": {
+   "symbol": "PT-superUSDC-26NOV2026",
+   "name": "PT Flagship USDC SuperVault 26NOV2026",
+   "decimals": 6
+  },
+  "0xd70be760f0bc3009db4563fe0b9eee54883adb50": {
+   "symbol": "PT-ROY-JT-apyUSD-5NOV2026",
+   "name": "PT Royco Junior Tranche apyUSD 5NOV2026",
+   "decimals": 18
+  },
+  "0xdc169abe56461a2e0c034da431ac2a3ebf596094": {
+   "symbol": "PT-sUSDS-26NOV2026",
+   "name": "PT Savings USDS 26NOV2026",
+   "decimals": 18
+  },
+  "0xdd0c9da25f8eb47116f3bed8a311899a5eb449b4": {
+   "symbol": "SY-sUSDD",
+   "name": "SY Savings Usdd",
+   "decimals": 18
+  },
+  "0xe1e22d55e23900f30599d8bee74a0801f09b4e58": {
+   "symbol": "SY-mAPOLLO",
+   "name": "SY Midas Apollo Crypto",
+   "decimals": 18
+  },
+  "0xe22deabf5b174437092ae9ac79761b03ef178ca8": {
+   "symbol": "SY-WOUSD",
+   "name": "SY Wrapped OUSD",
+   "decimals": 18
+  },
+  "0xe3cdf5b8d7aedfc9f768dbdcc334146fae989188": {
+   "symbol": "PT-siUSD-22OCT2026",
+   "name": "PT Staked infiniFi USD 22OCT2026",
+   "decimals": 18
+  },
+  "0xea3bc608f32847b97965c5e1648bdfcd4c2c40d0": {
+   "symbol": "SY-USD3",
+   "name": "SY USD3",
+   "decimals": 6
+  },
+  "0xec583f0b31d71a6b661f857391865174d8035778": {
+   "symbol": "PT-eEARN-24SEP2026",
+   "name": "PT Ember Earn 24SEP2026",
+   "decimals": 6
+  },
+  "0xeccde3a92f8ad4884a2613d9ef1556103c26728f": {
+   "symbol": "PT-WOUSD-17DEC2026",
+   "name": "PT Wrapped OUSD 17DEC2026",
+   "decimals": 18
+  },
+  "0xecfafdc7741323a945a163ed068b5a3c43483957": {
+   "symbol": "PT-reUSD-10DEC2026",
+   "name": "PT reUSD 10DEC2026",
+   "decimals": 6
+  },
+  "0xf5145335540c4116956c0936b7db08d1a862a2d9": {
+   "symbol": "SY-USP",
+   "name": "SY USP Yield Optimized Stablecoin",
+   "decimals": 18
+  },
+  "0xf6e9dd9696bf932864ebbcd34395221a16f3c62b": {
+   "symbol": "PT-sAID-31DEC2026",
+   "name": "PT Staked AI Dollar 31DEC2026",
+   "decimals": 18
+  },
+  "0xfae86383d512722a50192d9e6b414dc3f067519c": {
+   "symbol": "PT-mHYPER-24SEP2026",
+   "name": "PT Midas Hyperithm 24SEP2026",
+   "decimals": 6
+  }
+ }
+}
