@@ -1,0 +1,19 @@
+No files changed, compilation skipped
+
+Ran 1 test for test/Farm.t.sol:FarmTest
+[PASS] test_farm_pools_3_and_4() (gas: 2042060)
+Logs:
+  cherryPop available (STACY): 165967.455648575243372977
+  alloc pid3: 40
+  alloc pid4: 40
+  totalAllocPoint: 950
+  STACY liquid gained by farmer: 4942.547305660912729996
+  USDC net (dust): -0.000001
+  WETH net (dust): -0.000000000000045218
+  WBTC net (dust): -0.00000001
+  rewardsLock STACY delta (all pools' 75% lock): 9848.618247525480888799
+  theory liquid (STACY): 4945.830178327542252513
+
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 17.58s (16.12s CPU time)
+
+Ran 1 test suite in 17.88s (17.58s CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)

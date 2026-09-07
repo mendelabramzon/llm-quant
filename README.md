@@ -91,6 +91,15 @@ Outputs live in `research/2026-09-05/amount_outliers_eth_day/`: `letter.md` and 
 Codex's five-hour run (`research/2026-09-05/eth_5h`, `research/2026-09-05/amount_outliers_eth_5h`) is kept as the origin of the inherited registry; its `method.md` describes the learning cycle and its `round_0X/` archives its discovery and audit rounds.
 
 
+## Replicating the StacyVault flash-farm (2026-09-07)
+
+Following the five-hour scan's finding that a bot harvests StacyVault with flash-loaned liquidity every ~30 minutes, [this study](research/2026-09-07/stacy_farm/findings.md) reads the vault's and token's verified source, explains the two flaws that make it work (rewards distributed by instantaneous stake rather than time, and a same-block guard that `depositFor` skips), and reproduces the bot in `research/2026-09-07/stacy_farm/fork/src/StacyFarmer.sol`. A Foundry fork test flash-borrows from Balancer, dominates the USDC/WETH and WBTC/WETH staking pools, triggers the reward lump with `cherryPop`, harvests it, and repays, with a net token change of dust: no capital is used, only gas. The honest economics are in the note: at STACY's current ~$0.000017 the liquid take is roughly gas-break-even, the real 79% of emissions sits in the STACY/WETH pool that needs held STACY, and the strategy is a competitive inclusion race against the incumbent.
+
+```sh
+cd research/2026-09-07/stacy_farm/fork
+forge test --match-test test_farm_pools_3_and_4 --fork-url https://eth.drpc.org -vv
+```
+
 ## Five hours of mainnet, digested: 2026-09-07 02:39 to 07:39 UTC
 
 [What happened in the last five hours](research/2026-09-07/live_5h/report.md) reuses the live-scan pipeline on a five-hour window and adds two offline digests. `scripts/window_events.py` reads the ETH/USD path tick by tick from the v3 USDC/WETH pool, the per-15-minute gas, blob and fullness series, builders, transaction types (including EIP-7702), blob posters by inbox, contract creations, new pools, validator withdrawals, the largest native transfers, the highest tips and the log-heaviest transactions into `events.json`. `scripts/window_followups.py` holds the follow-up checks the narrative asked for, configured at the top of the file: gas-limit attribution per target around a spike, Uniswap v4 volume for a token set, a sybil funding check on fresh wallets, the decode of a flash-loan bot's run, an address-poisoning matcher for look-alike zero-value transactions after large transfers, mass mint and airdrop tokens, and the Spark liquidity layer's operations, into `followups.json`. The narrative (`insights.md`) found a tokenized-stock micro-trading swarm (Ondo's NVDAON, TSLAON, SPCXON, SPYON and Stockereum.fun launch tokens) that pushed the base fee up ten times for forty minutes on half a million dollars of volume, Robinhood Chain as the largest blob poster ahead of Base, Spark's liquidity layer moving $46M of USDT from SparkLend into its savings vault and doubling the SparkLend USDT rate, a $218M Aave position at health factor 1.015, a flash-loan bot farming a memecoin MasterChef with $175M of Morpho liquidity every half hour, and poisoning bots trailing every large ETH transfer.

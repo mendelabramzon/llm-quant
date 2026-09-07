@@ -1,0 +1,468 @@
+{
+ "host": "eth.blockscout.com",
+ "candidates": 60,
+ "matches": [
+  {
+   "address": "0xb1166ffe5dce7a0ca54aed88713af2a0d5dece68",
+   "match": true,
+   "name": "EncoreVault",
+   "impl": null,
+   "lump_rewards": true,
+   "guard": "none (deposit+withdraw same block allowed)",
+   "bypassable": true,
+   "reward_token": null,
+   "reward_symbol": "?",
+   "reward_price_usd_est": null,
+   "reward_price_basis": null,
+   "reward_bal_in_vault": null,
+   "pools": [],
+   "bluechip_cheap_pools": 0,
+   "EXPLOITABLE_AND_VALUABLE": false
+  },
+  {
+   "address": "0x78aa057b7bf61092c6dbcafee728554b1a8d2f7c",
+   "match": true,
+   "name": "CoreVault",
+   "impl": null,
+   "lump_rewards": true,
+   "guard": "none (deposit+withdraw same block allowed)",
+   "bypassable": true,
+   "reward_token": "0x4283f614734aad8ac2eb0e3cd77d9d9b40b5f31a",
+   "reward_symbol": "FCORE",
+   "reward_price_usd_est": null,
+   "reward_price_basis": null,
+   "reward_bal_in_vault": 140028911437576386,
+   "pools": [
+    {
+     "pid": 0,
+     "token": "0x8d56a96153503d9479d42e06ccce7940b1eb67ef",
+     "pair": "FCORE/BET",
+     "both_blue": false,
+     "vault_share_of_pair": 0.0
+    }
+   ],
+   "bluechip_cheap_pools": 0,
+   "EXPLOITABLE_AND_VALUABLE": false
+  },
+  {
+   "address": "0x6fa7390a9b20a8642412624a38d9e5b9f73fc4b6",
+   "match": true,
+   "name": "miniCOREVault",
+   "impl": null,
+   "lump_rewards": true,
+   "guard": "none (deposit+withdraw same block allowed)",
+   "bypassable": true,
+   "reward_token": null,
+   "reward_symbol": "?",
+   "reward_price_usd_est": null,
+   "reward_price_basis": null,
+   "reward_bal_in_vault": null,
+   "pools": [
+    {
+     "pid": 0,
+     "token": "0xd0c59ec31b3e9e0f26a5bbf1b3cb9dab05ae58e9",
+     "pair": "miniCORE/WETH",
+     "both_blue": false,
+     "vault_share_of_pair": 0.953492
+    }
+   ],
+   "bluechip_cheap_pools": 0,
+   "EXPLOITABLE_AND_VALUABLE": false
+  },
+  {
+   "address": "0xff54395e7e115de5bcd85f2e5bcefeb8318ac81e",
+   "match": true,
+   "name": "HdcoreVaultV2",
+   "impl": null,
+   "lump_rewards": true,
+   "guard": "none (deposit+withdraw same block allowed)",
+   "bypassable": true,
+   "reward_token": null,
+   "reward_symbol": "?",
+   "reward_price_usd_est": null,
+   "reward_price_basis": null,
+   "reward_bal_in_vault": null,
+   "pools": [
+    {
+     "pid": 0,
+     "token": "0x0a6be6d221820da18170fd2dbbe2e9860c53b1d9",
+     "pair": "HDCORE/WETH",
+     "both_blue": false,
+     "vault_share_of_pair": 0.000201
+    }
+   ],
+   "bluechip_cheap_pools": 0,
+   "EXPLOITABLE_AND_VALUABLE": false
+  },
+  {
+   "address": "0x5f5ff7786c2a5b053aa5edc88c517d79e0e5c52e",
+   "match": true,
+   "name": "microCOREVault",
+   "impl": null,
+   "lump_rewards": true,
+   "guard": "none (deposit+withdraw same block allowed)",
+   "bypassable": true,
+   "reward_token": null,
+   "reward_symbol": "?",
+   "reward_price_usd_est": null,
+   "reward_price_basis": null,
+   "reward_bal_in_vault": null,
+   "pools": [
+    {
+     "pid": 0,
+     "token": "0x09cc092ec5253d893afad0e3fb2a93219a87abbe",
+     "pair": "microCORE/WETH",
+     "both_blue": false,
+     "vault_share_of_pair": 0.0
+    }
+   ],
+   "bluechip_cheap_pools": 0,
+   "EXPLOITABLE_AND_VALUABLE": false
+  },
+  {
+   "address": "0x422d9dfd61ba0a7d5f95f12636b0fd90b34f9d55",
+   "match": true,
+   "name": "CoreVault",
+   "impl": null,
+   "lump_rewards": true,
+   "guard": "none (deposit+withdraw same block allowed)",
+   "bypassable": true,
+   "reward_token": "0xc9bd9e9da60ae51c0c38998d55a560daf95c3ba8",
+   "reward_symbol": "VCORE",
+   "reward_price_usd_est": null,
+   "reward_price_basis": null,
+   "reward_bal_in_vault": 216712641851206705,
+   "pools": [
+    {
+     "pid": 0,
+     "token": "0x9074046b1396fe0eada72673b36367c1c2a0dba7",
+     "pair": "$AAPL/VCORE",
+     "both_blue": false,
+     "vault_share_of_pair": 9e-06
+    }
+   ],
+   "bluechip_cheap_pools": 0,
+   "EXPLOITABLE_AND_VALUABLE": false
+  },
+  {
+   "address": "0x2014f150199e7957f865c3156a90d0ffbed1d4f7",
+   "match": true,
+   "name": "CoreVault",
+   "impl": null,
+   "lump_rewards": true,
+   "guard": "none (deposit+withdraw same block allowed)",
+   "bypassable": true,
+   "reward_token": "0x9d37057489ec025234d365287afa6df80869059a",
+   "reward_symbol": "FANC",
+   "reward_price_usd_est": null,
+   "reward_price_basis": null,
+   "reward_bal_in_vault": 0,
+   "pools": [
+    {
+     "pid": 0,
+     "token": "0x9a8829ccb5a256646841dc6843b06c4f0861d319",
+     "pair": "FANC/WETH",
+     "both_blue": false,
+     "vault_share_of_pair": 0
+    }
+   ],
+   "bluechip_cheap_pools": 0,
+   "EXPLOITABLE_AND_VALUABLE": false
+  },
+  {
+   "address": "0x275ad41c2b7eeb350bc5f9f2f2f24aac8fac7139",
+   "match": true,
+   "name": "TcoreVaultV1",
+   "impl": null,
+   "lump_rewards": true,
+   "guard": "none (deposit+withdraw same block allowed)",
+   "bypassable": true,
+   "reward_token": null,
+   "reward_symbol": "?",
+   "reward_price_usd_est": null,
+   "reward_price_basis": null,
+   "reward_bal_in_vault": null,
+   "pools": [
+    {
+     "pid": 0,
+     "token": "0x39c0edef530d284b8f7820061114157c5bd78093",
+     "pair": "TCORE/WETH",
+     "both_blue": false,
+     "vault_share_of_pair": 1.1e-05
+    }
+   ],
+   "bluechip_cheap_pools": 0,
+   "EXPLOITABLE_AND_VALUABLE": false
+  },
+  {
+   "address": "0x37cc0b078f75b786bb235ed057f1eb83e95f912f",
+   "match": true,
+   "name": "CoreVault",
+   "impl": null,
+   "lump_rewards": true,
+   "guard": "none (deposit+withdraw same block allowed)",
+   "bypassable": true,
+   "reward_token": "0xe3082228168a256598ceeefbf1cfbe11998ae9f2",
+   "reward_symbol": "STCP",
+   "reward_price_usd_est": 1.8923578217296855,
+   "reward_price_basis": "WETH-pair",
+   "reward_bal_in_vault": 2216440348103716172362,
+   "pools": [
+    {
+     "pid": 0,
+     "token": "0x03796821fa2ffd32027c6d0fbe205d66053cdf99",
+     "pair": "WETH/STCP",
+     "both_blue": false,
+     "vault_share_of_pair": 0.85387
+    }
+   ],
+   "bluechip_cheap_pools": 0,
+   "EXPLOITABLE_AND_VALUABLE": false
+  },
+  {
+   "address": "0xdaeca59d122b51c815ecb8719629ef1306a32118",
+   "match": true,
+   "name": "CoreVault",
+   "impl": null,
+   "lump_rewards": true,
+   "guard": "none (deposit+withdraw same block allowed)",
+   "bypassable": true,
+   "reward_token": null,
+   "reward_symbol": "?",
+   "reward_price_usd_est": null,
+   "reward_price_basis": null,
+   "reward_bal_in_vault": null,
+   "pools": [],
+   "bluechip_cheap_pools": 0,
+   "EXPLOITABLE_AND_VALUABLE": false
+  },
+  {
+   "address": "0x9dbbfebf347758c5ef6b96fddcb0f6d0fa840220",
+   "match": true,
+   "name": "CoreVault",
+   "impl": null,
+   "lump_rewards": true,
+   "guard": "none (deposit+withdraw same block allowed)",
+   "bypassable": true,
+   "reward_token": null,
+   "reward_symbol": "?",
+   "reward_price_usd_est": null,
+   "reward_price_basis": null,
+   "reward_bal_in_vault": null,
+   "pools": [],
+   "bluechip_cheap_pools": 0,
+   "EXPLOITABLE_AND_VALUABLE": false
+  },
+  {
+   "address": "0xc42b4eae71ec4ab7b8328e7e3140ae03ea5c9b98",
+   "match": true,
+   "name": "CoreVault",
+   "impl": null,
+   "lump_rewards": true,
+   "guard": "none (deposit+withdraw same block allowed)",
+   "bypassable": true,
+   "reward_token": null,
+   "reward_symbol": "?",
+   "reward_price_usd_est": null,
+   "reward_price_basis": null,
+   "reward_bal_in_vault": null,
+   "pools": [],
+   "bluechip_cheap_pools": 0,
+   "EXPLOITABLE_AND_VALUABLE": false
+  },
+  {
+   "address": "0x16c0a1d938415bb12fda3900e4a8d7967c276994",
+   "match": true,
+   "name": "CoreVault",
+   "impl": null,
+   "lump_rewards": true,
+   "guard": "none (deposit+withdraw same block allowed)",
+   "bypassable": true,
+   "reward_token": null,
+   "reward_symbol": "?",
+   "reward_price_usd_est": null,
+   "reward_price_basis": null,
+   "reward_bal_in_vault": null,
+   "pools": [],
+   "bluechip_cheap_pools": 0,
+   "EXPLOITABLE_AND_VALUABLE": false
+  },
+  {
+   "address": "0xd0ea2a4771e7ce09f2cc02d69ebf9d41a85cf161",
+   "match": true,
+   "name": "CoreVault",
+   "impl": null,
+   "lump_rewards": true,
+   "guard": "none (deposit+withdraw same block allowed)",
+   "bypassable": true,
+   "reward_token": null,
+   "reward_symbol": "?",
+   "reward_price_usd_est": null,
+   "reward_price_basis": null,
+   "reward_bal_in_vault": null,
+   "pools": [],
+   "bluechip_cheap_pools": 0,
+   "EXPLOITABLE_AND_VALUABLE": false
+  },
+  {
+   "address": "0x556176e9e4bd34b853631b2a5c1c7b2f96348f2c",
+   "match": true,
+   "name": "CoreVault",
+   "impl": null,
+   "lump_rewards": true,
+   "guard": "none (deposit+withdraw same block allowed)",
+   "bypassable": true,
+   "reward_token": "0x62359ed7505efc61ff1d56fef82158ccaffa23d7",
+   "reward_symbol": "CORE",
+   "reward_price_usd_est": 5824.408989775735,
+   "reward_price_basis": "WETH-pair",
+   "reward_bal_in_vault": 0,
+   "pools": [],
+   "bluechip_cheap_pools": 0,
+   "EXPLOITABLE_AND_VALUABLE": false
+  },
+  {
+   "address": "0x47fdb27ad77aa44b93de5281f800911b6725d90f",
+   "match": true,
+   "name": "HdcoreVaultV2",
+   "impl": null,
+   "lump_rewards": true,
+   "guard": "none (deposit+withdraw same block allowed)",
+   "bypassable": true,
+   "reward_token": null,
+   "reward_symbol": "?",
+   "reward_price_usd_est": null,
+   "reward_price_basis": null,
+   "reward_bal_in_vault": null,
+   "pools": [
+    {
+     "pid": 0,
+     "token": "0x8dfd6f03580f8ee88587f4c051aab7193d7bdf8a",
+     "pair": "HDCORE/WETH",
+     "both_blue": false,
+     "vault_share_of_pair": 0.392166
+    }
+   ],
+   "bluechip_cheap_pools": 0,
+   "EXPLOITABLE_AND_VALUABLE": false
+  },
+  {
+   "address": "0xb30435da27bd3b88e2bf8550bcdbe3f681bc3280",
+   "match": true,
+   "name": "EncoreVault",
+   "impl": null,
+   "lump_rewards": true,
+   "guard": "none (deposit+withdraw same block allowed)",
+   "bypassable": true,
+   "reward_token": null,
+   "reward_symbol": "?",
+   "reward_price_usd_est": null,
+   "reward_price_basis": null,
+   "reward_bal_in_vault": null,
+   "pools": [],
+   "bluechip_cheap_pools": 0,
+   "EXPLOITABLE_AND_VALUABLE": false
+  },
+  {
+   "address": "0xa5e54a3fe50f78508ec7322c09e00d049996ffe7",
+   "match": true,
+   "name": "dfcoreVault",
+   "impl": null,
+   "lump_rewards": true,
+   "guard": "none (deposit+withdraw same block allowed)",
+   "bypassable": true,
+   "reward_token": null,
+   "reward_symbol": "?",
+   "reward_price_usd_est": null,
+   "reward_price_basis": null,
+   "reward_bal_in_vault": null,
+   "pools": [
+    {
+     "pid": 0,
+     "token": "0xc8a1585b49f691a990b02e7e0d80697e08b13c33",
+     "pair": "DFCORE/WETH",
+     "both_blue": false,
+     "vault_share_of_pair": 0
+    }
+   ],
+   "bluechip_cheap_pools": 0,
+   "EXPLOITABLE_AND_VALUABLE": false
+  },
+  {
+   "address": "0x566e0099d68e820f605ea4a9b5fa72a3bda30f18",
+   "match": true,
+   "name": "decoreVault",
+   "impl": null,
+   "lump_rewards": true,
+   "guard": "none (deposit+withdraw same block allowed)",
+   "bypassable": true,
+   "reward_token": null,
+   "reward_symbol": "?",
+   "reward_price_usd_est": null,
+   "reward_price_basis": null,
+   "reward_bal_in_vault": null,
+   "pools": [],
+   "bluechip_cheap_pools": 0,
+   "EXPLOITABLE_AND_VALUABLE": false
+  },
+  {
+   "address": "0x56fded949e920666d653c7467a1982095c84914b",
+   "match": true,
+   "name": "EncoreVault",
+   "impl": null,
+   "lump_rewards": true,
+   "guard": "none (deposit+withdraw same block allowed)",
+   "bypassable": true,
+   "reward_token": null,
+   "reward_symbol": "?",
+   "reward_price_usd_est": null,
+   "reward_price_basis": null,
+   "reward_bal_in_vault": null,
+   "pools": [],
+   "bluechip_cheap_pools": 0,
+   "EXPLOITABLE_AND_VALUABLE": false
+  },
+  {
+   "address": "0x4ec3bc3f1ad02cb60ce08afe88eecacfe75a4a73",
+   "match": true,
+   "name": "HdcoreVault",
+   "impl": null,
+   "lump_rewards": true,
+   "guard": "none (deposit+withdraw same block allowed)",
+   "bypassable": true,
+   "reward_token": null,
+   "reward_symbol": "?",
+   "reward_price_usd_est": null,
+   "reward_price_basis": null,
+   "reward_bal_in_vault": null,
+   "pools": [
+    {
+     "pid": 0,
+     "token": "0x97436dcc1c27b7d8ebfae5da59ed2caeeedb9766",
+     "pair": "HDCORE/WETH",
+     "both_blue": false,
+     "vault_share_of_pair": 0.0
+    }
+   ],
+   "bluechip_cheap_pools": 0,
+   "EXPLOITABLE_AND_VALUABLE": false
+  },
+  {
+   "address": "0x97a97908748285a0d0856d0a61909bad572b2fd4",
+   "match": true,
+   "name": "CoreVault",
+   "impl": null,
+   "lump_rewards": true,
+   "guard": "none (deposit+withdraw same block allowed)",
+   "bypassable": true,
+   "reward_token": null,
+   "reward_symbol": "?",
+   "reward_price_usd_est": null,
+   "reward_price_basis": null,
+   "reward_bal_in_vault": null,
+   "pools": [],
+   "bluechip_cheap_pools": 0,
+   "EXPLOITABLE_AND_VALUABLE": false
+  }
+ ]
+}

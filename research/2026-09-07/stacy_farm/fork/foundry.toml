@@ -1,0 +1,10 @@
+[profile.default]
+src = "src"
+test = "test"
+libs = ["../../captive_flow_lp/fork/lib"]
+solc = "0.8.26"
+evm_version = "cancun"
+optimizer = true
+optimizer_runs = 200
+via_ir = true
+ffi = false
