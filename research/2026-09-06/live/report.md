@@ -1,6 +1,6 @@
-# Ethereum mainnet live scan: 2026-09-07T17:33:23+00:00 to 2026-09-07T18:33:47+00:00 UTC
+# Ethereum mainnet live scan: 2026-09-07T17:35:23+00:00 to 2026-09-07T18:35:47+00:00 UTC
 
-Blocks 25926995 to 25927295 (301 blocks, 1.01 h), 86,360 transactions, 250,281 logs. Prices at head block 25918661: ETH $2497, BTC $80k. Generated 2026-09-07T18:34:05+00:00 UTC by `scripts/live_scan.py`; the narrative section is written by the LLM from `analysis.json` and `head_state.json`, every table below is deterministic.
+Blocks 25927005 to 25927305 (301 blocks, 1.01 h), 86,387 transactions, 253,371 logs. Prices at head block 25918661: ETH $2497, BTC $80k. Generated 2026-09-07T18:36:02+00:00 UTC by `scripts/live_scan.py`; the narrative section is written by the LLM from `analysis.json` and `head_state.json`, every table below is deterministic.
 
 ## Insights (LLM narrative, written from `analysis.json`, `head_state.json` and `midnight_2026-09-06.json`)
 
@@ -115,45 +115,45 @@ Per pool with at least 3 priced swaps and $200k of volume. `full-range capital` 
 
 | pool | venue | pair | tier | swaps | volume | fees | to JIT | passive fees | full-range capital | APR full-range | APR ±1% band | price range |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 0x9035…eb4f | uni v4 | RLUSD/USDS | 0.00% | 39 | $7.9M | $47 | $0 | $47 | $40.0B | 0.00% | 0.2% | 0.012% |
-| 0x0fb0…3239 | uni v4 | USDC/USDT | 0.00% | 125 | $6.9M | $62 | $0 | $61 | $39.4B | 0.00% | 0.3% | 0.508% |
-| 0x3b1b…d5b9 | uni v4 | USDT/USDS | 0.00% | 59 | $3.1M | $19 | $0 | $19 | $100.0B | 0.00% | 0.0% | 0.002% |
-| [0x88e6…5640](https://etherscan.io/address/0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640) | uni v3 | USDC/WETH | 0.05% | 218 | $1.8M | $879 | $0 | $879 | $512.2M | 1.49% | 299.9% | 0.417% |
-| [0x4e68…fa36](https://etherscan.io/address/0x4e68ccd3e89f51c3074ca5072bbac773960dfa36) | uni v3 | WETH/USDT | 0.30% | 44 | $1.2M | $3615 | $0 | $3615 | $1.8B | 1.76% | 353.9% | 0.269% |
-| [0xe055…939f](https://etherscan.io/address/0xe0554a476a092703abdb3ef35c80e0d76d32939f) | uni v3 | USDC/WETH | 0.01% | 880 | $1.1M | $109 | $0 | $109 | $50.5M | 1.88% | 377.9% | 0.525% |
+| 0x9035…eb4f | uni v4 | RLUSD/USDS | 0.00% | 40 | $8.1M | $49 | $0 | $49 | $40.0B | 0.00% | 0.2% | 0.012% |
+| 0x0fb0…3239 | uni v4 | USDC/USDT | 0.00% | 127 | $6.9M | $62 | $0 | $62 | $39.4B | 0.00% | 0.3% | 0.508% |
+| 0x3b1b…d5b9 | uni v4 | USDT/USDS | 0.00% | 60 | $3.3M | $20 | $0 | $20 | $100.0B | 0.00% | 0.0% | 0.002% |
+| [0x88e6…5640](https://etherscan.io/address/0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640) | uni v3 | USDC/WETH | 0.05% | 208 | $1.7M | $864 | $0 | $864 | $512.2M | 1.46% | 294.8% | 0.417% |
+| [0x4e68…fa36](https://etherscan.io/address/0x4e68ccd3e89f51c3074ca5072bbac773960dfa36) | uni v3 | WETH/USDT | 0.30% | 48 | $1.2M | $3615 | $0 | $3615 | $1.8B | 1.76% | 353.9% | 0.269% |
+| [0xe055…939f](https://etherscan.io/address/0xe0554a476a092703abdb3ef35c80e0d76d32939f) | uni v3 | USDC/WETH | 0.01% | 891 | $1.1M | $109 | $0 | $109 | $50.5M | 1.88% | 377.8% | 0.525% |
 | [0xabfc…ecda](https://etherscan.io/address/0xabfca96716cf2911bbb50a4cdbcbaffa2ef8ecda) | uni v3 | USD0++/USD0 | ? | 26 | $818k | – | $0 | – | $244.2M | – | – | 0.322% |
-| [0x4f49…3c85](https://etherscan.io/address/0x4f493b7de8aac7d55f71853688b1f7c8f0243c85) | curve | USDC/USDT | ? | 26 | $673k | – | $0 | – | – | – | – | – |
-| [0x4585…20c0](https://etherscan.io/address/0x4585fe77225b41b697c938b018e2ac67ac5a20c0) | uni v3 | WBTC/WETH | 0.05% | 40 | $450k | $225 | $0 | $225 | $356.6M | 0.55% | 110.2% | 0.248% |
-| [0xa6cc…93e8](https://etherscan.io/address/0xa6cc3c2531fdaa6ae1a3ca84c2855806728693e8) | uni v3 | LINK/WETH | ? | 46 | $371k | – | $0 | – | $134.0M | – | – | 1.299% |
-| [0x3416…27c6](https://etherscan.io/address/0x3416cf6c708da44db2624d63ea0aaef7113527c6) | uni v3 | USDC/USDT | 0.01% | 62 | $320k | $32 | $0 | $32 | $32.3B | 0.00% | 0.2% | 0.002% |
-| 0x00b9…22d7 | uni v4 | ETH/USDC | 0.01% | 239 | $315k | $39 | $0 | $39 | $1.7M | 20.51% | 4133.6% | 47.894% |
+| [0x4f49…3c85](https://etherscan.io/address/0x4f493b7de8aac7d55f71853688b1f7c8f0243c85) | curve | USDC/USDT | ? | 26 | $683k | – | $0 | – | – | – | – | – |
+| [0x4585…20c0](https://etherscan.io/address/0x4585fe77225b41b697c938b018e2ac67ac5a20c0) | uni v3 | WBTC/WETH | 0.05% | 38 | $424k | $212 | $0 | $212 | $356.5M | 0.52% | 103.9% | 0.248% |
+| [0xa6cc…93e8](https://etherscan.io/address/0xa6cc3c2531fdaa6ae1a3ca84c2855806728693e8) | uni v3 | LINK/WETH | ? | 49 | $371k | – | $0 | – | $135.3M | – | – | 1.299% |
+| [0x3416…27c6](https://etherscan.io/address/0x3416cf6c708da44db2624d63ea0aaef7113527c6) | uni v3 | USDC/USDT | 0.01% | 62 | $321k | $32 | $0 | $32 | $32.3B | 0.00% | 0.2% | 0.002% |
 | [0xe8f7…e124](https://etherscan.io/address/0xe8f7c89c5efa061e340f2d2f206ec78fd8f7e124) | uni v3 | WBTC/cbBTC | ? | 7 | $314k | – | $0 | – | $47.9B | – | – | 0.002% |
-| [0xc7bb…0e9b](https://etherscan.io/address/0xc7bbec68d12a0d1830360f8ec58fa599ba1b0e9b) | uni v3 | WETH/USDT | 0.01% | 518 | $290k | $29 | $0 | $29 | $20.4M | 1.23% | 247.6% | 0.567% |
-| [0x11b8…97f6](https://etherscan.io/address/0x11b815efb8f581194ae79006d24e0d814b7697f6) | uni v3 | WETH/USDT | 0.05% | 97 | $248k | $124 | $0 | $124 | $57.3M | 1.88% | 378.9% | 0.427% |
+| 0x00b9…22d7 | uni v4 | ETH/USDC | 0.01% | 230 | $313k | $39 | $0 | $39 | $1.7M | 20.42% | 4115.2% | 47.894% |
+| [0xc7bb…0e9b](https://etherscan.io/address/0xc7bbec68d12a0d1830360f8ec58fa599ba1b0e9b) | uni v3 | WETH/USDT | 0.01% | 519 | $291k | $29 | $0 | $29 | $20.4M | 1.23% | 248.5% | 0.567% |
+| 0x56fc…48c1 | uni v4 | USDe/USDC | 0.00% | 13 | $282k | $9 | $0 | $9 | $16.7B | 0.00% | 0.1% | 0.005% |
+| 0x8aa4…4e47 | uni v4 | ETH/USDT | 0.00% | 29 | $254k | $3 | $0 | $3 | $18.1B | 0.00% | 0.0% | 0.002% |
+| [0x11b8…97f6](https://etherscan.io/address/0x11b815efb8f581194ae79006d24e0d814b7697f6) | uni v3 | WETH/USDT | 0.05% | 99 | $248k | $124 | $0 | $124 | $57.3M | 1.88% | 378.0% | 0.427% |
 | [0xc292…e1e7](https://etherscan.io/address/0xc2921134073151490193ac7369313c8e0b08e1e7) | curve | USDC/USDtb | ? | 4 | $244k | – | $0 | – | – | – | – | – |
-| 0x56fc…48c1 | uni v4 | USDe/USDC | 0.00% | 12 | $240k | $7 | $0 | $7 | $16.7B | 0.00% | 0.1% | 0.005% |
-| 0x2287…1bba | uni v4 | ETH/USDT | 0.01% | 178 | $216k | $27 | $0 | $27 | $2.2M | 10.64% | 2143.9% | 23.696% |
+| 0x2287…1bba | uni v4 | ETH/USDT | 0.01% | 174 | $215k | $27 | $0 | $27 | $2.2M | 10.60% | 2136.0% | 23.696% |
 | 0x94ae…cde0 | uni v4 | 0x01a8…50ad/WBTC | 0.01% | 10 | $213k | $27 | $0 | $27 | $3.3B | 0.01% | 1.4% | – |
-| 0x8aa4…4e47 | uni v4 | ETH/USDT | 0.00% | 26 | $208k | $2 | $0 | $2 | $18.1B | 0.00% | 0.0% | 0.001% |
 | 0x50b0…5fa8 | uni v4 | ETH/USDT | 0.35% | 8 | $204k | $715 | $0 | $715 | $301.9M | 2.05% | 414.1% | 0.177% |
 | [0xc061…1622](https://etherscan.io/address/0xc061caa073f3d95f80f8e5428d32d2d76f5e1622) | curve | USDC/USDG | ? | 6 | $203k | – | $0 | – | – | – | – | – |
-| 0x395f…13a5 | uni v4 | USDC/USDT | 0.00% | 40 | $201k | $2 | $0 | $2 | $10.9B | 0.00% | 0.0% | 0.002% |
+| 0x395f…13a5 | uni v4 | USDC/USDT | 0.00% | 41 | $202k | $2 | $0 | $2 | $10.9B | 0.00% | 0.0% | 0.002% |
 
-Just-in-time liquidity: 16 episodes (mint and burn of identical liquidity inside one block), bracketing $23k of swaps and taking about $5 of fees. Operators:
+Just-in-time liquidity: 13 episodes (mint and burn of identical liquidity inside one block), bracketing $22k of swaps and taking about $5 of fees. Operators:
 
-- [0xae2f…ae13](https://etherscan.io/address/0xae2fc483527b8ef99eb5d9b44875f005ba1fae13): 4 episodes, fees taken $0
 - [0xe204…4ae5](https://etherscan.io/address/0xe20446cccbfd5f9038e747f1dea8016ecbd94ae5): 3 episodes, fees taken $0
 - [0x654f…4be4](https://etherscan.io/address/0x654fae4aa229d104cabead47e56703f58b174be4): 2 episodes, fees taken $0
+- [0xae2f…ae13](https://etherscan.io/address/0xae2fc483527b8ef99eb5d9b44875f005ba1fae13): 2 episodes, fees taken $0
 - [0x27c2…2bf2](https://etherscan.io/address/0x27c2a1733f14e1247c5feb1c37cd52ae7d0d2bf2): 2 episodes, fees taken $2
-- [0xb585…af7b](https://etherscan.io/address/0xb58555fcba6479fced7de1485eb054943a09af7b): 1 episodes, fees taken $1
 - [0xc623…67c2](https://etherscan.io/address/0xc623b0b546bf3031ba88a583a46d5180df8d67c2): 1 episodes, fees taken $3
 - [0xaaa0…ffff](https://etherscan.io/address/0xaaa0bf2e340c2125603b8ffd4ec30faea08effff): 1 episodes, fees taken $0
 - [0x387d…5e1d](https://etherscan.io/address/0x387d6bff613b2ede01cadf6e9b5d6c93aa015e1d): 1 episodes, fees taken $0
+- [0x5ed1…246c](https://etherscan.io/address/0x5ed14035c5a671a8122fac3720350154007f246c): 1 episodes, fees taken $0
 
-Swap volume by venue: uniswap_v4 $21.9M (3290), uniswap_v3 $8.4M (5338), curve $1.6M (302), uniswap_v2_like $685k (2646), balancer $83k (63).
+Swap volume by venue: uniswap_v4 $22.5M (3317), uniswap_v3 $8.3M (5360), curve $1.6M (298), uniswap_v2_like $690k (2688), balancer $83k (65).
 
 
-Uniswap v4 pools whose reported swap deltas were not matched by tokens moving through the PoolManager (hook-settled; excluded from volume): 0x67e5…f24d (0x0000…0000/0x319e…c2c2, 51 swaps); 0x78db…82b4 (0x0000…0000/0x306c…1b07, 49 swaps); 0xadc5…36ae (0x75af…c791/0xc9ee…5581, 39 swaps); 0xdbeb…8cb3 (0x0000…0000/0x8602…2148, 36 swaps); 0x1ba3…1365 (0x0000…0000/0x0a5a…2477, 28 swaps); 0xdb4c…43b1 (0x0000…0000/0xc8fb…8888, 23 swaps); 0x2287…1bba (0x0000…0000/0xdac1…1ec7, 20 swaps); 0x00b9…22d7 (0x0000…0000/0xa0b8…eb48, 19 swaps); 0x8be5…d274 (0x0000…0000/0x53d3…4b07, 17 swaps); 0x230e…804d (0x0000…0000/0xa0df…c845, 16 swaps).
+Uniswap v4 pools whose reported swap deltas were not matched by tokens moving through the PoolManager (hook-settled; excluded from volume): 0x78db…82b4 (0x0000…0000/0x306c…1b07, 49 swaps); 0x67e5…f24d (0x0000…0000/0x319e…c2c2, 48 swaps); 0xdbeb…8cb3 (0x0000…0000/0x8602…2148, 36 swaps); 0x1ba3…1365 (0x0000…0000/0x0a5a…2477, 27 swaps); 0x230e…804d (0x0000…0000/0xa0df…c845, 26 swaps); 0xdb4c…43b1 (0x0000…0000/0xc8fb…8888, 23 swaps); 0x2287…1bba (0x0000…0000/0xdac1…1ec7, 21 swaps); 0xadc5…36ae (0x75af…c791/0xc9ee…5581, 20 swaps); 0x00b9…22d7 (0x0000…0000/0xa0b8…eb48, 19 swaps); 0x8be5…d274 (0x0000…0000/0x53d3…4b07, 17 swaps).
 
 
 ## B. Lending: rates, utilisation, dispersion, health
@@ -205,30 +205,30 @@ Rate moves inside the window (`ReserveDataUpdated`, variable borrow APR range):
 |---|---|---|---|---|---|
 | Aave v3 | USDe | 10 | 5.35% → 5.90% | 5.35% – 5.90% | 1.62% → 1.79% |
 | Aave v3 | RLUSD | 7 | 4.49% → 4.82% | 4.48% – 4.91% | 2.28% → 2.87% |
-| Aave v3 | USDT | 38 | 4.26% → 4.28% | 4.26% – 4.28% | 3.57% → 3.61% |
-| Aave v3 | WETH | 68 | 2.02% → 2.02% | 2.01% – 2.02% | 1.42% → 1.42% |
-| Aave v3 | USDC | 91 | 4.28% → 4.28% | 4.28% – 4.28% | 3.60% → 3.60% |
-| Aave v3 | USDG | 2 | 3.62% → 3.62% | 3.62% – 3.62% | 1.68% → 1.68% |
+| Aave v3 | USDT | 37 | 4.26% → 4.28% | 4.26% – 4.28% | 3.57% → 3.61% |
+| Aave v3 | WETH | 67 | 2.02% → 2.02% | 2.01% – 2.02% | 1.42% → 1.42% |
+| Aave v3 | USDC | 90 | 4.28% → 4.28% | 4.28% – 4.28% | 3.60% → 3.60% |
 | SparkLend | USDT | 5 | 3.52% → 3.52% | 3.51% – 3.52% | 2.62% → 2.62% |
 | Aave v3 | USDS | 2 | 5.52% → 5.52% | 5.52% – 5.52% | 0.12% → 0.12% |
+| Aave v3 | USDG | 2 | 3.62% → 3.62% | 3.62% – 3.62% | 1.68% → 1.68% |
 | SparkLend | WETH | 3 | 1.96% → 1.96% | 1.96% – 1.96% | 1.55% → 1.55% |
-| Aave v3 | wstETH | 11 | 0.00% → 0.00% | 0.00% – 0.00% | 0.00% → 0.00% |
-| Aave v3 | sUSDe | 7 | 0.00% → 0.00% | 0.00% – 0.00% | 0.00% → 0.00% |
+| Aave v3 | sUSDe | 6 | 0.00% → 0.00% | 0.00% – 0.00% | 0.00% → 0.00% |
 | Aave v3 | UNI | 1 | 0.17% → 0.17% | 0.17% – 0.17% | 0.00% → 0.00% |
 | Aave v3 | GHO | 1 | 4.00% → 4.00% | 4.00% – 4.00% | 0.00% → 0.00% |
 | Aave v3 | WBTC | 17 | 0.34% → 0.34% | 0.34% – 0.34% | 0.00% → 0.00% |
 | SparkLend | weETH | 1 | 5.00% → 5.00% | 5.00% – 5.00% | 0.00% → 0.00% |
 | Aave v3 | EURC | 2 | 4.06% → 4.06% | 4.06% – 4.06% | 2.42% → 2.42% |
+| Aave v3 | wstETH | 10 | 0.00% → 0.00% | 0.00% – 0.00% | 0.00% → 0.00% |
 | Aave v3 | DAI | 1 | 4.72% → 4.72% | 4.72% – 4.72% | 3.07% → 3.07% |
 | SparkLend | USDC | 1 | 4.27% → 4.27% | 4.27% – 4.27% | 3.54% → 3.54% |
-| Aave v3 | cbBTC | 4 | 0.28% → 0.28% | 0.28% – 0.28% | 0.00% → 0.00% |
+| Aave v3 | cbBTC | 5 | 0.28% → 0.28% | 0.28% – 0.28% | 0.00% → 0.00% |
 | Aave v3 | AAVE | 3 | 0.00% → 0.00% | 0.00% – 0.00% | 0.00% → 0.00% |
 | SparkLend | LBTC | 1 | 5.00% → 5.00% | 5.00% – 5.00% | 0.00% → 0.00% |
 | Aave v3 | LINK | 4 | 0.47% → 0.47% | 0.47% – 0.47% | 0.01% → 0.01% |
 | SparkLend | WBTC | 1 | 0.01% → 0.01% | 0.01% – 0.01% | 0.00% → 0.00% |
 | Aave v3 | 0x59bc…9d34 | 2 | 0.00% → 0.00% | 0.00% – 0.00% | 0.00% → 0.00% |
 
-Volumes by venue and kind: Aave v3: supply $6.3M, withdraw $23.2M, borrow $5.5M, repay $5.6M, atomic supply $63.3M, atomic withdraw $60.3M; SparkLend: withdraw $1.4M, repay $242k, borrow $13k, supply $24k.
+Volumes by venue and kind: Aave v3: repay $5.6M, withdraw $23.2M, supply $6.3M, borrow $5.4M, atomic supply $63.3M, atomic withdraw $60.3M; SparkLend: withdraw $1.4M, repay $242k, borrow $13k, supply $24k.
 
 
 Largest operations (≥ $250k):
@@ -273,7 +273,7 @@ Health of the accounts active in the window (Aave/Spark `getUserAccountData` at 
 | SparkLend | [0x1601…347e](https://etherscan.io/address/0x1601843c5e9bc251a3272907010afa41fa18347e) | $55.0M | $0 | ∞ | – |
 | SparkLend | [0x8113…82d3](https://etherscan.io/address/0x81133a5d99fd133be1c0d16ec72aee5c83fe82d3) | $0 | $0 | ∞ | – |
 
-Flash loans (events): BalFlash 229 ($16.4M), MorphoFlash 10 ($15k).
+Flash loans (events): BalFlash 230 ($16.4M), MorphoFlash 10 ($15k).
 
 
 Atomic borrow/repay or withdraw/supply cycles inside one transaction (a lending pool used as flash liquidity; excluded from the tables above):
@@ -287,17 +287,17 @@ Volume-weighted implied price from every priced swap in the window (the referenc
 
 | token | swaps | volume | implied USD (vw) | p10 – p90 | reference | deviation |
 |---|---|---|---|---|---|---|
-| USDT | 138 | $8.0M | 0.999816 | 0.999789 – 0.999819 | 1.00008 | -2.6 bps |
-| USDS | 79 | $7.3M | 0.999971 | 0.99982 – 1.00014 | 1 | -0.3 bps |
-| RLUSD | 16 | $3.9M | 1.00017 | 1.00015 – 1.0002 | 1 | +1.7 bps |
+| USDT | 141 | $8.1M | 0.999816 | 0.99979 – 0.999821 | 1.00008 | -2.6 bps |
+| USDS | 80 | $7.4M | 0.999978 | 0.999821 – 1.00014 | 1 | -0.2 bps |
+| RLUSD | 17 | $4.1M | 1.00017 | 1.00015 – 1.0002 | 1 | +1.7 bps |
 | USD0 | 20 | $449k | 1.02681 | 0.998715 – 1.02867 | 1 | +268.1 bps |
 | USD0++ | 23 | $406k | 0.972733 | 0.971291 – 0.973804 | 1 | -272.7 bps |
-| USDG | 29 | $373k | 1.00013 | 1.00011 – 1.00041 | 1 | +1.3 bps |
-| USDe | 21 | $295k | 0.99985 | 0.999739 – 1.00007 | 1 | -1.5 bps |
+| USDG | 31 | $377k | 1.00013 | 1.00011 – 1.00041 | 1 | +1.3 bps |
+| USDe | 22 | $338k | 0.99985 | 0.999739 – 1.00007 | 1 | -1.5 bps |
 | USDtb | 3 | $244k | 0.999954 | 0.999784 – 0.999969 | 1 | -0.5 bps |
 | sUSDe | 12 | $196k | 1.2464 | 1.24633 – 1.24658 | 1.24678 | -3.1 bps |
-| crvUSD | 17 | $151k | 1.00058 | 0.99969 – 1.0097 | 1 | +5.8 bps |
-| wstETH | 18 | $69k | 3112 | 3103.91 – 3138.86 | 3109.45 | +8.2 bps |
+| crvUSD | 13 | $140k | 1.00064 | 0.99969 – 1.0097 | 1 | +6.4 bps |
+| wstETH | 17 | $62k | 3112.76 | 3103.91 – 3138.86 | 3109.45 | +10.7 bps |
 
 ## D. Exchange flow, large transfers, round trips, scheduled flow
 
@@ -305,20 +305,20 @@ Net flow into tagged exchange wallets and deposit sinks by asset (address book: 
 
 | asset | in | out | net |
 |---|---|---|---|
-| USDC | $117.8M | $188.5M | $-70.7M |
-| USDT | $20.7M | $51.9M | $-31.2M |
-| ETH | $14.0M | $15.6M | $-1.6M |
+| USDC | $117.8M | $179.3M | $-61.5M |
+| USDT | $20.2M | $52.5M | $-32.3M |
+| ETH | $14.0M | $15.7M | $-1.7M |
 | USDG | $7.7M | $12.6M | $-5.0M |
-| LINK | $3.7M | $4.2M | $-502k |
-| WETH | $3.3M | $3.0M | $232k |
 | USDS | $2.9M | $2.9M | $7600 |
+| WETH | $2.5M | $2.4M | $191k |
+| LINK | $447k | $4.2M | $-3.7M |
 | RLUSD | $852k | $3.7M | $-2.8M |
-| WBTC | $2.1M | $1.9M | $175k |
+| WBTC | $2.2M | $2.0M | $175k |
 | USDe | $1.2M | $1.4M | $-186k |
 | sUSDS | $1.2M | $1.2M | $0 |
-| cbBTC | $400k | $840k | $-440k |
+| cbBTC | $368k | $808k | $-440k |
 
-By label: Coinbase 11 (memory) in $80.5M / out $124.7M; deposit sink (behaviour, day study) in $33.4M / out $31.4M; hot wallet (day study, unidentified) in $6.7M / out $46.9M; hot wallet (behaviour, day study) in $20.0M / out $27.3M; Bitfinex 2 (memory) in $47k / out $23.3M; Coinbase 10 (memory) in $12.4M / out $7.9M; Binance 14 (memory) in $13.0M / out $2.8M; exchange deposit contract (day study, unidentified) in $12.0M / out $2.1M; Binance 15 (memory) in $0 / out $7.1M; Binance 17 (memory) in $0 / out $3.4M; exchange hot wallet with USDG desk (day study) in $0 / out $2.9M; Binance 18 (memory) in $0 / out $2.5M.
+By label: Coinbase 11 (memory) in $80.5M / out $115.6M; deposit sink (behaviour, day study) in $32.7M / out $30.8M; hot wallet (day study, unidentified) in $6.7M / out $46.9M; hot wallet (behaviour, day study) in $19.9M / out $27.3M; Bitfinex 2 (memory) in $47k / out $24.2M; Coinbase 10 (memory) in $8.9M / out $7.9M; Binance 14 (memory) in $13.0M / out $2.8M; exchange deposit contract (day study, unidentified) in $12.0M / out $2.1M; Binance 15 (memory) in $0 / out $7.1M; Binance 17 (memory) in $0 / out $3.4M; exchange hot wallet with USDG desk (day study) in $0 / out $2.9M; Bitget (memory) in $119k / out $2.3M.
 
 
 Largest transfers (≥ $5M, ERC-20 and native):
@@ -337,8 +337,6 @@ Largest transfers (≥ $5M, ERC-20 and native):
 | 25927195 | USDC | $90.3M | [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) | [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) | [0xfe4c…9238](https://etherscan.io/tx/0xfe4cd4469be5f9ab1fde0e5dc61211298590c47ad95fc354a36cb9dd5fd59238) |
 | 25927247 | USDC | $90.1M | [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) | [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) | [0x43be…6396](https://etherscan.io/tx/0x43be7611b8b543a1d3162b936da4d3725e143ccd450593856ad117536c226396) |
 | 25927247 | USDC | $90.1M | [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) | [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) | [0x43be…6396](https://etherscan.io/tx/0x43be7611b8b543a1d3162b936da4d3725e143ccd450593856ad117536c226396) |
-| 25927001 | USDC | $90.0M ×2 | [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) | [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) | [0x46cf…df65](https://etherscan.io/tx/0x46cf978891fdd2e4abb14cb903c84c3a99f37ec7d50ee69df626a5842c77df65) |
-| 25927001 | USDC | $90.0M ×2 | [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) | [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) | [0x46cf…df65](https://etherscan.io/tx/0x46cf978891fdd2e4abb14cb903c84c3a99f37ec7d50ee69df626a5842c77df65) |
 | 25927084 | USDC | $89.9M | [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) | [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) | [0xfcbd…7dd4](https://etherscan.io/tx/0xfcbd1c68458c81af85a7b9370b670736c42d05d342055e8928bdfdf9efa37dd4) |
 | 25927084 | USDC | $89.9M | [0xd226…9f89](https://etherscan.io/address/0xd226997439ecfbeff8e110c8c78c8a7eefd19f89) | [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) | [0xfcbd…7dd4](https://etherscan.io/tx/0xfcbd1c68458c81af85a7b9370b670736c42d05d342055e8928bdfdf9efa37dd4) |
 | 25927273 | USDC | $88.8M | [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) | [0x06cf…f5ef](https://etherscan.io/address/0x06cff7088619c7178f5e14f0b119458d08d2f5ef) | [0xb47d…0179](https://etherscan.io/tx/0xb47da578430591bf793d577ce33392ace841b65cbd411f0d9b63cde9fa770179) |
@@ -355,6 +353,8 @@ Largest transfers (≥ $5M, ERC-20 and native):
 | 25927076 | WETH | $28.1M | [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) | [0xf1de…a5e7](https://etherscan.io/address/0xf1dee164200decfa581a81330a746be7cf33a5e7) | [0x2933…bef2](https://etherscan.io/tx/0x29335ab4bec3b19c2df2f3dc9075491ce235db4e3f6db551261b2e44ded5bef2) |
 | 25927076 | WETH | $28.1M | [0xf1de…a5e7](https://etherscan.io/address/0xf1dee164200decfa581a81330a746be7cf33a5e7) | [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) | [0x2933…bef2](https://etherscan.io/tx/0x29335ab4bec3b19c2df2f3dc9075491ce235db4e3f6db551261b2e44ded5bef2) |
 | 25927155 | WETH | $28.1M ×2 | [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb) | [0x76f3…5b1a](https://etherscan.io/address/0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a) | [0x7dca…2825](https://etherscan.io/tx/0x7dca5bbefb2ebcd37de3ad56f1263a049f6f8e1ee42e3e9ea4994a6c7a452825) |
+| 25927155 | WETH | $28.1M ×2 | [0x76f3…5b1a](https://etherscan.io/address/0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a) | [0x4d5f…14e8](https://etherscan.io/address/0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8) | [0x7dca…2825](https://etherscan.io/tx/0x7dca5bbefb2ebcd37de3ad56f1263a049f6f8e1ee42e3e9ea4994a6c7a452825) |
+| 25927155 | WETH | $28.1M | [0x4d5f…14e8](https://etherscan.io/address/0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8) | [0x76f3…5b1a](https://etherscan.io/address/0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a) | [0x7dca…2825](https://etherscan.io/tx/0x7dca5bbefb2ebcd37de3ad56f1263a049f6f8e1ee42e3e9ea4994a6c7a452825) |
 
 Round trips (≥ $10M out and back within the window): $24.0M USDC from [0x0000…0000](https://etherscan.io/address/0x0000000000000000000000000000000000000000) via [0x55fe…44b8](https://etherscan.io/address/0x55fe002aeff02f77364de339a1292923a15844b8), back after 6 min; $24.0M USDC from [0x55fe…44b8](https://etherscan.io/address/0x55fe002aeff02f77364de339a1292923a15844b8) via [0xb8d4…c31d](https://etherscan.io/address/0xb8d4a4dfaa73c2c81868bf8c86a0f197c92cc31d), back after 3 min.
 
@@ -375,21 +375,21 @@ Largest swaps (≥ $1M):
 
 ## E. Bridges, issuance, staking
 
-Outbound: $6.6M in the window (CCTP USDC burns and LayerZero OFT sends); inbound CCTP mints $4.6M (100).
+Outbound: $6.6M in the window (CCTP USDC burns and LayerZero OFT sends); inbound CCTP mints $4.7M (96).
 
 | kind | token | destination | n | amount | top recipient |
 |---|---|---|---|---|---|
 | OFT | USDT | eid 30320 | 1 | $1.5M | – |
-| CCTP | USDC | Polygon | 10 | $1.0M | 0xf70da97812cb… $1.0M |
-| OFT | USDe | eid 30390 | 2 | $891k | – |
+| CCTP | USDC | Polygon | 9 | $1.0M | 0xf70da97812cb… $1.0M |
+| OFT | USDe | eid 30390 | 3 | $917k | – |
 | CCTP | USDC | Arbitrum | 13 | $667k | 0xb2152c5b6a46… $314k |
 | OFT | USDT | Polygon | 1 | $587k | – |
 | OFT | USDG | eid 30416 | 15 | $445k | – |
 | CCTP | USDC | Avalanche | 6 | $434k | 0x5e023c31e1d3… $413k |
 | OFT | USDT | eid 30420 | 8 | $332k | – |
 | OFT | USDG | eid 30274 | 2 | $315k | – |
-| CCTP | USDC | Base | 29 | $143k | 0xfa4fc4ec2f81… $115k |
-| CCTP | USDC | Solana | 21 | $70k | 311efc14817aee… $50k |
+| CCTP | USDC | Base | 31 | $143k | 0xfa4fc4ec2f81… $115k |
+| CCTP | USDC | Solana | 22 | $72k | 311efc14817aee… $50k |
 | CCTP | USDC | OP Mainnet | 5 | $53k | 0x3a6a72459518… $53k |
 | CCTP | USDC | domain 19 | 9 | $51k | 0xb21d281dedb1… $51k |
 | OFT | EURC | eid 30410 | 1 | $48k | – |
@@ -400,21 +400,21 @@ Outbound: $6.6M in the window (CCTP USDC burns and LayerZero OFT sends); inbound
 | OFT | USDC | Arbitrum | 1 | $500 | – |
 | CCTP | USDC | Linea | 1 | $296 | 0x7e63a5f1a8f0… $296 |
 
-Issuance totals: USDC mint $28.7M (211); USDC burn $90.6M (127). Largest: USDC mint $24.0M ([0x7813…667b](https://etherscan.io/tx/0x7813e2c3b73f32131931ee59a7bc2cd109e86a360f4ac947ee9abf2ba8ce667b)); USDC burn $24.0M ([0x2bf1…a6a6](https://etherscan.io/tx/0x2bf15d5577d1ef05041c139cdbf2adfad2d260d5ab9544cef2ff159119eda6a6)); USDC burn $16.4M ([0x9ccd…0b14](https://etherscan.io/tx/0x9ccdaee9d6329fc9b86151b3597c15370b7e023a33236ae47a6609893b040b14)); USDC burn $16.1M ([0xa124…0174](https://etherscan.io/tx/0xa12426f21027c0ea6f80b4cc97a9f16517e5cb6cb915d1589d3e0ed3ad5f0174)); USDC burn $9.8M ([0x3322…5059](https://etherscan.io/tx/0x33222b60f1f3565682258e6895aeafd05e8039f623c0be3eae5c1d0115d65059)).
+Issuance totals: USDC burn $81.5M (128); USDC mint $28.7M (208). Largest: USDC mint $24.0M ([0x7813…667b](https://etherscan.io/tx/0x7813e2c3b73f32131931ee59a7bc2cd109e86a360f4ac947ee9abf2ba8ce667b)); USDC burn $24.0M ([0x2bf1…a6a6](https://etherscan.io/tx/0x2bf15d5577d1ef05041c139cdbf2adfad2d260d5ab9544cef2ff159119eda6a6)); USDC burn $16.4M ([0x9ccd…0b14](https://etherscan.io/tx/0x9ccdaee9d6329fc9b86151b3597c15370b7e023a33236ae47a6609893b040b14)); USDC burn $16.1M ([0xa124…0174](https://etherscan.io/tx/0xa12426f21027c0ea6f80b4cc97a9f16517e5cb6cb915d1589d3e0ed3ad5f0174)); USDC burn $9.8M ([0x3322…5059](https://etherscan.io/tx/0x33222b60f1f3565682258e6895aeafd05e8039f623c0be3eae5c1d0115d65059)).
 
 
-WETH wrapped 1736 ETH, unwrapped 2769 ETH; Lido staked 18.2 ETH, withdrawal requests 5056.6 ETH; sUSDe cooldowns 2 for $366k.
+WETH wrapped 2074 ETH, unwrapped 3132 ETH; Lido staked 18.2 ETH, withdrawal requests 5056.6 ETH; sUSDe cooldowns 3 for $466k.
 
 
 ## F. Gas market and block production
 
-Base fee 0.12 → 0.091 gwei (min 0.051, median 0.081, max 0.12); blocks 50% full; median tip 0.086 gwei; 3.5% of transactions pay zero tip; builders: Titan (titanbuilder.xyz) 130,  Quasar (quasar.win)  66, Eureka (eurekabuilder.xyz) 39, BuilderNet 28, builder.ultrasound.money 5, gethgo1.26.4linux 4.
+Base fee 0.095 → 0.099 gwei (min 0.051, median 0.081, max 0.103); blocks 51% full; median tip 0.086 gwei; 3.5% of transactions pay zero tip; builders: Titan (titanbuilder.xyz) 130,  Quasar (quasar.win)  67, Eureka (eurekabuilder.xyz) 38, BuilderNet 30, builder.ultrasound.money 5, Nethermind v1.37.1 4.
 
 
-Most active senders: [0x9430…daf8](https://etherscan.io/address/0x9430801ebaf509ad49202aabc5f5bc6fd8a3daf8) 1797, [0x5594…ed53](https://etherscan.io/address/0x559432e18b281731c054cd703d4b49872be4ed53) 884, [Binance 14 (memory)](https://etherscan.io/address/0x28c6c06298d514db089934071355e5743bf21d60) 626, [hot wallet (behaviour, day study)](https://etherscan.io/address/0x6872b6630a3afcd3117191a8403c2002e13df7de) 501, [Binance 15 (memory)](https://etherscan.io/address/0x21a31ee1afc51d94c2efccaa2092ad1028285549) 474, [Binance 16 (memory)](https://etherscan.io/address/0xdfd5293d8e347dfe59e90efd55b2956a1343963d) 434, [Binance 17 (memory)](https://etherscan.io/address/0x56eddb7aa87536c09ccc2793473599fd21a8b17f) 375, [0xa034…7687](https://etherscan.io/address/0xa03400e098f4421b34a3a44a1b4e571419517687) 342, [0x7666…4c7c](https://etherscan.io/address/0x766606538ab13ea7234c2b1379a83448f2974c7c) 330, [Binance 18 (memory)](https://etherscan.io/address/0x9696f59e4d72e237be84ffd425dcad154bf96976) 324.
+Most active senders: [0x9430…daf8](https://etherscan.io/address/0x9430801ebaf509ad49202aabc5f5bc6fd8a3daf8) 1655, [0x5594…ed53](https://etherscan.io/address/0x559432e18b281731c054cd703d4b49872be4ed53) 899, [Binance 14 (memory)](https://etherscan.io/address/0x28c6c06298d514db089934071355e5743bf21d60) 631, [hot wallet (behaviour, day study)](https://etherscan.io/address/0x6872b6630a3afcd3117191a8403c2002e13df7de) 504, [Binance 15 (memory)](https://etherscan.io/address/0x21a31ee1afc51d94c2efccaa2092ad1028285549) 473, [Binance 16 (memory)](https://etherscan.io/address/0xdfd5293d8e347dfe59e90efd55b2956a1343963d) 427, [Binance 17 (memory)](https://etherscan.io/address/0x56eddb7aa87536c09ccc2793473599fd21a8b17f) 375, [0xa034…7687](https://etherscan.io/address/0xa03400e098f4421b34a3a44a1b4e571419517687) 337, [Binance 18 (memory)](https://etherscan.io/address/0x9696f59e4d72e237be84ffd425dcad154bf96976) 325, [hot wallet (behaviour, day study)](https://etherscan.io/address/0xf30ba13e4b04ce5dc4d254ae5fa95477800f0eb0) 317.
 
 
-Intent fills: UniXFill 34, CoWTrade 198, OneInchFilled 233. Unknown event topics: 30 distinct in the top list; unpriced tokens seen: 40.
+Intent fills: OneInchFilled 236, CoWTrade 197, UniXFill 32. Unknown event topics: 30 distinct in the top list; unpriced tokens seen: 40.
 
 
 ---
@@ -15648,4 +15648,16 @@ Live log started 2026-09-06T11:49:53+00:00 UTC at block 25917895. One line per b
 - **25927293** 18:33:23 base 0.09 gwei, 261 txs, Titan (titanbuilder.xyz)
 - **25927294** 18:33:35 base 0.09 gwei, 180 txs, BuilderNet
 - **25927295** 18:33:47 base 0.09 gwei, 79 txs, BuilderNet
+- re-analysed blocks 25926995 to 25927295 at 18:34:05 UTC: 11639 priced swaps, 16 JIT episodes, 15 lending ops ≥$250k, exchange net $-110.2M stables / $-1.6M ETH
+- **25927296** 18:33:59 base 0.09 gwei, 299 txs, BuilderNet
+- **25927297** 18:34:11 base 0.09 gwei, 375 txs, Titan (titanbuilder.xyz)
+- **25927298** 18:34:23 base 0.10 gwei, 166 txs, BuilderNet
+- **25927299** 18:34:35 base 0.09 gwei, 223 txs, besu 26.8.1
+- **25927300** 18:34:47 base 0.09 gwei, 391 txs, Eureka (eurekabuilder.xyz)
+- **25927301** 18:34:59 base 0.09 gwei, 221 txs,  Quasar (quasar.win) 
+- **25927302** 18:35:11 base 0.09 gwei, 152 txs, 0xe940…4a3c
+  - transfer $5.1M ETH [0xbbc5…572b](https://etherscan.io/address/0xbbc5f8c1cf6eaa9de194c1a347b73b717443572b) → [0x0000…05fa](https://etherscan.io/address/0x00000000219ab540356cbb839cbe05303d7705fa) ([0xf93c…6249](https://etherscan.io/tx/0xf93cb730049008afd3ad162be2791ed4f1fdd73d69711c40737745f4c72d6249))
+- **25927303** 18:35:23 base 0.09 gwei, 306 txs, BuilderNet
+- **25927304** 18:35:35 base 0.10 gwei, 307 txs, Eureka (eurekabuilder.xyz)
+- **25927305** 18:35:47 base 0.10 gwei, 253 txs, Titan (titanbuilder.xyz)
 

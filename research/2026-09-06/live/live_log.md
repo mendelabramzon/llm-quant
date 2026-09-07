@@ -15234,3 +15234,10 @@ Live log started 2026-09-06T11:49:53+00:00 UTC at block 25917895. One line per b
 - **25927301** 18:34:59 base 0.09 gwei, 221 txs,  Quasar (quasar.win) 
 - **25927302** 18:35:11 base 0.09 gwei, 152 txs, 0xe940…4a3c
   - transfer $5.1M ETH [0xbbc5…572b](https://etherscan.io/address/0xbbc5f8c1cf6eaa9de194c1a347b73b717443572b) → [0x0000…05fa](https://etherscan.io/address/0x00000000219ab540356cbb839cbe05303d7705fa) ([0xf93c…6249](https://etherscan.io/tx/0xf93cb730049008afd3ad162be2791ed4f1fdd73d69711c40737745f4c72d6249))
+- **25927303** 18:35:23 base 0.09 gwei, 306 txs, BuilderNet
+- **25927304** 18:35:35 base 0.10 gwei, 307 txs, Eureka (eurekabuilder.xyz)
+- **25927305** 18:35:47 base 0.10 gwei, 253 txs, Titan (titanbuilder.xyz)
+- re-analysed blocks 25927005 to 25927305 at 18:36:02 UTC: 11728 priced swaps, 13 JIT episodes, 15 lending ops ≥$250k, exchange net $-102.1M stables / $-1.7M ETH
+- **25927306** 18:35:59 base 0.10 gwei, 276 txs, Titan (titanbuilder.xyz)
+- **25927307** 18:36:11 base 0.10 gwei, 265 txs,  Quasar (quasar.win) 
+- **25927308** 18:36:23 base 0.10 gwei, 253 txs, BuilderNet
