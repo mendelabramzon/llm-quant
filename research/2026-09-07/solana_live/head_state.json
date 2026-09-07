@@ -1,5 +1,5 @@
 {
- "retrieved_utc": "2026-09-07T17:45:29+00:00",
+ "retrieved_utc": "2026-09-07T18:11:00+00:00",
  "sources": {
   "rpc": "GetBlock JSON-RPC",
   "jupiter_prices": "https://lite-api.jup.ag/price/v3 (off-chain aggregator price, blockId recorded per token)",
@@ -7,16 +7,17 @@
   "save": "https://api.solend.fi/v1/reserves (raw reserve state + protocol-computed rates)",
   "jupiter_lend": "https://lite-api.jup.ag/lend/v1/earn/tokens (rates in bps as reported)",
   "sanctum": "https://extra-api.sanctum.so/v1/sol-value/current (SOL per LST token)",
+  "stake_pool_nav": "getAccountInfo on the stake pool state accounts (SPL stake pool layout), finalized",
   "jito": "https://bundles.jito.wtf/api/v1/bundles/tip_floor"
  },
- "slot": 445125313,
+ "slot": 445130138,
  "epoch": {
-  "absoluteSlot": 445125313,
-  "blockHeight": 423169524,
+  "absoluteSlot": 445130139,
+  "blockHeight": 423174346,
   "epoch": 1030,
-  "slotIndex": 165313,
+  "slotIndex": 170139,
   "slotsInEpoch": 432000,
-  "transactionCount": 546076533686
+  "transactionCount": 546082859400
  },
  "inflation": {
   "epoch": 1030,
@@ -27,894 +28,894 @@
  "recent_priority_fees": [
   {
    "prioritizationFee": 0,
-   "slot": 445125198
+   "slot": 445130023
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125199
+   "slot": 445130024
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125200
+   "slot": 445130025
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125201
+   "slot": 445130026
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125202
+   "slot": 445130027
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125203
+   "slot": 445130028
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125204
+   "slot": 445130029
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125205
+   "slot": 445130030
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125206
+   "slot": 445130031
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125207
+   "slot": 445130032
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125208
+   "slot": 445130033
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125209
+   "slot": 445130034
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125210
+   "slot": 445130035
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125211
+   "slot": 445130036
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125212
+   "slot": 445130037
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125213
+   "slot": 445130038
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125214
+   "slot": 445130039
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125215
+   "slot": 445130040
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125216
+   "slot": 445130041
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125217
+   "slot": 445130042
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125218
+   "slot": 445130043
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125219
+   "slot": 445130044
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125220
+   "slot": 445130045
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125221
+   "slot": 445130046
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125222
+   "slot": 445130047
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125223
+   "slot": 445130048
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125224
+   "slot": 445130049
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125225
+   "slot": 445130050
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125226
+   "slot": 445130051
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125227
+   "slot": 445130052
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125228
+   "slot": 445130053
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125229
+   "slot": 445130054
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125230
+   "slot": 445130055
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125231
+   "slot": 445130056
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125232
+   "slot": 445130057
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125233
+   "slot": 445130058
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125234
+   "slot": 445130059
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125235
+   "slot": 445130060
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125236
+   "slot": 445130061
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125237
+   "slot": 445130062
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125238
+   "slot": 445130063
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125239
+   "slot": 445130064
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125240
+   "slot": 445130065
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125241
+   "slot": 445130066
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125242
+   "slot": 445130067
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125243
+   "slot": 445130068
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125244
+   "slot": 445130069
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125245
+   "slot": 445130070
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125246
+   "slot": 445130071
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125247
+   "slot": 445130072
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125248
+   "slot": 445130073
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125249
+   "slot": 445130074
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125250
+   "slot": 445130075
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125251
+   "slot": 445130076
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125252
+   "slot": 445130077
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125253
+   "slot": 445130078
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125254
+   "slot": 445130079
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125255
+   "slot": 445130080
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125256
+   "slot": 445130081
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125257
+   "slot": 445130082
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125258
+   "slot": 445130083
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125259
+   "slot": 445130084
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125260
+   "slot": 445130085
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125261
+   "slot": 445130086
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125262
+   "slot": 445130087
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125263
+   "slot": 445130088
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125264
+   "slot": 445130089
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125265
+   "slot": 445130090
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125266
+   "slot": 445130091
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125267
+   "slot": 445130092
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125268
+   "slot": 445130093
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125269
+   "slot": 445130094
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125270
+   "slot": 445130095
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125271
+   "slot": 445130096
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125272
+   "slot": 445130097
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125273
+   "slot": 445130098
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125274
+   "slot": 445130099
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125275
+   "slot": 445130100
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125276
+   "slot": 445130101
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125277
+   "slot": 445130102
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125278
+   "slot": 445130103
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125279
+   "slot": 445130104
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125280
+   "slot": 445130105
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125281
+   "slot": 445130106
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125282
+   "slot": 445130107
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125283
+   "slot": 445130108
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125284
+   "slot": 445130109
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125285
+   "slot": 445130110
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125286
+   "slot": 445130111
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125287
+   "slot": 445130112
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125288
+   "slot": 445130113
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125289
+   "slot": 445130114
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125290
+   "slot": 445130115
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125291
+   "slot": 445130116
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125292
+   "slot": 445130117
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125293
+   "slot": 445130118
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125294
+   "slot": 445130119
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125295
+   "slot": 445130120
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125296
+   "slot": 445130121
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125297
+   "slot": 445130122
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125298
+   "slot": 445130123
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125299
+   "slot": 445130124
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125300
+   "slot": 445130125
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125301
+   "slot": 445130126
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125302
+   "slot": 445130127
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125303
+   "slot": 445130128
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125304
+   "slot": 445130129
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125305
+   "slot": 445130130
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125306
+   "slot": 445130131
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125307
+   "slot": 445130132
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125308
+   "slot": 445130133
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125309
+   "slot": 445130134
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125310
+   "slot": 445130135
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125311
+   "slot": 445130136
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125312
+   "slot": 445130137
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125313
+   "slot": 445130138
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125314
+   "slot": 445130139
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125315
+   "slot": 445130140
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125316
+   "slot": 445130141
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125317
+   "slot": 445130142
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125318
+   "slot": 445130143
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125319
+   "slot": 445130144
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125320
+   "slot": 445130145
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125321
+   "slot": 445130146
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125322
+   "slot": 445130147
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125323
+   "slot": 445130148
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125324
+   "slot": 445130149
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125325
+   "slot": 445130150
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125326
+   "slot": 445130151
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125327
+   "slot": 445130152
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125328
+   "slot": 445130153
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125329
+   "slot": 445130154
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125330
+   "slot": 445130155
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125331
+   "slot": 445130156
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125332
+   "slot": 445130157
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125333
+   "slot": 445130158
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125334
+   "slot": 445130159
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125335
+   "slot": 445130160
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125336
+   "slot": 445130161
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125337
+   "slot": 445130162
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125338
+   "slot": 445130163
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125339
+   "slot": 445130164
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125340
+   "slot": 445130165
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125341
+   "slot": 445130166
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125342
+   "slot": 445130167
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125343
+   "slot": 445130168
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125344
+   "slot": 445130169
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125345
+   "slot": 445130170
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125346
+   "slot": 445130171
   },
   {
    "prioritizationFee": 0,
-   "slot": 445125347
+   "slot": 445130172
   }
  ],
  "performance_samples": [
   {
-   "numNonVoteTransactions": 134512,
-   "numSlots": 188,
-   "numTransactions": 260330,
-   "samplePeriodSecs": 60,
-   "slot": 445125259
-  },
-  {
-   "numNonVoteTransactions": 115959,
+   "numNonVoteTransactions": 128143,
    "numSlots": 189,
-   "numTransactions": 243146,
+   "numTransactions": 255156,
    "samplePeriodSecs": 60,
-   "slot": 445125071
+   "slot": 445130050
   },
   {
-   "numNonVoteTransactions": 115507,
-   "numSlots": 184,
-   "numTransactions": 238321,
-   "samplePeriodSecs": 60,
-   "slot": 445124882
-  },
-  {
-   "numNonVoteTransactions": 117043,
-   "numSlots": 191,
-   "numTransactions": 244717,
-   "samplePeriodSecs": 60,
-   "slot": 445124698
-  },
-  {
-   "numNonVoteTransactions": 111456,
-   "numSlots": 188,
-   "numTransactions": 237865,
-   "samplePeriodSecs": 60,
-   "slot": 445124507
-  },
-  {
-   "numNonVoteTransactions": 115699,
-   "numSlots": 187,
-   "numTransactions": 241203,
-   "samplePeriodSecs": 60,
-   "slot": 445124319
-  },
-  {
-   "numNonVoteTransactions": 95059,
-   "numSlots": 188,
-   "numTransactions": 221000,
-   "samplePeriodSecs": 60,
-   "slot": 445124132
-  },
-  {
-   "numNonVoteTransactions": 93407,
-   "numSlots": 192,
-   "numTransactions": 222549,
-   "samplePeriodSecs": 60,
-   "slot": 445123944
-  },
-  {
-   "numNonVoteTransactions": 95355,
-   "numSlots": 190,
-   "numTransactions": 222668,
-   "samplePeriodSecs": 60,
-   "slot": 445123752
-  },
-  {
-   "numNonVoteTransactions": 88469,
-   "numSlots": 191,
-   "numTransactions": 216845,
-   "samplePeriodSecs": 60,
-   "slot": 445123562
-  },
-  {
-   "numNonVoteTransactions": 101534,
-   "numSlots": 192,
-   "numTransactions": 228296,
-   "samplePeriodSecs": 60,
-   "slot": 445123371
-  },
-  {
-   "numNonVoteTransactions": 90242,
-   "numSlots": 188,
-   "numTransactions": 214101,
-   "samplePeriodSecs": 60,
-   "slot": 445123179
-  },
-  {
-   "numNonVoteTransactions": 100983,
-   "numSlots": 190,
-   "numTransactions": 228138,
-   "samplePeriodSecs": 60,
-   "slot": 445122991
-  },
-  {
-   "numNonVoteTransactions": 120910,
+   "numNonVoteTransactions": 126607,
    "numSlots": 189,
-   "numTransactions": 247982,
+   "numTransactions": 253335,
    "samplePeriodSecs": 60,
-   "slot": 445122801
+   "slot": 445129861
   },
   {
-   "numNonVoteTransactions": 124150,
-   "numSlots": 187,
-   "numTransactions": 249716,
-   "samplePeriodSecs": 60,
-   "slot": 445122612
-  },
-  {
-   "numNonVoteTransactions": 97317,
-   "numSlots": 192,
-   "numTransactions": 226087,
-   "samplePeriodSecs": 60,
-   "slot": 445122425
-  },
-  {
-   "numNonVoteTransactions": 107926,
-   "numSlots": 183,
-   "numTransactions": 230570,
-   "samplePeriodSecs": 60,
-   "slot": 445122233
-  },
-  {
-   "numNonVoteTransactions": 88399,
-   "numSlots": 193,
-   "numTransactions": 217954,
-   "samplePeriodSecs": 60,
-   "slot": 445122050
-  },
-  {
-   "numNonVoteTransactions": 84783,
-   "numSlots": 189,
-   "numTransactions": 211322,
-   "samplePeriodSecs": 60,
-   "slot": 445121857
-  },
-  {
-   "numNonVoteTransactions": 97927,
-   "numSlots": 188,
-   "numTransactions": 224065,
-   "samplePeriodSecs": 60,
-   "slot": 445121668
-  },
-  {
-   "numNonVoteTransactions": 95383,
-   "numSlots": 192,
-   "numTransactions": 223805,
-   "samplePeriodSecs": 60,
-   "slot": 445121480
-  },
-  {
-   "numNonVoteTransactions": 113959,
-   "numSlots": 190,
-   "numTransactions": 241728,
-   "samplePeriodSecs": 60,
-   "slot": 445121288
-  },
-  {
-   "numNonVoteTransactions": 88787,
-   "numSlots": 187,
-   "numTransactions": 214066,
-   "samplePeriodSecs": 60,
-   "slot": 445121098
-  },
-  {
-   "numNonVoteTransactions": 93131,
-   "numSlots": 190,
-   "numTransactions": 220549,
-   "samplePeriodSecs": 60,
-   "slot": 445120911
-  },
-  {
-   "numNonVoteTransactions": 95356,
-   "numSlots": 191,
-   "numTransactions": 223702,
-   "samplePeriodSecs": 60,
-   "slot": 445120721
-  },
-  {
-   "numNonVoteTransactions": 104184,
-   "numSlots": 191,
-   "numTransactions": 232329,
-   "samplePeriodSecs": 60,
-   "slot": 445120530
-  },
-  {
-   "numNonVoteTransactions": 100757,
-   "numSlots": 187,
-   "numTransactions": 226052,
-   "samplePeriodSecs": 60,
-   "slot": 445120339
-  },
-  {
-   "numNonVoteTransactions": 109746,
-   "numSlots": 190,
-   "numTransactions": 237279,
-   "samplePeriodSecs": 60,
-   "slot": 445120152
-  },
-  {
-   "numNonVoteTransactions": 102050,
+   "numNonVoteTransactions": 148567,
    "numSlots": 194,
-   "numTransactions": 232333,
+   "numTransactions": 278838,
    "samplePeriodSecs": 60,
-   "slot": 445119962
+   "slot": 445129672
   },
   {
-   "numNonVoteTransactions": 85953,
-   "numSlots": 187,
-   "numTransactions": 211550,
+   "numNonVoteTransactions": 132986,
+   "numSlots": 189,
+   "numTransactions": 259448,
    "samplePeriodSecs": 60,
-   "slot": 445119768
+   "slot": 445129478
+  },
+  {
+   "numNonVoteTransactions": 124252,
+   "numSlots": 186,
+   "numTransactions": 249625,
+   "samplePeriodSecs": 60,
+   "slot": 445129289
+  },
+  {
+   "numNonVoteTransactions": 120839,
+   "numSlots": 188,
+   "numTransactions": 247474,
+   "samplePeriodSecs": 60,
+   "slot": 445129103
+  },
+  {
+   "numNonVoteTransactions": 125472,
+   "numSlots": 188,
+   "numTransactions": 250596,
+   "samplePeriodSecs": 60,
+   "slot": 445128915
+  },
+  {
+   "numNonVoteTransactions": 137908,
+   "numSlots": 186,
+   "numTransactions": 263856,
+   "samplePeriodSecs": 60,
+   "slot": 445128727
+  },
+  {
+   "numNonVoteTransactions": 134386,
+   "numSlots": 187,
+   "numTransactions": 259994,
+   "samplePeriodSecs": 60,
+   "slot": 445128541
+  },
+  {
+   "numNonVoteTransactions": 143519,
+   "numSlots": 191,
+   "numTransactions": 271678,
+   "samplePeriodSecs": 60,
+   "slot": 445128354
+  },
+  {
+   "numNonVoteTransactions": 118282,
+   "numSlots": 190,
+   "numTransactions": 246180,
+   "samplePeriodSecs": 60,
+   "slot": 445128163
+  },
+  {
+   "numNonVoteTransactions": 128511,
+   "numSlots": 189,
+   "numTransactions": 256294,
+   "samplePeriodSecs": 60,
+   "slot": 445127973
+  },
+  {
+   "numNonVoteTransactions": 106782,
+   "numSlots": 188,
+   "numTransactions": 228651,
+   "samplePeriodSecs": 60,
+   "slot": 445127784
+  },
+  {
+   "numNonVoteTransactions": 139236,
+   "numSlots": 189,
+   "numTransactions": 266240,
+   "samplePeriodSecs": 60,
+   "slot": 445127596
+  },
+  {
+   "numNonVoteTransactions": 96335,
+   "numSlots": 188,
+   "numTransactions": 222598,
+   "samplePeriodSecs": 60,
+   "slot": 445127407
+  },
+  {
+   "numNonVoteTransactions": 107053,
+   "numSlots": 190,
+   "numTransactions": 234851,
+   "samplePeriodSecs": 60,
+   "slot": 445127219
+  },
+  {
+   "numNonVoteTransactions": 114029,
+   "numSlots": 194,
+   "numTransactions": 244576,
+   "samplePeriodSecs": 60,
+   "slot": 445127029
+  },
+  {
+   "numNonVoteTransactions": 122664,
+   "numSlots": 195,
+   "numTransactions": 253576,
+   "samplePeriodSecs": 60,
+   "slot": 445126835
+  },
+  {
+   "numNonVoteTransactions": 116936,
+   "numSlots": 185,
+   "numTransactions": 240690,
+   "samplePeriodSecs": 60,
+   "slot": 445126640
+  },
+  {
+   "numNonVoteTransactions": 122502,
+   "numSlots": 187,
+   "numTransactions": 247607,
+   "samplePeriodSecs": 60,
+   "slot": 445126455
+  },
+  {
+   "numNonVoteTransactions": 107807,
+   "numSlots": 186,
+   "numTransactions": 232200,
+   "samplePeriodSecs": 60,
+   "slot": 445126268
+  },
+  {
+   "numNonVoteTransactions": 95887,
+   "numSlots": 188,
+   "numTransactions": 223014,
+   "samplePeriodSecs": 60,
+   "slot": 445126082
+  },
+  {
+   "numNonVoteTransactions": 105394,
+   "numSlots": 191,
+   "numTransactions": 233432,
+   "samplePeriodSecs": 60,
+   "slot": 445125894
+  },
+  {
+   "numNonVoteTransactions": 112579,
+   "numSlots": 186,
+   "numTransactions": 237470,
+   "samplePeriodSecs": 60,
+   "slot": 445125703
+  },
+  {
+   "numNonVoteTransactions": 106524,
+   "numSlots": 191,
+   "numTransactions": 234597,
+   "samplePeriodSecs": 60,
+   "slot": 445125517
+  },
+  {
+   "numNonVoteTransactions": 127431,
+   "numSlots": 189,
+   "numTransactions": 253832,
+   "samplePeriodSecs": 60,
+   "slot": 445125326
+  },
+  {
+   "numNonVoteTransactions": 128966,
+   "numSlots": 188,
+   "numTransactions": 255614,
+   "samplePeriodSecs": 60,
+   "slot": 445125137
+  },
+  {
+   "numNonVoteTransactions": 112428,
+   "numSlots": 187,
+   "numTransactions": 237867,
+   "samplePeriodSecs": 60,
+   "slot": 445124949
+  },
+  {
+   "numNonVoteTransactions": 114566,
+   "numSlots": 187,
+   "numTransactions": 239380,
+   "samplePeriodSecs": 60,
+   "slot": 445124762
+  },
+  {
+   "numNonVoteTransactions": 108462,
+   "numSlots": 190,
+   "numTransactions": 235324,
+   "samplePeriodSecs": 60,
+   "slot": 445124575
   }
  ],
  "jupiter_prices": {
   "27G8MtK7VtTcCHkpASjSDdkWWYfoqT6ggEuKidVJidD4": {
    "createdAt": "2024-06-07T10:22:58.336Z",
-   "liquidity": 5806144.102485302,
-   "usdPrice": 4.472234878564992,
-   "blockId": 445125344,
+   "liquidity": 5806574.937289034,
+   "usdPrice": 4.468137547676675,
+   "blockId": 445130133,
    "decimals": 6,
-   "priceChange24h": -1.0250355012978907
+   "priceChange24h": -1.2993920904111467
   },
   "2b1kV6DkPAnxd5ixfnxCpjxmKwqjjaYmCZfHsFu24GXo": {
    "createdAt": "2024-06-07T17:00:42.369Z",
-   "liquidity": 30092622.209646452,
-   "usdPrice": 1.0000237556681453,
-   "blockId": 445125230,
+   "liquidity": 30110906.823832426,
+   "usdPrice": 1.000011645177972,
+   "blockId": 445130078,
    "decimals": 6,
-   "priceChange24h": -0.001041213472191886
+   "priceChange24h": -0.004804913831780852
   },
   "2u1tszSeqZ3qBWF3uNGPFc8TzMk2tdiwknnRMWGWjGWH": {
    "createdAt": "2025-01-06T18:38:31Z",
-   "liquidity": 36329033.64850035,
-   "usdPrice": 1.00012246493908,
-   "blockId": 445125333,
+   "liquidity": 36357852.465585075,
+   "usdPrice": 1.000067838725305,
+   "blockId": 445130160,
    "decimals": 6,
-   "priceChange24h": 0.01173180185070271
+   "priceChange24h": 0.0021350727930966504
   },
   "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv": {
    "createdAt": "2024-11-29T23:13:41Z",
-   "liquidity": 2766522.652003169,
-   "usdPrice": 0.008619802853059256,
-   "blockId": 445125229,
+   "liquidity": 2736347.058391603,
+   "usdPrice": 0.00857244325703265,
+   "blockId": 445130167,
    "decimals": 6,
-   "priceChange24h": -0.8205341818370826
+   "priceChange24h": -1.3733658013659258
   },
   "3NZ9JMVBmGAqocybic2c7LQCJScmgsAZ6vQqTDzcqmJh": {
    "createdAt": "2024-06-07T10:45:14.408Z",
-   "liquidity": 35793614.753393665,
-   "usdPrice": 79087.29738115834,
-   "blockId": 445125332,
+   "liquidity": 35787274.137585305,
+   "usdPrice": 79045.12935754744,
+   "blockId": 445130065,
    "decimals": 8,
-   "priceChange24h": -0.6764056559771436
+   "priceChange24h": -0.6901101382176562
   },
   "4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R": {
    "createdAt": "2024-06-07T10:56:42.584Z",
-   "liquidity": 12710795.837104589,
-   "usdPrice": 1.1711393457464196,
-   "blockId": 445125345,
+   "liquidity": 12667589.010927869,
+   "usdPrice": 1.1631289474329491,
+   "blockId": 445130164,
    "decimals": 6,
-   "priceChange24h": -15.588634046755242
+   "priceChange24h": -14.745050357586742
   },
   "5oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm": {
    "createdAt": "2024-06-07T10:22:58.336Z",
-   "liquidity": 198465884.38254064,
-   "usdPrice": 150.62540460611814,
-   "blockId": 445125215,
+   "liquidity": 198107777.74808565,
+   "usdPrice": 150.35362807240142,
+   "blockId": 445129857,
    "decimals": 9,
-   "priceChange24h": -1.928013089262017
+   "priceChange24h": -2.250149076937064
   },
   "7vfCXTUXx5WJV5JADk17DUJ4ksgau7utNKj4b963voxs": {
    "createdAt": "2024-06-07T10:45:14.408Z",
-   "liquidity": 21653039.147686437,
-   "usdPrice": 2493.6621400086724,
-   "blockId": 445125343,
+   "liquidity": 21435695.2329288,
+   "usdPrice": 2496.6508641737105,
+   "blockId": 445130073,
    "decimals": 8,
-   "priceChange24h": 0.00917191044881381
+   "priceChange24h": 0.0962632327303876
   },
   "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump": {
    "createdAt": "2024-10-18T06:05:05Z",
-   "liquidity": 6213491.829646372,
-   "usdPrice": 0.17122436535237404,
-   "blockId": 445125340,
+   "liquidity": 6194273.728069826,
+   "usdPrice": 0.1704425134357933,
+   "blockId": 445130137,
    "decimals": 6,
-   "priceChange24h": -6.490104552502267,
+   "priceChange24h": -6.707836872009498,
    "launchpad": "pump.fun"
   },
   "Bybit2vBJGhPF52GBdNaQfUJ6ZpThSgHBobjWZpLPb4B": {
    "createdAt": "2024-08-22T11:00:34.902Z",
-   "liquidity": 129811645.15709694,
+   "liquidity": 129811976.7141903,
    "usdPrice": 121.52241671441575,
    "blockId": 445124354,
    "decimals": 9,
@@ -929,47 +930,47 @@
   },
   "DEkqHyPN7GMRJ5cArtQFAWefqbZb33Hyf6s5iCwjEonT": {
    "createdAt": "2024-07-31T19:00:27.984Z",
-   "liquidity": 8857519.562108142,
-   "usdPrice": 0.9998026544856372,
-   "blockId": 445124838,
+   "liquidity": 8857874.741527842,
+   "usdPrice": 0.9998089672911296,
+   "blockId": 445129472,
    "decimals": 9,
-   "priceChange24h": -0.009280506726539376
+   "priceChange24h": -0.014570083944835811
   },
   "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263": {
    "createdAt": "2024-06-07T10:26:40.709Z",
-   "liquidity": 1057226.507879068,
-   "usdPrice": 3.176949222827983e-06,
-   "blockId": 445125319,
+   "liquidity": 1055148.666235147,
+   "usdPrice": 3.1576213657659837e-06,
+   "blockId": 445130154,
    "decimals": 5,
-   "priceChange24h": -9.058702102531512
+   "priceChange24h": -9.837615980253558
   },
   "Dso1bDeDjCQxTrWHqUUi63oBvV7Mdm6WaobLbQ7gnPQ": {
    "createdAt": "2024-06-07T10:45:14.408Z",
-   "liquidity": 292569764.9908628,
-   "usdPrice": 126.18490512763577,
-   "blockId": 445124934,
+   "liquidity": 292510232.1469837,
+   "usdPrice": 126.15922870048654,
+   "blockId": 445125927,
    "decimals": 9,
-   "priceChange24h": -1.9771936757235098
+   "priceChange24h": -1.9971396069979608
   },
   "EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm": {
    "createdAt": "2024-06-07T10:51:21.979Z",
-   "liquidity": 6153976.566571136,
-   "usdPrice": 0.21643253725647169,
-   "blockId": 445125315,
+   "liquidity": 6148641.606554725,
+   "usdPrice": 0.21535621637119948,
+   "blockId": 445130132,
    "decimals": 6,
-   "priceChange24h": 1.0103443426833236
+   "priceChange24h": 0.44013749416884396
   },
   "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v": {
    "createdAt": "2024-06-05T08:55:25.527Z",
-   "liquidity": 409267396.8895086,
-   "usdPrice": 0.9999212430256567,
-   "blockId": 445125342,
+   "liquidity": 411153350.796772,
+   "usdPrice": 0.9999041531980744,
+   "blockId": 445130169,
    "decimals": 6,
-   "priceChange24h": -0.002040065689872458
+   "priceChange24h": -0.006293834828239423
   },
   "Eh6XEPhSwoLv5wFApukmnaVSHQ6sAnoD9BmgmwQoN2sN": {
    "createdAt": "2024-07-31T19:00:27.984Z",
-   "liquidity": 2774.5374551067257,
+   "liquidity": 2774.6366354345864,
    "usdPrice": 1.240765841431937,
    "blockId": 445124386,
    "decimals": 9,
@@ -977,83 +978,83 @@
   },
   "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB": {
    "createdAt": "2024-06-07T12:00:18.76Z",
-   "liquidity": 41771301.71439224,
-   "usdPrice": 0.9998341152638857,
-   "blockId": 445125341,
+   "liquidity": 41773689.87905463,
+   "usdPrice": 0.9998270618860773,
+   "blockId": 445130169,
    "decimals": 6,
-   "priceChange24h": -0.01065848077346623
+   "priceChange24h": -0.015523457024615083
   },
   "HzwqbKZw8HxMN6bF2yFZNrht3c2iXXzpKcFu7uBEDKtr": {
    "createdAt": "2024-06-07T17:00:42.369Z",
-   "liquidity": 656544.4772512477,
-   "usdPrice": 1.1621217218721573,
-   "blockId": 445125100,
+   "liquidity": 656598.6567768736,
+   "usdPrice": 1.162307217904037,
+   "blockId": 445130022,
    "decimals": 6,
-   "priceChange24h": 0.1057002916523197
+   "priceChange24h": 0.11980889840749072
   },
   "J1toso1uCk3RLmjorhTtrVwY9HJ7X8V9yYac6Y7kGCPn": {
    "createdAt": "2024-06-07T10:51:21.979Z",
-   "liquidity": 1067350394.6540172,
-   "usdPrice": 135.26584349802553,
-   "blockId": 445125340,
+   "liquidity": 1065577898.3237245,
+   "usdPrice": 135.04116682036693,
+   "blockId": 445130122,
    "decimals": 9,
-   "priceChange24h": -1.9098277011464024
+   "priceChange24h": -2.301109738059861
   },
   "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN": {
    "createdAt": "2024-06-07T10:56:42.584Z",
-   "liquidity": 4254701.479772925,
-   "usdPrice": 0.25022784969932554,
-   "blockId": 445125292,
+   "liquidity": 4242243.619272517,
+   "usdPrice": 0.24875553889979987,
+   "blockId": 445130168,
    "decimals": 6,
-   "priceChange24h": -5.801808102520223
+   "priceChange24h": -6.6574363069909435
   },
   "JuprjznTrTSp2UFa3ZBUFgwdAmtZCq4MQCwysN55USD": {
    "createdAt": "2025-12-23T08:33:55Z",
-   "liquidity": 19308993.602255244,
-   "usdPrice": 0.9997617361151437,
-   "blockId": 445125326,
+   "liquidity": 19298848.99868542,
+   "usdPrice": 0.9996931900868189,
+   "blockId": 445130171,
    "decimals": 6,
-   "priceChange24h": -0.0034574468321575446
+   "priceChange24h": -0.013210895630678404
   },
   "So11111111111111111111111111111111111111112": {
    "createdAt": "2024-06-05T08:55:25.527Z",
-   "liquidity": 822354166.065486,
-   "usdPrice": 104.08738833314453,
-   "blockId": 445125345,
+   "liquidity": 819964864.140022,
+   "usdPrice": 103.77818705790928,
+   "blockId": 445130171,
    "decimals": 9,
-   "priceChange24h": -1.8966113795554649
+   "priceChange24h": -2.5267443218601917
   },
   "USD1ttGY1N17NEEHLmELoaybftRBUSErhqYiQzvEmuB": {
    "createdAt": "2025-07-14T21:21:00Z",
-   "liquidity": 23851982.980337515,
-   "usdPrice": 0.9998455775214569,
-   "blockId": 445125344,
+   "liquidity": 23884785.30261006,
+   "usdPrice": 0.9998532964117928,
+   "blockId": 445130157,
    "decimals": 6,
-   "priceChange24h": 0.004129333844416926
+   "priceChange24h": 0.0024622537661696843
   },
   "USDSwr9ApdHk5bvJKMjzff41FfuX8bSxdKcR81vTwcA": {
    "createdAt": "2024-10-29T22:31:46Z",
-   "liquidity": 1819069.598569421,
-   "usdPrice": 0.9998323159032194,
-   "blockId": 445125288,
+   "liquidity": 1822049.0391446815,
+   "usdPrice": 0.9998319817167236,
+   "blockId": 445129842,
    "decimals": 6,
-   "priceChange24h": -0.006209972772360116
+   "priceChange24h": -0.010613929913848248
   },
   "bSo13r4TkiE4KumL71LsHTPpL2euBYLFx6h9HP3piy1": {
    "createdAt": "2024-06-07T10:15:02.516Z",
-   "liquidity": 95787078.8251045,
-   "usdPrice": 136.59013303405663,
-   "blockId": 445124740,
+   "liquidity": 95703243.7971436,
+   "usdPrice": 136.4705862458828,
+   "blockId": 445129797,
    "decimals": 9,
-   "priceChange24h": -1.9755259227139772
+   "priceChange24h": -2.305609175145586
   },
   "cbbtcf3aa214zXHbiAZQwf4122FBYbraNdFqgw4iMij": {
    "createdAt": "2024-10-08T16:54:05Z",
-   "liquidity": 27868014.490198787,
-   "usdPrice": 79179.28394999544,
-   "blockId": 445125336,
+   "liquidity": 27694937.844822045,
+   "usdPrice": 79160.60036718892,
+   "blockId": 445130170,
    "decimals": 8,
-   "priceChange24h": -0.7058731851053398
+   "priceChange24h": -0.8339105877867988
   },
   "he1iusmfkpAdwvxLNGV8Y1iSbj4rUy6yMhEA3fotn9A": {
    "createdAt": "2024-06-07T13:00:21.099Z",
@@ -1061,31 +1062,31 @@
    "usdPrice": 123.12800196045232,
    "blockId": 445123824,
    "decimals": 9,
-   "priceChange24h": -1.9794649841676195
+   "priceChange24h": -2.3207445002011617
   },
   "jtojtomepa8beP8AuQc6eXt5FriJwfFMwQx2v2f9mCL": {
    "createdAt": "2024-06-07T10:15:02.516Z",
-   "liquidity": 211495.3062046382,
-   "usdPrice": 0.44666985459800124,
-   "blockId": 445125230,
+   "liquidity": 211042.9889315655,
+   "usdPrice": 0.44255046551716537,
+   "blockId": 445130161,
    "decimals": 9,
-   "priceChange24h": -2.144686608288057
+   "priceChange24h": -2.759213091139988
   },
   "jupSoLaHXQiZZTSfEWMTRRgpnyFm8f6sZdosWBjx93v": {
    "createdAt": "2024-06-07T10:30:07.011Z",
-   "liquidity": 538518518.2632059,
-   "usdPrice": 125.53757516100026,
-   "blockId": 445123889,
+   "liquidity": 538548537.1239836,
+   "usdPrice": 125.54446020577566,
+   "blockId": 445129833,
    "decimals": 9,
-   "priceChange24h": -2.027944871714883
+   "priceChange24h": -2.2314771891623524
   },
   "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So": {
    "createdAt": "2024-06-07T10:30:07.011Z",
-   "liquidity": 239704020.3272155,
-   "usdPrice": 145.94974401410386,
-   "blockId": 445125340,
+   "liquidity": 239304139.29081133,
+   "usdPrice": 145.7062665170656,
+   "blockId": 445130126,
    "decimals": 9,
-   "priceChange24h": -1.9230650677868943
+   "priceChange24h": -2.3669110949271337
   },
   "sSo14endRuUbvQaJS3dq36Q829a3A6BEfoeeRGJywEh": {
    "createdAt": "2024-07-02T21:00:18.701Z",
@@ -1093,15 +1094,15 @@
    "usdPrice": 120.6043356802273,
    "blockId": 445121044,
    "decimals": 9,
-   "priceChange24h": -2.7926652929350424
+   "priceChange24h": -2.999122202623541
   },
   "vSoLxydx6akxyMD9XEcPvGYNGq6Nn66oqVb3UkGkei7": {
    "createdAt": "2024-06-07T10:56:42.584Z",
-   "liquidity": 138671634.10879254,
-   "usdPrice": 121.59750732967903,
-   "blockId": 445122427,
+   "liquidity": 138657334.3860629,
+   "usdPrice": 121.58493071584667,
+   "blockId": 445128380,
    "decimals": 9,
-   "priceChange24h": -2.0861883851183487
+   "priceChange24h": -2.096315436441832
   }
  },
  "kamino_markets": [
@@ -1113,48 +1114,48 @@
      "token": "adraSOL",
      "mint": "sctmY8fJucsJatwHz6P48RuWBBkdBMNmSMuBYrWFdrw",
      "supply_apy": 0.0,
-     "borrow_apy": 0.016109393644252012,
-     "supplied_usd": 7622.905286360101,
-     "borrowed_usd": 5.3469021665999806e-14,
-     "util": 7.014257642905989e-18,
+     "borrow_apy": 0.016058165473654684,
+     "supplied_usd": 7617.135909805083,
+     "borrowed_usd": 5.342861721320576e-14,
+     "util": 7.014265971600991e-18,
      "reserve": "64AZMUHLB6NYvQSt41JTer4v8NAFDCz5sUPb7dYpCxa"
     },
     {
      "token": "dSOL",
      "mint": "Dso1bDeDjCQxTrWHqUUi63oBvV7Mdm6WaobLbQ7gnPQ",
      "supply_apy": 0.0,
-     "borrow_apy": 0.01610943633547124,
-     "supplied_usd": 235391781.15363944,
-     "borrowed_usd": 104.0059661232942,
+     "borrow_apy": 0.016058208162721632,
+     "supplied_usd": 235213625.4803869,
+     "borrowed_usd": 103.92724947131015,
      "util": 4.418419607242355e-07,
      "reserve": "StGKGcLQoTsWzQ1tFY2bWqrdiuBhqdFE4niiAutQxQB"
     },
     {
      "token": "SOL",
      "mint": "So11111111111111111111111111111111111111112",
-     "supply_apy": 0.049592177042302676,
-     "borrow_apy": 0.06510478244080331,
-     "supplied_usd": 252852729.20763457,
-     "borrowed_usd": 228278220.03077453,
-     "util": 0.9028109791265879,
+     "supply_apy": 0.04960875801265874,
+     "borrow_apy": 0.06512550176720877,
+     "supplied_usd": 252653724.83362266,
+     "borrowed_usd": 228102653.9852928,
+     "util": 0.9028271961377288,
      "reserve": "d4A2prbA2whesmvHaL88BH6Ewn5N4bTSU2Ze8P6Bc4Q"
     },
     {
      "token": "ETH",
      "mint": "7vfCXTUXx5WJV5JADk17DUJ4ksgau7utNKj4b963voxs",
-     "supply_apy": 0.001862914618247391,
-     "borrow_apy": 0.012698737354190914,
-     "supplied_usd": 3056580.599994623,
-     "borrowed_usd": 563530.0644330971,
-     "util": 0.18436617193542632,
+     "supply_apy": 0.001856979570599382,
+     "borrow_apy": 0.012658218360728002,
+     "supplied_usd": 3058940.694555312,
+     "borrowed_usd": 563956.2481995532,
+     "util": 0.18436325006344634,
      "reserve": "febGYTnFX4GbSGoFHFeJXUHgNaK53fB23uDins9Jp1E"
     },
     {
      "token": "fBTC",
      "mint": "3orqhCKM5admbcHkHQhRAEKbXhUT5VPgsQqz7fBa6QdF",
      "supply_apy": 0.0,
-     "borrow_apy": 0.00015823871856723848,
-     "supplied_usd": 6886568.014831163,
+     "borrow_apy": 0.00015773446621114573,
+     "supplied_usd": 6888608.0654993495,
      "borrowed_usd": 0.0,
      "util": 0.0,
      "reserve": "2EXNMnkHE5TY1wTwA9UKi3wpTvoXpFsDPeGC5GVttu5F"
@@ -1162,19 +1163,19 @@
     {
      "token": "picoSOL",
      "mint": "picobAEvs6w7QEknPce34wAE4gknZA9v5tTonnmHYdX",
-     "supply_apy": 2.9130020857692784e-06,
-     "borrow_apy": 0.0166029385693367,
-     "supplied_usd": 601270.2666467894,
-     "borrowed_usd": 3394.409566399562,
-     "util": 0.005645397344075849,
+     "supply_apy": 2.898997247813284e-06,
+     "borrow_apy": 0.016550133727929017,
+     "supplied_usd": 600815.1968984698,
+     "borrowed_usd": 3391.844665962514,
+     "util": 0.005645404249879006,
      "reserve": "2UFz8kwraHybFyKhGQRwAsE5NtNpAhWs2X5grGoS7hnQ"
     },
     {
      "token": "stkeSOL",
      "mint": "stke7uu3fXHsGqKVVjKnkmj65LRPVrqr4bLG2SJg7rh",
      "supply_apy": 0.0,
-     "borrow_apy": 0.016109393644252012,
-     "supplied_usd": 1155551.8113579128,
+     "borrow_apy": 0.016058165473654684,
+     "supplied_usd": 1154677.2348968245,
      "borrowed_usd": 0.0,
      "util": 0.0,
      "reserve": "2gFjdQLFaFqTKMv4nFGMAP4bX2F5KAsyiJn8yZQHPKSE"
@@ -1182,29 +1183,29 @@
     {
      "token": "PYUSD",
      "mint": "2b1kV6DkPAnxd5ixfnxCpjxmKwqjjaYmCZfHsFu24GXo",
-     "supply_apy": 0.019802318337837077,
-     "borrow_apy": 0.030906129146438532,
-     "supplied_usd": 40028136.20315867,
-     "borrowed_usd": 34283757.456361614,
-     "util": 0.856491475954762,
+     "supply_apy": 0.01980284677659072,
+     "borrow_apy": 0.03090680771533716,
+     "supplied_usd": 40029135.65795257,
+     "borrowed_usd": 34284631.5057736,
+     "util": 0.8564919262492814,
      "reserve": "2gc9Dm1eB6UgVYFBUN9bWks6Kes9PbWSaPaa9DqyvEiN"
     },
     {
      "token": "cbBTC",
      "mint": "cbbtcf3aa214zXHbiAZQwf4122FBYbraNdFqgw4iMij",
-     "supply_apy": 2.3094177450166953e-05,
-     "borrow_apy": 0.0014794116469782903,
-     "supplied_usd": 56964057.547770455,
-     "borrowed_usd": 1112626.715143578,
-     "util": 0.019532083265145245,
+     "supply_apy": 2.301014672911883e-05,
+     "borrow_apy": 0.0014743764993265795,
+     "supplied_usd": 56996530.509320736,
+     "borrowed_usd": 1112956.3886238872,
+     "util": 0.019526739236204627,
      "reserve": "37Jk2zkz23vkAYBT66HM2gaqJuNg2nYLsCreQAVt5MWK"
     },
     {
      "token": "JUP",
      "mint": "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
      "supply_apy": 0.0,
-     "borrow_apy": 0.00015823871856723848,
-     "supplied_usd": 85329.0281819741,
+     "borrow_apy": 0.00015773446621114573,
+     "supplied_usd": 85231.1049768764,
      "borrowed_usd": 0.0,
      "util": 0.0,
      "reserve": "4AFAGAm5G8fkcKy7QerL88E7BiSE22ZRbvJzvaKjayor"
@@ -1212,19 +1213,19 @@
     {
      "token": "xBTC",
      "mint": "CtzPWv73Sn1dMGVU3ZtLv9yWSyUAanBni19YWDaznnkn",
-     "supply_apy": 1.3500715752012837e-05,
-     "borrow_apy": 0.0011505813146788224,
-     "supplied_usd": 18766753.26483185,
-     "borrowed_usd": 275365.4597809046,
-     "util": 0.01467304737772242,
+     "supply_apy": 1.34587007938336e-05,
+     "borrow_apy": 0.0011469499053211596,
+     "supplied_usd": 18772312.673776634,
+     "borrowed_usd": 275447.0548283427,
+     "util": 0.014673048527106592,
      "reserve": "4Hyrqb9Mq7y1wkq4YoqHkPdPx3VQyFY3mxMj67naC1Cb"
     },
     {
      "token": "wstETH",
      "mint": "ZScHuTtqZukUrtZS43teTKGs2VqkKL8k4QCouR2n6Uo",
      "supply_apy": 0.0,
-     "borrow_apy": 0.00015823871856723848,
-     "supplied_usd": 2.49356476923,
+     "borrow_apy": 0.00015773446621114573,
+     "supplied_usd": 2.49544911385,
      "borrowed_usd": 0.0,
      "util": 0.0,
      "reserve": "4eUxuaHSHNTftaui3XVW32d2Ph2hKBLpuMP25gQ5MqF4"
@@ -1243,18 +1244,18 @@
      "token": "CHAI",
      "mint": "3jsFX1tx2Z8ewmamiwSU851GzyzM2DJMq7KWW5DM8Py3",
      "supply_apy": 0.0,
-     "borrow_apy": 0.00015823871856723848,
+     "borrow_apy": 0.00015773446621114573,
      "supplied_usd": 2.598156342867355e-15,
-     "borrowed_usd": 1.2455354456153423e-24,
-     "util": 4.793920308278119e-10,
+     "borrowed_usd": 1.2455354542889597e-24,
+     "util": 4.793920341661858e-10,
      "reserve": "5YpGenXaAowj4HS33AvirVb8P4tgue7S7YaY6MyYZ7LD"
     },
     {
      "token": "USDC",
      "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
      "supply_apy": 0.0,
-     "borrow_apy": 0.07600971109735322,
-     "supplied_usd": 0.099988429,
+     "borrow_apy": 0.07576108134208415,
+     "supplied_usd": 0.099997932,
      "borrowed_usd": 0.0,
      "util": 0.0,
      "reserve": "5xXxt9uVHrcT5b1KveAT5ZWgk2f74aDjnLEDDEeAxgpN"
@@ -1262,19 +1263,19 @@
     {
      "token": "bbSOL",
      "mint": "Bybit2vBJGhPF52GBdNaQfUJ6ZpThSgHBobjWZpLPb4B",
-     "supply_apy": 5.113282226010263e-05,
-     "borrow_apy": 0.018415567971537206,
-     "supplied_usd": 19379.071785483302,
-     "borrowed_usd": 510.7422543829091,
-     "util": 0.026355351795822428,
+     "supply_apy": 5.0978761624298485e-05,
+     "borrow_apy": 0.01835694994671533,
+     "supplied_usd": 19364.404857667672,
+     "borrowed_usd": 510.3563923624269,
+     "util": 0.026355387429340096,
      "reserve": "6U9CnJYCQwHUEmf4Pq4oGVKHVvD29wZvtPbFNjYmgjaF"
     },
     {
      "token": "USDC",
      "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
      "supply_apy": 0.0,
-     "borrow_apy": 0.06955945058417567,
-     "supplied_usd": 0.099988429,
+     "borrow_apy": 0.06933258828994693,
+     "supplied_usd": 0.099997932,
      "borrowed_usd": 0.0,
      "util": 0.0,
      "reserve": "6pazpY4icuXZ5sb2jMWAqdG4TtbUoY1SJ45237Fjht9h"
@@ -1282,11 +1283,11 @@
     {
      "token": "USD1",
      "mint": "USD1ttGY1N17NEEHLmELoaybftRBUSErhqYiQzvEmuB",
-     "supply_apy": 0.03698353334782145,
-     "borrow_apy": 0.06492590296044076,
-     "supplied_usd": 31687.06724520081,
-     "borrowed_usd": 23250.066892417588,
-     "util": 0.733739942308449,
+     "supply_apy": 0.03686484575214877,
+     "borrow_apy": 0.06471468100296707,
+     "supplied_usd": 31690.71528547575,
+     "borrowed_usd": 23252.773478823165,
+     "util": 0.7337408849676612,
      "reserve": "6vKCRnEzrxRS1NybsMVEyNE3ztFAxCz6WusiiGft1PbA"
     },
     {
@@ -1303,8 +1304,8 @@
      "token": "nxSOL",
      "mint": "sctmTAsDn4tLUcemqoqYijfuRkiEfAMPi84PNq2EueR",
      "supply_apy": 0.0,
-     "borrow_apy": 0.016109393644252012,
-     "supplied_usd": 3533.8076759941623,
+     "borrow_apy": 0.016058165473654684,
+     "supplied_usd": 3531.133122606715,
      "borrowed_usd": 0.0,
      "util": 0.0,
      "reserve": "8gVpWfWDCtCcUX1meSphqqpyWBceLCcrs9yEXwKKjQrL"
@@ -1313,8 +1314,8 @@
      "token": "fwdSOL",
      "mint": "cPQPBN7WubB3zyQDpzTK2ormx1BMdAym9xkrYUJsctm",
      "supply_apy": 0.0,
-     "borrow_apy": 0.016109393644252012,
-     "supplied_usd": 198.13992739997263,
+     "borrow_apy": 0.016058165473654684,
+     "supplied_usd": 197.98996569786414,
      "borrowed_usd": 0.0,
      "util": 0.0,
      "reserve": "8qnVHjKMcWAdkFnKvmRigj9J7UAVj2ooJ83GfeNn2DpR"
@@ -1323,7 +1324,7 @@
      "token": "STSOL",
      "mint": "7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj",
      "supply_apy": 0.0,
-     "borrow_apy": 0.00015823871856723848,
+     "borrow_apy": 0.00015773446621114573,
      "supplied_usd": 0.0,
      "borrowed_usd": 0.0,
      "util": 0.0,
@@ -1332,41 +1333,41 @@
     {
      "token": "JTO",
      "mint": "jtojtomepa8beP8AuQc6eXt5FriJwfFMwQx2v2f9mCL",
-     "supply_apy": 6.008076099517368e-06,
-     "borrow_apy": 0.0007965177892828024,
-     "supplied_usd": 40217.39379686148,
-     "borrowed_usd": 379.6293679960703,
-     "util": 0.009439432348937942,
+     "supply_apy": 5.994071218040631e-06,
+     "borrow_apy": 0.0007940089369493641,
+     "supplied_usd": 40032.12916286619,
+     "borrowed_usd": 377.88059720269337,
+     "util": 0.009439432903139597,
      "reserve": "9Ukd2MSw5RvVFaN8jLhWxjHLEGiF1F6Hf7v3Zq5hZsKB"
     },
     {
      "token": "strongSOL",
      "mint": "strng7mqqc1MBJJV6vMzYbEqnwVGvKKGKedeCvtktWA",
      "supply_apy": 0.0,
-     "borrow_apy": 0.016109393644252012,
-     "supplied_usd": 3977659.503237584,
-     "borrowed_usd": 0.005259829385377238,
-     "util": 1.3223427950773668e-09,
+     "borrow_apy": 0.016058165473654684,
+     "supplied_usd": 3974649.0217190897,
+     "borrowed_usd": 0.005255854737613667,
+     "util": 1.3223443652240867e-09,
      "reserve": "A2J2CEwmwa9aTKbEfNoik6YTyNep9GtvNjU65okWYhwn"
     },
     {
      "token": "USDC",
      "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
-     "supply_apy": 0.036916571136407894,
-     "borrow_apy": 0.07277973294832885,
-     "supplied_usd": 200.29413311481872,
-     "borrowed_usd": 103.35400335529582,
-     "util": 0.5160111369615008,
+     "supply_apy": 0.03679805092647204,
+     "borrow_apy": 0.07254201852108655,
+     "supplied_usd": 200.31370881341672,
+     "borrowed_usd": 103.36436576729335,
+     "util": 0.516012440584247,
      "reserve": "AWnKJ9dsiHcoDCThxE5E93ikDTAXkApoNwrKM2tp9KFJ"
     },
     {
      "token": "CASH",
      "mint": "CASHx9KJUStyftLFWGvEVf59SGeG9sh5FfcnZMVPCASH",
-     "supply_apy": 0.035392147994399714,
-     "borrow_apy": 0.04953951067971252,
-     "supplied_usd": 611673.3817403961,
-     "borrowed_usd": 545262.2211795006,
-     "util": 0.8914270874891831,
+     "supply_apy": 0.03539881822618507,
+     "borrow_apy": 0.04954372918298011,
+     "supplied_usd": 611674.2379819157,
+     "borrowed_usd": 545313.4628494307,
+     "util": 0.8915096124508567,
      "reserve": "ApQkX32ULJUzszZDe986aobLDLMNDoGQK8tRm6oD6SsA"
     },
     {
@@ -1383,100 +1384,100 @@
      "token": "hubSOL",
      "mint": "HUBsveNpjo5pWqNkH57QzxjQASdTVXcSK7bVKTSZtcSX",
      "supply_apy": 0.0,
-     "borrow_apy": 0.016109450565878092,
-     "supplied_usd": 41668.05929068318,
-     "borrowed_usd": 0.025213380652666484,
-     "util": 6.051009113905168e-07,
+     "borrow_apy": 0.01605822239241106,
+     "supplied_usd": 41636.52292556618,
+     "borrowed_usd": 0.025194327885042164,
+     "util": 6.051016298859102e-07,
      "reserve": "B5uYvxUcwX5fCB4msGU4DaHh8k6fsSkKHNboy94F9vbt"
     },
     {
      "token": "USDS",
      "mint": "USDSwr9ApdHk5bvJKMjzff41FfuX8bSxdKcR81vTwcA",
-     "supply_apy": 0.03391016085548859,
-     "borrow_apy": 0.05269994356454211,
-     "supplied_usd": 3315091.262813668,
-     "borrowed_usd": 2649685.5227079852,
-     "util": 0.799279812423347,
+     "supply_apy": 0.03391021877429923,
+     "borrow_apy": 0.05269998779309093,
+     "supplied_usd": 3315153.798814441,
+     "borrowed_usd": 2649738.042721028,
+     "util": 0.7992805774708318,
      "reserve": "BHUi32TrEsfN2U821G4FprKrR4hTeK4LCWtA3BFetuqA"
     },
     {
      "token": "FDUSD",
      "mint": "9zNQRsGLjNKwCUU5Gq5LR8beUCPzQMVMqKAi3SSZh54u",
-     "supply_apy": 0.05343226909949106,
-     "borrow_apy": 0.09819527550658291,
-     "supplied_usd": 41179.709404064066,
-     "borrowed_usd": 28605.649051586737,
-     "util": 0.6946539804567835,
+     "supply_apy": 0.053259598153708954,
+     "borrow_apy": 0.09787117441359383,
+     "supplied_usd": 41179.82990700103,
+     "borrowed_usd": 28605.821207602894,
+     "util": 0.6946561283085724,
      "reserve": "Bpc4kAh29J3YDQUMJJdGdr1zBAhTQjC48R1B8YTWudsi"
     },
     {
      "token": "cgntSOL",
      "mint": "CgnTSoL3DgY9SFHxcLj6CgCgKKoTBr6tp4CPAEWy25DE",
      "supply_apy": 0.0,
-     "borrow_apy": 0.016109393644252012,
-     "supplied_usd": 156811.6732797707,
-     "borrowed_usd": 5.010424868658694e-10,
-     "util": 3.1951861515561394e-15,
+     "borrow_apy": 0.016058165473654684,
+     "supplied_usd": 156692.990762097,
+     "borrowed_usd": 5.006638686153588e-10,
+     "util": 3.1951899455126493e-15,
      "reserve": "BvafE5Sm6rLrBbVRtJ2FkCzfNJQ2TjcL8bvPZULUDYrt"
     },
     {
      "token": "hSOL",
      "mint": "he1iusmfkpAdwvxLNGV8Y1iSbj4rUy6yMhEA3fotn9A",
      "supply_apy": 5.601919084163853e-08,
-     "borrow_apy": 0.016141697179600678,
-     "supplied_usd": 28458418.681435272,
-     "borrowed_usd": 10518.423396452998,
-     "util": 0.0003696067414776861,
+     "borrow_apy": 0.016090367769405978,
+     "supplied_usd": 28436879.99946812,
+     "borrowed_usd": 10510.4750592782,
+     "util": 0.000369607181219416,
      "reserve": "CExamod1Ai3d1N8Vh7sBjt5xbZzb2VmGMAFocf7fxCzm"
     },
     {
      "token": "vSOL",
      "mint": "vSoLxydx6akxyMD9XEcPvGYNGq6Nn66oqVb3UkGkei7",
      "supply_apy": 5.601919084163853e-08,
-     "borrow_apy": 0.016141981796810922,
-     "supplied_usd": 17429418.502245836,
-     "borrowed_usd": 6499.289546322241,
-     "util": 0.00037289193242360825,
+     "borrow_apy": 0.016090652372239056,
+     "supplied_usd": 17416227.091079496,
+     "borrowed_usd": 6494.378302371577,
+     "util": 0.00037289237608172695,
      "reserve": "CHBNUPdjeo2N5QkZY2uAqv7TW5EbCTMsfvaskCBuxbom"
     },
     {
      "token": "dfdvSOL",
      "mint": "sctmB7GPi5L2Q5G9tUSzXvhZ4YiDMEGcRov9KfArQpx",
      "supply_apy": 0.0,
-     "borrow_apy": 0.016109393644252012,
-     "supplied_usd": 22332816.53124945,
-     "borrowed_usd": 3.8452104850937015e-12,
-     "util": 1.721775880670155e-19,
+     "borrow_apy": 0.016058165473654684,
+     "supplied_usd": 22315913.995633163,
+     "borrowed_usd": 3.842304809617253e-12,
+     "util": 1.7217779251027432e-19,
      "reserve": "CkgQnPbuHHwSv2mNdAKH79TKSqC6jsyttK9yh4MPH6z3"
     },
     {
      "token": "USDC",
      "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
-     "supply_apy": 0.035370818041608354,
-     "borrow_apy": 0.053722709257400414,
-     "supplied_usd": 123186687.31009026,
-     "borrowed_usd": 100523174.746742,
-     "util": 0.8160230374058294,
+     "supply_apy": 0.03538254873624935,
+     "borrow_apy": 0.05373084049107657,
+     "supplied_usd": 123187711.63294137,
+     "borrowed_usd": 100540389.41964786,
+     "util": 0.8161559954878044,
      "reserve": "D6q6wuQSrifJKZYpR1M8R4YawnLDtDsMmWM1NbBmgJ59"
     },
     {
      "token": "JupSOL",
      "mint": "jupSoLaHXQiZZTSfEWMTRRgpnyFm8f6sZdosWBjx93v",
-     "supply_apy": 8.17883508252848e-06,
-     "borrow_apy": 0.01698583790656749,
-     "supplied_usd": 52180554.58005146,
-     "borrowed_usd": 523017.0927736235,
-     "util": 0.010023218361377326,
+     "supply_apy": 8.150825259178873e-06,
+     "borrow_apy": 0.016931802612190516,
+     "supplied_usd": 52141061.90240912,
+     "borrowed_usd": 522622.1338355727,
+     "util": 0.010023235330606596,
      "reserve": "DGQZWCY17gGtBUgdaFs1VreJWsodkjFxndPsskwFKGpp"
     },
     {
      "token": "USDH",
      "mint": "USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX",
      "supply_apy": 0.0,
-     "borrow_apy": 0.016109393644252012,
+     "borrow_apy": 0.016058165473654684,
      "supplied_usd": 3527.122316248756,
-     "borrowed_usd": 2.9845425319650377e-10,
-     "util": 8.461692746565209e-14,
+     "borrowed_usd": 2.984546075803802e-10,
+     "util": 8.461702793959221e-14,
      "reserve": "DaGyAQJrdkLCzYZiUWg49NV8vabDnhR7ETwLu5eQgL56"
     },
     {
@@ -1484,7 +1485,7 @@
      "mint": "27G8MtK7VtTcCHkpASjSDdkWWYfoqT6ggEuKidVJidD4",
      "supply_apy": 0.0,
      "borrow_apy": 0.0,
-     "supplied_usd": 2247215.619493875,
+     "supplied_usd": 2246770.307964322,
      "borrowed_usd": 0.0,
      "util": 0.0,
      "reserve": "EAA3VVsxUuQB1Tm5x7TJkq9ATtiX5Qwq8ok7gXwim7oo"
@@ -1492,50 +1493,50 @@
     {
      "token": "EURC",
      "mint": "HzwqbKZw8HxMN6bF2yFZNrht3c2iXXzpKcFu7uBEDKtr",
-     "supply_apy": 0.029482234682028263,
-     "borrow_apy": 0.056358636089547165,
-     "supplied_usd": 555163.7447627342,
-     "borrowed_usd": 449800.342107115,
+     "supply_apy": 0.02948285464288647,
+     "borrow_apy": 0.05635956811753928,
+     "supplied_usd": 555019.4973909287,
+     "borrowed_usd": 449683.4711518369,
      "util": 0.8102120254616962,
      "reserve": "EGPE45iPkme8G8C1xFDNZoZeHdP3aRYtaAfAQuuwrcGZ"
     },
     {
      "token": "USDG",
      "mint": "2u1tszSeqZ3qBWF3uNGPFc8TzMk2tdiwknnRMWGWjGWH",
-     "supply_apy": 0.03768946270676565,
-     "borrow_apy": 0.05530361985192056,
-     "supplied_usd": 44685332.55033065,
-     "borrowed_usd": 37619281.80950196,
-     "util": 0.8418709151852022,
+     "supply_apy": 0.03766089194833411,
+     "borrow_apy": 0.055284436477622156,
+     "supplied_usd": 44702437.98733031,
+     "borrowed_usd": 37619677.05338621,
+     "util": 0.841557614017573,
      "reserve": "ESCkPWKHmgNE7Msf77n9yzqJd5kQVWWGy3o5Mgxhvavp"
     },
     {
      "token": "JITOSOL",
      "mint": "J1toso1uCk3RLmjorhTtrVwY9HJ7X8V9yYac6Y7kGCPn",
      "supply_apy": 3.4731957674338787e-06,
-     "borrow_apy": 0.0166557603917572,
-     "supplied_usd": 98321735.37627122,
-     "borrowed_usd": 614456.8623779545,
-     "util": 0.006249450948220819,
+     "borrow_apy": 0.016602810433481885,
+     "supplied_usd": 98243059.00267553,
+     "borrowed_usd": 613992.8123861989,
+     "util": 0.0062497322316630785,
      "reserve": "EVbyPKrHG6WBfm4dLxLMJpUDY43cCAcHSpV3KYjKsktW"
     },
     {
      "token": "MSOL",
      "mint": "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So",
-     "supply_apy": 4.700120433409616e-05,
-     "borrow_apy": 0.01831713154875203,
-     "supplied_usd": 22183989.777890656,
-     "borrowed_usd": 559737.6841187066,
-     "util": 0.025231605753648554,
+     "supply_apy": 4.686114978813549e-05,
+     "borrow_apy": 0.01825883292087993,
+     "supplied_usd": 22167199.97234192,
+     "borrowed_usd": 559314.9339302278,
+     "util": 0.025231645612801192,
      "reserve": "FBSyPnxtHKLBZ4UeeUyAnbtFuAmTHLtso9YtsqRDRWpM"
     },
     {
      "token": "cdcSOL",
      "mint": "CDCSoLckzozyktpAp9FWT3w92KFJVEUxAU7cNu2Jn3aX",
      "supply_apy": 0.0,
-     "borrow_apy": 0.016109393644252012,
-     "supplied_usd": 56478.20064463189,
-     "borrowed_usd": 2.926949522568364e-07,
+     "borrow_apy": 0.016058165473654684,
+     "supplied_usd": 56435.45526154918,
+     "borrowed_usd": 2.924734268236995e-07,
      "util": 5.1824411705059566e-12,
      "reserve": "FMbsZf4HuQ1a8a7VdmALT3S8WRfu3EocphRKPXxRsfGd"
     },
@@ -1553,17 +1554,17 @@
      "token": "bnSOL",
      "mint": "BNso1VUJnh4zcfpZa6986Ea66P6TCp59hvtNJ8b1X85",
      "supply_apy": 0.0,
-     "borrow_apy": 0.016109592869957057,
-     "supplied_usd": 1156694.7138839865,
-     "borrowed_usd": 2.6612966962202704,
-     "util": 2.3007770886097366e-06,
+     "borrow_apy": 0.016058364689315763,
+     "supplied_usd": 1155819.2724200415,
+     "borrowed_usd": 2.659285658183326,
+     "util": 2.3007798205469822e-06,
      "reserve": "Fqjbo3L4NAyzPcy6swv1XXLm1c7tUTKWMDkjCo9mfSDq"
     },
     {
      "token": "STEP",
      "mint": "StepAscQoEioFxxWGnh2sLBDFp9d8rvKz2Yp39iDpyT",
      "supply_apy": 0.0,
-     "borrow_apy": 0.00015823871856723848,
+     "borrow_apy": 0.00015773446621114573,
      "supplied_usd": 0.0,
      "borrowed_usd": 0.0,
      "util": 0.0,
@@ -1583,7 +1584,7 @@
      "token": "xSTEP",
      "mint": "xStpgUCss9piqeFUk2iLVcvJEGhAdJxJQuwLkXP555G",
      "supply_apy": 0.0,
-     "borrow_apy": 0.00015823871856723848,
+     "borrow_apy": 0.00015773446621114573,
      "supplied_usd": 0.0,
      "borrowed_usd": 0.0,
      "util": 0.0,
@@ -1593,100 +1594,100 @@
      "token": "UXD",
      "mint": "7kbnvuGBxxj8AG9qp8Scn56muWGaRaFqxg1FsRp3PaFT",
      "supply_apy": 0.0,
-     "borrow_apy": 0.00015823871856723848,
+     "borrow_apy": 0.00015773446621114573,
      "supplied_usd": 15446.731365520041,
-     "borrowed_usd": 2.320724636335651e-08,
-     "util": 1.5024049952185594e-12,
+     "borrowed_usd": 2.32072466361903e-08,
+     "util": 1.5024050128814411e-12,
      "reserve": "GhGPbkWmPjSkbkgZbhNGBTxzwQKjqDpZwNfaf2gQKgdG"
     },
     {
      "token": "USDT",
      "mint": "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
-     "supply_apy": 0.03219351295896522,
-     "borrow_apy": 0.05147870616717509,
-     "supplied_usd": 10589790.943219796,
-     "borrowed_usd": 8248983.339273304,
-     "util": 0.7789562025825246,
+     "supply_apy": 0.0322077807949217,
+     "borrow_apy": 0.05148905841768392,
+     "supplied_usd": 10587532.949442834,
+     "borrowed_usd": 8249025.722363796,
+     "util": 0.7791263329950627,
      "reserve": "H3t6qZ1JkguCNTi9uzVKqQ7dvt2cum4XiXWom6Gn5e5S"
     },
     {
      "token": "bSOL",
      "mint": "bSo13r4TkiE4KumL71LsHTPpL2euBYLFx6h9HP3piy1",
-     "supply_apy": 0.00024598249930019023,
-     "borrow_apy": 0.021267988180523778,
-     "supplied_usd": 8822275.476579254,
-     "borrowed_usd": 519374.08913637145,
-     "util": 0.058870763049189354,
+     "supply_apy": 0.0002451980380413499,
+     "borrow_apy": 0.021200195864070626,
+     "supplied_usd": 8815598.52083093,
+     "borrowed_usd": 518981.8136792104,
+     "util": 0.05887085402685658,
      "reserve": "H9vmCVd77N1HZa36eBn3UnftYmg4vQzPfm1RxabHAMER"
     },
     {
      "token": "jSOL",
      "mint": "7Q2afV64in6N6SeZsAAB81TJzwDoD6zpqmHkzi9Dcavn",
      "supply_apy": 0.0,
-     "borrow_apy": 0.016109393644252012,
-     "supplied_usd": 5588876.666225155,
-     "borrowed_usd": 1.0154249830383162e-11,
-     "util": 1.8168677601614632e-18,
+     "borrow_apy": 0.016058165473654684,
+     "supplied_usd": 5584646.739078519,
+     "borrowed_usd": 1.0146576660129379e-11,
+     "util": 1.8168699175059354e-18,
      "reserve": "HD93Fq3gmVh3J7euJJ5MBw8Ph3ebeMFS699JQePN4XgN"
     },
     {
      "token": "laineSOL",
      "mint": "LAinEtNLgpmCP9Rvsf5Hn8W6EhNiKLZQti1xfWMLy6X",
      "supply_apy": 0.0,
-     "borrow_apy": 0.016109393644252012,
-     "supplied_usd": 1450.6635823550216,
-     "borrowed_usd": 1.9230830052391464e-12,
-     "util": 1.3256574636809964e-15,
+     "borrow_apy": 0.016058165473654684,
+     "supplied_usd": 1449.5656512976552,
+     "borrowed_usd": 1.9216298064741585e-12,
+     "util": 1.3256590377634225e-15,
      "reserve": "HMCXsf1jFUDbvGGhvUzCzwkKbmUhxhxz7gYZwXpTuReT"
     },
     {
      "token": "pSOL",
      "mint": "pSo1f9nQXWgXibFtKf7NWYxb5enAM4qfP6UJSiXRQfL",
-     "supply_apy": 2.183371737696227e-05,
-     "borrow_apy": 0.0175889378155345,
-     "supplied_usd": 6305437.31078228,
-     "borrowed_usd": 106658.0427051325,
+     "supply_apy": 2.1763691863796453e-05,
+     "borrow_apy": 0.017532960929039776,
+     "supplied_usd": 6300665.056527078,
+     "borrowed_usd": 106577.31883570623,
      "util": 0.01691524908553885,
      "reserve": "HV9KsS5mB4b9CFhDJVKdfxWBAomYfUk5PeUsdgMQsUrB"
     },
     {
      "token": "WBTC",
      "mint": "3NZ9JMVBmGAqocybic2c7LQCJScmgsAZ6vQqTDzcqmJh",
-     "supply_apy": 0.0003299234088778302,
-     "borrow_apy": 0.005373109274365628,
-     "supplied_usd": 208154.55974437133,
-     "borrowed_usd": 16016.764397297027,
-     "util": 0.07694649791465898,
+     "supply_apy": 0.0003288867124953132,
+     "borrow_apy": 0.005356114801722711,
+     "supplied_usd": 208216.22798217004,
+     "borrowed_usd": 16021.515797765158,
+     "util": 0.07694652791009696,
      "reserve": "HYnVhjsvU1vBKTPsXs1dWe6cJeuU8E4gjoYpmwe81KzN"
     },
     {
      "token": "tBTC",
      "mint": "6DNSN2BJsaPFdFFc1zP37kkeNe4Usc1Sqkzr9C9vPWcU",
-     "supply_apy": 0.022005212547954622,
-     "borrow_apy": 0.04389771276752796,
-     "supplied_usd": 6248.232360625864,
-     "borrowed_usd": 3957.1046860698657,
-     "util": 0.6333158656208323,
+     "supply_apy": 0.021935081372598475,
+     "borrow_apy": 0.0437562925706354,
+     "supplied_usd": 6249.13904500989,
+     "borrowed_usd": 3957.685406007542,
+     "util": 0.6333169061373124,
      "reserve": "Hcz1o77tF9TpdEHcvrx29tz7SBKoQEwJA1wuJqGZYnTw"
     },
     {
      "token": "bonkSOL",
      "mint": "BonK1YhkXEGLZzwtcvRTip3gAL9nCeQD7ppZBLXhtTs",
      "supply_apy": 0.0,
-     "borrow_apy": 0.01610967825241416,
-     "supplied_usd": 8650951.898878105,
-     "borrowed_usd": 28.793390895090358,
-     "util": 3.328349438496406e-06,
+     "borrow_apy": 0.016058464297160846,
+     "supplied_usd": 8644404.44784903,
+     "borrowed_usd": 28.77163605094853,
+     "util": 3.328353760461511e-06,
      "reserve": "Ht9NoB1udjpRqws1sCw1j2dL7MeTDHYCDdDFkbc1Arst"
     },
     {
      "token": "lanternSOL",
      "mint": "LnTRntk2kTfWEY6cVB8K9649pgJbt6dJLS1Ns1GZCWg",
      "supply_apy": 0.0,
-     "borrow_apy": 0.016109393644252012,
-     "supplied_usd": 2555744.708380294,
-     "borrowed_usd": 2.9896848406225303e-12,
-     "util": 1.1697900932042803e-18,
+     "borrow_apy": 0.016058165473654684,
+     "supplied_usd": 2553810.399472177,
+     "borrowed_usd": 2.987425984484972e-12,
+     "util": 1.1697916122130348e-18,
      "reserve": "J5oj3VKWQNKRZx3heWZx7JZC59AEDQ9UQwqqiy63nCuf"
     }
    ]
@@ -1698,31 +1699,31 @@
     {
      "token": "USDT",
      "mint": "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
-     "supply_apy": 0.04381787831655215,
-     "borrow_apy": 0.05256941846912411,
-     "supplied_usd": 1870852.942261871,
-     "borrowed_usd": 1739972.9864844203,
-     "util": 0.9300426277122475,
+     "supply_apy": 0.0438271610785419,
+     "borrow_apy": 0.052579029658931686,
+     "supplied_usd": 1870867.947023095,
+     "borrowed_usd": 1740038.0493265125,
+     "util": 0.9300699453936567,
      "reserve": "2ov3CMqPBYG3jNBmmpXgK9KMW5GmU5GWZNGcwf7w3BC1"
     },
     {
      "token": "USD1",
      "mint": "USD1ttGY1N17NEEHLmELoaybftRBUSErhqYiQzvEmuB",
-     "supply_apy": 0.153015723457244,
+     "supply_apy": 0.15301583649150996,
      "borrow_apy": 0.17084850923220785,
-     "supplied_usd": 2122.4088260354033,
-     "borrowed_usd": 2128.7622369313767,
-     "util": 1.0029934906121936,
+     "supplied_usd": 2122.4313318744894,
+     "borrowed_usd": 2128.7872434192504,
+     "util": 1.0029946370699059,
      "reserve": "6ekGhgbrVyL86SkFUjvoMyVNY4sFrfDbu6KCRhWkTUwS"
     },
     {
      "token": "USDG",
      "mint": "2u1tszSeqZ3qBWF3uNGPFc8TzMk2tdiwknnRMWGWjGWH",
-     "supply_apy": 0.03770371931531735,
-     "borrow_apy": 0.04613841506588212,
-     "supplied_usd": 771690.5146442617,
-     "borrowed_usd": 703545.3188519991,
-     "util": 0.9116936200470513,
+     "supply_apy": 0.037663493220849054,
+     "borrow_apy": 0.046095356790984754,
+     "supplied_usd": 771796.1549026766,
+     "borrowed_usd": 703546.4518097526,
+     "util": 0.9115702991529799,
      "reserve": "8rM1AY8M4YP4xNVmxhKnEUnj5CRWrcbcHpcgMoDfgqVi"
     },
     {
@@ -1730,7 +1731,7 @@
      "mint": "27G8MtK7VtTcCHkpASjSDdkWWYfoqT6ggEuKidVJidD4",
      "supply_apy": 0.0,
      "borrow_apy": 0.0,
-     "supplied_usd": 45342328.64414099,
+     "supplied_usd": 45291356.79882234,
      "borrowed_usd": 0.0,
      "util": 0.0,
      "reserve": "DdTmCCjv7zHRD1hJv3E8bpnSEQBzdKkzB1j9ApXX5QoP"
@@ -1740,29 +1741,29 @@
      "mint": "So11111111111111111111111111111111111111112",
      "supply_apy": 1.4004797321831575e-08,
      "borrow_apy": 0.1708485256297041,
-     "supplied_usd": 3.422796607361404e-08,
-     "borrowed_usd": 2.1486921295852467e-15,
-     "util": 6.277592203299658e-08,
+     "supplied_usd": 3.414252259451752e-08,
+     "borrowed_usd": 2.143353513894758e-15,
+     "util": 6.277665945629132e-08,
      "reserve": "DmaDuxw9NZMAZhsSrGnYSbd7rg6bvqqx3Y76MTkFubRY"
     },
     {
      "token": "PYUSD",
      "mint": "2b1kV6DkPAnxd5ixfnxCpjxmKwqjjaYmCZfHsFu24GXo",
-     "supply_apy": 0.04170010467615026,
-     "borrow_apy": 0.05036666142948332,
-     "supplied_usd": 1417628.284424684,
-     "borrowed_usd": 1309563.000004438,
-     "util": 0.9237703665992373,
+     "supply_apy": 0.04182308091977083,
+     "borrow_apy": 0.050495280339130755,
+     "supplied_usd": 1416976.4884551011,
+     "borrowed_usd": 1309480.3295558535,
+     "util": 0.924136949501224,
      "reserve": "FswUCVjvfAuzHCgPDF95eLKscGsLHyJmD6hzkhq26CLe"
     },
     {
      "token": "USDC",
      "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
-     "supply_apy": 0.03537244206062873,
-     "borrow_apy": 0.04362658408991682,
-     "supplied_usd": 20443210.050762177,
-     "borrowed_usd": 18490806.60386426,
-     "util": 0.9044962389932922,
+     "supply_apy": 0.035343065110294836,
+     "borrow_apy": 0.04359470756322592,
+     "supplied_usd": 20445718.85630371,
+     "borrowed_usd": 18491206.39647558,
+     "util": 0.9044048060347103,
      "reserve": "Ga4rZytCpq1unD4DbEJ5bkHeUz9g3oh9AAFEi6vSauXp"
     }
    ]
@@ -1776,9 +1777,9 @@
      "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
      "supply_apy": 0.0,
      "borrow_apy": 0.03792547039666827,
-     "supplied_usd": 19.07451362022764,
-     "borrowed_usd": 9.931757887399399e-15,
-     "util": 5.206821041490268e-16,
+     "supplied_usd": 19.075206277874642,
+     "borrowed_usd": 9.932146075632469e-15,
+     "util": 5.20683547582538e-16,
      "reserve": "USdC3HcnsXpPD4ZWf6X2DJ6dHE64AeLqUyNHTr8L5zB"
     },
     {
@@ -1796,9 +1797,9 @@
      "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
      "supply_apy": 0.0,
      "borrow_apy": 0.0634455926308839,
-     "supplied_usd": 5.465424809859286,
-     "borrowed_usd": 2.695892064922276e-16,
-     "util": 4.932630415222352e-17,
+     "supplied_usd": 5.465623277215468,
+     "borrowed_usd": 2.6960023117150764e-16,
+     "util": 4.9326530113297326e-17,
      "reserve": "uSDCx5qhmWyWMCDQsThsuK8D18tA6swFh7mvcWVcdi5"
     },
     {
@@ -1815,10 +1816,10 @@
      "token": "JUP",
      "mint": "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
      "supply_apy": 0.00031753916017418504,
-     "borrow_apy": 0.025335057322073418,
-     "supplied_usd": 7544.815212197529,
-     "borrowed_usd": 119.67821135684193,
-     "util": 0.015862311798354047,
+     "borrow_apy": 0.025335086041293087,
+     "supplied_usd": 7503.299930662635,
+     "borrowed_usd": 119.01990197546623,
+     "util": 0.01586234098001135,
      "reserve": "3AKyRviT87dt9jP3RHpfFjxmSVNbR68Wx7UejnUyaSFH"
     },
     {
@@ -1826,7 +1827,7 @@
      "mint": "7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr",
      "supply_apy": 0.0,
      "borrow_apy": 0.0,
-     "supplied_usd": 225881.3247484595,
+     "supplied_usd": 225281.49406548552,
      "borrowed_usd": 0.0,
      "util": 0.0,
      "reserve": "3xSpNvuHAfyzpWxUg2kJkVHWhrBcGLL7RxkZyzecQZkw"
@@ -1836,8 +1837,8 @@
      "mint": "jtojtomepa8beP8AuQc6eXt5FriJwfFMwQx2v2f9mCL",
      "supply_apy": 0.0,
      "borrow_apy": 2.9410078705716103e-07,
-     "supplied_usd": 3532.29662268838,
-     "borrowed_usd": 0.0006665056188040332,
+     "supplied_usd": 3499.3030443804173,
+     "borrowed_usd": 0.0006602800925598719,
      "util": 1.8868902869679312e-07,
      "reserve": "8PYYKF4ZvteefFBmtb9SMHmhZKnDWQH86z59mPZBfhHu"
     },
@@ -1854,11 +1855,11 @@
     {
      "token": "USDC",
      "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
-     "supply_apy": 0.06917418615737647,
-     "borrow_apy": 0.15229835678227022,
-     "supplied_usd": 313719.3080276492,
-     "borrowed_usd": 185028.6069866543,
-     "util": 0.5897903069783231,
+     "supply_apy": 0.06917471023237654,
+     "borrow_apy": 0.15229895387750636,
+     "supplied_usd": 313732.333105657,
+     "borrowed_usd": 185037.3671139401,
+     "util": 0.5897937432276841,
      "reserve": "9TD2TSv4pENb8VwfbVYg25jvym7HN6iuAR6pFNSrKjqQ"
     },
     {
@@ -1886,7 +1887,7 @@
      "mint": "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
      "supply_apy": 0.0,
      "borrow_apy": 0.0,
-     "supplied_usd": 241989.34842823126,
+     "supplied_usd": 240415.93360056603,
      "borrowed_usd": 0.0,
      "util": 0.0,
      "reserve": "CZWSgQvX9UJVympc9YTLjc57RLx5EGvMT75WFtC3CUp7"
@@ -1896,19 +1897,19 @@
      "mint": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
      "supply_apy": 0.0,
      "borrow_apy": 3.1777390013809637e-05,
-     "supplied_usd": 398920.94405067514,
-     "borrowed_usd": 8.035612768418417,
+     "supplied_usd": 396323.13251078496,
+     "borrowed_usd": 7.983284085527215,
      "util": 2.0143371483141906e-05,
      "reserve": "CoFdsnQeCUyJefhKK6GQaAPT9PEx8Xcs2jejtp9jgn38"
     },
     {
      "token": "PYUSD",
      "mint": "2b1kV6DkPAnxd5ixfnxCpjxmKwqjjaYmCZfHsFu24GXo",
-     "supply_apy": 0.002106380086606796,
-     "borrow_apy": 0.03293406734222759,
-     "supplied_usd": 15995.79348542153,
-     "borrowed_usd": 2023.8620895992258,
-     "util": 0.12652464483514128,
+     "supply_apy": 0.002106394120903632,
+     "borrow_apy": 0.03293409627429256,
+     "supplied_usd": 15995.89335881589,
+     "borrowed_usd": 2023.8792930047427,
+     "util": 0.12652493034340673,
      "reserve": "D4c6nsTRjD2Kv7kYEUjtXiw72YKP8a1XHd33g38UpaV8"
     },
     {
@@ -1916,8 +1917,8 @@
      "mint": "85VBFQZC9TZkfaptBWjvUw7YbZjy52A6mjtPGjstQAmQ",
      "supply_apy": 0.0,
      "borrow_apy": 1.3374670882360107e-05,
-     "supplied_usd": 5058.1955402045305,
-     "borrowed_usd": 0.0428987163463489,
+     "supplied_usd": 5066.143753073508,
+     "borrowed_usd": 0.04296612539105991,
      "util": 8.481031625877846e-06,
      "reserve": "Dd7KhG2zJbrEDCq1rJJWg9mcDSfrdt3ExtzcA12zy1f9"
     },
@@ -1976,9 +1977,9 @@
      "mint": "EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
      "supply_apy": 1.4004797321831575e-08,
      "borrow_apy": 0.0001596534279235673,
-     "supplied_usd": 98401.54600499808,
-     "borrowed_usd": 9.959868113621306,
-     "util": 0.00010121658162886402,
+     "supplied_usd": 97805.85250901511,
+     "borrowed_usd": 9.899574171953788,
+     "util": 0.00010121658283221149,
      "reserve": "GvPEtF7MsZceLbrrjprfcKN9quJ7EW221c4H9TVuWQUo"
     },
     {
@@ -1996,9 +1997,9 @@
      "mint": "HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3",
      "supply_apy": 1.3444614466173732e-06,
      "borrow_apy": 0.0016328344936731298,
-     "supplied_usd": 3682.9716896642994,
-     "borrowed_usd": 3.8095601524385994,
-     "util": 0.001034371283148755,
+     "supplied_usd": 3672.592841257898,
+     "borrowed_usd": 3.7988250308947222,
+     "util": 0.0010343714087275705,
      "reserve": "HXSE82voKcf8x2rdeLr73yASNhzWWGcTz3Shq6UFaEHA"
     },
     {
@@ -2006,7 +2007,7 @@
      "mint": "5oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm",
      "supply_apy": 0.0,
      "borrow_apy": 0.0,
-     "supplied_usd": 730715.9260762816,
+     "supplied_usd": 729093.1283103853,
      "borrowed_usd": 0.0,
      "util": 0.0,
      "reserve": "Hy2S5arXGFgsvze47PCgSjF92ZQCiAfUJnFkqZQMXu4T"
@@ -2020,11 +2021,11 @@
     {
      "token": "USDG",
      "mint": "2u1tszSeqZ3qBWF3uNGPFc8TzMk2tdiwknnRMWGWjGWH",
-     "supply_apy": 0.059470234752256435,
-     "borrow_apy": 0.06618012392357753,
-     "supplied_usd": 445703.39730868826,
-     "borrowed_usd": 446437.08251792204,
-     "util": 1.001646128823931,
+     "supply_apy": 0.05927719946896004,
+     "borrow_apy": 0.06596460753533151,
+     "supplied_usd": 445705.309615776,
+     "borrowed_usd": 446439.207303575,
+     "util": 1.0016465984855143,
      "reserve": "Q5av3wh8j9KCqSjs9njUdsPhrMSKBCUyr4VyUndUUFA"
     },
     {
@@ -2032,27 +2033,27 @@
      "mint": "DEkqHyPN7GMRJ5cArtQFAWefqbZb33Hyf6s5iCwjEonT",
      "supply_apy": 0.0,
      "borrow_apy": 0.00010015332065727023,
-     "supplied_usd": 267541266.25721613,
-     "borrowed_usd": 1027.0524263315974,
-     "util": 3.838856116290418e-06,
+     "supplied_usd": 267541565.95622343,
+     "borrowed_usd": 1027.0535844895967,
+     "util": 3.838856144908895e-06,
      "reserve": "2erD9GTGcaQbLsVSQweg3HvMpfKxScmz95raWv8H4iPN"
     },
     {
      "token": "USDT",
      "mint": "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
-     "supply_apy": 0.023321178221324734,
-     "borrow_apy": 0.042227856815800546,
-     "supplied_usd": 42.749716975578934,
-     "borrowed_usd": 29.784547046754316,
-     "util": 0.6967191633986475,
+     "supply_apy": 0.023246800928874656,
+     "borrow_apy": 0.04209193136371581,
+     "supplied_usd": 42.74990561596644,
+     "borrowed_usd": 29.784718973871275,
+     "util": 0.696720110716388,
      "reserve": "8ndviAYyGB6bXRRnr8e8BgDvviacrDzqeLNNUhGSQBXd"
     },
     {
      "token": "USDC",
      "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
      "supply_apy": 0.0,
-     "borrow_apy": 0.00015823871856723848,
-     "supplied_usd": 0.099994938,
+     "borrow_apy": 0.00015773446621114573,
+     "supplied_usd": 0.099992165,
      "borrowed_usd": 0.0,
      "util": 0.0,
      "reserve": "CAPsU1H49e6WuiQdte1ZU6zJaSGWXBSogAa1w6mhiKo2"
@@ -2060,19 +2061,19 @@
     {
      "token": "PYUSD",
      "mint": "2b1kV6DkPAnxd5ixfnxCpjxmKwqjjaYmCZfHsFu24GXo",
-     "supply_apy": 0.034090260596519206,
-     "borrow_apy": 0.04049903073219818,
-     "supplied_usd": 251458810.33811247,
-     "borrowed_usd": 235917217.93050963,
-     "util": 0.9381942816531044,
+     "supply_apy": 0.03409027507874374,
+     "borrow_apy": 0.04049904530417625,
+     "supplied_usd": 251446547.32710552,
+     "borrowed_usd": 235905821.50103974,
+     "util": 0.9381947137820551,
      "reserve": "EDf6dGbVnCCABbNhE3mp5i1jV2JhDAVmTWb1ztij1Yhs"
     },
     {
      "token": "sUSDe",
      "mint": "Eh6XEPhSwoLv5wFApukmnaVSHQ6sAnoD9BmgmwQoN2sN",
      "supply_apy": 0.0,
-     "borrow_apy": 0.00015823871856723848,
-     "supplied_usd": 15769.205005186563,
+     "borrow_apy": 0.00015773446621114573,
+     "supplied_usd": 15769.238643818757,
      "borrowed_usd": 0.0,
      "util": 0.0,
      "reserve": "EwBTjwCXJ3TsKP8dNTYnzRmBWRd6h48FdLFSAGJ3sCtx"
@@ -2087,8 +2088,8 @@
      "token": "kySOL",
      "mint": "kySo1nETpsZE2NWe5vj2C64mPSciH1SppmHb4XieQ7B",
      "supply_apy": 0.0,
-     "borrow_apy": 0.016109393644252012,
-     "supplied_usd": 48821.46455537934,
+     "borrow_apy": 0.016058165473654684,
+     "supplied_usd": 48784.5141536091,
      "borrowed_usd": 0.0,
      "util": 0.0,
      "reserve": "4pDCUGYftuPG1sV3xcqsn2YGfHC6Q3eZVfDyzQm8SK5A"
@@ -2096,19 +2097,19 @@
     {
      "token": "SOL",
      "mint": "So11111111111111111111111111111111111111112",
-     "supply_apy": 0.04805102696032426,
-     "borrow_apy": 0.05733249135822449,
-     "supplied_usd": 20614615.96879474,
-     "borrowed_usd": 19282594.006696127,
-     "util": 0.9353845851838835,
+     "supply_apy": 0.04787850430199003,
+     "borrow_apy": 0.057161520356420636,
+     "supplied_usd": 20611616.110651225,
+     "borrowed_usd": 19268051.42872863,
+     "util": 0.9348151704985278,
      "reserve": "6gTJfuPHEg6uRAijRkMqNc9kan4sVZejKMxmvx2grT1p"
     },
     {
      "token": "ezSOL",
      "mint": "ezSoL6fY1PVdJcJsUpe5CM3xkfmy3zoVCABybm5WtiC",
      "supply_apy": 0.0,
-     "borrow_apy": 0.016109393644252012,
-     "supplied_usd": 601507.060530904,
+     "borrow_apy": 0.016058165473654684,
+     "supplied_usd": 601051.8114359278,
      "borrowed_usd": 0.0,
      "util": 0.0,
      "reserve": "9TdUdZpnXoLQbqt5guR8fVdZZDgcQsLkUV2nr3SGRSJ8"
@@ -2117,10 +2118,10 @@
      "token": "JITOSOL",
      "mint": "J1toso1uCk3RLmjorhTtrVwY9HJ7X8V9yYac6Y7kGCPn",
      "supply_apy": 2.4228328716624503e-06,
-     "borrow_apy": 0.00017909537901683592,
-     "supplied_usd": 21568034.477019,
-     "borrowed_usd": 365380.68121836835,
-     "util": 0.016940842783225604,
+     "borrow_apy": 0.00017852107965543595,
+     "supplied_usd": 21551710.768647697,
+     "borrowed_usd": 365104.1486313091,
+     "util": 0.0169408430054863,
      "reserve": "F9HdecRG8GPs9LEn4S5VfeJVEZVqrDJFR6bvmQTi22na"
     }
    ]
@@ -2134,7 +2135,7 @@
      "mint": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
      "supply_apy": 0.0,
      "borrow_apy": 0.0,
-     "supplied_usd": 85791.35092791698,
+     "supplied_usd": 85635.44472733093,
      "borrowed_usd": 0.0,
      "util": 0.0,
      "reserve": "293UFbK4shi6ddaWp8rJ6ASSpstegKrztXfrR4a278KJ"
@@ -2142,21 +2143,21 @@
     {
      "token": "USDC",
      "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
-     "supply_apy": 0.009605811220906313,
-     "borrow_apy": 0.055516300819428155,
-     "supplied_usd": 20650.593641884094,
-     "borrowed_usd": 4567.334895076028,
-     "util": 0.2211720870731985,
+     "supply_apy": 0.009575383852542307,
+     "borrow_apy": 0.05533643043748704,
+     "supplied_usd": 20652.518930989063,
+     "borrowed_usd": 4567.7758017578435,
+     "util": 0.2211728175638617,
      "reserve": "F22tnLsbv66vEU2GZRc7coaqZsr8UcBbyp9V2kqWAiWK"
     },
     {
      "token": "USDT",
      "mint": "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
-     "supply_apy": 0.0444042723619289,
-     "borrow_apy": 0.0729006534194343,
-     "supplied_usd": 26997.83417157739,
-     "borrowed_usd": 20836.871091945628,
-     "util": 0.7717978768045822,
+     "supply_apy": 0.04426121869926192,
+     "borrow_apy": 0.07266255165956537,
+     "supplied_usd": 26996.84503009204,
+     "borrowed_usd": 20836.151164593764,
+     "util": 0.7717994877315755,
      "reserve": "FCiu3ZDsyMQXEeLsa3k2P9NnaPtbX8w2RCG9aKL2dnJP"
     }
    ]
@@ -2169,18 +2170,18 @@
      "token": "WBTC",
      "mint": "3NZ9JMVBmGAqocybic2c7LQCJScmgsAZ6vQqTDzcqmJh",
      "supply_apy": 7.002398905164853e-08,
-     "borrow_apy": 0.00016255288800604006,
-     "supplied_usd": 791468.3083047975,
-     "borrowed_usd": 396.79058363043697,
-     "util": 0.0005013347716730451,
+     "borrow_apy": 0.00016204863347479836,
+     "supplied_usd": 791686.6288192114,
+     "borrowed_usd": 396.900040296605,
+     "util": 0.0005013347779898412,
      "reserve": "2Xd86oYAuhiKtQMVJBuWvJYxrSippreb46PmehGszpPQ"
     },
     {
      "token": "zBTC",
      "mint": "zBTCug3er3tLyffELcvDNrKkCymbPWysGcWihESYfLg",
      "supply_apy": 0.0,
-     "borrow_apy": 0.00015823871856723848,
-     "supplied_usd": 7.913710684687,
+     "borrow_apy": 0.00015773446621114573,
+     "supplied_usd": 7.916154617857,
      "borrowed_usd": 0.0,
      "util": 0.0,
      "reserve": "7fgesawvKtb6ft34BrYmKYFWsifJVmQnrm2Fx8MiW6gb"
@@ -2188,39 +2189,39 @@
     {
      "token": "USDC",
      "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
-     "supply_apy": 0.03467003065101193,
-     "borrow_apy": 0.05390138949821166,
-     "supplied_usd": 461201.2195732521,
-     "borrowed_usd": 374267.91176551074,
-     "util": 0.8115067694569835,
+     "supply_apy": 0.0353673815097586,
+     "borrow_apy": 0.054928528439235125,
+     "supplied_usd": 460696.4580965462,
+     "borrowed_usd": 374303.5217623294,
+     "util": 0.8124731918036328,
      "reserve": "9FRZvAsjDJ6WM8BJ2S45h9PoDCLAq8DNY9zZDX7MyGzT"
     },
     {
      "token": "USDG",
      "mint": "2u1tszSeqZ3qBWF3uNGPFc8TzMk2tdiwknnRMWGWjGWH",
-     "supply_apy": 0.5456925630533664,
-     "borrow_apy": 0.7236986738695692,
-     "supplied_usd": 45067.99534082519,
-     "borrowed_usd": 45056.993391976175,
-     "util": 0.9997558811132865,
+     "supply_apy": 0.5468331369959945,
+     "borrow_apy": 0.7244359237884366,
+     "supplied_usd": 45028.28566859986,
+     "borrowed_usd": 45058.150946835274,
+     "util": 1.000663255946611,
      "reserve": "AZJAPDubfJuqzSsdeWQS3EG44nQRpwmKDTG1SKHrEMVy"
     },
     {
      "token": "USDT",
      "mint": "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
-     "supply_apy": 0.08688986317489245,
-     "borrow_apy": 0.12826813588642594,
-     "supplied_usd": 23821.390949086403,
-     "borrowed_usd": 20557.87176427894,
-     "util": 0.8630004775211239,
+     "supply_apy": 0.061154326344458054,
+     "borrow_apy": 0.09161946633575568,
+     "supplied_usd": 24288.07308099521,
+     "borrowed_usd": 20557.201317117524,
+     "util": 0.8463907881273218,
      "reserve": "BjZ3HvRJHTNdQDxvJRCgR97Tsgv5ULZtywbiMmmTXycF"
     },
     {
      "token": "LBTC",
      "mint": "LBTCgU4b3wsFKsPwBn1rRZDx5DoFutM6RPiEt1TPDsY",
      "supply_apy": 0.0,
-     "borrow_apy": 0.00015823871856723848,
-     "supplied_usd": 111968.51381133057,
+     "borrow_apy": 0.00015773446621114573,
+     "supplied_usd": 111999.3994738755,
      "borrowed_usd": 0.0,
      "util": 0.0,
      "reserve": "DSyZ8en9YR19PcGydimK1uWE4un6ur87szaCKBJEmj47"
@@ -2228,11 +2229,11 @@
     {
      "token": "FDUSD",
      "mint": "9zNQRsGLjNKwCUU5Gq5LR8beUCPzQMVMqKAi3SSZh54u",
-     "supply_apy": 0.022555050238815655,
-     "borrow_apy": 0.0415234493029899,
-     "supplied_usd": 158.48162019421218,
-     "borrowed_usd": 108.6053153338408,
-     "util": 0.685286503259809,
+     "supply_apy": 0.022483148651515794,
+     "borrow_apy": 0.041389817968567444,
+     "supplied_usd": 158.48109717122074,
+     "borrowed_usd": 108.60510518923765,
+     "util": 0.6852874388666191,
      "reserve": "F2W8MLCx1aZXUSNvPBuGer4DBBT8W1wMbR8igpimV9wq"
     }
    ]
@@ -2244,19 +2245,19 @@
     {
      "token": "USDC",
      "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
-     "supply_apy": 0.029255209935128867,
-     "borrow_apy": 0.05867650936665103,
-     "supplied_usd": 943.2921706137216,
-     "borrowed_usd": 596.2910609876653,
-     "util": 0.6321382489581234,
+     "supply_apy": 0.0292552531786614,
+     "borrow_apy": 0.05867653901975123,
+     "supplied_usd": 943.3815631551048,
+     "borrowed_usd": 596.3488778584314,
+     "util": 0.6321396359114381,
      "reserve": "9vUWBVRfowgwoxqdNrDq6Gqu3pUfPxEN9u7mi6639FkG"
     },
     {
      "token": "JUP",
      "mint": "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
      "supply_apy": 0.0,
-     "borrow_apy": 0.00015823871856723848,
-     "supplied_usd": 9395.176854970729,
+     "borrow_apy": 0.00015773446621114573,
+     "supplied_usd": 9383.721568195482,
      "borrowed_usd": 0.0,
      "util": 0.0,
      "reserve": "Au5Bn2tzz8pQGZX2beFZhikqakTYfj5Kz7rGinCCu3Km"
@@ -2264,21 +2265,21 @@
     {
      "token": "USDT",
      "mint": "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
-     "supply_apy": 0.0436150523041714,
-     "borrow_apy": 0.07257715259235531,
-     "supplied_usd": 340.12774900925746,
-     "borrowed_usd": 259.0526545700998,
-     "util": 0.7616334019340745,
+     "supply_apy": 0.04347459105975804,
+     "borrow_apy": 0.07234014384203435,
+     "supplied_usd": 340.11522039939,
+     "borrowed_usd": 259.0436391522882,
+     "util": 0.7616349507913784,
      "reserve": "BwV7PRfiDNQ7DSA23gmsYL3EZug2jMKR4sXMLTgNBboo"
     },
     {
      "token": "USDG",
      "mint": "2u1tszSeqZ3qBWF3uNGPFc8TzMk2tdiwknnRMWGWjGWH",
-     "supply_apy": 0.03572421820156868,
-     "borrow_apy": 0.06147044251201983,
-     "supplied_usd": 18.730053673759905,
-     "borrowed_usd": 13.775871013088457,
-     "util": 0.7354955438482235,
+     "supply_apy": 0.03572427622200136,
+     "borrow_apy": 0.06147045737769852,
+     "supplied_usd": 18.73010270677209,
+     "borrowed_usd": 13.775932304353688,
+     "util": 0.7354968907550538,
      "reserve": "Gd5WdkCf7ypnydApWUDjUUVPs8yNNXKuhZyrv75WhCbd"
     }
    ]
@@ -2304,37 +2305,37 @@
    "available": 177249.939023649,
    "borrowed": 0.0,
    "util": 0.0,
-   "price": 125.95717811605199,
+   "price": 125.693649614644,
    "supply_apy": 0.0,
    "borrow_apy": 0.0,
-   "supplied_usd": 22325902.140661113,
+   "supplied_usd": 22279191.729855552,
    "borrowed_usd": 0.0,
    "reserve": "3DjAsrew4ZmBwcLjp2wUmjqvSKs4vpJ43ZKxaCjjEdur"
   },
   {
    "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
    "symbol": "USDC",
-   "available": 5791152.414827,
-   "borrowed": 16387939.28377795,
-   "util": 0.738891362481212,
-   "price": 0.99992782,
+   "available": 5791129.71767,
+   "borrowed": 16387966.382528448,
+   "util": 0.7388924376580801,
+   "price": 0.99992498,
    "supply_apy": 0.0296,
    "borrow_apy": 0.0504,
-   "supplied_usd": 22177490.811766144,
-   "borrowed_usd": 16386756.402320448,
+   "supplied_usd": 22177432.22440901,
+   "borrowed_usd": 16386736.957290431,
    "reserve": "BgxfHJDzm44T7XG68MYKx7YisTjZu73tVovyZSjJMpmw"
   },
   {
    "mint": "So11111111111111111111111111111111111111112",
    "symbol": "SOL",
-   "available": 65616.861665199,
-   "borrowed": 128576.75508620415,
-   "util": 0.6621059808098719,
-   "price": 103.99751502999999,
+   "available": 65598.612447425,
+   "borrowed": 128597.13693015209,
+   "util": 0.6622036648192497,
+   "price": 103.81306531,
    "supply_apy": 0.028399999999999998,
-   "borrow_apy": 0.0541,
-   "supplied_usd": 20195653.576834105,
-   "borrowed_usd": 13371663.019586144,
+   "borrow_apy": 0.0542,
+   "supplied_usd": 20160056.013058804,
+   "borrowed_usd": 13350062.974808892,
    "reserve": "8PbodeaosQP19SjYFx855UMqWxH2HynZLdBXmsrbac36"
   },
   {
@@ -2353,14 +2354,14 @@
   {
    "mint": "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
    "symbol": "USDT",
-   "available": 2366374.606725,
-   "borrowed": 2807199.3075127266,
-   "util": 0.5426034988670572,
-   "price": 0.99980841,
+   "available": 2366258.892192,
+   "borrowed": 2807319.924064373,
+   "util": 0.5426262986935151,
+   "price": 0.999825,
    "supply_apy": 0.0176,
    "borrow_apy": 0.0408,
-   "supplied_usd": 5172582.709211498,
-   "borrowed_usd": 2806661.4761974,
+   "supplied_usd": 5172673.439963528,
+   "borrowed_usd": 2806828.6430776617,
    "reserve": "8K9WC8xoh2rtQNY7iEGXtPvfbDCi563SdWhCAhuMP2xE"
   },
   {
@@ -2393,13 +2394,13 @@
    "mint": "cbbtcf3aa214zXHbiAZQwf4122FBYbraNdFqgw4iMij",
    "symbol": "cbBTC",
    "available": 28.18572754,
-   "borrowed": 3.7381990506327445,
-   "util": 0.11709709455758563,
-   "price": 79449.27636414999,
+   "borrowed": 3.7382715922164715,
+   "util": 0.11709910079667782,
+   "price": 79197.57300391,
    "supply_apy": 0.0028000000000000004,
-   "borrow_apy": 0.0297,
-   "supplied_usd": 2536332.8663280173,
-   "borrowed_usd": 296997.20947792404,
+   "borrow_apy": 0.0298,
+   "supplied_usd": 2528303.251850473,
+   "borrowed_usd": 296062.0373330069,
    "reserve": "Ag7UiqS5kqcsjNFWQfeUAiEXo27auFvdwLVJQwzYCBkZ"
   },
   {
@@ -2421,10 +2422,10 @@
    "available": 6199.300313201,
    "borrowed": 0.0,
    "util": 0.0,
-   "price": 119.707235437452,
+   "price": 119.45678311044401,
    "supply_apy": 0.0,
    "borrow_apy": 0.0,
-   "supplied_usd": 742101.102139822,
+   "supplied_usd": 740548.4729505595,
    "borrowed_usd": 0.0,
    "reserve": "H5znFbw5v8z5knynkv1tKi8TgvdhTSt7QyoTXDigCVkW"
   },
@@ -2486,10 +2487,10 @@
    "available": 1426.529098856,
    "borrowed": 0.0,
    "util": 0.0,
-   "price": 114.199671254443,
+   "price": 113.997127016911,
    "supply_apy": 0.0,
    "borrow_apy": 0.0,
-   "supplied_usd": 162909.15412425203,
+   "supplied_usd": 162620.218875607,
    "borrowed_usd": 0.0,
    "reserve": "9mpAoYdKeLhcMHYASoVGzTiWhefQ7pSYTLQdu9n9Gqjv"
   },
@@ -2618,7 +2619,7 @@
    "util": 0.19631921841565758,
    "price": 0.99990963,
    "supply_apy": 0.0149,
-   "borrow_apy": 0.09720000000000001,
+   "borrow_apy": 0.0973,
    "supplied_usd": 11064.486029335738,
    "borrowed_usd": 2172.1712494501544,
    "reserve": "GhNvGen79cntgdZjUjLkj1LWSdZBiH8YFmDXhkdREX3q"
@@ -2670,7 +2671,7 @@
    "util": 7.592987224935327e-16,
    "price": 0.00623547,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 7299.7925217772745,
    "borrowed_usd": 5.542723136253328e-12,
    "reserve": "7ZpPKWQdiaQQkwLyKq2MQQeNKXLtBkQ59Xdbr5GpUnMZ"
@@ -2709,7 +2710,7 @@
    "util": 4.7180823190462245e-15,
    "price": 0.1982021,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 3139.549120115957,
    "borrowed_usd": 1.4812651193396227e-11,
    "reserve": "4rS8X6uwnsZ94b4A7pqVx8By9zgJQWGeAgrYHXu4x8Av"
@@ -2722,7 +2723,7 @@
    "util": 4.228640106433538e-16,
    "price": 2.3405351,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 1981.1435269843828,
    "borrowed_usd": 8.377542974807355e-13,
    "reserve": "FbmGHM3dT8jicwLYSNY8eKmyKAzqd6s81x5i4AHSgVhd"
@@ -2761,7 +2762,7 @@
    "util": 9.196080958270807e-17,
    "price": 0.00034246,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 1741.2838783366362,
    "borrowed_usd": 1.6012987516515483e-13,
    "reserve": "CFM2QsDjnEgDtMLLbkFTpQnnmhuc6EioTQAMFH2xEC1N"
@@ -2800,7 +2801,7 @@
    "util": 1.15321576293464e-16,
    "price": 3.456e-06,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 1181.110586054066,
    "borrowed_usd": 1.3620753456065196e-13,
    "reserve": "5Pf253eBRevFYCoXfekcR2PEcHeq4Du6Ke83U3paE1cz"
@@ -2826,7 +2827,7 @@
    "util": 9.018233158886786e-16,
    "price": 0.09198888850476943,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 1109.347375028537,
    "borrowed_usd": 1.0004353282206367e-12,
    "reserve": "EvPrRUmgz74QDiiSunUn7t1PwUv9ambsqwdm9wcJg6Bu"
@@ -2839,7 +2840,7 @@
    "util": 4.645085551756195e-16,
    "price": 0.04117263100640504,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 974.9381199176712,
    "borrowed_usd": 4.5286709746859227e-13,
    "reserve": "BTzJ9wLyHAZFAqGoWRAwZetRiGRgkpBuL85wXKXZF8Hx"
@@ -2865,7 +2866,7 @@
    "util": 1.0172335261237027e-15,
    "price": 0.001907737409555272,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 804.6966996463185,
    "borrowed_usd": 8.185644612413307e-13,
    "reserve": "9MNU28Kog3j5oNkQDeMHbVQqaGSxh6T6VBHvWKXoB8zj"
@@ -2878,7 +2879,7 @@
    "util": 1.0470718231988863e-16,
    "price": 0.267838883286312,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 719.1869990662075,
    "borrowed_usd": 7.530404423331895e-14,
    "reserve": "8aRJW9C4vxkVuK7MfsKSnmR4HzcGcpdAnNEaqfiKCwtp"
@@ -2891,7 +2892,7 @@
    "util": 2.905787388407719e-16,
    "price": 5.021e-06,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 458.7700183978414,
    "borrowed_usd": 1.3330881336400248e-13,
    "reserve": "9jC8My4C9WCNWHmBnnAGqpCbbNU1FVEs2B7PNbQPb1U6"
@@ -2904,7 +2905,7 @@
    "util": 2.384696623227844e-16,
    "price": 0.0153446652385562,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 313.00293295375394,
    "borrowed_usd": 7.464170372752282e-14,
    "reserve": "BJXPu3yB7D35jC1kg3KdAZvam5bnb8hL1iY1h9kNJwik"
@@ -2917,7 +2918,7 @@
    "util": 1.1956560661498074e-16,
    "price": 0.01550533625978382,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 300.85753243334375,
    "borrowed_usd": 3.597221337007899e-14,
    "reserve": "8YC6boJoPR6mT8GheRbTqydYjpoCqYwYvWtYbdcUwz59"
@@ -2943,7 +2944,7 @@
    "util": 0.0,
    "price": 1.1676176287168e-05,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 169.40609971782786,
    "borrowed_usd": 0.0,
    "reserve": "Gi4cANbdscEhwSw5wSfdB2EJ6CGSx89yxVRYCXNoWZDp"
@@ -2956,7 +2957,7 @@
    "util": 1.5161049182852335e-16,
    "price": 0.00049715,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 166.31475905098887,
    "borrowed_usd": 2.5215062418062776e-14,
    "reserve": "25PaiqNrpTPDydjN7xehiQiWqN97AJURDg8ej5jkbKWk"
@@ -2969,7 +2970,7 @@
    "util": 2.5051138906700203e-16,
    "price": 0.00802082,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 124.21953540109466,
    "borrowed_usd": 3.111840836258586e-14,
    "reserve": "6VttAuytifopBq9DTozKNEQsHSbq4JNZzzfLShypdm4p"
@@ -2982,7 +2983,7 @@
    "util": 1.3768220919999791e-15,
    "price": 0.07158715110543663,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 106.04763867644343,
    "borrowed_usd": 1.4600873173415872e-13,
    "reserve": "AU4ZFhkz8rnWMtCgiHVZ6eCrjG6QBH4exV1XjUx8KV6d"
@@ -3021,7 +3022,7 @@
    "util": 1.8093297076490746e-16,
    "price": 0.000325191052475611,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 84.1952240670295,
    "borrowed_usd": 1.523369201466468e-14,
    "reserve": "HcMZxFXrjc48sCarcH37DYABVDsMPbrPd9bpPA5q7zBt"
@@ -3034,7 +3035,7 @@
    "util": 5.613546350525588e-17,
    "price": 0.06781616085872044,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 84.1509716868984,
    "borrowed_usd": 4.723853800061706e-15,
    "reserve": "EnvTk9Spv57WfBoSiU3vq2gCuHGLatA9WbsFVwiC2cjS"
@@ -3047,7 +3048,7 @@
    "util": 1.614548306156245e-15,
    "price": 0.004834007124815247,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 70.85829560335371,
    "borrowed_usd": 1.1440414114351324e-13,
    "reserve": "4yGuczMxEKz17jtyeH2b7t7Mo9FaCRj2XJ79x3CxgW7G"
@@ -3060,7 +3061,7 @@
    "util": 1.3127396007286946e-16,
    "price": 5.0459637027e-07,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 68.70935673441825,
    "borrowed_usd": 9.019749352586564e-15,
    "reserve": "DzmAjVBZXhtk4g2N7UoEbgFQhBsyYzo6Bviqw18ibQ1y"
@@ -3073,7 +3074,7 @@
    "util": 1.2234480717713494e-15,
    "price": 0.001863242109584099,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 47.86207505503846,
    "borrowed_usd": 5.85567634370624e-14,
    "reserve": "JMBiQLjvqrKkBApAFKT1WkGY5qphQzqu4NutEkU99KK"
@@ -3086,7 +3087,7 @@
    "util": 4.42380526954148e-17,
    "price": 0.02713671081001469,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 46.12033453371597,
    "borrowed_usd": 2.040273789432686e-15,
    "reserve": "6SVtJkr1GcwPAxuoKQXaNfp9QKPECxXqQEucHJjniMDH"
@@ -3112,7 +3113,7 @@
    "util": 2.477702599082551e-16,
    "price": 0.026725394246151783,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 39.476734164991704,
    "borrowed_usd": 9.78116068438909e-15,
    "reserve": "Hq52CTcTUUo69PFJVX7orgENxyKNipxGkHQVBtr3sV3C"
@@ -3125,7 +3126,7 @@
    "util": 4.768759899644622e-16,
    "price": 1161.0850307536023,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 31.258645277656218,
    "borrowed_usd": 1.4906497411730273e-14,
    "reserve": "3Mfk1tnEy2ffK2o4tboh7PqRDyhnhJb173V7rg887R4E"
@@ -3138,7 +3139,7 @@
    "util": 0.0,
    "price": 0.002291893513915176,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 31.252803918333136,
    "borrowed_usd": 0.0,
    "reserve": "83W8WZNJhoujm5u4tRwakRBfhFiB6BTBqQkUs7aS9JGQ"
@@ -3151,7 +3152,7 @@
    "util": 9.852108951098195e-18,
    "price": 5.4110793967035e-05,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 21.79099005475925,
    "borrowed_usd": 2.1468720817178532e-16,
    "reserve": "2Mi3nAbpro5xqdi52ZbFbQ9cXyCdXrRGsKfVSTZG79zW"
@@ -3164,7 +3165,7 @@
    "util": 4.4877829883094627e-17,
    "price": 5.8503641719959e-05,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 20.45337510954685,
    "borrowed_usd": 9.179030887013654e-16,
    "reserve": "35zqJiVKtEBec7XD9BG7USrLvAGTbio11Eua2Rfg2YfB"
@@ -3177,7 +3178,7 @@
    "util": 4.567715148511259e-17,
    "price": 0.000753536012350175,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 20.207063826591956,
    "borrowed_usd": 9.230011154765797e-16,
    "reserve": "8oht6TZ6XB8aWmBtXyXwfCdaHMDqt6E3PAmsBuHcvup7"
@@ -3190,7 +3191,7 @@
    "util": 1.1842789196891576e-16,
    "price": 0.006319502422130156,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 18.876525214601003,
    "borrowed_usd": 2.235507088863282e-15,
    "reserve": "C7A8b6267KpbxA89ZhpEbtBPkj6iXXAD5sasqc3NfuoK"
@@ -3203,7 +3204,7 @@
    "util": 2.158063860956025e-16,
    "price": 0.000459875793552886,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 17.871353559074873,
    "borrowed_usd": 3.856752226220732e-15,
    "reserve": "5qrzqv35edbdjRiyRptxwdCbs8xQrrmTscySKdjyfcnQ"
@@ -3216,7 +3217,7 @@
    "util": 3.6300749660549698e-16,
    "price": 0.07513509059287563,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 17.667200620843822,
    "borrowed_usd": 6.4133262693995975e-15,
    "reserve": "A97Jhqn4itgsDaKfuCAbtMFWZ5CVe4SJJsyZLS2nzS8H"
@@ -3229,7 +3230,7 @@
    "util": 1.0427114207110133e-16,
    "price": 3.1774740187e-08,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 16.98150609631804,
    "borrowed_usd": 1.7706810347504518e-15,
    "reserve": "GqnTPten6D1w3LTYkcXNUbsyzpZ3kFZNwRLBhBoMeUf8"
@@ -3242,7 +3243,7 @@
    "util": 1.01445579104219e-15,
    "price": 0.003300702210225962,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 13.269071328963744,
    "borrowed_usd": 1.346088625141916e-14,
    "reserve": "HwGvPLgDpRcghpbRcUz3bfwvWiHRYdT4Czt8NgB55aRF"
@@ -3255,7 +3256,7 @@
    "util": 5.7811665737323635e-15,
    "price": 0.005063222412892555,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 12.816252426703029,
    "borrowed_usd": 7.409289012977183e-14,
    "reserve": "Gn5CSJeXoyXhG2pK5P2CUnedcRSejB7beQDWwiihTGG3"
@@ -3268,7 +3269,7 @@
    "util": 2.0069760503027722e-16,
    "price": 6.3040195848863e-05,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 12.41826947100908,
    "borrowed_usd": 2.4923169414521296e-15,
    "reserve": "BHYzuqNawczsvrDTPNS6JFQtCVPyYJv79XJB9FyNNsr8"
@@ -3281,7 +3282,7 @@
    "util": 4.965017152430684e-16,
    "price": 0.000295478406566416,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 8.143225284968429,
    "borrowed_usd": 4.04312532159755e-15,
    "reserve": "564qbQPZZwAc1qU7dFne7f5JhPXbpoHkyv6yJy45FcBu"
@@ -3294,7 +3295,7 @@
    "util": 1.9371839050533652e-16,
    "price": 0.10993460496468263,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 6.1880553718853415,
    "borrowed_usd": 1.1987401269995299e-15,
    "reserve": "GmJ5E5S38dR1MbiWHdaZrFeBtsrNu329WX6Ls119ePnp"
@@ -3307,7 +3308,7 @@
    "util": 3.0795094121533275e-16,
    "price": 0.001697156233100056,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 4.0550815105668025,
    "borrowed_usd": 1.2487661678839403e-15,
    "reserve": "FXAZzNMU6PBK3MX2yDhLNmRh74PkDj8iPJtJGKo867N2"
@@ -3320,7 +3321,7 @@
    "util": 4.142935916582106e-16,
    "price": 0.000385286639871292,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 1.9684451951614161,
    "borrowed_usd": 8.155142298857703e-16,
    "reserve": "7PYtmaMEaTkpRvFT2TnyDfd83pFum95uy7vmKLD5kJRm"
@@ -3333,7 +3334,7 @@
    "util": 5.406911890779001e-17,
    "price": 0.000960714147186301,
    "supply_apy": 0.0,
-   "borrow_apy": 0.322,
+   "borrow_apy": 0.3221,
    "supplied_usd": 0.1690163511691764,
    "borrowed_usd": 9.13856518872699e-18,
    "reserve": "BJ9qkhzr1FKUoa2vDQ5yVhwEH4XwyMnt6NJ9KtAGC4bs"
@@ -3448,23 +3449,23 @@
    "symbol": "jlJupUSD",
    "asset": "JuprjznTrTSp2UFa3ZBUFgwdAmtZCq4MQCwysN55USD",
    "asset_symbol": "JupUSD",
-   "supply_rate_bps": 508,
-   "rewards_rate_bps": 100,
+   "supply_rate_bps": 509,
+   "rewards_rate_bps": 99,
    "total_rate_bps": 608,
-   "total_assets": 57914857.784359,
+   "total_assets": 57915011.506526,
    "decimals": 6,
-   "asset_price": 0.999654582073
+   "asset_price": 0.99964738031
   },
   {
    "symbol": "jlUSDC",
    "asset": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
    "asset_symbol": "USDC",
-   "supply_rate_bps": 455,
+   "supply_rate_bps": 456,
    "rewards_rate_bps": 40,
-   "total_rate_bps": 495,
-   "total_assets": 451919809.496655,
+   "total_rate_bps": 496,
+   "total_assets": 451708776.148687,
    "decimals": 6,
-   "asset_price": 0.999922702783
+   "asset_price": 0.999936131654
   },
   {
    "symbol": "jlWSOL",
@@ -3473,9 +3474,9 @@
    "supply_rate_bps": 385,
    "rewards_rate_bps": 0,
    "total_rate_bps": 385,
-   "total_assets": 190632.824625261,
+   "total_assets": 190623.711724949,
    "decimals": 9,
-   "asset_price": 104.14543019227
+   "asset_price": 103.931276813167
   },
   {
    "symbol": "jlUSDT",
@@ -3484,9 +3485,9 @@
    "supply_rate_bps": 425,
    "rewards_rate_bps": 0,
    "total_rate_bps": 425,
-   "total_assets": 17546848.940263,
+   "total_assets": 17560628.07155,
    "decimals": 6,
-   "asset_price": 0.999889151159
+   "asset_price": 0.999895068803
   },
   {
    "symbol": "jlEURC",
@@ -3495,9 +3496,9 @@
    "supply_rate_bps": 369,
    "rewards_rate_bps": 0,
    "total_rate_bps": 369,
-   "total_assets": 4358212.890305,
+   "total_assets": 4358220.72866,
    "decimals": 6,
-   "asset_price": 1.162217861709
+   "asset_price": 1.162078432792
   },
   {
    "symbol": "jlUSDG",
@@ -3506,9 +3507,9 @@
    "supply_rate_bps": 542,
    "rewards_rate_bps": 0,
    "total_rate_bps": 542,
-   "total_assets": 2923788.261646,
+   "total_assets": 2923793.008372,
    "decimals": 6,
-   "asset_price": 1.000138959779
+   "asset_price": 1.000064286914
   },
   {
    "symbol": "jlUSDS",
@@ -3517,36 +3518,62 @@
    "supply_rate_bps": 474,
    "rewards_rate_bps": 0,
    "total_rate_bps": 474,
-   "total_assets": 3854832.20905,
+   "total_assets": 3854840.829067,
    "decimals": 6,
-   "asset_price": 0.999929859782
+   "asset_price": 0.999846903138
   }
  ],
  "sanctum_sol_value": {
-  "jupSOL": 1.18394498,
-  "dSOL": 1.189701343,
-  "dfdvSOL": 1.310726785,
-  "bbSOL": 1.147563524,
   "vSOL": 1.149109283,
-  "hSOL": 1.162058984,
-  "bSOL": 1.290721131,
   "jitoSOL": 1.275866054,
-  "mSOL": 1.376648063,
-  "INF": 1.407837461,
   "bonkSOL": 1.076215492,
+  "INF": 1.407837461,
+  "bSOL": 1.290721131,
   "sSOL": 1.195589749,
   "picoSOL": 1.175801437,
-  "laineSOL": 1.178746013
+  "hSOL": 1.162058984,
+  "bbSOL": 1.147563524,
+  "laineSOL": 1.178746013,
+  "dfdvSOL": 1.310726785,
+  "jupSOL": 1.18394498,
+  "dSOL": 1.189701343,
+  "mSOL": 1.376648063
+ },
+ "stake_pool_nav": {
+  "jitoSOL": {
+   "pool": "Jito4APyf642JPZPx3hGc6WWJ8zPKtRbRs4P815Awbb",
+   "owner_program": "SPoo1Ku8WFXoNDMHPsrGSTSG1Y47rzgn41SLUNakuHy",
+   "total_lamports": 10258355848351152,
+   "pool_token_supply": 7890763421605956,
+   "nav_sol": 1.3000460538789458,
+   "last_update_epoch": 1030
+  },
+  "jupSOL": {
+   "pool": "8VpRhuxa7sUUepdY3kQiTmX9rS5vx4WgaXiAnXq4KCtr",
+   "owner_program": "SPMBzsVUuoHA4Jm6KunbsotaahvVikZs1JyTW6iJvbn",
+   "total_lamports": 5181760919818077,
+   "pool_token_supply": 4289703713260362,
+   "nav_sol": 1.207953104966243,
+   "last_update_epoch": 1030
+  },
+  "bSOL": {
+   "pool": "stk9ApL5HeVAwPLr3TLhDXdZS8ptVu7zp6ov8HFDuMi",
+   "owner_program": "SPoo1Ku8WFXoNDMHPsrGSTSG1Y47rzgn41SLUNakuHy",
+   "total_lamports": 921775546163459,
+   "pool_token_supply": 701273779452968,
+   "nav_sol": 1.3144303596841942,
+   "last_update_epoch": 1030
+  }
  },
  "jito_tip_floor": [
   {
-   "time": "2026-09-07T17:44:45+00:00",
-   "landed_tips_25th_percentile": 1.7405e-06,
-   "landed_tips_50th_percentile": 7.724000000000001e-06,
-   "landed_tips_75th_percentile": 1.8388e-05,
-   "landed_tips_95th_percentile": 5.7759399999999974e-05,
-   "landed_tips_99th_percentile": 0.001,
-   "ema_landed_tips_50th_percentile": 7.614041828734724e-06
+   "time": "2026-09-07T18:10:14+00:00",
+   "landed_tips_25th_percentile": 3.034e-06,
+   "landed_tips_50th_percentile": 5.9745e-06,
+   "landed_tips_75th_percentile": 1.233825e-05,
+   "landed_tips_95th_percentile": 2.3187749999999975e-05,
+   "landed_tips_99th_percentile": 0.0005072789400000008,
+   "ema_landed_tips_50th_percentile": 6.030619180017059e-06
   }
  ],
  "rpc_stats": {
@@ -3555,10 +3582,13 @@
    "1": 1,
    "2": 1,
    "3": 1,
-   "4": 1
+   "4": 1,
+   "5": 1,
+   "6": 1,
+   "7": 1
   },
-  "requests": 5,
+  "requests": 8,
   "transport_errors": 0,
-  "bytes_decoded": 9941
+  "bytes_decoded": 13166
  }
 }

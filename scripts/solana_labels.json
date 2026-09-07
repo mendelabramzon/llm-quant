@@ -14,6 +14,7 @@
    "issuer",
    "launchpad",
    "lending",
+   "market_maker",
    "mev_tip",
    "perps",
    "prediction",
@@ -21,6 +22,7 @@
    "protocol",
    "staking",
    "system",
+   "treasury",
    "unknown_hf",
    "vault"
   ],
@@ -944,6 +946,56 @@
    "label": "Binance-adjacent USDC routing wallet",
    "kind": "exchange_internal",
    "source": "window-derived 2026-09-07 (solana_followups profile/program over research/2026-09-07/solana_live)"
+  },
+  "MfDuWeqSHEqTFVYZ7LoexgAK9dxk7cy4DFJWjWMGVWa": {
+   "label": "CEX-DEX market-making desk (own router GKyb\u2026, Whirlpool/Raydium/DLMM; deposits to Binance via 3ADz\u2026)",
+   "kind": "market_maker",
+   "source": "window-derived 2026-09-07 (solana_followups profile over research/2026-09-07/solana_live)"
+  },
+  "44P5Ct5JkPz76Rs2K6juC65zXMpFRDrHatxcASJ4Dyra": {
+   "label": "inter-exchange desk wallet (receives from Gate.io/KuCoin, sends PUMP/SOL to Binance-bound wallets and MfDu\u2026)",
+   "kind": "market_maker",
+   "source": "window-derived 2026-09-07 (solana_followups profile over research/2026-09-07/solana_live)"
+  },
+  "CS9a4zj4ZECh7r84a2raSaQdpkp1H6E39vkSEJXdRRWe": {
+   "label": "stablecoin treasury operator (mints/burns PYUSD with Paxos, cycles USDC, jlUSDC and Kamino; funds arrive by CCTP from Polygon)",
+   "kind": "treasury",
+   "source": "window-derived 2026-09-07 (solana_followups profile over research/2026-09-07/solana_live)"
+  },
+  "DBD8hAwLDRQkTsu6EqviaYNGKPnsAMmQonxf7AH8ZcFY": {
+   "label": "CCTP v2 custody payer (pays inbound receive-message transfers)",
+   "kind": "bridge",
+   "source": "window-derived 2026-09-07 (solana_followups profile over research/2026-09-07/solana_live)"
+  },
+  "9936VFvgRmW1STvdgeyPQaKHDx5DwBtbhZkT3HcdL3QK": {
+   "label": "Huma-linked treasury ($10M USDC in via Huma, out to a Squads multisig)",
+   "kind": "treasury",
+   "source": "window-derived 2026-09-07 (solana_followups profile over research/2026-09-07/solana_live)"
+  },
+  "EW9diL91VgHY5i9qYScz53W3PihQPSnPoMtAKCo1Bs7J": {
+   "label": "SOL sink of program T1TA\u2026XvGT (8.8k SOL from 425 senders, no outflow)",
+   "kind": "deposit_vault",
+   "source": "window-derived 2026-09-07 (solana_followups profile over research/2026-09-07/solana_live)"
+  },
+  "AcNhnoXP933a5A78m3Vpy2rKeuzKY1bPyZWFppgkZHJW": {
+   "label": "sybil-cluster collector (3,253 wallets \u2192 1 sweep, same playbook and token amount as A1zq\u2026)",
+   "kind": "cluster_hub",
+   "source": "window-derived 2026-09-07 (solana_followups profile over research/2026-09-07/solana_live)"
+  },
+  "ArLh5MKcHRb8ZJbZwaSuLoGrkfEnUc4QndCExVysdbDf": {
+   "label": "sybil-cluster collector (532 wallets, 683.6 SOL round trip funded by 2Fs1\u2026)",
+   "kind": "cluster_hub",
+   "source": "window-derived 2026-09-07 (solana_followups profile over research/2026-09-07/solana_live)"
+  },
+  "4QoHvvN9U3c5SuVsxo1WHDPm4AXU7q4LPvjqXhjYWEax": {
+   "label": "sybil-cluster collector (531 wallets, 654.1 SOL round trip funded by C1yb\u2026)",
+   "kind": "cluster_hub",
+   "source": "window-derived 2026-09-07 (solana_followups profile over research/2026-09-07/solana_live)"
+  },
+  "HGpYjXi9nrFxJikYyFpvRfwk2XstrvhbUpYyd9guZvzs": {
+   "label": "bridge relayer/aggregator wallet (receives CCTP v2 inbound from Aptos, forwards)",
+   "kind": "bridge",
+   "source": "window-derived 2026-09-07 (solana_followups profile over research/2026-09-07/solana_live)"
   }
  },
  "mints": {

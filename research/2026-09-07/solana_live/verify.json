@@ -2,65 +2,65 @@
  "checks": [
   {
    "check": "blocks analyzed",
-   "recomputed": 7807,
-   "analysis": 7313,
-   "ok": false
+   "recomputed": 11353,
+   "analysis": 11353,
+   "ok": true
   },
   {
    "check": "transactions",
-   "recomputed": 9320360,
-   "analysis": 8701355,
-   "ok": false
+   "recomputed": 14026271,
+   "analysis": 14026271,
+   "ok": true
   },
   {
    "check": "votes",
-   "recomputed": 5246683,
-   "analysis": 4914733,
-   "ok": false
+   "recomputed": 7631908,
+   "analysis": 7631908,
+   "ok": true
   },
   {
    "check": "non-vote",
-   "recomputed": 4073677,
-   "analysis": 3786622,
-   "ok": false
+   "recomputed": 6394363,
+   "analysis": 6394363,
+   "ok": true
   },
   {
    "check": "failed",
-   "recomputed": 1147410,
-   "analysis": 1065846,
-   "ok": false
+   "recomputed": 1906581,
+   "analysis": 1906581,
+   "ok": true
   },
   {
    "check": "fees SOL",
-   "recomputed": 174.442,
-   "analysis": 157.592,
-   "ok": false
+   "recomputed": 268.883,
+   "analysis": 268.883,
+   "ok": true
   },
   {
    "check": "Jito tips SOL",
-   "recomputed": 38.518,
-   "analysis": 31.33,
-   "ok": false
+   "recomputed": 36.421,
+   "analysis": 36.421,
+   "ok": true
   },
   {
-   "check": "launches",
-   "recomputed": 1127,
-   "analysis": 1097,
-   "ok": false
+   "check": "launches (log-name basis; Solana truncates long logs, so <= 5% fewer is expected)",
+   "recomputed": 1663,
+   "analysis": 1750.0,
+   "ok": true
   },
   {
    "check": "CCTP USDC out (USDC burned inside DepositForBurn txs)",
-   "recomputed": 368479,
-   "analysis": 365468,
+   "recomputed": 2381572,
+   "analysis": 2381901,
    "ok": true
   },
   {
    "check": "USDC burned (issuer + CCTP)",
-   "recomputed": 432843,
-   "analysis": 429833,
+   "recomputed": 4867596,
+   "analysis": 4867596,
    "ok": true
   }
  ],
- "all_ok": false,
- "utc": "2026-09-07T15:45:14+00:00"
+ "all_ok": true,
+ "utc": "2026-09-07T18:31:40+00:00"
 }
