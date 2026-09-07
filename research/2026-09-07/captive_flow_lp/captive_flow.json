@@ -1,0 +1,167 @@
+{
+ "block": 25920655,
+ "utc": "2026-09-06T20:19:35+00:00",
+ "states": {
+  "v4": {
+   "0xb90d11907f96a9d5fd8979ef271d3bb9b90052d9299d1f95faa5168c55bcb716": {
+    "poolId": "0xb90d11907f96a9d5fd8979ef271d3bb9b90052d9299d1f95faa5168c55bcb716",
+    "currency0": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "currency1": "0xe343167631d89b6ffc58b88d6b7fb0228795491d",
+    "fee_pips": 65,
+    "lp_fee_pips": 65,
+    "tickSpacing": 1,
+    "tick": -2,
+    "sqrtPriceX96": "79222093913027496041754409039",
+    "price_c1_per_c0": 0.9998468128345425,
+    "liquidity": "5267132875266459",
+    "reserves_units": {
+     "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": 544860.5673372154,
+     "0xe343167631d89b6ffc58b88d6b7fb0228795491d": 497991.9252726428
+    },
+    "tvl_usd": 1042852.4926098583,
+    "active_band_ticks": [
+     -2,
+     -1
+    ],
+    "active_band_pct": 0.009999999999998899,
+    "n_ticks": 8
+   },
+   "0x7da1afe9de05528e6559b5845188b98d013843e630b20cd511b974a425267427": {
+    "poolId": "0x7da1afe9de05528e6559b5845188b98d013843e630b20cd511b974a425267427",
+    "currency0": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "currency1": "0xe343167631d89b6ffc58b88d6b7fb0228795491d",
+    "fee_pips": 75,
+    "lp_fee_pips": 75,
+    "tickSpacing": 1,
+    "tick": -2,
+    "sqrtPriceX96": "79221592493413117242762321204",
+    "price_c1_per_c0": 0.9998341562335366,
+    "liquidity": "4237460378026011",
+    "reserves_units": {
+     "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": 432495.01218864665,
+     "0xe343167631d89b6ffc58b88d6b7fb0228795491d": 532050.4521123181
+    },
+    "tvl_usd": 964545.4643009647,
+    "active_band_ticks": [
+     -2,
+     -1
+    ],
+    "active_band_pct": 0.009999999999998899,
+    "n_ticks": 12
+   }
+  },
+  "curve": {
+   "0xc061caa073f3d95f80f8e5428d32d2d76f5e1622": {
+    "address": "0xc061caa073f3d95f80f8e5428d32d2d76f5e1622",
+    "coins": [
+     "0xe343167631d89b6ffc58b88d6b7fb0228795491d",
+     "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+    ],
+    "balances_units": [
+     7670941.011663,
+     12357882.579274
+    ],
+    "fee_bps": 1.0,
+    "tvl_usd": 20028823.590937,
+    "dy_100k_0to1": 100006.503207,
+    "dy_100k_1to0": 99971.545208
+   }
+  }
+ },
+ "pools": [
+  {
+   "pool": "USDC/USDG v4 0.65bp",
+   "poolId": "0xb90d11907f96a9d5fd8979ef271d3bb9b90052d9299d1f95faa5168c55bcb716",
+   "lp_fee_bps": 0.65,
+   "deployed_tvl_usd": 1042852,
+   "active_band_pct": 0.009999999999998899,
+   "price_usdg_per_usdc": 0.9998468128345425,
+   "tick": -2,
+   "daily_volume_usd": 6319168,
+   "swaps": 502,
+   "turnover_per_day": 6.059502811422394,
+   "gross_fees_per_day_usd": 410.75,
+   "top_taker": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "top_taker_share": 0.439,
+   "top_taker_is_lp": false,
+   "taker_herfindahl": 0.2228,
+   "n_takers": 278,
+   "marginal_lp_apr": {
+    "10000": 0.1424,
+    "50000": 0.1372,
+    "100000": 0.1312,
+    "500000": 0.0972
+   }
+  },
+  {
+   "pool": "USDC/USDG v4 0.75bp",
+   "poolId": "0x7da1afe9de05528e6559b5845188b98d013843e630b20cd511b974a425267427",
+   "lp_fee_bps": 0.75,
+   "deployed_tvl_usd": 964545,
+   "active_band_pct": 0.009999999999998899,
+   "price_usdg_per_usdc": 0.9998341562335366,
+   "tick": -2,
+   "daily_volume_usd": 5849096,
+   "swaps": 265,
+   "turnover_per_day": 6.064095704253981,
+   "gross_fees_per_day_usd": 438.68,
+   "top_taker": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "top_taker_share": 0.616,
+   "top_taker_is_lp": false,
+   "taker_herfindahl": 0.3903,
+   "n_takers": 101,
+   "marginal_lp_apr": {
+    "10000": 0.1643,
+    "50000": 0.1578,
+    "100000": 0.1504,
+    "500000": 0.1093
+   }
+  },
+  {
+   "pool": "USDC/USDG Curve",
+   "address": "0xc061caa073f3d95f80f8e5428d32d2d76f5e1622",
+   "lp_fee_bps": 1.0,
+   "deployed_tvl_usd": 20028824,
+   "daily_volume_usd": 20799839,
+   "swaps": 259,
+   "turnover_per_day": 1.0384953121487068,
+   "gross_fees_per_day_usd": 2079.98,
+   "marginal_lp_apr": {
+    "whole_pool": 0.0379
+   },
+   "round_trip_spread_bps": 0.65
+  }
+ ],
+ "lp_addresses": [
+  "0x1b6913c808d8a5ed4721ff8d3d6fec75276197c1",
+  "0x2156f29d64f81701b58877129006e8b1964149b6",
+  "0x2165e8b1f2c16b54ac1641291b46bd7a341c7240",
+  "0x2f66639d51cd5a46592f8ebbd7de5f553dbe5f93",
+  "0x3cd62f47b57713170c18221927ae9629522feeef",
+  "0x4a991fb2eb27aafb4c7f38b8ccf80ac1d51f57ed",
+  "0x5ba9b1499461e676463f38b2a4cfd2c61a64f81c",
+  "0x5e9d829566e4ae453cfa8d29d62b1af483a0b534",
+  "0x654fae4aa229d104cabead47e56703f58b174be4",
+  "0x66090998e72eb85ad624bef10f4337d4351e0c78",
+  "0x7774a7d0f27d8c48c0a6c7bdd853a0d6a5b71288",
+  "0x91aeddc4ab91a90aa1aa1ae94a5ad9a869295aff",
+  "0x9829514ae1539e0c33052534ca872d3a121c0bc6",
+  "0xa05533b573f7015238e5a866e270fbe65b5099bb",
+  "0xae95d3a172e2090bc4b6967691a6968d3d6882f0",
+  "0xc984b2f6ad9e8862bf5e0b30d891a10e47f7d914",
+  "0xd60f5ff007f5932775a2096dae391ee04a28528a",
+  "0xda4e26fc2d729df1c04c492dcc1631f18b74123a",
+  "0xe39aeeae0055537b272a18e5184c07510edab611",
+  "0xe53a59fcc1de0bfa522a0bf31f4fe5728f2e7180",
+  "0xe69c05597fcbb02f31d7489e44ae60e52496c871",
+  "0xeeea11d98f6a742cdc084a2f1afa747dc28f1186",
+  "0xfa6825039674eb77aaa3d223f87c84e49121abbc",
+  "0xfaa83d20cea8d6d80ef95dcf3a407921f54b0f5b"
+ ],
+ "flow_windows": 2,
+ "flow_swaps": 1026,
+ "log_dirs": [
+  "research/2026-09-05/eth_day/raw",
+  "research/2026-09-06/live/raw"
+ ]
+}

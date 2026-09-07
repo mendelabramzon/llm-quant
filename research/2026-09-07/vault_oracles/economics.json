@@ -1,0 +1,496 @@
+{
+  "snapshot": {
+    "number": 25920527,
+    "hash": "0xeaa29e14490fcb00d9e74c42ba80c445e2f68fc6a502db281bd11b78838d07c6",
+    "timestamp": 1788724439
+  },
+  "formula": "G(C)=C*D/(A-D+C); D=A*remaining_self_shares/totalSupply",
+  "assumptions": [
+    "No additional reports, losses, deposits, withdrawals or slashes",
+    "Self-held shares fully unlock and assets remain constant",
+    "No fees, swaps, gas, reserve for risk or integer rounding in this model",
+    "Every result is in its named underlying token; no parity assumption"
+  ],
+  "candidates": [
+    {
+      "address": "0x056b269eb1f75477a8666ae8c7fe01b64dd55ecc",
+      "symbol": "USD3",
+      "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "asset_symbol": "USDC",
+      "total_assets_units": "80059533.769368",
+      "locked_value_units": "42415.34416946381359258457673610857048916177361635481052241463897",
+      "hold_seconds": 254929,
+      "deposit_cap_probe_units": "0",
+      "gain_at_100k_units": "52.94167464231125735314975574233406126788078096698705916253686309",
+      "scenarios": [
+        {
+          "annual_capital_cost": "0.03",
+          "model_optimum_principal_units": "0",
+          "gain_before_capital_gas_and_swaps_units": "0.000",
+          "surplus_before_gas_and_swaps_units": "0E-67"
+        },
+        {
+          "annual_capital_cost": "0.05",
+          "model_optimum_principal_units": "0",
+          "gain_before_capital_gas_and_swaps_units": "0.000",
+          "surplus_before_gas_and_swaps_units": "0E-67"
+        },
+        {
+          "annual_capital_cost": "0.08",
+          "model_optimum_principal_units": "0",
+          "gain_before_capital_gas_and_swaps_units": "0.000",
+          "surplus_before_gas_and_swaps_units": "0E-67"
+        }
+      ],
+      "status": "model_only; getter cap is not proof of public entry or exit liquidity"
+    },
+    {
+      "address": "0x0655977feb2f289a4ab78af67bab0d17aab84367",
+      "symbol": "scrvUSD",
+      "asset": "0xf939e0a03fb07f59a73314e73794be0e57ac1b4e",
+      "asset_symbol": "crvUSD",
+      "total_assets_units": "15870415.877680794077820488",
+      "locked_value_units": "757.7735908288627474761281069146230589776650446586045988935232514",
+      "hold_seconds": 142882,
+      "deposit_cap_probe_units": "115792089237316195423570985008687907853269984665640564039457.5840",
+      "gain_at_100k_units": "4.745083369285097520316688244966499421800632254439964042871753341",
+      "scenarios": [
+        {
+          "annual_capital_cost": "0.03",
+          "model_optimum_principal_units": "0",
+          "gain_before_capital_gas_and_swaps_units": "0.00000",
+          "surplus_before_gas_and_swaps_units": "0E-67"
+        },
+        {
+          "annual_capital_cost": "0.05",
+          "model_optimum_principal_units": "0",
+          "gain_before_capital_gas_and_swaps_units": "0.00000",
+          "surplus_before_gas_and_swaps_units": "0E-67"
+        },
+        {
+          "annual_capital_cost": "0.08",
+          "model_optimum_principal_units": "0",
+          "gain_before_capital_gas_and_swaps_units": "0.00000",
+          "surplus_before_gas_and_swaps_units": "0E-67"
+        }
+      ],
+      "status": "model_only; getter cap is not proof of public entry or exit liquidity"
+    },
+    {
+      "address": "0x1f6f16945e395593d8050d6cc33e4328a515b648",
+      "symbol": "yvyYB",
+      "asset": "0x22222222aea0076fca927a3f44dc0b4fdf9479d6",
+      "asset_symbol": "yYB",
+      "total_assets_units": "2879804.326074423472790394",
+      "locked_value_units": "4538.600520636682173248810187021322110718046922372760869396208374",
+      "hold_seconds": 369517,
+      "deposit_cap_probe_units": "97120195.673925576527209606",
+      "gain_at_100k_units": "152.5443755042051436221585193499592690657954029300923204802607332",
+      "scenarios": [
+        {
+          "annual_capital_cost": "0.03",
+          "model_optimum_principal_units": "3217653.735184810497545352897753096853041126145676187919989941506",
+          "gain_before_capital_gas_and_swaps_units": "2396.822247830608872135851848148459161742769516144437509281342947",
+          "surplus_before_gas_and_swaps_units": "1265.755129047993175197622998529898383731736591894220679343250086"
+        },
+        {
+          "annual_capital_cost": "0.05",
+          "model_optimum_principal_units": "1844289.394690945715912584275517349367209512639704319538582453503",
+          "gain_before_capital_gas_and_swaps_units": "1773.576660021079652930212326099729600189173124901606272332224685",
+          "surplus_before_gas_and_swaps_units": "693.071389444573139569496947268640707934040130727295892229528606"
+        },
+        {
+          "annual_capital_cost": "0.08",
+          "model_optimum_principal_units": "855870.205117014928521238153184050284283493787976411093075613416",
+          "gain_before_capital_gas_and_swaps_units": "1041.091246933783546026948193733059424225917106271631791765957830",
+          "surplus_before_gas_and_swaps_units": "238.8117172934385299376981717896025269717725754454534612737674631"
+        }
+      ],
+      "status": "model_only; getter cap is not proof of public entry or exit liquidity"
+    },
+    {
+      "address": "0x23346b04a7f55b8760e5860aa5a77383d63491cd",
+      "symbol": "ysyBOLD",
+      "asset": "0x9f4330700a36b29952869fac9b33f45eedd8a3d8",
+      "asset_symbol": "yBOLD",
+      "total_assets_units": "6282579.731043079693371907",
+      "locked_value_units": "1126.019369590695240135219736283316349807684806283395715111228882",
+      "hold_seconds": 146929,
+      "deposit_cap_probe_units": "115792089237316195423570985008687907853269984665640564039457.5840",
+      "gain_at_100k_units": "17.64518588501059573853223343201532151215903345210951212496001569",
+      "scenarios": [
+        {
+          "annual_capital_cost": "0.03",
+          "model_optimum_principal_units": "832187.011624811151710142631332680376014561525071288972827567075",
+          "gain_before_capital_gas_and_swaps_units": "131.7270200535035138070969788808743562960004293843308326535081583",
+          "surplus_before_gas_and_swaps_units": "15.4100438063365829570022807462858907638053092195673076453445332"
+        },
+        {
+          "annual_capital_cost": "0.05",
+          "model_optimum_principal_units": "0",
+          "gain_before_capital_gas_and_swaps_units": "0.000",
+          "surplus_before_gas_and_swaps_units": "0E-67"
+        },
+        {
+          "annual_capital_cost": "0.08",
+          "model_optimum_principal_units": "0",
+          "gain_before_capital_gas_and_swaps_units": "0.000",
+          "surplus_before_gas_and_swaps_units": "0E-67"
+        }
+      ],
+      "status": "model_only; getter cap is not proof of public entry or exit liquidity"
+    },
+    {
+      "address": "0x2d45c2835cea592f75e72e656932aa60d474ddf3",
+      "symbol": "yscrvUSD",
+      "asset": "0xf939e0a03fb07f59a73314e73794be0e57ac1b4e",
+      "asset_symbol": "crvUSD",
+      "total_assets_units": "280234.758660491612116204",
+      "locked_value_units": "7.288395801419458465708626127963402360206495815137117925360652937",
+      "hold_seconds": 692929,
+      "deposit_cap_probe_units": "115792089237316195423570985008687907853269984665640564039457.5840",
+      "gain_at_100k_units": "1.916851456404699179885231741455005098927858078793799059363311750",
+      "scenarios": [
+        {
+          "annual_capital_cost": "0.03",
+          "model_optimum_principal_units": "0",
+          "gain_before_capital_gas_and_swaps_units": "0.00000",
+          "surplus_before_gas_and_swaps_units": "0E-67"
+        },
+        {
+          "annual_capital_cost": "0.05",
+          "model_optimum_principal_units": "0",
+          "gain_before_capital_gas_and_swaps_units": "0.00000",
+          "surplus_before_gas_and_swaps_units": "0E-66"
+        },
+        {
+          "annual_capital_cost": "0.08",
+          "model_optimum_principal_units": "0",
+          "gain_before_capital_gas_and_swaps_units": "0.00000",
+          "surplus_before_gas_and_swaps_units": "0E-66"
+        }
+      ],
+      "status": "model_only; getter cap is not proof of public entry or exit liquidity"
+    },
+    {
+      "address": "0x696d02db93291651ed510704c9b286841d506987",
+      "symbol": "yvUSD",
+      "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "asset_symbol": "USDC",
+      "total_assets_units": "9285137.438628",
+      "locked_value_units": "4074.151691193982707365249167876298835280051202335060003029184105",
+      "hold_seconds": 212521,
+      "deposit_cap_probe_units": "5714862.561372",
+      "gain_at_100k_units": "43.42952996455387367882852821473993410662278705510788485014336875",
+      "scenarios": [
+        {
+          "annual_capital_cost": "0.03",
+          "model_optimum_principal_units": "4394940.588943304454199988025859412508741670398198151810174783084",
+          "gain_before_capital_gas_and_swaps_units": "1309.275340636603562091196955999147040316660807611032252303107894",
+          "surplus_before_gas_and_swaps_units": "420.7506365814094925411249856379710454819114405110803679327168402"
+        },
+        {
+          "annual_capital_cost": "0.05",
+          "model_optimum_principal_units": "1312323.763853544597580515094302830784239109958514086382701051584",
+          "gain_before_capital_gas_and_swaps_units": "504.7116711834929448344008068953157331229809719130015573621584514",
+          "surplus_before_gas_and_swaps_units": "62.5243953433116418435195151076256311803124541977362222879413920"
+        },
+        {
+          "annual_capital_cost": "0.08",
+          "model_optimum_principal_units": "0",
+          "gain_before_capital_gas_and_swaps_units": "0.000",
+          "surplus_before_gas_and_swaps_units": "0E-67"
+        }
+      ],
+      "status": "model_only; getter cap is not proof of public entry or exit liquidity"
+    },
+    {
+      "address": "0x6abbda8243f4bf130a97beae759a6e91522520b9",
+      "symbol": "yscrvUSD",
+      "asset": "0xf939e0a03fb07f59a73314e73794be0e57ac1b4e",
+      "asset_symbol": "crvUSD",
+      "total_assets_units": "553298.581077538937069538",
+      "locked_value_units": "1.092126794900370321248586720639439037835383758536705262789418495",
+      "hold_seconds": 36793,
+      "deposit_cap_probe_units": "115792089237316195423570985008687907853269984665640564039457.5840",
+      "gain_at_100k_units": "0.1671714361943173215701510135681798389350120313324567325973977925",
+      "scenarios": [
+        {
+          "annual_capital_cost": "0.03",
+          "model_optimum_principal_units": "0",
+          "gain_before_capital_gas_and_swaps_units": "0.00000",
+          "surplus_before_gas_and_swaps_units": "0E-68"
+        },
+        {
+          "annual_capital_cost": "0.05",
+          "model_optimum_principal_units": "0",
+          "gain_before_capital_gas_and_swaps_units": "0.00000",
+          "surplus_before_gas_and_swaps_units": "0E-68"
+        },
+        {
+          "annual_capital_cost": "0.08",
+          "model_optimum_principal_units": "0",
+          "gain_before_capital_gas_and_swaps_units": "0.00000",
+          "surplus_before_gas_and_swaps_units": "0E-68"
+        }
+      ],
+      "status": "model_only; getter cap is not proof of public entry or exit liquidity"
+    },
+    {
+      "address": "0xaaafea48472f77563961cdb53291dedfb46f9040",
+      "symbol": "Locked yvUSD",
+      "asset": "0x696d02db93291651ed510704c9b286841d506987",
+      "asset_symbol": "yvUSD",
+      "total_assets_units": "3615465.13569",
+      "locked_value_units": "412.6590704666787127683599938218341316645284161770857337677554828",
+      "hold_seconds": 220837,
+      "deposit_cap_probe_units": "1.157920892373161954235709850086879078532699846656405640394575840E+71",
+      "gain_at_100k_units": "11.10775885572881058299448626507012433660332338665788471866195386",
+      "scenarios": [
+        {
+          "annual_capital_cost": "0.03",
+          "model_optimum_principal_units": "0",
+          "gain_before_capital_gas_and_swaps_units": "0.0000",
+          "surplus_before_gas_and_swaps_units": "0E-67"
+        },
+        {
+          "annual_capital_cost": "0.05",
+          "model_optimum_principal_units": "0",
+          "gain_before_capital_gas_and_swaps_units": "0.0000",
+          "surplus_before_gas_and_swaps_units": "0E-67"
+        },
+        {
+          "annual_capital_cost": "0.08",
+          "model_optimum_principal_units": "0",
+          "gain_before_capital_gas_and_swaps_units": "0.0000",
+          "surplus_before_gas_and_swaps_units": "0E-67"
+        }
+      ],
+      "status": "model_only; getter cap is not proof of public entry or exit liquidity"
+    },
+    {
+      "address": "0xbaed9839573d349e42dfbf23a8916e5ab9caf2e3",
+      "symbol": "ysUSDC",
+      "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "asset_symbol": "USDC",
+      "total_assets_units": "15374286.941433",
+      "locked_value_units": "1061.058334383528447412512271901614146682820359860664218049003597",
+      "hold_seconds": 52033,
+      "deposit_cap_probe_units": "0",
+      "gain_at_100k_units": "6.857382826308514108236480374993682387222439056187215068568411114",
+      "scenarios": [
+        {
+          "annual_capital_cost": "0.03",
+          "model_optimum_principal_units": "0",
+          "gain_before_capital_gas_and_swaps_units": "0.0000",
+          "surplus_before_gas_and_swaps_units": "0E-68"
+        },
+        {
+          "annual_capital_cost": "0.05",
+          "model_optimum_principal_units": "0",
+          "gain_before_capital_gas_and_swaps_units": "0.0000",
+          "surplus_before_gas_and_swaps_units": "0E-68"
+        },
+        {
+          "annual_capital_cost": "0.08",
+          "model_optimum_principal_units": "0",
+          "gain_before_capital_gas_and_swaps_units": "0.0000",
+          "surplus_before_gas_and_swaps_units": "0E-67"
+        }
+      ],
+      "status": "model_only; getter cap is not proof of public entry or exit liquidity"
+    },
+    {
+      "address": "0xbe53a109b494e5c9f97b9cd39fe969be68bf6204",
+      "symbol": "yvUSDC-1",
+      "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "asset_symbol": "USDC",
+      "total_assets_units": "19890516.180894",
+      "locked_value_units": "11303.85973819168174659407187940645578135906274203074451125950945",
+      "hold_seconds": 478031,
+      "deposit_cap_probe_units": "30109483.819106",
+      "gain_at_100k_units": "56.57810506484345375806316910365396717137601439183387056460472767",
+      "scenarios": [
+        {
+          "annual_capital_cost": "0.03",
+          "model_optimum_principal_units": "2350181.07212901108147673912962038078947572301838171493332009743",
+          "gain_before_capital_gas_and_swaps_units": "1195.089615298478262506932446285284071208520032671541816757533041",
+          "surplus_before_gas_and_swaps_units": "126.349691315503285062671522701227517580409920228591311344729108"
+        },
+        {
+          "annual_capital_cost": "0.05",
+          "model_optimum_principal_units": "0",
+          "gain_before_capital_gas_and_swaps_units": "0.000",
+          "surplus_before_gas_and_swaps_units": "0E-67"
+        },
+        {
+          "annual_capital_cost": "0.08",
+          "model_optimum_principal_units": "0",
+          "gain_before_capital_gas_and_swaps_units": "0.000",
+          "surplus_before_gas_and_swaps_units": "0E-66"
+        }
+      ],
+      "status": "model_only; getter cap is not proof of public entry or exit liquidity"
+    },
+    {
+      "address": "0xbf319ddc2edc1eb6fdf9910e39b37be221c8805f",
+      "symbol": "yvcrvUSD-2",
+      "asset": "0xf939e0a03fb07f59a73314e73794be0e57ac1b4e",
+      "asset_symbol": "crvUSD",
+      "total_assets_units": "1185502.658797592905890322",
+      "locked_value_units": "1171.839500830794057707563896894589635124860636372290366857360014",
+      "hold_seconds": 441808,
+      "deposit_cap_probe_units": "48814497.341202407094109678",
+      "gain_at_100k_units": "91.24125055820408493121664683309805062853151794711057448992210261",
+      "scenarios": [
+        {
+          "annual_capital_cost": "0.03",
+          "model_optimum_principal_units": "632842.996928728757430777232627010996820279542386595863816768880",
+          "gain_before_capital_gas_and_swaps_units": "408.1009835182449043899073649517478641719888520927024896325136393",
+          "surplus_before_gas_and_swaps_units": "142.1239108516849777698761362678870627230028702978612173711370931"
+        },
+        {
+          "annual_capital_cost": "0.05",
+          "model_optimum_principal_units": "223245.966184338538191983440857937817517598752096065278054333625",
+          "gain_before_capital_gas_and_swaps_units": "185.8573146945781203882026290984129062684742445692334802765816745",
+          "surplus_before_gas_and_swaps_units": "29.4775363016775608982168667338711265852308569074209353015863831"
+        },
+        {
+          "annual_capital_cost": "0.08",
+          "model_optimum_principal_units": "0",
+          "gain_before_capital_gas_and_swaps_units": "0.000",
+          "surplus_before_gas_and_swaps_units": "0E-66"
+        }
+      ],
+      "status": "model_only; getter cap is not proof of public entry or exit liquidity"
+    },
+    {
+      "address": "0xc56413869c6cdf96496f2b1ef801fedbdfa7ddb0",
+      "symbol": "yvWETH-1",
+      "asset": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "asset_symbol": "WETH",
+      "total_assets_units": "7961.055075852020072828",
+      "locked_value_units": "1.940200233090857218738724144880156346693143089361368819452298883",
+      "hold_seconds": 372079,
+      "deposit_cap_probe_units": "7038.944924147979927172",
+      "gain_at_100k_units": "1.797162041691603909429379633655709507834679555470545272078135961",
+      "scenarios": [
+        {
+          "annual_capital_cost": "0.03",
+          "model_optimum_principal_units": "0",
+          "gain_before_capital_gas_and_swaps_units": "0.000",
+          "surplus_before_gas_and_swaps_units": "0E-67"
+        },
+        {
+          "annual_capital_cost": "0.05",
+          "model_optimum_principal_units": "0",
+          "gain_before_capital_gas_and_swaps_units": "0.000",
+          "surplus_before_gas_and_swaps_units": "0E-67"
+        },
+        {
+          "annual_capital_cost": "0.08",
+          "model_optimum_principal_units": "0",
+          "gain_before_capital_gas_and_swaps_units": "0.000",
+          "surplus_before_gas_and_swaps_units": "0E-67"
+        }
+      ],
+      "status": "model_only; getter cap is not proof of public entry or exit liquidity"
+    },
+    {
+      "address": "0xca960e6df1150100586c51382f619efcccf72706",
+      "symbol": "yscvxCRV",
+      "asset": "0x62b9c7356a2dc64a1969e19c23e4f579f9810aa7",
+      "asset_symbol": "cvxCRV",
+      "total_assets_units": "136160.078448335596124133",
+      "locked_value_units": "81.72074881575806737258448425033488939979521670433584545559099587",
+      "hold_seconds": 186697,
+      "deposit_cap_probe_units": "115792089237316195423570985008687907853269984665640564039457.5840",
+      "gain_at_100k_units": "34.61594260994144485921721507752745626598255308330989310215614240",
+      "scenarios": [
+        {
+          "annual_capital_cost": "0.03",
+          "model_optimum_principal_units": "114148.9509034708423350249671219218077556429581456534136606859844",
+          "gain_before_capital_gas_and_swaps_units": "37.27945521391964361202021904646754639208117580883926442356086958",
+          "surplus_before_gas_and_swaps_units": "17.00618020742678226173277965647379092922418060629069576849133835"
+        },
+        {
+          "annual_capital_cost": "0.05",
+          "model_optimum_principal_units": "57746.8820976175219208029183414549101033905449908379500700118046",
+          "gain_before_capital_gas_and_swaps_units": "24.34728548114658573932227321986412173946031213403297988151379611",
+          "surplus_before_gas_and_swaps_units": "7.25385313877770812318810521251599998722048371864346826903758815"
+        },
+        {
+          "annual_capital_cost": "0.08",
+          "model_optimum_principal_units": "17153.9487472968043957380787495933597743120116764790457271542240",
+          "gain_before_capital_gas_and_swaps_units": "9.148420259945467940940366077182310209185231731249698802157485760",
+          "surplus_before_gas_and_swaps_units": "1.024141291721034936701116741025964471527368606024918487285562476"
+        }
+      ],
+      "status": "model_only; getter cap is not proof of public entry or exit liquidity"
+    },
+    {
+      "address": "0xf17d6f98a5c6eaa99d149079984119e0a4ef6900",
+      "symbol": "sUSG",
+      "asset": "0xb1c2db5d6ca03fce73dbd304d320bf76c55ae1b1",
+      "asset_symbol": "USG",
+      "total_assets_units": "1141045.892525377697282263",
+      "locked_value_units": "1223.874635881557679872407912335192804155800183402536147878124228",
+      "hold_seconds": 328681,
+      "deposit_cap_probe_units": "115792089237316195423570985008687907853269984665640564039457.5840",
+      "gain_at_100k_units": "98.71373618327208713094780229043376405351303227908565491436033220",
+      "scenarios": [
+        {
+          "annual_capital_cost": "0.03",
+          "model_optimum_principal_units": "972413.613405608457913035075180099353217091897099849087397604293",
+          "gain_before_capital_gas_and_swaps_units": "563.4373075618218786776137497179591740105526098955017406185054620",
+          "surplus_before_gas_and_swaps_units": "259.3906191411894647170788547928543076532971096760615789985168998"
+        },
+        {
+          "annual_capital_cost": "0.05",
+          "model_optimum_principal_units": "496308.666764873830980242700647047671928507363440599010491349761",
+          "gain_before_capital_gas_and_swaps_units": "371.2537112828720883245411992305853200882726019671312227390980346",
+          "surplus_before_gas_and_swaps_units": "112.6171865160254755004399322795257756673984760110500403327888470"
+        },
+        {
+          "annual_capital_cost": "0.08",
+          "model_optimum_principal_units": "153652.860410131253170937809464822482590861925503225846549716139",
+          "gain_before_capital_gas_and_swaps_units": "145.3849949013450185732441570062403056921158709310880365483765864",
+          "surplus_before_gas_and_swaps_units": "17.2703936520747232321051155229645106630770872265579135909761544"
+        }
+      ],
+      "status": "model_only; getter cap is not proof of public entry or exit liquidity"
+    },
+    {
+      "address": "0xf689555121e529ff0463e191f9bd9d1e496164a7",
+      "symbol": "sUSD3",
+      "asset": "0x056b269eb1f75477a8666ae8c7fe01b64dd55ecc",
+      "asset_symbol": "USD3",
+      "total_assets_units": "6468172.90522",
+      "locked_value_units": "2926.245004844377080827154763360590123206664243408648160090644204",
+      "hold_seconds": 254929,
+      "deposit_cap_probe_units": "57404455.208376",
+      "gain_at_100k_units": "44.57174507360365444469221336857917195834222945996201616859778089",
+      "scenarios": [
+        {
+          "annual_capital_cost": "0.03",
+          "model_optimum_principal_units": "2367198.444547669922490156874987534880140670376405521551575893652",
+          "gain_before_capital_gas_and_swaps_units": "784.2678376905696669519121679962174752045124105721039436191000209",
+          "surplus_before_gas_and_swaps_units": "210.1929401733579606443653624561705959623311335680293587430621662"
+        },
+        {
+          "annual_capital_cost": "0.05",
+          "model_optimum_principal_units": "376335.899192373750964918454891300983479327851782202233295229598",
+          "gain_before_capital_gas_and_swaps_units": "160.9643727299648919717236512184102073360994631288455379050216802",
+          "surplus_before_gas_and_swaps_units": "8.8541900098788823957855221167732393988189425698256350452430365"
+        },
+        {
+          "annual_capital_cost": "0.08",
+          "model_optimum_principal_units": "0",
+          "gain_before_capital_gas_and_swaps_units": "0.000",
+          "surplus_before_gas_and_swaps_units": "0E-67"
+        }
+      ],
+      "status": "model_only; getter cap is not proof of public entry or exit liquidity"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+Compiling 1 files with Solc 0.8.26
+Solc 0.8.26 finished in 2.23s
+Compiler run successful!
+
+Ran 2 tests for test/CaptiveFlowLP.t.sol:CaptiveFlowLP
+[PASS] test_concentrationLaw() (gas: 6395402)
+Logs:
+  tight band  +-2 ticks: capital(6dp), profit(6dp), APR bps:
+  19997688119
+  17679952
+  3226
+  wide band  +-10 ticks: capital(6dp), profit(6dp), APR bps:
+  99969692951
+  17614817
+  643
+
+[PASS] test_outOfRangeStopsEarning() (gas: 19499091)
+Logs:
+  tick before / after a large one-way flow:
+  -2
+  -887272
+
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 943.18ms (600.68ms CPU time)
+
+Ran 1 test suite in 949.31ms (943.18ms CPU time): 2 tests passed, 0 failed, 0 skipped (2 total tests)

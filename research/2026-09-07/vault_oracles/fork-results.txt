@@ -1,0 +1,123 @@
+Compiling 1 files with Solc 0.8.24
+Solc 0.8.24 finished in 995.97ms
+Compiler run successful!
+
+Ran 8 tests for test/FundedUnlock.t.sol:FundedUnlockTest
+[PASS] testSUSG100k() (gas: 312150)
+Logs:
+  vault: 0xF17D6f98A5C6EAA99d149079984119e0A4EF6900
+  principal_raw: 100000000000000000000000
+  hold_seconds: 328681
+  ending_preview_raw: 100098713736183272087130
+  redeemed_raw: 100098713736183272087130
+  profit_raw: 98713736183272087130
+  capital_cost_5pct_raw: 52112030695078640284
+  deposit_call_gas_warm: 68198
+  redeem_call_gas_warm: 37636
+
+[PASS] testSUSG10k() (gas: 312182)
+Logs:
+  vault: 0xF17D6f98A5C6EAA99d149079984119e0A4EF6900
+  principal_raw: 10000000000000000000000
+  hold_seconds: 328681
+  ending_preview_raw: 10010644035484100273864
+  redeemed_raw: 10010644035484100273864
+  profit_raw: 10644035484100273864
+  capital_cost_5pct_raw: 5211203069507864028
+  deposit_call_gas_warm: 68198
+  redeem_call_gas_warm: 37636
+
+[PASS] testSUSGUSDCFullLoop100k() (gas: 517228)
+Logs:
+  USDC_principal_raw: 100000000000
+  USG_bought_raw: 100437690462125204369630
+  USG_redeemed_raw: 100536801270140156515185
+  USDC_ending_raw: 99998335252
+  USDC_profit_before_capital_gas_raw: -1664748
+  capital_cost_5pct_raw: 52112030
+
+[PASS] testSUSGUSDCFullLoop10k() (gas: 517280)
+Logs:
+  USDC_principal_raw: 10000000000
+  USG_bought_raw: 10056123062260445864386
+  USG_redeemed_raw: 10066826312903176796454
+  USDC_ending_raw: 9999986676
+  USDC_profit_before_capital_gas_raw: -13324
+  capital_cost_5pct_raw: 5211203
+
+[PASS] testYVCRVUSD100k() (gas: 2010058)
+Logs:
+  vault: 0xBF319dDC2Edc1Eb6FDf9910E39b37Be221C8805F
+  principal_raw: 100000000000000000000000
+  hold_seconds: 441808
+  ending_preview_raw: 100091241250558204084931
+  redeemed_raw: 100091241250558204084931
+  profit_raw: 91241250558204084931
+  capital_cost_5pct_raw: 70048198883815322171
+  deposit_call_gas_warm: 86659
+  redeem_call_gas_warm: 1855151
+
+[PASS] testYVUSD100k() (gas: 936645)
+Logs:
+  vault: 0x696d02Db93291651ED510704c9b286841d506987
+  principal_raw: 100000000000
+  hold_seconds: 212521
+  ending_preview_raw: 100043429529
+  redeemed_raw: 100043429529
+  profit_raw: 43429529
+  capital_cost_5pct_raw: 33694983
+  deposit_call_gas_warm: 522710
+  redeem_call_gas_warm: 349789
+
+[PASS] testYVUSD1300k() (gas: 936656)
+Logs:
+  vault: 0x696d02Db93291651ED510704c9b286841d506987
+  principal_raw: 1300000000000
+  hold_seconds: 212521
+  ending_preview_raw: 1300500554344
+  redeemed_raw: 1300500554344
+  profit_raw: 500554344
+  capital_cost_5pct_raw: 438034785
+  deposit_call_gas_warm: 522710
+  redeem_call_gas_warm: 349789
+
+[PASS] testYVUSD1m() (gas: 936619)
+Logs:
+  vault: 0x696d02Db93291651ED510704c9b286841d506987
+  principal_raw: 1000000000000
+  hold_seconds: 212521
+  ending_preview_raw: 1000396277269
+  redeemed_raw: 1000396277269
+  profit_raw: 396277269
+  capital_cost_5pct_raw: 336949835
+  deposit_call_gas_warm: 522710
+  redeem_call_gas_warm: 349789
+
+Suite result: ok. 8 passed; 0 failed; 0 skipped; finished in 10.87ms (34.89ms CPU time)
+
+Ran 3 tests for test/AccountingExit.t.sol:AccountingExitTest
+[PASS] testJrDOLA100kQueuedExit() (gas: 451948)
+Logs:
+  sDOLA_principal_raw: 100000000000000000000000
+  queue_seconds: 381779
+  sDOLA_received_after_exit_fee_raw: 100108247398300459778072
+  sDOLA_profit_raw: 108247398300459778072
+  capital_cost_5pct_raw: 60530663368848300355
+
+[PASS] testJrDOLA10kQueuedExit() (gas: 450328)
+Logs:
+  sDOLA_principal_raw: 10000000000000000000000
+  queue_seconds: 131298
+  sDOLA_received_after_exit_fee_raw: 10004037663347157038632
+  sDOLA_profit_raw: 4037663347157038632
+  capital_cost_5pct_raw: 2081716133942161339
+
+[PASS] testSVUSDGapBelongsToQueuedWithdrawals() (gas: 463964)
+Logs:
+  principal_raw: 10000000000000000000000
+  cooldown_seconds: 604800
+  received_raw: 9999999999999999999999
+
+Suite result: ok. 3 passed; 0 failed; 0 skipped; finished in 4.84s (10.35s CPU time)
+
+Ran 2 test suites in 5.26s (4.85s CPU time): 11 tests passed, 0 failed, 0 skipped (11 total tests)

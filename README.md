@@ -2,6 +2,8 @@
 
 The latest study is [one day of Ethereum amount outliers, typed](research/2026-09-05/amount_outliers_eth_day/letter.md), with a [detailed report](research/2026-09-05/amount_outliers_eth_day/report.md) and the [LLM's notes](research/2026-09-05/amount_outliers_eth_day/qual_notes.md). It is Ethereum mainnet only, 24 hours (2026-09-04 14:00 to 2026-09-05 14:00 UTC). Known transaction types run deterministic investigations; unresolved clusters become LLM evidence packets, and investigated mechanisms become persistent rules in `scripts/type_registry.py`. Classification coverage is reported separately from the strength of the economic interpretation. The registry was grown in two sessions: Codex on a five-hour window (`research/2026-09-05/amount_outliers_eth_5h`, method in its `method.md`; its notes and report were not written before that session ended) and Claude on the full day, which replayed Codex's 58 types as round 1 and added 32 more over three rounds, the last of them an audit of one sampled occurrence per known type.
 
+2026-09-07, a strategy study: [renting liquidity to a subsidized dollar](research/2026-09-07/captive_flow_lp/findings.md). USDG (Global Dollar / Paxos) rebates over 90% of its reserve yield to network partners, so a partner desk is paid to convert USDC into it and does so daily; that captive, non-toxic flow routes to two thin, ultra-low-fee Uniswap v4 pools where a small, early concentrated LP earns 14–16% APR versus 3.8% in the deep Curve pool. `scripts/captive_flow_lp.py` reads deployed TVL from the tick distribution, realized turnover and fees from the saved logs, the marginal-LP APR-by-size curve, and the taker-concentration checks (block-pinned, replayable offline); a Foundry fork test mints the position in the real v4 pool and collects one day of the observed flow. The same run closes the apxUSD/Strata thread: those below-NAV vaults are STRC tail-risk and first-loss tranches, priced risk rather than a redemption arbitrage.
+
 Afternoon of 2026-09-06, live-scan follow-up: [where the dollar yield sits on mainnet right now](research/2026-09-06/opportunities/findings.md), a block-pinned map of every Morpho Blue market's IRM rate and every Pendle market's implied fixed yield, joined on PT collateral (`scripts/morpho_pendle_scan.py`, deterministic tables in `research/2026-09-06/opportunities/tables.md`).
 
 Read [the research memo](research/2026-09-05/onchain_llm_research.md). It explains the observed mechanisms, research hypotheses, and a proposed division of work between deterministic tools and LLM interpretation.
@@ -88,6 +90,20 @@ Outputs live in `research/2026-09-05/amount_outliers_eth_day/`: `letter.md` and 
 
 Codex's five-hour run (`research/2026-09-05/eth_5h`, `research/2026-09-05/amount_outliers_eth_5h`) is kept as the origin of the inherited registry; its `method.md` describes the learning cycle and its `round_0X/` archives its discovery and audit rounds.
 
+
+## Five hours of mainnet, digested: 2026-09-07 02:39 to 07:39 UTC
+
+[What happened in the last five hours](research/2026-09-07/live_5h/report.md) reuses the live-scan pipeline on a five-hour window and adds two offline digests. `scripts/window_events.py` reads the ETH/USD path tick by tick from the v3 USDC/WETH pool, the per-15-minute gas, blob and fullness series, builders, transaction types (including EIP-7702), blob posters by inbox, contract creations, new pools, validator withdrawals, the largest native transfers, the highest tips and the log-heaviest transactions into `events.json`. `scripts/window_followups.py` holds the follow-up checks the narrative asked for, configured at the top of the file: gas-limit attribution per target around a spike, Uniswap v4 volume for a token set, a sybil funding check on fresh wallets, the decode of a flash-loan bot's run, an address-poisoning matcher for look-alike zero-value transactions after large transfers, mass mint and airdrop tokens, and the Spark liquidity layer's operations, into `followups.json`. The narrative (`insights.md`) found a tokenized-stock micro-trading swarm (Ondo's NVDAON, TSLAON, SPCXON, SPYON and Stockereum.fun launch tokens) that pushed the base fee up ten times for forty minutes on half a million dollars of volume, Robinhood Chain as the largest blob poster ahead of Base, Spark's liquidity layer moving $46M of USDT from SparkLend into its savings vault and doubling the SparkLend USDT rate, a $218M Aave position at health factor 1.015, a flash-loan bot farming a memecoin MasterChef with $175M of Morpho liquidity every half hour, and poisoning bots trailing every large ETH transfer.
+
+```sh
+uv run --with pycryptodome python scripts/live_collect.py collect --out research/2026-09-07/live_5h --hours 5   # ~184k credits
+uv run --with pycryptodome python scripts/live_scan.py head --out research/2026-09-07/live_5h
+uv run --with pycryptodome python scripts/live_scan.py analyze --out research/2026-09-07/live_5h
+uv run --with pycryptodome python scripts/live_scan.py head --out research/2026-09-07/live_5h                   # second pass: fee tiers, markets, health factors
+uv run --with pycryptodome python scripts/live_scan.py analyze --out research/2026-09-07/live_5h && uv run --with pycryptodome python scripts/live_scan.py render --out research/2026-09-07/live_5h
+uv run python scripts/window_events.py --out research/2026-09-07/live_5h --bucket 15 --md                        # offline
+uv run python scripts/window_followups.py --out research/2026-09-07/live_5h                                     # offline
+```
 
 ## Live scan: a trailing hour, then the head, block by block
 
