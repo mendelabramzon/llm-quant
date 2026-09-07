@@ -6139,8 +6139,8 @@
       "block": 25923948,
       "to": "0xe2e7a17dff93280dec073c995595155283e3c372",
       "usd": 75351762,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "Spark Savings USDT (spUSDT) (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0xc0ce97bdae9884eea677214ad02bbfb1674e9c6022d2a105161d406e03c0b35c"
      },
@@ -6148,8 +6148,8 @@
       "block": 25923999,
       "to": "0xe2e7a17dff93280dec073c995595155283e3c372",
       "usd": 161703,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "Spark Savings USDT (spUSDT) (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0x69e92ef0f16174278fe36ebfa2918e2e2299b6867229aa7e91020388c675734c"
      }
@@ -6200,15 +6200,11 @@
       "usd": 9999597,
       "tag": null,
       "label": null,
-      "forwarded_to_exchange": {
-       "to": "0x9008d19f58aabd9ed0d60971565aa8510560ab41",
-       "label": "deposit sink (behaviour, day study)",
-       "usd": 885083
-      },
+      "forwarded_to_exchange": null,
       "tx": "0x45b91ca15010efb6468b20ed42038785fb64eb996e34fab82538c49b55881708"
      }
     ],
-    "to_exchange_usd": 9999597
+    "to_exchange_usd": 0
    },
    {
     "op": {
@@ -6252,13 +6248,9 @@
       "block": 25923961,
       "to": "0x000000000004444c5dc75cb358380d2e3de08a90",
       "usd": 5149057,
-      "tag": null,
-      "label": null,
-      "forwarded_to_exchange": {
-       "to": "0x9008d19f58aabd9ed0d60971565aa8510560ab41",
-       "label": "deposit sink (behaviour, day study)",
-       "usd": 17259
-      },
+      "tag": "labelled",
+      "label": "Uniswap v4 PoolManager (known-canonical)",
+      "forwarded_to_exchange": null,
       "tx": "0x1978c9e59ca801c96e5703159142d4161bb5b5c649f0dfb0d992262cdaf84cf6"
      },
      {
@@ -6271,7 +6263,7 @@
       "tx": "0xbce28d04cdd31823e1fab81defb0f41a2a05d8a90724828033e56dcbbbed98cc"
      }
     ],
-    "to_exchange_usd": 5149057
+    "to_exchange_usd": 0
    },
    {
     "op": {
@@ -6305,8 +6297,8 @@
       "block": 25923838,
       "to": "0x9008d19f58aabd9ed0d60971565aa8510560ab41",
       "usd": 2896700,
-      "tag": "deposit_sink",
-      "label": "deposit sink (behaviour, day study)",
+      "tag": "labelled",
+      "label": "CoW Protocol settlement (GPv2Settlement) (known-canonical)",
       "forwarded_to_exchange": null,
       "tx": "0xd5b33de96ec0865dd108f5c6051f679010e85f3980dcd7c8968a555558058e3e"
      },
@@ -6316,11 +6308,7 @@
       "usd": 2908116,
       "tag": null,
       "label": null,
-      "forwarded_to_exchange": {
-       "to": "0x9008d19f58aabd9ed0d60971565aa8510560ab41",
-       "label": "deposit sink (behaviour, day study)",
-       "usd": 2896700
-      },
+      "forwarded_to_exchange": null,
       "tx": "0xd5b33de96ec0865dd108f5c6051f679010e85f3980dcd7c8968a555558058e3e"
      },
      {
@@ -6342,7 +6330,7 @@
       "tx": "0xd5b33de96ec0865dd108f5c6051f679010e85f3980dcd7c8968a555558058e3e"
      }
     ],
-    "to_exchange_usd": 5804816
+    "to_exchange_usd": 0
    },
    {
     "op": {
@@ -6401,13 +6389,13 @@
       "block": 25922569,
       "to": "0x9008d19f58aabd9ed0d60971565aa8510560ab41",
       "usd": 1980512,
-      "tag": "deposit_sink",
-      "label": "deposit sink (behaviour, day study)",
+      "tag": "labelled",
+      "label": "CoW Protocol settlement (GPv2Settlement) (known-canonical)",
       "forwarded_to_exchange": null,
       "tx": "0xe08c28d26859b41e975e7666e18af8c63fdf75c5cf61a0a393e876e6c4a8d990"
      }
     ],
-    "to_exchange_usd": 1980512
+    "to_exchange_usd": 0
    },
    {
     "op": {
@@ -6792,13 +6780,9 @@
       "block": 25923302,
       "to": "0x000000000004444c5dc75cb358380d2e3de08a90",
       "usd": 631333,
-      "tag": null,
-      "label": null,
-      "forwarded_to_exchange": {
-       "to": "0x8feab81d36e7576107d5de0758c1b839be31b4f6",
-       "label": "deposit sink (behaviour, day study)",
-       "usd": 57584
-      },
+      "tag": "labelled",
+      "label": "Uniswap v4 PoolManager (known-canonical)",
+      "forwarded_to_exchange": null,
       "tx": "0x775025b24320fe1790d909884d7235407564dc35cdd9a31cc05bbdb05d436522"
      },
      {
@@ -6811,7 +6795,7 @@
       "tx": "0x12e66ad5f3ccc5cc1c5f2718c3d04f763e78d328009d0a8359f464786537e74c"
      }
     ],
-    "to_exchange_usd": 631333
+    "to_exchange_usd": 0
    },
    {
     "op": {
@@ -7039,59 +7023,54 @@
  "exchange_flow": {
   "by_asset": {
    "USDT": {
-    "in": 312430654,
-    "out": 236816577,
-    "net": 75614077
+    "in": 301855906,
+    "out": 226216952,
+    "net": 75638954
    },
    "USDC": {
-    "in": 209466562,
-    "out": 268144371,
-    "net": -58677809
+    "in": 199574216,
+    "out": 258219507,
+    "net": -58645291
    },
    "ETH": {
-    "in": 117213118,
-    "out": 88739832,
-    "net": 28473286
-   },
-   "RLUSD": {
-    "in": 4991342,
-    "out": 106561151,
-    "net": -101569809
+    "in": 115495649,
+    "out": 88293981,
+    "net": 27201667
    },
    "WETH": {
-    "in": 30766844,
-    "out": 21117970,
-    "net": 9648875
+    "in": 18604573,
+    "out": 20580116,
+    "net": -1975543
    },
    "USDe": {
-    "in": 11030869,
-    "out": 11188376,
+    "in": 10999491,
+    "out": 11156998,
     "net": -157507
    },
    "cbBTC": {
-    "in": 11218223,
-    "out": 8221675,
-    "net": 2996548
+    "in": 8763911,
+    "out": 5763037,
+    "net": 3000873
    },
    "USDS": {
-    "in": 6537104,
-    "out": 6368059,
-    "net": 169045
+    "in": 5827641,
+    "out": 5658597,
+    "net": 169044
    },
    "WBTC": {
-    "in": 7407047,
-    "out": 4353614,
-    "net": 3053434
+    "in": 7216840,
+    "out": 4163425,
+    "net": 3053415
+   },
+   "RLUSD": {
+    "in": 4981085,
+    "out": 5870080,
+    "net": -888996
    },
    "PYUSD": {
-    "in": 4716985,
-    "out": 5981354,
-    "net": -1264368
-   },
-   "DAI": {
-    "in": 5059107,
-    "out": 5002460,
-    "net": 56647
+    "in": 4703352,
+    "out": 5963335,
+    "net": -1259983
    },
    "sUSDe": {
     "in": 4438842,
@@ -7099,44 +7078,39 @@
     "net": -9757
    },
    "stETH": {
-    "in": 4578667,
-    "out": 4238912,
-    "net": 339755
+    "in": 4484441,
+    "out": 4144723,
+    "net": 339718
    },
    "LINK": {
-    "in": 4618663,
-    "out": 3787069,
-    "net": 831594
+    "in": 4563530,
+    "out": 3731996,
+    "net": 831534
+   },
+   "DAI": {
+    "in": 3958352,
+    "out": 3901725,
+    "net": 56626
    },
    "USDG": {
-    "in": 2791038,
-    "out": 4186140,
-    "net": -1395102
-   },
-   "tBTC": {
-    "in": 3369181,
-    "out": 3442953,
-    "net": -73773
-   },
-   "wstETH": {
-    "in": 2705867,
-    "out": 2703219,
-    "net": 2648
+    "in": 2621266,
+    "out": 4019597,
+    "net": -1398332
    },
    "UNI": {
-    "in": 2272196,
-    "out": 2798615,
-    "net": -526418
+    "in": 2222844,
+    "out": 2724836,
+    "net": -501992
    },
    "sUSDS": {
-    "in": 1700362,
+    "in": 1700021,
     "out": 1700021,
-    "net": 341
+    "net": 0
    },
-   "weETH": {
-    "in": 1462249,
-    "out": 1462238,
-    "net": 11
+   "wstETH": {
+    "in": 1461861,
+    "out": 1459310,
+    "net": 2551
    },
    "AAVE": {
     "in": 2201983,
@@ -7158,19 +7132,24 @@
     "out": 1068075,
     "net": 7577
    },
-   "USDtb": {
-    "in": 610730,
-    "out": 610730,
-    "net": 0
+   "weETH": {
+    "in": 968987,
+    "out": 968985,
+    "net": 2
+   },
+   "tBTC": {
+    "in": 579797,
+    "out": 653653,
+    "net": -73856
    },
    "EURC": {
-    "in": 610545,
-    "out": 344823,
-    "net": 265723
+    "in": 493940,
+    "out": 228259,
+    "net": 265681
    },
    "crvUSD": {
-    "in": 185950,
-    "out": 535114,
+    "in": 158950,
+    "out": 508114,
     "net": -349164
    },
    "eETH": {
@@ -7184,8 +7163,8 @@
     "net": 0
    },
    "rETH": {
-    "in": 163892,
-    "out": 157748,
+    "in": 149347,
+    "out": 143204,
     "net": 6143
    },
    "FDUSD": {
@@ -7212,8 +7191,8 @@
   "by_label": [
    {
     "label": "deposit sink (behaviour, day study)",
-    "in": 191923086,
-    "out": 163402032
+    "in": 149129616,
+    "out": 132146386
    },
    {
     "label": "Binance 14 (memory)",
@@ -7221,14 +7200,14 @@
     "out": 36202206
    },
    {
-    "label": "hot wallet (behaviour, day study)",
-    "in": 62178356,
-    "out": 195512924
-   },
-   {
     "label": "exchange deposit contract (day study, unidentified)",
     "in": 58444494,
     "out": 118981047
+   },
+   {
+    "label": "hot wallet (behaviour, day study)",
+    "in": 60450630,
+    "out": 94376002
    },
    {
     "label": "Bitget (memory)",
@@ -8762,7 +8741,7 @@
   },
   {
    "sender": "0x062ce42cae04c51d04e77e3d64cc8953a2296ffe",
-   "label": null,
+   "label": "Spark ALM relayer (behaviour-2026-09-07)",
    "sell": "USDS",
    "buy": "RLUSD",
    "n": 7,
@@ -11070,5 +11049,5 @@
   "WEETH": 2740.2911580779305,
   "WSTETH": 3099.68682085103
  },
- "address_book_size": 120
+ "address_book_size": 136
 }

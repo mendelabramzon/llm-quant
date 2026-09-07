@@ -180,6 +180,9 @@ NOT_EXCHANGES = {'0xcd531ae9efcce479654c4926dec5f6209531ca7b', V4_MANAGER, MORPH
                  '0x445f16314284b43dfa1fd3cd77b9dea4a1bebd97', '0x52aa899454998be5b000ad077a46bbe360f4e497', '0xfd78ee919681417d192449715b2594ab58f5d002',
                  '0x0889e9327b98d7d1be3c301a4585ff3330502c9a', '0x0000000000000000000000000000000000000000'}
 DAY_PROFILES = ROOT / 'research' / '2026-09-05' / 'amount_outliers_eth_day' / 'addresses.json.gz'
+VERIFIED_LABELS = ROOT / 'scripts' / 'address_labels.json'
+EXCHANGE_KINDS = {'exchange', 'exchange_deposit'}   # only these count as exchange flow / leverage-to-exchange
+KIND_TAG = {'exchange': 'hot_wallet', 'exchange_deposit': 'deposit_sink'}
 MIDNIGHT = {'hub': '0x31173ed183e5a9450c3671018ec4d770c8a8bf18', 'aave_leg': '0x56957e411ea83a0b4a0689c1fb0d1e5ea0d20149',
             'susds_leg': '0x688cc76d3b009d805ab6b4d0a1cbd228131b5cbf', 'holder': '0xf1edbf98dda764ec51de3776371f0f7d6f6156a8'}
 
@@ -332,6 +335,17 @@ def load_address_book():
         book.setdefault(a, {'tag': 'hot_wallet', 'label': l + ' (memory)'})
         if a in MEMORY_LABELS and '(memory)' not in book[a]['label'] and 'day study' not in book[a]['label']:
             book[a]['label'] = l + ' (memory)'
+    # verified/typed overlay (scripts/address_labels.json): overrides behavioural + memory tags and carries a `kind`.
+    # A settlement contract or token treasury tagged here as venue/protocol/treasury stops being counted as a CEX.
+    if VERIFIED_LABELS.exists():
+        try:
+            vl = json.loads(VERIFIED_LABELS.read_text()).get('labels', {})
+        except Exception:
+            vl = {}
+        for a, v in vl.items():
+            a = a.lower()
+            kind = v.get('kind')
+            book[a] = {'tag': KIND_TAG.get(kind, 'labelled'), 'label': '%s (%s)' % (v.get('label', a), v.get('source', 'verified')), 'kind': kind}
     return book
 
 
@@ -402,6 +416,17 @@ class State:
     def label(self, a):
         b = self.book.get(a)
         return b['label'] if b else None
+
+    def is_exchange(self, a):
+        """True only for centralized-exchange wallets/deposit addresses. Verified overlay `kind` decides; legacy
+        behavioural/memory entries (no kind) keep their hot_wallet/deposit_sink meaning."""
+        b = self.book.get(a)
+        if not b:
+            return False
+        k = b.get('kind')
+        if k is None:
+            return b['tag'] in ('hot_wallet', 'deposit_sink')
+        return k in EXCHANGE_KINDS
 
     def infer_pool_tokens(self, pool, tx_transfers, amt0, amt1, manager=None):
         """v3/v2/curve/v4: match token transfers into/out of the pool (or the v4 manager) in the same tx with the swap amounts."""
@@ -983,12 +1008,12 @@ class State:
             dst = x['to']
             tag, label = self.tag(dst), self.label(dst)
             second = None
-            if not tag:
-                fwd = [y for y in self.transfers if y['token'] == tok and y['from'] == dst and y['block'] >= x['block'] and y['ts'] - x['ts'] <= 3600 and self.tag(y['to'])]
+            if dst not in self.book:  # chase a forwarding hop only through UNLABELLED intermediaries, not through a known venue/protocol
+                fwd = [y for y in self.transfers if y['token'] == tok and y['from'] == dst and y['block'] >= x['block'] and y['ts'] - x['ts'] <= 3600 and self.is_exchange(y['to'])]
                 if fwd:
                     second = {'to': fwd[0]['to'], 'label': self.label(fwd[0]['to']), 'usd': round(fwd[0]['usd'])}
             hops.append({'block': x['block'], 'to': dst, 'usd': round(x['usd']), 'tag': tag, 'label': label, 'forwarded_to_exchange': second, 'tx': x['tx']})
-        to_exchange = sum(h['usd'] for h in hops if h['tag'] or h['forwarded_to_exchange'])
+        to_exchange = sum(h['usd'] for h in hops if self.is_exchange(h['to']) or h['forwarded_to_exchange'])
         return {'op': {k: o[k] for k in ('block', 'ts', 'tx', 'venue', 'kind', 'sym', 'usd', 'account', 'receiver')}, 'hops': hops, 'to_exchange_usd': round(to_exchange)}
 
     def exchange_flow(self):
@@ -996,7 +1021,7 @@ class State:
         by_label = collections.defaultdict(lambda: {'in': 0.0, 'out': 0.0})
         deposits = []
         for x in self.transfers:
-            ti, to = self.tag(x['from']), self.tag(x['to'])
+            ti, to = self.is_exchange(x['from']), self.is_exchange(x['to'])
             if to and not ti:
                 by_asset[x['sym']]['in'] += x['usd']
                 by_label[self.label(x['to'])]['in'] += x['usd']

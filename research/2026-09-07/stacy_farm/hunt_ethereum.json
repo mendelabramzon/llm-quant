@@ -1,0 +1,67 @@
+{
+ "chain": "ethereum",
+ "range": [
+  25825066,
+  25925066
+ ],
+ "emitters": 136,
+ "forks": [
+  {
+   "address": "0x223bc79156cbb0a6d175ea6130cb382d01868df8",
+   "match": true,
+   "name": "StacyVault",
+   "impl": null,
+   "lump_rewards": true,
+   "guard": "present but depositFor does NOT set it -> bypassable",
+   "bypassable": true,
+   "reward_token": "0xf12ec0d3dab64ddefbdc96474bde25af3fe1b327",
+   "reward_symbol": "STACY",
+   "reward_price_usd_est": 1.7052562966529624e-05,
+   "reward_price_basis": "WETH-pair",
+   "reward_bal_in_vault": 5197700807389545100896171205,
+   "pools": [
+    {
+     "pid": 0,
+     "token": "0xdfcc12a0aad50d84639d558551edd7a523b69ac5",
+     "pair": "WETH/STACY",
+     "both_blue": false,
+     "vault_share_of_pair": 0.896932
+    },
+    {
+     "pid": 1,
+     "token": "0xec81c9eb83e464499b09b38510f967d97363745b",
+     "pair": "CHADS/WETH",
+     "both_blue": false,
+     "vault_share_of_pair": 0.049655
+    },
+    {
+     "pid": 2,
+     "token": "0x837f68d11cd15e8ab10dd5f3f210516f2cf2bcfb",
+     "pair": "eMTRG/WETH",
+     "both_blue": false,
+     "vault_share_of_pair": 0.224831
+    },
+    {
+     "pid": 3,
+     "token": "0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc",
+     "pair": "USDC/WETH",
+     "both_blue": true,
+     "vault_share_of_pair": 2e-06
+    },
+    {
+     "pid": 4,
+     "token": "0xbb2b8038a1640196fbe3e38816f3e67cba72d940",
+     "pair": "WBTC/WETH",
+     "both_blue": true,
+     "vault_share_of_pair": 4.6e-05
+    }
+   ],
+   "bluechip_cheap_pools": 2,
+   "EXPLOITABLE_AND_VALUABLE": true,
+   "bytecode_matched": 7,
+   "bytecode_fork": true,
+   "logic_hash": "6cb647f8f399cae0",
+   "deposit_logs": 1026
+  }
+ ]
+}

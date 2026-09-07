@@ -1,6 +1,6 @@
 # Ethereum mainnet live scan: 2026-09-07T02:39:11+00:00 to 2026-09-07T07:39:11+00:00 UTC
 
-Blocks 25922548 to 25924040 (1493 blocks, 5.00 h), 365,859 transactions, 1,233,959 logs. Prices at head block 25924104: ETH $2484, BTC $79k. Generated 2026-09-07T08:45:29+00:00 UTC by `scripts/live_scan.py`; the narrative section is written by the LLM from `analysis.json` and `head_state.json`, every table below is deterministic.
+Blocks 25922548 to 25924040 (1493 blocks, 5.00 h), 365,859 transactions, 1,233,959 logs. Prices at head block 25924104: ETH $2484, BTC $79k. Generated 2026-09-07T10:18:52+00:00 UTC by `scripts/live_scan.py`; the narrative section is written by the LLM from `analysis.json` and `head_state.json`, every table below is deterministic.
 
 ## Insights (LLM narrative, written from `events.json`, `analysis.json`, `head_state.json` and `followups.json`)
 
@@ -34,7 +34,7 @@ The rate table at the head: USDT borrow Compound v3 3.81%, Aave 4.22%, SparkLend
 
 Health factors at the head for accounts that acted in the window: [0xd938…48dd](https://etherscan.io/address/0xd93814273b33dd33b32cd345225cfb65deb048dd) holds $237.6M of collateral against $217.8M of debt on Aave v3 at a 93% liquidation threshold (E-mode), health factor 1.015. It withdrew $2.8M USDe at 04:05 and repaid $2.6M USDT at 04:20: a USDe-collateral, USDT-debt loop that is de-risking in small steps, 1.4% from liquidation. [0xb8a4…715e](https://etherscan.io/address/0xb8a451107a9f87fde481d4d686247d6e43ed715e) on SparkLend ($29.4M debt) is at 1.035 and [0xcf0a…cd69](https://etherscan.io/address/0xcf0a12cbd8088fc5f84ad431e71787157041cd69) on Aave ($10.8M) at 1.026 after swapping $3.6M of USDT debt into USDC debt.
 
-Debt moved toward the cheaper dollar all window: [0x13ff…55b7](https://etherscan.io/address/0x13ffb3286d8d371785e6288588be88e4356555b7) borrowed $2.9M WETH (2.03%) and repaid $2.9M USDT (4.22%) in one transaction, settling through CoW; [0x76f3…5b1a](https://etherscan.io/address/0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a) repaid and re-borrowed $5.1M USDT while supplying $5.1M USDC in one block. [0x9992…f242](https://etherscan.io/address/0x99926ab8e1b589500ae87977632f13cf7f70f242) ($355M collateral, $181M debt, health factor 1.62) borrowed $10M USDT at 02:44 into a Safe that sold $885k through CoW and wrapped 4,000 ETH at 04:15. One liquidation in five hours ($13k of LINK debt). The "leverage to exchange" pipeline reads $25.7M of followed proceeds, but $21.8M of that landed on CoW Protocol's settlement contract, which the behavioural address book tags as a deposit sink; the real exchange-bound amount is at most $2.8M (USDe). That mis-tag is the first request below.
+Debt moved toward the cheaper dollar all window: [0x13ff…55b7](https://etherscan.io/address/0x13ffb3286d8d371785e6288588be88e4356555b7) borrowed $2.9M WETH (2.03%) and repaid $2.9M USDT (4.22%) in one transaction, settling through CoW; [0x76f3…5b1a](https://etherscan.io/address/0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a) repaid and re-borrowed $5.1M USDT while supplying $5.1M USDC in one block. [0x9992…f242](https://etherscan.io/address/0x99926ab8e1b589500ae87977632f13cf7f70f242) ($355M collateral, $181M debt, health factor 1.62) borrowed $10M USDT at 02:44 into a Safe that sold $885k through CoW and wrapped 4,000 ETH at 04:15. One liquidation in five hours ($13k of LINK debt). The "leverage to exchange" pipeline, after applying the new verified-label registry (`scripts/address_labels.json`, which retags CoW Protocol's settlement contract as a venue rather than a deposit sink and no longer chases borrowed funds through it), reads $5.3M of genuinely exchange-bound proceeds: $2.8M USDe to a behaviour-tagged deposit sink, plus smaller USDT and cbBTC legs. The earlier uncorrected figure was $25.7M, of which $20M was CoW settlement mis-tagged as a CEX. This is the address-book fix that was the first request of this study, now implemented.
 
 ### 6. A flash-loan bot is farming a memecoin's MasterChef with $175M of Morpho liquidity every half hour (mechanism: medium confidence)
 
@@ -59,7 +59,7 @@ Stablecoin block moves: $129M USDC hopped through four unlabelled pass-through E
 
 ### Requests to the quant step
 
-1. Address book: retag [0x9008…ab41](https://etherscan.io/address/0x9008d19f58aabd9ed0d60971565aa8510560ab41) as CoW Protocol settlement (a venue, not a sink), 0x62425cd6… as an issuer or treasury candidate; add the Robinhood Chain inbox, the Ondo stock tokens, the Stockereum routers and FeeEscrow, StacyVault, spUSDT and the Spark ALMProxy.
+1. Address book (DONE this session): `scripts/address_labels.json` now retags [0x9008…ab41](https://etherscan.io/address/0x9008d19f58aabd9ed0d60971565aa8510560ab41) as CoW Protocol settlement (venue), 0x62425cd6… as an RLUSD treasury/issuer candidate, and adds the Robinhood Chain inbox, the Ondo stock tokens, StacyVault, spUSDT, the Spark Blue Chip USDT vault and the Spark ALMProxy; `live_scan` counts only `kind` in {exchange, exchange_deposit} as exchange flow. Still to add: the Stockereum routers and FeeEscrow, and provenance for the memory-only CEX labels.
 2. Make the gas-hog attribution automatic: a per-5-minute series of gas limit by target with the spike-versus-baseline ratio (the one-off version is `scripts/window_followups.py`), so a base-fee spike names its cause in the live log.
 3. Trace one StacyVault run and one stock-router swap through dRPC `debug_traceTransaction` to settle the reward mechanism and the FeeEscrow's take per swap.
 4. A tokenized-stock monitor: on-chain prices of NVDAON, TSLAON, SPCXON and SPYON against the underlying's last close and the Robinhood Chain venues, mints and burns per day, v4 pool depth. The on-chain price of a stock outside market hours is a new kind of dislocation to measure (SPCXON traded 152 to 154 across USDT and USDC pools here).
@@ -250,14 +250,14 @@ Largest operations (≥ $250k):
 
 Where borrow/withdraw proceeds went (first hop within 60 min; exchange tags from the day-study address book and memory labels):
 
-- SparkLend withdraw $46.4M USDT by [0x1601…347e](https://etherscan.io/address/0x1601843c5e9bc251a3272907010afa41fa18347e) ([0xc0ce…b35c](https://etherscan.io/tx/0xc0ce97bdae9884eea677214ad02bbfb1674e9c6022d2a105161d406e03c0b35c)): $75.4M → [0xe2e7…c372](https://etherscan.io/address/0xe2e7a17dff93280dec073c995595155283e3c372); $162k → [0xe2e7…c372](https://etherscan.io/address/0xe2e7a17dff93280dec073c995595155283e3c372)
+- SparkLend withdraw $46.4M USDT by [0x1601…347e](https://etherscan.io/address/0x1601843c5e9bc251a3272907010afa41fa18347e) ([0xc0ce…b35c](https://etherscan.io/tx/0xc0ce97bdae9884eea677214ad02bbfb1674e9c6022d2a105161d406e03c0b35c)): $75.4M → [Spark Savings USDT (spUSDT) (blockscout-verified)](https://etherscan.io/address/0xe2e7a17dff93280dec073c995595155283e3c372); $162k → [Spark Savings USDT (spUSDT) (blockscout-verified)](https://etherscan.io/address/0xe2e7a17dff93280dec073c995595155283e3c372)
 - SparkLend borrow $10.0M USDS by [0xb99a…bcf5](https://etherscan.io/address/0xb99a2c4c1c4f1fc27150681b740396f6ce1cbcf5) ([0x90bf…0697](https://etherscan.io/tx/0x90bf401836573b998354eec588e023bdfbd7bdbedeae74510d3b471fb4490697)): $10.0M → [0xa188…f98c](https://etherscan.io/address/0xa188eec8f81263234da3622a406892f3d630f98c)
-- Aave v3 borrow $10.0M USDT by [0x9992…f242](https://etherscan.io/address/0x99926ab8e1b589500ae87977632f13cf7f70f242) ([0x45b9…1708](https://etherscan.io/tx/0x45b91ca15010efb6468b20ed42038785fb64eb996e34fab82538c49b55881708)): $10.0M → [0x54d2…6029](https://etherscan.io/address/0x54d250405d22e858d125ce2c1affc7d73afe6029) → forwarded to deposit sink (behaviour, day study) **[to exchange $10.0M]**
+- Aave v3 borrow $10.0M USDT by [0x9992…f242](https://etherscan.io/address/0x99926ab8e1b589500ae87977632f13cf7f70f242) ([0x45b9…1708](https://etherscan.io/tx/0x45b91ca15010efb6468b20ed42038785fb64eb996e34fab82538c49b55881708)): $10.0M → [0x54d2…6029](https://etherscan.io/address/0x54d250405d22e858d125ce2c1affc7d73afe6029)
 - SparkLend borrow $7.2M USDT by [0x181c…a76d](https://etherscan.io/address/0x181cb55f872450d16ae858d532b4e35e50eaa76d) ([0xd10b…f8f4](https://etherscan.io/tx/0xd10ba1aa15fb2825b6e82cc685fbc8447357e20e63351f2edaf1c9de3bcbf8f4)): $7.2M → [0x2387…086a](https://etherscan.io/address/0x23878914efe38d27c4d67ab83ed1b93a74d4086a)
-- Aave v3 borrow $5.1M USDT by [0x76f3…5b1a](https://etherscan.io/address/0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a) ([0x1978…4cf6](https://etherscan.io/tx/0x1978c9e59ca801c96e5703159142d4161bb5b5c649f0dfb0d992262cdaf84cf6)): $5.1M → [0x0000…8a90](https://etherscan.io/address/0x000000000004444c5dc75cb358380d2e3de08a90) → forwarded to deposit sink (behaviour, day study); $5.1M → [0x2387…086a](https://etherscan.io/address/0x23878914efe38d27c4d67ab83ed1b93a74d4086a) **[to exchange $5.1M]**
-- Aave v3 borrow $2.9M WETH by [0x13ff…55b7](https://etherscan.io/address/0x13ffb3286d8d371785e6288588be88e4356555b7) ([0xd5b3…8e3e](https://etherscan.io/tx/0xd5b33de96ec0865dd108f5c6051f679010e85f3980dcd7c8968a555558058e3e)): $2.9M → [deposit sink (behaviour, day study)](https://etherscan.io/address/0x9008d19f58aabd9ed0d60971565aa8510560ab41); $2.9M → [0x68c8…4eb8](https://etherscan.io/address/0x68c83eef09b6364f7429b09d404cf9be015c4eb8) → forwarded to deposit sink (behaviour, day study); $2.9M → [0xdecc…f192](https://etherscan.io/address/0xdecc46a4b09162f5369c5c80383aaa9159bcf192); $11k → [0x13ff…55b7](https://etherscan.io/address/0x13ffb3286d8d371785e6288588be88e4356555b7) **[to exchange $5.8M]**
+- Aave v3 borrow $5.1M USDT by [0x76f3…5b1a](https://etherscan.io/address/0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a) ([0x1978…4cf6](https://etherscan.io/tx/0x1978c9e59ca801c96e5703159142d4161bb5b5c649f0dfb0d992262cdaf84cf6)): $5.1M → [Uniswap v4 PoolManager (known-canonical)](https://etherscan.io/address/0x000000000004444c5dc75cb358380d2e3de08a90); $5.1M → [0x2387…086a](https://etherscan.io/address/0x23878914efe38d27c4d67ab83ed1b93a74d4086a)
+- Aave v3 borrow $2.9M WETH by [0x13ff…55b7](https://etherscan.io/address/0x13ffb3286d8d371785e6288588be88e4356555b7) ([0xd5b3…8e3e](https://etherscan.io/tx/0xd5b33de96ec0865dd108f5c6051f679010e85f3980dcd7c8968a555558058e3e)): $2.9M → [CoW Protocol settlement (GPv2Settlement) (known-canonical)](https://etherscan.io/address/0x9008d19f58aabd9ed0d60971565aa8510560ab41); $2.9M → [0x68c8…4eb8](https://etherscan.io/address/0x68c83eef09b6364f7429b09d404cf9be015c4eb8); $2.9M → [0xdecc…f192](https://etherscan.io/address/0xdecc46a4b09162f5369c5c80383aaa9159bcf192); $11k → [0x13ff…55b7](https://etherscan.io/address/0x13ffb3286d8d371785e6288588be88e4356555b7)
 - Aave v3 withdraw $2.8M USDe by [0xd938…48dd](https://etherscan.io/address/0xd93814273b33dd33b32cd345225cfb65deb048dd) ([0x6cd1…faa8](https://etherscan.io/tx/0x6cd1c1c1b7e2843e419424b4ea8c83fd838c7d0f1a4c7a43154a8a25f79efaa8)): $2.8M → [deposit sink (behaviour, day study)](https://etherscan.io/address/0x50cfe7c1938db66a1a6d2e86d36f39fbef3d5c4a) **[to exchange $2.8M]**
-- Aave v3 withdraw $2.0M tBTC by [0xfd81…a62a](https://etherscan.io/address/0xfd81b27d9796a1ba7d7171ea70010c9befb2a62a) ([0xab8a…3c76](https://etherscan.io/tx/0xab8a352fcc1f9f2bd67b1ba835fc68824e19e9e5e4031fa3ef250e4b0eec3c76)): $2.0M → [deposit sink (behaviour, day study)](https://etherscan.io/address/0x9008d19f58aabd9ed0d60971565aa8510560ab41) **[to exchange $2.0M]**
+- Aave v3 withdraw $2.0M tBTC by [0xfd81…a62a](https://etherscan.io/address/0xfd81b27d9796a1ba7d7171ea70010c9befb2a62a) ([0xab8a…3c76](https://etherscan.io/tx/0xab8a352fcc1f9f2bd67b1ba835fc68824e19e9e5e4031fa3ef250e4b0eec3c76)): $2.0M → [CoW Protocol settlement (GPv2Settlement) (known-canonical)](https://etherscan.io/address/0x9008d19f58aabd9ed0d60971565aa8510560ab41)
 - Aave v3 withdraw $1.1M USDT by [0x1f5b…19ee](https://etherscan.io/address/0x1f5bd76d597c7fd18848c7b89c6b26f23e4e19ee) ([0xacbf…2e7e](https://etherscan.io/tx/0xacbf503f6df138773bcb64ef40acc711bfcc2280effe7832b2c9c292f58d2e7e)): $1.1M → [0x217e…60a3](https://etherscan.io/address/0x217e42ceb2eae9ecb788fdf0e31c806c531760a3)
 - Aave v3 withdraw $1.1M WETH by [0xa462…27a1](https://etherscan.io/address/0xa462d9acaccb141ce7f17213b95198fe248c27a1) ([0x1463…1a74](https://etherscan.io/tx/0x14630df59cc5dccd4eab5fc6e1e0a72daf07b0b863813d93d9743e0c9c021a74)): $1.1M → [0x4d5f…14e8](https://etherscan.io/address/0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8)
 - SparkLend borrow $889k WETH by [0xb8a4…715e](https://etherscan.io/address/0xb8a451107a9f87fde481d4d686247d6e43ed715e) ([0x3d47…0853](https://etherscan.io/tx/0x3d4784e8f095c9861b7bb5ee93eeab9485343b6bbd346e22cb9ad87d41500853)): $1.3M → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb); $2.7M → [0xbbbb…ffcb](https://etherscan.io/address/0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb)
@@ -269,7 +269,7 @@ Where borrow/withdraw proceeds went (first hop within 60 min; exchange tags from
 - Aave v3 withdraw $746k WETH by [0xd016…5722](https://etherscan.io/address/0xd01607c3c5ecaba394d8be377a08590149325722) ([0x2783…f960](https://etherscan.io/tx/0x27839e6be175941916a4b5b851a3b4000be627812a3b9e0c5e8ca5e1c0daf960)): $198k → [0x4d5f…14e8](https://etherscan.io/address/0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8)
 - Aave v3 borrow $700k USDT by [0x1d7d…1dcb](https://etherscan.io/address/0x1d7ddad2aefa66aadede4822f5f81f0adadd1dcb) ([0x3c45…0e8b](https://etherscan.io/tx/0x3c450d3a35a324bf0f01157365543709b1fd5b29d681f8054fea302c90bd0e8b)): $100k → [0x99c4…1778](https://etherscan.io/address/0x99c4a351b59f3348be4b05d638acb0a727b01778)
 - Aave v3 withdraw $657k WETH by [0x5aae…5588](https://etherscan.io/address/0x5aae4d2f360e156de3416936049837a7bb685588) ([0xc7f8…1f5d](https://etherscan.io/tx/0xc7f801da5df7e53a0c9f8375ca20867630b1216d0008adb827c3b5a392231f5d)): $657k → [0x4d5f…14e8](https://etherscan.io/address/0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8); $657k → [0x45e9…9215](https://etherscan.io/address/0x45e9b04942176a513b22acc1ced75c34d2fd9215); $13k → [0x59cd…71db](https://etherscan.io/address/0x59cd1c87501baa753d0b5b5ab5d8416a45cd71db); $13k → [0x45e9…9215](https://etherscan.io/address/0x45e9b04942176a513b22acc1ced75c34d2fd9215)
-- Aave v3 borrow $631k USDS by [0x9205…f0bb](https://etherscan.io/address/0x9205a569b0ff45df1e4f5ae48e21bc7f0656f0bb) ([0x7750…6522](https://etherscan.io/tx/0x775025b24320fe1790d909884d7235407564dc35cdd9a31cc05bbdb05d436522)): $631k → [0x0000…8a90](https://etherscan.io/address/0x000000000004444c5dc75cb358380d2e3de08a90) → forwarded to deposit sink (behaviour, day study); $631k → [0x32a6…4259](https://etherscan.io/address/0x32a6268f9ba3642dda7892add74f1d34469a4259) **[to exchange $631k]**
+- Aave v3 borrow $631k USDS by [0x9205…f0bb](https://etherscan.io/address/0x9205a569b0ff45df1e4f5ae48e21bc7f0656f0bb) ([0x7750…6522](https://etherscan.io/tx/0x775025b24320fe1790d909884d7235407564dc35cdd9a31cc05bbdb05d436522)): $631k → [Uniswap v4 PoolManager (known-canonical)](https://etherscan.io/address/0x000000000004444c5dc75cb358380d2e3de08a90); $631k → [0x32a6…4259](https://etherscan.io/address/0x32a6268f9ba3642dda7892add74f1d34469a4259)
 
 Health of the accounts active in the window (Aave/Spark `getUserAccountData` at the head):
 
@@ -351,24 +351,24 @@ Volume-weighted implied price from every priced swap in the window (the referenc
 
 ## D. Exchange flow, large transfers, round trips, scheduled flow
 
-Net flow into tagged exchange wallets and deposit sinks by asset (address book: 120 addresses; tags are behavioural from the day study plus memory labels):
+Net flow into tagged exchange wallets and deposit sinks by asset (address book: 136 addresses; tags are behavioural from the day study plus memory labels):
 
 | asset | in | out | net |
 |---|---|---|---|
-| USDT | $312.4M | $236.8M | $75.6M |
-| USDC | $209.5M | $268.1M | $-58.7M |
-| ETH | $117.2M | $88.7M | $28.5M |
-| RLUSD | $5.0M | $106.6M | $-101.6M |
-| WETH | $30.8M | $21.1M | $9.6M |
+| USDT | $301.9M | $226.2M | $75.6M |
+| USDC | $199.6M | $258.2M | $-58.6M |
+| ETH | $115.5M | $88.3M | $27.2M |
+| WETH | $18.6M | $20.6M | $-2.0M |
 | USDe | $11.0M | $11.2M | $-158k |
-| cbBTC | $11.2M | $8.2M | $3.0M |
-| USDS | $6.5M | $6.4M | $169k |
-| WBTC | $7.4M | $4.4M | $3.1M |
+| cbBTC | $8.8M | $5.8M | $3.0M |
+| USDS | $5.8M | $5.7M | $169k |
+| WBTC | $7.2M | $4.2M | $3.1M |
+| RLUSD | $5.0M | $5.9M | $-889k |
 | PYUSD | $4.7M | $6.0M | $-1.3M |
-| DAI | $5.1M | $5.0M | $57k |
 | sUSDe | $4.4M | $4.4M | $-9757 |
+| stETH | $4.5M | $4.1M | $340k |
 
-By label: deposit sink (behaviour, day study) in $191.9M / out $163.4M; Binance 14 (memory) in $224.2M / out $36.2M; hot wallet (behaviour, day study) in $62.2M / out $195.5M; exchange deposit contract (day study, unidentified) in $58.4M / out $119.0M; Bitget (memory) in $86.9M / out $52.7M; Coinbase 10 (memory) in $52.0M / out $37.0M; Coinbase 11 (memory) in $33.7M / out $33.4M; Gate.io (memory) in $23.4M / out $21.5M; Binance 17 (memory) in $0 / out $33.0M; Bitfinex 2 (memory) in $2.1M / out $30.0M; hot wallet (day study, unidentified) in $14.4M / out $17.3M; Binance 15 (memory) in $0 / out $18.9M.
+By label: deposit sink (behaviour, day study) in $149.1M / out $132.1M; Binance 14 (memory) in $224.2M / out $36.2M; exchange deposit contract (day study, unidentified) in $58.4M / out $119.0M; hot wallet (behaviour, day study) in $60.5M / out $94.4M; Bitget (memory) in $86.9M / out $52.7M; Coinbase 10 (memory) in $52.0M / out $37.0M; Coinbase 11 (memory) in $33.7M / out $33.4M; Gate.io (memory) in $23.4M / out $21.5M; Binance 17 (memory) in $0 / out $33.0M; Bitfinex 2 (memory) in $2.1M / out $30.0M; hot wallet (day study, unidentified) in $14.4M / out $17.3M; Binance 15 (memory) in $0 / out $18.9M.
 
 
 Largest transfers (≥ $5M, ERC-20 and native):

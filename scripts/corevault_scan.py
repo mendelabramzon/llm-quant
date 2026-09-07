@@ -9,13 +9,14 @@ a pool's LP is a *flash-mintable* pair (both sides blue-chip: WETH/USDC/USDT/WBT
 staked (cheap to dominate) AND the reward token has real value and live fee flow. StacyVault has blue-chip pools but a
 dust reward token; this scanner looks for the same shape with a token that is actually worth something.
 
-It browses a Blockscout instance (no API key) by name, fingerprints each candidate's *verified source*, then reads the
-pools and prices on-chain through Blockscout's Etherscan-compatible `eth_call` proxy. Read-only.
+Multichain (`--chain ethereum|arbitrum|bsc|base|polygon`). Candidates come from a Blockscout name search where one is
+available (Ethereum, Arbitrum) and otherwise from `--addresses`. Verified source is fetched from Blockscout or, via the
+`--source etherscan` backend (default where a chain has no Blockscout name-search host), the Etherscan V2 key in
+`etherscan_key.txt` — whose free tier serves `getsourcecode` on BSC/Base/Polygon/Arbitrum even though its account/proxy
+modules are gated there. On-chain reads (pools, prices) always go through a public JSON-RPC per chain. Read-only.
 
-    uv run --with pycryptodome python scripts/corevault_scan.py --host eth.blockscout.com \
-        --queries CoreVault,cVault,StacyVault,CoreVaultV2 \
-        --addresses 0x223Bc79156CBb0a6D175Ea6130Cb382D01868DF8,0xC5cacb708425961594B63eC171f4df27a9c0d8c9 \
-        --out research/2026-09-07/stacy_farm/corevault_scan.json
+    uv run --with pycryptodome python scripts/corevault_scan.py --chain ethereum          # Blockscout name search
+    uv run --with pycryptodome python scripts/corevault_scan.py --chain bsc --addresses 0x...  # Etherscan source + BSC RPC
 """
 import argparse
 import json
@@ -29,6 +30,8 @@ from Crypto.Hash import keccak
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from drpc import rpc as drpc_rpc, Revert  # JSON-RPC eth_call with public-endpoint rotation
+import etherscan  # Etherscan V2 verified-source client (cross-chain, key from etherscan_key.txt)
+import bytecode_fingerprint  # source-free CoreVault detection by selector cluster + norm codehash
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -36,6 +39,7 @@ ROOT = Path(__file__).resolve().parents[1]
 # UniswapV2-style factories used only to price the reward token, and the native-coin USD price used for that pricing.
 CHAINS = {
     'ethereum': {
+        'chainid': 1,
         'host': 'eth.blockscout.com',
         'rpc': ['https://eth.drpc.org', 'https://ethereum-rpc.publicnode.com', 'https://eth.merkle.io', 'https://1rpc.io/eth'],
         'weth': '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
@@ -49,6 +53,7 @@ CHAINS = {
         'native_usd': 2500.0,
     },
     'arbitrum': {
+        'chainid': 42161,
         'host': 'arbitrum.blockscout.com',
         'rpc': ['https://arbitrum.drpc.org', 'https://arb1.arbitrum.io/rpc', 'https://arbitrum-one-rpc.publicnode.com', 'https://1rpc.io/arb'],
         'weth': '0x82af49447d8a07e3bd95bd0d56f35241523fbab1',
@@ -60,6 +65,37 @@ CHAINS = {
         'factories': ['0xc35dadb65012ec5796536bd9864ed8773abc74c4', '0x6eccab422d763ac031210895c81787e87b43a652'],
         'native_usd': 2500.0,
     },
+    'bsc': {
+        'chainid': 56, 'host': None, 'rpc': etherscan.CHAIN_RPC[56][1],
+        'weth': '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c',
+        'blue': {
+            '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c': 'WBNB', '0x55d398326f99059ff775485246999027b3197955': 'USDT',
+            '0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d': 'USDC', '0xe9e7cea3dedca5984780bafc599bd69add087d56': 'BUSD',
+            '0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c': 'BTCB', '0x2170ed0880ac9a755fd29b2688956bd959f933f8': 'ETH',
+        },
+        'factories': ['0xca143ce32fe78f1f7019d7d551a6402fc5350c73'], 'native_usd': 600.0,
+    },
+    'base': {
+        'chainid': 8453, 'host': None, 'rpc': etherscan.CHAIN_RPC[8453][1],
+        'weth': '0x4200000000000000000000000000000000000006',
+        'blue': {
+            '0x4200000000000000000000000000000000000006': 'WETH', '0x833589fcd6edb6e08f4c7c32d4f71b54bda02913': 'USDC',
+            '0xd9aaec86b65d86f6a7b5b1b0c42ffa531710b6ca': 'USDbC', '0x50c5725949a6f0c72e6c4a641f24049a917db0cb': 'DAI',
+            '0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf': 'cbBTC',
+        },
+        'factories': ['0x8909dc15e40173ff4699343b6eb8132c65e18ec6'], 'native_usd': 2500.0,
+    },
+    'polygon': {
+        'chainid': 137, 'host': None, 'rpc': etherscan.CHAIN_RPC[137][1],
+        'weth': '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270',
+        'blue': {
+            '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270': 'WMATIC', '0x3c499c542cef5e3811e1192ce70d8cc03d5c3359': 'USDC',
+            '0x2791bca1f2de4661ed88a30c99a7a9449aa84174': 'USDC.e', '0xc2132d05d31c914a87c6611c10748aeb04b58e8f': 'USDT',
+            '0x7ceb23fd6bc0add59e62ac25578270cff1b9f619': 'WETH', '0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6': 'WBTC',
+            '0x8f3cf7ad23cd3cadbd9735aff958023239c6a063': 'DAI',
+        },
+        'factories': ['0x5757371414417b8c6caad45baef941abc7d3ab32', '0xc35dadb65012ec5796536bd9864ed8773abc74c4'], 'native_usd': 0.5,
+    },
 }
 
 WETH = CHAINS['ethereum']['weth']
@@ -67,6 +103,9 @@ BLUE = CHAINS['ethereum']['blue']
 FACTORIES = CHAINS['ethereum']['factories']
 NATIVE_USD = CHAINS['ethereum']['native_usd']
 RPC_ENDPOINTS = None  # set in main() from the chosen chain
+CHAINID = 1
+SOURCE_BACKEND = 'blockscout'  # 'blockscout' (name search) or 'etherscan' (verified source via key)
+CHAIN_NAME = 'ethereum'  # for bytecode_fingerprint public-RPC selection
 
 
 def sel(sig):
@@ -161,11 +200,12 @@ def get_pair(host, factory, a, b):
 
 
 def reward_token_price_usd(host, tok):
-    """Best-effort USD price of a token from its WETH pair (Uni v2 or Sushi), assuming ETH ~ $2500 fallback."""
+    """Best-effort (USD price, basis, liquidity_usd) of a token from its WETH-pair. liquidity_usd ~ the WETH-side
+    reserve value (half the pool TVL) — the depth you could actually sell harvested rewards into."""
     if not tok or tok == '0x' + '0' * 40:
-        return None, None
+        return None, None, None
     if tok.lower() in BLUE:
-        return (1.0 if BLUE[tok.lower()] in ('USDC', 'USDT', 'DAI', 'FRAX', 'LUSD') else None), BLUE[tok.lower()]
+        return (1.0 if BLUE[tok.lower()] in ('USDC', 'USDT', 'DAI', 'FRAX', 'LUSD') else None), BLUE[tok.lower()], 1e12
     for fac in FACTORIES:
         pair = get_pair(host, fac, tok, WETH)
         if not pair:
@@ -181,11 +221,13 @@ def reward_token_price_usd(host, tok):
         if tok_res == 0:
             continue
         eth_per_tok = (weth_res / 1e18) / (tok_res / 10 ** dec)
-        return eth_per_tok * NATIVE_USD, 'WETH-pair'
-    return None, None
+        return eth_per_tok * NATIVE_USD, 'WETH-pair', (weth_res / 1e18) * NATIVE_USD
+    return None, None, None
 
 
 def name_search(host, q, limit=50):
+    if not host:
+        return []
     d = http_json('https://%s/api/v2/smart-contracts?q=%s' % (host, urllib.parse.quote(q)))
     items = d.get('items', []) if isinstance(d, dict) else []
     out = []
@@ -196,7 +238,10 @@ def name_search(host, q, limit=50):
 
 
 def get_source(host, addr):
-    """Return (name, source_text, impl_addr_or_None). Resolves proxies via /addresses implementations."""
+    """Return (name, source_text, impl_addr_or_None). Uses Etherscan V2 (key) or Blockscout per SOURCE_BACKEND."""
+    if SOURCE_BACKEND == 'etherscan':
+        r = etherscan.source(CHAINID, addr)
+        return r.get('name'), r.get('source') or '', r.get('implementation')
     d = http_json('https://%s/api/v2/smart-contracts/%s' % (host, addr))
     src = (d.get('source_code') or '') if isinstance(d, dict) else ''
     name = d.get('name') if isinstance(d, dict) else None
@@ -245,8 +290,20 @@ def fingerprint(src):
 def analyze_vault(host, addr):
     name, src, impl = get_source(host, addr)
     fp = fingerprint(src)
+    # bytecode fingerprint — works with no verified source, on any chain (see scripts/bytecode_fingerprint.py)
+    try:
+        bfp = bytecode_fingerprint.fingerprint(CHAIN_NAME, addr)
+    except Exception:
+        bfp = {}
     if not fp:
-        return {'address': addr, 'match': False}
+        if bfp.get('is_corevault_fork'):
+            # unverified/renamed but the bytecode carries the CoreVault selector cluster; the depositFor guard bypass
+            # is inherited from the CORE origin, so treat as bypassable and flag pools/token for verification.
+            fp = {'lump_rewards': True, 'bypassable': True,
+                  'guard': 'CoreVault selector cluster in bytecode (source unavailable) — depositFor bypass inherited from CORE origin, verify',
+                  'bytecode_only': True}
+        else:
+            return {'address': addr, 'match': False, 'bytecode_matched': bfp.get('n_matched', 0)}
     # reward token
     rtok = None
     for g in REWARD_GETTERS:
@@ -257,7 +314,7 @@ def analyze_vault(host, addr):
                 rtok = cand
                 break
     rsym = call_symbol(host, rtok) if rtok else '?'
-    rprice, rbasis = reward_token_price_usd(host, rtok) if rtok else (None, None)
+    rprice, rbasis, rliq = reward_token_price_usd(host, rtok) if rtok else (None, None, None)
     rbal = None
     if rtok:
         rr = eth_call(host, rtok, SELS['balanceOf'] + enc_addr(addr))
@@ -289,12 +346,14 @@ def analyze_vault(host, addr):
             row.update({'pair': 'not-a-univ2-pair'})
         pools.append(row)
         time.sleep(0.05)
-    score = fp['bypassable'] and bluechip_cheap > 0 and (rprice or 0) > 0
+    MIN_REWARD_LIQ_USD = 25000.0
+    score = fp['bypassable'] and bluechip_cheap > 0 and (rliq or 0) >= MIN_REWARD_LIQ_USD
     return {
         'address': addr, 'match': True, 'name': name, 'impl': impl, **fp,
-        'reward_token': rtok, 'reward_symbol': rsym, 'reward_price_usd_est': rprice, 'reward_price_basis': rbasis,
+        'reward_token': rtok, 'reward_symbol': rsym, 'reward_price_usd_est': rprice, 'reward_price_basis': rbasis, 'reward_liq_usd': round(rliq) if rliq else None,
         'reward_bal_in_vault': rbal, 'pools': pools, 'bluechip_cheap_pools': bluechip_cheap,
         'EXPLOITABLE_AND_VALUABLE': bool(score),
+        'bytecode_matched': bfp.get('n_matched', 0), 'bytecode_fork': bfp.get('is_corevault_fork'), 'logic_hash': bfp.get('norm_codehash'),
     }
 
 
@@ -302,18 +361,22 @@ def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument('--chain', default='ethereum', choices=list(CHAINS.keys()))
     p.add_argument('--host', default='')
+    p.add_argument('--source', default='', choices=['', 'blockscout', 'etherscan'], help='source backend; default etherscan when the chain has no Blockscout name-search host')
     p.add_argument('--queries', default='CoreVault,cVault,StacyVault,CoreVaultV2')
     p.add_argument('--addresses', default='')
     p.add_argument('--max', type=int, default=60, help='max unique candidates to fingerprint')
     p.add_argument('--out', default=str(ROOT / 'research' / '2026-09-07' / 'stacy_farm' / 'corevault_scan.json'))
     a = p.parse_args()
 
-    global WETH, BLUE, FACTORIES, NATIVE_USD, RPC_ENDPOINTS
+    global WETH, BLUE, FACTORIES, NATIVE_USD, RPC_ENDPOINTS, CHAINID, SOURCE_BACKEND, CHAIN_NAME
     ch = CHAINS[a.chain]
+    CHAIN_NAME = a.chain
     WETH = ch['weth']; BLUE = ch['blue']; FACTORIES = ch['factories']; NATIVE_USD = ch['native_usd']; RPC_ENDPOINTS = ch['rpc']
+    CHAINID = ch.get('chainid', 1)
+    SOURCE_BACKEND = a.source if a.source else ('blockscout' if ch.get('host') else 'etherscan')
     if not a.host:
-        a.host = ch['host']
-    print('chain', a.chain, 'host', a.host, 'rpc', RPC_ENDPOINTS[0])
+        a.host = ch.get('host') or ''
+    print('chain', a.chain, 'chainid', CHAINID, 'source', SOURCE_BACKEND, 'host', a.host or '(none)', 'rpc', RPC_ENDPOINTS[0])
 
     cands = []
     for q in [x for x in a.queries.split(',') if x]:

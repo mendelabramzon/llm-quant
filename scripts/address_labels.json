@@ -1,0 +1,23 @@
+{
+  "_doc": "Verified/typed address labels that OVERRIDE behavioural and memory tags in live_scan. 'kind' controls whether flow to/from the address counts as exchange flow: only kind in {exchange, exchange_deposit} does. Everything else (protocol, venue, vault, bridge, issuer, treasury, token, mev_bot) is excluded from exchange-flow and leverage-to-exchange, fixing mis-tags where a settlement contract or a token treasury looked like a CEX. 'source' records provenance: known-canonical (well-known address), blockscout-verified (verified contract name fetched this session), or behaviour-<date> (inferred, unverified).",
+  "labels": {
+    "0x9008d19f58aabd9ed0d60971565aa8510560ab41": {"label": "CoW Protocol settlement (GPv2Settlement)", "kind": "venue", "source": "known-canonical"},
+    "0xc92e8bdf79f0507f65a392b0ab4667716bfe0110": {"label": "CoW Protocol vault relayer", "kind": "venue", "source": "known-canonical"},
+    "0x000000000004444c5dc75cb358380d2e3de08a90": {"label": "Uniswap v4 PoolManager", "kind": "protocol", "source": "known-canonical"},
+    "0x62425cd6bdcb6bfe51558ea465b063486b70dc9f": {"label": "RLUSD treasury/issuer candidate", "kind": "treasury", "source": "behaviour-2026-09-07-unverified"},
+    "0x223bc79156cbb0a6d175ea6130cb382d01868df8": {"label": "StacyVault (CORE-fork MasterChef)", "kind": "vault", "source": "blockscout-verified"},
+    "0x222207e931d7bf38466c395da30e632872a98ae6": {"label": "StacyVault rewards lock", "kind": "vault", "source": "blockscout-verified"},
+    "0x1601843c5e9bc251a3272907010afa41fa18347e": {"label": "Spark ALMProxy", "kind": "protocol", "source": "blockscout-verified"},
+    "0x8a25a24ede9482c4fc0738f99611be58f1c839ab": {"label": "Spark ALM Safe", "kind": "protocol", "source": "behaviour-2026-09-07"},
+    "0x062ce42cae04c51d04e77e3d64cc8953a2296ffe": {"label": "Spark ALM relayer", "kind": "protocol", "source": "behaviour-2026-09-07"},
+    "0xe2e7a17dff93280dec073c995595155283e3c372": {"label": "Spark Savings USDT (spUSDT)", "kind": "vault", "source": "blockscout-verified"},
+    "0xb0c424116172b55cbb6dd3136f5989f7959e5b91": {"label": "Spark Blue Chip USDT Vault (sparkUSDTbc)", "kind": "vault", "source": "blockscout-verified"},
+    "0xbd0d173eeb87d57a09521c24388a12789f33ba96": {"label": "Robinhood Chain SequencerInbox", "kind": "bridge", "source": "blockscout-verified"},
+    "0xdaa526086787d9debe1d7f3ffdb1fe50cf8687f4": {"label": "Robinhood Chain batch poster", "kind": "bridge", "source": "behaviour-2026-09-07"},
+    "0x2d1f7226bd1f780af6b9a49dcc0ae00e8df4bdee": {"label": "NVDAON (Ondo tokenized NVIDIA)", "kind": "token", "source": "blockscout-verified"},
+    "0xf6b1117ec07684d3958cad8beb1b302bfd21103f": {"label": "TSLAON (Ondo tokenized Tesla)", "kind": "token", "source": "blockscout-verified"},
+    "0xc9eef266834730340a55b6cc24621b31baf55581": {"label": "SPCXON (Ondo tokenized SpaceX)", "kind": "token", "source": "blockscout-verified"},
+    "0xfedc5f4a6c38211c1338aa411018dfaf26612c08": {"label": "SPYON (Ondo tokenized SPY)", "kind": "token", "source": "blockscout-verified"},
+    "0x0fd368edd39d47823948d2cc54415dd2f151c83d": {"label": "flash-loan reward-timing harvester (StacyVault)", "kind": "mev_bot", "source": "behaviour-2026-09-07"}
+  }
+}

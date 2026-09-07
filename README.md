@@ -1,5 +1,14 @@
 # Onchain research pilot
 
+**System roadmap:** [ROADMAP.md](ROADMAP.md) is the standing plan for turning this into the best onchain research
+analysis system — prioritised recommendations (verified labels, TWAP head reads, a findings-verification pass, a detector
+registry, an economics harness, a data-access layer), each grounded in a concrete failure this repo has hit. A verified,
+provenance-tracked address-label registry (`scripts/address_labels.json`, consumed by `live_scan`) is the first item
+landed: counting only `kind` in {exchange, exchange_deposit} as exchange flow corrected leverage-to-exchange on the
+2026-09-07 window from $25.7M to $5.3M (CoW's settlement contract was being counted as a CEX) and RLUSD net outflow from
+−$101.6M to −$0.9M (a token treasury mis-tagged as a hot wallet).
+
+
 The latest study is [one day of Ethereum amount outliers, typed](research/2026-09-05/amount_outliers_eth_day/letter.md), with a [detailed report](research/2026-09-05/amount_outliers_eth_day/report.md) and the [LLM's notes](research/2026-09-05/amount_outliers_eth_day/qual_notes.md). It is Ethereum mainnet only, 24 hours (2026-09-04 14:00 to 2026-09-05 14:00 UTC). Known transaction types run deterministic investigations; unresolved clusters become LLM evidence packets, and investigated mechanisms become persistent rules in `scripts/type_registry.py`. Classification coverage is reported separately from the strength of the economic interpretation. The registry was grown in two sessions: Codex on a five-hour window (`research/2026-09-05/amount_outliers_eth_5h`, method in its `method.md`; its notes and report were not written before that session ended) and Claude on the full day, which replayed Codex's 58 types as round 1 and added 32 more over three rounds, the last of them an audit of one sampled occurrence per known type.
 
 2026-09-07, a strategy study: [renting liquidity to a subsidized dollar](research/2026-09-07/captive_flow_lp/findings.md). USDG (Global Dollar / Paxos) rebates over 90% of its reserve yield to network partners, so a partner desk is paid to convert USDC into it and does so daily; that captive, non-toxic flow routes to two thin, ultra-low-fee Uniswap v4 pools where a small, early concentrated LP earns 14–16% APR versus 3.8% in the deep Curve pool. `scripts/captive_flow_lp.py` reads deployed TVL from the tick distribution, realized turnover and fees from the saved logs, the marginal-LP APR-by-size curve, and the taker-concentration checks (block-pinned, replayable offline); a Foundry fork test mints the position in the real v4 pool and collects one day of the observed flow. The same run closes the apxUSD/Strata thread: those below-NAV vaults are STRC tail-risk and first-loss tranches, priced risk rather than a redemption arbitrage.
@@ -91,6 +100,22 @@ Outputs live in `research/2026-09-05/amount_outliers_eth_day/`: `letter.md` and 
 Codex's five-hour run (`research/2026-09-05/eth_5h`, `research/2026-09-05/amount_outliers_eth_5h`) is kept as the origin of the inherited registry; its `method.md` describes the learning cycle and its `round_0X/` archives its discovery and audit rounds.
 
 
+## Cross-chain vault audit (2026-09-07)
+
+[Classify the active vaults across chains and find the bugs](research/2026-09-07/vault_audit/report.md).
+`scripts/vault_audit.py` enumerates active vaults per EVM from their deposit/stake event topics, fetches each one's
+bytecode (Infura, batched), resolves EIP-1967 proxies to their implementation, classifies by the implementation's
+function-selector signature (CORE-fork, MasterChef, ERC-4626, Beefy, Synthetix-staking, Curve-gauge, Yearn), clusters
+by normalised code hash so hundreds of instances collapse into a few dozen implementations, and red-flags each
+representative's verified source. Across Ethereum, Base, BSC and Arbitrum (~650 active vaults) the population is
+dominated by audited protocols (Convex, Morpho, Yearn, Aerodrome/Velodrome, Beefy, Venus, Sky, Backed); the only
+reward-timing-exploitable CORE fork is StacyVault, and the notable ERC-4626 vaults all carry share-inflation protection.
+The pipeline's value is triage — isolating the unaudited, red-flagged outliers from the audited bulk.
+
+```sh
+uv run --with pycryptodome python scripts/vault_audit.py --chains ethereum,base,bsc,arbitrum --blocks 30000
+```
+
 ## Replicating the StacyVault flash-farm (2026-09-07)
 
 Following the five-hour scan's finding that a bot harvests StacyVault with flash-loaned liquidity every ~30 minutes, [this study](research/2026-09-07/stacy_farm/findings.md) reads the vault's and token's verified source, explains the two flaws that make it work (rewards distributed by instantaneous stake rather than time, and a same-block guard that `depositFor` skips), and reproduces the bot in `research/2026-09-07/stacy_farm/fork/src/StacyFarmer.sol`. A Foundry fork test flash-borrows from Balancer, dominates the USDC/WETH and WBTC/WETH staking pools, triggers the reward lump with `cherryPop`, harvests it, and repays, with a net token change of dust: no capital is used, only gas. The honest economics are in the note: at STACY's current ~$0.000017 the liquid take is roughly gas-break-even, the real 79% of emissions sits in the STACY/WETH pool that needs held STACY, and the strategy is a competitive inclusion race against the incumbent.
@@ -99,6 +124,22 @@ Following the five-hour scan's finding that a bot harvests StacyVault with flash
 cd research/2026-09-07/stacy_farm/fork
 forge test --match-test test_farm_pools_3_and_4 --fork-url https://eth.drpc.org -vv
 ```
+
+`scripts/corevault_scan.py` generalises the Stacy finding into a cross-chain hunt: it browses a chain's Blockscout by
+name, fingerprints the CORE/cVault reward-timing bug in each candidate's verified source, and scores exploitability by
+pool composition and reward-token value. The Ethereum sweep found 22 vaults in the family, all carrying the bypassable
+`depositFor`, but none combining a flash-mintable blue-chip pool with a valuable reward token; Arbitrum had none. Details
+in [other_targets.md](research/2026-09-07/stacy_farm/other_targets.md). `scripts/etherscan.py` (Etherscan V2 unified-API client, key in the gitignored
+`etherscan_key.txt`) gives the scanner verified-source access on BSC, Base, Polygon and Arbitrum from one key; on-chain
+reads use free public RPCs. And `scripts/bytecode_fingerprint.py` solves discovery without a name index: it
+identifies a CoreVault fork from its runtime bytecode (a rare cluster of function selectors — depositFor, addPendingRewards,
+setAllowanceForPoolToken, startNewEpoch, setStrategyContract…) and enumerates forks by scanning `eth_getLogs` for the
+MasterChef Deposit topic and bytecode-confirming each emitter — validated at 100% precision on the saved window (12
+emitters, 1 confirmed fork). Method in [fingerprint_method.md](research/2026-09-07/stacy_farm/fingerprint_method.md). `scripts/corevault_hunt.py` runs the end-to-end cross-chain hunt: the local Infura keys are enabled for
+Ethereum, BSC, Base, Polygon, Arbitrum, Optimism and Avalanche, so it enumerates recent active reward vaults by their
+Deposit-topic logs per chain, bytecode-filters to CoreVault forks, and scores each for a flash-mintable blue-chip pool
+and a reward token with real sellable liquidity (a $25k-depth gate, so dust tokens like STACY are flagged as forks but not
+suitable).
 
 ## Five hours of mainnet, digested: 2026-09-07 02:39 to 07:39 UTC
 
