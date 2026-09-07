@@ -273,6 +273,21 @@
     "burn_tx": "0xc3793a0dbc394583d0af4bb6c81d47b66bd1efe18780b996a0c87606c00e766b"
    },
    {
+    "block": 25924147,
+    "pool": "0x4edab94d75b850865dd221bf74b240c167557638",
+    "venue": "uniswap_v3",
+    "owner": "0xfc741c4258aaa097b281fecfb4ef9c012fa73db0",
+    "sender": "0xaaa0bf2e340c2125603b8ffd4ec30faea08effff",
+    "L": 226271707979505548186760741,
+    "usd": 162482.81591365312,
+    "same_tx": true,
+    "swaps_bracketed": 2,
+    "swap_usd": 242,
+    "fee_taken_usd": 0.0,
+    "mint_tx": "0x8ac19149686f866fda5acc050b649dad364fc128d0d2237b8681e371ce21ac65",
+    "burn_tx": "0x8ac19149686f866fda5acc050b649dad364fc128d0d2237b8681e371ce21ac65"
+   },
+   {
     "block": 25925245,
     "pool": "0x4edab94d75b850865dd221bf74b240c167557638",
     "venue": "uniswap_v3",
@@ -331,21 +346,6 @@
     "fee_taken_usd": 0.0,
     "mint_tx": "0x15e886d50f3d1fcecf6e8d41ebc73661ec0ded76fc3fa5782cb360a6d006e0df",
     "burn_tx": "0x516e101d796ad3a4bb45c2a9cbd86e746d9ae3a5f018b8b6b50f667569f9d91f"
-   },
-   {
-    "block": 25925187,
-    "pool": "0x11b815efb8f581194ae79006d24e0d814b7697f6",
-    "venue": "uniswap_v3",
-    "owner": "0x1f2f10d1c40777ae1da742455c65828ff36df387",
-    "sender": "0xae2fc483527b8ef99eb5d9b44875f005ba1fae13",
-    "L": 4892454494492688384,
-    "usd": 122023.35584291075,
-    "same_tx": false,
-    "swaps_bracketed": 1,
-    "swap_usd": 28661,
-    "fee_taken_usd": 0.0,
-    "mint_tx": "0x3d7c8e00afcfb7c3d0e602b6466ccf7b3726c3efa3d6c778a2a221e40865529e",
-    "burn_tx": "0x7a445b580839368effadcd4f816e5b461634dc1332c08dff0d282f106f392a56"
    }
   ]
  },
@@ -738,7 +738,7 @@
    "fees_usd": null,
    "fees_to_jit_usd": 0.0,
    "passive_fees_usd": null,
-   "full_range_capital_usd": 31954800232,
+   "full_range_capital_usd": 31954795371,
    "price_range_pct": 0.009,
    "lp_added_usd": 89,
    "lp_removed_usd": 85
@@ -913,17 +913,17 @@
    ],
    "fee_tier": 0.0,
    "swaps": 218,
-   "volume_usd": 631560,
-   "fees_usd": 87.59,
+   "volume_usd": 631423,
+   "fees_usd": 87.55,
    "fees_to_jit_usd": 0.0,
-   "passive_fees_usd": 87.59,
-   "full_range_capital_usd": 60169855,
-   "price_range_pct": 0.663,
+   "passive_fees_usd": 87.55,
+   "full_range_capital_usd": 60167677,
+   "price_range_pct": 0.726,
    "lp_added_usd": 0,
    "lp_removed_usd": 0,
    "apr_full_range": 0.00255,
-   "apr_band_1pct": 0.5136,
-   "apr_band_0_1pct": 5.1012,
+   "apr_band_1pct": 0.5134,
+   "apr_band_0_1pct": 5.0993,
    "stable_pair": false
   },
   {
@@ -1019,18 +1019,18 @@
     "0xc8fb80fcc03f699c70ff0cc08c09106288888888"
    ],
    "fee_tier": 1e-06,
-   "swaps": 730,
-   "volume_usd": 472690,
-   "fees_usd": 0.47,
+   "swaps": 750,
+   "volume_usd": 487446,
+   "fees_usd": 0.49,
    "fees_to_jit_usd": 0.0,
-   "passive_fees_usd": 0.47,
-   "full_range_capital_usd": 1093762,
+   "passive_fees_usd": 0.49,
+   "full_range_capital_usd": 1094273,
    "price_range_pct": null,
    "lp_added_usd": 0,
    "lp_removed_usd": 0,
-   "apr_full_range": 0.00076,
-   "apr_band_1pct": 0.1525,
-   "apr_band_0_1pct": 1.5144,
+   "apr_full_range": 0.00078,
+   "apr_band_1pct": 0.1572,
+   "apr_band_0_1pct": 1.561,
    "stable_pair": false
   },
   {
@@ -1556,7 +1556,7 @@
    "passive_fees_usd": null,
    "full_range_capital_usd": 161379,
    "price_range_pct": null,
-   "lp_added_usd": 1827,
+   "lp_added_usd": 1828,
    "lp_removed_usd": 5816
   },
   {
@@ -6433,8 +6433,8 @@
       "block": 25925028,
       "to": "0xa188eec8f81263234da3622a406892f3d630f98c",
       "usd": 10000000,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "UsdsPsmWrapper (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0x0f348f6648ccec9b4e32e20b0fdeb1b9411dfbc5d7f68418ef0df35d8fffe1e2"
      }
@@ -6458,8 +6458,8 @@
       "block": 25924261,
       "to": "0xe7df13b8e3d6740fe17cbe928c7334243d86c92f",
       "usd": 7186454,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "AToken (via InitializableImmutableAdminUpgradeabilityProxy) (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0x3e4a8bdbf01039cabe4871fcfb649e9d789f4bf8f8cf4e546f3ff99827b1db87"
      }
@@ -6526,8 +6526,8 @@
       "block": 25924470,
       "to": "0x23878914efe38d27c4d67ab83ed1b93a74d4086a",
       "usd": 4870281,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "Aave v3 USDT (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0x0c61075fbac7d21f780fa1d2abf84dc67204cf2698933fac974ab6e3c6e87127"
      }
@@ -6644,8 +6644,8 @@
       "block": 25925413,
       "to": "0x8f10b468b06c6fd214b65f87778827f7d113f996",
       "usd": 2988351,
-      "tag": "deposit_sink",
-      "label": "deposit sink (behaviour, day study)",
+      "tag": null,
+      "label": null,
       "forwarded_to_exchange": null,
       "tx": "0xed12109289441550c06f2e87da7cc9a72bd06a536ad726be543a200e794e1f1c"
      },
@@ -6659,7 +6659,7 @@
       "tx": "0xed12109289441550c06f2e87da7cc9a72bd06a536ad726be543a200e794e1f1c"
      }
     ],
-    "to_exchange_usd": 2988351
+    "to_exchange_usd": 0
    },
    {
     "op": {
@@ -6703,8 +6703,8 @@
       "block": 25924638,
       "to": "0xc395d150e71378b47a1b8e9de0c1a83b75a08324",
       "usd": 7688505,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "AllocatorBuffer (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0xd1e31b0b7b83a9892a81634b39e378eae3a457f237cd6150ea208704fc4d2a16"
      },
@@ -6712,8 +6712,8 @@
       "block": 25924663,
       "to": "0xc395d150e71378b47a1b8e9de0c1a83b75a08324",
       "usd": 2999163,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "AllocatorBuffer (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0x389c33c4343f4a8d89bf1b83178d309d56cf561632a408a8d2302393d437b335"
      },
@@ -6721,8 +6721,8 @@
       "block": 25924709,
       "to": "0xc395d150e71378b47a1b8e9de0c1a83b75a08324",
       "usd": 151931,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "AllocatorBuffer (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0x9ccd73014030a726a9879f3faaeb16bb2c9c167296c849b373b3cfff65d7545b"
      },
@@ -6730,8 +6730,8 @@
       "block": 25924750,
       "to": "0x3225737a9bbb6473cb4a45b7244aca2befdb276a",
       "usd": 393410,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "DaiUsds (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0x3c9bacbde3bf462d29256c1510eb63f390a962f3286a0c55669f294b5855c135"
      },
@@ -6739,8 +6739,8 @@
       "block": 25924766,
       "to": "0x3225737a9bbb6473cb4a45b7244aca2befdb276a",
       "usd": 433548,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "DaiUsds (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0xc6a42a58dd2fd2872780cb61c1f2beb505f4e809a81d35f8169f4adb5df94ed8"
      },
@@ -6748,8 +6748,8 @@
       "block": 25924772,
       "to": "0x3225737a9bbb6473cb4a45b7244aca2befdb276a",
       "usd": 972734,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "DaiUsds (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0x45b8f8bee6c3a6e8fddcaaa804031627757b74cb20d0ae5e951961073e2d466c"
      },
@@ -6757,8 +6757,8 @@
       "block": 25924788,
       "to": "0x3225737a9bbb6473cb4a45b7244aca2befdb276a",
       "usd": 13644,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "DaiUsds (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0x01901e3b47c6a54075b2071440558a8ace91b757f8eba3c49dd68b18ba450cb4"
      },
@@ -6766,8 +6766,8 @@
       "block": 25924793,
       "to": "0x3225737a9bbb6473cb4a45b7244aca2befdb276a",
       "usd": 819669,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "DaiUsds (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0x182f6b12c5216dd2a07bea589c7e2b1b821ed484ec3e8ffd3cac0411ddb7e70d"
      },
@@ -6775,8 +6775,8 @@
       "block": 25924884,
       "to": "0xc395d150e71378b47a1b8e9de0c1a83b75a08324",
       "usd": 399475,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "AllocatorBuffer (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0xc9a16a1667dfd420459feee4441047f6448e012288d45020c75d5d355ba00011"
      },
@@ -6784,8 +6784,8 @@
       "block": 25924911,
       "to": "0xc395d150e71378b47a1b8e9de0c1a83b75a08324",
       "usd": 11060,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "AllocatorBuffer (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0xcdec976e3a4ab302d572acf3a12b429c25c7227ab840a253bfb73fdd5a471c85"
      },
@@ -6793,8 +6793,8 @@
       "block": 25924917,
       "to": "0x3225737a9bbb6473cb4a45b7244aca2befdb276a",
       "usd": 283959,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "DaiUsds (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0x66f6de3ca81e9663f8f50901d3ad55d754a6581d45e20ac4378a1899aae51757"
      }
@@ -6868,8 +6868,8 @@
       "block": 25924648,
       "to": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
       "usd": 759230,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "Aave v3 WETH (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0xfda326b5855dbd9a59a4f162b5e32c39083d7abc8767434acaf42f403bdfd566"
      },
@@ -6877,8 +6877,8 @@
       "block": 25924708,
       "to": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
       "usd": 14379,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "Aave v3 WETH (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0x0a39e87a9217ae8d58b76ea34adabc2d64101923ff7d8944d575f90328a2d7c4"
      }
@@ -6902,8 +6902,8 @@
       "block": 25924131,
       "to": "0x0000000000000000000000000000000000000000",
       "usd": 748158,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "zero address (mint/burn) (known-canonical)",
       "forwarded_to_exchange": null,
       "tx": "0x1850144a407919b07e18ced324fb3cc2c39b0fc2cd267cbeea7bd3e023a7679d"
      }
@@ -6927,8 +6927,8 @@
       "block": 25924954,
       "to": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
       "usd": 54637,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "Aave v3 WETH (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0x24be218af42438190cb3f98623ccc3e890e57ae8df0110fdc5db91eb56378a20"
      }
@@ -6952,8 +6952,8 @@
       "block": 25925193,
       "to": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
       "usd": 675677,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "Aave v3 WETH (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0xfebebbe660955a49c8b904f76004fcbcd037f173b97883adfd3f86e32b02933e"
      }
@@ -6979,11 +6979,7 @@
       "usd": 253855,
       "tag": null,
       "label": null,
-      "forwarded_to_exchange": {
-       "to": "0x8f10b468b06c6fd214b65f87778827f7d113f996",
-       "label": "deposit sink (behaviour, day study)",
-       "usd": 253855
-      },
+      "forwarded_to_exchange": null,
       "tx": "0xe38d40d0eb19b228a119445cf655428a82c5f8e67c88a1323b70da8be812fd33"
      },
      {
@@ -6992,24 +6988,20 @@
       "usd": 386070,
       "tag": null,
       "label": null,
-      "forwarded_to_exchange": {
-       "to": "0x8f10b468b06c6fd214b65f87778827f7d113f996",
-       "label": "deposit sink (behaviour, day study)",
-       "usd": 253855
-      },
+      "forwarded_to_exchange": null,
       "tx": "0xe38d40d0eb19b228a119445cf655428a82c5f8e67c88a1323b70da8be812fd33"
      },
      {
       "block": 25925257,
       "to": "0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb",
       "usd": 639922,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "Morpho Blue (known-canonical)",
       "forwarded_to_exchange": null,
       "tx": "0xe38d40d0eb19b228a119445cf655428a82c5f8e67c88a1323b70da8be812fd33"
      }
     ],
-    "to_exchange_usd": 639925
+    "to_exchange_usd": 0
    },
    {
     "op": {
@@ -7114,24 +7106,20 @@
       "usd": 124692,
       "tag": null,
       "label": null,
-      "forwarded_to_exchange": {
-       "to": "0x1231deb6f5749ef6ce6943a275a1d3e7486f4eae",
-       "label": "deposit sink (behaviour, day study)",
-       "usd": 124692
-      },
+      "forwarded_to_exchange": null,
       "tx": "0x7ce989dfddfdb703013c545ece793f9ee6cbd8804c65292ca4a2c54be1117b89"
      },
      {
       "block": 25924756,
       "to": "0x0000000000000000000000000000000000000000",
       "usd": 561120,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "zero address (mint/burn) (known-canonical)",
       "forwarded_to_exchange": null,
       "tx": "0x85fe21e50c1ff15fbeeb031f6811cedac8289e8bf168f89e8091d0c1aadcde48"
      }
     ],
-    "to_exchange_usd": 124692
+    "to_exchange_usd": 0
    },
    {
     "op": {
@@ -7150,8 +7138,8 @@
       "block": 25925318,
       "to": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
       "usd": 77341,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "Aave v3 WETH (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0x8ccd889fb73817e7a082b3cd3ae743071c52d6b75182f61ec0ad46f38d5593c9"
      },
@@ -7159,8 +7147,8 @@
       "block": 25925467,
       "to": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
       "usd": 4296502,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "Aave v3 WETH (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0x8621520bcca123808cfb43da2639c15498c726267be8d79dc4eb35cdb9e3e9b0"
      },
@@ -7168,8 +7156,8 @@
       "block": 25925480,
       "to": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
       "usd": 54692,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "Aave v3 WETH (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0x8cd2320f49927d7d92d38c9f592e2beb344924fd7d6812430def56b8c28a1246"
      },
@@ -7177,8 +7165,8 @@
       "block": 25925517,
       "to": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
       "usd": 24963,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "Aave v3 WETH (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0x8d4f37fb9e5b34e21883ec2a7f65a483e9511668070546bd24f79ac261622e27"
      },
@@ -7186,8 +7174,8 @@
       "block": 25925518,
       "to": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
       "usd": 19974,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "Aave v3 WETH (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0x0760900edf719ca0602a9e579c58cb40e79ce4ddc75733816179ab1735becd49"
      },
@@ -7195,8 +7183,8 @@
       "block": 25925520,
       "to": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
       "usd": 19975,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "Aave v3 WETH (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0x0354a3dcdc6c18be1b7ea2f2b779ca4e3a38fdd59a5959f49ac6260669cb56f7"
      },
@@ -7204,8 +7192,8 @@
       "block": 25925528,
       "to": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
       "usd": 246538,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "Aave v3 WETH (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0xaadff5e7bedf15b8edc682db482368eddfc1b840d3aa481f45e4f89b9b19e0cd"
      }
@@ -7297,8 +7285,8 @@
       "block": 25925396,
       "to": "0x8f10b468b06c6fd214b65f87778827f7d113f996",
       "usd": 250000,
-      "tag": "deposit_sink",
-      "label": "deposit sink (behaviour, day study)",
+      "tag": null,
+      "label": null,
       "forwarded_to_exchange": null,
       "tx": "0xb2587260fe683ef72ff5f1c6b718163339329cd5028ca5de7de760f3195b8f19"
      },
@@ -7312,7 +7300,7 @@
       "tx": "0xa091923a7b4580709bb3e6670de40208d5b2b50a19521109acd6746fadae2589"
      }
     ],
-    "to_exchange_usd": 250000
+    "to_exchange_usd": 0
    },
    {
     "op": {
@@ -7331,8 +7319,8 @@
       "block": 25924710,
       "to": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
       "usd": 387710,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "Aave v3 WETH (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0x0a7d198bf173ddaf402c553dc761348a4580375f303e8949dc97231332b1be1d"
      },
@@ -7349,8 +7337,8 @@
       "block": 25924771,
       "to": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
       "usd": 132783,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "Aave v3 WETH (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0x1330e684cf6100a9a0423b45c61ebc951e80acbc4c443f801b83d37382eb5223"
      },
@@ -7426,8 +7414,8 @@
       "block": 25924577,
       "to": "0x0000000000000000000000000000000000000000",
       "usd": 361610,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "zero address (mint/burn) (known-canonical)",
       "forwarded_to_exchange": null,
       "tx": "0xb8d7ad5f2a07bdf1235392023db3b68fe24c36951b194f6acff405aa9200f4a6"
      }
@@ -7476,8 +7464,8 @@
       "block": 25925377,
       "to": "0x852f79dad4e6c44a89be189dc3ecf51b3c5273c8",
       "usd": 308407,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "InstaAccountV2 (etherscan-verified)",
       "forwarded_to_exchange": null,
       "tx": "0xa4c8e627cef3bfbec231e7b7a17e6473dbd7dcec58ce87a04a72982a4017942a"
      },
@@ -7485,8 +7473,8 @@
       "block": 25925386,
       "to": "0x852f79dad4e6c44a89be189dc3ecf51b3c5273c8",
       "usd": 575145,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "InstaAccountV2 (etherscan-verified)",
       "forwarded_to_exchange": null,
       "tx": "0x31bb49f9f5834a3b11ec9259b6661b4aca5e67dd0dd57caa17046209c5c0908e"
      },
@@ -7494,8 +7482,8 @@
       "block": 25925401,
       "to": "0x852f79dad4e6c44a89be189dc3ecf51b3c5273c8",
       "usd": 363706,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "InstaAccountV2 (etherscan-verified)",
       "forwarded_to_exchange": null,
       "tx": "0x03bf1346ca1bcced6dc94ffa1ce5e978b38222896e76ef23a86765fd2d89b9b0"
      },
@@ -7503,8 +7491,8 @@
       "block": 25925435,
       "to": "0x852f79dad4e6c44a89be189dc3ecf51b3c5273c8",
       "usd": 339056,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "InstaAccountV2 (etherscan-verified)",
       "forwarded_to_exchange": null,
       "tx": "0xf9babc2c14813163bdbaddaaa2b169c2554ee69be38d49ccc606c9fcb82fa725"
      },
@@ -7512,8 +7500,8 @@
       "block": 25925480,
       "to": "0xcfc6d9bd7411962bfe7145451a7ef71a24b6a7a2",
       "usd": 502672,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "DepositAdapter (via UUPSProxy) (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0x6b75c7d83305d602eb1e3111179c0cf5476db1d3379b3a82aa07bc42e6127ebc"
      },
@@ -7521,8 +7509,8 @@
       "block": 25925491,
       "to": "0xcfc6d9bd7411962bfe7145451a7ef71a24b6a7a2",
       "usd": 502672,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "DepositAdapter (via UUPSProxy) (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0x8d6d33b7b8134196cb9ed50d281ea357e1bac2a16091ffc7281a750c06ed46d3"
      },
@@ -7530,8 +7518,8 @@
       "block": 25925502,
       "to": "0xcfc6d9bd7411962bfe7145451a7ef71a24b6a7a2",
       "usd": 502672,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "DepositAdapter (via UUPSProxy) (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0x8b5622b51f0482b8b3bd4ec14d21d5fd79911a086b08547b52a9f1cbfe19f408"
      },
@@ -7539,8 +7527,8 @@
       "block": 25925508,
       "to": "0xcfc6d9bd7411962bfe7145451a7ef71a24b6a7a2",
       "usd": 502672,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "DepositAdapter (via UUPSProxy) (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0xd6df109a292078b446a5854991122003f146150362fdb210e085ea5c0d0a7896"
      },
@@ -7548,8 +7536,8 @@
       "block": 25925516,
       "to": "0xcfc6d9bd7411962bfe7145451a7ef71a24b6a7a2",
       "usd": 502672,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "DepositAdapter (via UUPSProxy) (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0x10a74e045134fe4b52bdff1aeefedc71c57a2bc9e1b2e0eb376cfe9305ad1f13"
      },
@@ -7557,8 +7545,8 @@
       "block": 25925523,
       "to": "0xcfc6d9bd7411962bfe7145451a7ef71a24b6a7a2",
       "usd": 502672,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "DepositAdapter (via UUPSProxy) (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0xc4d5e62e17e663110953b11054084b2120112aadd519b15cbdc1bd2ee2a38673"
      },
@@ -7566,8 +7554,8 @@
       "block": 25925531,
       "to": "0xcfc6d9bd7411962bfe7145451a7ef71a24b6a7a2",
       "usd": 502672,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "DepositAdapter (via UUPSProxy) (blockscout-verified)",
       "forwarded_to_exchange": null,
       "tx": "0xf7e77ed0e1584512494c270c6b0ed67e45ef9e18c44824e7a0ff9a6f4086a6d8"
      }
@@ -7603,276 +7591,194 @@
  "exchange_flow": {
   "by_asset": {
    "USDC": {
-    "in": 823246398,
-    "out": 808005978,
-    "net": 15240420
+    "in": 504018100,
+    "out": 510047972,
+    "net": -6029872
    },
    "USDT": {
-    "in": 384441666,
-    "out": 359437953,
-    "net": 25003713
+    "in": 340118661,
+    "out": 324584382,
+    "net": 15534280
    },
    "ETH": {
-    "in": 95217178,
-    "out": 112610469,
-    "net": -17393291
+    "in": 91897244,
+    "out": 112687560,
+    "net": -20790316
    },
    "USDG": {
-    "in": 23368850,
-    "out": 20549459,
-    "net": 2819391
+    "in": 17859426,
+    "out": 15045020,
+    "net": 2814406
    },
    "stETH": {
-    "in": 8502490,
-    "out": 34493509,
-    "net": -25991020
-   },
-   "WETH": {
-    "in": 19910783,
-    "out": 15167221,
-    "net": 4743562
-   },
-   "wstETH": {
-    "in": 11454423,
-    "out": 11464849,
-    "net": -10426
-   },
-   "USDS": {
-    "in": 10233472,
-    "out": 10252465,
-    "net": -18992
-   },
-   "DAI": {
-    "in": 9096121,
-    "out": 9096422,
-    "net": -301
-   },
-   "USDe": {
-    "in": 12088290,
-    "out": 3292589,
-    "net": 8795701
+    "in": 351838,
+    "out": 26339254,
+    "net": -25987416
    },
    "RLUSD": {
-    "in": 2029034,
-    "out": 9730775,
+    "in": 1507947,
+    "out": 9209688,
     "net": -7701741
    },
+   "USDe": {
+    "in": 8999990,
+    "out": 199337,
+    "net": 8800653
+   },
    "UNI": {
-    "in": 3752389,
-    "out": 3571740,
-    "net": 180649
+    "in": 3643463,
+    "out": 3548986,
+    "net": 94477
    },
    "EURC": {
-    "in": 3201078,
-    "out": 2879236,
-    "net": 321842
-   },
-   "PYUSD": {
-    "in": 2825282,
-    "out": 2825282,
-    "net": 0
+    "in": 2888409,
+    "out": 2404048,
+    "net": 484361
    },
    "LINK": {
-    "in": 2985687,
-    "out": 2477743,
-    "net": 507944
+    "in": 2740977,
+    "out": 2244473,
+    "net": 496504
    },
    "WBTC": {
-    "in": 2243943,
-    "out": 3120249,
-    "net": -876305
-   },
-   "sUSDe": {
-    "in": 1758686,
-    "out": 1757598,
-    "net": 1088
+    "in": 316165,
+    "out": 1209755,
+    "net": -893590
    },
    "cbBTC": {
-    "in": 1348227,
-    "out": 577429,
-    "net": 770798
-   },
-   "AUSD": {
-    "in": 960000,
-    "out": 960000,
-    "net": 0
-   },
-   "frxUSD": {
-    "in": 491290,
-    "out": 488279,
-    "net": 3011
+    "in": 958621,
+    "out": 174774,
+    "net": 783847
    },
    "CRV": {
-    "in": 625291,
-    "out": 305968,
-    "net": 319323
+    "in": 591718,
+    "out": 262233,
+    "net": 329486
    },
    "AAVE": {
-    "in": 468276,
+    "in": 457860,
     "out": 336876,
-    "net": 131400
-   },
-   "weETH": {
-    "in": 357426,
-    "out": 357426,
-    "net": 0
-   },
-   "crvUSD": {
-    "in": 52017,
-    "out": 455010,
-    "net": -402992
+    "net": 120984
    },
    "USD1": {
     "in": 300000,
     "out": 44381,
     "net": 255619
    },
-   "GHO": {
-    "in": 136783,
-    "out": 130343,
-    "net": 6441
-   },
-   "sDAI": {
-    "in": 120486,
-    "out": 45411,
-    "net": 75075
-   },
-   "tBTC": {
-    "in": 59558,
-    "out": 59558,
-    "net": 0
-   },
-   "LBTC": {
-    "in": 30285,
-    "out": 30285,
-    "net": 0
-   },
    "ENS": {
     "in": 51459,
     "out": 0,
     "net": 51459
    },
-   "USDtb": {
-    "in": 22999,
-    "out": 22999,
-    "net": 0
+   "USDS": {
+    "in": 0,
+    "out": 19004,
+    "net": -19004
+   },
+   "WETH": {
+    "in": 0,
+    "out": 12331,
+    "net": -12331
    }
   },
   "by_label": [
    {
-    "label": "Coinbase 11 (memory)",
+    "label": "Coinbase 11 (model-memory)",
     "in": 307255623,
     "out": 312646309
    },
    {
-    "label": "exchange deposit contract (day study, unidentified)",
-    "in": 262193305,
-    "out": 243193004
-   },
-   {
-    "label": "deposit sink (behaviour, day study)",
-    "in": 181782329,
-    "out": 171494809
-   },
-   {
     "label": "hot wallet (behaviour, day study)",
-    "in": 151370005,
-    "out": 181500452
+    "in": 144023152,
+    "out": 184747919
    },
    {
-    "label": "Binance 14 (memory)",
+    "label": "Binance 14 (model-memory)",
     "in": 204718097,
-    "out": 92636976
+    "out": 92679125
    },
    {
-    "label": "Coinbase 10 (memory)",
+    "label": "Coinbase 10 (model-memory)",
     "in": 92694681,
     "out": 87434179
    },
    {
-    "label": "hot wallet (day study, unidentified)",
+    "label": "hot wallet (day study, unidentified) (model-memory)",
     "in": 89394916,
     "out": 81832922
    },
    {
-    "label": "Bybit (memory)",
+    "label": "Bybit (model-memory)",
     "in": 49498004,
     "out": 26189877
    },
    {
-    "label": "Bitfinex 2 (memory)",
+    "label": "Bitfinex 2 (model-memory)",
     "in": 15869233,
     "out": 59413674
    },
    {
-    "label": "Bitget (memory)",
+    "label": "Bitget (model-memory)",
     "in": 26197731,
     "out": 26565853
    },
    {
-    "label": "Gate.io (memory)",
+    "label": "Gate.io (model-memory)",
     "in": 20193284,
     "out": 19659450
    },
    {
-    "label": "Binance 17 (memory)",
+    "label": "Binance 17 (model-memory)",
     "in": 0,
     "out": 31799091
    },
    {
-    "label": "Binance 15 (memory)",
+    "label": "Binance 15 (model-memory)",
     "in": 0,
-    "out": 26763283
+    "out": 28432707
    },
    {
-    "label": "Binance 16 (memory)",
+    "label": "Binance 16 (model-memory)",
     "in": 0,
-    "out": 23228915
+    "out": 23269372
    },
    {
-    "label": "exchange hot wallet with USDG desk (day study)",
-    "in": 5928784,
-    "out": 10659260
+    "label": "exchange hot wallet with USDG desk (day study) (model-memory)",
+    "in": 8217132,
+    "out": 13212140
    },
    {
-    "label": "Binance 18 (memory)",
+    "label": "Binance 18 (model-memory)",
     "in": 0,
-    "out": 15550014
+    "out": 16508019
    },
    {
-    "label": "Bitstamp 4 (memory)",
+    "label": "Bitstamp 4 (model-memory)",
     "in": 13278266,
     "out": 0
    },
    {
-    "label": "Binance 20 (memory)",
+    "label": "deposit sink (behaviour, day study)",
+    "in": 4356148,
+    "out": 0
+   },
+   {
+    "label": "Binance 20 (model-memory)",
     "in": 0,
     "out": 3204156
    },
    {
-    "label": "Coinbase 5 (memory)",
+    "label": "Coinbase 5 (model-memory)",
     "in": 1005611,
     "out": 0
    },
    {
-    "label": "Gemini 4 (memory)",
+    "label": "Gemini 4 (model-memory)",
     "in": 0,
     "out": 775280
    }
   ],
   "largest_deposits": [
-   {
-    "block": 25924283,
-    "ts": 1788769691,
-    "tx": "0xc92578c9878edeea0ce5332ecbf0bddb11951df0f729921b1a9e8f97bf4d8cce",
-    "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
-    "sym": "USDC",
-    "from": "0x38aaef3782910bdd9ea3566c839788af6ff9b200",
-    "to": "0xee7ae85f2fe2239e27d9c1e23fffe168d63b4055",
-    "raw": 200000000000000,
-    "usd": 199977530.0,
-    "li": 116
-   },
    {
     "block": 25924963,
     "ts": 1788777875,
@@ -8066,18 +7972,6 @@
     "li": 83
    },
    {
-    "block": 25924415,
-    "ts": 1788771275,
-    "tx": "0x637d063f1b9c9cd873397f8814b31b2d22a1a64816a5e00a5ec24aacdb56aed6",
-    "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
-    "sym": "USDT",
-    "from": "0x3cc936b795a188f0e246cbb2d74c5bd190aecf18",
-    "to": "0x9642b23ed1e01df1092b92641051881a322f5d4e",
-    "raw": 10000000000000,
-    "usd": 9999596.8,
-    "li": 674
-   },
-   {
     "block": 25924561,
     "ts": 1788773027,
     "tx": "0x3da7d8eb7b6445717ea632d7f009e85ee2b0de7a9c459acd0f0f7d6d253094f8",
@@ -8100,18 +7994,6 @@
     "raw": 10000000000000,
     "usd": 9998876.5,
     "li": 301
-   },
-   {
-    "block": 25925044,
-    "ts": 1788778847,
-    "tx": "0x7ded178bfab49ca4cd51747c36059c3d51aa5a703a3bc15befd817c0fe7271d8",
-    "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
-    "sym": "USDC",
-    "from": "0x79141b5e4ef640f891934e785328c8c49f5b0f99",
-    "to": "0xee7ae85f2fe2239e27d9c1e23fffe168d63b4055",
-    "raw": 10000000000000,
-    "usd": 9998876.5,
-    "li": 1094
    },
    {
     "block": 25924819,
@@ -8160,6 +8042,42 @@
     "raw": 7800000000000,
     "usd": 7799685.504,
     "li": 757
+   },
+   {
+    "block": 25925379,
+    "ts": 1788782915,
+    "tx": "0xf7fc99e454877838a7ad729cf5e97655fcc658b14d959196b0bc635fcb79f989",
+    "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+    "sym": "USDT",
+    "from": "0x386f6b1719b62a27b6b79798390a612b36267f03",
+    "to": "0x77134cbc06cb00b66f4c7e623d5fdbf6777635ec",
+    "raw": 7166102290000,
+    "usd": 7165813.352755668,
+    "li": 200
+   },
+   {
+    "block": 25925191,
+    "ts": 1788780635,
+    "tx": "0x0ffac012670ca8d834b60c15968329fd32401b5189a6d57aadad8d9242f7e0b7",
+    "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "sym": "USDC",
+    "from": "0xee00091f452c8b8ff3e7edf17bace204dec1e0e3",
+    "to": "0xa9d1e08c7793af67e9d92fe308d5697fb81d3e43",
+    "raw": 6999999330000,
+    "usd": 6999212.880075275,
+    "li": 176
+   },
+   {
+    "block": 25925475,
+    "ts": 1788784079,
+    "tx": "0x94cda437c91bcf72305c83fa134056908600893299e37ad660d927614e66e129",
+    "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "sym": "USDC",
+    "from": "0x73a47468db00c832bd3ac08f4c071f34f8c3e425",
+    "to": "0x55fe002aeff02f77364de339a1292923a15844b8",
+    "raw": 6367703500000,
+    "usd": 6366988.088511775,
+    "li": 84
    }
   ]
  },
@@ -9595,16 +9513,16 @@
    }
   },
   "wstETH": {
-   "n": 52,
-   "volume_usd": 1277730,
-   "vw_price": 3096.7419846255516,
-   "median": 3096.347460728848,
-   "p10": 3095.747667967777,
+   "n": 53,
+   "volume_usd": 1279249,
+   "vw_price": 3096.740675544214,
+   "median": 3096.334258640979,
+   "p10": 3095.7240388250484,
    "p90": 3141.7535935518586,
    "venues": {
     "balancer": 16,
-    "uniswap_v4": 4,
-    "uniswap_v3": 32
+    "uniswap_v3": 33,
+    "uniswap_v4": 4
    }
   },
   "GHO": {
@@ -10191,17 +10109,17 @@
   {
    "address": "0x28c6c06298d514db089934071355e5743bf21d60",
    "txs": 3313,
-   "label": "Binance 14 (memory)"
+   "label": "Binance 14 (model-memory)"
   },
   {
    "address": "0x21a31ee1afc51d94c2efccaa2092ad1028285549",
    "txs": 2329,
-   "label": "Binance 15 (memory)"
+   "label": "Binance 15 (model-memory)"
   },
   {
    "address": "0xdfd5293d8e347dfe59e90efd55b2956a1343963d",
    "txs": 2116,
-   "label": "Binance 16 (memory)"
+   "label": "Binance 16 (model-memory)"
   },
   {
    "address": "0x6872b6630a3afcd3117191a8403c2002e13df7de",
@@ -10216,12 +10134,12 @@
   {
    "address": "0x56eddb7aa87536c09ccc2793473599fd21a8b17f",
    "txs": 1738,
-   "label": "Binance 17 (memory)"
+   "label": "Binance 17 (model-memory)"
   },
   {
    "address": "0x9696f59e4d72e237be84ffd425dcad154bf96976",
    "txs": 1588,
-   "label": "Binance 18 (memory)"
+   "label": "Binance 18 (model-memory)"
   },
   {
    "address": "0xbb2f33f73ccc2c74e3fb9bb8eb75241ac15337e0",
@@ -10231,7 +10149,7 @@
   {
    "address": "0x05ff6964d21e5dae3b1010d5ae0465b3c450f381",
    "txs": 1259,
-   "label": "hot wallet (day study, unidentified)"
+   "label": "hot wallet (day study, unidentified) (model-memory)"
   },
   {
    "address": "0x18e296053cbdf986196903e889b7dca7a73882f6",
@@ -10256,7 +10174,7 @@
   {
    "address": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
    "txs": 1136,
-   "label": "exchange hot wallet with USDG desk (day study)"
+   "label": "exchange hot wallet with USDG desk (day study) (model-memory)"
   },
   {
    "address": "0xb23360ccdd9ed1b15d45e5d3824bb409c8d7c460",
@@ -10281,7 +10199,7 @@
   {
    "address": "0x0d0707963952f2fba59dd06f2b425ace40b492fe",
    "txs": 972,
-   "label": "Gate.io (memory)"
+   "label": "Gate.io (model-memory)"
   },
   {
    "address": "0x2cff890f0378a11913b6129b2e97417a2c302680",
@@ -10652,12 +10570,12 @@
  ],
  "swap_totals": {
   "uniswap_v4": {
-   "n": 16904,
-   "usd": 84720797
+   "n": 16987,
+   "usd": 84739786
   },
   "uniswap_v3": {
-   "n": 28431,
-   "usd": 42425548
+   "n": 28437,
+   "usd": 42425854
   },
   "uniswap_v2_like": {
    "n": 13022,
@@ -11121,21 +11039,21 @@
    ]
   },
   {
+   "pool": "0xdb4c4d91f12ce76f5c9ac0eae193cf3b4d6684cd5f09bf35d03dd9ae6d8a43b1",
+   "swaps": 112,
+   "hook": null,
+   "tokens": [
+    "0x0000000000000000000000000000000000000000",
+    "0xc8fb80fcc03f699c70ff0cc08c09106288888888"
+   ]
+  },
+  {
    "pool": "0x6f2c79d607672415b5d11e5ded37e5ccdb6cd8df9e2bc687fc46b9406e997a39",
    "swaps": 111,
    "hook": null,
    "tokens": [
     "0x0000000000000000000000000000000000000000",
     "0x41f394980159b25511587f5fc184f3bccf74abc7"
-   ]
-  },
-  {
-   "pool": "0xdb4c4d91f12ce76f5c9ac0eae193cf3b4d6684cd5f09bf35d03dd9ae6d8a43b1",
-   "swaps": 110,
-   "hook": null,
-   "tokens": [
-    "0x0000000000000000000000000000000000000000",
-    "0xc8fb80fcc03f699c70ff0cc08c09106288888888"
    ]
   },
   {
@@ -11662,5 +11580,5 @@
   "WEETH": 2747.1527309519647,
   "WSTETH": 3099.852399105583
  },
- "address_book_size": 136
+ "address_book_size": 176
 }

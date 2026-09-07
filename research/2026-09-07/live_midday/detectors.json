@@ -1,0 +1,420 @@
+{
+ "window": "research/2026-09-07/live_midday",
+ "detectors": [
+  {
+   "detector": "address_poisoning",
+   "hits": 1,
+   "seconds": 5.95,
+   "error": null,
+   "description": "lookalike dust transfers that follow a large transfer, aimed at a later copy-paste"
+  },
+  {
+   "detector": "gas_concentration",
+   "hits": 0,
+   "seconds": 5.74,
+   "error": null,
+   "description": "base-fee spikes attributed to the contract whose gas demand caused them"
+  },
+  {
+   "detector": "mislabelled_flow",
+   "hits": 3,
+   "seconds": 6.21,
+   "error": null,
+   "description": "address labels the window contradicts, which is how a headline moves by a multiple"
+  },
+  {
+   "detector": "rate_dispersion",
+   "hits": 5,
+   "seconds": 0.0,
+   "error": null,
+   "description": "cross-venue supply-rate gaps on one asset, de-spiked and sized by rate dilution"
+  }
+ ],
+ "hits": [
+  {
+   "detector": "mislabelled_flow",
+   "title": "deposit sink deposit sink (behaviour, day study) forwarded $10.0M in this window",
+   "severity": "high",
+   "evidence": {
+    "address": "0x3cc936b795a188f0e246cbb2d74c5bd190aecf18",
+    "label": "deposit sink (behaviour, day study)",
+    "source": "behaviour-day-study",
+    "in_usd": 170356,
+    "out_usd": 9999597,
+    "why": "a deposit sink is defined by not forwarding; this one forwards, so its outflow is being counted as exchange outflow"
+   },
+   "economics": null,
+   "usd": 9999596.8
+  },
+  {
+   "detector": "rate_dispersion",
+   "title": "USDS pays 3.48pp more on Sky SSR than Aave v3; rate does not dilute with size",
+   "severity": "notable",
+   "evidence": {
+    "asset": "USDS",
+    "high_venue": "Sky SSR",
+    "low_venue": "Aave v3",
+    "supply_apr_spot_pct": {
+     "Aave v3": 0.124,
+     "SparkLend": 2.318,
+     "Sky SSR": 3.6
+    },
+    "supply_apr_median_pct": {},
+    "gap_pp_spot": 3.476,
+    "gap_pp_despiked": 3.476,
+    "head_read_spiked": null,
+    "supplied_usd": {
+     "Aave v3": 11208135,
+     "SparkLend": 747432633,
+     "Sky SSR": 1000000000
+    },
+    "utilisation": {
+     "Aave v3": 0.03,
+     "SparkLend": 0.656
+    }
+   },
+   "economics": {
+    "net_apr": 0.0348,
+    "net_per_year_usd": 34761142,
+    "half_edge_size_usd": null,
+    "net_apr_at_half_edge": 0.0186,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "gas_gwei": 0.0547
+   },
+   "usd": 34761141.69037291
+  },
+  {
+   "detector": "mislabelled_flow",
+   "title": "hot wallet Binance 8 (model-memory) only received ($10.3M in, nothing out)",
+   "severity": "notable",
+   "evidence": {
+    "address": "0xf977814e90da44bfa03b6295a0616a897441acec",
+    "label": "Binance 8 (model-memory)",
+    "source": "model-memory",
+    "in_usd": 10293140,
+    "why": "a hot wallet pays withdrawals out; a pure receiver is a deposit address or a treasury, which puts this inflow on the wrong side of net flow"
+   },
+   "economics": null,
+   "usd": 10293139.56
+  },
+  {
+   "detector": "rate_dispersion",
+   "title": "USDT pays 1.63pp more on Aave v3 than SparkLend; $707.8M halves the gap",
+   "severity": "notable",
+   "evidence": {
+    "asset": "USDT",
+    "high_venue": "Aave v3",
+    "low_venue": "SparkLend",
+    "supply_apr_spot_pct": {
+     "Aave v3": 3.563,
+     "SparkLend": 2.619,
+     "Compound v3 USDT": 3.022
+    },
+    "supply_apr_median_pct": {
+     "Aave v3": 4.25
+    },
+    "gap_pp_spot": 0.944,
+    "gap_pp_despiked": 1.631,
+    "head_read_spiked": false,
+    "supplied_usd": {
+     "Aave v3": 2980073116,
+     "SparkLend": 390856533,
+     "Compound v3 USDT": 184036285
+    },
+    "utilisation": {
+     "Aave v3": 0.93,
+     "SparkLend": 0.828,
+     "Compound v3 USDT": 0.839
+    }
+   },
+   "economics": {
+    "net_apr": 0.0072,
+    "net_per_year_usd": 5857547,
+    "half_edge_size_usd": 707820545,
+    "net_apr_at_half_edge": 0.0343,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "gas_gwei": 0.0547
+   },
+   "usd": 5857547.456039563
+  },
+  {
+   "detector": "rate_dispersion",
+   "title": "USDC pays 3.37pp more on Compound v3 USDC than SparkLend; $120.1M halves the gap",
+   "severity": "notable",
+   "evidence": {
+    "asset": "USDC",
+    "high_venue": "Compound v3 USDC",
+    "low_venue": "SparkLend",
+    "supply_apr_spot_pct": {
+     "Aave v3": 3.584,
+     "SparkLend": 3.542,
+     "Compound v3 USDC": 6.912,
+     "Sky SSR": 3.6
+    },
+    "supply_apr_median_pct": {
+     "Aave v3": 4.266
+    },
+    "gap_pp_spot": 3.37,
+    "gap_pp_despiked": 3.37,
+    "head_read_spiked": null,
+    "supplied_usd": {
+     "Aave v3": 2308817883,
+     "SparkLend": 25640640,
+     "Compound v3 USDC": 372712068,
+     "Sky SSR": 1000000000
+    },
+    "utilisation": {
+     "Aave v3": 0.933,
+     "SparkLend": 0.922,
+     "Compound v3 USDC": 0.911
+    }
+   },
+   "economics": {
+    "net_apr": 0.0141,
+    "net_per_year_usd": 2079665,
+    "half_edge_size_usd": 120141819,
+    "net_apr_at_half_edge": 0.0523,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "gas_gwei": 0.0547
+   },
+   "usd": 2079665.1846924385
+  },
+  {
+   "detector": "rate_dispersion",
+   "title": "PYUSD pays 3.30pp more on Aave v3 than SparkLend; $5.6M halves the gap",
+   "severity": "notable",
+   "evidence": {
+    "asset": "PYUSD",
+    "high_venue": "Aave v3",
+    "low_venue": "SparkLend",
+    "supply_apr_spot_pct": {
+     "Aave v3": 3.875,
+     "SparkLend": 0.579
+    },
+    "supply_apr_median_pct": {},
+    "gap_pp_spot": 3.296,
+    "gap_pp_despiked": 3.296,
+    "head_read_spiked": null,
+    "supplied_usd": {
+     "Aave v3": 7598941,
+     "SparkLend": 100000399
+    },
+    "utilisation": {
+     "Aave v3": 0.878,
+     "SparkLend": 0.166
+    }
+   },
+   "economics": {
+    "net_apr": 0.0136,
+    "net_per_year_usd": 103199,
+    "half_edge_size_usd": 5622067,
+    "net_apr_at_half_edge": 0.0223,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "gas_gwei": 0.0547
+   },
+   "usd": 103198.71467866156
+  },
+  {
+   "detector": "rate_dispersion",
+   "title": "DAI pays 0.58pp more on Aave v3 than SparkLend; $14.0M halves the gap",
+   "severity": "notable",
+   "evidence": {
+    "asset": "DAI",
+    "high_venue": "Aave v3",
+    "low_venue": "SparkLend",
+    "supply_apr_spot_pct": {
+     "Aave v3": 3.042,
+     "SparkLend": 2.459
+    },
+    "supply_apr_median_pct": {},
+    "gap_pp_spot": 0.582,
+    "gap_pp_despiked": 0.582,
+    "head_read_spiked": null,
+    "supplied_usd": {
+     "Aave v3": 131757470,
+     "SparkLend": 308265074
+    },
+    "utilisation": {
+     "Aave v3": 0.864,
+     "SparkLend": 0.677
+    }
+   },
+   "economics": {
+    "net_apr": 0.0028,
+    "net_per_year_usd": 40748,
+    "half_edge_size_usd": 13951719,
+    "net_apr_at_half_edge": 0.0275,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "gas_gwei": 0.0547
+   },
+   "usd": 40748.02137692012
+  },
+  {
+   "detector": "mislabelled_flow",
+   "title": "exchange Binance 8 (model-memory) moved 100% of its flow with one counterparty",
+   "severity": "info",
+   "evidence": {
+    "address": "0xf977814e90da44bfa03b6295a0616a897441acec",
+    "label": "Binance 8 (model-memory)",
+    "source": "model-memory",
+    "counterparty": "0x28c6c06298d514db089934071355e5743bf21d60",
+    "counterparty_label": "Binance 14 (model-memory)",
+    "share": 1.0,
+    "why": "a venue serving one counterparty is plumbing between related accounts, not exchange flow"
+   },
+   "economics": null,
+   "usd": 10293139.56
+  },
+  {
+   "detector": "address_poisoning",
+   "title": "203 poisoning attempt(s) from 116 lookalike sender(s) after large transfers",
+   "severity": "info",
+   "evidence": {
+    "matches": [
+     {
+      "big_tx": "0x6516ec2e4a4d7ab6d1be997e992fd0adebf51b877a501f63be36d1f76e8c7e9e",
+      "big_eth": 193.97,
+      "victim": "0x70866250eb6d24b3ee6e2330111fd06b6154ffc0",
+      "impersonated": "0x18e24850fdeceee577da1e08c63b260cff69b962",
+      "attacker": "0x18e20eba61b0ee6ca3089edbd674255323c1b962",
+      "dust_tx": "0xfbc9a65a6714246747aca6f1587b1d7b284de22f3b4f822a116df8079658cff1",
+      "seconds_after": 72
+     },
+     {
+      "big_tx": "0x6516ec2e4a4d7ab6d1be997e992fd0adebf51b877a501f63be36d1f76e8c7e9e",
+      "big_eth": 193.97,
+      "victim": "0x70866250eb6d24b3ee6e2330111fd06b6154ffc0",
+      "impersonated": "0x18e24850fdeceee577da1e08c63b260cff69b962",
+      "attacker": "0x18e2f0a72c1c232ca4241b6b9091d39037fcb962",
+      "dust_tx": "0x284a644ddf1c25cef29a28cfe678f305099adefb9fab71c822b8d6c9f0aeecd3",
+      "seconds_after": 528
+     },
+     {
+      "big_tx": "0x6516ec2e4a4d7ab6d1be997e992fd0adebf51b877a501f63be36d1f76e8c7e9e",
+      "big_eth": 193.97,
+      "victim": "0x70866250eb6d24b3ee6e2330111fd06b6154ffc0",
+      "impersonated": "0x18e24850fdeceee577da1e08c63b260cff69b962",
+      "attacker": "0x18e2429717a1d1c9d9c9ed0ed553fea282c5b962",
+      "dust_tx": "0x80f00aa2c4bdb2f349459dc176699c8feb8326f260410e2cc0d88b50439f0fd4",
+      "seconds_after": 780
+     },
+     {
+      "big_tx": "0x6516ec2e4a4d7ab6d1be997e992fd0adebf51b877a501f63be36d1f76e8c7e9e",
+      "big_eth": 193.97,
+      "victim": "0x70866250eb6d24b3ee6e2330111fd06b6154ffc0",
+      "impersonated": "0x18e24850fdeceee577da1e08c63b260cff69b962",
+      "attacker": "0x18e624636f99e632fc82631c39299941cbe9b962",
+      "dust_tx": "0xa0aab4fa30e8e6c67f9ef725a7728e198fa95f72bd204a2affb479edb6a204dd",
+      "seconds_after": 840
+     },
+     {
+      "big_tx": "0x6516ec2e4a4d7ab6d1be997e992fd0adebf51b877a501f63be36d1f76e8c7e9e",
+      "big_eth": 193.97,
+      "victim": "0x70866250eb6d24b3ee6e2330111fd06b6154ffc0",
+      "impersonated": "0x18e24850fdeceee577da1e08c63b260cff69b962",
+      "attacker": "0x18e20eba61b0ee6ca3089edbd674255323c1b962",
+      "dust_tx": "0x91563cc93487db7eae1106894e3e33bccd05d12ede30a5341dfb4daf5a1e6e75",
+      "seconds_after": 1056
+     },
+     {
+      "big_tx": "0x6516ec2e4a4d7ab6d1be997e992fd0adebf51b877a501f63be36d1f76e8c7e9e",
+      "big_eth": 193.97,
+      "victim": "0x70866250eb6d24b3ee6e2330111fd06b6154ffc0",
+      "impersonated": "0x18e24850fdeceee577da1e08c63b260cff69b962",
+      "attacker": "0x18e2f0a72c1c232ca4241b6b9091d39037fcb962",
+      "dust_tx": "0xdbfd822d6b857f18ab2e0ad8e6d823db3e6bdf787b824c87a7bf531eb6414452",
+      "seconds_after": 1344
+     },
+     {
+      "big_tx": "0x6516ec2e4a4d7ab6d1be997e992fd0adebf51b877a501f63be36d1f76e8c7e9e",
+      "big_eth": 193.97,
+      "victim": "0x70866250eb6d24b3ee6e2330111fd06b6154ffc0",
+      "impersonated": "0x18e24850fdeceee577da1e08c63b260cff69b962",
+      "attacker": "0x18e20eba61b0ee6ca3089edbd674255323c1b962",
+      "dust_tx": "0x3781e60478e573f1d5b5e8c38209ac9afe61459e9153c579ce7167eab49ddeb2",
+      "seconds_after": 1716
+     },
+     {
+      "big_tx": "0x6516ec2e4a4d7ab6d1be997e992fd0adebf51b877a501f63be36d1f76e8c7e9e",
+      "big_eth": 193.97,
+      "victim": "0x70866250eb6d24b3ee6e2330111fd06b6154ffc0",
+      "impersonated": "0x18e24850fdeceee577da1e08c63b260cff69b962",
+      "attacker": "0x18e2f0a72c1c232ca4241b6b9091d39037fcb962",
+      "dust_tx": "0xb9c1e485be38fc375e1100e7159ccef37267782942293c96b1319b59dd05f13f",
+      "seconds_after": 2136
+     },
+     {
+      "big_tx": "0x6516ec2e4a4d7ab6d1be997e992fd0adebf51b877a501f63be36d1f76e8c7e9e",
+      "big_eth": 193.97,
+      "victim": "0x70866250eb6d24b3ee6e2330111fd06b6154ffc0",
+      "impersonated": "0x18e24850fdeceee577da1e08c63b260cff69b962",
+      "attacker": "0x18e20eba61b0ee6ca3089edbd674255323c1b962",
+      "dust_tx": "0xcc705e84735391147bb121106e57800dc55d614b6f55435637e99ef0e5ec4c79",
+      "seconds_after": 2376
+     },
+     {
+      "big_tx": "0x6516ec2e4a4d7ab6d1be997e992fd0adebf51b877a501f63be36d1f76e8c7e9e",
+      "big_eth": 193.97,
+      "victim": "0x70866250eb6d24b3ee6e2330111fd06b6154ffc0",
+      "impersonated": "0x18e24850fdeceee577da1e08c63b260cff69b962",
+      "attacker": "0x18e2f0a72c1c232ca4241b6b9091d39037fcb962",
+      "dust_tx": "0x60030304721b86dbde91053ac0a3d7e9bb43d221a2d96a43ba7d6cff95e5f1b9",
+      "seconds_after": 3240
+     },
+     {
+      "big_tx": "0xb75476d83c719edfc1f52431490d98231b205ff158a03284925ae9295e4d796c",
+      "big_eth": 750.0,
+      "victim": "0x2dcbc69ca4d13c232f39fc65d1aa568567c1c1c3",
+      "impersonated": "0x0a4f6ecb214dc1d9acdd99743b4dcc58ccc088b9",
+      "attacker": "0x0a48646f4d9ef7899407e6283137273728c088b9",
+      "dust_tx": "0x123c3b28529b3fa39d9d56df877973851c368183e53272387c1cd537faf92ae8",
+      "seconds_after": 912
+     },
+     {
+      "big_tx": "0xb75476d83c719edfc1f52431490d98231b205ff158a03284925ae9295e4d796c",
+      "big_eth": 750.0,
+      "victim": "0x2dcbc69ca4d13c232f39fc65d1aa568567c1c1c3",
+      "impersonated": "0x0a4f6ecb214dc1d9acdd99743b4dcc58ccc088b9",
+      "attacker": "0x0a4ff4d4112da0e7e55d93a349dfa76c0ca488b9",
+      "dust_tx": "0xf789a681d9ec55df60484fadf29309be0512525b4d27d70e6e45bdc7e87580fc",
+      "seconds_after": 1536
+     }
+    ],
+    "top_senders": [
+     [
+      "0x9caa0ec033d8173ae2b730fca321be83deec5193",
+      6
+     ],
+     [
+      "0x01c25bc7ada973ee916e0e96364dcb965ed659e5",
+      5
+     ],
+     [
+      "0x9c8d8c09f3514b42f995db870ec5dc1e7f705193",
+      5
+     ],
+     [
+      "0x18e20eba61b0ee6ca3089edbd674255323c1b962",
+      4
+     ],
+     [
+      "0x18e2f0a72c1c232ca4241b6b9091d39037fcb962",
+      4
+     ],
+     [
+      "0xc8c5117522016d55fefb74ad25da5b7ecfb75b95",
+      4
+     ]
+    ],
+    "rule": "dust <= 0.001 ETH within 3600s of a >= 100 ETH plain transfer, from an address sharing the first 6 or last 4 hex characters of the counterparty"
+   },
+   "economics": null,
+   "usd": null
+  }
+ ]
+}

@@ -1,0 +1,152 @@
+{
+ "window": "research/2026-09-07/live_midday",
+ "checks": [
+  {
+   "check": "blocks analysed",
+   "recomputed": 1492,
+   "analysis": 1492,
+   "ok": true,
+   "tolerance": 0.0,
+   "note": ""
+  },
+  {
+   "check": "transactions",
+   "recomputed": 410759,
+   "analysis": 410759,
+   "ok": true,
+   "tolerance": 0.0,
+   "note": ""
+  },
+  {
+   "check": "logs",
+   "recomputed": 1214881,
+   "analysis": 1214881,
+   "ok": true,
+   "tolerance": 0.0,
+   "note": ""
+  },
+  {
+   "check": "USDC minted (USD, from the zero address)",
+   "recomputed": 153041026,
+   "analysis": 153058222,
+   "ok": true,
+   "tolerance": 0.01,
+   "note": ""
+  },
+  {
+   "check": "USDC burned (USD, to the zero address)",
+   "recomputed": 279406849,
+   "analysis": 279438244,
+   "ok": true,
+   "tolerance": 0.01,
+   "note": ""
+  },
+  {
+   "check": "exchange net flow, stables (USD)",
+   "recomputed": 13654341,
+   "analysis": 13654341,
+   "ok": true,
+   "tolerance": 0.03,
+   "note": ""
+  },
+  {
+   "check": "exchange net flow, ETH (USD)",
+   "recomputed": -20790316,
+   "analysis": -20790316,
+   "ok": true,
+   "tolerance": 0.03,
+   "note": ""
+  },
+  {
+   "check": "exchange gross in, USDC (USD)",
+   "recomputed": 504018100,
+   "analysis": 504018100,
+   "ok": true,
+   "tolerance": 0.03,
+   "note": ""
+  },
+  {
+   "check": "leverage-to-exchange (USD followed to a CEX)",
+   "recomputed": 0,
+   "analysis": 0,
+   "ok": true,
+   "tolerance": 0.05,
+   "note": "replays the proceeds walk over an independently decoded transfer stream"
+  },
+  {
+   "check": "largest CCTP send: USDC -> Arbitrum (USD)",
+   "recomputed": 103996081,
+   "analysis": 104007766,
+   "ok": true,
+   "tolerance": 0.02,
+   "note": ""
+  },
+  {
+   "check": "gas requested by the top target 0xdac17f95",
+   "recomputed": 12186742664,
+   "analysis": 12186742664,
+   "ok": true,
+   "tolerance": 0.0,
+   "note": ""
+  },
+  {
+   "check": "top gas target is the same address",
+   "recomputed": "0xdac17f958d",
+   "analysis": "0xdac17f958d",
+   "ok": true,
+   "tolerance": 0,
+   "note": ""
+  },
+  {
+   "check": "widest Aave/Spark borrow-rate gap (USDS, pp)",
+   "recomputed": 1.598,
+   "analysis": 1.598,
+   "ok": true,
+   "tolerance": 0.05,
+   "note": ""
+  }
+ ],
+ "label_band": [
+  {
+   "min_tier": "blockscout-verified",
+   "exchange_addresses": 1,
+   "stables_net_usd": 0,
+   "eth_net_usd": 0
+  },
+  {
+   "min_tier": "model-memory",
+   "exchange_addresses": 47,
+   "stables_net_usd": 13621986,
+   "eth_net_usd": -6772300
+  },
+  {
+   "min_tier": "behaviour",
+   "exchange_addresses": 99,
+   "stables_net_usd": 13654341,
+   "eth_net_usd": -20790316
+  }
+ ],
+ "mechanisms": [
+  {
+   "id": "stacy-deposit-for",
+   "ok": true,
+   "detail": "depositFor does not set lastDepositBlock",
+   "claim": "StacyVault's `depositFor` never writes `lastDepositBlock`, so a flash depositor skips the lock."
+  },
+  {
+   "id": "msca-not-exchange",
+   "ok": true,
+   "detail": "implementation resolves to 'SingleOwnerMSCA'",
+   "claim": "0xee7ae85f is a modular smart-contract account, not the exchange deposit contract it was tagged as."
+  },
+  {
+   "id": "no-contract-hot-wallets",
+   "ok": false,
+   "detail": "2 contradiction(s); audit checked 48 exchange tags",
+   "claim": "no address counted as a CEX *hot wallet* is a contract."
+  }
+ ],
+ "all_ok": false,
+ "failures": 1,
+ "seconds": 10.0
+}

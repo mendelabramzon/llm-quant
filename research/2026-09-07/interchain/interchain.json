@@ -1,0 +1,1567 @@
+{
+ "date": "2026-09-07",
+ "generated_utc": "2026-09-07T19:09:47Z",
+ "price_basis": {
+  "eth_usd": 2490.0,
+  "sol_usd": 105.08
+ },
+ "fees": {
+  "ethereum": {
+   "blocks": 2985,
+   "txs": 776618,
+   "gas_used": 90742356704,
+   "base_fee_burned_eth": 8.9578,
+   "base_fee_burned_usd": 22305.0,
+   "avg_price_gwei": 0.0987,
+   "priority_fee_upper_bound_eth": 132.74
+  },
+  "robinhood": {
+   "blocks": 356874,
+   "txs_user": 3229934,
+   "gas_used": 865826000000,
+   "fees_eth": 279.185,
+   "fees_usd": 696375,
+   "avg_price_gwei": 0.3224,
+   "l1_settlement_eth": 0.02494,
+   "priority_bids": 175818,
+   "priority_bids_charged": 0,
+   "priority_extra_paid_eth": 0.0,
+   "daily_fee_accrual_eth": null
+  },
+  "solana": {
+   "nonvote_txs": 6394363,
+   "failed": 1906581,
+   "failed_share": 0.2982,
+   "fees_sol": 268.88270367,
+   "base_fees_sol": 35.79735,
+   "priority_fees_sol": 233.08535367,
+   "failed_fees_sol": 64.888540874,
+   "jito_tips_sol": 36.420741946
+  },
+  "ratio_l2_fees_over_l1_burn": 31.2
+ },
+ "relay": {
+  "ethereum": {
+   "depository": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+   "token_in": {
+    "USDC": 7122049.15,
+    "USDT": 2595624.92,
+    "USDG": 256815.14,
+    "PYUSD": 67390.46,
+    "DAI": 39349.06,
+    "USDe": 5223.65,
+    "WETH": 13.3
+   },
+   "token_out": {
+    "USDC": 7113059.54,
+    "USDT": 2560501.2,
+    "USDG": 271723.76,
+    "PYUSD": 67827.18,
+    "DAI": 39043.49,
+    "USDe": 5431.22,
+    "WETH": 13.28
+   },
+   "deposit_txs": 13190,
+   "native_eth_in": 1291.2,
+   "distinct_token_depositors": 2233,
+   "distinct_native_depositors": 5746,
+   "distinct_payout_recipients": 1,
+   "payout_recipients": [
+    "0xf70da97812cb96acdf810712aa562db8dfa3dbef"
+   ],
+   "user_deposits_usd": 13334646.0
+  },
+  "robinhood": {
+   "depository_usdg_in": 42906611.82,
+   "depository_usdg_out": 42839503.63,
+   "deposit_txs": 143571,
+   "withdrawals": 600,
+   "depositors": "3000+",
+   "solver_wallets": 31,
+   "solvers": [
+    "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+    "0x728f51950ff096dc03a48f5e83f45ac8bb75f500",
+    "0xa5a5491bca93dd4c076e4906e79e7673f4a5a142",
+    "0x370a7e2d300c14d79d4a7ee07aaca46c4b3012cf",
+    "0xd782268f600403843484b70710daee6846fc0db8",
+    "0x331d9a049d496385998067abf6cbb6371c8d2466",
+    "0xada5bb90d0de0bd1b6f3938708f49295a8d1f7cb",
+    "0xabb2acd3be814a80e502575d6c1dc5f789e9cd10",
+    "0xca7ded7e4f4ba8ab3b10009236ae6d1b95094589",
+    "0xa67d7eb4dc68fa6ce8e34ef8cadaf075b9893fbb",
+    "0x56c262027e0de4aea31d2489529cb25d23e58a8b",
+    "0x511808449be470efaf4131838b2d4998500a6f72",
+    "0xf42b73d2e4d3912eade2a5f7ab39b54064c2acec",
+    "0x344daadde53a81f95bcc46a99d39107a509251a1",
+    "0x81adf99fcc6073157008e25010967d307875c13c",
+    "0x059df16bdcf8a6bd20bb4814518ff6a2df3c7b11",
+    "0x1cd9d560440aab96f7b0a007ced7c2191cac5baf",
+    "0xd9497b53abcd6972b6370cb195b6bfd6b280e607",
+    "0x698dd6c03b50c3d4af12932a0388338bcdd3aaed",
+    "0x919968a4238a54b381f022a360260ef5d7e015ac",
+    "0x6085932878d587332419ac976fc13d98eba6fdab",
+    "0x9bc462bce2acd6fbe2ef5470d55b439453451083",
+    "0x4381045063b19a615a272733fa6b5f169b622646",
+    "0x2bb27b73c602643f42471d4751fe4fc4eebefbd1",
+    "0xcc4bc7882d5ec4a3716e589ab3d816b61ae47a1a",
+    "0x18dd3c14e34c1bc379f7538068c59160d9f68e25",
+    "0x0ec4e45f9ce3020024c0418a74cd31fbc487038f",
+    "0xd460b4182ed80992d498290bcbc6b60e95de181b",
+    "0x69374f8233a4069d48f8994d84052ecae6277ef5",
+    "0x67d698a325f29e17a9477f28ba4fe50f1cec60e4",
+    "0xe209e0047731aa494289e1af9a0d03da19c5ef08"
+   ],
+   "solver_fee_share_pct": 19.52,
+   "approval_proxy_txs": 185834
+  },
+  "solana": {
+   "program": "99vQwtBwYtrqqD9YSXbdum3KBdxPAVxYTaQ3cfnJSrN2",
+   "vault": "7uTT8Xi5RWXzy7h9XL244GRgEycDYDhLjr3ZyNdXi8pZ",
+   "treasury": "F7p3dFrjRTbtRp8FRF6qHLomXbKRBzpvBLjtQcfcgmNe",
+   "router_payer": "AgmLJBMDCqWynYnQiPCuj9ewsNNsBJXyzoUhD9LJzN51",
+   "note": "today's Solana narrative describes this as an unlabelled custodial deposit system; it is Relay's Solana depository",
+   "window_hours": 1.0
+  }
+ },
+ "usdg": {
+  "ethereum": {
+   "live_5h": {
+    "mint": 1570499.39,
+    "burn": 2292326.4,
+    "net": -721827.01,
+    "mint_to": [
+     [
+      "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+      508848.11
+     ],
+     [
+      "0xb85e268154c86d7ea9d7318a0e2ac306d430f8fd",
+      467427.21
+     ],
+     [
+      "0x7aa5c8470653653dd178916e8b0223a2d4e49d8f",
+      299940.0
+     ],
+     [
+      "0x5657cb68d0479d63702dbe241f6aec218009054e",
+      170068.46
+     ],
+     [
+      "0xd0d08887e8a5b16049534a7f3fc1de92848f5bea",
+      56000.0
+     ]
+    ],
+    "burn_from": [
+     [
+      "0x023fa838682c115c2cfba96ef3791cb5bd931fc7",
+      1026070.94
+     ],
+     [
+      "0xacddac6c77318b615f7f6fb9bb67c6833e9c05f1",
+      630195.97
+     ],
+     [
+      "0xf845a0a05cbd91ac15c3e59d126de5dfbc2aabb7",
+      420000.0
+     ],
+     [
+      "0xd7185c486dd88eb9f3573b878a1469485644091f",
+      99999.26
+     ],
+     [
+      "0x6cd1b8cfcd2ca2bcdb46a2d96bd22b92e16ba427",
+      55987.05
+     ]
+    ],
+    "desk_in": [
+     [
+      "0x0000000000000000000000000000000000000000",
+      508848.11
+     ],
+     [
+      "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+      37089.2
+     ],
+     [
+      "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f",
+      2334.8
+     ]
+    ],
+    "desk_out": [
+     [
+      "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f",
+      772873.25
+     ],
+     [
+      "0x125854aaea2aae5726cb600869bca169894372a2",
+      36099.79
+     ],
+     [
+      "0xf3fd89e24333298bcb83a5df45134f1ba58449fc",
+      29391.23
+     ],
+     [
+      "0xc868e62bde5da126281f8b7f6bb6e8eb2f1a804e",
+      14836.51
+     ],
+     [
+      "0x98d045c46f593cf94c39cc9484a5b85b9f17f856",
+      2098.42
+     ]
+    ],
+    "desk_net": -312213.83
+   },
+   "live_midday": {
+    "mint": 3195584.89,
+    "burn": 14220644.91,
+    "net": -11025060.03,
+    "mint_to": [
+     [
+      "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+      1586861.27
+     ],
+     [
+      "0x264bd8291fae1d75db2c5f573b07faa6715997b5",
+      1000000.0
+     ],
+     [
+      "0xc996a6525fa23bc41a275159a14cb87d3c3c7c2f",
+      320628.88
+     ],
+     [
+      "0xb85e268154c86d7ea9d7318a0e2ac306d430f8fd",
+      181265.77
+     ],
+     [
+      "0x6ce91ddabdca7d8ea5c2078328fda0a1b14ad9b7",
+      50000.0
+     ]
+    ],
+    "burn_from": [
+     [
+      "0xf845a0a05cbd91ac15c3e59d126de5dfbc2aabb7",
+      10205058.0
+     ],
+     [
+      "0x023fa838682c115c2cfba96ef3791cb5bd931fc7",
+      1689219.02
+     ],
+     [
+      "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+      1447549.61
+     ],
+     [
+      "0xacddac6c77318b615f7f6fb9bb67c6833e9c05f1",
+      379817.3
+     ],
+     [
+      "0x50cfe7c1938db66a1a6d2e86d36f39fbef3d5c4a",
+      169985.56
+     ]
+    ],
+    "desk_in": [
+     [
+      "0x0000000000000000000000000000000000000000",
+      1586861.27
+     ],
+     [
+      "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f",
+      1020113.75
+     ],
+     [
+      "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+      234634.56
+     ]
+    ],
+    "desk_out": [
+     [
+      "0x0000000000000000000000000000000000000000",
+      1447549.61
+     ],
+     [
+      "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f",
+      529469.3
+     ],
+     [
+      "0xc868e62bde5da126281f8b7f6bb6e8eb2f1a804e",
+      28574.42
+     ],
+     [
+      "0x19f43860825a40f532353665b9b33110a7b4ffbe",
+      28417.2
+     ],
+     [
+      "0xbcc790595692f5d55edb61181fbc1f8f77d69702",
+      5272.29
+     ]
+    ],
+    "desk_net": 794234.06
+   }
+  },
+  "robinhood": {
+   "sample_step": 1,
+   "mint": 7090346.46,
+   "burn": 3521346.07,
+   "net": 3569000.39,
+   "mint_to": [
+    [
+     "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+     1707964.22
+    ],
+    [
+     "0x1dc765d20ce8095b91a6deb3616d3b2edfb92dec",
+     1252855.67
+    ],
+    [
+     "0xb81a0e6c38c3fec8a171cfe9631f60127a0c5bfd",
+     700000.0
+    ],
+    [
+     "0x06252e101b642be776b996e172263c44bd2988cc",
+     306856.44
+    ],
+    [
+     "0x49e96e255ba418d08e66c35b588e2f2f3766e1d0",
+     299930.83
+    ]
+   ],
+   "burn_from": [
+    [
+     "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+     1038769.25
+    ],
+    [
+     "0xf845a0a05cbd91ac15c3e59d126de5dfbc2aabb7",
+     1000000.0
+    ],
+    [
+     "0xd5a0f386a9f3b705d21cfd41a6ef6a4dcdba2692",
+     761150.05
+    ],
+    [
+     "0x290d54179960984599f16f77dcda81320301b158",
+     445912.37
+    ],
+    [
+     "0x50cfe7c1938db66a1a6d2e86d36f39fbef3d5c4a",
+     110228.42
+    ]
+   ],
+   "desk_in": [
+    [
+     "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+     42839503.63
+    ],
+    [
+     "0x0000000000000000000000000000000000000000",
+     1707964.22
+    ],
+    [
+     "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f",
+     1141.63
+    ],
+    [
+     "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+     0.69
+    ]
+   ],
+   "desk_out": [
+    [
+     "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f",
+     38461855.53
+    ],
+    [
+     "0x0000000000000000000000000000000000000000",
+     1038769.25
+    ],
+    [
+     "0x616b577bd9ded9b191f151bddb70e51e09ee0206",
+     299907.66
+    ],
+    [
+     "0x125854aaea2aae5726cb600869bca169894372a2",
+     249828.65
+    ],
+    [
+     "0x22055b5799d9b98e002b28f15fb2acb08ed5eee7",
+     199999.93
+    ]
+   ],
+   "desk_net": 58502.47
+  },
+  "solana": {
+   "mint": 10825.88,
+   "burn": 176059.07,
+   "net": -165233.19
+  }
+ },
+ "stocks": {
+  "sample_step": 12,
+  "stock_usdg_pools": 137,
+  "rows": [
+   {
+    "symbol": "RCAT",
+    "reference": 9.81,
+    "pools": 1,
+    "swaps_sampled": 32,
+    "deepest_pool": "0x64710a7083",
+    "px_last_deepest": 10.4519,
+    "px_min": 9.1124,
+    "px_max": 12.0042,
+    "dev_pct": 6.543
+   },
+   {
+    "symbol": "FIG",
+    "reference": 25.02,
+    "pools": 1,
+    "swaps_sampled": 110,
+    "deepest_pool": "0xca5904c0a9",
+    "px_last_deepest": 25.3452,
+    "px_min": 24.9442,
+    "px_max": 25.8386,
+    "dev_pct": 1.3
+   },
+   {
+    "symbol": "JNJ",
+    "reference": 268.97,
+    "pools": 1,
+    "swaps_sampled": 25,
+    "deepest_pool": "0x7f0ace18d1",
+    "px_last_deepest": 272.2401,
+    "px_min": 272.2101,
+    "px_max": 272.932,
+    "dev_pct": 1.216
+   },
+   {
+    "symbol": "DJT",
+    "reference": 8.99,
+    "pools": 2,
+    "swaps_sampled": 129,
+    "deepest_pool": "0x31a89afd92",
+    "px_last_deepest": 9.0719,
+    "px_min": 9.002,
+    "px_max": 9.0757,
+    "dev_pct": 0.911
+   },
+   {
+    "symbol": "PENG",
+    "reference": 52.87,
+    "pools": 1,
+    "swaps_sampled": 3,
+    "deepest_pool": "0x56857d224e",
+    "px_last_deepest": 52.3912,
+    "px_min": 52.3912,
+    "px_max": 52.4141,
+    "dev_pct": -0.906
+   },
+   {
+    "symbol": "SNDK",
+    "reference": 1779.4,
+    "pools": 2,
+    "swaps_sampled": 88,
+    "deepest_pool": "0xa1e1c9519c",
+    "px_last_deepest": 1795.0888,
+    "px_min": 1779.1087,
+    "px_max": 1799.6507,
+    "dev_pct": 0.882
+   },
+   {
+    "symbol": "AMC",
+    "reference": 2.64,
+    "pools": 2,
+    "swaps_sampled": 381,
+    "deepest_pool": "0xaa34fea710",
+    "px_last_deepest": 2.6201,
+    "px_min": 2.6007,
+    "px_max": 2.6527,
+    "dev_pct": -0.753
+   },
+   {
+    "symbol": "GLXY",
+    "reference": 27.07,
+    "pools": 1,
+    "swaps_sampled": 1,
+    "deepest_pool": "0xb8d2771fa9",
+    "px_last_deepest": 27.2228,
+    "px_min": 27.2228,
+    "px_max": 27.2228,
+    "dev_pct": 0.564
+   },
+   {
+    "symbol": "LULU",
+    "reference": 97.62,
+    "pools": 1,
+    "swaps_sampled": 52,
+    "deepest_pool": "0x0f4227d270",
+    "px_last_deepest": 98.0888,
+    "px_min": 97.9567,
+    "px_max": 99.3349,
+    "dev_pct": 0.48
+   },
+   {
+    "symbol": "USO",
+    "reference": 143.1,
+    "pools": 2,
+    "swaps_sampled": 152,
+    "deepest_pool": "0x98a27fc90c",
+    "px_last_deepest": 143.7147,
+    "px_min": 141.5467,
+    "px_max": 143.8597,
+    "dev_pct": 0.43
+   },
+   {
+    "symbol": "CRCL",
+    "reference": 103.38,
+    "pools": 1,
+    "swaps_sampled": 67,
+    "deepest_pool": "0x654e4143e8",
+    "px_last_deepest": 102.9535,
+    "px_min": 102.6,
+    "px_max": 104.4108,
+    "dev_pct": -0.413
+   },
+   {
+    "symbol": "UPS",
+    "reference": 103.33,
+    "pools": 2,
+    "swaps_sampled": 51,
+    "deepest_pool": "0x5c67a84ec5",
+    "px_last_deepest": 102.9626,
+    "px_min": 102.9103,
+    "px_max": 103.4676,
+    "dev_pct": -0.356
+   },
+   {
+    "symbol": "SHOP",
+    "reference": 158.25,
+    "pools": 4,
+    "swaps_sampled": 387,
+    "deepest_pool": "0xca204bb83a",
+    "px_last_deepest": 157.7473,
+    "px_min": 147.4975,
+    "px_max": 194.0211,
+    "dev_pct": -0.318
+   },
+   {
+    "symbol": "AMD",
+    "reference": 482.65,
+    "pools": 3,
+    "swaps_sampled": 318,
+    "deepest_pool": "0x48d284a2a4",
+    "px_last_deepest": 483.9097,
+    "px_min": 482.1114,
+    "px_max": 486.2592,
+    "dev_pct": 0.261
+   },
+   {
+    "symbol": "MU",
+    "reference": 1041.48,
+    "pools": 2,
+    "swaps_sampled": 62,
+    "deepest_pool": "0xd057b1bc54",
+    "px_last_deepest": 1039.0622,
+    "px_min": 1037.1604,
+    "px_max": 1045.9308,
+    "dev_pct": -0.232
+   },
+   {
+    "symbol": "MSFT",
+    "reference": 498.07,
+    "pools": 2,
+    "swaps_sampled": 404,
+    "deepest_pool": "0xeb60bcd1d9",
+    "px_last_deepest": 499.1748,
+    "px_min": 498.3246,
+    "px_max": 501.5672,
+    "dev_pct": 0.222
+   },
+   {
+    "symbol": "SGOV",
+    "reference": 100.98,
+    "pools": 3,
+    "swaps_sampled": 226,
+    "deepest_pool": "0x6ba50150b1",
+    "px_last_deepest": 101.1949,
+    "px_min": 101.0516,
+    "px_max": 101.1951,
+    "dev_pct": 0.213
+   },
+   {
+    "symbol": "AMZN",
+    "reference": 258.2,
+    "pools": 1,
+    "swaps_sampled": 292,
+    "deepest_pool": "0x8ac92da74a",
+    "px_last_deepest": 258.7327,
+    "px_min": 258.6247,
+    "px_max": 258.8338,
+    "dev_pct": 0.206
+   },
+   {
+    "symbol": "PFE",
+    "reference": 29.89,
+    "pools": 1,
+    "swaps_sampled": 54,
+    "deepest_pool": "0xc7d573fcda",
+    "px_last_deepest": 29.8302,
+    "px_min": 29.8268,
+    "px_max": 29.997,
+    "dev_pct": -0.2
+   },
+   {
+    "symbol": "SPCX",
+    "reference": 150.77,
+    "pools": 2,
+    "swaps_sampled": 936,
+    "deepest_pool": "0xc612843321",
+    "px_last_deepest": 150.4703,
+    "px_min": 150.3992,
+    "px_max": 151.1673,
+    "dev_pct": -0.199
+   },
+   {
+    "symbol": "RBLX",
+    "reference": 42.07,
+    "pools": 2,
+    "swaps_sampled": 88,
+    "deepest_pool": "0x1bdb8e3a79",
+    "px_last_deepest": 41.9874,
+    "px_min": 41.8895,
+    "px_max": 42.2286,
+    "dev_pct": -0.196
+   },
+   {
+    "symbol": "NFLX",
+    "reference": 78.42,
+    "pools": 1,
+    "swaps_sampled": 162,
+    "deepest_pool": "0x59895c0302",
+    "px_last_deepest": 78.2722,
+    "px_min": 78.2414,
+    "px_max": 78.4405,
+    "dev_pct": -0.189
+   },
+   {
+    "symbol": "COST",
+    "reference": 915.9,
+    "pools": 1,
+    "swaps_sampled": 161,
+    "deepest_pool": "0x0a2121a50a",
+    "px_last_deepest": 917.6212,
+    "px_min": 916.6242,
+    "px_max": 917.6708,
+    "dev_pct": 0.188
+   },
+   {
+    "symbol": "PLTR",
+    "reference": 176.11,
+    "pools": 3,
+    "swaps_sampled": 200,
+    "deepest_pool": "0x53d3f8b79e",
+    "px_last_deepest": 175.8076,
+    "px_min": 175.0504,
+    "px_max": 177.2829,
+    "dev_pct": -0.172
+   },
+   {
+    "symbol": "WYFI",
+    "reference": 18.99,
+    "pools": 1,
+    "swaps_sampled": 24,
+    "deepest_pool": "0x2a3063e34c",
+    "px_last_deepest": 18.9597,
+    "px_min": 18.8517,
+    "px_max": 19.0112,
+    "dev_pct": -0.159
+   },
+   {
+    "symbol": "GLD",
+    "reference": 410.13,
+    "pools": 3,
+    "swaps_sampled": 403,
+    "deepest_pool": "0x7a6a053ecc",
+    "px_last_deepest": 410.6899,
+    "px_min": 409.7199,
+    "px_max": 411.7677,
+    "dev_pct": 0.137
+   },
+   {
+    "symbol": "HIMS",
+    "reference": 28.16,
+    "pools": 2,
+    "swaps_sampled": 260,
+    "deepest_pool": "0xc8c90d3a1c",
+    "px_last_deepest": 28.1985,
+    "px_min": 28.1795,
+    "px_max": 28.5929,
+    "dev_pct": 0.137
+   },
+   {
+    "symbol": "META",
+    "reference": 612.25,
+    "pools": 1,
+    "swaps_sampled": 24,
+    "deepest_pool": "0x107a7cb40d",
+    "px_last_deepest": 613.0735,
+    "px_min": 611.4071,
+    "px_max": 614.5871,
+    "dev_pct": 0.135
+   },
+   {
+    "symbol": "AAPL",
+    "reference": 320.38,
+    "pools": 3,
+    "swaps_sampled": 1441,
+    "deepest_pool": "0xaae0d815ee",
+    "px_last_deepest": 320.7401,
+    "px_min": 320.4068,
+    "px_max": 321.6508,
+    "dev_pct": 0.112
+   },
+   {
+    "symbol": "COIN",
+    "reference": 186.27,
+    "pools": 1,
+    "swaps_sampled": 26,
+    "deepest_pool": "0xe9b6f324a7",
+    "px_last_deepest": 186.4786,
+    "px_min": 185.3836,
+    "px_max": 186.7346,
+    "dev_pct": 0.112
+   },
+   {
+    "symbol": "IBM",
+    "reference": 247.93,
+    "pools": 4,
+    "swaps_sampled": 790,
+    "deepest_pool": "0x8cd848ce18",
+    "px_last_deepest": 247.6569,
+    "px_min": 241.4727,
+    "px_max": 282.0338,
+    "dev_pct": -0.11
+   },
+   {
+    "symbol": "SNAP",
+    "reference": 5.42,
+    "pools": 1,
+    "swaps_sampled": 14,
+    "deepest_pool": "0x99ce8cb25d",
+    "px_last_deepest": 5.4256,
+    "px_min": 5.4047,
+    "px_max": 5.5027,
+    "dev_pct": 0.104
+   },
+   {
+    "symbol": "TSLA",
+    "reference": 355.45,
+    "pools": 3,
+    "swaps_sampled": 616,
+    "deepest_pool": "0xc4f0172d6a",
+    "px_last_deepest": 355.7938,
+    "px_min": 354.3906,
+    "px_max": 356.3984,
+    "dev_pct": 0.097
+   },
+   {
+    "symbol": "SLV",
+    "reference": 59.92,
+    "pools": 3,
+    "swaps_sampled": 1696,
+    "deepest_pool": "0x37ed4621d1",
+    "px_last_deepest": 59.8629,
+    "px_min": 59.6228,
+    "px_max": 60.132,
+    "dev_pct": -0.095
+   },
+   {
+    "symbol": "BABA",
+    "reference": 112.52,
+    "pools": 1,
+    "swaps_sampled": 71,
+    "deepest_pool": "0xa57ab582b3",
+    "px_last_deepest": 112.4154,
+    "px_min": 112.4154,
+    "px_max": 113.1459,
+    "dev_pct": -0.093
+   },
+   {
+    "symbol": "QQQ",
+    "reference": 719.39,
+    "pools": 2,
+    "swaps_sampled": 288,
+    "deepest_pool": "0xd60a5d14db",
+    "px_last_deepest": 719.9543,
+    "px_min": 719.4833,
+    "px_max": 720.9303,
+    "dev_pct": 0.078
+   },
+   {
+    "symbol": "LLY",
+    "reference": 1149.57,
+    "pools": 1,
+    "swaps_sampled": 99,
+    "deepest_pool": "0xf212d02146",
+    "px_last_deepest": 1148.7065,
+    "px_min": 1147.9958,
+    "px_max": 1151.8515,
+    "dev_pct": -0.075
+   },
+   {
+    "symbol": "GOOGL",
+    "reference": 339.34,
+    "pools": 2,
+    "swaps_sampled": 1106,
+    "deepest_pool": "0x34d0dc122c",
+    "px_last_deepest": 339.5653,
+    "px_min": 338.4419,
+    "px_max": 340.1607,
+    "dev_pct": 0.066
+   },
+   {
+    "symbol": "GME",
+    "reference": 19.25,
+    "pools": 3,
+    "swaps_sampled": 943,
+    "deepest_pool": "0xe2b46c905e",
+    "px_last_deepest": 19.2607,
+    "px_min": 19.2284,
+    "px_max": 19.4309,
+    "dev_pct": 0.056
+   },
+   {
+    "symbol": "NVDA",
+    "reference": 232.47,
+    "pools": 3,
+    "swaps_sampled": 7415,
+    "deepest_pool": "0xd4eb21209c",
+    "px_last_deepest": 232.3611,
+    "px_min": 231.6078,
+    "px_max": 235.8969,
+    "dev_pct": -0.047
+   },
+   {
+    "symbol": "RDDT",
+    "reference": 155.7,
+    "pools": 1,
+    "swaps_sampled": 90,
+    "deepest_pool": "0xa8744e76ae",
+    "px_last_deepest": 155.7226,
+    "px_min": 155.7185,
+    "px_max": 155.8791,
+    "dev_pct": 0.015
+   },
+   {
+    "symbol": "MSTR",
+    "reference": 146.33,
+    "pools": 3,
+    "swaps_sampled": 154,
+    "deepest_pool": "0x983fd86a92",
+    "px_last_deepest": 146.3076,
+    "px_min": 146.0006,
+    "px_max": 147.0952,
+    "dev_pct": -0.015
+   },
+   {
+    "symbol": "SPY",
+    "reference": 772.08,
+    "pools": 4,
+    "swaps_sampled": 1157,
+    "deepest_pool": "0x38453c1156",
+    "px_last_deepest": 771.979,
+    "px_min": 771.3366,
+    "px_max": 773.4684,
+    "dev_pct": -0.013
+   }
+  ]
+ },
+ "yield": {
+  "rows": [
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T12:49:47+00:00",
+    "venue": "Compound v3 USDC",
+    "asset": "USDC",
+    "supply_apr": 6.91,
+    "borrow_apr": 8.14,
+    "util": 91.1,
+    "size_usd": 372712068.0
+   },
+   {
+    "chain": "solana",
+    "at": "2026-09-07T18:11:00+00:00",
+    "venue": "Jupiter Lend",
+    "asset": "JupUSD",
+    "supply_apr": 6.08,
+    "borrow_apr": null,
+    "util": null,
+    "size_usd": 57894590.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T07:52:11+00:00",
+    "venue": "SparkLend",
+    "asset": "USDT",
+    "supply_apr": 6.05,
+    "borrow_apr": 7.0,
+    "util": 96.0,
+    "size_usd": 344422448.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T07:52:11+00:00",
+    "venue": "Compound v3 USDC",
+    "asset": "USDC",
+    "supply_apr": 5.49,
+    "borrow_apr": 6.54,
+    "util": 90.7,
+    "size_usd": 373112857.0
+   },
+   {
+    "chain": "solana",
+    "at": "2026-09-07T18:11:00+00:00",
+    "venue": "Jupiter Lend",
+    "asset": "USDG",
+    "supply_apr": 5.42,
+    "borrow_apr": null,
+    "util": null,
+    "size_usd": 2923981.0
+   },
+   {
+    "chain": "solana",
+    "at": "2026-09-07T18:11:00+00:00",
+    "venue": "Jupiter Lend",
+    "asset": "USDC",
+    "supply_apr": 4.96,
+    "borrow_apr": null,
+    "util": null,
+    "size_usd": 451679926.0
+   },
+   {
+    "chain": "solana",
+    "at": "2026-09-07T18:11:00+00:00",
+    "venue": "Jupiter Lend",
+    "asset": "USDS",
+    "supply_apr": 4.74,
+    "borrow_apr": null,
+    "util": null,
+    "size_usd": 3854251.0
+   },
+   {
+    "chain": "solana",
+    "at": "2026-09-07T18:11:00+00:00",
+    "venue": "Jupiter Lend",
+    "asset": "USDT",
+    "supply_apr": 4.25,
+    "borrow_apr": null,
+    "util": null,
+    "size_usd": 17558785.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T12:49:47+00:00",
+    "venue": "Aave v3",
+    "asset": "PYUSD",
+    "supply_apr": 3.87,
+    "borrow_apr": 4.9,
+    "util": 87.8,
+    "size_usd": 7598941.0
+   },
+   {
+    "chain": "solana",
+    "at": "2026-09-07T18:11:00+00:00",
+    "venue": "Jupiter Lend",
+    "asset": "WSOL",
+    "supply_apr": 3.85,
+    "borrow_apr": null,
+    "util": null,
+    "size_usd": 19811766.0
+   },
+   {
+    "chain": "solana",
+    "at": "2026-09-07T18:11:00+00:00",
+    "venue": "Kamino SOL/BTC Market",
+    "asset": "USDG",
+    "supply_apr": 3.77,
+    "borrow_apr": 5.53,
+    "util": 84.2,
+    "size_usd": 44702438.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T07:52:11+00:00",
+    "venue": "Aave v3",
+    "asset": "PYUSD",
+    "supply_apr": 3.75,
+    "borrow_apr": 4.83,
+    "util": 86.2,
+    "size_usd": 7738422.0
+   },
+   {
+    "chain": "solana",
+    "at": "2026-09-07T18:11:00+00:00",
+    "venue": "Jupiter Lend",
+    "asset": "EURC",
+    "supply_apr": 3.69,
+    "borrow_apr": null,
+    "util": null,
+    "size_usd": 5064594.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T07:52:11+00:00",
+    "venue": "Sky SSR",
+    "asset": "USDS",
+    "supply_apr": 3.6,
+    "borrow_apr": null,
+    "util": null,
+    "size_usd": null
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T12:49:47+00:00",
+    "venue": "Sky SSR",
+    "asset": "USDS",
+    "supply_apr": 3.6,
+    "borrow_apr": null,
+    "util": null,
+    "size_usd": null
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T07:52:11+00:00",
+    "venue": "Aave v3",
+    "asset": "USDC",
+    "supply_apr": 3.59,
+    "borrow_apr": 4.27,
+    "util": 93.4,
+    "size_usd": 2306826965.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T12:49:47+00:00",
+    "venue": "Aave v3",
+    "asset": "USDC",
+    "supply_apr": 3.58,
+    "borrow_apr": 4.27,
+    "util": 93.3,
+    "size_usd": 2308817883.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T12:49:47+00:00",
+    "venue": "Aave v3",
+    "asset": "USDT",
+    "supply_apr": 3.56,
+    "borrow_apr": 4.26,
+    "util": 93.0,
+    "size_usd": 2980073116.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T07:52:11+00:00",
+    "venue": "SparkLend",
+    "asset": "USDC",
+    "supply_apr": 3.54,
+    "borrow_apr": 4.27,
+    "util": 92.2,
+    "size_usd": 25638998.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T12:49:47+00:00",
+    "venue": "SparkLend",
+    "asset": "USDC",
+    "supply_apr": 3.54,
+    "borrow_apr": 4.27,
+    "util": 92.2,
+    "size_usd": 25640640.0
+   },
+   {
+    "chain": "solana",
+    "at": "2026-09-07T18:11:00+00:00",
+    "venue": "Kamino SOL/BTC Market",
+    "asset": "USDC",
+    "supply_apr": 3.54,
+    "borrow_apr": 5.37,
+    "util": 81.6,
+    "size_usd": 123187712.0
+   },
+   {
+    "chain": "solana",
+    "at": "2026-09-07T18:11:00+00:00",
+    "venue": "Kamino JLP Market",
+    "asset": "USDC",
+    "supply_apr": 3.53,
+    "borrow_apr": 4.36,
+    "util": 90.4,
+    "size_usd": 20445719.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T07:52:11+00:00",
+    "venue": "Aave v3",
+    "asset": "USDT",
+    "supply_apr": 3.5,
+    "borrow_apr": 4.22,
+    "util": 92.2,
+    "size_usd": 2978667039.0
+   },
+   {
+    "chain": "solana",
+    "at": "2026-09-07T18:11:00+00:00",
+    "venue": "Kamino Ethena Market",
+    "asset": "PYUSD",
+    "supply_apr": 3.41,
+    "borrow_apr": 4.05,
+    "util": 93.8,
+    "size_usd": 251446547.0
+   },
+   {
+    "chain": "solana",
+    "at": "2026-09-07T18:11:00+00:00",
+    "venue": "Kamino SOL/BTC Market",
+    "asset": "USDT",
+    "supply_apr": 3.22,
+    "borrow_apr": 5.15,
+    "util": 77.9,
+    "size_usd": 10587533.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T07:52:11+00:00",
+    "venue": "Aave v3",
+    "asset": "DAI",
+    "supply_apr": 3.04,
+    "borrow_apr": 4.69,
+    "util": 86.4,
+    "size_usd": 131755802.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T12:49:47+00:00",
+    "venue": "Aave v3",
+    "asset": "DAI",
+    "supply_apr": 3.04,
+    "borrow_apr": 4.69,
+    "util": 86.4,
+    "size_usd": 131757470.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T12:49:47+00:00",
+    "venue": "Compound v3 USDT",
+    "asset": "USDT",
+    "supply_apr": 3.02,
+    "borrow_apr": 3.83,
+    "util": 83.9,
+    "size_usd": 184036285.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T07:52:11+00:00",
+    "venue": "Compound v3 USDT",
+    "asset": "USDT",
+    "supply_apr": 3.0,
+    "borrow_apr": 3.81,
+    "util": 83.2,
+    "size_usd": 185353647.0
+   },
+   {
+    "chain": "solana",
+    "at": "2026-09-07T18:11:00+00:00",
+    "venue": "Save main",
+    "asset": "USDC",
+    "supply_apr": 2.96,
+    "borrow_apr": 5.04,
+    "util": 73.9,
+    "size_usd": 22177432.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T12:49:47+00:00",
+    "venue": "SparkLend",
+    "asset": "USDT",
+    "supply_apr": 2.62,
+    "borrow_apr": 3.52,
+    "util": 82.8,
+    "size_usd": 390856533.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T07:52:11+00:00",
+    "venue": "SparkLend",
+    "asset": "DAI",
+    "supply_apr": 2.46,
+    "borrow_apr": 4.04,
+    "util": 67.7,
+    "size_usd": 308247707.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T12:49:47+00:00",
+    "venue": "SparkLend",
+    "asset": "DAI",
+    "supply_apr": 2.46,
+    "borrow_apr": 4.04,
+    "util": 67.7,
+    "size_usd": 308265074.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T07:52:11+00:00",
+    "venue": "SparkLend",
+    "asset": "USDS",
+    "supply_apr": 2.32,
+    "borrow_apr": 3.93,
+    "util": 65.6,
+    "size_usd": 733366661.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T12:49:47+00:00",
+    "venue": "SparkLend",
+    "asset": "USDS",
+    "supply_apr": 2.32,
+    "borrow_apr": 3.93,
+    "util": 65.6,
+    "size_usd": 747432633.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T12:49:47+00:00",
+    "venue": "Aave v3",
+    "asset": "RLUSD",
+    "supply_apr": 2.18,
+    "borrow_apr": 4.42,
+    "util": 61.5,
+    "size_usd": 4639188.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T07:52:11+00:00",
+    "venue": "Aave v3",
+    "asset": "RLUSD",
+    "supply_apr": 2.17,
+    "borrow_apr": 4.42,
+    "util": 61.5,
+    "size_usd": 4642526.0
+   },
+   {
+    "chain": "solana",
+    "at": "2026-09-07T18:11:00+00:00",
+    "venue": "Kamino SOL/BTC Market",
+    "asset": "PYUSD",
+    "supply_apr": 1.98,
+    "borrow_apr": 3.09,
+    "util": 85.6,
+    "size_usd": 40029136.0
+   },
+   {
+    "chain": "solana",
+    "at": "2026-09-07T18:11:00+00:00",
+    "venue": "Save main",
+    "asset": "USDT",
+    "supply_apr": 1.76,
+    "borrow_apr": 4.08,
+    "util": 54.3,
+    "size_usd": 5172673.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T07:52:11+00:00",
+    "venue": "Aave v3",
+    "asset": "USDe",
+    "supply_apr": 1.7,
+    "borrow_apr": 5.4,
+    "util": 41.9,
+    "size_usd": 640286063.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T12:49:47+00:00",
+    "venue": "Aave v3",
+    "asset": "USDe",
+    "supply_apr": 1.65,
+    "borrow_apr": 5.36,
+    "util": 40.9,
+    "size_usd": 651682802.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T07:52:11+00:00",
+    "venue": "Compound v3 WETH",
+    "asset": "WETH",
+    "supply_apr": 1.37,
+    "borrow_apr": 1.88,
+    "util": 68.5,
+    "size_usd": 50381.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T12:49:47+00:00",
+    "venue": "Compound v3 WETH",
+    "asset": "WETH",
+    "supply_apr": 1.36,
+    "borrow_apr": 1.88,
+    "util": 67.8,
+    "size_usd": 50377.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T07:52:11+00:00",
+    "venue": "SparkLend",
+    "asset": "PYUSD",
+    "supply_apr": 0.58,
+    "borrow_apr": 3.89,
+    "util": 16.6,
+    "size_usd": 100000071.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T12:49:47+00:00",
+    "venue": "SparkLend",
+    "asset": "PYUSD",
+    "supply_apr": 0.58,
+    "borrow_apr": 3.89,
+    "util": 16.6,
+    "size_usd": 100000399.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T07:52:11+00:00",
+    "venue": "Aave v3",
+    "asset": "USDS",
+    "supply_apr": 0.12,
+    "borrow_apr": 5.52,
+    "util": 3.0,
+    "size_usd": 11208127.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T12:49:47+00:00",
+    "venue": "Aave v3",
+    "asset": "USDS",
+    "supply_apr": 0.12,
+    "borrow_apr": 5.52,
+    "util": 3.0,
+    "size_usd": 11208135.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T07:52:11+00:00",
+    "venue": "Aave v3",
+    "asset": "GHO",
+    "supply_apr": 0.0,
+    "borrow_apr": 4.0,
+    "util": 83.0,
+    "size_usd": 135162787.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T07:52:11+00:00",
+    "venue": "SparkLend",
+    "asset": "RLUSD",
+    "supply_apr": 0.0,
+    "borrow_apr": 3.46,
+    "util": 0,
+    "size_usd": 1.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T12:49:47+00:00",
+    "venue": "Aave v3",
+    "asset": "GHO",
+    "supply_apr": 0.0,
+    "borrow_apr": 4.0,
+    "util": 83.1,
+    "size_usd": 135162787.0
+   },
+   {
+    "chain": "ethereum",
+    "at": "2026-09-07T12:49:47+00:00",
+    "venue": "SparkLend",
+    "asset": "RLUSD",
+    "supply_apr": 0.0,
+    "borrow_apr": 3.46,
+    "util": 0,
+    "size_usd": 1.0
+   },
+   {
+    "chain": "solana",
+    "at": "2026-09-07T18:11:00+00:00",
+    "venue": "Kamino Ethena Market",
+    "asset": "USDe",
+    "supply_apr": 0.0,
+    "borrow_apr": 0.01,
+    "util": 0.0,
+    "size_usd": 267541566.0
+   }
+  ],
+  "robinhood_gap": "no rate read exists for Robinhood Chain; steakUSDG / spUSDG / ethenaUSDG and Morpho Blue there are measured by flow only"
+ },
+ "selfmatch": {
+  "sample_step": 24,
+  "pools": [
+   {
+    "pool": "0x52e65b17fb6e5ba00ed806f37afcd2daa50271ca",
+    "name": "WETH/USDG v3 1bp",
+    "swaps_sampled": 15768,
+    "distinct_calling_contracts": 119,
+    "distinct_recipients": 547,
+    "top_callers": [
+     [
+      "0x65050a9b",
+      7061,
+      44.8
+     ],
+     [
+      "0xcaf681a6",
+      2579,
+      16.4
+     ],
+     [
+      "0x4a86009a",
+      2321,
+      14.7
+     ],
+     [
+      "0x39b38686",
+      985,
+      6.2
+     ],
+     [
+      "0x88767899",
+      554,
+      3.5
+     ]
+    ],
+    "same_block_same_caller_opposite": 766,
+    "same_block_same_caller_one_way": 1516,
+    "token0_decimals": 18,
+    "offsetting_token0": 20.11,
+    "token0_volume": 2799.02,
+    "self_match_share_pct": 0.718
+   },
+   {
+    "pool": "0xd4eb21209c4d6093f80b5b84f5c45cc093ea14a3",
+    "name": "USDG/NVDA v3 5bp",
+    "swaps_sampled": 2860,
+    "distinct_calling_contracts": 55,
+    "distinct_recipients": 97,
+    "top_callers": [
+     [
+      "0x65050a9b",
+      1706,
+      59.7
+     ],
+     [
+      "0x4a86009a",
+      432,
+      15.1
+     ],
+     [
+      "0xe492912f",
+      185,
+      6.5
+     ],
+     [
+      "0xcaf681a6",
+      149,
+      5.2
+     ],
+     [
+      "0x39b38686",
+      118,
+      4.1
+     ]
+    ],
+    "same_block_same_caller_opposite": 102,
+    "same_block_same_caller_one_way": 281,
+    "token0_decimals": 6,
+    "offsetting_token0": 6301.594,
+    "token0_volume": 467057.68,
+    "self_match_share_pct": 1.349
+   }
+  ],
+  "solana_reference": {
+   "priced_usd": 205189806,
+   "self_matched_usd": 86773770,
+   "self_matched_share_pct": 42.3
+  }
+ },
+ "live_robinhood_vaults": {
+  "chain": "robinhood",
+  "method": "forward-realised share price, two samples",
+  "sample_a": {
+   "block": 57074732,
+   "ts": 1788808381,
+   "v": {
+    "steakUSDG": {
+     "conv1e24": 1006215669732,
+     "totalAssets_usd": 456477770.727883
+    },
+    "ethenaUSDG": {
+     "conv1e24": 1005462612938,
+     "totalAssets_usd": 23541092.5629
+    },
+    "spUSDG": {
+     "conv1e24": 1007360880449117583303034,
+     "totalAssets_usd": 41177485.226905
+    }
+   }
+  },
+  "sample_b": {
+   "block": 57078905,
+   "ts": 1788808803,
+   "v": {
+    "steakUSDG": {
+     "conv1e24": 1006216168437,
+     "totalAssets_usd": 456280181.133771
+    },
+    "ethenaUSDG": {
+     "conv1e24": 1005462939340,
+     "totalAssets_usd": 23541100.205013
+    },
+    "spUSDG": {
+     "conv1e24": 1007361344181559932139809,
+     "totalAssets_usd": 41177504.13779
+    }
+   }
+  },
+  "rows": [
+   {
+    "vault": "steakUSDG",
+    "address": "0xbeeff033f34c046626b8d0a041844c5d1a5409dd",
+    "total_assets_usd": 456280181.133771,
+    "window_s": 422,
+    "growth": 4.956243626619283e-07,
+    "apr_pct": 3.704,
+    "apy_pct": 3.773
+   },
+   {
+    "vault": "ethenaUSDG",
+    "address": "0xbeeff0fb1dc19344a87b8479dab60a2e16160737",
+    "total_assets_usd": 23541100.205013,
+    "window_s": 422,
+    "growth": 3.2462867927129935e-07,
+    "apr_pct": 2.426,
+    "apy_pct": 2.456
+   },
+   {
+    "vault": "spUSDG",
+    "address": "0xde770c84fe66e063336b31737cfe9790f18c4087",
+    "total_assets_usd": 41177504.13779,
+    "window_s": 422,
+    "growth": 4.603439058836756e-07,
+    "apr_pct": 3.44,
+    "apy_pct": 3.5
+   }
+  ],
+  "replication": {
+   "note": "an earlier independent run of the same method gave 3.747 / 2.430 / 3.500 % APY",
+   "steakUSDG_apy_pct": 3.747,
+   "ethenaUSDG_apy_pct": 2.43,
+   "spUSDG_apy_pct": 3.5
+  }
+ }
+}

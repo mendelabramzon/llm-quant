@@ -3,6 +3,15 @@
 Narrative written from `analysis.json`, `tables.md`, `followups.md` and the spot checks in `method.md`. Numbers are
 for the window unless stated; "fees" are L2 base fees paid (the only fee on this chain).
 
+
+> **Correction (added by the [interchain study](../interchain/findings.md), same day).** Item 5's TSLA figure is
+> wrong. Re-derived independently from each of TSLA's three USDG pools across the whole window, TSLA traded
+> 354.39–356.40 against a 355.45 reference, a deviation of **+0.10%**, not +4.4%; across all 43 stocks with a
+> USDG pool, 40 are within 1% and only RCAT exceeds 2%. `orbit_scan.py` merges its two passes'
+> `stock_px_first`/`stock_px_last` with `setdefault`, so a stale first-pass price is never corrected and every
+> pool overwrites the last without volume weighting. Item 6's "269 traders" in the WETH/USDG pool counts
+> `topics[1]` of a v3 Swap, which is the calling contract, not the end user.
+
 1. **A $0.7M-per-ten-hours fee machine with a $62 cost of goods.** 3.23M user transactions (90/s, 0.101 s blocks,
    24M gas/s sustained) paid 279.2 ETH (~$696k) at a base fee of 0.30–0.44 gwei, 15× the chain's 0.02 gwei floor.
    The batch poster spent 0.025 ETH on Ethereum for the same window (1,605 batches, 4,815 blobs, blob price

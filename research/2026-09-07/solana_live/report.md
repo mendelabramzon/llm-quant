@@ -14,6 +14,13 @@ news; the numbers that matter for comparison are the fee, failure and volume com
 
 ## The interesting things
 
+> **Correction (added by the [interchain study](../interchain/findings.md), same day).** Item 8 says "USDG 8.32%
+> on Jupiter Lend"; this report's own rate table and `head_state.json` say jlUSDG pays **5.42%** on $2.92M. The
+> table is right. Item 5's unlabelled custodial system is **Relay's Solana depository**: program
+> `99vQwtBwYtrqqD9YSXbdum3KBdxPAVxYTaQ3cfnJSrN2`, vault `7uTT8Xi5…`, payout treasury `F7p3dFrj…` — the same
+> architecture this repo's Ethereum and Robinhood Chain windows show on those chains the same day.
+
+
 1. **What Solana's 1,776 non-vote TPS actually are.** Only 16% of non-vote transactions are swaps (1.03M) and 9% are
    transfers. 30% fail. About 22% (~1.4M) are single-instruction *quote posts* by proprietary market makers that move no
    tokens at all: Phoenix Eternal (Ellipsis) 362k txs from 143 payers, the top three of them 78%; HumidiFi 239k (22 payers);

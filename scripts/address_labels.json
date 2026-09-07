@@ -1,23 +1,666 @@
 {
-  "_doc": "Verified/typed address labels that OVERRIDE behavioural and memory tags in live_scan. 'kind' controls whether flow to/from the address counts as exchange flow: only kind in {exchange, exchange_deposit} does. Everything else (protocol, venue, vault, bridge, issuer, treasury, token, mev_bot) is excluded from exchange-flow and leverage-to-exchange, fixing mis-tags where a settlement contract or a token treasury looked like a CEX. 'source' records provenance: known-canonical (well-known address), blockscout-verified (verified contract name fetched this session), or behaviour-<date> (inferred, unverified).",
-  "labels": {
-    "0x9008d19f58aabd9ed0d60971565aa8510560ab41": {"label": "CoW Protocol settlement (GPv2Settlement)", "kind": "venue", "source": "known-canonical"},
-    "0xc92e8bdf79f0507f65a392b0ab4667716bfe0110": {"label": "CoW Protocol vault relayer", "kind": "venue", "source": "known-canonical"},
-    "0x000000000004444c5dc75cb358380d2e3de08a90": {"label": "Uniswap v4 PoolManager", "kind": "protocol", "source": "known-canonical"},
-    "0x62425cd6bdcb6bfe51558ea465b063486b70dc9f": {"label": "RLUSD treasury/issuer candidate", "kind": "treasury", "source": "behaviour-2026-09-07-unverified"},
-    "0x223bc79156cbb0a6d175ea6130cb382d01868df8": {"label": "StacyVault (CORE-fork MasterChef)", "kind": "vault", "source": "blockscout-verified"},
-    "0x222207e931d7bf38466c395da30e632872a98ae6": {"label": "StacyVault rewards lock", "kind": "vault", "source": "blockscout-verified"},
-    "0x1601843c5e9bc251a3272907010afa41fa18347e": {"label": "Spark ALMProxy", "kind": "protocol", "source": "blockscout-verified"},
-    "0x8a25a24ede9482c4fc0738f99611be58f1c839ab": {"label": "Spark ALM Safe", "kind": "protocol", "source": "behaviour-2026-09-07"},
-    "0x062ce42cae04c51d04e77e3d64cc8953a2296ffe": {"label": "Spark ALM relayer", "kind": "protocol", "source": "behaviour-2026-09-07"},
-    "0xe2e7a17dff93280dec073c995595155283e3c372": {"label": "Spark Savings USDT (spUSDT)", "kind": "vault", "source": "blockscout-verified"},
-    "0xb0c424116172b55cbb6dd3136f5989f7959e5b91": {"label": "Spark Blue Chip USDT Vault (sparkUSDTbc)", "kind": "vault", "source": "blockscout-verified"},
-    "0xbd0d173eeb87d57a09521c24388a12789f33ba96": {"label": "Robinhood Chain SequencerInbox", "kind": "bridge", "source": "blockscout-verified"},
-    "0xdaa526086787d9debe1d7f3ffdb1fe50cf8687f4": {"label": "Robinhood Chain batch poster", "kind": "bridge", "source": "behaviour-2026-09-07"},
-    "0x2d1f7226bd1f780af6b9a49dcc0ae00e8df4bdee": {"label": "NVDAON (Ondo tokenized NVIDIA)", "kind": "token", "source": "blockscout-verified"},
-    "0xf6b1117ec07684d3958cad8beb1b302bfd21103f": {"label": "TSLAON (Ondo tokenized Tesla)", "kind": "token", "source": "blockscout-verified"},
-    "0xc9eef266834730340a55b6cc24621b31baf55581": {"label": "SPCXON (Ondo tokenized SpaceX)", "kind": "token", "source": "blockscout-verified"},
-    "0xfedc5f4a6c38211c1338aa411018dfaf26612c08": {"label": "SPYON (Ondo tokenized SPY)", "kind": "token", "source": "blockscout-verified"},
-    "0x0fd368edd39d47823948d2cc54415dd2f151c83d": {"label": "flash-loan reward-timing harvester (StacyVault)", "kind": "mev_bot", "source": "behaviour-2026-09-07"}
+ "_doc": "Verified/typed address labels that OVERRIDE behavioural and memory tags in live_scan. 'kind' controls whether flow to/from the address counts as exchange flow: only kind in {exchange, exchange_deposit} does. Everything else (protocol, venue, vault, bridge, issuer, treasury, token, mev_bot) is excluded from exchange-flow and leverage-to-exchange, fixing mis-tags where a settlement contract or a token treasury looked like a CEX. 'source' records provenance: known-canonical (well-known address), blockscout-verified (verified contract name fetched this session), or behaviour-<date> (inferred, unverified).",
+ "labels": {
+  "0x0000000000000000000000000000000000000000": {
+   "label": "zero address (mint/burn)",
+   "kind": "token",
+   "source": "known-canonical"
+  },
+  "0x000000000000000000000000000000000000dead": {
+   "label": "burn address",
+   "kind": "token",
+   "source": "known-canonical"
+  },
+  "0x0000000000001ff3684f28c67538d4d072c22734": {
+   "label": "AllowanceHolder (0x Protocol)",
+   "kind": "protocol",
+   "source": "blockscout-verified"
+  },
+  "0x000000000004444c5dc75cb358380d2e3de08a90": {
+   "label": "Uniswap v4 PoolManager",
+   "kind": "protocol",
+   "source": "known-canonical"
+  },
+  "0x000000000022d473030f116ddee9f6b43ac78ba3": {
+   "label": "Permit2",
+   "kind": "protocol",
+   "source": "known-canonical"
+  },
+  "0x00000000009e50a7ddb7a7b0e2ee6604fd120e49": {
+   "label": "UniswapX reactor (Dutch v2)",
+   "kind": "venue",
+   "source": "known-canonical"
+  },
+  "0x0000000071727de22e5e9d8baf0edac6f37da032": {
+   "label": "ERC-4337 EntryPoint v0.7",
+   "kind": "protocol",
+   "source": "known-canonical"
+  },
+  "0x05ff6964d21e5dae3b1010d5ae0465b3c450f381": {
+   "label": "hot wallet (day study, unidentified)",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x062ce42cae04c51d04e77e3d64cc8953a2296ffe": {
+   "label": "Spark ALM relayer",
+   "kind": "protocol",
+   "source": "behaviour-2026-09-07"
+  },
+  "0x0889e9327b98d7d1be3c301a4585ff3330502c9a": {
+   "label": "MainnetSettler",
+   "kind": "venue",
+   "source": "blockscout-verified",
+   "usd_touched": 51817081
+  },
+  "0x0a869d79a7052c7f1b55a8ebabbea3421f0d07d5": {
+   "label": "Kraken 6",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x0a992d191deec32afe36203ad87d7d289a738f81": {
+   "label": "Circle CCTP MessageTransmitter v1",
+   "kind": "bridge",
+   "source": "known-canonical"
+  },
+  "0x0d0707963952f2fba59dd06f2b425ace40b492fe": {
+   "label": "Gate.io",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x0fd368edd39d47823948d2cc54415dd2f151c83d": {
+   "label": "flash-loan reward-timing harvester (StacyVault)",
+   "kind": "mev_bot",
+   "source": "behaviour-2026-09-07"
+  },
+  "0x111111125421ca6dc452d289314280a0f8842a65": {
+   "label": "1inch AggregationRouterV6",
+   "kind": "venue",
+   "source": "known-canonical"
+  },
+  "0x1111111254eeb25477b68fb85ed929f73a960582": {
+   "label": "1inch AggregationRouterV5",
+   "kind": "venue",
+   "source": "known-canonical"
+  },
+  "0x147bde4f997f0d4c7544ed0c55eacf1e5e6bf9c4": {
+   "label": "LayerZero OFT adapter (USDG)",
+   "kind": "bridge",
+   "source": "known-canonical"
+  },
+  "0x1522900b6dafac587d499a862861c0869be6e428": {
+   "label": "Bitstamp 4",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x1601843c5e9bc251a3272907010afa41fa18347e": {
+   "label": "Spark ALMProxy",
+   "kind": "protocol",
+   "source": "blockscout-verified"
+  },
+  "0x1ab4973a48dc892cd9971ece8e01dcc7688f8f23": {
+   "label": "Bitget",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x1db92e2eebc8e0c075a02bea49a2935bcd2dfcf4": {
+   "label": "Sweeper (via GnosisSafeProxy) \u2014 deposit sweeper; the 'Bybit 2' identity is unproven",
+   "kind": "exchange_deposit",
+   "source": "blockscout-verified"
+  },
+  "0x21a31ee1afc51d94c2efccaa2092ad1028285549": {
+   "label": "Binance 15",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x222207e931d7bf38466c395da30e632872a98ae6": {
+   "label": "StacyVault rewards lock",
+   "kind": "vault",
+   "source": "blockscout-verified"
+  },
+  "0x223bc79156cbb0a6d175ea6130cb382d01868df8": {
+   "label": "StacyVault (CORE-fork MasterChef)",
+   "kind": "vault",
+   "source": "blockscout-verified"
+  },
+  "0x23878914efe38d27c4d67ab83ed1b93a74d4086a": {
+   "label": "Aave v3 USDT",
+   "kind": "token",
+   "source": "blockscout-verified",
+   "usd_touched": 43769713
+  },
+  "0x267be1c1d684f78cb4f6a176c4911b741e4ffdc0": {
+   "label": "Kraken 5",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x2744dfd9898f0babbc570cc594bbbc84b487a22b": {
+   "label": "SingleOwnerMSCA (via ERC1967Proxy)",
+   "kind": "treasury",
+   "source": "blockscout-verified",
+   "usd_touched": 131713317
+  },
+  "0x28b5a0e9c621a5badaa536219b3a228c8168cf5d": {
+   "label": "Circle CCTP TokenMessenger v2",
+   "kind": "bridge",
+   "source": "known-canonical"
+  },
+  "0x28c6c06298d514db089934071355e5743bf21d60": {
+   "label": "Binance 14",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x2910543af39aba0cd09dbb2d50200b3e800a63d2": {
+   "label": "Kraken 4",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x2b5634c42055806a59e9107ed44d43c426e58258": {
+   "label": "KuCoin 1",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x2d1f7226bd1f780af6b9a49dcc0ae00e8df4bdee": {
+   "label": "NVDAON (Ondo tokenized NVIDIA)",
+   "kind": "token",
+   "source": "blockscout-verified"
+  },
+  "0x3154cf16ccdb4c6d922629664174b904d80f2c35": {
+   "label": "Base L1StandardBridge",
+   "kind": "bridge",
+   "source": "known-canonical"
+  },
+  "0x3225737a9bbb6473cb4a45b7244aca2befdb276a": {
+   "label": "DaiUsds",
+   "kind": "protocol",
+   "source": "blockscout-verified",
+   "usd_touched": 61508399
+  },
+  "0x38aaef3782910bdd9ea3566c839788af6ff9b200": {
+   "label": "SingleOwnerMSCA (via ERC1967Proxy)",
+   "kind": "treasury",
+   "source": "blockscout-verified",
+   "usd_touched": 199977530
+  },
+  "0x3afdc9bca9213a35503b077a6072f3d0d5ab0840": {
+   "label": "Compound v3 USDT (Comet)",
+   "kind": "protocol",
+   "source": "known-canonical"
+  },
+  "0x3cd751e6b0078be393132286c442345e5dc49699": {
+   "label": "Coinbase 4",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x3fc91a3afd70395cd496c647d5a6cc9d4b2b7fad": {
+   "label": "Uniswap Universal Router",
+   "kind": "venue",
+   "source": "known-canonical"
+  },
+  "0x40b38765696e3d5d8d9d834d8aad4bb6e418e489": {
+   "label": "Robinhood 2",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x4337084d9e255ff0702461cf8895ce9e3b5ff108": {
+   "label": "ERC-4337 EntryPoint v0.8",
+   "kind": "protocol",
+   "source": "known-canonical"
+  },
+  "0x445f16314284b43dfa1fd3cd77b9dea4a1bebd97": {
+   "label": "SingleOwnerMSCA (via ERC1967Proxy)",
+   "kind": "treasury",
+   "source": "blockscout-verified",
+   "usd_touched": 51374316
+  },
+  "0x4976a4a02f38326660d17bf34b431dc6e2eb2327": {
+   "label": "Binance 20",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x4cd00e387622c35bddb9b4c962c136462338bc31": {
+   "label": "RelayDepository (Relay bridge deposit contract)",
+   "kind": "bridge",
+   "source": "blockscout-verified"
+  },
+  "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8": {
+   "label": "Aave v3 WETH",
+   "kind": "token",
+   "source": "blockscout-verified",
+   "usd_touched": 290852336
+  },
+  "0x503828976d22510aad0201ac7ec88293211d23da": {
+   "label": "Coinbase 2",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x5041ed759dd4afc3a72b8192c143f72f4724081a": {
+   "label": "OKX 3",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x52aa899454998be5b000ad077a46bbe360f4e497": {
+   "label": "FluidLiquidityProxy",
+   "kind": "protocol",
+   "source": "blockscout-verified",
+   "usd_touched": 53195054
+  },
+  "0x55fe002aeff02f77364de339a1292923a15844b8": {
+   "label": "Coinbase 11",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x56eddb7aa87536c09ccc2793473599fd21a8b17f": {
+   "label": "Binance 17",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x5754284f345afc66a98fbb0a0afe71e0f007b949": {
+   "label": "Tether treasury",
+   "kind": "issuer",
+   "source": "known-canonical"
+  },
+  "0x5a52e96bacdabb82fd05763e25335261b270efcb": {
+   "label": "Binance 28",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x5c985e89dde482efe97ea9f1950ad149eb73829b": {
+   "label": "HTX 5",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x5f65f7b609678448494de4c87521cdf6cef1e932": {
+   "label": "Gemini 4",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x6131b5fae19ea4f9d964eac0408e4408b66337b5": {
+   "label": "KyberSwap MetaAggregationRouterV2",
+   "kind": "venue",
+   "source": "known-canonical"
+  },
+  "0x62425cd6bdcb6bfe51558ea465b063486b70dc9f": {
+   "label": "RLUSD treasury/issuer candidate",
+   "kind": "treasury",
+   "source": "behaviour-2026-09-07-unverified"
+  },
+  "0x6262998ced04146fa42253a5c0af90ca02dfd2a3": {
+   "label": "Crypto.com 1",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x66a9893cc07d91d95644aedd05d03f95e1dba8af": {
+   "label": "Uniswap Universal Router v2",
+   "kind": "venue",
+   "source": "known-canonical"
+  },
+  "0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45": {
+   "label": "Uniswap v3 SwapRouter02",
+   "kind": "venue",
+   "source": "known-canonical"
+  },
+  "0x6c96de32cea08842dcc4058c14d3aaad7fa41dee": {
+   "label": "LayerZero OFT adapter (USDT0)",
+   "kind": "bridge",
+   "source": "known-canonical"
+  },
+  "0x6cbe98eb2cdf0bc2e52a9b3ed014cd1740a4b30c": {
+   "label": "OffchainBtcVault (via ERC1967Proxy)",
+   "kind": "vault",
+   "source": "blockscout-verified",
+   "usd_touched": 799851990
+  },
+  "0x6cc5f688a315f3dc28a7781717a9a798a59fda7b": {
+   "label": "OKX 2",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x6fc82a5fe25a5cdb58bc74600a40a69c065263f8": {
+   "label": "Gemini 2",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x71660c4005ba85c37ccec55d0c4493e66fe775d3": {
+   "label": "Coinbase 1",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x72a53cdbbcc1b9efa39c834a540550e23463aacb": {
+   "label": "Crypto.com 2",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x75e89d5979e4f6fba9f97c104c2f0afb3f1dcb88": {
+   "label": "MEXC",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x77134cbc06cb00b66f4c7e623d5fdbf6777635ec": {
+   "label": "Bitfinex 2",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x7a250d5630b4cf539739df2c5dacb4c659f2488d": {
+   "label": "Uniswap v2 Router 02",
+   "kind": "venue",
+   "source": "known-canonical"
+  },
+  "0x8292bb45bf1ee4d140127049757c2e0ff06317ed": {
+   "label": "RLUSD token (Ripple USD)",
+   "kind": "token",
+   "source": "known-canonical"
+  },
+  "0x8315177ab297ba92a06054ce80a67ed4dbd7ed3a": {
+   "label": "Arbitrum One bridge",
+   "kind": "bridge",
+   "source": "known-canonical"
+  },
+  "0x8484ef722627bf18ca5ae6bcf031c23e6e922b30": {
+   "label": "Polygon PoS ERC20 bridge",
+   "kind": "bridge",
+   "source": "known-canonical"
+  },
+  "0x852f79dad4e6c44a89be189dc3ecf51b3c5273c8": {
+   "label": "InstaAccountV2",
+   "kind": "protocol",
+   "source": "etherscan-verified",
+   "usd_touched": 54097849
+  },
+  "0x876eabf441b2ee5b5b0554fd502a8e0600950cfa": {
+   "label": "Bitfinex",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2": {
+   "label": "Aave v3 Pool",
+   "kind": "protocol",
+   "source": "known-canonical"
+  },
+  "0x889edc2edab5f40e902b864ad4d7ade8e412f9b1": {
+   "label": "Lido withdrawal queue",
+   "kind": "protocol",
+   "source": "known-canonical"
+  },
+  "0x8a25a24ede9482c4fc0738f99611be58f1c839ab": {
+   "label": "Spark ALM Safe",
+   "kind": "protocol",
+   "source": "behaviour-2026-09-07"
+  },
+  "0x9008d19f58aabd9ed0d60971565aa8510560ab41": {
+   "label": "CoW Protocol settlement (GPv2Settlement)",
+   "kind": "venue",
+   "source": "known-canonical"
+  },
+  "0x9696f59e4d72e237be84ffd425dcad154bf96976": {
+   "label": "Binance 18",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x98ec059dc3adfbdd63429454aeb0c990fba4a128": {
+   "label": "OKX",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0x99c9fc46f92e8a1c0dec1b1747d010903e884be1": {
+   "label": "Optimism gateway (L1StandardBridge)",
+   "kind": "bridge",
+   "source": "known-canonical"
+  },
+  "0xa0c68c638235ee32657e8f720a23cec1bfc77c77": {
+   "label": "Polygon PoS RootChainManager",
+   "kind": "bridge",
+   "source": "known-canonical"
+  },
+  "0xa17581a9e3356d9a858b789d68b4d866e593ae94": {
+   "label": "Compound v3 WETH (Comet)",
+   "kind": "protocol",
+   "source": "known-canonical"
+  },
+  "0xa188eec8f81263234da3622a406892f3d630f98c": {
+   "label": "UsdsPsmWrapper",
+   "kind": "protocol",
+   "source": "blockscout-verified",
+   "usd_touched": 110047862
+  },
+  "0xa9d1e08c7793af67e9d92fe308d5697fb81d3e43": {
+   "label": "Coinbase 10",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0xaa8ba7d4611437141192e7ceced531bc0a133efb": {
+   "label": "hot wallet (day study, unidentified)",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0xab5c66752a9e8167967685f1450532fb96d5d24f": {
+   "label": "HTX 1",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0xae7ab96520de3a18e5e111b5eaab095312d7fe84": {
+   "label": "Lido stETH",
+   "kind": "token",
+   "source": "known-canonical"
+  },
+  "0xb0c424116172b55cbb6dd3136f5989f7959e5b91": {
+   "label": "Spark Blue Chip USDT Vault (sparkUSDTbc)",
+   "kind": "vault",
+   "source": "blockscout-verified"
+  },
+  "0xb40dc920dfc7bd7d68322a0e1b8a05557adbec54": {
+   "label": "StBTC (via ERC1967Proxy)",
+   "kind": "token",
+   "source": "blockscout-verified",
+   "usd_touched": 799851948
+  },
+  "0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc": {
+   "label": "UniswapV2Pair",
+   "kind": "venue",
+   "source": "blockscout-verified",
+   "usd_touched": 526770763
+  },
+  "0xb5d85cbf7cb3ee0d56b3bb207d5fc4b82f43f511": {
+   "label": "Coinbase 5",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0xb8a451107a9f87fde481d4d686247d6e43ed715e": {
+   "label": "PlasmaVault",
+   "kind": "vault",
+   "source": "blockscout-verified",
+   "usd_touched": 47656775
+  },
+  "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f": {
+   "label": "RelayRouterV3",
+   "kind": "bridge",
+   "source": "etherscan-verified"
+  },
+  "0xba12222222228d8ba445958a75a0704d566bf2c8": {
+   "label": "Balancer v2 Vault",
+   "kind": "protocol",
+   "source": "known-canonical"
+  },
+  "0xba826fec90cefdf6706858e5fbafcb27a290fbe0": {
+   "label": "Upbit",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0xbb2b8038a1640196fbe3e38816f3e67cba72d940": {
+   "label": "UniswapV2Pair",
+   "kind": "venue",
+   "source": "blockscout-verified",
+   "usd_touched": 527828043
+  },
+  "0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb": {
+   "label": "Morpho Blue",
+   "kind": "protocol",
+   "source": "known-canonical"
+  },
+  "0xbd0d173eeb87d57a09521c24388a12789f33ba96": {
+   "label": "Robinhood Chain SequencerInbox",
+   "kind": "bridge",
+   "source": "known-canonical"
+  },
+  "0xbd3fa81b58ba92a82136038b25adec7066af3155": {
+   "label": "Circle CCTP TokenMessenger v1",
+   "kind": "bridge",
+   "source": "known-canonical"
+  },
+  "0xbe0eb53f46cd790cd13851d5eff43d12404d33e8": {
+   "label": "Binance 7",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2": {
+   "label": "Wrapped Ether (WETH9)",
+   "kind": "token",
+   "source": "known-canonical"
+  },
+  "0xc13e21b648a5ee794902342038ff3adab66be987": {
+   "label": "SparkLend Pool",
+   "kind": "protocol",
+   "source": "known-canonical"
+  },
+  "0xc395d150e71378b47a1b8e9de0c1a83b75a08324": {
+   "label": "AllocatorBuffer",
+   "kind": "treasury",
+   "source": "blockscout-verified",
+   "usd_touched": 91400225
+  },
+  "0xc3d688b66703497daa19211eedff47f25384cdc3": {
+   "label": "Compound v3 USDC (Comet)",
+   "kind": "protocol",
+   "source": "known-canonical"
+  },
+  "0xc92e8bdf79f0507f65a392b0ab4667716bfe0110": {
+   "label": "CoW Protocol vault relayer",
+   "kind": "venue",
+   "source": "known-canonical"
+  },
+  "0xc9eef266834730340a55b6cc24621b31baf55581": {
+   "label": "SPCXON (Ondo tokenized SpaceX)",
+   "kind": "token",
+   "source": "blockscout-verified"
+  },
+  "0xccc88a9d1b4ed6b0eaba998850414b24f1c315be": {
+   "label": "RelayApprovalProxyV3",
+   "kind": "bridge",
+   "source": "etherscan-verified"
+  },
+  "0xcfc6d9bd7411962bfe7145451a7ef71a24b6a7a2": {
+   "label": "DepositAdapter (via UUPSProxy)",
+   "kind": "protocol",
+   "source": "blockscout-verified",
+   "usd_touched": 67706503
+  },
+  "0xd24400ae8bfebb18ca49be86258a3c749cf46853": {
+   "label": "Gemini 1",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0xd6216fc19db775df9774a6e33526131da7d19a2c": {
+   "label": "KuCoin 6",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0xdaa526086787d9debe1d7f3ffdb1fe50cf8687f4": {
+   "label": "Robinhood Chain batch poster",
+   "kind": "bridge",
+   "source": "behaviour-2026-09-07"
+  },
+  "0xddfabcdc4d8ffc6d5beaf154f18b746a27f6db3f": {
+   "label": "Coinbase 3",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0xdef1c0ded9bec7f1a1670819833240f027b25eff": {
+   "label": "0x Exchange Proxy",
+   "kind": "venue",
+   "source": "known-canonical"
+  },
+  "0xdfd5293d8e347dfe59e90efd55b2956a1343963d": {
+   "label": "Binance 16",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0xe2e7a17dff93280dec073c995595155283e3c372": {
+   "label": "Spark Savings USDT (spUSDT)",
+   "kind": "vault",
+   "source": "blockscout-verified"
+  },
+  "0xe592427a0aece92de3edee1f18e0157c05861564": {
+   "label": "Uniswap v3 SwapRouter",
+   "kind": "venue",
+   "source": "known-canonical"
+  },
+  "0xe7df13b8e3d6740fe17cbe928c7334243d86c92f": {
+   "label": "AToken (via InitializableImmutableAdminUpgradeabilityProxy)",
+   "kind": "token",
+   "source": "blockscout-verified",
+   "usd_touched": 64028868
+  },
+  "0xe853c56864a2ebe4576a807d26fdc4a0ada51919": {
+   "label": "Kraken 3",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0xe93381fb4c4f14bda253907b18fad305d799241a": {
+   "label": "HTX 10",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0xeb2629a2734e272bcc07bda959863f316f4bd4cf": {
+   "label": "Coinbase 6",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0xee7ae85f2fe2239e27d9c1e23fffe168d63b4055": {
+   "label": "SingleOwnerMSCA (via ERC1967Proxy) \u2014 USDC smart-account rail, not an exchange deposit",
+   "kind": "treasury",
+   "source": "blockscout-verified"
+  },
+  "0xef4cb7e87f212f128f0b24cf35861e52b3c78a6a": {
+   "label": "MorphoMarketV1AdapterV2",
+   "kind": "protocol",
+   "source": "blockscout-verified",
+   "usd_touched": 57930309
+  },
+  "0xf6b1117ec07684d3958cad8beb1b302bfd21103f": {
+   "label": "TSLAON (Ondo tokenized Tesla)",
+   "kind": "token",
+   "source": "blockscout-verified"
+  },
+  "0xf6e72db5454dd049d0788e411b06cfaf16853042": {
+   "label": "DssLitePsm",
+   "kind": "protocol",
+   "source": "blockscout-verified",
+   "usd_touched": 63022884
+  },
+  "0xf70da97812cb96acdf810712aa562db8dfa3dbef": {
+   "label": "Relay solver / USDG inventory wallet (takes 100% of RelayDepository payouts on Ethereum and Robinhood Chain; Paxos mint-and-redeem counterparty on both)",
+   "kind": "bridge",
+   "source": "etherscan-verified"
+  },
+  "0xf89d7b9c864f589bbf53a82105107622b35eaa40": {
+   "label": "Bybit",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0xf977814e90da44bfa03b6295a0616a897441acec": {
+   "label": "Binance 8",
+   "kind": "exchange",
+   "source": "model-memory"
+  },
+  "0xfd78ee919681417d192449715b2594ab58f5d002": {
+   "label": "TokenMinterV2",
+   "kind": "bridge",
+   "source": "blockscout-verified",
+   "usd_touched": 242953959
+  },
+  "0xfedc5f4a6c38211c1338aa411018dfaf26612c08": {
+   "label": "SPYON (Ondo tokenized SPY)",
+   "kind": "token",
+   "source": "blockscout-verified"
   }
+ }
 }

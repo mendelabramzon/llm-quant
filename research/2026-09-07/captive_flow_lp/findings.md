@@ -37,6 +37,16 @@ LPs **3.8%**. The thin v4 pools pay a *marginal* concentrated LP **14–16%** fo
 risk. The gap is pure underprovisioning: the v4 pools win the small clips on their sub-basis-point fee,
 but almost nobody has shown up to provide their liquidity yet.
 
+> **Follow-up (added by the [interchain study](../interchain/findings.md), same day).** The desk
+> `0xf70da978…` is **Relay's USDG solver**, not a Global Dollar Network partner farming the reserve rebate: it
+> takes 100% of the RelayDepository's payouts on both Ethereum and Robinhood Chain and is a Paxos
+> mint-and-redeem counterparty on both. The taker analysis below stands — a $1↔$1 conversion still carries no
+> price information — but two things change. The "flow durability" risk below prices a *future* reroute to
+> direct mint/redeem; the desk is already doing that in parallel, at larger size than its pool activity, so the
+> pool is its marginal top-up venue. And its USDG book is close to flat over the window (+$58k on Robinhood
+> Chain, +$482k on Ethereum against tens of millions of turnover), so pool volume tracks gross cross-chain
+> settlement churn. Monitor Relay depository throughput, not USDG issuance or a rebate programme.
+
 **The flow is captive and non-toxic.** In the busier v4 pool one address,
 [`0xf70da978…`](https://etherscan.io/address/0xf70da97812cb96acdf810712aa562db8dfa3dbef) — the USDG
 desk identified in the day study — is **62% of volume and is not an LP**. It routes USDC→USDG through a

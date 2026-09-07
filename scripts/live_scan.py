@@ -21,6 +21,9 @@ Commands (run from the repository root with `uv run --with pycryptodome python s
   render   --out ...                                               analysis.json + head_state.json + insights.md -> report.md
   live     --out ...                                               tail the chain, re-analyze the trailing window, append live_log.md
   midnight --out ...                                               targeted log queries for the 23:30-00:20 UTC balance routine
+  verify   --out ... [--mechanisms]                                re-derive the headline numbers from raw through an
+                                                                   independent path; fails loudly on drift
+  detect   --out ...                                               run every registered detector over the window
 """
 import argparse
 import collections
@@ -28,6 +31,7 @@ import datetime as dt
 import json
 import math
 import statistics
+import sys
 import time
 from pathlib import Path
 
@@ -320,19 +324,34 @@ class Prices:
 # Address book
 # ----------------------------------------------------------------------------------------------------------------------
 def load_address_book():
-    """hot wallets and deposit sinks derived from the day study's behaviour profiles, plus memory labels."""
+    """hot wallets and deposit sinks derived from the day study's behaviour profiles, plus memory labels.
+
+    The deposit-sink rule used to read `sent == 0`, meaning "originated no transactions". Every *contract* satisfies that
+    structurally, because contracts do not originate transactions, so the rule reduced to "a busy contract" and tagged 25
+    addresses of which 22 forwarded value — among them the CoW settlement contract, the Uniswap Universal Router and a
+    LI.FI-style bridge aggregator. Their flow was then counted as exchange flow and their receipt of borrow proceeds as
+    leverage-to-exchange.
+
+    A deposit sink is defined by *not forwarding*, so the rule now tests that directly: many distinct senders, at most a
+    couple of distinct recipients, and a large in/out fan ratio. That is a candidate generator, not an identity claim, so
+    every entry it produces is tagged `behaviour-day-study` and sits at the weakest provenance tier.
+    """
     book = {}
     if DAY_PROFILES.exists():
         prof = json.load(__import__('gzip').open(DAY_PROFILES, 'rt'))
         for a, v in prof.items():
             if a in NOT_EXCHANGES or v.get('pool_swaps'):
                 continue
+            out_to = v.get('out_to_distinct', 0)
             if v['sent'] >= 100 and v['to_distinct'] >= 50 and float(v['big_usd']) >= 5e6:
-                book[a] = {'tag': 'hot_wallet', 'label': MEMORY_LABELS.get(a, 'hot wallet (behaviour, day study)')}
-            elif v['in_from_distinct'] >= 200 and v['sent'] == 0 and float(v['big_usd']) >= 20e6:
-                book[a] = {'tag': 'deposit_sink', 'label': MEMORY_LABELS.get(a, 'deposit sink (behaviour, day study)')}
+                book[a] = {'tag': 'hot_wallet', 'kind': 'exchange', 'source': 'behaviour-day-study',
+                           'label': MEMORY_LABELS.get(a, 'hot wallet (behaviour, day study)')}
+            elif (v['in_from_distinct'] >= 200 and out_to <= 2 and v['in_from_distinct'] >= 50 * max(out_to, 1)
+                  and float(v['big_usd']) >= 20e6):
+                book[a] = {'tag': 'deposit_sink', 'kind': 'exchange_deposit', 'source': 'behaviour-day-study',
+                           'label': MEMORY_LABELS.get(a, 'deposit sink (behaviour, day study)')}
     for a, l in MEMORY_LABELS.items():
-        book.setdefault(a, {'tag': 'hot_wallet', 'label': l + ' (memory)'})
+        book.setdefault(a, {'tag': 'hot_wallet', 'kind': 'exchange', 'source': 'model-memory', 'label': l + ' (memory)'})
         if a in MEMORY_LABELS and '(memory)' not in book[a]['label'] and 'day study' not in book[a]['label']:
             book[a]['label'] = l + ' (memory)'
     # verified/typed overlay (scripts/address_labels.json): overrides behavioural + memory tags and carries a `kind`.
@@ -342,10 +361,17 @@ def load_address_book():
             vl = json.loads(VERIFIED_LABELS.read_text()).get('labels', {})
         except Exception:
             vl = {}
+        import labels as _labels
         for a, v in vl.items():
             a = a.lower()
-            kind = v.get('kind')
-            book[a] = {'tag': KIND_TAG.get(kind, 'labelled'), 'label': '%s (%s)' % (v.get('label', a), v.get('source', 'verified')), 'kind': kind}
+            kind, src = v.get('kind'), v.get('source', 'verified')
+            old = book.get(a)
+            # A registry entry wins unless the book already holds a *stronger* claim, so a behaviour-tier row cannot
+            # overwrite a verified one. Every entry keeps its source, which is what lets `verify` report the band.
+            if old and _labels.tier_rank(old.get('source')) < _labels.tier_rank(src):
+                continue
+            book[a] = {'tag': KIND_TAG.get(kind, 'labelled'), 'kind': kind, 'source': src,
+                       'label': '%s (%s)' % (v.get('label', a), src)}
     return book
 
 
@@ -1708,9 +1734,25 @@ def show(args):
             print('  %4d %-16s %s %s' % (hx(l['logIndex']), name, short(a) if name != 'Transfer' else '', extra))
 
 
+def verify_cmd(args):
+    """Re-derive the headline numbers from raw through an independent path and assert the mechanism claims."""
+    import subprocess
+    cmd = [sys.executable, str(ROOT / 'scripts' / 'verify.py'), '--out', str(args.out)]
+    if args.mechanisms:
+        cmd.append('--mechanisms')
+    raise SystemExit(subprocess.call(cmd))
+
+
+def detect_cmd(args):
+    """Run every registered detector over the window and write detectors.json + detectors.md."""
+    import subprocess
+    raise SystemExit(subprocess.call([sys.executable, str(ROOT / 'scripts' / 'detectors' / 'run.py'),
+                                      '--out', str(args.out)]))
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument('command', choices=['analyze', 'head', 'render', 'live', 'midnight', 'show'])
+    p.add_argument('command', choices=['analyze', 'head', 'render', 'live', 'midnight', 'show', 'verify', 'detect'])
     p.add_argument('hashes', nargs='*')
     p.add_argument('--out', default=str(ROOT / 'research' / '2026-09-06' / 'live'))
     p.add_argument('--first', type=int)
@@ -1722,8 +1764,10 @@ def main():
     p.add_argument('--max-minutes', type=float, default=0)
     p.add_argument('--date', default='2026-09-06', help='midnight: UTC date whose 00:00 is checked')
     p.add_argument('--max-credits', type=int, default=6_000_000)
+    p.add_argument('--mechanisms', action='store_true', help='verify: also run the source-backed mechanism assertions')
     args = p.parse_args()
-    {'analyze': analyze, 'head': head_state, 'render': render, 'live': live, 'midnight': midnight, 'show': show}[args.command](args)
+    {'analyze': analyze, 'head': head_state, 'render': render, 'live': live, 'midnight': midnight, 'show': show,
+     'verify': verify_cmd, 'detect': detect_cmd}[args.command](args)
 
 
 if __name__ == '__main__':

@@ -8,6 +8,15 @@ DEX/AA/bridge event were collected; the rest of the logs were counted. Method, e
 [method.md](method.md); the deterministic tables are in [tables.md](tables.md), the external checks (L1 cost, fee
 accounts, registry, identities) in [followups.md](followups.md), the narrative in [insights.md](insights.md).
 
+
+> **Correction (added by the [interchain study](../interchain/findings.md), same day).** Item 5's TSLA figure is
+> wrong. Re-derived independently from each of TSLA's three USDG pools across the whole window, TSLA traded
+> 354.39–356.40 against a 355.45 reference, a deviation of **+0.10%**, not +4.4%; across all 43 stocks with a
+> USDG pool, 40 are within 1% and only RCAT exceeds 2%. `orbit_scan.py` merges its two passes'
+> `stock_px_first`/`stock_px_last` with `setdefault`, so a stale first-pass price is never corrected and every
+> pool overwrites the last without volume weighting. Item 6's "269 traders" in the WETH/USDG pool counts
+> `topics[1]` of a v3 Swap, which is the calling contract, not the end user.
+
 ## Headline
 
 | | |

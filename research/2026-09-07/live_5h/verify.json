@@ -1,0 +1,133 @@
+{
+ "window": "research/2026-09-07/live_5h",
+ "checks": [
+  {
+   "check": "blocks analysed",
+   "recomputed": 1493,
+   "analysis": 1493,
+   "ok": true,
+   "tolerance": 0.0,
+   "note": ""
+  },
+  {
+   "check": "transactions",
+   "recomputed": 365859,
+   "analysis": 365859,
+   "ok": true,
+   "tolerance": 0.0,
+   "note": ""
+  },
+  {
+   "check": "logs",
+   "recomputed": 1233959,
+   "analysis": 1233959,
+   "ok": true,
+   "tolerance": 0.0,
+   "note": ""
+  },
+  {
+   "check": "USDC minted (USD, from the zero address)",
+   "recomputed": 25166122,
+   "analysis": 25168937,
+   "ok": true,
+   "tolerance": 0.01,
+   "note": ""
+  },
+  {
+   "check": "USDC burned (USD, to the zero address)",
+   "recomputed": 34696266,
+   "analysis": 34700148,
+   "ok": true,
+   "tolerance": 0.01,
+   "note": ""
+  },
+  {
+   "check": "exchange net flow, stables (USD)",
+   "recomputed": -24835073,
+   "analysis": -24835074,
+   "ok": true,
+   "tolerance": 0.03,
+   "note": ""
+  },
+  {
+   "check": "exchange net flow, ETH (USD)",
+   "recomputed": 12809668,
+   "analysis": 12809668,
+   "ok": true,
+   "tolerance": 0.03,
+   "note": ""
+  },
+  {
+   "check": "exchange gross in, USDC (USD)",
+   "recomputed": 90892393,
+   "analysis": 90892393,
+   "ok": true,
+   "tolerance": 0.03,
+   "note": ""
+  },
+  {
+   "check": "leverage-to-exchange (USD followed to a CEX)",
+   "recomputed": 277268,
+   "analysis": 277268,
+   "ok": true,
+   "tolerance": 0.05,
+   "note": "replays the proceeds walk over an independently decoded transfer stream"
+  },
+  {
+   "check": "largest CCTP send: USDC -> Polygon (USD)",
+   "recomputed": 6867431,
+   "analysis": 6868199,
+   "ok": true,
+   "tolerance": 0.02,
+   "note": ""
+  },
+  {
+   "check": "gas requested by the top target 0xdac17f95",
+   "recomputed": 8971678965,
+   "analysis": 8971678965,
+   "ok": true,
+   "tolerance": 0.0,
+   "note": ""
+  },
+  {
+   "check": "top gas target is the same address",
+   "recomputed": "0xdac17f958d",
+   "analysis": "0xdac17f958d",
+   "ok": true,
+   "tolerance": 0,
+   "note": ""
+  },
+  {
+   "check": "widest Aave/Spark borrow-rate gap (USDT, pp)",
+   "recomputed": 2.782,
+   "analysis": 2.782,
+   "ok": true,
+   "tolerance": 0.05,
+   "note": ""
+  }
+ ],
+ "label_band": [
+  {
+   "min_tier": "blockscout-verified",
+   "exchange_addresses": 1,
+   "stables_net_usd": 0,
+   "eth_net_usd": 0
+  },
+  {
+   "min_tier": "model-memory",
+   "exchange_addresses": 46,
+   "stables_net_usd": 91622498,
+   "eth_net_usd": 19950812
+  },
+  {
+   "min_tier": "behaviour",
+   "exchange_addresses": 96,
+   "stables_net_usd": -24835073,
+   "eth_net_usd": 12809668
+  }
+ ],
+ "mechanisms": [],
+ "all_ok": true,
+ "failures": 0,
+ "seconds": 7.2
+}

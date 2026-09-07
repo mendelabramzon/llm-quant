@@ -1,0 +1,86 @@
+{
+ "registry_size": 176,
+ "by_tier": {
+  "known-canonical": 41,
+  "model-memory": 46,
+  "behaviour": 57,
+  "blockscout-verified": 31,
+  "etherscan-verified": 1
+ },
+ "by_kind": {
+  "token": 13,
+  "protocol": 22,
+  "venue": 15,
+  "exchange": 94,
+  "bridge": 13,
+  "mev_bot": 1,
+  "exchange_deposit": 5,
+  "vault": 6,
+  "treasury": 6,
+  "issuer": 1
+ },
+ "invalid_kind": [],
+ "contradictions": [
+  {
+   "address": "0x1522900b6dafac587d499a862861c0869be6e428",
+   "tagged": "exchange",
+   "label": "Bitstamp 4",
+   "source": "model-memory",
+   "resolves_to": null,
+   "via": "blockscout-verified"
+  },
+  {
+   "address": "0x5f65f7b609678448494de4c87521cdf6cef1e932",
+   "tagged": "exchange",
+   "label": "Gemini 4",
+   "source": "model-memory",
+   "resolves_to": null,
+   "via": "blockscout-verified"
+  },
+  {
+   "address": "0x6fc82a5fe25a5cdb58bc74600a40a69c065263f8",
+   "tagged": "exchange",
+   "label": "Gemini 2",
+   "source": "model-memory",
+   "resolves_to": null,
+   "via": "blockscout-verified"
+  },
+  {
+   "address": "0xa9d1e08c7793af67e9d92fe308d5697fb81d3e43",
+   "tagged": "exchange",
+   "label": "Coinbase 10",
+   "source": "model-memory",
+   "resolves_to": null,
+   "via": "blockscout-verified"
+  }
+ ],
+ "identity_review": [
+  {
+   "address": "0x1db92e2eebc8e0c075a02bea49a2935bcd2dfcf4",
+   "tagged": "exchange_deposit",
+   "label": "Sweeper (via GnosisSafeProxy) \u2014 deposit sweeper; the 'Bybit 2' identity is unproven",
+   "source": "blockscout-verified",
+   "resolves_to": "Sweeper",
+   "via": "blockscout-verified"
+  },
+  {
+   "address": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+   "tagged": "exchange_deposit",
+   "label": "deposit sink (behaviour, day study)",
+   "source": "behaviour-day-study",
+   "resolves_to": "RelayDepository",
+   "via": "blockscout-verified"
+  },
+  {
+   "address": "0x0000000000001ff3684f28c67538d4d072c22734",
+   "tagged": "exchange_deposit",
+   "label": "deposit sink (behaviour, day study)",
+   "source": "behaviour-day-study",
+   "resolves_to": "AllowanceHolder",
+   "via": "blockscout-verified"
+  }
+ ],
+ "unverified_exchange_tags": 98,
+ "exchange_tags": 99,
+ "checked": 99
+}
