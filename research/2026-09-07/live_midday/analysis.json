@@ -6644,8 +6644,8 @@
       "block": 25925413,
       "to": "0x8f10b468b06c6fd214b65f87778827f7d113f996",
       "usd": 2988351,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "router or solver (shape: pass-through, 136 txs, 70% flat, 120 counterparties, $215M gross) (behaviour-2026-09-08-fingerprint)",
       "forwarded_to_exchange": null,
       "tx": "0xed12109289441550c06f2e87da7cc9a72bd06a536ad726be543a200e794e1f1c"
      },
@@ -7285,8 +7285,8 @@
       "block": 25925396,
       "to": "0x8f10b468b06c6fd214b65f87778827f7d113f996",
       "usd": 250000,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "router or solver (shape: pass-through, 136 txs, 70% flat, 120 counterparties, $215M gross) (behaviour-2026-09-08-fingerprint)",
       "forwarded_to_exchange": null,
       "tx": "0xb2587260fe683ef72ff5f1c6b718163339329cd5028ca5de7de760f3195b8f19"
      },
@@ -7596,9 +7596,9 @@
     "net": -6207962
    },
    "USDT": {
-    "in": 338775102,
+    "in": 348604343,
     "out": 322763849,
-    "net": 16011252
+    "net": 25840493
    },
    "ETH": {
     "in": 90568583,
@@ -7684,7 +7684,7 @@
    },
    {
     "label": "hot wallet (behaviour, day study)",
-    "in": 144023152,
+    "in": 154022749,
     "out": 184853675
    },
    {
@@ -7761,11 +7761,6 @@
     "label": "Gemini 4 (model-memory)",
     "in": 0,
     "out": 775280
-   },
-   {
-    "label": "deposit sink (behaviour, day study)",
-    "in": 170356,
-    "out": 0
    }
   ],
   "largest_deposits": [
@@ -7962,6 +7957,18 @@
     "li": 83
    },
    {
+    "block": 25924415,
+    "ts": 1788771275,
+    "tx": "0x637d063f1b9c9cd873397f8814b31b2d22a1a64816a5e00a5ec24aacdb56aed6",
+    "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+    "sym": "USDT",
+    "from": "0x3cc936b795a188f0e246cbb2d74c5bd190aecf18",
+    "to": "0x9642b23ed1e01df1092b92641051881a322f5d4e",
+    "raw": 10000000000000,
+    "usd": 9999596.8,
+    "li": 674
+   },
+   {
     "block": 25924561,
     "ts": 1788773027,
     "tx": "0x3da7d8eb7b6445717ea632d7f009e85ee2b0de7a9c459acd0f0f7d6d253094f8",
@@ -8056,18 +8063,6 @@
     "raw": 6999999330000,
     "usd": 6999212.880075275,
     "li": 176
-   },
-   {
-    "block": 25925475,
-    "ts": 1788784079,
-    "tx": "0x94cda437c91bcf72305c83fa134056908600893299e37ad660d927614e66e129",
-    "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
-    "sym": "USDC",
-    "from": "0x73a47468db00c832bd3ac08f4c071f34f8c3e425",
-    "to": "0x55fe002aeff02f77364de339a1292923a15844b8",
-    "raw": 6367703500000,
-    "usd": 6366988.088511775,
-    "li": 84
    }
   ]
  },
@@ -11570,5 +11565,30 @@
   "WEETH": 2747.1527309519647,
   "WSTETH": 3099.852399105583
  },
- "address_book_size": 178
+ "address_book_size": 188,
+ "provenance": {
+  "artifact": "analysis",
+  "generated_at": "2026-09-07T23:23:16+00:00",
+  "labels": "ed14a540bacb0af5",
+  "label_count": 188,
+  "tokens": "ca4aa94f2ca2208f",
+  "token_count": 47,
+  "code": {
+   "live_scan.py": "78fbb8ed6ec1ae4e",
+   "window_raw.py": "8e7f5d82ea127938",
+   "verify.py": "64ed063b45357bb5",
+   "labels.py": "6607aca48787162b",
+   "economics.py": "b3ca4fab5d306d57"
+  },
+  "git": {
+   "commit": "7ccce13",
+   "dirty": true
+  },
+  "blocks": "e333bc585b35fb40",
+  "block_count": 1492,
+  "first_block": 25924044,
+  "last_block": 25925535,
+  "first_block_analysed": 25924044,
+  "last_block_analysed": 25925535
+ }
 }

@@ -48,11 +48,15 @@ def scan(ctx):
         if not f or (f['in'] + f['out']) <= 0:
             continue
         src = entry.get('source', 'unknown')
+        # Behavioural labels read "deposit sink (behaviour, day study)", so a title built as "deposit sink %s" says it
+        # twice. Where the label is only a restatement of the tag, the address is the more informative name.
         label = entry.get('label', a)
+        if label.startswith(('deposit sink', 'hot wallet')):
+            label = '%s (%s)' % (a, src)
 
         if kind == 'exchange_deposit' and f['out'] >= max(MIN_OUT_USD, 0.25 * f['in']):
             hits.append(Hit(
-                detector=NAME, severity='high', usd=f['out'],
+                detector=NAME, severity='high', usd=f['out'], key='%s:forwards' % a,
                 title='deposit sink %s forwarded $%s in this window' % (label[:48], _m(f['out'])),
                 evidence={'address': a, 'label': label, 'source': src, 'in_usd': round(f['in']),
                           'out_usd': round(f['out']),
@@ -61,7 +65,7 @@ def scan(ctx):
 
         if kind == 'exchange' and f['in'] >= MIN_IN_USD and f['out'] == 0:
             hits.append(Hit(
-                detector=NAME, severity='notable', usd=f['in'],
+                detector=NAME, severity='notable', usd=f['in'], key='%s:receives-only' % a,
                 title='hot wallet %s only received ($%s in, nothing out)' % (label[:48], _m(f['in'])),
                 evidence={'address': a, 'label': label, 'source': src, 'in_usd': round(f['in']),
                           'why': 'a hot wallet pays withdrawals out; a pure receiver is a deposit address or a '
@@ -72,7 +76,7 @@ def scan(ctx):
             top, top_usd = (peers[a].most_common(1) or [(None, 0)])[0]
             if top and top_usd >= CONCENTRATION * tot:
                 hits.append(Hit(
-                    detector=NAME, severity='info', usd=tot,
+                    detector=NAME, severity='info', usd=tot, key='%s:one-counterparty' % a,
                     title='exchange %s moved %.0f%% of its flow with one counterparty' % (label[:44], 100 * top_usd / tot),
                     evidence={'address': a, 'label': label, 'source': src, 'counterparty': top,
                               'counterparty_label': ctx.label(top), 'share': round(top_usd / tot, 3),

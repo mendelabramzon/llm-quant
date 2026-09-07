@@ -1,7 +1,35 @@
 {
  "window": "research/2026-09-07/live_5h",
+ "stale": false,
+ "provenance": [
+  {
+   "field": "labels",
+   "artifact": "ed14a540bacb0af5",
+   "current": "ed14a540bacb0af5",
+   "gate": true,
+   "ok": true,
+   "note": ""
+  },
+  {
+   "field": "tokens",
+   "artifact": "ca4aa94f2ca2208f",
+   "current": "ca4aa94f2ca2208f",
+   "gate": true,
+   "ok": true,
+   "note": ""
+  },
+  {
+   "field": "blocks",
+   "artifact": "1bf8d95b9e8ead9f",
+   "current": "1bf8d95b9e8ead9f",
+   "gate": true,
+   "ok": true,
+   "note": ""
+  }
+ ],
  "checks": [
   {
+   "id": "blocks",
    "check": "blocks analysed",
    "recomputed": 1493,
    "analysis": 1493,
@@ -10,6 +38,7 @@
    "note": ""
   },
   {
+   "id": "transactions",
    "check": "transactions",
    "recomputed": 365859,
    "analysis": 365859,
@@ -18,6 +47,7 @@
    "note": ""
   },
   {
+   "id": "logs",
    "check": "logs",
    "recomputed": 1233959,
    "analysis": 1233959,
@@ -26,6 +56,7 @@
    "note": ""
   },
   {
+   "id": "usdc-mint",
    "check": "USDC minted (USD, from the zero address)",
    "recomputed": 25166122,
    "analysis": 25168937,
@@ -34,6 +65,7 @@
    "note": ""
   },
   {
+   "id": "usdc-burn",
    "check": "USDC burned (USD, to the zero address)",
    "recomputed": 34696266,
    "analysis": 34700148,
@@ -42,14 +74,16 @@
    "note": ""
   },
   {
+   "id": "exchange-net-stables",
    "check": "exchange net flow, stables (USD)",
-   "recomputed": -24835073,
-   "analysis": -24835074,
+   "recomputed": 75153739,
+   "analysis": 75153738,
    "ok": true,
    "tolerance": 0.03,
    "note": ""
   },
   {
+   "id": "exchange-net-eth",
    "check": "exchange net flow, ETH (USD)",
    "recomputed": 12809668,
    "analysis": 12809668,
@@ -58,6 +92,7 @@
    "note": ""
   },
   {
+   "id": "exchange-gross-usdc",
    "check": "exchange gross in, USDC (USD)",
    "recomputed": 90892393,
    "analysis": 90892393,
@@ -66,6 +101,7 @@
    "note": ""
   },
   {
+   "id": "leverage-to-exchange",
    "check": "leverage-to-exchange (USD followed to a CEX)",
    "recomputed": 277268,
    "analysis": 277268,
@@ -74,6 +110,7 @@
    "note": "replays the proceeds walk over an independently decoded transfer stream"
   },
   {
+   "id": "cctp-largest",
    "check": "largest CCTP send: USDC -> Polygon (USD)",
    "recomputed": 6867431,
    "analysis": 6868199,
@@ -82,6 +119,7 @@
    "note": ""
   },
   {
+   "id": "gas-top-target",
    "check": "gas requested by the top target 0xdac17f95",
    "recomputed": 8971678965,
    "analysis": 8971678965,
@@ -90,6 +128,7 @@
    "note": ""
   },
   {
+   "id": "gas-top-target-identity",
    "check": "top gas target is the same address",
    "recomputed": "0xdac17f958d",
    "analysis": "0xdac17f958d",
@@ -98,6 +137,7 @@
    "note": ""
   },
   {
+   "id": "rate-gap-widest",
    "check": "widest Aave/Spark borrow-rate gap (USDT, pp)",
    "recomputed": 2.782,
    "analysis": 2.782,
@@ -121,13 +161,67 @@
   },
   {
    "min_tier": "behaviour",
-   "exchange_addresses": 96,
-   "stables_net_usd": -24835073,
+   "exchange_addresses": 95,
+   "stables_net_usd": 75153739,
    "eth_net_usd": 12809668
   }
  ],
- "mechanisms": [],
+ "mechanisms": null,
+ "claims": {
+  "cited": [
+   "blocks",
+   "exchange-net-eth",
+   "exchange-net-stables",
+   "leverage-to-exchange",
+   "logs",
+   "rate-gap-widest",
+   "stacy-deposit-for",
+   "transactions"
+  ],
+  "cited_count": 11,
+  "dangling": [],
+  "checks_available": [
+   "blocks",
+   "cctp-largest",
+   "exchange-gross-usdc",
+   "exchange-net-eth",
+   "exchange-net-stables",
+   "fingerprint-matches-chain",
+   "gas-top-target",
+   "gas-top-target-identity",
+   "leverage-to-exchange",
+   "logs",
+   "msca-not-exchange",
+   "no-contract-hot-wallets",
+   "rate-gap-widest",
+   "stacy-deposit-for",
+   "transactions",
+   "usdc-burn",
+   "usdc-mint"
+  ],
+  "checks_uncited": [
+   "cctp-largest",
+   "exchange-gross-usdc",
+   "fingerprint-matches-chain",
+   "gas-top-target",
+   "gas-top-target-identity",
+   "msca-not-exchange",
+   "no-contract-hot-wallets",
+   "usdc-burn",
+   "usdc-mint"
+  ],
+  "headline_numbers_tagged": 60,
+  "headline_numbers_untagged": 69,
+  "coverage": 0.465,
+  "untagged_examples": [
+   "### 1. Tape: ETH fell 1.9% in two legs and the arb bots paid 2,400 gwei to be first (high confidence)",
+   "ETH/USD read tick by tick from the USDC/WETH 0.05% pool: open $2,531.6, high $2,534.0 (02:39), low $2,482.6 (07:39), close $2,482.7. Two legs: 02:39 t",
+   "The base fee was 0.03 to 0.15 gwei for most of the window and 0.77 to 1.01 gwei from 03:45 to 04:10 UTC. Blocks were not fuller on average (47% to 59%",
+   "7,616 blobs in 1,493 blocks (5.1 per block; 82.6% of blocks carry blobs). The largest poster is [0xbd0d\u2026ba96](https://etherscan.io/address/0xbd0d173ee",
+   "### 4. Spark's liquidity layer pulled $46M of USDT out of SparkLend into its savings vault and doubled the SparkLend USDT rate (high confidence)",
+   "The rate table at the head: USDT borrow Compound v3 3.81%, Aave 4.22%, SparkLend 7.00%; USDC supply Aave 3.59% against Compound v3 5.49% (borrow 6.54%"
+  ]
+ },
  "all_ok": true,
- "failures": 0,
- "seconds": 7.4
+ "failures": 0
 }

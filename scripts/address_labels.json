@@ -31,10 +31,20 @@
    "kind": "venue",
    "source": "known-canonical"
   },
+  "0x0000000000be226afde21672a5e4adc45692e69d": {
+   "label": "searcher bot (shape: pass-through, 4 txs, 100% flat, 3 counterparties, $1279M gross)",
+   "kind": "mev_bot",
+   "source": "behaviour-2026-09-08-fingerprint"
+  },
   "0x0000000071727de22e5e9d8baf0edac6f37da032": {
    "label": "ERC-4337 EntryPoint v0.7",
    "kind": "protocol",
    "source": "known-canonical"
+  },
+  "0x00000f91109c4d0007e90000d9facad5298a0cac": {
+   "label": "searcher bot (shape: pass-through, 12 txs, 100% flat, 9 counterparties, $499M gross)",
+   "kind": "mev_bot",
+   "source": "behaviour-2026-09-08-fingerprint"
   },
   "0x05ff6964d21e5dae3b1010d5ae0465b3c450f381": {
    "label": "hot wallet (day study, unidentified)",
@@ -45,6 +55,11 @@
    "label": "Spark ALM relayer",
    "kind": "protocol",
    "source": "behaviour-2026-09-07"
+  },
+  "0x06cff7088619c7178f5e14f0b119458d08d2f5ef": {
+   "label": "router or solver (shape: pass-through, 42 txs, 100% flat, 1 counterparties, $2074M gross)",
+   "kind": "venue",
+   "source": "behaviour-2026-09-08-fingerprint"
   },
   "0x0889e9327b98d7d1be3c301a4585ff3330502c9a": {
    "label": "MainnetSettler",
@@ -186,6 +201,11 @@
    "kind": "protocol",
    "source": "known-canonical"
   },
+  "0x3cc936b795a188f0e246cbb2d74c5bd190aecf18": {
+   "label": "pass-through wallet (EOA per Blockscout): collects small inbound legs, forwards in one large leg to a Safe or a hot wallet. The day study tagged it exchange_deposit; that tag alone moved the 2026-09-07 five-hour net stable flow from +75.2M to -24.8M",
+   "kind": "eoa",
+   "source": "behaviour-2026-09-08-forwards"
+  },
   "0x3cd751e6b0078be393132286c442345e5dc49699": {
    "label": "Coinbase 4",
    "kind": "exchange",
@@ -237,6 +257,11 @@
    "label": "OKX 3",
    "kind": "exchange",
    "source": "model-memory"
+  },
+  "0x51c72848c68a965f66fa7a88855f9f7784502a7f": {
+   "label": "router or solver (shape: pass-through, 731 txs, 90% flat, 47 counterparties, $120M gross)",
+   "kind": "venue",
+   "source": "behaviour-2026-09-08-fingerprint"
   },
   "0x52aa899454998be5b000ad077a46bbe360f4e497": {
    "label": "FluidLiquidityProxy",
@@ -345,6 +370,11 @@
    "kind": "venue",
    "source": "known-canonical"
   },
+  "0x7cb086ed4b6993edd4cad69983ccd012eb0562ee": {
+   "label": "router or solver (shape: pass-through, 3 txs, 100% flat, 4 counterparties, $312M gross)",
+   "kind": "venue",
+   "source": "behaviour-2026-09-08-fingerprint"
+  },
   "0x8292bb45bf1ee4d140127049757c2e0ff06317ed": {
    "label": "RLUSD token (Ripple USD)",
    "kind": "token",
@@ -386,6 +416,11 @@
    "kind": "protocol",
    "source": "behaviour-2026-09-07"
   },
+  "0x8f10b468b06c6fd214b65f87778827f7d113f996": {
+   "label": "router or solver (shape: pass-through, 136 txs, 70% flat, 120 counterparties, $215M gross)",
+   "kind": "venue",
+   "source": "behaviour-2026-09-08-fingerprint"
+  },
   "0x9008d19f58aabd9ed0d60971565aa8510560ab41": {
    "label": "CoW Protocol settlement (GPv2Settlement)",
    "kind": "venue",
@@ -410,6 +445,11 @@
    "label": "Polygon PoS RootChainManager",
    "kind": "bridge",
    "source": "known-canonical"
+  },
+  "0xa0f1c3ad83e07d97b5e7030e177718be175275ea": {
+   "label": "router or solver (shape: pass-through, 4 txs, 100% flat, 6 counterparties, $322M gross)",
+   "kind": "venue",
+   "source": "behaviour-2026-09-08-fingerprint"
   },
   "0xa17581a9e3356d9a858b789d68b4d866e593ae94": {
    "label": "Compound v3 WETH (Comet)",
@@ -532,6 +572,11 @@
    "kind": "protocol",
    "source": "known-canonical"
   },
+  "0xc906895c8833481571118f0c59877bff6be38ac1": {
+   "label": "Safe (SafeProxy, implementation 0x41675C09): received the 100M USDC sweep and forwarded it whole",
+   "kind": "treasury",
+   "source": "blockscout-verified"
+  },
   "0xc92e8bdf79f0507f65a392b0ab4667716bfe0110": {
    "label": "CoW Protocol vault relayer",
    "kind": "venue",
@@ -552,6 +597,16 @@
    "kind": "protocol",
    "source": "blockscout-verified",
    "usd_touched": 67706503
+  },
+  "0xd1c6aca7ea7ed44e1873dafa054c28ceb690c7eb": {
+   "label": "router or solver (shape: pass-through, 4 txs, 100% flat, 8 counterparties, $639M gross)",
+   "kind": "venue",
+   "source": "behaviour-2026-09-08-fingerprint"
+  },
+  "0xd226997439ecfbeff8e110c8c78c8a7eefd19f89": {
+   "label": "router or solver (shape: pass-through, 37 txs, 100% flat, 1 counterparties, $1826M gross)",
+   "kind": "venue",
+   "source": "behaviour-2026-09-08-fingerprint"
   },
   "0xd24400ae8bfebb18ca49be86258a3c749cf46853": {
    "label": "Gemini 1",

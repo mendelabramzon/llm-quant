@@ -64,7 +64,10 @@ def scan(ctx):
     if not matches:
         return []
     top = attackers.most_common(6)
-    return [Hit(detector=NAME, severity='info', usd=None,
+    # Identity is the *condition*, not the sender. Every lookalike address is disposable — generated to resemble one
+    # target and abandoned — so keying on the busiest sender would file each window's campaign as a brand-new finding
+    # and the ledger would never show poisoning as the standing background hazard it is. The senders live in evidence.
+    return [Hit(detector=NAME, severity='info', usd=None, key='campaign',
                 title='%d poisoning attempt(s) from %d lookalike sender(s) after large transfers'
                       % (len(matches), len(attackers)),
                 evidence={'matches': matches[:12], 'top_senders': top,

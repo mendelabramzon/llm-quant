@@ -30,6 +30,7 @@ shape of both bugs above. `labels.py audit` re-runs that check over the whole re
 """
 import argparse
 import collections
+import datetime as dt
 import json
 import sys
 import time
@@ -418,6 +419,62 @@ def cmd_resolve(args):
         print('  ? %s  $%-14s %s' % (r['address'], format(r['usd'], ','), 'contract' if r['is_contract'] else 'EOA'))
 
 
+def cmd_adopt_shapes(args):
+    """Turn `solver_fingerprint` hits into registry entries: the detector finds the tail, this files it.
+
+    The unlabelled tail is regenerated every window with different addresses in it, and none of the big ones carry a
+    verified source, so `resolve` returns nothing for them and hand-labelling never catches up. What the window *can*
+    prove is shape: an address that receives calldata, emits no logs, never originates a transaction, and returns every
+    dollar inside the same transaction is a contract that holds nothing. That is enough to say what it is *not* — not an
+    exchange, not a treasury — which is the claim that protects the headline numbers.
+
+    So the entry written here is a shape claim at the weakest provenance tier, with the window and detector in its
+    source, never an identity. `verify`'s label band then shows exactly how much these entries move, and a later
+    verified name overwrites them because `put` lets a stronger tier win.
+
+    Adopting changes the address book, which is what `analysis.json` records and `verify` gates on: every window
+    analysed before this becomes stale and must be re-analysed. That is the intended cost, and it is why this is
+    dry-run by default.
+    """
+    dj = Path(args.out) / 'detectors.json'
+    if not dj.exists():
+        print('no detectors.json in %s — run `live_scan detect` first' % args.out)
+        return
+    hits = [h for h in json.loads(dj.read_text()).get('hits', []) if h['detector'] == 'solver_fingerprint']
+    reg = load_registry()
+    src = 'behaviour-%s-fingerprint' % dt.date.today().isoformat()
+    proposed, skipped = [], []
+    for h in hits:
+        e = h['evidence']
+        a = e['address']
+        # Only where the window proves code and proves it holds nothing. An `unknown` contract-ness or a `retains`
+        # shape is exactly the case a shape claim cannot settle, and guessing there is the original bug.
+        if e.get('is_contract') is not True or e['shape'] not in ('pass-through', 'cycles'):
+            skipped.append({'address': a, 'why': 'is_contract=%s shape=%s' % (e.get('is_contract'), e['shape'])})
+            continue
+        if (e.get('gross_usd') or 0) < args.min_usd:
+            skipped.append({'address': a, 'why': 'gross $%.0f below threshold' % (e.get('gross_usd') or 0)})
+            continue
+        kind = 'mev_bot' if e.get('vanity_zeros', 0) >= 4 else 'venue'
+        label = ('%s (shape: %s, %d txs, %.0f%% flat, %d counterparties, $%.0fM gross)'
+                 % ({'mev_bot': 'searcher bot', 'venue': 'router or solver'}[kind], e['shape'], e['txs'],
+                    100 * e['pass_through_share'], e['counterparties'], (e['gross_usd'] or 0) / 1e6))
+        old = reg['labels'].get(a)
+        if old and tier_rank(old.get('source')) <= tier_rank(src):
+            skipped.append({'address': a, 'why': 'already held at %s' % old.get('source')})
+            continue
+        proposed.append({'address': a, 'kind': kind, 'label': label})
+    if args.apply:
+        for r in proposed:
+            put(reg, r['address'], r['label'], r['kind'], src)
+        save_registry(reg)
+    print(json.dumps({'window': str(args.out), 'source': src, 'applied': bool(args.apply),
+                      'proposed': proposed, 'skipped': skipped, 'registry_size': len(reg['labels'])}, indent=1))
+    if proposed and args.apply:
+        print('\nThe address book changed. Re-run `live_scan analyze` on every window you still quote, or `verify` '
+              'will (correctly) refuse to compare their numbers.')
+
+
 def cmd_add(args):
     reg = load_registry()
     ok = put(reg, args.address, args.label, args.kind, args.source)
@@ -438,11 +495,15 @@ def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest='cmd', required=True)
     for name, fn in (('seed', cmd_seed), ('adopt-memory', cmd_adopt_memory), ('audit', cmd_audit),
-                     ('coverage', cmd_coverage), ('resolve', cmd_resolve), ('add', cmd_add), ('list', cmd_list)):
+                     ('coverage', cmd_coverage), ('resolve', cmd_resolve), ('adopt-shapes', cmd_adopt_shapes),
+                     ('add', cmd_add), ('list', cmd_list)):
         s = sub.add_parser(name, help=(fn.__doc__ or '').strip().split('\n')[0])
         s.set_defaults(fn=fn)
-        if name in ('coverage', 'resolve'):
+        if name in ('coverage', 'resolve', 'adopt-shapes'):
             s.add_argument('--out', required=True, help='window directory holding raw/ and analysis.json')
+        if name == 'adopt-shapes':
+            s.add_argument('--min-usd', type=float, default=100e6)
+            s.add_argument('--apply', action='store_true', help='write the entries (default is a dry run)')
         if name == 'coverage':
             s.add_argument('--min-usd', type=float, default=1e5)
             s.add_argument('--top', type=int, default=120)

@@ -21,8 +21,17 @@ instead of being re-argued from traces every time.
 report can say "net stable flow is +$40M using verified labels only, +$41M including model memory" rather than quoting
 one number that silently depends on 47 unverified memory tags.
 
+**The provenance gate** runs before any of it. `analysis.json` records the label and token fingerprints it was built
+against; if either moved, the numbers are re-derived from a world the current code no longer believes in, so `verify`
+stops and says "re-run analyze" instead of reporting a numeric mismatch whose real cause is a label edit.
+
+**Claim tagging** closes the last gap. A sentence in `insights.md` cites its check as `[[verify: exchange-net-stables]]`;
+`verify` reports which recipes are cited, fails on a citation with no matching check, and counts the headline numbers
+that cite nothing, so an unverified number is visibly unverified.
+
     uv run --with pycryptodome python scripts/verify.py --out research/2026-09-07/live_midday
     uv run --with pycryptodome python scripts/verify.py --out ... --mechanisms      also run the source-backed checks
+    uv run --with pycryptodome python scripts/verify.py --out ... --ignore-stale    compare anyway despite drift
 """
 import argparse
 import collections
@@ -35,6 +44,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import labels as L
+import provenance
 from window_raw import Window, median
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -209,46 +219,57 @@ def run_numeric(out, min_usd=1e4):
 
     checks = []
 
-    def add(name, mine, theirs, tol=0.02, note=''):
-        checks.append({'check': name, 'recomputed': mine, 'analysis': theirs, 'ok': close(mine, theirs, tol),
-                       'tolerance': tol, 'note': note})
+    def add(cid, name, mine, theirs, tol=0.02, note=''):
+        """`cid` is the stable recipe id a sentence in `insights.md` cites as `[[verify: cid]]`.
+
+        The name is prose and changes freely; the id is the contract between a claim and the code that re-derives it,
+        so renaming a check must not silently orphan every claim that cited it.
+        """
+        checks.append({'id': cid, 'check': name, 'recomputed': mine, 'analysis': theirs,
+                       'ok': close(mine, theirs, tol), 'tolerance': tol, 'note': note})
 
     win = A['window']
-    add('blocks analysed', R.blocks, win['blocks'], 0.0)
-    add('transactions', R.txs, win['transactions'], 0.0)
-    add('logs', R.logs, win['logs'], 0.0)
+    add('blocks', 'blocks analysed', R.blocks, win['blocks'], 0.0)
+    add('transactions', 'transactions', R.txs, win['transactions'], 0.0)
+    add('logs', 'logs', R.logs, win['logs'], 0.0)
 
     iss = A.get('issuance', {}).get('totals', {})
-    add('USDC minted (USD, from the zero address)', round(R.mint['USDC']), iss.get('USDC mint', {}).get('usd'), 0.01)
-    add('USDC burned (USD, to the zero address)', round(R.burn['USDC']), iss.get('USDC burn', {}).get('usd'), 0.01)
+    add('usdc-mint', 'USDC minted (USD, from the zero address)', round(R.mint['USDC']),
+        iss.get('USDC mint', {}).get('usd'), 0.01)
+    add('usdc-burn', 'USDC burned (USD, to the zero address)', round(R.burn['USDC']),
+        iss.get('USDC burn', {}).get('usd'), 0.01)
 
     ba = A['exchange_flow']['by_asset']
     stable = {'USDT', 'USDC', 'DAI', 'USDS', 'USDe', 'PYUSD', 'RLUSD', 'GHO', 'USDG', 'crvUSD', 'FDUSD', 'frxUSD',
               'USD1', 'AUSD', 'sUSDe', 'sUSDS'}
     mine_stable = sum(R.flow_in[s] - R.flow_out[s] for s in stable)
     theirs_stable = sum(v['net'] for k, v in ba.items() if k in stable)
-    add('exchange net flow, stables (USD)', round(mine_stable), theirs_stable, 0.03)
-    add('exchange net flow, ETH (USD)', round(R.flow_in['ETH'] - R.flow_out['ETH']), ba.get('ETH', {}).get('net'), 0.03)
-    add('exchange gross in, USDC (USD)', round(R.flow_in['USDC']), ba.get('USDC', {}).get('in'), 0.03)
+    add('exchange-net-stables', 'exchange net flow, stables (USD)', round(mine_stable), theirs_stable, 0.03)
+    add('exchange-net-eth', 'exchange net flow, ETH (USD)', round(R.flow_in['ETH'] - R.flow_out['ETH']),
+        ba.get('ETH', {}).get('net'), 0.03)
+    add('exchange-gross-usdc', 'exchange gross in, USDC (USD)', round(R.flow_in['USDC']), ba.get('USDC', {}).get('in'), 0.03)
 
     import live_scan
     book = live_scan.load_address_book()
     lev_mine, per_op = leverage_to_exchange(R.transfers, A['lending_ops']['proceeds_followed'], ex, book)
     lev_theirs = sum(f['to_exchange_usd'] for f in A['lending_ops']['proceeds_followed'])
-    add('leverage-to-exchange (USD followed to a CEX)', round(lev_mine), lev_theirs, 0.05,
+    add('leverage-to-exchange', 'leverage-to-exchange (USD followed to a CEX)', round(lev_mine), lev_theirs, 0.05,
         'replays the proceeds walk over an independently decoded transfer stream')
 
     br = {(r['token'], r['destination']): r for r in A['bridges']['out'] if r['kind'] == 'CCTP'}
     if R.cctp:
         key, val = max(R.cctp.items(), key=lambda kv: kv[1]['usd'])
-        add('largest CCTP send: %s -> %s (USD)' % key, round(val['usd']), (br.get(key) or {}).get('usd'), 0.02)
+        add('cctp-largest', 'largest CCTP send: %s -> %s (USD)' % key, round(val['usd']),
+            (br.get(key) or {}).get('usd'), 0.02)
 
     tg = A['top_gas_targets'][0] if A.get('top_gas_targets') else None
     if tg:
-        add('gas requested by the top target %s' % tg['address'][:10], R.gas_to[tg['address']], tg['gas'], 0.0)
+        add('gas-top-target', 'gas requested by the top target %s' % tg['address'][:10], R.gas_to[tg['address']],
+            tg['gas'], 0.0)
         top_mine = R.gas_to.most_common(1)[0][0]
-        checks.append({'check': 'top gas target is the same address', 'recomputed': top_mine[:12],
-                       'analysis': tg['address'][:12], 'ok': top_mine == tg['address'], 'tolerance': 0, 'note': ''})
+        checks.append({'id': 'gas-top-target-identity', 'check': 'top gas target is the same address',
+                       'recomputed': top_mine[:12], 'analysis': tg['address'][:12],
+                       'ok': top_mine == tg['address'], 'tolerance': 0, 'note': ''})
 
     # rate dispersion: same asset, different venue, last observed borrow APR
     disp_mine = {}
@@ -266,7 +287,7 @@ def run_numeric(out, min_usd=1e4):
     disp_theirs = {s: max(v.values()) - min(v.values()) for s, v in lr.items() if len(v) > 1}
     if disp_mine:
         s = max(disp_mine, key=lambda k: disp_mine[k])
-        add('widest Aave/Spark borrow-rate gap (%s, pp)' % s, round(disp_mine[s] * 100, 3),
+        add('rate-gap-widest', 'widest Aave/Spark borrow-rate gap (%s, pp)' % s, round(disp_mine[s] * 100, 3),
             round(disp_theirs.get(s, 0) * 100, 3), 0.05)
 
     # label-provenance band: the same headline computed at each tier of label confidence
@@ -338,10 +359,44 @@ def m_registry_has_no_contract_hot_wallets(_):
     return (not c), ('%d contradiction(s); audit checked %d exchange tags' % (len(c), d.get('checked', 0)))
 
 
+def m_fingerprint_matches_chain(out):
+    """Claim: when `solver_fingerprint` calls an address a contract or an EOA, the chain agrees.
+
+    The detector decides contract-versus-account from the window alone — a log emitted, or calldata received by an
+    address that never originates a transaction — because the whole point is to characterise the unlabelled tail
+    without a lookup per address. That inference is precisely the kind that produced this project's worst bug, when
+    "originates no transactions" was read as "exchange deposit sink", so it does not get to go unchecked.
+
+    Every hit on which the detector commits to an answer is resolved against Blockscout. Hits it marks `unknown` are
+    counted but not judged: declining to guess is the behaviour being encouraged, not a failure.
+    """
+    dj = Path(out) / 'detectors.json'
+    if not dj.exists():
+        return False, 'no detectors.json — run `live_scan detect` first'
+    hits = [h for h in json.loads(dj.read_text()).get('hits', []) if h['detector'] == 'solver_fingerprint']
+    if not hits:
+        return True, 'no solver_fingerprint hits in this window'
+    claimed = [h for h in hits if h['evidence'].get('is_contract') is not None]
+    wrong = []
+    for h in claimed:
+        a = h['evidence']['address']
+        r = L.resolve_one(a, use_etherscan=False)
+        time.sleep(0.3)
+        if r is None or r.get('is_contract') is None:
+            continue
+        if bool(r['is_contract']) != bool(h['evidence']['is_contract']):
+            wrong.append((a, h['evidence']['is_contract'], r['is_contract']))
+    return (not wrong), ('%d/%d claims checked against Blockscout, %d wrong%s; %d hit(s) declined to guess'
+                         % (len(claimed), len(hits), len(wrong),
+                            (': ' + ', '.join('%s said %s' % (a[:10], m) for a, m, _ in wrong)) if wrong else '',
+                            len(hits) - len(claimed)))
+
+
 MECHANISMS = {
     'stacy-deposit-for': m_stacy_deposit_for,
     'msca-not-exchange': m_msca_not_exchange,
     'no-contract-hot-wallets': m_registry_has_no_contract_hot_wallets,
+    'fingerprint-matches-chain': m_fingerprint_matches_chain,
 }
 
 
@@ -360,6 +415,65 @@ def run_mechanisms(out, only=None):
 
 
 # ----------------------------------------------------------------------------------------------------------------------
+# Claim tagging — the link from a sentence to the code that re-derives it
+# ----------------------------------------------------------------------------------------------------------------------
+CLAIM_RE = re.compile(r'\[\[verify:\s*([a-z0-9\-]+)\s*\]\]')
+# A "headline number" for coverage purposes: a dollar amount of at least a million, or a rate in percent or
+# percentage points. Deliberately narrow. Counting every integer in the prose would report a coverage number so low
+# that nobody would read it, and the numbers that move a decision are the big ones.
+BIG_USD_RE = re.compile(r'\$[\d,]+(?:\.\d+)?\s*(?:[MB]\b|billion|million)|\$[\d,]{7,}')
+RATE_RE = re.compile(r'\d+(?:\.\d+)?\s*(?:pp\b|%)')
+
+
+def claim_audit(out, checks):
+    """Which prose claims cite a verify recipe, and which headline numbers cite nothing.
+
+    `verify` can only make a confidence label earned if a reader can get from the sentence to the check. Convention
+    was doing that job — the numbers happened to match because the same person wrote both — and convention is exactly
+    what fails silently when a check is renamed or a paragraph is rewritten. A `[[verify: id]]` marker makes the link
+    a reference, and an untagged big number becomes visibly unverified rather than invisibly so.
+
+    Three outcomes, all reported and only the middle one fatal:
+      * cited ids that exist -> the claim is checked, and the check's pass/fail is the claim's
+      * cited ids with no matching check -> a dangling reference, which is worse than no marker at all
+      * big numbers in a paragraph with no marker -> unverified, counted so the ratio is visible
+    """
+    p = Path(out) / 'insights.md'
+    if not p.exists():
+        return None
+    known = {c['id'] for c in checks if c.get('id')} | set(MECHANISMS)
+    text = p.read_text()
+    # Strip fenced blocks and inline code spans: a JSON dump is evidence, not a claim, and a marker written inside
+    # backticks is documentation of the syntax rather than a citation — the first draft of this note tripped exactly
+    # that, reporting its own explanation of the format as a dangling reference.
+    prose = re.sub(r'```.*?```', '', text, flags=re.S)
+    prose = re.sub(r'`[^`\n]*`', '', prose)
+    cited, dangling = [], []
+    for m in CLAIM_RE.finditer(prose):
+        (cited if m.group(1) in known else dangling).append(m.group(1))
+    paras = [b for b in re.split(r'\n\s*\n', prose) if b.strip()]
+    tagged = untagged = 0
+    examples = []
+    for b in paras:
+        n = len(BIG_USD_RE.findall(b)) + len(RATE_RE.findall(b))
+        if not n:
+            continue
+        if CLAIM_RE.search(b):
+            tagged += n
+        else:
+            untagged += n
+            if len(examples) < 6:
+                examples.append(' '.join(b.split())[:150])
+    return {'cited': sorted(set(cited)), 'cited_count': len(cited),
+            'dangling': sorted(set(dangling)),
+            'checks_available': sorted(known),
+            'checks_uncited': sorted(known - set(cited)),
+            'headline_numbers_tagged': tagged, 'headline_numbers_untagged': untagged,
+            'coverage': round(tagged / (tagged + untagged), 3) if (tagged + untagged) else None,
+            'untagged_examples': examples}
+
+
+# ----------------------------------------------------------------------------------------------------------------------
 def fmt(v):
     if isinstance(v, float):
         return format(round(v, 3), ',')
@@ -374,11 +488,36 @@ def main():
     p.add_argument('--min-usd', type=float, default=1e4)
     p.add_argument('--mechanisms', action='store_true', help='also run the source-backed mechanism assertions')
     p.add_argument('--only', nargs='*', help='run only these mechanism ids')
+    p.add_argument('--ignore-stale', action='store_true',
+                   help='compare numbers even when the analysis was built against a different label or token table')
     a = p.parse_args()
 
     t0 = time.monotonic()
+
+    # Provenance first. A label edit changes headline numbers without touching a line of aggregation code, so
+    # comparing values before comparing inputs reports a mismatch whose stated cause ("the aggregation drifted") is
+    # wrong, and sends the reader to debug arithmetic that is fine. Both 2026-09-07 windows were corrected by hand
+    # after exactly that.
+    ap = Path(a.out) / 'analysis.json'
+    recorded = json.loads(ap.read_text()).get('provenance') if ap.exists() else None
+    prov_rows, stale = provenance.check(recorded, out=a.out)
+    for r in prov_rows:
+        if not r['ok'] or r.get('note'):
+            print('provenance %-12s %-18s %-18s %s' % (r['field'], str(r['artifact'])[:18], str(r['current'])[:18],
+                                                       ('STALE — ' + r['note']) if not r['ok'] else r['note']))
+    if stale and not a.ignore_stale:
+        res = {'window': str(a.out), 'stale': True, 'provenance': prov_rows, 'checks': [], 'label_band': [],
+               'mechanisms': [], 'claims': None, 'all_ok': False, 'failures': 1}
+        (Path(a.out) / 'verify.json').write_text(json.dumps(res, indent=1) + '\n')
+        print('\nSTALE — the analysis was built against different inputs; re-run `live_scan analyze --out %s`.\n'
+              'Numbers were not compared: a mismatch here would be the label edit, not aggregation drift.\n'
+              '(--ignore-stale compares anyway.)' % a.out)
+        sys.exit(2)
+
     checks, band, R = run_numeric(a.out, a.min_usd)
-    mech = run_mechanisms(a.out, a.only) if (a.mechanisms or a.only) else []
+    # `None`, not `[]`. An empty list reads as "the assertions ran and none failed", which is exactly the wrong thing
+    # for a file that gets committed and read later; not running them is a different state and says so.
+    mech = run_mechanisms(a.out, a.only) if (a.mechanisms or a.only) else None
 
     print('%-52s %18s %18s  %s' % ('check', 'recomputed', 'analysis', ''))
     for c in checks:
@@ -388,17 +527,33 @@ def main():
     print('  %-20s %6s %20s %20s' % ('labels used', 'addrs', 'stables net USD', 'ETH net USD'))
     for b in band:
         print('  %-20s %6d %20s %20s' % (b['min_tier'], b['exchange_addresses'], fmt(b['stables_net_usd']), fmt(b['eth_net_usd'])))
-    if mech:
+    if mech is None:
+        print('\nmechanism assertions: not run (pass --mechanisms; they fetch verified source and cost ~20s)')
+    else:
         print('\nmechanism assertions:')
         for m in mech:
             print('  [%s] %-26s %s' % ('ok' if m['ok'] else 'FAIL', m['id'], m['detail']))
 
-    n_bad = sum(1 for c in checks if not c['ok']) + sum(1 for m in mech if not m['ok'])
-    res = {'window': str(a.out), 'checks': checks, 'label_band': band, 'mechanisms': mech,
-           'all_ok': n_bad == 0, 'failures': n_bad, 'seconds': round(time.monotonic() - t0, 1)}
+    cl = claim_audit(a.out, checks)
+    if cl:
+        print('\nclaim tagging (insights.md):')
+        print('  %d marker(s) citing %d recipe(s); %d headline number(s) tagged, %d untagged%s'
+              % (cl['cited_count'], len(cl['cited']), cl['headline_numbers_tagged'], cl['headline_numbers_untagged'],
+                 '' if cl['coverage'] is None else ' (coverage %.0f%%)' % (100 * cl['coverage'])))
+        if cl['dangling']:
+            print('  DANGLING: %s — cited in prose, no such check' % ', '.join(cl['dangling']))
+        if cl['checks_uncited']:
+            print('  checks no claim cites: %s' % ', '.join(cl['checks_uncited']))
+
+    n_bad = (sum(1 for c in checks if not c['ok']) + sum(1 for m in (mech or []) if not m['ok'])
+             + len((cl or {}).get('dangling') or []))
+    # Deliberately no timing in the artifact: `verify.json` is committed, and a duration that changes every run makes
+    # every re-run a diff, which trains the reader to ignore diffs on the one file whose diffs matter.
+    res = {'window': str(a.out), 'stale': False, 'provenance': prov_rows, 'checks': checks, 'label_band': band,
+           'mechanisms': mech, 'claims': cl, 'all_ok': n_bad == 0, 'failures': n_bad}
     (Path(a.out) / 'verify.json').write_text(json.dumps(res, indent=1) + '\n')
     print('\n%s — %d check(s) failed, %.1fs, wrote %s' % ('ALL OK' if n_bad == 0 else 'FAILURES', n_bad,
-                                                          res['seconds'], Path(a.out) / 'verify.json'))
+                                                          time.monotonic() - t0, Path(a.out) / 'verify.json'))
     sys.exit(1 if n_bad else 0)
 
 

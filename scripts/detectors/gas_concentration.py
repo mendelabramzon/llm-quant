@@ -69,7 +69,7 @@ def scan(ctx):
                          'share_outside': round(share_out, 4),
                          'lift': round(share_in / share_out, 1) if share_out > 1e-9 else None,
                          'gas_in_spike': g})
-    hits = [Hit(detector=NAME, severity='notable',
+    hits = [Hit(detector=NAME, severity='notable', key=rows[0]['address'] if rows else 'congestion',
                 title='base fee peaked %.3f gwei (%.1fx the %.3f gwei median) across %d blocks' % (
                     peak, peak / med, med, len(spike_nums)),
                 evidence={'blocks': list(span), 'spike_blocks': len(spike_nums), 'median_gwei': round(med, 4),

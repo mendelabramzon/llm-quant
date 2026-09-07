@@ -1,0 +1,40 @@
+{
+ "research/2026-09-07/live_5h": {
+  "chain": "ethereum",
+  "detectors_run": [
+   "address_poisoning",
+   "gas_concentration",
+   "jit_liquidity",
+   "mass_distribution",
+   "mislabelled_flow",
+   "rate_dispersion",
+   "solver_fingerprint"
+  ],
+  "first_block": 25922548,
+  "first_utc": "2026-09-07T02:39:11+00:00",
+  "hours": 5.003,
+  "ingested_at": "2026-09-07T23:23:09+00:00",
+  "label_fingerprint": "ed14a540bacb0af5",
+  "last_block": 25924040,
+  "last_utc": "2026-09-07T07:39:11+00:00"
+ },
+ "research/2026-09-07/live_midday": {
+  "chain": "ethereum",
+  "detectors_run": [
+   "address_poisoning",
+   "gas_concentration",
+   "jit_liquidity",
+   "mass_distribution",
+   "mislabelled_flow",
+   "rate_dispersion",
+   "solver_fingerprint"
+  ],
+  "first_block": 25924044,
+  "first_utc": "2026-09-07T07:39:59+00:00",
+  "hours": 5.003,
+  "ingested_at": "2026-09-07T23:23:41+00:00",
+  "label_fingerprint": "ed14a540bacb0af5",
+  "last_block": 25925535,
+  "last_utc": "2026-09-07T12:39:59+00:00"
+ }
+}

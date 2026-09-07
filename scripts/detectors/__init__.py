@@ -37,16 +37,29 @@ SEVERITIES = ['info', 'notable', 'high']
 
 @dataclasses.dataclass
 class Hit:
-    """One finding. `evidence` must let a reader reach the chain; `economics` prices it when it is actionable."""
+    """One finding. `evidence` must let a reader reach the chain; `economics` prices it when it is actionable.
+
+    `key` is the finding's identity *across* windows, and it is the field that turns a sweep into a ledger. A title
+    carries a window's numbers ("forwarded $10.0M") and so differs every run; the key names the thing itself (which
+    address, which asset, which venue pair), so the same mislabelled sink seen on Monday and Tuesday is one finding
+    observed twice rather than two findings. Detectors that describe a window-level condition rather than a specific
+    actor may leave it None, and the detector name becomes the key.
+    """
     detector: str
     title: str
     severity: str = 'notable'
     evidence: Dict[str, Any] = dataclasses.field(default_factory=dict)
     economics: Optional[Dict[str, Any]] = None
     usd: Optional[float] = None
+    key: Optional[str] = None
+
+    def identity(self):
+        return '%s:%s' % (self.detector, self.key) if self.key else self.detector
 
     def as_dict(self):
-        return dataclasses.asdict(self)
+        d = dataclasses.asdict(self)
+        d['identity'] = self.identity()
+        return d
 
 
 class Context:
@@ -63,6 +76,7 @@ class Context:
         self.min_usd = min_usd
         self._blocks = None
         self._transfers = None
+        self._accounts = None
 
     @property
     def blocks(self):
@@ -77,6 +91,29 @@ class Context:
         if self._transfers is None:
             self._transfers = list(self.window.transfers(min_usd=self.min_usd))
         return self._transfers
+
+    @property
+    def accounts(self):
+        """`(emitters, senders, called)`: emitted a log, originated a transaction, was called with calldata.
+
+        These are close to certainties rather than heuristics — only a contract emits a log, only an externally-owned
+        account (or a 7702-delegated one) originates a transaction, and a transaction carrying calldata to an address
+        that never originates one is a call into code. All three cost the same single pass over the blocks, so they are
+        materialised together and shared. Guessing "contract" from behaviour is exactly the mistake that made every busy
+        contract an exchange deposit sink; `emitters` alone is not enough either, because a searcher bot that emits no
+        events of its own would read as an EOA.
+        """
+        if self._accounts is None:
+            emitters, senders, called = set(), set(), set()
+            for b, logs in self.window.blocks():
+                for t in b['transactions']:
+                    senders.add(t['from'].lower())
+                    if t.get('to') and len(t.get('input') or '0x') > 2:
+                        called.add(t['to'].lower())
+                for l in logs:
+                    emitters.add(l['address'].lower())
+            self._accounts = (emitters, senders, called)
+        return self._accounts
 
     def label(self, a):
         b = self.book.get(a)

@@ -1,30 +1,47 @@
 # Onchain research pilot
 
 **System roadmap:** [ROADMAP.md](ROADMAP.md) is the standing plan for turning this into the best onchain research
-analysis system — prioritised recommendations, each grounded in a concrete failure this repo has hit. Five of them have
+analysis system — prioritised recommendations, each grounded in a concrete failure this repo has hit. Seven of them have
 now landed, and together they form a correctness layer that runs on every window:
 
 | module | what it does | run it |
 |---|---|---|
-| `scripts/labels.py` | address labels with five provenance tiers, a proxy-following resolver, a coverage report and an audit | `labels.py audit --book` |
-| `scripts/verify.py` | re-derives 13 headline numbers from the raw blocks through an independent path, asserts mechanism claims against verified source, and reports the label band | `live_scan.py verify --out <window>` |
+| `scripts/labels.py` | address labels with five provenance tiers, a proxy-following resolver, a coverage report, an audit, and `adopt-shapes` to file what a detector proved about the unlabelled tail | `labels.py audit --book` |
+| `scripts/provenance.py` | records the labels, token table and block set an artifact was built from, and gates on them | `provenance.py check --out <window>` |
+| `scripts/verify.py` | re-derives 13 headline numbers from the raw blocks through an independent path, asserts four mechanism claims against verified source and the chain, reports the label band, and checks that every prose claim cites a recipe | `live_scan.py verify --out <window>` |
 | `scripts/economics.py` | one scorer for every opportunity: capacity, price impact, gas, locked capital, competition, decay | `economics.py` |
-| `scripts/detectors/` | a registry so each discovered mechanism is re-checked automatically forever | `live_scan.py detect --out <window>` |
-| `scripts/window_raw.py` | the minimal independent reader the first two are built on | — |
+| `scripts/detectors/` | seven detectors, so each discovered mechanism is re-checked automatically forever | `live_scan.py detect --out <window>` |
+| `scripts/findings.py` | the ledger: which findings recur, which decayed, which are due a re-check | `findings.py report` |
+| `scripts/window_raw.py` | the minimal independent reader the verification is built on | — |
 
-Why this exists, concretely. Exchange flow and leverage-to-exchange were computed from an address book whose
-deposit-sink rule tested `sent == 0`, meaning "originated no transactions" — a condition every *contract* satisfies
-structurally. The rule therefore read "any busy contract is an exchange deposit sink" and tagged 25 addresses of which
-22 forwarded value, including CoW's settlement contract, the Uniswap Universal Router and a Relay bridge depository.
-Fixing it moved the 2026-09-07 midday window's gross USDC inflow from $823.2M to $497.1M and its leverage-to-exchange
-from $4.0M to $0, on the same blocks. Two earlier mislabels had already moved leverage-to-exchange from $25.7M to $5.3M
-and RLUSD net flow from −$101.6M to −$0.9M, and both were found by hand; `labels.py audit` now finds that class
-automatically, and did, catching four more on its first run.
+`live_scan.py pipeline --out <window>` runs analyze → verify → detect → ingest in that order, because that is the order
+in which they depend on each other and running them out of order is how this repo produced corrected labels beside
+uncorrected numbers, twice.
 
-The label band is the honest by-product. On the five-hour window, net stable exchange flow is **+$91.6M** using
-model-memory labels alone and **−$24.8M** once behavioural labels are included, so `verify` reports both rather than
-picking one. And the generalised gas detector rediscovered the tokenized-stock router behind that window's 15x base-fee
-spike without being given its address, which is what the detector registry is for.
+Why this exists, concretely. Exchange flow and leverage-to-exchange are computed from an address book, and a wrong
+entry moves those headlines by multiples rather than percents. Four such entries have now been found:
+
+| mislabel | headline it moved | found by |
+|---|---|---|
+| CoW settlement contract read as a CEX | leverage-to-exchange $25.7M → $5.3M | hand |
+| an RLUSD treasury read as a CEX | RLUSD net flow −$101.6M → −$0.9M | hand |
+| `sent == 0` deposit-sink rule (every contract satisfies it) | gross USDC inflow $823.2M → $497.1M | hand |
+| a pass-through EOA tagged `exchange_deposit` | five-hour net stable flow −$24.8M → **+$75.2M** | `mislabelled_flow` detector |
+
+The fourth is the one that matters for the system rather than the number. It was found automatically, on the second
+window it appeared in, by the detector written to test labels against the window's own behaviour — and the ledger had
+already recorded that it recurred. The address collects small inbound legs and forwards them in one large one: $99.99M
+of USDC in a single transaction, to a verified Gnosis Safe. Counting that as exchange outflow is wrong under either
+reading of the address, so the tag was retired without having to settle its identity.
+
+The label band is the honest by-product, and it improved too. On the five-hour window net stable exchange flow read
++$91.6M with model-memory labels alone and −$24.8M once behavioural labels were included — a sign flip that turned out
+to be measuring that single bad label. Corrected, the band runs +$91.6M to +$75.2M and no longer changes sign.
+
+Two detectors earned their place the same way. The generalised gas detector rediscovered the tokenized-stock router
+behind that window's 15x base-fee spike without being given its address; `mass_distribution` surfaced 0.0003 USDT sent
+to 12,056 addresses in one campaign — token-transfer address poisoning at a scale the native-ETH poisoning detector
+cannot see, and which the hand analysis of the same window missed.
 
 
 2026-09-07, joining the day's per-chain windows: [three chains, one desk](research/2026-09-07/interchain/findings.md). The same wallet is the entire withdrawal side of Relay's depository on Ethereum *and* Robinhood Chain, a Paxos mint-and-redeem counterparty on both, and the top taker in the thin Uniswap v4 USDC/USDG pools that the captive-flow LP study is built on — so that flow is a cross-chain solver's inventory balancing, not a reward-rebate programme, and the risk it prices as future ("the desk might reroute to direct mint") is already its base case. The same network is the largest retail flow on all three chains, and the "unlabelled custodial deposit system" the Solana narrative asked to identify is its Solana depository. Robinhood Chain collected 279.2 ETH ($696k) of base fees in the ten hours Ethereum L1 burned 8.96 ETH ($22.3k), a 31x ratio, and charged nothing on 175,818 priority-fee bids. Two headline numbers do not survive re-derivation: TSLA on Robinhood Chain traded within 0.10% of its reference, not +4.4% (a `setdefault` merge in `orbit_scan.py` freezes a stale first-pass price), and the Solana narrative's "USDG 8.32% on Jupiter Lend" contradicts its own table's 5.42%. Robinhood Chain's missing rate rung is measured for the first time by realising share prices forward: $456M sits in steakUSDG earning 3.75%, below Compound v3 USDC at 6.91% on Ethereum and Jupiter Lend USDC at 4.96% on Solana. `scripts/interchain.py` recomputes every join offline.

@@ -6601,8 +6601,8 @@
       "block": 25923763,
       "to": "0x8f10b468b06c6fd214b65f87778827f7d113f996",
       "usd": 749970,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "router or solver (shape: pass-through, 136 txs, 70% flat, 120 counterparties, $215M gross) (behaviour-2026-09-08-fingerprint)",
       "forwarded_to_exchange": null,
       "tx": "0x18e1eb332854deb22a2ea21a3de20500cafdd1405d052d2c270521b25ae6ce28"
      },
@@ -6610,8 +6610,8 @@
       "block": 25923778,
       "to": "0x8f10b468b06c6fd214b65f87778827f7d113f996",
       "usd": 499980,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "router or solver (shape: pass-through, 136 txs, 70% flat, 120 counterparties, $215M gross) (behaviour-2026-09-08-fingerprint)",
       "forwarded_to_exchange": null,
       "tx": "0xeb6f9c536eb17bb20e2293908bfba727fd28441eed90bf829a816dcdc52923a3"
      },
@@ -6619,8 +6619,8 @@
       "block": 25923783,
       "to": "0x8f10b468b06c6fd214b65f87778827f7d113f996",
       "usd": 249990,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "router or solver (shape: pass-through, 136 txs, 70% flat, 120 counterparties, $215M gross) (behaviour-2026-09-08-fingerprint)",
       "forwarded_to_exchange": null,
       "tx": "0x1bb6b3a140b1747c9d652268eae4acbb2e056fa5fcab1219052506da7a89ae88"
      }
@@ -6644,8 +6644,8 @@
       "block": 25923778,
       "to": "0x8f10b468b06c6fd214b65f87778827f7d113f996",
       "usd": 499980,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "router or solver (shape: pass-through, 136 txs, 70% flat, 120 counterparties, $215M gross) (behaviour-2026-09-08-fingerprint)",
       "forwarded_to_exchange": null,
       "tx": "0xeb6f9c536eb17bb20e2293908bfba727fd28441eed90bf829a816dcdc52923a3"
      },
@@ -6653,8 +6653,8 @@
       "block": 25923783,
       "to": "0x8f10b468b06c6fd214b65f87778827f7d113f996",
       "usd": 249990,
-      "tag": null,
-      "label": null,
+      "tag": "labelled",
+      "label": "router or solver (shape: pass-through, 136 txs, 70% flat, 120 counterparties, $215M gross) (behaviour-2026-09-08-fingerprint)",
       "forwarded_to_exchange": null,
       "tx": "0x1bb6b3a140b1747c9d652268eae4acbb2e056fa5fcab1219052506da7a89ae88"
      }
@@ -7027,15 +7027,15 @@
     "out": 206756100,
     "net": 74751762
    },
-   "USDC": {
-    "in": 90892393,
-    "out": 188838475,
-    "net": -97946083
-   },
    "ETH": {
     "in": 99642004,
     "out": 86832336,
     "net": 12809668
+   },
+   "USDC": {
+    "in": 90892393,
+    "out": 88849663,
+    "net": 2042729
    },
    "cbBTC": {
     "in": 7294619,
@@ -7048,9 +7048,9 @@
     "net": -888996
    },
    "LINK": {
-    "in": 4322980,
+    "in": 4127298,
     "out": 3221359,
-    "net": 1101621
+    "net": 905939
    },
    "UNI": {
     "in": 2196103,
@@ -7143,11 +7143,6 @@
     "label": "Bitget (model-memory)",
     "in": 86871855,
     "out": 52702847
-   },
-   {
-    "label": "deposit sink (behaviour, day study)",
-    "in": 195682,
-    "out": 99988812
    },
    {
     "label": "Coinbase 10 (model-memory)",
@@ -10979,5 +10974,30 @@
   "WEETH": 2740.2911580779305,
   "WSTETH": 3099.68682085103
  },
- "address_book_size": 178
+ "address_book_size": 188,
+ "provenance": {
+  "artifact": "analysis",
+  "generated_at": "2026-09-07T23:22:43+00:00",
+  "labels": "ed14a540bacb0af5",
+  "label_count": 188,
+  "tokens": "ca4aa94f2ca2208f",
+  "token_count": 47,
+  "code": {
+   "live_scan.py": "78fbb8ed6ec1ae4e",
+   "window_raw.py": "8e7f5d82ea127938",
+   "verify.py": "64ed063b45357bb5",
+   "labels.py": "6607aca48787162b",
+   "economics.py": "b3ca4fab5d306d57"
+  },
+  "git": {
+   "commit": "7ccce13",
+   "dirty": true
+  },
+  "blocks": "1bf8d95b9e8ead9f",
+  "block_count": 1493,
+  "first_block": 25922548,
+  "last_block": 25924040,
+  "first_block_analysed": 25922548,
+  "last_block_analysed": 25924040
+ }
 }

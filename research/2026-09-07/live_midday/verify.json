@@ -1,7 +1,35 @@
 {
  "window": "research/2026-09-07/live_midday",
+ "stale": false,
+ "provenance": [
+  {
+   "field": "labels",
+   "artifact": "ed14a540bacb0af5",
+   "current": "ed14a540bacb0af5",
+   "gate": true,
+   "ok": true,
+   "note": ""
+  },
+  {
+   "field": "tokens",
+   "artifact": "ca4aa94f2ca2208f",
+   "current": "ca4aa94f2ca2208f",
+   "gate": true,
+   "ok": true,
+   "note": ""
+  },
+  {
+   "field": "blocks",
+   "artifact": "e333bc585b35fb40",
+   "current": "e333bc585b35fb40",
+   "gate": true,
+   "ok": true,
+   "note": ""
+  }
+ ],
  "checks": [
   {
+   "id": "blocks",
    "check": "blocks analysed",
    "recomputed": 1492,
    "analysis": 1492,
@@ -10,6 +38,7 @@
    "note": ""
   },
   {
+   "id": "transactions",
    "check": "transactions",
    "recomputed": 410759,
    "analysis": 410759,
@@ -18,6 +47,7 @@
    "note": ""
   },
   {
+   "id": "logs",
    "check": "logs",
    "recomputed": 1214881,
    "analysis": 1214881,
@@ -26,6 +56,7 @@
    "note": ""
   },
   {
+   "id": "usdc-mint",
    "check": "USDC minted (USD, from the zero address)",
    "recomputed": 153041026,
    "analysis": 153058222,
@@ -34,6 +65,7 @@
    "note": ""
   },
   {
+   "id": "usdc-burn",
    "check": "USDC burned (USD, to the zero address)",
    "recomputed": 279406849,
    "analysis": 279438244,
@@ -42,14 +74,16 @@
    "note": ""
   },
   {
+   "id": "exchange-net-stables",
    "check": "exchange net flow, stables (USD)",
-   "recomputed": 13170338,
-   "analysis": 13170337,
+   "recomputed": 22999579,
+   "analysis": 22999578,
    "ok": true,
    "tolerance": 0.03,
    "note": ""
   },
   {
+   "id": "exchange-net-eth",
    "check": "exchange net flow, ETH (USD)",
    "recomputed": -19615184,
    "analysis": -19615184,
@@ -58,6 +92,7 @@
    "note": ""
   },
   {
+   "id": "exchange-gross-usdc",
    "check": "exchange gross in, USDC (USD)",
    "recomputed": 497073620,
    "analysis": 497073620,
@@ -66,6 +101,7 @@
    "note": ""
   },
   {
+   "id": "leverage-to-exchange",
    "check": "leverage-to-exchange (USD followed to a CEX)",
    "recomputed": 0,
    "analysis": 0,
@@ -74,6 +110,7 @@
    "note": "replays the proceeds walk over an independently decoded transfer stream"
   },
   {
+   "id": "cctp-largest",
    "check": "largest CCTP send: USDC -> Arbitrum (USD)",
    "recomputed": 103996081,
    "analysis": 104007766,
@@ -82,6 +119,7 @@
    "note": ""
   },
   {
+   "id": "gas-top-target",
    "check": "gas requested by the top target 0xdac17f95",
    "recomputed": 12186742664,
    "analysis": 12186742664,
@@ -90,6 +128,7 @@
    "note": ""
   },
   {
+   "id": "gas-top-target-identity",
    "check": "top gas target is the same address",
    "recomputed": "0xdac17f958d",
    "analysis": "0xdac17f958d",
@@ -98,6 +137,7 @@
    "note": ""
   },
   {
+   "id": "rate-gap-widest",
    "check": "widest Aave/Spark borrow-rate gap (USDS, pp)",
    "recomputed": 1.598,
    "analysis": 1.598,
@@ -121,32 +161,67 @@
   },
   {
    "min_tier": "behaviour",
-   "exchange_addresses": 96,
-   "stables_net_usd": 13170338,
+   "exchange_addresses": 95,
+   "stables_net_usd": 22999579,
    "eth_net_usd": -19615184
   }
  ],
- "mechanisms": [
-  {
-   "id": "stacy-deposit-for",
-   "ok": true,
-   "detail": "depositFor does not set lastDepositBlock",
-   "claim": "StacyVault's `depositFor` never writes `lastDepositBlock`, so a flash depositor skips the lock."
-  },
-  {
-   "id": "msca-not-exchange",
-   "ok": true,
-   "detail": "implementation resolves to 'SingleOwnerMSCA'",
-   "claim": "0xee7ae85f is a modular smart-contract account, not the exchange deposit contract it was tagged as."
-  },
-  {
-   "id": "no-contract-hot-wallets",
-   "ok": true,
-   "detail": "0 contradiction(s); audit checked 96 exchange tags",
-   "claim": "no address counted as a CEX *hot wallet* is a contract."
-  }
- ],
+ "mechanisms": null,
+ "claims": {
+  "cited": [
+   "blocks",
+   "cctp-largest",
+   "exchange-gross-usdc",
+   "exchange-net-eth",
+   "exchange-net-stables",
+   "gas-top-target",
+   "gas-top-target-identity",
+   "leverage-to-exchange",
+   "logs",
+   "msca-not-exchange",
+   "no-contract-hot-wallets",
+   "rate-gap-widest",
+   "stacy-deposit-for",
+   "transactions",
+   "usdc-burn",
+   "usdc-mint"
+  ],
+  "cited_count": 24,
+  "dangling": [],
+  "checks_available": [
+   "blocks",
+   "cctp-largest",
+   "exchange-gross-usdc",
+   "exchange-net-eth",
+   "exchange-net-stables",
+   "fingerprint-matches-chain",
+   "gas-top-target",
+   "gas-top-target-identity",
+   "leverage-to-exchange",
+   "logs",
+   "msca-not-exchange",
+   "no-contract-hot-wallets",
+   "rate-gap-widest",
+   "stacy-deposit-for",
+   "transactions",
+   "usdc-burn",
+   "usdc-mint"
+  ],
+  "checks_uncited": [
+   "fingerprint-matches-chain"
+  ],
+  "headline_numbers_tagged": 36,
+  "headline_numbers_untagged": 30,
+  "coverage": 0.545,
+  "untagged_examples": [
+   "1. **Compound USDC is paying ~2x Aave.** Compound v3 USDC supply 6.91% / borrow 8.14% at 91% utilisation, versus Aave USDC 3.58% / 4.27% at 93% and Sk",
+   "5. **EIP-7702 set-code txs are now ~2% of all traffic** (8,194 type-0x4 txs), most routing through the ERC-4337 EntryPoint v0.8, dominated by one dele",
+   "7. **The big \"$15.8M BULL swap\" is a bot wash.** MEV bot 0x00000f91 ran a BULL\u2192WETH and WETH\u2192BULL leg in the same block (25924144), same pool, netting",
+   "| headline | as first published | corrected | |---|---:|---:| | exchange gross inflow, USDC | $823.2M | $497.1M | | exchange net flow, stables | +$44.",
+   "How much confidence the remaining flow numbers deserve is itself now reported. Exchange flow computed with model-memory labels alone gives stables +$1",
+   "## Second correction, 2026-09-08 (the deposit sink that swept $10M)"
+  ]
+ },
  "all_ok": true,
- "failures": 0,
- "seconds": 8.3
+ "failures": 0
 }

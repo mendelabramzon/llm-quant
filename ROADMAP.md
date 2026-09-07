@@ -5,6 +5,49 @@ the LLM reads evidence, proposes mechanisms, and writes the infrastructure; dete
 reusable detectors and tests; the human steers. The metric we optimise is **time-to-verified-insight**: how fast a raw
 signal becomes a true, capacity-aware, reproducible claim and then a reusable detector — not classification coverage.
 
+## Session log — 2026-09-08 (the loop closes: staleness, claim tags, ledger, three detectors)
+
+Landed: `scripts/provenance.py` (what an artifact was built from, and a hard gate on it), `scripts/findings.py` (the
+findings ledger with recurrence, decay and a recheck cadence), three new detectors — `solver_fingerprint`,
+`jit_liquidity`, `mass_distribution` — `labels.py adopt-shapes` (detector → registry), `live_scan pipeline` (the four
+steps in dependency order), verify recipe ids with `[[verify: id]]` claim tagging, a fourth mechanism assertion, and
+`scripts/test_findings.py` (13 tests over the two new bookkeeping modules).
+
+**What it found, which is again the point.** The `mislabelled_flow` detector had been reporting the same address at
+high severity on both 2026-09-07 windows: [0x3cc936b7](https://etherscan.io/address/0x3cc936b795a188f0e246cbb2d74c5bd190aecf18),
+tagged `exchange_deposit` by the day study's behaviour profile. It is an externally-owned account that collects small
+inbound legs and forwards them in one large one — $99.99M of USDC in a single transaction on the five-hour window, to a
+verified Gnosis Safe that forwarded the whole amount on again. Counting that leg as exchange outflow is wrong under
+either reading: if the address is an exchange deposit address, the sweep goes to exchange infrastructure and the leg is
+internal; if it is not, the leg is not exchange flow at all. Both readings agree, so the tag was retired without having
+to settle the identity.
+
+| headline, 2026-09-07 five-hour window | with the deposit-sink tag | corrected |
+|---|---:|---:|
+| exchange net flow, stables | −$24.8M | **+$75.2M** |
+| exchange net flow, USDC | −$97.9M | **+$2.0M** |
+| label band, model-memory → behaviour | +$91.6M → −$24.8M | +$91.6M → +$75.2M |
+
+That is the third mislabel of this family, after the CoW settlement contract and the deposit-sink rule itself, and the
+first found by a detector rather than by hand. The label band this repo introduced last session to flag its own
+uncertainty turns out to have been measuring one bad label: with it gone, the band no longer changes sign.
+
+**The staleness gate proved itself immediately.** Adopting nine shape labels changed the address book, and `verify` on
+both windows refused to compare a single number until `analyze` was re-run — which is the behaviour that had to be
+enforced by hand twice on 2026-09-07.
+
+**The ledger says which findings are structure and which are noise.** Across the two windows: 47 findings, 22 recurring,
+9 closed by labelling. The decay column shows what a single window cannot — the Compound-versus-Spark USDC gap widening
+0.87% → 1.41% while the Sky SSR gap held flat at 3.48% — and `seen 1/2` marks every finding that a later sweep, running
+the same detector, did not see again.
+
+**The detectors found things the hand analysis had missed.** `mass_distribution` surfaced 0.0003 USDT sent to 12,056
+addresses by one sender — token-transfer address poisoning at a scale the native-ETH poisoning detector cannot see.
+`solver_fingerprint` characterised the whole unlabelled tail: the top three entries pass $1–9B straight through, each
+with one or three counterparties, and `verify`'s new `fingerprint-matches-chain` assertion confirms against Blockscout
+that the detector's contract-versus-account calls were right on every hit where it committed to one, and declined to
+guess on the rest.
+
 ## Session log — 2026-09-07 (infrastructure pass)
 
 Landed: `scripts/window_raw.py` (an independent raw-window reader), `scripts/labels.py` (provenance registry, coverage,
@@ -43,14 +86,21 @@ captive-flow LP, StacyFarmer) that turns a thesis into an executable, checkable 
 `tx_types.py` (`rounds.json`). Collectors (`eth_day_collect`, `live_collect`), a broad feature engine (`live_scan`),
 and offline digests (`window_events`, `window_followups`, `corevault_scan`).
 
-Weaknesses, from this session's actual friction: labels are behavioural/memory and **wrong in ways that move headline
-numbers** (CoW settlement counted as a CEX inflated leverage-to-exchange from $5.3M to $25.7M; an RLUSD treasury
-inflated exchange outflow 100x); head reads are **spot and pollutable** by the same flash/midnight spikes the system
-itself documents; there is **no automated verification** of a claim (every mechanism this session — the Morpho farmer,
-the Stacy bug — was hand-verified from traces/source); one-off scripts don't become **reusable detectors**; data access
-is fragile (Infura archive gaps, dRPC free-tier timeouts, Blockscout rate limits, forks only at latest, BSC/Polygon
-need keys); and opportunity economics (capacity, gas, competition) are recomputed by hand each time, so a dust farm
-like Stacy isn't auto-flagged.
+Weaknesses, updated 2026-09-08. Most of the 2026-09-07 list is now closed: claims are verified against an independent
+re-derivation, mechanisms are re-runnable assertions, one-off scripts have become seven detectors, opportunity economics
+run through one scorer, and a stale artifact announces itself. What remains, in the order it bites:
+
+* **Data access is still the binding constraint.** No trace or archive endpoint means the CoreVault bytecode
+  fingerprint and any balance-delta test cannot become detectors, and fork tests only run at latest. This blocks more
+  planned work than everything else combined.
+* **Head reads are still spot** where the venue emits no logs. Compound and Sky publish no `ReserveDataUpdated`, so
+  three of the six standing rate findings carry "one-block read, de-spiking unavailable", including the two largest.
+* **Labels remain mostly behavioural and model-memory**, and the fourth mislabel found (2026-09-08) moved a headline's
+  sign. The detector now catches this class automatically, but catching is not preventing: 30% of window USD still
+  touches an address the registry cannot name, and `adopt-shapes` can only file the half of that tail whose shape
+  settles the question.
+* **Coverage of prose by verified recipes is about half.** `verify` now counts it, which is the first step, but the
+  tape prices, blob counts, gas-share arithmetic and health factors in every note are still single readings.
 
 ## Recommendations, prioritised
 
@@ -94,9 +144,12 @@ write `lastDepositBlock`; `msca-not-exchange`; `no-contract-hot-wallets`); and t
 
 Writing it caught two decoder bugs immediately: only the CCTP **v1** `DepositForBurn` topic was being watched, so every
 v2 send was silently dropped, and the destination domain was being sniffed rather than read from its fixed word.
-*Still open*: `insights.md` claims are not yet tagged with recipe ids, so the link from a sentence to its check is by
-convention rather than by reference. Effort: M–L. Payoff: **the single biggest quality lever** — it makes the confidence
-labels earned, not asserted.
+*Closed 2026-09-08*: every check now carries a stable id, a sentence cites it as `[[verify: exchange-net-stables]]`,
+and `verify` fails on a citation with no matching check and counts the headline numbers that cite nothing — 55% of the
+midday note's big numbers are tagged, 46% of the five-hour note's, and the untagged remainder is now visible rather
+than assumed. A fourth mechanism assertion, `fingerprint-matches-chain`, checks the new tail detector's
+contract-versus-account calls against Blockscout on every hit where it commits to one. Effort: M–L.
+Payoff: **the single biggest quality lever** — it makes the confidence labels earned, not asserted.
 
 ### P1 — leverage (build the flywheel that compounds)
 
@@ -111,9 +164,15 @@ window and the registry grows the way `type_registry` did. **Shipped**: `detecto
 writes `detectors.json` + `detectors.md`. Four detectors so far — `mislabelled_flow` (label claims the window itself
 refutes), `gas_concentration` (base-fee spikes attributed to the contract whose gas demand caused them),
 `rate_dispersion` (de-spiked cross-venue gaps priced through `economics.py`), `address_poisoning` (lookalike dust after
-a large transfer). The generalised gas detector **rediscovered the tokenized-stock router** on the five-hour window
-without being given its address, which is the flywheel doing what it was built for. Effort: L.
-Payoff: every window automatically re-checks every past discovery; the system stops forgetting.
+a large transfer). Three more landed 2026-09-08: `solver_fingerprint` (the unlabelled tail, split by shape into
+pass-through, cycling and retaining, with contract-versus-account proven from the window and reported as unknown when
+the window cannot prove it), `jit_liquidity` (the share of pool fees taken by liquidity that arrived for one swap, per
+pool and per window, with the operator economics priced as a race), and `mass_distribution` (one sender fanning a token
+to thousands of recipients — airdrop, mint distribution or dust spam). The generalised gas detector **rediscovered the
+tokenized-stock router** on the five-hour window without being given its address; `mass_distribution` found a
+12,056-recipient USDT dust campaign the hand analysis of the same window had missed; and `mislabelled_flow` found the
+fourth label bug. Effort: L. Payoff: every window automatically re-checks every past discovery; the system stops
+forgetting.
 
 **5. Standard economics harness.** *Done — `scripts/economics.py`.*
 Problem: capacity, gas, capital, competition and decay are computed by hand for each opportunity, so results aren't
@@ -152,10 +211,16 @@ and BSC is the historical home of the CORE family. Proposal: promote the `CHAINS
 `live_scan` (per-chain blue-chip sets, factories, blob inboxes, RPC). Effort: L. Payoff: the meme waves that spawn these
 setups are multi-chain; single-chain coverage misses most of them.
 
-**8. Findings ledger with recheck cadence.**
+**8. Findings ledger with recheck cadence.** *Done — `scripts/findings.py`.*
 Problem: findings are point-in-time; only the midnight routine is tracked daily. Proposal: `research/findings.jsonl`, each
-finding an id + a recheck cron + a realized-vs-predicted log; a daily job re-runs the relevant detector and appends the
-outcome. Effort: M. Payoff: closes the qual↔quant loop the memo describes and separates recurring edges from one-offs.
+finding an id + a recheck cron + a realized-vs-predicted log. **Shipped**: a finding is identified across windows by
+`detector:key`, so the same rate gap on Monday and Tuesday is one finding observed twice; `research/windows.json` records
+which detectors ran in each ingested window, which is what makes *absence* mean something — every finding reports
+`seen / eligible` rather than a bare count, and a gap at 1/4 is visibly a spot artifact where 3/3 is a standing
+dislocation. Economics-bearing hits keep their predicted net APR per observation, so the report prints a decay column.
+`close` records why a finding was answered (nine were, by `adopt-shapes` labelling their addresses) so it stops
+appearing in `due`. Effort: M. Payoff: **demonstrated** — 22 of 47 findings recur across two windows, and the ledger
+flagged the 0x3cc936b7 mislabel as recurring before anyone looked at it.
 
 **9. Signal-testing harness with controls and multiple-hypothesis correction.**
 Problem: the informed-flow test (does exchange netflow predict returns) was run once, ad hoc, and found null. Proposal:
@@ -169,21 +234,27 @@ diffable.
 
 ## Do next (concrete)
 
-The previous three items are done. What this pass exposed, in priority order:
+Items 1, 2, 4 and 5 of the previous list are done; item 3 is done except for the two detectors that need the RPC layer
+or a window that spans midnight. What this pass exposed, in priority order:
 
-1. **Make the staleness check automatic.** Both 2026-09-07 windows were re-analysed and their notes corrected by hand
-   this session. Nothing yet stops the next one drifting: `analysis.json` should record the registry hash it was built
-   against, and `verify` should fail on a mismatch before it compares a single number, rather than reporting a numeric
-   mismatch whose real cause is a label edit.
-2. **Tag claims with verify recipes.** Give each headline in `insights.md` a `[[verify: <id>]]` marker matching a check
-   in `verify.py`, so a reader can go from a sentence to the code that re-derives it, and an untagged number is visibly
-   unverified.
-3. **Port the remaining one-off checks into detectors**: `corevault_scan` / `bytecode_fingerprint` (needs the RPC layer,
-   item 6), the JIT-liquidity test, the midnight routine, and the mass-distribution matcher from `window_followups`.
-4. **Label the $2B tail.** The top unlabelled addresses are unverified contracts; a vanity-prefix + unverified + high
-   fan-out signature is a solver/MEV fingerprint worth a detector rather than a hand label.
-5. **Findings ledger (item 8).** The detector sweep now produces comparable hits every window, which is exactly the
-   input a `research/findings.jsonl` with a recheck cadence needs. This is the natural next build.
+1. **A window that spans midnight, so the midnight-routine detector can be written and fire.** Every window collected
+   so far runs 02:39–12:39 UTC, and the daily 23:30–00:20 balance routine — the most reliably recurring mechanism this
+   project has found — is the one thing the detector registry still cannot re-check. It needs a collection, not code.
+2. **De-spike `head_state.json` itself.** `rate_dispersion` de-spikes what it quotes, but the head file still stores spot
+   values and Compound and Sky emit no `ReserveDataUpdated` logs, so their reads cannot be de-spiked at all. Three of the
+   six standing rate findings are marked "one-block read, de-spiking unavailable" for exactly that reason, and the two
+   largest by predicted APR are among them.
+3. **Close the loop on the `retains` half of the tail.** `solver_fingerprint` splits unlabelled addresses into
+   pass-through and retaining, and `adopt-shapes` only files the first kind, because a shape claim cannot settle what a
+   retaining address is. Those are the ones whose mislabelling moves headlines — 0x3cc936b7 was one — so they need a
+   cheap identity route: funder graph, first-funding transaction, or a counterparty-set match against known exchange
+   infrastructure.
+4. **The data-access layer (item 6).** Still the largest blocker: no trace or archive endpoint means the CoreVault
+   bytecode fingerprint and the JIT-liquidity balance-delta test cannot become detectors, and fork tests only run at
+   latest.
+5. **Signal-testing harness (item 9).** The ledger now produces exactly the input it needs — a repeated observation of
+   the same finding with a predicted number attached — so out-of-sample and FDR control on "does this edge persist" is
+   the natural next build after a few more windows accumulate.
 
 ## Anti-goals
 

@@ -1,24 +1,92 @@
 # Detector sweep — research/2026-09-07/live_5h
 
-Ran 4 detector(s); 8 hit(s).
+Ran 7 detector(s); 25 hit(s).
 
 | detector | hits | seconds | what it looks for |
 |---|---:|---:|---|
-| `address_poisoning` | 1 | 5.56 | lookalike dust transfers that follow a large transfer, aimed at a later copy-paste |
-| `gas_concentration` | 1 | 9.74 | base-fee spikes attributed to the contract whose gas demand caused them |
-| `mislabelled_flow` | 1 | 5.22 | address labels the window contradicts, which is how a headline moves by a multiple |
+| `address_poisoning` | 1 | 3.17 | lookalike dust transfers that follow a large transfer, aimed at a later copy-paste |
+| `gas_concentration` | 1 | 6.34 | base-fee spikes attributed to the contract whose gas demand caused them |
+| `jit_liquidity` | 1 | 0.00 | fee share taken by liquidity minted for a single swap, per pool and per window |
+| `mass_distribution` | 5 | 5.17 | one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam |
+| `mislabelled_flow` | 0 | 3.46 | address labels the window contradicts, which is how a headline moves by a multiple |
 | `rate_dispersion` | 5 | 0.00 | cross-venue supply-rate gaps on one asset, de-spiked and sized by rate dilution |
+| `solver_fingerprint` | 12 | 3.37 | unlabelled contracts that pass value straight through: solvers, routers and searcher bots |
 
-### [high] deposit sink deposit sink (behaviour, day study) forwarded $100.0M in this window
+### [notable] unlabelled unknown 0x76f30e3f cycled $450.6M and ended the window flat (42 txs, 13 counterparties)
 
 ```json
 {
- "address": "0x3cc936b795a188f0e246cbb2d74c5bd190aecf18",
- "label": "deposit sink (behaviour, day study)",
- "source": "behaviour-day-study",
- "in_usd": 195682,
- "out_usd": 99988812,
- "why": "a deposit sink is defined by not forwarding; this one forwards, so its outflow is being counted as exchange outflow"
+ "address": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+ "shape": "cycles",
+ "gross_usd": 901242144,
+ "txs": 42,
+ "counterparties": 13,
+ "tokens": 5,
+ "pass_through_share": 0.429,
+ "received_usd": 450620816,
+ "sent_usd": 450621328,
+ "retained_usd": -512,
+ "retention": -0.0,
+ "is_contract": null,
+ "emits_logs": false,
+ "receives_calldata": false,
+ "originates_txs": false,
+ "vanity_zeros": 0,
+ "suggested_kind": "unknown",
+ "why": "it received and returned the same total across separate transactions, so it holds nothing over the window even though no single transaction nets out: a position opened and closed across blocks",
+ "next_step": "labels.py resolve --out <window> tries to name it; unnamed, it still must not be counted as an exchange"
+}
+```
+
+### [notable] unlabelled unknown 0x5aae4d2f passed $125.0M through in 16 txs (62% ended flat, 21 counterparties)
+
+```json
+{
+ "address": "0x5aae4d2f360e156de3416936049837a7bb685588",
+ "shape": "pass-through",
+ "gross_usd": 124979964,
+ "txs": 16,
+ "counterparties": 21,
+ "tokens": 8,
+ "pass_through_share": 0.625,
+ "received_usd": 62489716,
+ "sent_usd": 62490248,
+ "retained_usd": -532,
+ "retention": -0.0,
+ "is_contract": null,
+ "emits_logs": false,
+ "receives_calldata": false,
+ "originates_txs": false,
+ "vanity_zeros": 0,
+ "suggested_kind": "unknown",
+ "why": "value arrives and leaves inside the same transaction, so this address holds nothing and its flow is not exchange flow; no vanity prefix, so the shape is the only claim",
+ "next_step": "labels.py resolve --out <window> tries to name it; unnamed, it still must not be counted as an exchange"
+}
+```
+
+### [notable] unlabelled eoa 0x13f12f5d cycled $59.7M and ended the window flat (4 txs, 2 counterparties)
+
+```json
+{
+ "address": "0x13f12f5d8b269197be17f0ad4f0a5b27463c7839",
+ "shape": "cycles",
+ "gross_usd": 119395186,
+ "txs": 4,
+ "counterparties": 2,
+ "tokens": 1,
+ "pass_through_share": 0.0,
+ "received_usd": 59697593,
+ "sent_usd": 59697593,
+ "retained_usd": 0,
+ "retention": 0.0,
+ "is_contract": false,
+ "emits_logs": false,
+ "receives_calldata": false,
+ "originates_txs": true,
+ "vanity_zeros": 0,
+ "suggested_kind": "eoa",
+ "why": "it received and returned the same total across separate transactions, so it holds nothing over the window even though no single transaction nets out: a position opened and closed across blocks",
+ "next_step": "labels.py resolve --out <window> tries to name it; unnamed, it still must not be counted as an exchange"
 }
 ```
 
@@ -116,6 +184,360 @@ Economics: net APR 0.87%, $793,766 per year, GO — clears gas, impact and compe
 }
 ```
 
+### [notable] airdrop or multisend: 0x4d2fb5f8ec243fde4df1a9678b8223 sent 0xbeef007e to 14,693 recipients in 52 txs (293 per tx)
+
+```json
+{
+ "token": "0xbeef007ecfbfdf9b919d0050821a9b6dbd634ff0",
+ "token_symbol": null,
+ "sender": "0x4d2fb5f8ec243fde4df1a9678b82238570c7e0e4",
+ "sender_label": null,
+ "kind": "airdrop or multisend",
+ "transfers": 15233,
+ "recipients": 14693,
+ "txs": 52,
+ "blocks": 52,
+ "transfers_per_tx": 292.9,
+ "carrier_contract": "0x4d2fb5f8ec243fde4df1a9678b82238570c7e0e4",
+ "carrier_label": null,
+ "carrier_share": 1.0,
+ "median_raw_amount": "19612611693823596325",
+ "uniform_amount_share": 0.025,
+ "usd_median": null,
+ "why": "a batched fan-out to this many wallets is a campaign; it explains log-count and gas anomalies, and a funded holder set is what a later coordinated sell looks like beforehand"
+}
+```
+
+### [notable] airdrop or multisend: 0x5eef5946ad78e614bb3ee7b9ed1097 sent 0x5eef5946 to 10,521 recipients in 20 txs (601 per tx)
+
+```json
+{
+ "token": "0x5eef5946ad78e614bb3ee7b9ed1097c517ae97f7",
+ "token_symbol": null,
+ "sender": "0x5eef5946ad78e614bb3ee7b9ed1097c517ae97f7",
+ "sender_label": null,
+ "kind": "airdrop or multisend",
+ "transfers": 12024,
+ "recipients": 10521,
+ "txs": 20,
+ "blocks": 20,
+ "transfers_per_tx": 601.2,
+ "carrier_contract": "0x5eef5946ad78e614bb3ee7b9ed1097c517ae97f7",
+ "carrier_label": null,
+ "carrier_share": 1.0,
+ "median_raw_amount": "5000000000",
+ "uniform_amount_share": 1.0,
+ "usd_median": null,
+ "why": "a batched fan-out to this many wallets is a campaign; it explains log-count and gas anomalies, and a funded holder set is what a later coordinated sell looks like beforehand"
+}
+```
+
+### [notable] dust spam: 0x7d9f4ca54131e588fc1fe577973b55 sent USDT to 9,428 recipients in 112 txs (101 per tx)
+
+```json
+{
+ "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+ "token_symbol": "USDT",
+ "sender": "0x7d9f4ca54131e588fc1fe577973b55fb11231e76",
+ "sender_label": null,
+ "kind": "dust spam",
+ "transfers": 11289,
+ "recipients": 9428,
+ "txs": 112,
+ "blocks": 112,
+ "transfers_per_tx": 100.8,
+ "carrier_contract": "0x7d9f4ca54131e588fc1fe577973b55fb11231e76",
+ "carrier_label": null,
+ "carrier_share": 1.0,
+ "median_raw_amount": "299",
+ "uniform_amount_share": 0.013,
+ "usd_median": 0.00029898794432000003,
+ "why": "a batched fan-out to this many wallets is a campaign; it explains log-count and gas anomalies, and a funded holder set is what a later coordinated sell looks like beforehand"
+}
+```
+
+### [notable] mint distribution: zero address (mint/burn) (known- sent 0x06450dee to 4,509 recipients in 36 txs (250 per tx)
+
+```json
+{
+ "token": "0x06450dee7fd2fb8e39061434babcfc05599a6fb8",
+ "token_symbol": null,
+ "sender": "0x0000000000000000000000000000000000000000",
+ "sender_label": "zero address (mint/burn) (known-canonical)",
+ "kind": "mint distribution",
+ "transfers": 8986,
+ "recipients": 4509,
+ "txs": 36,
+ "blocks": 35,
+ "transfers_per_tx": 249.6,
+ "carrier_contract": "0x0000000000771a79d0fc7f3b7fe270eb4498f20b",
+ "carrier_label": null,
+ "carrier_share": 0.601,
+ "median_raw_amount": "13854240000000000000000000",
+ "uniform_amount_share": 0.095,
+ "usd_median": null,
+ "why": "a batched fan-out to this many wallets is a campaign; it explains log-count and gas anomalies, and a funded holder set is what a later coordinated sell looks like beforehand"
+}
+```
+
+### [notable] dust spam: 0x7d9f4ca54131e588fc1fe577973b55 sent USDC to 2,052 recipients in 112 txs (23 per tx)
+
+```json
+{
+ "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+ "token_symbol": "USDC",
+ "sender": "0x7d9f4ca54131e588fc1fe577973b55fb11231e76",
+ "sender_label": null,
+ "kind": "dust spam",
+ "transfers": 2554,
+ "recipients": 2052,
+ "txs": 112,
+ "blocks": 112,
+ "transfers_per_tx": 22.8,
+ "carrier_contract": "0x7d9f4ca54131e588fc1fe577973b55fb11231e76",
+ "carrier_label": null,
+ "carrier_share": 1.0,
+ "median_raw_amount": "356",
+ "uniform_amount_share": 0.005,
+ "usd_median": 0.00035596017072,
+ "why": "a batched fan-out to this many wallets is a campaign; it explains log-count and gas anomalies, and a funded holder set is what a later coordinated sell looks like beforehand"
+}
+```
+
+### [info] unlabelled mev_bot 0x00000000 cycled $34.0M and ended the window flat (42 txs, 1 counterparties)
+
+```json
+{
+ "address": "0x000000000035b5e5ad9019092c665357240f594e",
+ "shape": "cycles",
+ "gross_usd": 67914798,
+ "txs": 42,
+ "counterparties": 1,
+ "tokens": 1,
+ "pass_through_share": 0.0,
+ "received_usd": 33957825,
+ "sent_usd": 33956973,
+ "retained_usd": 852,
+ "retention": 0.0,
+ "is_contract": true,
+ "emits_logs": false,
+ "receives_calldata": true,
+ "originates_txs": false,
+ "vanity_zeros": 10,
+ "suggested_kind": "mev_bot",
+ "why": "it received and returned the same total across separate transactions, so it holds nothing over the window even though no single transaction nets out: a position opened and closed across blocks",
+ "next_step": "labels.py resolve --out <window> tries to name it; unnamed, it still must not be counted as an exchange"
+}
+```
+
+### [info] unlabelled venue 0x99ac8ca7 passed $63.7M through in 13 txs (77% ended flat, 6 counterparties)
+
+```json
+{
+ "address": "0x99ac8ca7087fa4a2a1fb6357269965a2014abc35",
+ "shape": "pass-through",
+ "gross_usd": 63701123,
+ "txs": 13,
+ "counterparties": 6,
+ "tokens": 2,
+ "pass_through_share": 0.769,
+ "received_usd": 31850650,
+ "sent_usd": 31850473,
+ "retained_usd": 177,
+ "retention": 0.0,
+ "is_contract": true,
+ "emits_logs": true,
+ "receives_calldata": false,
+ "originates_txs": false,
+ "vanity_zeros": 0,
+ "suggested_kind": "venue",
+ "why": "value arrives and leaves inside the same transaction, so this address holds nothing and its flow is not exchange flow; no vanity prefix, so the shape is the only claim",
+ "next_step": "labels.py resolve --out <window> tries to name it; unnamed, it still must not be counted as an exchange"
+}
+```
+
+### [info] unlabelled eoa 0xf42bcfd3 cycled $31.7M and ended the window flat (3 txs, 1 counterparties)
+
+```json
+{
+ "address": "0xf42bcfd3dd5fcdd984d24fd2787383195c7f2b51",
+ "shape": "cycles",
+ "gross_usd": 63375480,
+ "txs": 3,
+ "counterparties": 1,
+ "tokens": 1,
+ "pass_through_share": 0.0,
+ "received_usd": 31687740,
+ "sent_usd": 31687740,
+ "retained_usd": 0,
+ "retention": -0.0,
+ "is_contract": false,
+ "emits_logs": false,
+ "receives_calldata": false,
+ "originates_txs": true,
+ "vanity_zeros": 0,
+ "suggested_kind": "eoa",
+ "why": "it received and returned the same total across separate transactions, so it holds nothing over the window even though no single transaction nets out: a position opened and closed across blocks",
+ "next_step": "labels.py resolve --out <window> tries to name it; unnamed, it still must not be counted as an exchange"
+}
+```
+
+### [info] unlabelled eoa 0x14681e4e cycled $28.3M and ended the window flat (10 txs, 2 counterparties)
+
+```json
+{
+ "address": "0x14681e4e26f1b5b5774ae3b7f694ff08bbbeb65c",
+ "shape": "cycles",
+ "gross_usd": 56535299,
+ "txs": 10,
+ "counterparties": 2,
+ "tokens": 1,
+ "pass_through_share": 0.0,
+ "received_usd": 28267649,
+ "sent_usd": 28267649,
+ "retained_usd": 0,
+ "retention": 0.0,
+ "is_contract": false,
+ "emits_logs": false,
+ "receives_calldata": false,
+ "originates_txs": true,
+ "vanity_zeros": 0,
+ "suggested_kind": "eoa",
+ "why": "it received and returned the same total across separate transactions, so it holds nothing over the window even though no single transaction nets out: a position opened and closed across blocks",
+ "next_step": "labels.py resolve --out <window> tries to name it; unnamed, it still must not be counted as an exchange"
+}
+```
+
+### [info] unlabelled venue 0xd8246178 passed $50.7M through in 584 txs (100% ended flat, 6 counterparties)
+
+```json
+{
+ "address": "0xd82461784eb72d4b67cbab077989eb215315e272",
+ "shape": "pass-through",
+ "gross_usd": 50749497,
+ "txs": 584,
+ "counterparties": 6,
+ "tokens": 2,
+ "pass_through_share": 1.0,
+ "received_usd": 25374933,
+ "sent_usd": 25374564,
+ "retained_usd": 369,
+ "retention": 0.0,
+ "is_contract": true,
+ "emits_logs": true,
+ "receives_calldata": true,
+ "originates_txs": false,
+ "vanity_zeros": 0,
+ "suggested_kind": "venue",
+ "why": "value arrives and leaves inside the same transaction, so this address holds nothing and its flow is not exchange flow; no vanity prefix, so the shape is the only claim",
+ "next_step": "labels.py resolve --out <window> tries to name it; unnamed, it still must not be counted as an exchange"
+}
+```
+
+### [info] unlabelled atomic bot pair 0x92872b97 passed $44.1M through in 5 txs (100% ended flat, 2 counterparties)
+
+```json
+{
+ "address": "0x92872b97d89b54646d036e3afd2bccb84d8e3ca1",
+ "shape": "pass-through",
+ "gross_usd": 44091033,
+ "txs": 5,
+ "counterparties": 2,
+ "tokens": 1,
+ "pass_through_share": 1.0,
+ "received_usd": 22045516,
+ "sent_usd": 22045516,
+ "retained_usd": 0,
+ "retention": 0.0,
+ "is_contract": true,
+ "emits_logs": true,
+ "receives_calldata": false,
+ "originates_txs": false,
+ "vanity_zeros": 0,
+ "suggested_kind": "atomic bot pair",
+ "why": "value arrives and leaves inside the same transaction, so this address holds nothing and its flow is not exchange flow; no vanity prefix, so the shape is the only claim",
+ "next_step": "labels.py resolve --out <window> tries to name it; unnamed, it still must not be counted as an exchange"
+}
+```
+
+### [info] unlabelled eoa 0xb99a2c4c cycled $20.0M and ended the window flat (3 txs, 4 counterparties)
+
+```json
+{
+ "address": "0xb99a2c4c1c4f1fc27150681b740396f6ce1cbcf5",
+ "shape": "cycles",
+ "gross_usd": 39997916,
+ "txs": 3,
+ "counterparties": 4,
+ "tokens": 2,
+ "pass_through_share": 0.333,
+ "received_usd": 19998881,
+ "sent_usd": 19999035,
+ "retained_usd": -154,
+ "retention": -0.0,
+ "is_contract": false,
+ "emits_logs": false,
+ "receives_calldata": false,
+ "originates_txs": true,
+ "vanity_zeros": 0,
+ "suggested_kind": "eoa",
+ "why": "it received and returned the same total across separate transactions, so it holds nothing over the window even though no single transaction nets out: a position opened and closed across blocks",
+ "next_step": "labels.py resolve --out <window> tries to name it; unnamed, it still must not be counted as an exchange"
+}
+```
+
+### [info] unlabelled eoa 0xf07e3258 cycled $17.8M and ended the window flat (6 txs, 4 counterparties)
+
+```json
+{
+ "address": "0xf07e3258395089514200209153a5d25da97bc22c",
+ "shape": "cycles",
+ "gross_usd": 35610873,
+ "txs": 6,
+ "counterparties": 4,
+ "tokens": 1,
+ "pass_through_share": 0.0,
+ "received_usd": 17805436,
+ "sent_usd": 17805436,
+ "retained_usd": 0,
+ "retention": -0.0,
+ "is_contract": false,
+ "emits_logs": false,
+ "receives_calldata": false,
+ "originates_txs": true,
+ "vanity_zeros": 0,
+ "suggested_kind": "eoa",
+ "why": "it received and returned the same total across separate transactions, so it holds nothing over the window even though no single transaction nets out: a position opened and closed across blocks",
+ "next_step": "labels.py resolve --out <window> tries to name it; unnamed, it still must not be counted as an exchange"
+}
+```
+
+### [info] unlabelled bot 0x093272c0 cycled $16.3M and ended the window flat (6 txs, 3 counterparties)
+
+```json
+{
+ "address": "0x093272c07700d3ca5301c3bf9b3a392624179e2f",
+ "shape": "cycles",
+ "gross_usd": 32657466,
+ "txs": 6,
+ "counterparties": 3,
+ "tokens": 1,
+ "pass_through_share": 0.5,
+ "received_usd": 16333939,
+ "sent_usd": 16323527,
+ "retained_usd": 10412,
+ "retention": 0.0006,
+ "is_contract": true,
+ "emits_logs": true,
+ "receives_calldata": true,
+ "originates_txs": false,
+ "vanity_zeros": 1,
+ "suggested_kind": "bot",
+ "why": "it received and returned the same total across separate transactions, so it holds nothing over the window even though no single transaction nets out: a position opened and closed across blocks",
+ "next_step": "labels.py resolve --out <window> tries to name it; unnamed, it still must not be counted as an exchange"
+}
+```
+
 ### [info] USDT pays 3.05pp more on SparkLend than Compound v3 USDT; $116.3M halves the gap [one-block read, de-spiking unavailable]
 
 ```json
@@ -210,6 +632,48 @@ Economics: net APR 1.30%, $100,272 per year, GO — clears gas, impact and compe
 ```
 
 Economics: net APR 0.28%, $40,715 per year, GO — clears gas, impact and competition at this size
+
+### [info] JIT took $235 of $146261 pool fees (0.16%) across 144 episodes by 10 operator(s)
+
+```json
+{
+ "episodes": 144,
+ "fee_taken_usd": 234.58,
+ "pool_fees_usd": 146260.86,
+ "share_of_fees": 0.0016,
+ "swap_usd_bracketed": 363663,
+ "top_operators": [
+  {
+   "sender": "0xae2fc483527b8ef99eb5d9b44875f005ba1fae13",
+   "episodes": 55,
+   "fee_taken_usd": 107.84
+  },
+  {
+   "sender": "0x27c2a1733f14e1247c5feb1c37cd52ae7d0d2bf2",
+   "episodes": 11,
+   "fee_taken_usd": 21.24
+  },
+  {
+   "sender": "0x7556699aa8e6a7c9c69bcfaf9debd05f8192b063",
+   "episodes": 9,
+   "fee_taken_usd": 0.0
+  },
+  {
+   "sender": "0x654fae4aa229d104cabead47e56703f58b174be4",
+   "episodes": 8,
+   "fee_taken_usd": 1.08
+  },
+  {
+   "sender": "0x3ee92cd00993a4488ae153ab41ac7947cbcbc1de",
+   "episodes": 8,
+   "fee_taken_usd": 66.79
+  }
+ ],
+ "why": "fees taken by liquidity that was not at risk are credited to passive LPs by any yield number computed from total fees; the honest input is passive_fees_usd"
+}
+```
+
+Economics: net APR 0.00%, $6,134 per year, GO — clears gas, impact and competition at this size
 
 ### [info] 221 poisoning attempt(s) from 94 lookalike sender(s) after large transfers
 

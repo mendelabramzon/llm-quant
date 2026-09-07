@@ -89,6 +89,7 @@ def scan(ctx):
         eff_gap = (eff_hi - eff_lo) * 100
         if eff_gap < MIN_GAP_PP:
             hits.append(Hit(detector=NAME, severity='info', usd=None,
+                            key='%s:%s/%s' % (sym, hi_v, lo_v),
                             title='%s gap on %s over %s is a spot artifact: %.2fpp spot, %.2fpp on window medians'
                                   % (sym, hi_v, lo_v, gap, eff_gap),
                             evidence={'asset': sym, 'spot_gap_pp': round(gap, 3), 'median_gap_pp': round(eff_gap, 3),
@@ -112,6 +113,7 @@ def scan(ctx):
         # window's own series confirms rather than sitting beside it as an equal.
         hits.append(Hit(
             detector=NAME, severity='info' if unchecked else 'notable', usd=v.annual_net_usd,
+            key='%s:%s/%s' % (sym, hi_v, lo_v),
             title='%s pays %.2fpp more on %s than %s; %s%s'
                   % (sym, eff_gap, hi_v, lo_v,
                      ('$%s halves the gap' % _m(half)) if half else 'rate does not dilute with size',

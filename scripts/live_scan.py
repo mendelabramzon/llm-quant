@@ -24,6 +24,7 @@ Commands (run from the repository root with `uv run --with pycryptodome python s
   verify   --out ... [--mechanisms]                                re-derive the headline numbers from raw through an
                                                                    independent path; fails loudly on drift
   detect   --out ...                                               run every registered detector over the window
+  pipeline --out ...                                               analyze, verify, detect and ingest, in dependency order
 """
 import argparse
 import collections
@@ -1352,6 +1353,12 @@ def analyze(args):
     res = st.finish()
     res['price_basis'] = {k: v for k, v in st.p.usd.items()}
     res['address_book_size'] = len(st.book)
+    # What this analysis was built from. `verify` compares these before it compares a number, so a label edit reports
+    # itself as staleness rather than as a numeric mismatch whose stated cause would be wrong. See provenance.py.
+    import provenance
+    res['provenance'] = provenance.stamp('analysis', out=out,
+                                         first_block_analysed=nums[0] if nums else None,
+                                         last_block_analysed=nums[-1] if nums else None)
     (out / 'analysis.json').write_text(json.dumps(res, indent=1, default=str))
     # cache inferred pool tokens for later runs
     pp = out / 'pools.json'
@@ -1750,9 +1757,35 @@ def detect_cmd(args):
                                       '--out', str(args.out)]))
 
 
+def pipeline_cmd(args):
+    """analyze -> verify -> detect -> findings ingest, in the order the artifacts depend on each other.
+
+    Run separately, these drift. `analysis.json` is built against the address book; `verify` re-derives its numbers and
+    gates on that book; the detectors read the analysis; the ledger records what they found. Editing a label and
+    re-running only `detect` leaves a stale analysis feeding fresh detectors, which is how two windows in this repo
+    ended up quoting corrected labels beside uncorrected numbers. One command, one order, and `verify` still refuses
+    to continue if the inputs moved underneath it.
+    """
+    import subprocess
+    py = sys.executable
+    steps = [('analyze', [py, __file__, 'analyze', '--out', str(args.out)]),
+             ('verify', [py, str(ROOT / 'scripts' / 'verify.py'), '--out', str(args.out)]
+                        + (['--mechanisms'] if args.mechanisms else [])),
+             ('detect', [py, str(ROOT / 'scripts' / 'detectors' / 'run.py'), '--out', str(args.out)]),
+             ('ledger', [py, str(ROOT / 'scripts' / 'findings.py'), 'ingest', '--out', str(args.out)])]
+    for name, cmd in steps:
+        print('\n=== %s ===' % name, flush=True)
+        rc = subprocess.call(cmd)
+        if rc:
+            print('\n%s failed (exit %d); stopping so the later steps do not build on it.' % (name, rc))
+            raise SystemExit(rc)
+    print('\npipeline complete for %s' % args.out)
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument('command', choices=['analyze', 'head', 'render', 'live', 'midnight', 'show', 'verify', 'detect'])
+    p.add_argument('command', choices=['analyze', 'head', 'render', 'live', 'midnight', 'show', 'verify', 'detect',
+                                       'pipeline'])
     p.add_argument('hashes', nargs='*')
     p.add_argument('--out', default=str(ROOT / 'research' / '2026-09-06' / 'live'))
     p.add_argument('--first', type=int)
@@ -1767,7 +1800,7 @@ def main():
     p.add_argument('--mechanisms', action='store_true', help='verify: also run the source-backed mechanism assertions')
     args = p.parse_args()
     {'analyze': analyze, 'head': head_state, 'render': render, 'live': live, 'midnight': midnight, 'show': show,
-     'verify': verify_cmd, 'detect': detect_cmd}[args.command](args)
+     'verify': verify_cmd, 'detect': detect_cmd, 'pipeline': pipeline_cmd}[args.command](args)
 
 
 if __name__ == '__main__':
