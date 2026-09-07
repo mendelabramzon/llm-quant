@@ -1,0 +1,66 @@
+{
+ "checks": [
+  {
+   "check": "blocks analyzed",
+   "recomputed": 7807,
+   "analysis": 7313,
+   "ok": false
+  },
+  {
+   "check": "transactions",
+   "recomputed": 9320360,
+   "analysis": 8701355,
+   "ok": false
+  },
+  {
+   "check": "votes",
+   "recomputed": 5246683,
+   "analysis": 4914733,
+   "ok": false
+  },
+  {
+   "check": "non-vote",
+   "recomputed": 4073677,
+   "analysis": 3786622,
+   "ok": false
+  },
+  {
+   "check": "failed",
+   "recomputed": 1147410,
+   "analysis": 1065846,
+   "ok": false
+  },
+  {
+   "check": "fees SOL",
+   "recomputed": 174.442,
+   "analysis": 157.592,
+   "ok": false
+  },
+  {
+   "check": "Jito tips SOL",
+   "recomputed": 38.518,
+   "analysis": 31.33,
+   "ok": false
+  },
+  {
+   "check": "launches",
+   "recomputed": 1127,
+   "analysis": 1097,
+   "ok": false
+  },
+  {
+   "check": "CCTP USDC out (USDC burned inside DepositForBurn txs)",
+   "recomputed": 368479,
+   "analysis": 365468,
+   "ok": true
+  },
+  {
+   "check": "USDC burned (issuer + CCTP)",
+   "recomputed": 432843,
+   "analysis": 429833,
+   "ok": true
+  }
+ ],
+ "all_ok": false,
+ "utc": "2026-09-07T15:45:14+00:00"
+}

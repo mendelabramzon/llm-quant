@@ -85,7 +85,13 @@ block, trace-backed verification, fewer dead ends.
 
 ### P2 — breadth and rigour
 
-**7. Multi-chain abstraction.** *Started (`corevault_scan` `CHAINS` presets).*
+**7. Multi-chain abstraction.** *Started (`corevault_scan` `CHAINS` presets); Solana port landed 2026-09-07.*
+The Solana port (`solana_rpc` / `solana_collect` / `solana_decode` / `solana_scan` / `solana_followups`, label registry
+`solana_labels.json`) reproduces the live-scan deliverable on a non-EVM chain with the same contract: deterministic
+`analysis.json` + tables, LLM `insights.md`, `verify` re-deriving the headline numbers. What it taught: the "interesting
+things" lens must be chain-specific (payer-centric kinds, per-program bot-shape columns, fan-in/fan-out hubs) while the
+deliverable shape stays identical; the data-access layer (item 6) must carry per-provider bandwidth caps (GetBlock ~2.7 MB/s
+from this machine) as well as method capabilities.
 Problem: the deep tooling is Ethereum-only; the fresh forks (VCORE's `$AAPL` pool, Arbitrum candidates) are cross-chain,
 and BSC is the historical home of the CORE family. Proposal: promote the `CHAINS` preset pattern into the collectors and
 `live_scan` (per-chain blue-chip sets, factories, blob inboxes, RPC). Effort: L. Payoff: the meme waves that spawn these

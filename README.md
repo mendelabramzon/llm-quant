@@ -9,6 +9,8 @@ landed: counting only `kind` in {exchange, exchange_deposit} as exchange flow co
 −$101.6M to −$0.9M (a token treasury mis-tagged as a hot wallet).
 
 
+2026-09-07, first window on another chain: [ten hours of Robinhood Chain](research/2026-09-07/robinhood_10h/report.md) (Arbitrum Orbit L2, chain id 4663, 04:06–14:06 UTC, 356,874 blocks, 3.23M user transactions). The chain earns ~$0.7M of base fees per ten hours against $62 of Ethereum blob and execution cost, with L1 pricing switched off and priority-fee bids ignored; the demand is a fleet of 31 Relay solver wallets (a fifth of all gas), an unverified 1%-fee memecoin router (11% of transactions, ~$430k of fees collected for its owner), ERC-4337 bundlers, Axiom, OKX, Kyber and Uniswap routers, and MEV bots whose reverts make up 9% of transactions. Tokenized stocks moved ~$268M in 1.46M transfers with zero mints or burns, three quarters of them through Uniswap pools, and the on-chain TSLA token traded 4% above its reference through the US market open. New generic tooling: `scripts/orbit_collect.py` (batched blocks + receipts for any Nitro chain, reduced on the fly to compact chunks), `scripts/orbit_scan.py` (streaming analysis with pool-key resolution), `scripts/orbit_followups.py`; method and endpoint notes in `method.md`.
+
 The latest study is [one day of Ethereum amount outliers, typed](research/2026-09-05/amount_outliers_eth_day/letter.md), with a [detailed report](research/2026-09-05/amount_outliers_eth_day/report.md) and the [LLM's notes](research/2026-09-05/amount_outliers_eth_day/qual_notes.md). It is Ethereum mainnet only, 24 hours (2026-09-04 14:00 to 2026-09-05 14:00 UTC). Known transaction types run deterministic investigations; unresolved clusters become LLM evidence packets, and investigated mechanisms become persistent rules in `scripts/type_registry.py`. Classification coverage is reported separately from the strength of the economic interpretation. The registry was grown in two sessions: Codex on a five-hour window (`research/2026-09-05/amount_outliers_eth_5h`, method in its `method.md`; its notes and report were not written before that session ended) and Claude on the full day, which replayed Codex's 58 types as round 1 and added 32 more over three rounds, the last of them an audit of one sampled occurrence per known type.
 
 2026-09-07, a strategy study: [renting liquidity to a subsidized dollar](research/2026-09-07/captive_flow_lp/findings.md). USDG (Global Dollar / Paxos) rebates over 90% of its reserve yield to network partners, so a partner desk is paid to convert USDC into it and does so daily; that captive, non-toxic flow routes to two thin, ultra-low-fee Uniswap v4 pools where a small, early concentrated LP earns 14–16% APR versus 3.8% in the deep Curve pool. `scripts/captive_flow_lp.py` reads deployed TVL from the tick distribution, realized turnover and fees from the saved logs, the marginal-LP APR-by-size curve, and the taker-concentration checks (block-pinned, replayable offline); a Foundry fork test mints the position in the real v4 pool and collects one day of the observed flow. The same run closes the apxUSD/Strata thread: those below-NAV vaults are STRC tail-risk and first-loss tranches, priced risk rather than a redemption arbitrage.
@@ -46,6 +48,42 @@ Useful evidence files:
 - `research/2026-09-05/followup/`: historical state, metadata, focused event histories, and documented retrieval errors.
 
 Protocol event shapes are not protocol identity. The original Polygon files preserve generic failed-receipt log flags; the analysis uses the subsequently verified native-fee-log exception. The memo describes this correction and the remaining limitations.
+
+## Solana: the same live-scan loop on a second chain
+
+2026-09-07: the trailing-window scan was ported to Solana mainnet (`research/2026-09-07/solana_live/`, deliverable `report.md`).
+Data comes over the local GetBlock tokens (`getblock_keys.json`, gitignored; `scripts/solana_rpc.py` round-robins EU and US
+hosts, needs a browser-like User-Agent on the US host, retries the frequent `IncompleteRead`s — the observed cap from this
+machine is ~2.7 MB/s on the wire whatever the concurrency, i.e. ~1.9 blocks/s, so one hour of chain (~11,350 produced blocks,
+~8.5 GB compact) takes ~100 minutes to collect). `scripts/solana_collect.py collect --hours N` pins the window (binary search on
+`getBlockTime`, `getBlocks`, `getSlotLeaders`), stores every produced block with vote transactions dropped and logs reduced
+(`Program data:`/`Program log:`/`Program return:`/error/consumed lines only), and `verify` checks parent links and file hashes.
+`scripts/solana_decode.py` is a pure-python base58 + System/SPL Token/Token-2022/Compute Budget/CCTP decoder validated with
+zero mismatches against the RPC's own `jsonParsed` output for the same block (`validate`). `scripts/solana_labels.json` is the
+provenance-tracked label registry (Jupiter's DEX program list, canonical programs, memory-sourced CEX wallets that the scan
+checks behaviourally by fan-in, and window-derived labels for bot programs and cluster hubs).
+
+```sh
+uv run python scripts/solana_collect.py collect --out research/2026-09-07/solana_live --hours 1 --workers 8
+uv run python scripts/solana_collect.py verify  --out research/2026-09-07/solana_live
+uv run python scripts/solana_scan.py head    --out research/2026-09-07/solana_live   # Jupiter prices, Kamino/Save/Jupiter Lend rates, Sanctum LST NAV, Jito tip floor, epoch
+uv run python scripts/solana_scan.py prices  --out research/2026-09-07/solana_live   # SOL/USD path from in-window SOL<->USDC/USDT swaps, every 10th block
+uv run python scripts/solana_scan.py analyze --out research/2026-09-07/solana_live   # offline, ~12 min for one hour
+uv run python scripts/solana_scan.py render  --out research/2026-09-07/solana_live   # insights.md + tables -> report.md
+uv run python scripts/solana_scan.py show <signature>                                # decoded instructions, balances, logs from the local blocks
+uv run python scripts/solana_followups.py profile|program|token|cluster --out ...     # address profiles, program shape, token tape, sybil-funding check
+```
+
+What `analyze` computes (all from the saved blocks; USD basis = stables at par, SOL from the in-window swap path, registry
+tokens from the Jupiter head read, everything else priced only through the opposite leg of a swap): throughput, vote/non-vote
+and failed shares, base vs priority fees, Jito tips by tip account and tipper, compute-unit prices, leaders and skipped slots;
+programs with the bot-shape columns (unique payers, top-payer share, share of txs that move any token, average CU and
+accounts, durable-nonce use); payer-centric transaction kinds; DEX volume by venue and pair, implied prices, largest swaps,
+same-block sandwich patterns with a position-closure test, token launches by launchpad; lending events by instruction
+discriminator (Kamino, marginfi, Save) with liquidation attempts and flash-loan payers; stablecoin and LST mints/burns split
+between issuer and CCTP; CCTP in/out by domain (v2 pays receivers from a custody account rather than minting); exchange net
+flow with a fan-in label check; fan-in/fan-out hubs (collector hubs, deposit addresses, distributors); largest position changes;
+address-poisoning dust senders.
 
 ## Gas outliers: a quant-to-qual proof of concept
 

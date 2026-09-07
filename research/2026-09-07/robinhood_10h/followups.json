@@ -1,0 +1,1296 @@
+{
+ "l1_cost": {
+  "blob_fee_update_fraction": "bpo2 11684671",
+  "calibration_rel_error": 0.0,
+  "exec_gas_per_batch": 145158,
+  "blob_price_gwei_min": 0.001997429,
+  "blob_price_gwei_max": 0.051480997,
+  "totals": {
+   "batches": 1605,
+   "blobs": 4815,
+   "blob_fee_eth": 0.003393,
+   "exec_fee_eth": 0.021547,
+   "bytes_blob_capacity_MB": 631.11168,
+   "total_eth": 0.02494
+  },
+  "per_hour": [
+   {
+    "hour_utc": "04:00",
+    "batches": 121,
+    "blobs": 363,
+    "blob_fee_eth": 0.000597,
+    "exec_fee_eth": 0.003665
+   },
+   {
+    "hour_utc": "05:00",
+    "batches": 136,
+    "blobs": 408,
+    "blob_fee_eth": 0.000191,
+    "exec_fee_eth": 0.001228
+   },
+   {
+    "hour_utc": "06:00",
+    "batches": 147,
+    "blobs": 441,
+    "blob_fee_eth": 0.000161,
+    "exec_fee_eth": 0.001025
+   },
+   {
+    "hour_utc": "07:00",
+    "batches": 152,
+    "blobs": 456,
+    "blob_fee_eth": 0.00021,
+    "exec_fee_eth": 0.001355
+   },
+   {
+    "hour_utc": "08:00",
+    "batches": 135,
+    "blobs": 405,
+    "blob_fee_eth": 0.000211,
+    "exec_fee_eth": 0.001344
+   },
+   {
+    "hour_utc": "09:00",
+    "batches": 144,
+    "blobs": 432,
+    "blob_fee_eth": 0.000179,
+    "exec_fee_eth": 0.00113
+   },
+   {
+    "hour_utc": "10:00",
+    "batches": 159,
+    "blobs": 477,
+    "blob_fee_eth": 0.000163,
+    "exec_fee_eth": 0.001045
+   },
+   {
+    "hour_utc": "11:00",
+    "batches": 154,
+    "blobs": 462,
+    "blob_fee_eth": 0.000174,
+    "exec_fee_eth": 0.001095
+   },
+   {
+    "hour_utc": "12:00",
+    "batches": 172,
+    "blobs": 516,
+    "blob_fee_eth": 0.000358,
+    "exec_fee_eth": 0.002343
+   },
+   {
+    "hour_utc": "13:00",
+    "batches": 216,
+    "blobs": 648,
+    "blob_fee_eth": 0.000861,
+    "exec_fee_eth": 0.005436
+   },
+   {
+    "hour_utc": "14:00",
+    "batches": 69,
+    "blobs": 207,
+    "blob_fee_eth": 0.000288,
+    "exec_fee_eth": 0.00188
+   }
+  ]
+ },
+ "basefee_history": [
+  {
+   "block": 56916083,
+   "utc": "09-07 14:46",
+   "basefee_gwei": 0.3053,
+   "txs": 37,
+   "gasUsed": 7720673
+  },
+  {
+   "block": 56700083,
+   "utc": "09-07 08:43",
+   "basefee_gwei": 0.3221,
+   "txs": 5,
+   "gasUsed": 1736899
+  },
+  {
+   "block": 56484083,
+   "utc": "09-07 02:39",
+   "basefee_gwei": 0.3578,
+   "txs": 4,
+   "gasUsed": 713790
+  },
+  {
+   "block": 56268083,
+   "utc": "09-06 20:36",
+   "basefee_gwei": 0.3714,
+   "txs": 15,
+   "gasUsed": 5554358
+  },
+  {
+   "block": 56052083,
+   "utc": "09-06 14:33",
+   "basefee_gwei": 0.3731,
+   "txs": 7,
+   "gasUsed": 1117253
+  },
+  {
+   "block": 55836083,
+   "utc": "09-06 08:30",
+   "basefee_gwei": 0.3907,
+   "txs": 6,
+   "gasUsed": 633456
+  },
+  {
+   "block": 55620083,
+   "utc": "09-06 02:27",
+   "basefee_gwei": 0.411,
+   "txs": 12,
+   "gasUsed": 3300434
+  },
+  {
+   "block": 55404083,
+   "utc": "09-05 20:24",
+   "basefee_gwei": 0.3965,
+   "txs": 22,
+   "gasUsed": 6086522
+  },
+  {
+   "block": 55188083,
+   "utc": "09-05 14:21",
+   "basefee_gwei": 0.3812,
+   "txs": 17,
+   "gasUsed": 3396595
+  },
+  {
+   "block": 54972083,
+   "utc": "09-05 08:18",
+   "basefee_gwei": 0.4085,
+   "txs": 4,
+   "gasUsed": 740181
+  },
+  {
+   "block": 54756083,
+   "utc": "09-05 02:15",
+   "basefee_gwei": 0.4113,
+   "txs": 20,
+   "gasUsed": 4906787
+  },
+  {
+   "block": 54540083,
+   "utc": "09-04 20:11",
+   "basefee_gwei": 0.3822,
+   "txs": 17,
+   "gasUsed": 6796730
+  },
+  {
+   "block": 54324083,
+   "utc": "09-04 14:07",
+   "basefee_gwei": 0.4525,
+   "txs": 13,
+   "gasUsed": 4577325
+  },
+  {
+   "block": 54108083,
+   "utc": "09-04 08:03",
+   "basefee_gwei": 0.8905,
+   "txs": 16,
+   "gasUsed": 3994354
+  },
+  {
+   "block": 53892083,
+   "utc": "09-04 01:59",
+   "basefee_gwei": 0.3266,
+   "txs": 6,
+   "gasUsed": 4315849
+  },
+  {
+   "block": 53676083,
+   "utc": "09-03 19:54",
+   "basefee_gwei": 0.3092,
+   "txs": 9,
+   "gasUsed": 1416759
+  },
+  {
+   "block": 53460083,
+   "utc": "09-03 13:42",
+   "basefee_gwei": 0.4653,
+   "txs": 22,
+   "gasUsed": 4198377
+  },
+  {
+   "block": 53244083,
+   "utc": "09-03 07:33",
+   "basefee_gwei": 0.4659,
+   "txs": 7,
+   "gasUsed": 1856087
+  },
+  {
+   "block": 53028083,
+   "utc": "09-03 01:24",
+   "basefee_gwei": 0.4729,
+   "txs": 10,
+   "gasUsed": 1883800
+  },
+  {
+   "block": 52812083,
+   "utc": "09-02 19:12",
+   "basefee_gwei": 0.4337,
+   "txs": 10,
+   "gasUsed": 2492628
+  },
+  {
+   "block": 52596083,
+   "utc": "09-02 13:03",
+   "basefee_gwei": 0.3667,
+   "txs": 6,
+   "gasUsed": 1428549
+  },
+  {
+   "block": 52380083,
+   "utc": "09-02 07:00",
+   "basefee_gwei": 0.3637,
+   "txs": 11,
+   "gasUsed": 3993974
+  },
+  {
+   "block": 52164083,
+   "utc": "09-02 00:57",
+   "basefee_gwei": 0.351,
+   "txs": 6,
+   "gasUsed": 684254
+  },
+  {
+   "block": 51948083,
+   "utc": "09-01 18:53",
+   "basefee_gwei": 0.3133,
+   "txs": 13,
+   "gasUsed": 5316923
+  },
+  {
+   "block": 51732083,
+   "utc": "09-01 12:49",
+   "basefee_gwei": 0.5684,
+   "txs": 11,
+   "gasUsed": 7389864
+  },
+  {
+   "block": 51516083,
+   "utc": "09-01 06:46",
+   "basefee_gwei": 0.5016,
+   "txs": 16,
+   "gasUsed": 2762013
+  },
+  {
+   "block": 51300083,
+   "utc": "09-01 00:42",
+   "basefee_gwei": 0.4172,
+   "txs": 10,
+   "gasUsed": 2683715
+  },
+  {
+   "block": 51084083,
+   "utc": "08-31 18:38",
+   "basefee_gwei": 0.322,
+   "txs": 13,
+   "gasUsed": 4007758
+  },
+  {
+   "block": 50868083,
+   "utc": "08-31 12:34",
+   "basefee_gwei": 0.2433,
+   "txs": 10,
+   "gasUsed": 2078727
+  },
+  {
+   "block": 50652083,
+   "utc": "08-31 06:31",
+   "basefee_gwei": 0.23,
+   "txs": 8,
+   "gasUsed": 1542227
+  },
+  {
+   "block": 50436083,
+   "utc": "08-31 00:28",
+   "basefee_gwei": 0.2266,
+   "txs": 10,
+   "gasUsed": 1700256
+  },
+  {
+   "block": 50220083,
+   "utc": "08-30 18:23",
+   "basefee_gwei": 0.1751,
+   "txs": 22,
+   "gasUsed": 10790264
+  },
+  {
+   "block": 50004083,
+   "utc": "08-30 12:19",
+   "basefee_gwei": 0.1489,
+   "txs": 17,
+   "gasUsed": 2922301
+  },
+  {
+   "block": 49788083,
+   "utc": "08-30 06:15",
+   "basefee_gwei": 0.135,
+   "txs": 3,
+   "gasUsed": 240530
+  },
+  {
+   "block": 49572083,
+   "utc": "08-30 00:11",
+   "basefee_gwei": 0.1183,
+   "txs": 12,
+   "gasUsed": 3005361
+  },
+  {
+   "block": 49356083,
+   "utc": "08-29 18:07",
+   "basefee_gwei": 0.0916,
+   "txs": 10,
+   "gasUsed": 5220528
+  },
+  {
+   "block": 49140083,
+   "utc": "08-29 12:04",
+   "basefee_gwei": 0.0708,
+   "txs": 26,
+   "gasUsed": 4243834
+  },
+  {
+   "block": 48924083,
+   "utc": "08-29 06:00",
+   "basefee_gwei": 0.0708,
+   "txs": 11,
+   "gasUsed": 4393706
+  },
+  {
+   "block": 48708083,
+   "utc": "08-28 23:57",
+   "basefee_gwei": 0.0646,
+   "txs": 5,
+   "gasUsed": 2609579
+  },
+  {
+   "block": 48492083,
+   "utc": "08-28 17:53",
+   "basefee_gwei": 0.0574,
+   "txs": 3,
+   "gasUsed": 454565
+  },
+  {
+   "block": 48276083,
+   "utc": "08-28 11:49",
+   "basefee_gwei": 0.0455,
+   "txs": 10,
+   "gasUsed": 613766
+  },
+  {
+   "block": 48060083,
+   "utc": "08-28 05:46",
+   "basefee_gwei": 0.0462,
+   "txs": 6,
+   "gasUsed": 3281290
+  },
+  {
+   "block": 47844083,
+   "utc": "08-27 23:43",
+   "basefee_gwei": 0.0435,
+   "txs": 11,
+   "gasUsed": 3088083
+  },
+  {
+   "block": 47628083,
+   "utc": "08-27 17:40",
+   "basefee_gwei": 0.04,
+   "txs": 19,
+   "gasUsed": 3891866
+  },
+  {
+   "block": 47412083,
+   "utc": "08-27 11:36",
+   "basefee_gwei": 0.0345,
+   "txs": 8,
+   "gasUsed": 6055795
+  },
+  {
+   "block": 47196083,
+   "utc": "08-27 05:33",
+   "basefee_gwei": 0.036,
+   "txs": 9,
+   "gasUsed": 859464
+  },
+  {
+   "block": 46980083,
+   "utc": "08-26 23:30",
+   "basefee_gwei": 0.0342,
+   "txs": 24,
+   "gasUsed": 4711703
+  },
+  {
+   "block": 46764083,
+   "utc": "08-26 17:26",
+   "basefee_gwei": 0.0297,
+   "txs": 26,
+   "gasUsed": 2161374
+  },
+  {
+   "block": 46548083,
+   "utc": "08-26 11:22",
+   "basefee_gwei": 0.0251,
+   "txs": 4,
+   "gasUsed": 147681
+  },
+  {
+   "block": 46332083,
+   "utc": "08-26 05:20",
+   "basefee_gwei": 0.0258,
+   "txs": 9,
+   "gasUsed": 1842270
+  },
+  {
+   "block": 46116083,
+   "utc": "08-25 23:17",
+   "basefee_gwei": 0.0261,
+   "txs": 4,
+   "gasUsed": 356584
+  },
+  {
+   "block": 45900083,
+   "utc": "08-25 17:15",
+   "basefee_gwei": 0.0248,
+   "txs": 16,
+   "gasUsed": 1829410
+  },
+  {
+   "block": 45684083,
+   "utc": "08-25 11:14",
+   "basefee_gwei": 0.0225,
+   "txs": 9,
+   "gasUsed": 1621376
+  },
+  {
+   "block": 45468083,
+   "utc": "08-25 05:13",
+   "basefee_gwei": 0.0226,
+   "txs": 4,
+   "gasUsed": 326197
+  },
+  {
+   "block": 45252083,
+   "utc": "08-24 23:12",
+   "basefee_gwei": 0.0225,
+   "txs": 9,
+   "gasUsed": 2924999
+  },
+  {
+   "block": 45036083,
+   "utc": "08-24 17:11",
+   "basefee_gwei": 0.0213,
+   "txs": 6,
+   "gasUsed": 1889855
+  },
+  {
+   "block": 44820083,
+   "utc": "08-24 11:11",
+   "basefee_gwei": 0.0202,
+   "txs": 9,
+   "gasUsed": 1734651
+  },
+  {
+   "block": 44604083,
+   "utc": "08-24 05:10",
+   "basefee_gwei": 0.0203,
+   "txs": 6,
+   "gasUsed": 598131
+  },
+  {
+   "block": 44388083,
+   "utc": "08-23 23:09",
+   "basefee_gwei": 0.0215,
+   "txs": 14,
+   "gasUsed": 1422353
+  },
+  {
+   "block": 44172083,
+   "utc": "08-23 17:08",
+   "basefee_gwei": 0.02,
+   "txs": 7,
+   "gasUsed": 955735
+  },
+  {
+   "block": 43956083,
+   "utc": "08-23 11:07",
+   "basefee_gwei": 0.0201,
+   "txs": 2,
+   "gasUsed": 127616
+  },
+  {
+   "block": 43740083,
+   "utc": "08-23 05:06",
+   "basefee_gwei": 0.0201,
+   "txs": 6,
+   "gasUsed": 1159427
+  },
+  {
+   "block": 43524083,
+   "utc": "08-22 23:05",
+   "basefee_gwei": 0.0202,
+   "txs": 3,
+   "gasUsed": 168991
+  },
+  {
+   "block": 43308083,
+   "utc": "08-22 17:04",
+   "basefee_gwei": 0.0202,
+   "txs": 10,
+   "gasUsed": 1091529
+  }
+ ],
+ "fee_accounts": {
+  "network_fee_distributor": [
+   {
+    "date": "2026-08-28",
+    "eth": 91.8,
+    "delta_eth": null
+   },
+   {
+    "date": "2026-08-29",
+    "eth": 280.8,
+    "delta_eth": 189.0
+   },
+   {
+    "date": "2026-08-30",
+    "eth": 692.1,
+    "delta_eth": 411.3
+   },
+   {
+    "date": "2026-08-31",
+    "eth": 1006.6,
+    "delta_eth": 314.5
+   },
+   {
+    "date": "2026-09-01",
+    "eth": 1906.8,
+    "delta_eth": 900.2
+   },
+   {
+    "date": "2026-09-02",
+    "eth": 3748.8,
+    "delta_eth": 1842.0
+   },
+   {
+    "date": "2026-09-03",
+    "eth": 5533.3,
+    "delta_eth": 1784.5
+   },
+   {
+    "date": "2026-09-04",
+    "eth": 8232.4,
+    "delta_eth": 2699.1
+   },
+   {
+    "date": "2026-09-05",
+    "eth": 10331.4,
+    "delta_eth": 2099.0
+   },
+   {
+    "date": "2026-09-06",
+    "eth": 11652.1,
+    "delta_eth": 1320.7
+   },
+   {
+    "date": "2026-09-07",
+    "eth": 11652.1,
+    "delta_eth": -0.0
+   }
+  ],
+  "infra_fee_distributor": [
+   {
+    "date": "2026-08-28",
+    "eth": 143.0,
+    "delta_eth": null
+   },
+   {
+    "date": "2026-08-29",
+    "eth": 211.1,
+    "delta_eth": 68.1
+   },
+   {
+    "date": "2026-08-30",
+    "eth": 261.0,
+    "delta_eth": 49.9
+   },
+   {
+    "date": "2026-08-31",
+    "eth": 289.3,
+    "delta_eth": 28.3
+   },
+   {
+    "date": "2026-09-01",
+    "eth": 83.8,
+    "delta_eth": -205.5
+   },
+   {
+    "date": "2026-09-02",
+    "eth": 156.2,
+    "delta_eth": 72.4
+   },
+   {
+    "date": "2026-09-03",
+    "eth": 224.3,
+    "delta_eth": 68.1
+   },
+   {
+    "date": "2026-09-04",
+    "eth": 305.4,
+    "delta_eth": 81.1
+   },
+   {
+    "date": "2026-09-05",
+    "eth": 384.1,
+    "delta_eth": 78.7
+   },
+   {
+    "date": "2026-09-06",
+    "eth": 442.0,
+    "delta_eth": 57.9
+   },
+   {
+    "date": "2026-09-07",
+    "eth": 442.0,
+    "delta_eth": 0.0
+   }
+  ],
+  "robinhood_recipient": [
+   {
+    "date": "2026-08-28",
+    "eth": 1946.9,
+    "delta_eth": null
+   },
+   {
+    "date": "2026-09-03",
+    "eth": 2082.3,
+    "delta_eth": 135.4
+   },
+   {
+    "date": "2026-09-07",
+    "eth": 2082.3,
+    "delta_eth": -0.0
+   }
+  ]
+ },
+ "distributions": {
+  "network": [
+   {
+    "block": 51061870,
+    "tx": "0x0e23a492f2fbd06638a2800c9802aeb1a3986e37d99c4c2c3fd2d77e0554146a",
+    "recipients": [
+     [
+      "0x92433c650785397386A0Cc347EC2489718E45307",
+      112.12
+     ],
+     [
+      "0x8b3511B4c4b68FCAfdCE7e6f91B925458bB64Ea6",
+      1009.079
+     ]
+    ]
+   },
+   {
+    "block": 45065735,
+    "tx": "0x162ff3147e71e350fb21c04d23f0b52452a9415a1a84ccf627613f9d7bbcc799",
+    "recipients": [
+     [
+      "0x92433c650785397386A0Cc347EC2489718E45307",
+      1.281
+     ],
+     [
+      "0x8b3511B4c4b68FCAfdCE7e6f91B925458bB64Ea6",
+      11.529
+     ]
+    ]
+   },
+   {
+    "block": 39035994,
+    "tx": "0xb3524686afd2e0a3d5f592f17c7a5586282bdd4ac83d3bc01194a801e87b156e",
+    "recipients": [
+     [
+      "0x92433c650785397386A0Cc347EC2489718E45307",
+      27.48
+     ],
+     [
+      "0x8b3511B4c4b68FCAfdCE7e6f91B925458bB64Ea6",
+      247.324
+     ]
+    ]
+   },
+   {
+    "block": 33426804,
+    "tx": "0x789490c9480c9958762ea294fec62ffdc3f2e466256269fe78997b3d50227e4d",
+    "recipients": [
+     [
+      "0x92433c650785397386A0Cc347EC2489718E45307",
+      9.671
+     ],
+     [
+      "0x8b3511B4c4b68FCAfdCE7e6f91B925458bB64Ea6",
+      87.042
+     ]
+    ]
+   },
+   {
+    "block": 26961956,
+    "tx": "0xe12e43f8d55c63cc4a7f7e1553794d41063c95cc18341b2b29cfaf840f944c54",
+    "recipients": [
+     [
+      "0x92433c650785397386A0Cc347EC2489718E45307",
+      2.776
+     ],
+     [
+      "0x8b3511B4c4b68FCAfdCE7e6f91B925458bB64Ea6",
+      24.982
+     ]
+    ]
+   },
+   {
+    "block": 20930213,
+    "tx": "0xbc112d8c7a0f565618fad76d0ef8f9f35a6e1a37d57063cda8c84d0449e9e070",
+    "recipients": [
+     [
+      "0x92433c650785397386A0Cc347EC2489718E45307",
+      57.809
+     ],
+     [
+      "0x8b3511B4c4b68FCAfdCE7e6f91B925458bB64Ea6",
+      520.282
+     ]
+    ]
+   },
+   {
+    "block": 14900505,
+    "tx": "0x758c5d9c20ce11f5d65e28366165da7bffc53c0e57d2c46319c234ddcb707305",
+    "recipients": [
+     [
+      "0x92433c650785397386A0Cc347EC2489718E45307",
+      46.428
+     ],
+     [
+      "0x8b3511B4c4b68FCAfdCE7e6f91B925458bB64Ea6",
+      417.851
+     ]
+    ]
+   },
+   {
+    "block": 7168362,
+    "tx": "0x148b9f800608c7a6916e73b2668d71e56c750d8d188f6bd2b593aaaef0a2c207",
+    "recipients": [
+     [
+      "0x92433c650785397386A0Cc347EC2489718E45307",
+      21.186
+     ],
+     [
+      "0x8b3511B4c4b68FCAfdCE7e6f91B925458bB64Ea6",
+      190.677
+     ]
+    ]
+   }
+  ],
+  "infra": [
+   {
+    "block": 51061834,
+    "tx": "0xe2a32f10a67abfc9661c4427039ceda5f209e6b4eb6ce23cfa1ad5aca99f3470",
+    "recipients": [
+     [
+      "0x92433c650785397386A0Cc347EC2489718E45307",
+      30.618
+     ],
+     [
+      "0x8b3511B4c4b68FCAfdCE7e6f91B925458bB64Ea6",
+      275.564
+     ]
+    ]
+   },
+   {
+    "block": 45065698,
+    "tx": "0x87c4bc0a50f4caaec4be6f9da30a3877e7115bd3a3acc22c6883e7374f6c536c",
+    "recipients": [
+     [
+      "0x92433c650785397386A0Cc347EC2489718E45307",
+      17.094
+     ],
+     [
+      "0x8b3511B4c4b68FCAfdCE7e6f91B925458bB64Ea6",
+      153.844
+     ]
+    ]
+   },
+   {
+    "block": 39035958,
+    "tx": "0xb804efd04e299aea3ee2458bad5681c34c12c847d13766f40e366131924ecdbf",
+    "recipients": [
+     [
+      "0x92433c650785397386A0Cc347EC2489718E45307",
+      19.924
+     ],
+     [
+      "0x8b3511B4c4b68FCAfdCE7e6f91B925458bB64Ea6",
+      179.317
+     ]
+    ]
+   },
+   {
+    "block": 33431280,
+    "tx": "0x0134182ee2dbb214fae2c74bcf4b61d24d2d7422f6b8c980783c1ab333893b96",
+    "recipients": [
+     [
+      "0x92433c650785397386A0Cc347EC2489718E45307",
+      26.534
+     ],
+     [
+      "0x8b3511B4c4b68FCAfdCE7e6f91B925458bB64Ea6",
+      238.809
+     ]
+    ]
+   },
+   {
+    "block": 26961904,
+    "tx": "0x2a3458a3edefde24ff8c1b9f4d07fd854f4e67815e4df1e9ede9b0c9eb54b322",
+    "recipients": [
+     [
+      "0x92433c650785397386A0Cc347EC2489718E45307",
+      18.338
+     ],
+     [
+      "0x8b3511B4c4b68FCAfdCE7e6f91B925458bB64Ea6",
+      165.041
+     ]
+    ]
+   },
+   {
+    "block": 20930169,
+    "tx": "0x59a5b77e1de811705b2468165b773b5450d55574d921546fe301643b362bd0a2",
+    "recipients": [
+     [
+      "0x92433c650785397386A0Cc347EC2489718E45307",
+      19.121
+     ],
+     [
+      "0x8b3511B4c4b68FCAfdCE7e6f91B925458bB64Ea6",
+      172.092
+     ]
+    ]
+   },
+   {
+    "block": 14900426,
+    "tx": "0xd5fe754c4f33755cee02112f5e36138e8f3637f86ae7d914c9bec36d0e083796",
+    "recipients": [
+     [
+      "0x92433c650785397386A0Cc347EC2489718E45307",
+      23.043
+     ],
+     [
+      "0x8b3511B4c4b68FCAfdCE7e6f91B925458bB64Ea6",
+      207.383
+     ]
+    ]
+   },
+   {
+    "block": 7140489,
+    "tx": "0xd50368238c2aaf1a81e88fd6cc4971afaf1264d3b0a539913eb8a95564cc1d4e",
+    "recipients": [
+     [
+      "0x92433c650785397386A0Cc347EC2489718E45307",
+      11.132
+     ],
+     [
+      "0x8b3511B4c4b68FCAfdCE7e6f91B925458bB64Ea6",
+      100.192
+     ]
+    ]
+   }
+  ]
+ },
+ "registry": {
+  "recent": [
+   {
+    "block": 657134,
+    "event": "Upgraded(address indexed implementation)",
+    "params": [
+     [
+      "implementation",
+      "0xb35490d6f9163DE4F80d88dc75c3516eb64C5aE2"
+     ]
+    ],
+    "tx": "0x6960b46f7020ce38aec873dddd0d7e88270c4d42e469643407b26b7386c6d11a"
+   },
+   {
+    "block": 618536,
+    "event": "RoleRevoked(bytes32 indexed role, address indexed account, a",
+    "params": [
+     [
+      "role",
+      "0x9f2df0fed2c77648de5860a4cc508cd0818c85b8b8a1ab4ceeef8d981c8956a6"
+     ],
+     [
+      "account",
+      "0x000000000000000000000000000000000000dEaD"
+     ]
+    ],
+    "tx": "0xb7d3455d0cf9f87ecd2c9f92fd8b10ec5eb4e12330db4e6988d777073aa6e69e"
+   },
+   {
+    "block": 616387,
+    "event": "RoleGranted(bytes32 indexed role, address indexed account, a",
+    "params": [
+     [
+      "role",
+      "0x9f2df0fed2c77648de5860a4cc508cd0818c85b8b8a1ab4ceeef8d981c8956a6"
+     ],
+     [
+      "account",
+      "0x000000000000000000000000000000000000dEaD"
+     ]
+    ],
+    "tx": "0x4e47b94609a6617055978bdf6863bf69430195dab738f8c107de842e06d59c52"
+   },
+   {
+    "block": 611243,
+    "event": "Unpaused()",
+    "params": [],
+    "tx": "0x10d1cc94f38d15399a5dac99a64dd17d79152a32d55a0bafdec12fe267aad75d"
+   },
+   {
+    "block": 611101,
+    "event": "Paused()",
+    "params": [],
+    "tx": "0x04b200d0fc66e443d7f6765267a9c271cffc9f8d3fc7a2d48cbe9587123d6bd5"
+   },
+   {
+    "block": 610644,
+    "event": "Unpaused()",
+    "params": [],
+    "tx": "0x2118e2a86f11411c515e5522d4d5bea602bdf231d8883cb6b289c9ef048b3929"
+   },
+   {
+    "block": 495841,
+    "event": "Unblocked(address indexed account)",
+    "params": [
+     [
+      "account",
+      "0x000000000000000000000000000000000000dEaD"
+     ]
+    ],
+    "tx": "0x5b7fd57a65cc7dd2c523c212a3657fd525caa256a26ce0ac888f15f822eed67b"
+   },
+   {
+    "block": 495713,
+    "event": "Blocked(address indexed account)",
+    "params": [
+     [
+      "account",
+      "0x000000000000000000000000000000000000dEaD"
+     ]
+    ],
+    "tx": "0x79d83800385fd0507182c0c6c94b6f6723fe6487908dd06cc5f8ac52c687362c"
+   },
+   {
+    "block": 495553,
+    "event": "Unblocked(address indexed account)",
+    "params": [
+     [
+      "account",
+      "0x000000000000000000000000000000000000dEaD"
+     ]
+    ],
+    "tx": "0xb10f2f0e96b4348690f2dfa3fd8f91282b6c3b65e46b6ccb9ec0fa4dbcaf573b"
+   },
+   {
+    "block": 80752,
+    "event": "Unblocked(address indexed account)",
+    "params": [
+     [
+      "account",
+      "0xdeaDDeADDEaDdeaDdEAddEADDEAdDeadDEADDEaD"
+     ]
+    ],
+    "tx": "0x9b4b7d04265f5c1c25a7cb90fd4c58a0dda0c6cf80d8da2410ec2f7a95ef35d7"
+   },
+   {
+    "block": 53336,
+    "event": "Unblocked(address indexed account)",
+    "params": [
+     [
+      "account",
+      "0xdeaDDeADDEaDdeaDdEAddEADDEAdDeadDEADDEaD"
+     ]
+    ],
+    "tx": "0x9e45a30aa9c742d719698d5f7bd1593de493bb84aa7b2543949fa4f0f2450b3e"
+   },
+   {
+    "block": 51003,
+    "event": "Blocked(address indexed account)",
+    "params": [
+     [
+      "account",
+      "0xdeaDDeADDEaDdeaDdEAddEADDEAdDeadDEADDEaD"
+     ]
+    ],
+    "tx": "0x8b677eeef556ad591f0ecfe0de37a863d239e018da706457e1214e8612692840"
+   },
+   {
+    "block": 44953,
+    "event": "Blocked(address indexed account)",
+    "params": [
+     [
+      "account",
+      "0xFb3eFf152ea55D1BfA04Dbdd509A80fD7b72cdEB"
+     ]
+    ],
+    "tx": "0xd6f48b0c85f3f722eac387025e3f56316c3d706def31bbe0ebdad9940283ca41"
+   },
+   {
+    "block": 44950,
+    "event": "Blocked(address indexed account)",
+    "params": [
+     [
+      "account",
+      "0xb637F84b66876ebf609C2A4208905F9ddAC9d075"
+     ]
+    ],
+    "tx": "0x45e52372a105dcfd16d0904987aa2a1e685b203faa2a02068e608b876d3991ba"
+   },
+   {
+    "block": 44939,
+    "event": "Blocked(address indexed account)",
+    "params": [
+     [
+      "account",
+      "0xd04E33461FEA8302c5E1e13895b60cEe8AEfda7F"
+     ]
+    ],
+    "tx": "0xa0ff0831782773dd3999ff4ecf8fa0ee3d53511f26edd6e165446546c59bd6e4"
+   },
+   {
+    "block": 44935,
+    "event": "Blocked(address indexed account)",
+    "params": [
+     [
+      "account",
+      "0x747AFB5c7A7fc34B547cD0FDEbf9b91759C5a52b"
+     ]
+    ],
+    "tx": "0xc6d5785aa8d018842153700df3af962af94d3f83aecd582fa9ac874504974112"
+   },
+   {
+    "block": 44928,
+    "event": "Blocked(address indexed account)",
+    "params": [
+     [
+      "account",
+      "0x0330070FD38Ec3bB94F58FA55D40368271E9e54A"
+     ]
+    ],
+    "tx": "0x44301e47a5ccf2af7643a13701e4b8e18b619820c6bd2ebec3875c71b1ef5306"
+   },
+   {
+    "block": 44923,
+    "event": "Blocked(address indexed account)",
+    "params": [
+     [
+      "account",
+      "0x76EA76CA4Eb727f18956aB93445a94c5280412B9"
+     ]
+    ],
+    "tx": "0x6bb852e689ac0949f1ad812dff3b392ed25095f1217d98c1487a870ad27c6ae6"
+   },
+   {
+    "block": 44918,
+    "event": "Blocked(address indexed account)",
+    "params": [
+     [
+      "account",
+      "0x9Be599d7867f5E1a2D7Ec6dB9710dF2b98A15573"
+     ]
+    ],
+    "tx": "0x4c64c309ca955e7ce79f90e314c797870bb8b567df0c17b49aceb2ccde8c5a06"
+   },
+   {
+    "block": 44915,
+    "event": "Blocked(address indexed account)",
+    "params": [
+     [
+      "account",
+      "0x95584C303FCd48AF5c6B9873015f2AD0ca84EaE3"
+     ]
+    ],
+    "tx": "0xce04a6642d7fb6bd157d3adc66e1da404f9bae621644e42dc657f23c9b4a5c1a"
+   },
+   {
+    "block": 44911,
+    "event": "Blocked(address indexed account)",
+    "params": [
+     [
+      "account",
+      "0xcB74874f1e06Fcf80A306e06e5379A44B488bA2D"
+     ]
+    ],
+    "tx": "0x1c736bbfa1da3d9b6b42efa271be381a423a007fa965c396a252e93e5805f6dc"
+   },
+   {
+    "block": 44906,
+    "event": "Blocked(address indexed account)",
+    "params": [
+     [
+      "account",
+      "0xFda1Ec4A6178d4916b001a065422D31EBE5F62FF"
+     ]
+    ],
+    "tx": "0x2f5a45767553167c170041b408c5cf37b18446496fdd2e69b2eeb58b820564b3"
+   },
+   {
+    "block": 44898,
+    "event": "Blocked(address indexed account)",
+    "params": [
+     [
+      "account",
+      "0x12de548F79a50D2bd05481C8515C1eF5183666a9"
+     ]
+    ],
+    "tx": "0x0795fffdaed69c35d97be78e621db64115717c28c6b0176e0244629fc4a955e9"
+   },
+   {
+    "block": 44892,
+    "event": "Blocked(address indexed account)",
+    "params": [
+     [
+      "account",
+      "0xd5ED34b52AC4ab84d8FA8A231a3218bbF01Ed510"
+     ]
+    ],
+    "tx": "0x6044ad7d3763c8e0fe55ebb049a51c0caa8a6a10723a674037f6e8861c28a3f7"
+   },
+   {
+    "block": 44889,
+    "event": "Blocked(address indexed account)",
+    "params": [
+     [
+      "account",
+      "0xDb2720ebAd55399117ddB4C4a4afd9a4CCAda8fE"
+     ]
+    ],
+    "tx": "0x2b5fe71e701f7406bcf35a863837e899b79b3fc11e0f12887965a0a62f821535"
+   },
+   {
+    "block": 44884,
+    "event": "Blocked(address indexed account)",
+    "params": [
+     [
+      "account",
+      "0x532B77B33A040587e9FD1800088225f99b8B0E8A"
+     ]
+    ],
+    "tx": "0x533f4709de2040ba18e36c5e287c65c089d743fe9dd39d110944bbb66902ca70"
+   },
+   {
+    "block": 44881,
+    "event": "Blocked(address indexed account)",
+    "params": [
+     [
+      "account",
+      "0xE3D35f68383732649669aA990832E017340DbcA5"
+     ]
+    ],
+    "tx": "0x082347dcaca2c9e8adc28888610a80f16cd114bb4a76ebb1db11560ab86d26b9"
+   },
+   {
+    "block": 44874,
+    "event": "Blocked(address indexed account)",
+    "params": [
+     [
+      "account",
+      "0x12de548F79a50D2bd05481C8515C1eF5183666a9"
+     ]
+    ],
+    "tx": "0x1db3c3786950f401c821eb0311738a160cf97e677f6d5ec64252fa0230512f12"
+   },
+   {
+    "block": 44863,
+    "event": "Blocked(address indexed account)",
+    "params": [
+     [
+      "account",
+      "0xd5ED34b52AC4ab84d8FA8A231a3218bbF01Ed510"
+     ]
+    ],
+    "tx": "0xd2fb052b9943ffcbf6eff2f624ca2cb18273d6dfa07b4404df5e9822ba69e8c5"
+   },
+   {
+    "block": 44855,
+    "event": "Blocked(address indexed account)",
+    "params": [
+     [
+      "account",
+      "0x002471b8A185f9980708d0eAEC5B289714F56f8d"
+     ]
+    ],
+    "tx": "0x3a77b0177706505f62a6e79edc88254d897048cc9f59c7ee20f9928d2039cd74"
+   }
+  ],
+  "recent_counts": {
+   "Upgraded": 1,
+   "RoleRevoked": 1,
+   "RoleGranted": 1,
+   "Unpaused": 2,
+   "Paused": 1,
+   "Unblocked": 4,
+   "Blocked": 40
+  },
+  "counters": {
+   "transactions_count": "272",
+   "gas_usage_count": "14159552",
+   "token_transfers_count": "1",
+   "validations_count": "0"
+  },
+  "has_more_pages": true
+ },
+ "identities": {
+  "0x8b3511B4c4b68FCAfdCE7e6f91B925458bB64Ea6": {
+   "name": null,
+   "is_contract": false,
+   "verified": false,
+   "token": null,
+   "impl": [],
+   "creator": null,
+   "coin_balance_eth": 2082.255,
+   "tags": []
+  },
+  "0xF1e45A0B1B4290eb95D04cec2b4b26D72b99568b": {
+   "name": null,
+   "is_contract": true,
+   "verified": true,
+   "token": null,
+   "impl": [
+    "ForwarderV4"
+   ],
+   "creator": "0x37996E762fA8B671869740C79eB33F625b3bf92a",
+   "coin_balance_eth": 0.0,
+   "tags": []
+  },
+  "0x395E8B30E069aD49b851a519be444CEB6aA38e7E": {
+   "name": null,
+   "is_contract": false,
+   "verified": false,
+   "token": null,
+   "impl": [],
+   "creator": null,
+   "coin_balance_eth": 0.0,
+   "tags": []
+  },
+  "0x92433c650785397386A0Cc347EC2489718E45307": {
+   "name": "ArbChildToParentRewardRouter",
+   "is_contract": true,
+   "verified": true,
+   "token": null,
+   "impl": [],
+   "creator": "0xc8451c5DE260E7ea1b879e7994967077e71230Ca",
+   "coin_balance_eth": 144.019,
+   "tags": []
+  }
+ }
+}
