@@ -1,0 +1,227 @@
+{
+ "window": "research/2026-09-08/live_2h",
+ "stale": false,
+ "provenance": [
+  {
+   "field": "labels",
+   "artifact": "ed14a540bacb0af5",
+   "current": "ed14a540bacb0af5",
+   "gate": true,
+   "ok": true,
+   "note": ""
+  },
+  {
+   "field": "tokens",
+   "artifact": "ca4aa94f2ca2208f",
+   "current": "ca4aa94f2ca2208f",
+   "gate": true,
+   "ok": true,
+   "note": ""
+  },
+  {
+   "field": "blocks",
+   "artifact": "8174205296aa4187",
+   "current": "8174205296aa4187",
+   "gate": true,
+   "ok": true,
+   "note": ""
+  }
+ ],
+ "checks": [
+  {
+   "id": "blocks",
+   "check": "blocks analysed",
+   "recomputed": 599,
+   "analysis": 599,
+   "ok": true,
+   "tolerance": 0.0,
+   "note": ""
+  },
+  {
+   "id": "transactions",
+   "check": "transactions",
+   "recomputed": 141411,
+   "analysis": 141411,
+   "ok": true,
+   "tolerance": 0.0,
+   "note": ""
+  },
+  {
+   "id": "logs",
+   "check": "logs",
+   "recomputed": 491580,
+   "analysis": 491580,
+   "ok": true,
+   "tolerance": 0.0,
+   "note": ""
+  },
+  {
+   "id": "usdc-mint",
+   "check": "USDC minted (USD, from the zero address)",
+   "recomputed": 7143901,
+   "analysis": 7144704,
+   "ok": true,
+   "tolerance": 0.01,
+   "note": ""
+  },
+  {
+   "id": "usdc-burn",
+   "check": "USDC burned (USD, to the zero address)",
+   "recomputed": 6784010,
+   "analysis": 6784773,
+   "ok": true,
+   "tolerance": 0.01,
+   "note": ""
+  },
+  {
+   "id": "exchange-net-stables",
+   "check": "exchange net flow, stables (USD)",
+   "recomputed": -5543819,
+   "analysis": -5543819,
+   "ok": true,
+   "tolerance": 0.03,
+   "note": ""
+  },
+  {
+   "id": "exchange-net-eth",
+   "check": "exchange net flow, ETH (USD)",
+   "recomputed": -2985981,
+   "analysis": -2985981,
+   "ok": true,
+   "tolerance": 0.03,
+   "note": ""
+  },
+  {
+   "id": "exchange-gross-usdc",
+   "check": "exchange gross in, USDC (USD)",
+   "recomputed": 16610213,
+   "analysis": 16610213,
+   "ok": true,
+   "tolerance": 0.03,
+   "note": ""
+  },
+  {
+   "id": "leverage-to-exchange",
+   "check": "leverage-to-exchange (USD followed to a CEX)",
+   "recomputed": 0,
+   "analysis": 0,
+   "ok": true,
+   "tolerance": 0.05,
+   "note": "replays the proceeds walk over an independently decoded transfer stream"
+  },
+  {
+   "id": "cctp-largest",
+   "check": "largest CCTP send: USDC -> Polygon (USD)",
+   "recomputed": 1098755,
+   "analysis": 1098878,
+   "ok": true,
+   "tolerance": 0.02,
+   "note": ""
+  },
+  {
+   "id": "gas-top-target",
+   "check": "gas requested by the top target 0xdac17f95",
+   "recomputed": 3450332641,
+   "analysis": 3450332641,
+   "ok": true,
+   "tolerance": 0.0,
+   "note": ""
+  },
+  {
+   "id": "gas-top-target-identity",
+   "check": "top gas target is the same address",
+   "recomputed": "0xdac17f958d",
+   "analysis": "0xdac17f958d",
+   "ok": true,
+   "tolerance": 0,
+   "note": ""
+  },
+  {
+   "id": "rate-gap-widest",
+   "check": "widest Aave/Spark borrow-rate gap (WBTC, pp)",
+   "recomputed": 0.33,
+   "analysis": 0.33,
+   "ok": true,
+   "tolerance": 0.05,
+   "note": ""
+  }
+ ],
+ "label_band": [
+  {
+   "min_tier": "blockscout-verified",
+   "exchange_addresses": 1,
+   "stables_net_usd": 0,
+   "eth_net_usd": 0
+  },
+  {
+   "min_tier": "model-memory",
+   "exchange_addresses": 46,
+   "stables_net_usd": -10696699,
+   "eth_net_usd": 5468444
+  },
+  {
+   "min_tier": "behaviour",
+   "exchange_addresses": 95,
+   "stables_net_usd": -5543819,
+   "eth_net_usd": -2985981
+  }
+ ],
+ "mechanisms": null,
+ "claims": {
+  "cited": [
+   "blocks",
+   "exchange-net-eth",
+   "exchange-net-stables",
+   "logs",
+   "transactions",
+   "usdc-burn",
+   "usdc-mint"
+  ],
+  "cited_count": 7,
+  "dangling": [],
+  "checks_available": [
+   "blocks",
+   "cctp-largest",
+   "exchange-gross-usdc",
+   "exchange-net-eth",
+   "exchange-net-stables",
+   "fingerprint-matches-chain",
+   "gas-top-target",
+   "gas-top-target-identity",
+   "leverage-to-exchange",
+   "logs",
+   "msca-not-exchange",
+   "no-contract-hot-wallets",
+   "rate-gap-widest",
+   "stacy-deposit-for",
+   "transactions",
+   "usdc-burn",
+   "usdc-mint"
+  ],
+  "checks_uncited": [
+   "cctp-largest",
+   "exchange-gross-usdc",
+   "fingerprint-matches-chain",
+   "gas-top-target",
+   "gas-top-target-identity",
+   "leverage-to-exchange",
+   "msca-not-exchange",
+   "no-contract-hot-wallets",
+   "rate-gap-widest",
+   "stacy-deposit-for"
+  ],
+  "headline_numbers_tagged": 4,
+  "headline_numbers_untagged": 126,
+  "coverage": 0.031,
+  "untagged_examples": [
+   "The right benchmark for a dollar is not the same dollar on another venue \u2014 it is the dollar an issuer will pay you for in unlimited size at no venue r",
+   "| asset | venue | supply APR | vs savings rate | supplied | utilisation | |---|---|---:|---:|---:|---:| | **USDtb** | **Aave v3** | **8.05%** | **+4.4",
+   "Twenty-seven dollar-denominated reserves across Aave, SparkLend and Compound; **two of them pay more than doing nothing.** Roughly $8.5B of supplied d",
+   "Two of the recurring findings in the ledger fail exactly that test. \"PYUSD pays 3.29pp more on Aave than SparkLend\" is true and worth **28bps** over t",
+   "## 2. The capacity of the best of them is $1.4M, not $94M.",
+   "Compound v3's USDC Comet sits at **90.77% utilisation against a kink at exactly 90.0%**. Read directly from the contract's own :"
+  ]
+ },
+ "all_ok": true,
+ "failures": 0
+}

@@ -63,8 +63,15 @@ def scan(ctx):
     for sym, vs in by_sym.items():
         if len(vs) < 2:
             continue
-        hi_v = max(vs, key=lambda v: vs[v]['supply_apr'])
-        lo_v = min(vs, key=lambda v: vs[v]['supply_apr'])
+        # Pick the venue pair on the *de-spiked* rate, not the spot one. Picking on spot means that during Aave's
+        # nightly utilisation spike the highest USDC venue is whichever reserve is momentarily starved, the pair
+        # becomes Aave-over-Spark, the de-spiker correctly calls it a spot artifact — and the real standing gap,
+        # Compound over Spark, is never compared at all. The spike does not just add a false finding; it hides a
+        # true one.
+        def effective(v):
+            return medians.get((v, sym), vs[v]['supply_apr'])
+        hi_v = max(vs, key=effective)
+        lo_v = min(vs, key=effective)
         hi, lo = vs[hi_v], vs[lo_v]
         gap = (hi['supply_apr'] - lo['supply_apr']) * 100
         # Both sides must be live markets. A reserve with almost nothing supplied sits at zero utilisation and
@@ -98,16 +105,21 @@ def scan(ctx):
 
         S = float(hi['supplied_usd'])
         dilutes = hi.get('dilutes', True)
+        fn, basis = marginal_rate_fn(hi_v, sym, hi, head)
+        half, best = sized(fn, eff_lo, S) if dilutes else (None, None)
+        # Price at the size that maximises dollars over the alternative venue, not at the headline rate: a rate you
+        # cannot deploy into is not an edge, and on a kinked market the deployable size is the entire question.
+        size = (best or {}).get('size_usd') or S
+        eff_at_size = fn(size) if dilutes else eff_hi
         opp = Opportunity(
             name='%s supply spread: %s over %s' % (sym, hi_v, lo_v),
-            edge_bps=eff_gap * 100,
+            edge_bps=1e4 * max(eff_at_size - eff_lo, 0.0),
             legs=[Leg('supply %s into %s%s' % (sym, hi_v, ' (rate dilutes as you add)' if dilutes else ' (fixed rate)'),
-                      capacity_usd=S, impact_curve=_dilution_curve(eff_hi, S) if dilutes else None)],
+                      capacity_usd=size)],
             gas_units=300_000, capital_days=365, runs_per_day=1 / 365, competitors=0,
-            notes='supply rate modelled as proportional to utilisation; the borrow rate is held fixed, so the '
-                  'realised gap closes sooner than this')
+            notes='marginal rate from the venue’s own model (%s); the borrow side is held fixed, so a borrower '
+                  'repaying closes the gap sooner than this' % basis)
         v = score(opp, gas_gwei=gas_gwei, eth_usd=eth, min_net_usd=0.0)
-        half = _half_edge_size(eff_hi, eff_lo, S) if dilutes else None
         # A gap that could not be de-spiked is a single block's reading. It may be real and it may be the tail of an
         # ALM transfer or a flash loan, and there is no way to tell from one observation, so it ranks below a gap the
         # window's own series confirms rather than sitting beside it as an equal.
@@ -116,7 +128,9 @@ def scan(ctx):
             key='%s:%s/%s' % (sym, hi_v, lo_v),
             title='%s pays %.2fpp more on %s than %s; %s%s'
                   % (sym, eff_gap, hi_v, lo_v,
-                     ('$%s halves the gap' % _m(half)) if half else 'rate does not dilute with size',
+                     ('best size $%s earns $%s a year over %s' % (_m(best['size_usd']),
+                                                                  _m(best['over_low_venue_usd_per_year']), lo_v))
+                     if best else ('$%s halves the gap' % _m(half)) if half else 'rate does not dilute with size',
                      ' [one-block read, de-spiking unavailable]' if unchecked else ''),
             evidence={'asset': sym, 'high_venue': hi_v, 'low_venue': lo_v,
                       'supply_apr_spot_pct': {k: round(100 * d['supply_apr'], 3) for k, d in vs.items()},
@@ -131,7 +145,10 @@ def scan(ctx):
                                        'too few log observations for %s %s: this is one block, and a large transfer or '
                                        'flash loan can move a reserve rate several-fold for one block' % (hi_v, sym)),
                       'supplied_usd': {k: round(d['supplied_usd']) for k, d in vs.items() if d.get('supplied_usd')},
-                      'utilisation': {k: round(d['utilisation'], 3) for k, d in vs.items() if d.get('utilisation')}},
+                      'utilisation': {k: round(d['utilisation'], 3) for k, d in vs.items() if d.get('utilisation')},
+                      'dilution_basis': basis, 'best_size': best,
+                      'marginal_apr_ladder': [{'size_usd': x, 'apr_pct': round(100 * fn(x), 3)}
+                                              for x in (1e5, 1e6, 5e6, 2.5e7, 1e8)] if dilutes else None},
             economics={'net_apr': round(v.net_apr, 4), 'net_per_year_usd': round(v.annual_net_usd),
                        'half_edge_size_usd': round(half) if half else None,
                        'net_apr_at_half_edge': round(eff_lo + (eff_hi - eff_lo) / 2, 4),
@@ -139,32 +156,67 @@ def scan(ctx):
     return hits
 
 
-def _half_edge_size(hi_rate, lo_rate, supplied_usd):
-    """Capital at which your own dilution has eaten half the gap — the number a capital allocator actually wants.
+def marginal_rate_fn(venue, sym, d, head):
+    """`add_usd -> supply APR you would actually earn`, from the venue's own rate model where one is available.
 
-    Maximising total dollars against a dilution curve just says "deploy everything", because the marginal yield stays
-    positive right up to the cap. The size worth quoting is where the realised average rate has given back half its
-    advantage over the alternative venue.
+    This replaces a smooth model that was wrong by more than an order of magnitude on exactly the market it mattered
+    most for. Lending rates are kinked, and a market sitting a hair above its kink has almost no capacity: Compound v3
+    USDC was at 90.77% utilisation against a kink at 90.0%, paying 5.69%, and $1.25M of new supply is the *whole*
+    opportunity — $5M takes the rate to 3.22%, below the savings rate you left. The smooth `r·S/(S+X)` model reported
+    tens of millions of capacity for that same market, because a smooth curve cannot express a cliff.
+
+    Three sources, in order of what the head state actually carries:
+      * **Aave and SparkLend** — the reserve's own IRM parameters (`rate_curves`), so the kink is exact;
+      * **Compound** — the Comet's supply rate sampled across utilisations at head time, interpolated here;
+      * **anything else** — the old smooth model, and the hit says `modelled` so the number is read as an estimate.
     """
-    target = lo_rate + (hi_rate - lo_rate) / 2
-    if hi_rate <= target or supplied_usd <= 0:
-        return None
-    # average realised rate is r·S/(S+X); solve r·S/(S+X) = target
-    return supplied_usd * (hi_rate / target - 1.0)
+    supplied, borrowed = d.get('supplied_usd') or 0, d.get('borrowed_usd')
+    curve = (head.get('rate_curves') or {}).get('%s %s' % (venue, sym))
+    if curve and borrowed and supplied > 0:
+        from .dollar_rate_outlier import supply_apr
+        return (lambda add: supply_apr(curve, borrowed, supplied + add)), 'irm'
+    grid = d.get('supply_curve')
+    if grid and borrowed and supplied > 0:
+        def interp(add):
+            u = borrowed / (supplied + add)
+            pts = sorted(grid)
+            if u <= pts[0][0]:
+                return pts[0][1]
+            for (u0, r0), (u1, r1) in zip(pts, pts[1:]):
+                if u <= u1:
+                    return r0 + (r1 - r0) * (u - u0) / max(u1 - u0, 1e-12)
+            return pts[-1][1]
+        return interp, 'sampled'
+    r0 = d.get('supply_apr') or 0.0
+    return (lambda add: r0 * supplied / (supplied + add) if supplied > 0 else r0), 'modelled'
 
 
-def _dilution_curve(rate, supplied_usd):
-    """Yield given up, in bps, by supplying `X` into a pool that already holds `supplied_usd`.
+def sized(fn, lo_rate, supplied_usd):
+    """The two sizes worth quoting: where half the gap is gone, and where total dollars over the alternative peak.
 
-    With the supply rate going as `u²` (a supplier earns the borrow rate times utilisation, and the borrow rate is
-    itself roughly linear in utilisation), adding `X` earns an average of `r·S/(S+X)` instead of `r`, so the shortfall is
-    `r·X/(S+X)` — nothing for a small size, the whole rate for a size that dwarfs the pool.
+    Reported together because they answer different questions. `half` is the allocator's rule of thumb for how much
+    the market can take before the reason for being there is half spent; `best` is the size that literally maximises
+    dollars earned over the venue you would otherwise use, and on a kinked market the two can differ by a factor.
     """
-    def curve(x):
-        if x <= 0 or supplied_usd <= 0:
-            return 0.0
-        return 1e4 * rate * x / (supplied_usd + x)
-    return curve
+    r0 = fn(0.0)
+    if r0 <= lo_rate:
+        return None, None
+    target = lo_rate + (r0 - lo_rate) / 2
+    half = None
+    best = None
+    x = max(supplied_usd, 1e6) * 1e-4
+    hi = max(supplied_usd, 1e6) * 10
+    while x <= hi:
+        r = fn(x)
+        if half is None and r <= target:
+            half = x
+        gain = (r - lo_rate) * x
+        if best is None or gain > best[1]:
+            best = (x, gain, r)
+        x *= 1.15
+    return half, (None if not best or best[1] <= 0 else
+                  {'size_usd': round(best[0]), 'apr_at_size_pct': round(100 * best[2], 3),
+                   'over_low_venue_usd_per_year': round(best[1])})
 
 
 def _head_state(ctx):
@@ -183,14 +235,18 @@ def _venue_table(head, ctx):
                 continue
             sup = d.get('supplied_usd') or 0
             out[(venue, sym)] = {'supply_apr': d['supply_apr'], 'supplied_usd': sup,
+                                 'borrowed_usd': d.get('borrowed_usd'),
                                  'utilisation': (d.get('borrowed_usd') or 0) / sup if sup else None}
     for venue, d in (head.get('compound') or {}).items():
         sym = ctx.window.symbol((d.get('base_token') or '').lower())
         if not sym or d.get('supply_apr') is None:
             continue
         px = ctx.prices.get('ETH', 2500.0) if sym == 'WETH' else 1.0
+        # The sampled curve travels with the row: without `borrowed_usd` and `supply_curve` the dilution model falls
+        # back to the smooth estimate, which is what overstated Compound USDC's capacity by ~75x.
         out[(venue, sym)] = {'supply_apr': d['supply_apr'], 'supplied_usd': (d.get('supplied') or 0) * px,
-                             'utilisation': d.get('utilisation')}
+                             'borrowed_usd': (d.get('borrowed') or 0) * px,
+                             'supply_curve': d.get('supply_curve'), 'utilisation': d.get('utilisation')}
     ssr = (head.get('sky') or {}).get('ssr_apy')
     if ssr is not None:
         # Sky's savings rate takes any size at the same rate, so it is the natural floor to compare a stable gap against.
@@ -205,7 +261,11 @@ def _log_medians(ctx):
     for r in ctx.analysis.get('lending_rates') or []:
         if r.get('updates', 0) < MIN_UPDATES or not r.get('sym'):
             continue
-        series = [p[2] for p in (r.get('series') or []) if len(p) > 2 and p[2] is not None]
+        # `analysis.json` stores each point as [block, supply_apr, borrow_apr], so the supply rate is index 1.
+        # Index 2 is the *borrow* rate, and reading it here de-spiked every supply rate against a borrow median —
+        # a bug that survived a shipped detector because both sides of the comparison were wrong in the same
+        # direction, so the gap still looked plausible.
+        series = [p[1] for p in (r.get('series') or []) if len(p) > 1 and p[1] is not None]
         m = median(series)
         if m is not None:
             med[(r['venue'], r['sym'])] = m

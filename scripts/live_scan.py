@@ -1203,7 +1203,20 @@ def head_state(args):
     # lending reserves: Aave + Spark getReserveData for RATE_ASSETS, then aToken / variableDebt totalSupply
     by_sym = {s: a for a, (s, d, k) in TOKENS.items()}
     for pool, venue in LENDING_POOLS.items():
-        assets = [by_sym[s] for s in RATE_ASSETS if s in by_sym]
+        # Ask the pool which reserves it has, rather than reading a hardcoded list. RATE_ASSETS named fifteen symbols
+        # and so made every other reserve invisible to the size and capacity checks: Aave's USDtb reserve was paying
+        # 8.05% — the highest dollar supply rate on the venue — and appeared in `analysis.json` from its rate logs with
+        # no supplied amount at all, which meant nothing downstream could rank or price it. The list is kept as the
+        # fallback and as the ordering, but discovery decides membership.
+        listed = rpc.eth_calls([(pool, sel('getReservesList()'))], blk)[0]
+        discovered = []
+        if listed and len(listed) >= 2 + 128:
+            n = word(listed, 1)
+            for i in range(min(n, 200)):
+                a = '0x' + listed[2 + 64 * (2 + i):2 + 64 * (3 + i)][-40:]
+                if a in TOKENS:
+                    discovered.append(a)
+        assets = discovered or [by_sym[s] for s in RATE_ASSETS if s in by_sym]
         res = rpc.eth_calls([(pool, SEL['getReserveData'] + enc_addr(a)) for a in assets], blk)
         rows = {}
         sup_items = []
@@ -1211,7 +1224,7 @@ def head_state(args):
             if not r or len(r) < 2 + 64 * 12:
                 continue
             atoken, vdebt, strategy = '0x' + r[2 + 64 * 8:2 + 64 * 9][-40:], '0x' + r[2 + 64 * 10:2 + 64 * 11][-40:], '0x' + r[2 + 64 * 11:2 + 64 * 12][-40:]
-            rows[a] = {'sym': TOKENS[a][0], 'supply_apr': word(r, 2) / RAY, 'borrow_apr': word(r, 4) / RAY, 'aToken': atoken, 'variableDebt': vdebt, 'strategy': strategy}
+            rows[a] = {'sym': TOKENS[a][0], 'supply_apr': word(r, 2) / RAY, 'borrow_apr': word(r, 4) / RAY, 'aToken': atoken, 'variableDebt': vdebt, 'strategy': strategy, 'config': word(r, 0)}
             sup_items += [(atoken, SEL['totalSupply']), (vdebt, SEL['totalSupply'])]
         res2 = rpc.eth_calls(sup_items, blk)
         for i, a in enumerate([x for x in assets if x in rows]):
@@ -1223,19 +1236,27 @@ def head_state(args):
             rows[a].update({'supplied': supplied, 'borrowed': borrowed, 'utilisation': (borrowed / supplied) if supplied and borrowed is not None and supplied > 0 else None,
                             'supplied_usd': supplied * px if supplied is not None and px else None, 'borrowed_usd': borrowed * px if borrowed is not None and px else None})
         hs['lending'][venue] = rows
-    # rate-curve parameters of the Aave USDC/USDT strategies (once)
+    # Rate-curve parameters for *every* discovered reserve, in one call each. Without the curve a supply rate cannot be
+    # turned into a capacity: a rate is a point on a kinked function of utilisation, and how much new supply it survives
+    # is the only number that decides whether an 8% headline is worth $5k a year or $5M. The v3.2 strategy packs all
+    # four parameters into `getInterestRateDataBps(address)` in basis points; the four separate ray getters this used to
+    # call returned nothing on this deployment, which is why `rate_curves` was empty.
     curves = {}
     for venue, rows in hs['lending'].items():
+        items = [(r['strategy'], sel('getInterestRateDataBps(address)') + enc_addr(a))
+                 for a, r in rows.items() if r.get('strategy') and int(r['strategy'], 16)]
+        keys = [(venue, r['sym']) for a, r in rows.items() if r.get('strategy') and int(r['strategy'], 16)]
+        res = rpc.eth_calls(items, blk) if items else []
+        for (v, symb), r in zip(keys, res):
+            if r and len(r) >= 2 + 64 * 4:
+                curves['%s %s' % (v, symb)] = {'optimal': word(r, 0) / 1e4, 'base': word(r, 1) / 1e4,
+                                               'slope1': word(r, 2) / 1e4, 'slope2': word(r, 3) / 1e4}
+    # the reserve factor decides how much of the borrow rate reaches the supplier, so the curve is useless without it
+    for venue, rows in hs['lending'].items():
         for a, r in rows.items():
-            if r['sym'] in ('USDC', 'USDT', 'USDS', 'DAI', 'WETH') and r.get('strategy'):
-                st = r['strategy']
-                # v3.2+ strategies take the asset as argument; try both shapes
-                items = [(st, SEL['getOptimalUsageRatio'] + enc_addr(a)), (st, SEL['getVariableRateSlope1'] + enc_addr(a)), (st, SEL['getVariableRateSlope2'] + enc_addr(a)), (st, SEL['getMaxVariableBorrowRate'] + enc_addr(a))]
-                res = rpc.eth_calls(items, blk)
-                if not all(res):
-                    res = rpc.eth_calls([(st, d[:10]) for st, d in items], blk)
-                if all(res):
-                    curves[venue + ' ' + r['sym']] = {'optimal': word(res[0], 0) / RAY, 'slope1': word(res[1], 0) / RAY, 'slope2': word(res[2], 0) / RAY, 'max': word(res[3], 0) / RAY}
+            k = '%s %s' % (venue, r['sym'])
+            if k in curves and r.get('config') is not None:
+                curves[k]['reserve_factor'] = ((r['config'] >> 64) & 0xFFFF) / 1e4
     hs['rate_curves'] = curves
     # Compound v3
     for comet, name in COMETS.items():
@@ -1248,6 +1269,14 @@ def head_state(args):
                 dec = word(tt[2], 0) if tt[2] else 6
                 hs['compound'][name] = {'base_token': '0x' + u[1][-40:] if u[1] else None, 'utilisation': util / 1e18, 'supply_apr': word(r[0], 0) * 31536000 / 1e18, 'borrow_apr': word(r[1], 0) * 31536000 / 1e18,
                                         'supplied': word(tt[0], 0) / 10 ** dec if tt[0] else None, 'borrowed': word(tt[1], 0) / 10 ** dec if tt[1] else None}
+                # Sample the Comet's own supply curve. Compound's kink is far sharper than an Aave reserve's and these
+                # markets sit right on it — USDC's kink is at exactly 90.0% utilisation and the market was at 90.77%,
+                # where the rate falls from 5.70% to 3.24% over 0.77 percentage points. A detector that dilutes a
+                # Compound rate with a smooth model overstates its capacity by more than an order of magnitude, so the
+                # curve is measured here rather than assumed downstream.
+                grid = [0.50, 0.60, 0.70, 0.75, 0.80, 0.84, 0.87, 0.89, 0.895, 0.90, 0.905, 0.91, 0.92, 0.94, 0.96, 0.98, 0.995]
+                cur = rpc.eth_calls([(comet, SEL['getSupplyRate'] + enc_uint(int(x * 1e18))) for x in grid], blk)
+                hs['compound'][name]['supply_curve'] = [[x, word(c, 0) * 31536000 / 1e18] for x, c in zip(grid, cur) if c]
     # Sky savings rates, Ethena vesting
     r = rpc.eth_calls([('0xa3931d71877c0e7a3148cb7eb4463524fec27fbd', SEL['ssr']), ('0x197e90f9fde81202ff37a6f4ecd0bd4a2f1de6d8', SEL['dsr']),
                        ('0x9d39a5de30e57443bff2a8307a4256c8797a3497', SEL['vestingAmount']), ('0x9d39a5de30e57443bff2a8307a4256c8797a3497', SEL['totalAssets'])], blk)
@@ -1424,7 +1453,13 @@ def render(args):
     sky, eth = hs.get('sky') or {}, hs.get('ethena') or {}
     L.append('\nSky savings rate (sUSDS) %s APY, DSR (sDAI) %s APY; sUSDe vesting implies %s APR on %s of USDe.\n' % (pct(sky.get('ssr_apy')), pct(sky.get('dsr_apy')), pct(eth.get('apr_from_vesting')), usd_fmt(eth.get('total_assets_usde'))))
     if hs.get('rate_curves'):
-        L.append('Rate curves: ' + '; '.join('%s optimal %s, slope1 %s, slope2 %s, max %s' % (k, pct(v['optimal'], 0), pct(v['slope1'], 2), pct(v['slope2'], 2), pct(v['max'], 2)) for k, v in hs['rate_curves'].items()) + '.\n')
+        # The curve source changed to `getInterestRateDataBps`, which reports base/slope1/slope2 and no max rate, so
+        # the renderer reads what is there rather than a key that no longer exists.
+        L.append('Rate curves: ' + '; '.join(
+            '%s optimal %s, base %s, slope1 %s, slope2 %s%s' % (
+                k, pct(v.get('optimal'), 0), pct(v.get('base'), 2), pct(v.get('slope1'), 2), pct(v.get('slope2'), 2),
+                (', reserve factor %s' % pct(v['reserve_factor'], 0)) if v.get('reserve_factor') is not None else '')
+            for k, v in sorted(hs['rate_curves'].items())) + '.\n')
     L.append('\nRate moves inside the window (`ReserveDataUpdated`, variable borrow APR range):\n')
     L.append('| venue | asset | updates | borrow first → last | borrow min–max | supply first → last |')
     L.append('|---|---|---|---|---|---|')

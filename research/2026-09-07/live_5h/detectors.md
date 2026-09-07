@@ -1,16 +1,17 @@
 # Detector sweep — research/2026-09-07/live_5h
 
-Ran 7 detector(s); 25 hit(s).
+Ran 8 detector(s); 26 hit(s).
 
 | detector | hits | seconds | what it looks for |
 |---|---:|---:|---|
-| `address_poisoning` | 1 | 3.17 | lookalike dust transfers that follow a large transfer, aimed at a later copy-paste |
-| `gas_concentration` | 1 | 6.34 | base-fee spikes attributed to the contract whose gas demand caused them |
+| `address_poisoning` | 1 | 3.06 | lookalike dust transfers that follow a large transfer, aimed at a later copy-paste |
+| `dollar_rate_outlier` | 1 | 3.02 | dollar supply rates ranked against the risk-free dollar, sized from each reserve’s own rate curve |
+| `gas_concentration` | 1 | 3.13 | base-fee spikes attributed to the contract whose gas demand caused them |
 | `jit_liquidity` | 1 | 0.00 | fee share taken by liquidity minted for a single swap, per pool and per window |
-| `mass_distribution` | 5 | 5.17 | one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam |
-| `mislabelled_flow` | 0 | 3.46 | address labels the window contradicts, which is how a headline moves by a multiple |
+| `mass_distribution` | 5 | 5.02 | one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam |
+| `mislabelled_flow` | 0 | 3.38 | address labels the window contradicts, which is how a headline moves by a multiple |
 | `rate_dispersion` | 5 | 0.00 | cross-venue supply-rate gaps on one asset, de-spiked and sized by rate dilution |
-| `solver_fingerprint` | 12 | 3.37 | unlabelled contracts that pass value straight through: solvers, routers and searcher bots |
+| `solver_fingerprint` | 12 | 3.29 | unlabelled contracts that pass value straight through: solvers, routers and searcher bots |
 
 ### [notable] unlabelled unknown 0x76f30e3f cycled $450.6M and ended the window flat (42 txs, 13 counterparties)
 
@@ -116,13 +117,16 @@ Ran 7 detector(s); 25 hit(s).
  "utilisation": {
   "Aave v3": 0.03,
   "SparkLend": 0.656
- }
+ },
+ "dilution_basis": "modelled",
+ "best_size": null,
+ "marginal_apr_ladder": null
 }
 ```
 
 Economics: net APR 3.48%, $34,761,177 per year, GO — clears gas, impact and competition at this size
 
-### [notable] USDC pays 1.95pp more on Compound v3 USDC than SparkLend; $80.5M halves the gap
+### [notable] USDC pays 1.95pp more on Compound v3 USDC than SparkLend; best size $93.5M earns $793k a year over SparkLend
 
 ```json
 {
@@ -136,7 +140,7 @@ Economics: net APR 3.48%, $34,761,177 per year, GO — clears gas, impact and co
   "Sky SSR": 3.6
  },
  "supply_apr_median_pct": {
-  "Aave v3": 4.269
+  "Aave v3": 3.586
  },
  "gap_pp_spot": 1.949,
  "gap_pp_despiked": 1.949,
@@ -153,11 +157,39 @@ Economics: net APR 3.48%, $34,761,177 per year, GO — clears gas, impact and co
   "Aave v3": 0.934,
   "SparkLend": 0.922,
   "Compound v3 USDC": 0.907
- }
+ },
+ "dilution_basis": "modelled",
+ "best_size": {
+  "size_usd": 93523182,
+  "apr_at_size_pct": 4.39,
+  "over_low_venue_usd_per_year": 793437
+ },
+ "marginal_apr_ladder": [
+  {
+   "size_usd": 100000.0,
+   "apr_pct": 5.489
+  },
+  {
+   "size_usd": 1000000.0,
+   "apr_pct": 5.476
+  },
+  {
+   "size_usd": 5000000.0,
+   "apr_pct": 5.418
+  },
+  {
+   "size_usd": 25000000.0,
+   "apr_pct": 5.146
+  },
+  {
+   "size_usd": 100000000.0,
+   "apr_pct": 4.33
+  }
+ ]
 }
 ```
 
-Economics: net APR 0.87%, $793,766 per year, GO — clears gas, impact and competition at this size
+Economics: net APR 0.85%, $793,437 per year, GO — clears gas, impact and competition at this size
 
 ### [notable] base fee peaked 1.012 gwei (15.1x the 0.067 gwei median) across 202 blocks
 
@@ -538,7 +570,7 @@ Economics: net APR 0.87%, $793,766 per year, GO — clears gas, impact and compe
 }
 ```
 
-### [info] USDT pays 3.05pp more on SparkLend than Compound v3 USDT; $116.3M halves the gap [one-block read, de-spiking unavailable]
+### [info] USDT pays 3.05pp more on SparkLend than Compound v3 USDT; best size $151.0M earns $1.8M a year over Compound v3 USDT [one-block read, de-spiking unavailable]
 
 ```json
 {
@@ -551,7 +583,7 @@ Economics: net APR 0.87%, $793,766 per year, GO — clears gas, impact and compe
   "Compound v3 USDT": 2.995
  },
  "supply_apr_median_pct": {
-  "Aave v3": 4.239
+  "Aave v3": 3.535
  },
  "gap_pp_spot": 3.053,
  "gap_pp_despiked": 3.053,
@@ -567,13 +599,41 @@ Economics: net APR 0.87%, $793,766 per year, GO — clears gas, impact and compe
   "Aave v3": 0.922,
   "SparkLend": 0.96,
   "Compound v3 USDT": 0.832
- }
+ },
+ "dilution_basis": "modelled",
+ "best_size": {
+  "size_usd": 150994758,
+  "apr_at_size_pct": 4.205,
+  "over_low_venue_usd_per_year": 1826129
+ },
+ "marginal_apr_ladder": [
+  {
+   "size_usd": 100000.0,
+   "apr_pct": 6.046
+  },
+  {
+   "size_usd": 1000000.0,
+   "apr_pct": 6.031
+  },
+  {
+   "size_usd": 5000000.0,
+   "apr_pct": 5.961
+  },
+  {
+   "size_usd": 25000000.0,
+   "apr_pct": 5.639
+  },
+  {
+   "size_usd": 100000000.0,
+   "apr_pct": 4.687
+  }
+ ]
 }
 ```
 
-Economics: net APR 1.26%, $1,828,306 per year, GO — clears gas, impact and competition at this size
+Economics: net APR 1.21%, $1,826,129 per year, GO — clears gas, impact and competition at this size
 
-### [info] PYUSD pays 3.17pp more on Aave v3 than SparkLend; $5.7M halves the gap [one-block read, de-spiking unavailable]
+### [info] PYUSD pays 3.17pp more on Aave v3 than SparkLend; best size $11.9M earns $107k a year over SparkLend [one-block read, de-spiking unavailable]
 
 ```json
 {
@@ -597,13 +657,41 @@ Economics: net APR 1.26%, $1,828,306 per year, GO — clears gas, impact and com
  "utilisation": {
   "Aave v3": 0.862,
   "SparkLend": 0.166
- }
+ },
+ "dilution_basis": "modelled",
+ "best_size": {
+  "size_usd": 11934478,
+  "apr_at_size_pct": 1.475,
+  "over_low_venue_usd_per_year": 106910
+ },
+ "marginal_apr_ladder": [
+  {
+   "size_usd": 100000.0,
+   "apr_pct": 3.702
+  },
+  {
+   "size_usd": 1000000.0,
+   "apr_pct": 3.321
+  },
+  {
+   "size_usd": 5000000.0,
+   "apr_pct": 2.278
+  },
+  {
+   "size_usd": 25000000.0,
+   "apr_pct": 0.886
+  },
+  {
+   "size_usd": 100000000.0,
+   "apr_pct": 0.269
+  }
+ ]
 }
 ```
 
-Economics: net APR 1.30%, $100,272 per year, GO — clears gas, impact and competition at this size
+Economics: net APR 0.90%, $106,910 per year, GO — clears gas, impact and competition at this size
 
-### [info] DAI pays 0.58pp more on Aave v3 than SparkLend; $13.9M halves the gap [one-block read, de-spiking unavailable]
+### [info] DAI pays 0.58pp more on Aave v3 than SparkLend; best size $14.3M earns $41k a year over SparkLend [one-block read, de-spiking unavailable]
 
 ```json
 {
@@ -627,11 +715,39 @@ Economics: net APR 1.30%, $100,272 per year, GO — clears gas, impact and compe
  "utilisation": {
   "Aave v3": 0.864,
   "SparkLend": 0.677
- }
+ },
+ "dilution_basis": "modelled",
+ "best_size": {
+  "size_usd": 14277816,
+  "apr_at_size_pct": 2.744,
+  "over_low_venue_usd_per_year": 40675
+ },
+ "marginal_apr_ladder": [
+  {
+   "size_usd": 100000.0,
+   "apr_pct": 3.039
+  },
+  {
+   "size_usd": 1000000.0,
+   "apr_pct": 3.019
+  },
+  {
+   "size_usd": 5000000.0,
+   "apr_pct": 2.93
+  },
+  {
+   "size_usd": 25000000.0,
+   "apr_pct": 2.557
+  },
+  {
+   "size_usd": 100000000.0,
+   "apr_pct": 1.729
+  }
+ ]
 }
 ```
 
-Economics: net APR 0.28%, $40,715 per year, GO — clears gas, impact and competition at this size
+Economics: net APR 0.28%, $40,674 per year, GO — clears gas, impact and competition at this size
 
 ### [info] JIT took $235 of $146261 pool fees (0.16%) across 144 episodes by 10 operator(s)
 
@@ -733,4 +849,30 @@ Economics: net APR 0.00%, $6,134 per year, GO — clears gas, impact and competi
    "attacker": "0xeefa95727d1e8d08572d199c78f35a8ab36adc75",
    "dust_tx": "0x0298ca3a9b00583432b908aa81023c4e6ec2bec95
 ```
+
+### [info] SparkLend USDT pays 6.05% against the Sky savings rate at 3.60%; no rate curve, so the size it survives is unknown [one-block read, de-spiking unavailable]
+
+```json
+{
+ "venue": "SparkLend",
+ "asset": "USDT",
+ "supply_apr_spot_pct": 6.048,
+ "supply_apr_window_median_pct": null,
+ "spiked": false,
+ "despike_unavailable": true,
+ "benchmark": "Sky savings rate",
+ "benchmark_pct": 3.6,
+ "gap_pp": 2.448,
+ "supplied_usd": 344422448,
+ "borrowed_usd": 330628608,
+ "available_usd": 13793840,
+ "utilisation": 0.96,
+ "curve": null,
+ "marginal_apr_ladder": [],
+ "best": null,
+ "why": "a headline rate is a point on a kinked curve; what it is worth is the marginal APR at the size you can actually put in, over the dollar you would otherwise hold"
+}
+```
+
+Economics: net APR 2.45%, $24,480 per year, GO — clears gas, impact and competition at this size
 

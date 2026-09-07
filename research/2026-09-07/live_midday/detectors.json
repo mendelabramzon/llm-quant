@@ -4,14 +4,21 @@
   {
    "detector": "address_poisoning",
    "hits": 1,
-   "seconds": 3.38,
+   "seconds": 3.25,
    "error": null,
    "description": "lookalike dust transfers that follow a large transfer, aimed at a later copy-paste"
   },
   {
+   "detector": "dollar_rate_outlier",
+   "hits": 0,
+   "seconds": 0.0,
+   "error": null,
+   "description": "dollar supply rates ranked against the risk-free dollar, sized from each reserve\u2019s own rate curve"
+  },
+  {
    "detector": "gas_concentration",
    "hits": 0,
-   "seconds": 3.29,
+   "seconds": 3.15,
    "error": null,
    "description": "base-fee spikes attributed to the contract whose gas demand caused them"
   },
@@ -25,14 +32,14 @@
   {
    "detector": "mass_distribution",
    "hits": 5,
-   "seconds": 5.53,
+   "seconds": 5.29,
    "error": null,
    "description": "one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam"
   },
   {
    "detector": "mislabelled_flow",
    "hits": 2,
-   "seconds": 3.66,
+   "seconds": 3.55,
    "error": null,
    "description": "address labels the window contradicts, which is how a headline moves by a multiple"
   },
@@ -46,7 +53,7 @@
   {
    "detector": "solver_fingerprint",
    "hits": 12,
-   "seconds": 3.57,
+   "seconds": 3.46,
    "error": null,
    "description": "unlabelled contracts that pass value straight through: solvers, routers and searcher bots"
   }
@@ -259,7 +266,10 @@
     "utilisation": {
      "Aave v3": 0.03,
      "SparkLend": 0.656
-    }
+    },
+    "dilution_basis": "modelled",
+    "best_size": null,
+    "marginal_apr_ladder": null
    },
    "economics": {
     "net_apr": 0.0348,
@@ -292,7 +302,7 @@
   },
   {
    "detector": "rate_dispersion",
-   "title": "USDT pays 1.63pp more on Aave v3 than SparkLend; $707.8M halves the gap",
+   "title": "USDT pays 0.94pp more on Aave v3 than SparkLend; best size $491.1M earns $2.2M a year over SparkLend",
    "severity": "notable",
    "evidence": {
     "asset": "USDT",
@@ -304,10 +314,10 @@
      "Compound v3 USDT": 3.022
     },
     "supply_apr_median_pct": {
-     "Aave v3": 4.25
+     "Aave v3": 3.554
     },
     "gap_pp_spot": 0.944,
-    "gap_pp_despiked": 1.631,
+    "gap_pp_despiked": 0.935,
     "head_read_spiked": false,
     "despiked": true,
     "despike_note": "median of the window log series",
@@ -320,24 +330,52 @@
      "Aave v3": 0.93,
      "SparkLend": 0.828,
      "Compound v3 USDT": 0.839
-    }
+    },
+    "dilution_basis": "modelled",
+    "best_size": {
+     "size_usd": 491148089,
+     "apr_at_size_pct": 3.059,
+     "over_low_venue_usd_per_year": 2161924
+    },
+    "marginal_apr_ladder": [
+     {
+      "size_usd": 100000.0,
+      "apr_pct": 3.563
+     },
+     {
+      "size_usd": 1000000.0,
+      "apr_pct": 3.562
+     },
+     {
+      "size_usd": 5000000.0,
+      "apr_pct": 3.557
+     },
+     {
+      "size_usd": 25000000.0,
+      "apr_pct": 3.533
+     },
+     {
+      "size_usd": 100000000.0,
+      "apr_pct": 3.447
+     }
+    ]
    },
    "economics": {
-    "net_apr": 0.0072,
-    "net_per_year_usd": 5857547,
-    "half_edge_size_usd": 707820545,
-    "net_apr_at_half_edge": 0.0343,
+    "net_apr": 0.0044,
+    "net_per_year_usd": 2161924,
+    "half_edge_size_usd": 491148089,
+    "net_apr_at_half_edge": 0.0309,
     "go": true,
     "reason": "clears gas, impact and competition at this size",
     "gas_gwei": 0.0547
    },
-   "usd": 5857547.456039563,
+   "usd": 2161924.165976287,
    "key": "USDT:Aave v3/SparkLend",
    "identity": "rate_dispersion:USDT:Aave v3/SparkLend"
   },
   {
    "detector": "rate_dispersion",
-   "title": "USDC pays 3.37pp more on Compound v3 USDC than SparkLend; $120.1M halves the gap",
+   "title": "USDC pays 3.37pp more on Compound v3 USDC than SparkLend; best size $142.1M earns $2.1M a year over SparkLend",
    "severity": "notable",
    "evidence": {
     "asset": "USDC",
@@ -350,7 +388,7 @@
      "Sky SSR": 3.6
     },
     "supply_apr_median_pct": {
-     "Aave v3": 4.266
+     "Aave v3": 3.581
     },
     "gap_pp_spot": 3.37,
     "gap_pp_despiked": 3.37,
@@ -367,18 +405,46 @@
      "Aave v3": 0.933,
      "SparkLend": 0.922,
      "Compound v3 USDC": 0.911
-    }
+    },
+    "dilution_basis": "modelled",
+    "best_size": {
+     "size_usd": 142084282,
+     "apr_at_size_pct": 5.004,
+     "over_low_venue_usd_per_year": 2077312
+    },
+    "marginal_apr_ladder": [
+     {
+      "size_usd": 100000.0,
+      "apr_pct": 6.91
+     },
+     {
+      "size_usd": 1000000.0,
+      "apr_pct": 6.893
+     },
+     {
+      "size_usd": 5000000.0,
+      "apr_pct": 6.82
+     },
+     {
+      "size_usd": 25000000.0,
+      "apr_pct": 6.477
+     },
+     {
+      "size_usd": 100000000.0,
+      "apr_pct": 5.449
+     }
+    ]
    },
    "economics": {
-    "net_apr": 0.0141,
-    "net_per_year_usd": 2079665,
-    "half_edge_size_usd": 120141819,
+    "net_apr": 0.0146,
+    "net_per_year_usd": 2077312,
+    "half_edge_size_usd": 123551549,
     "net_apr_at_half_edge": 0.0523,
     "go": true,
     "reason": "clears gas, impact and competition at this size",
     "gas_gwei": 0.0547
    },
-   "usd": 2079665.1846924385,
+   "usd": 2077311.9233247892,
    "key": "USDC:Compound v3 USDC/SparkLend",
    "identity": "rate_dispersion:USDC:Compound v3 USDC/SparkLend"
   },
@@ -743,7 +809,7 @@
   },
   {
    "detector": "rate_dispersion",
-   "title": "PYUSD pays 3.30pp more on Aave v3 than SparkLend; $5.6M halves the gap [one-block read, de-spiking unavailable]",
+   "title": "PYUSD pays 3.30pp more on Aave v3 than SparkLend; best size $11.7M earns $111k a year over SparkLend [one-block read, de-spiking unavailable]",
    "severity": "info",
    "evidence": {
     "asset": "PYUSD",
@@ -766,24 +832,52 @@
     "utilisation": {
      "Aave v3": 0.878,
      "SparkLend": 0.166
-    }
+    },
+    "dilution_basis": "modelled",
+    "best_size": {
+     "size_usd": 11719365,
+     "apr_at_size_pct": 1.524,
+     "over_low_venue_usd_per_year": 110727
+    },
+    "marginal_apr_ladder": [
+     {
+      "size_usd": 100000.0,
+      "apr_pct": 3.825
+     },
+     {
+      "size_usd": 1000000.0,
+      "apr_pct": 3.424
+     },
+     {
+      "size_usd": 5000000.0,
+      "apr_pct": 2.337
+     },
+     {
+      "size_usd": 25000000.0,
+      "apr_pct": 0.903
+     },
+     {
+      "size_usd": 100000000.0,
+      "apr_pct": 0.274
+     }
+    ]
    },
    "economics": {
-    "net_apr": 0.0136,
-    "net_per_year_usd": 103199,
-    "half_edge_size_usd": 5622067,
+    "net_apr": 0.0094,
+    "net_per_year_usd": 110727,
+    "half_edge_size_usd": 5826595,
     "net_apr_at_half_edge": 0.0223,
     "go": true,
     "reason": "clears gas, impact and competition at this size",
     "gas_gwei": 0.0547
    },
-   "usd": 103198.71467866156,
+   "usd": 110727.18248267382,
    "key": "PYUSD:Aave v3/SparkLend",
    "identity": "rate_dispersion:PYUSD:Aave v3/SparkLend"
   },
   {
    "detector": "rate_dispersion",
-   "title": "DAI pays 0.58pp more on Aave v3 than SparkLend; $14.0M halves the gap [one-block read, de-spiking unavailable]",
+   "title": "DAI pays 0.58pp more on Aave v3 than SparkLend; best size $14.3M earns $41k a year over SparkLend [one-block read, de-spiking unavailable]",
    "severity": "info",
    "evidence": {
     "asset": "DAI",
@@ -806,18 +900,46 @@
     "utilisation": {
      "Aave v3": 0.864,
      "SparkLend": 0.677
-    }
+    },
+    "dilution_basis": "modelled",
+    "best_size": {
+     "size_usd": 14277996,
+     "apr_at_size_pct": 2.744,
+     "over_low_venue_usd_per_year": 40706
+    },
+    "marginal_apr_ladder": [
+     {
+      "size_usd": 100000.0,
+      "apr_pct": 3.039
+     },
+     {
+      "size_usd": 1000000.0,
+      "apr_pct": 3.019
+     },
+     {
+      "size_usd": 5000000.0,
+      "apr_pct": 2.93
+     },
+     {
+      "size_usd": 25000000.0,
+      "apr_pct": 2.557
+     },
+     {
+      "size_usd": 100000000.0,
+      "apr_pct": 1.729
+     }
+    ]
    },
    "economics": {
-    "net_apr": 0.0028,
-    "net_per_year_usd": 40748,
-    "half_edge_size_usd": 13951719,
+    "net_apr": 0.0029,
+    "net_per_year_usd": 40706,
+    "half_edge_size_usd": 14277996,
     "net_apr_at_half_edge": 0.0275,
     "go": true,
     "reason": "clears gas, impact and competition at this size",
     "gas_gwei": 0.0547
    },
-   "usd": 40748.02137692012,
+   "usd": 40706.33436427345,
    "key": "DAI:Aave v3/SparkLend",
    "identity": "rate_dispersion:DAI:Aave v3/SparkLend"
   },

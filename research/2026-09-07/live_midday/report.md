@@ -1,6 +1,6 @@
 # Ethereum mainnet live scan: 2026-09-07T07:39:59+00:00 to 2026-09-07T12:39:59+00:00 UTC
 
-Blocks 25924044 to 25925535 (1492 blocks, 5.00 h), 410,759 transactions, 1,214,881 logs. Prices at head block 25925583: ETH $2490, BTC $79k. Generated 2026-09-07T23:19:12+00:00 UTC by `scripts/live_scan.py`; the narrative section is written by the LLM from `analysis.json` and `head_state.json`, every table below is deterministic.
+Blocks 25924044 to 25925535 (1492 blocks, 5.00 h), 410,759 transactions, 1,214,881 logs. Prices at head block 25925583: ETH $2490, BTC $79k. Generated 2026-09-07T23:55:40+00:00 UTC by `scripts/live_scan.py`; the narrative section is written by the LLM from `analysis.json` and `head_state.json`, every table below is deterministic.
 
 # Onchain, last 5 hours — 2026-09-07 07:39:59 to 12:39:59 UTC
 

@@ -5,6 +5,44 @@ the LLM reads evidence, proposes mechanisms, and writes the infrastructure; dete
 reusable detectors and tests; the human steers. The metric we optimise is **time-to-verified-insight**: how fast a raw
 signal becomes a true, capacity-aware, reproducible claim and then a reusable detector — not classification coverage.
 
+## Session log — 2026-09-08 (the output: a strategy book, and what the dollar surface is actually worth)
+
+The loop's stated output is insight and proposed strategy. The roadmap had described only machinery, so this pass
+built the terminal artifact and then used it, on a fresh two-hour window collected for the purpose (2026-09-07
+21:27–23:27 UTC, 599 blocks).
+
+Landed: `scripts/strategies.py` + `research/strategies.jsonl` (the strategy book — legs, capacity, **kill criteria**,
+and a quote series so decay is visible), `scripts/seed_strategies.py`, `detectors/dollar_rate_outlier.py`, reserve
+discovery via `getReservesList()` in `head`, per-reserve IRM parameters, and sampled Compound supply curves.
+
+**The finding.** Measured against the risk-free dollar — Sky's savings rate, 3.60%, unlimited size, no venue risk —
+exactly **two of twenty-seven dollar reserves** across Aave, SparkLend and Compound pay more than doing nothing. About
+$8.5B of supplied dollars sits in reserves paying less than the issuer's own savings rate. And the two that clear it
+are tiny: Compound v3 USDC sits 0.77 percentage points above a kink at exactly 90.0% utilisation, so its whole
+5.69% headline is **$1.25M wide and worth $14k a year**; Aave's USDtb reserve is $227k wide and worth $5.4k. The best
+two dollar rates on mainnet are jointly worth about $19,000 a year.
+
+**Three bugs in this repo's own machinery, each of which changed a number.** The de-spiker read index 2 of each rate
+point — the *borrow* rate — when de-spiking a *supply* rate, and survived because both sides were wrong in the same
+direction (USDT gap 1.66pp → 0.98pp). The venue pair was selected on spot rates and de-spiked afterwards, so during
+Aave's nightly utilisation spike the comparison became Aave-over-Spark, was correctly dismissed as an artifact, and
+the real Compound-over-Spark finding was never compared at all — the spike hid a true finding rather than adding a
+false one. And capacity was modelled with a smooth `r·S/(S+X)` curve on markets that have a cliff, reporting
+**$93.8M of capacity worth $945k a year** for Compound USDC against a true **$1.4M worth $15k**, a 63x overstatement
+of the number that decides whether a strategy is worth doing. All three are fixed and the detector's ladder now
+reproduces `getSupplyRate` to two decimal places.
+
+**The nightly routine, caught live.** At 23:41 UTC Aave's $2.16B USDC reserve stood at exactly 100.0000% utilisation
+with **$503 of available liquidity**, after an account withdrew ~$152M of supply. The 12.87% it prints is worth about
+$55 on $10M over the half hour it lasts; the finding is the other side — USDC cannot be withdrawn from Aave for
+roughly thirty minutes every night, which is a hard constraint on any strategy whose exit leg is that reserve, and it
+is now recorded as a risk on that strategy rather than as prose.
+
+**What the book says about the loop.** Seven live strategies, two retired on economics. The largest edges are the
+smallest positions: the 15.8% LP is a $150k idea, and the $1B-capacity idea pays 3.48% and is a savings account.
+Nothing in the book is simultaneously large and mispriced. And only three of seven carry a quote a detector produced —
+the rest were measured once in a dated session, which is the same failure the findings ledger fixed for findings.
+
 ## Session log — 2026-09-08 (the loop closes: staleness, claim tags, ledger, three detectors)
 
 Landed: `scripts/provenance.py` (what an artifact was built from, and a hard gate on it), `scripts/findings.py` (the
@@ -255,6 +293,35 @@ or a window that spans midnight. What this pass exposed, in priority order:
 5. **Signal-testing harness (item 9).** The ledger now produces exactly the input it needs — a repeated observation of
    the same finding with a predicted number attached — so out-of-sample and FDR control on "does this edge persist" is
    the natural next build after a few more windows accumulate.
+
+## The output the loop is for
+
+Everything above is machinery. The loop exists to produce two things, and the roadmap had not named either until now:
+
+**Insight** — a claim about how a market works that is true, capacity-aware, reproducible and dated. The system's
+apparatus for this is in place: `analysis.json` for the numbers, `verify` to re-derive them, the detector registry to
+re-check the mechanism next window, and the findings ledger to say whether it recurred.
+
+**A proposed strategy** — a claim about the *future*: that a mechanism will keep producing an edge, and that the edge
+survives gas, impact, competition and decay at a size worth deploying. This is a different object from a finding and
+needs three things a finding does not: legs that `economics.py` can price, falsifiable **kill criteria**, and a **quote
+series** so decay is visible rather than remembered.
+
+`scripts/strategies.py` and `research/strategies.jsonl` are that book. Its first honest reading, seeded 2026-09-08 with
+every strategy this repo has produced, is the diagnostic the loop needed: nine strategies, two retired on economics,
+two fork-proven, and **only three whose numbers a detector re-prices automatically**. The rest were measured once in a
+dated session and have not been re-measured since, which is exactly the failure the findings ledger was built to stop
+for findings and had not yet stopped for strategies. A strategy backed by a detector stays current for free; a strategy
+backed by a bespoke scanner decays into a memory the moment the session ends.
+
+The book also disciplines the reading of a finding. A cross-venue rate gap is only an opportunity if the *higher* venue
+clears the risk-free dollar, and most do not: "PYUSD pays 3.29pp more on Aave than SparkLend" is worth 28bps over the
+actual alternative, and "DAI pays 0.61pp more on Aave than SparkLend" compares two rates that are both below the
+savings rate. `dollar_rate_outlier` exists to make that comparison the default one.
+
+That gives the next round of detector work a clear ordering principle: **write the detector that re-prices the highest
+strategy in the book that nothing re-prices.** Today that is the captive-flow LP (a v4 pool's marginal-LP APR by size),
+then the Pendle fixed-versus-floating gap, then the sUSDe ask against NAV.
 
 ## Anti-goals
 
