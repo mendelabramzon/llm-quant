@@ -4,9 +4,9 @@ Ran 4 detector(s); 8 hit(s).
 
 | detector | hits | seconds | what it looks for |
 |---|---:|---:|---|
-| `address_poisoning` | 1 | 4.86 | lookalike dust transfers that follow a large transfer, aimed at a later copy-paste |
-| `gas_concentration` | 1 | 9.69 | base-fee spikes attributed to the contract whose gas demand caused them |
-| `mislabelled_flow` | 1 | 5.26 | address labels the window contradicts, which is how a headline moves by a multiple |
+| `address_poisoning` | 1 | 5.56 | lookalike dust transfers that follow a large transfer, aimed at a later copy-paste |
+| `gas_concentration` | 1 | 9.74 | base-fee spikes attributed to the contract whose gas demand caused them |
+| `mislabelled_flow` | 1 | 5.22 | address labels the window contradicts, which is how a headline moves by a multiple |
 | `rate_dispersion` | 5 | 0.00 | cross-venue supply-rate gaps on one asset, de-spiked and sized by rate dilution |
 
 ### [high] deposit sink deposit sink (behaviour, day study) forwarded $100.0M in this window

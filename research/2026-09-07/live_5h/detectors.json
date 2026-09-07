@@ -4,21 +4,21 @@
   {
    "detector": "address_poisoning",
    "hits": 1,
-   "seconds": 4.86,
+   "seconds": 5.56,
    "error": null,
    "description": "lookalike dust transfers that follow a large transfer, aimed at a later copy-paste"
   },
   {
    "detector": "gas_concentration",
    "hits": 1,
-   "seconds": 9.69,
+   "seconds": 9.74,
    "error": null,
    "description": "base-fee spikes attributed to the contract whose gas demand caused them"
   },
   {
    "detector": "mislabelled_flow",
    "hits": 1,
-   "seconds": 5.26,
+   "seconds": 5.22,
    "error": null,
    "description": "address labels the window contradicts, which is how a headline moves by a multiple"
   },

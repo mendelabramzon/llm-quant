@@ -4,9 +4,9 @@ Ran 4 detector(s); 9 hit(s).
 
 | detector | hits | seconds | what it looks for |
 |---|---:|---:|---|
-| `address_poisoning` | 1 | 5.95 | lookalike dust transfers that follow a large transfer, aimed at a later copy-paste |
-| `gas_concentration` | 0 | 5.74 | base-fee spikes attributed to the contract whose gas demand caused them |
-| `mislabelled_flow` | 3 | 6.21 | address labels the window contradicts, which is how a headline moves by a multiple |
+| `address_poisoning` | 1 | 5.76 | lookalike dust transfers that follow a large transfer, aimed at a later copy-paste |
+| `gas_concentration` | 0 | 4.97 | base-fee spikes attributed to the contract whose gas demand caused them |
+| `mislabelled_flow` | 3 | 5.59 | address labels the window contradicts, which is how a headline moves by a multiple |
 | `rate_dispersion` | 5 | 0.00 | cross-venue supply-rate gaps on one asset, de-spiked and sized by rate dilution |
 
 ### [high] deposit sink deposit sink (behaviour, day study) forwarded $10.0M in this window
@@ -38,6 +38,8 @@ Ran 4 detector(s); 9 hit(s).
  "gap_pp_spot": 3.476,
  "gap_pp_despiked": 3.476,
  "head_read_spiked": null,
+ "despiked": false,
+ "despike_note": "Sky SSR emits no ReserveDataUpdated logs, so the head read is the only source",
  "supplied_usd": {
   "Aave v3": 11208135,
   "SparkLend": 747432633,
@@ -82,6 +84,8 @@ Economics: net APR 3.48%, $34,761,142 per year, GO — clears gas, impact and co
  "gap_pp_spot": 0.944,
  "gap_pp_despiked": 1.631,
  "head_read_spiked": false,
+ "despiked": true,
+ "despike_note": "median of the window log series",
  "supplied_usd": {
   "Aave v3": 2980073116,
   "SparkLend": 390856533,
@@ -116,6 +120,8 @@ Economics: net APR 0.72%, $5,857,547 per year, GO — clears gas, impact and com
  "gap_pp_spot": 3.37,
  "gap_pp_despiked": 3.37,
  "head_read_spiked": null,
+ "despiked": false,
+ "despike_note": "Compound v3 USDC emits no ReserveDataUpdated logs, so the head read is the only source",
  "supplied_usd": {
   "Aave v3": 2308817883,
   "SparkLend": 25640640,
@@ -132,7 +138,21 @@ Economics: net APR 0.72%, $5,857,547 per year, GO — clears gas, impact and com
 
 Economics: net APR 1.41%, $2,079,665 per year, GO — clears gas, impact and competition at this size
 
-### [notable] PYUSD pays 3.30pp more on Aave v3 than SparkLend; $5.6M halves the gap
+### [info] exchange Binance 8 (model-memory) moved 100% of its flow with one counterparty
+
+```json
+{
+ "address": "0xf977814e90da44bfa03b6295a0616a897441acec",
+ "label": "Binance 8 (model-memory)",
+ "source": "model-memory",
+ "counterparty": "0x28c6c06298d514db089934071355e5743bf21d60",
+ "counterparty_label": "Binance 14 (model-memory)",
+ "share": 1.0,
+ "why": "a venue serving one counterparty is plumbing between related accounts, not exchange flow"
+}
+```
+
+### [info] PYUSD pays 3.30pp more on Aave v3 than SparkLend; $5.6M halves the gap [one-block read, de-spiking unavailable]
 
 ```json
 {
@@ -147,6 +167,8 @@ Economics: net APR 1.41%, $2,079,665 per year, GO — clears gas, impact and com
  "gap_pp_spot": 3.296,
  "gap_pp_despiked": 3.296,
  "head_read_spiked": null,
+ "despiked": false,
+ "despike_note": "too few log observations for Aave v3 PYUSD: this is one block, and a large transfer or flash loan can move a reserve rate several-fold for one block",
  "supplied_usd": {
   "Aave v3": 7598941,
   "SparkLend": 100000399
@@ -160,7 +182,7 @@ Economics: net APR 1.41%, $2,079,665 per year, GO — clears gas, impact and com
 
 Economics: net APR 1.36%, $103,199 per year, GO — clears gas, impact and competition at this size
 
-### [notable] DAI pays 0.58pp more on Aave v3 than SparkLend; $14.0M halves the gap
+### [info] DAI pays 0.58pp more on Aave v3 than SparkLend; $14.0M halves the gap [one-block read, de-spiking unavailable]
 
 ```json
 {
@@ -175,6 +197,8 @@ Economics: net APR 1.36%, $103,199 per year, GO — clears gas, impact and compe
  "gap_pp_spot": 0.582,
  "gap_pp_despiked": 0.582,
  "head_read_spiked": null,
+ "despiked": false,
+ "despike_note": "too few log observations for Aave v3 DAI: this is one block, and a large transfer or flash loan can move a reserve rate several-fold for one block",
  "supplied_usd": {
   "Aave v3": 131757470,
   "SparkLend": 308265074
@@ -187,20 +211,6 @@ Economics: net APR 1.36%, $103,199 per year, GO — clears gas, impact and compe
 ```
 
 Economics: net APR 0.28%, $40,748 per year, GO — clears gas, impact and competition at this size
-
-### [info] exchange Binance 8 (model-memory) moved 100% of its flow with one counterparty
-
-```json
-{
- "address": "0xf977814e90da44bfa03b6295a0616a897441acec",
- "label": "Binance 8 (model-memory)",
- "source": "model-memory",
- "counterparty": "0x28c6c06298d514db089934071355e5743bf21d60",
- "counterparty_label": "Binance 14 (model-memory)",
- "share": 1.0,
- "why": "a venue serving one counterparty is plumbing between related accounts, not exchange flow"
-}
-```
 
 ### [info] 203 poisoning attempt(s) from 116 lookalike sender(s) after large transfers
 

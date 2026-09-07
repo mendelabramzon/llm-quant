@@ -7591,24 +7591,24 @@
  "exchange_flow": {
   "by_asset": {
    "USDC": {
-    "in": 504018100,
-    "out": 510047972,
-    "net": -6029872
+    "in": 497073620,
+    "out": 503281581,
+    "net": -6207962
    },
    "USDT": {
-    "in": 340118661,
-    "out": 324584382,
-    "net": 15534280
+    "in": 338775102,
+    "out": 322763849,
+    "net": 16011252
    },
    "ETH": {
-    "in": 91897244,
-    "out": 112687560,
-    "net": -20790316
+    "in": 90568583,
+    "out": 110183768,
+    "net": -19615184
    },
    "USDG": {
-    "in": 17859426,
-    "out": 15045020,
-    "net": 2814406
+    "in": 15073202,
+    "out": 13041682,
+    "net": 2031520
    },
    "stETH": {
     "in": 351838,
@@ -7674,11 +7674,6 @@
     "in": 0,
     "out": 19004,
     "net": -19004
-   },
-   "WETH": {
-    "in": 0,
-    "out": 12331,
-    "net": -12331
    }
   },
   "by_label": [
@@ -7690,7 +7685,7 @@
    {
     "label": "hot wallet (behaviour, day study)",
     "in": 144023152,
-    "out": 184747919
+    "out": 184853675
    },
    {
     "label": "Binance 14 (model-memory)",
@@ -7743,11 +7738,6 @@
     "out": 23269372
    },
    {
-    "label": "exchange hot wallet with USDG desk (day study) (model-memory)",
-    "in": 8217132,
-    "out": 13212140
-   },
-   {
     "label": "Binance 18 (model-memory)",
     "in": 0,
     "out": 16508019
@@ -7755,11 +7745,6 @@
    {
     "label": "Bitstamp 4 (model-memory)",
     "in": 13278266,
-    "out": 0
-   },
-   {
-    "label": "deposit sink (behaviour, day study)",
-    "in": 4356148,
     "out": 0
    },
    {
@@ -7776,6 +7761,11 @@
     "label": "Gemini 4 (model-memory)",
     "in": 0,
     "out": 775280
+   },
+   {
+    "label": "deposit sink (behaviour, day study)",
+    "in": 170356,
+    "out": 0
    }
   ],
   "largest_deposits": [
@@ -10174,7 +10164,7 @@
   {
    "address": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
    "txs": 1136,
-   "label": "exchange hot wallet with USDG desk (day study) (model-memory)"
+   "label": "Relay solver / USDG inventory wallet (takes 100% of RelayDepository payouts on Ethereum and Robinhood Chain; Paxos mint-and-redeem counterparty on both) (etherscan-verified)"
   },
   {
    "address": "0xb23360ccdd9ed1b15d45e5d3824bb409c8d7c460",
@@ -11580,5 +11570,5 @@
   "WEETH": 2747.1527309519647,
   "WSTETH": 3099.852399105583
  },
- "address_book_size": 176
+ "address_book_size": 178
 }

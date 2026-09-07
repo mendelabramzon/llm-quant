@@ -4,21 +4,21 @@
   {
    "detector": "address_poisoning",
    "hits": 1,
-   "seconds": 5.95,
+   "seconds": 5.76,
    "error": null,
    "description": "lookalike dust transfers that follow a large transfer, aimed at a later copy-paste"
   },
   {
    "detector": "gas_concentration",
    "hits": 0,
-   "seconds": 5.74,
+   "seconds": 4.97,
    "error": null,
    "description": "base-fee spikes attributed to the contract whose gas demand caused them"
   },
   {
    "detector": "mislabelled_flow",
    "hits": 3,
-   "seconds": 6.21,
+   "seconds": 5.59,
    "error": null,
    "description": "address labels the window contradicts, which is how a headline moves by a multiple"
   },
@@ -63,6 +63,8 @@
     "gap_pp_spot": 3.476,
     "gap_pp_despiked": 3.476,
     "head_read_spiked": null,
+    "despiked": false,
+    "despike_note": "Sky SSR emits no ReserveDataUpdated logs, so the head read is the only source",
     "supplied_usd": {
      "Aave v3": 11208135,
      "SparkLend": 747432633,
@@ -117,6 +119,8 @@
     "gap_pp_spot": 0.944,
     "gap_pp_despiked": 1.631,
     "head_read_spiked": false,
+    "despiked": true,
+    "despike_note": "median of the window log series",
     "supplied_usd": {
      "Aave v3": 2980073116,
      "SparkLend": 390856533,
@@ -159,6 +163,8 @@
     "gap_pp_spot": 3.37,
     "gap_pp_despiked": 3.37,
     "head_read_spiked": null,
+    "despiked": false,
+    "despike_note": "Compound v3 USDC emits no ReserveDataUpdated logs, so the head read is the only source",
     "supplied_usd": {
      "Aave v3": 2308817883,
      "SparkLend": 25640640,
@@ -183,9 +189,25 @@
    "usd": 2079665.1846924385
   },
   {
+   "detector": "mislabelled_flow",
+   "title": "exchange Binance 8 (model-memory) moved 100% of its flow with one counterparty",
+   "severity": "info",
+   "evidence": {
+    "address": "0xf977814e90da44bfa03b6295a0616a897441acec",
+    "label": "Binance 8 (model-memory)",
+    "source": "model-memory",
+    "counterparty": "0x28c6c06298d514db089934071355e5743bf21d60",
+    "counterparty_label": "Binance 14 (model-memory)",
+    "share": 1.0,
+    "why": "a venue serving one counterparty is plumbing between related accounts, not exchange flow"
+   },
+   "economics": null,
+   "usd": 10293139.56
+  },
+  {
    "detector": "rate_dispersion",
-   "title": "PYUSD pays 3.30pp more on Aave v3 than SparkLend; $5.6M halves the gap",
-   "severity": "notable",
+   "title": "PYUSD pays 3.30pp more on Aave v3 than SparkLend; $5.6M halves the gap [one-block read, de-spiking unavailable]",
+   "severity": "info",
    "evidence": {
     "asset": "PYUSD",
     "high_venue": "Aave v3",
@@ -198,6 +220,8 @@
     "gap_pp_spot": 3.296,
     "gap_pp_despiked": 3.296,
     "head_read_spiked": null,
+    "despiked": false,
+    "despike_note": "too few log observations for Aave v3 PYUSD: this is one block, and a large transfer or flash loan can move a reserve rate several-fold for one block",
     "supplied_usd": {
      "Aave v3": 7598941,
      "SparkLend": 100000399
@@ -220,8 +244,8 @@
   },
   {
    "detector": "rate_dispersion",
-   "title": "DAI pays 0.58pp more on Aave v3 than SparkLend; $14.0M halves the gap",
-   "severity": "notable",
+   "title": "DAI pays 0.58pp more on Aave v3 than SparkLend; $14.0M halves the gap [one-block read, de-spiking unavailable]",
+   "severity": "info",
    "evidence": {
     "asset": "DAI",
     "high_venue": "Aave v3",
@@ -234,6 +258,8 @@
     "gap_pp_spot": 0.582,
     "gap_pp_despiked": 0.582,
     "head_read_spiked": null,
+    "despiked": false,
+    "despike_note": "too few log observations for Aave v3 DAI: this is one block, and a large transfer or flash loan can move a reserve rate several-fold for one block",
     "supplied_usd": {
      "Aave v3": 131757470,
      "SparkLend": 308265074
@@ -253,22 +279,6 @@
     "gas_gwei": 0.0547
    },
    "usd": 40748.02137692012
-  },
-  {
-   "detector": "mislabelled_flow",
-   "title": "exchange Binance 8 (model-memory) moved 100% of its flow with one counterparty",
-   "severity": "info",
-   "evidence": {
-    "address": "0xf977814e90da44bfa03b6295a0616a897441acec",
-    "label": "Binance 8 (model-memory)",
-    "source": "model-memory",
-    "counterparty": "0x28c6c06298d514db089934071355e5743bf21d60",
-    "counterparty_label": "Binance 14 (model-memory)",
-    "share": 1.0,
-    "why": "a venue serving one counterparty is plumbing between related accounts, not exchange flow"
-   },
-   "economics": null,
-   "usd": 10293139.56
   },
   {
    "detector": "address_poisoning",

@@ -43,24 +43,24 @@
   },
   {
    "check": "exchange net flow, stables (USD)",
-   "recomputed": 13654341,
-   "analysis": 13654341,
+   "recomputed": 13170338,
+   "analysis": 13170337,
    "ok": true,
    "tolerance": 0.03,
    "note": ""
   },
   {
    "check": "exchange net flow, ETH (USD)",
-   "recomputed": -20790316,
-   "analysis": -20790316,
+   "recomputed": -19615184,
+   "analysis": -19615184,
    "ok": true,
    "tolerance": 0.03,
    "note": ""
   },
   {
    "check": "exchange gross in, USDC (USD)",
-   "recomputed": 504018100,
-   "analysis": 504018100,
+   "recomputed": 497073620,
+   "analysis": 497073620,
    "ok": true,
    "tolerance": 0.03,
    "note": ""
@@ -115,15 +115,15 @@
   },
   {
    "min_tier": "model-memory",
-   "exchange_addresses": 47,
-   "stables_net_usd": 13621986,
-   "eth_net_usd": -6772300
+   "exchange_addresses": 46,
+   "stables_net_usd": 12814818,
+   "eth_net_usd": -4268507
   },
   {
    "min_tier": "behaviour",
-   "exchange_addresses": 99,
-   "stables_net_usd": 13654341,
-   "eth_net_usd": -20790316
+   "exchange_addresses": 96,
+   "stables_net_usd": 13170338,
+   "eth_net_usd": -19615184
   }
  ],
  "mechanisms": [
@@ -141,12 +141,12 @@
   },
   {
    "id": "no-contract-hot-wallets",
-   "ok": false,
-   "detail": "2 contradiction(s); audit checked 48 exchange tags",
+   "ok": true,
+   "detail": "0 contradiction(s); audit checked 96 exchange tags",
    "claim": "no address counted as a CEX *hot wallet* is a contract."
   }
  ],
- "all_ok": false,
- "failures": 1,
- "seconds": 10.0
+ "all_ok": true,
+ "failures": 0,
+ "seconds": 8.3
 }

@@ -1,12 +1,30 @@
 # Onchain research pilot
 
 **System roadmap:** [ROADMAP.md](ROADMAP.md) is the standing plan for turning this into the best onchain research
-analysis system — prioritised recommendations (verified labels, TWAP head reads, a findings-verification pass, a detector
-registry, an economics harness, a data-access layer), each grounded in a concrete failure this repo has hit. A verified,
-provenance-tracked address-label registry (`scripts/address_labels.json`, consumed by `live_scan`) is the first item
-landed: counting only `kind` in {exchange, exchange_deposit} as exchange flow corrected leverage-to-exchange on the
-2026-09-07 window from $25.7M to $5.3M (CoW's settlement contract was being counted as a CEX) and RLUSD net outflow from
-−$101.6M to −$0.9M (a token treasury mis-tagged as a hot wallet).
+analysis system — prioritised recommendations, each grounded in a concrete failure this repo has hit. Five of them have
+now landed, and together they form a correctness layer that runs on every window:
+
+| module | what it does | run it |
+|---|---|---|
+| `scripts/labels.py` | address labels with five provenance tiers, a proxy-following resolver, a coverage report and an audit | `labels.py audit --book` |
+| `scripts/verify.py` | re-derives 13 headline numbers from the raw blocks through an independent path, asserts mechanism claims against verified source, and reports the label band | `live_scan.py verify --out <window>` |
+| `scripts/economics.py` | one scorer for every opportunity: capacity, price impact, gas, locked capital, competition, decay | `economics.py` |
+| `scripts/detectors/` | a registry so each discovered mechanism is re-checked automatically forever | `live_scan.py detect --out <window>` |
+| `scripts/window_raw.py` | the minimal independent reader the first two are built on | — |
+
+Why this exists, concretely. Exchange flow and leverage-to-exchange were computed from an address book whose
+deposit-sink rule tested `sent == 0`, meaning "originated no transactions" — a condition every *contract* satisfies
+structurally. The rule therefore read "any busy contract is an exchange deposit sink" and tagged 25 addresses of which
+22 forwarded value, including CoW's settlement contract, the Uniswap Universal Router and a Relay bridge depository.
+Fixing it moved the 2026-09-07 midday window's gross USDC inflow from $823.2M to $497.1M and its leverage-to-exchange
+from $4.0M to $0, on the same blocks. Two earlier mislabels had already moved leverage-to-exchange from $25.7M to $5.3M
+and RLUSD net flow from −$101.6M to −$0.9M, and both were found by hand; `labels.py audit` now finds that class
+automatically, and did, catching four more on its first run.
+
+The label band is the honest by-product. On the five-hour window, net stable exchange flow is **+$91.6M** using
+model-memory labels alone and **−$24.8M** once behavioural labels are included, so `verify` reports both rather than
+picking one. And the generalised gas detector rediscovered the tokenized-stock router behind that window's 15x base-fee
+spike without being given its address, which is what the detector registry is for.
 
 
 2026-09-07, joining the day's per-chain windows: [three chains, one desk](research/2026-09-07/interchain/findings.md). The same wallet is the entire withdrawal side of Relay's depository on Ethereum *and* Robinhood Chain, a Paxos mint-and-redeem counterparty on both, and the top taker in the thin Uniswap v4 USDC/USDG pools that the captive-flow LP study is built on — so that flow is a cross-chain solver's inventory balancing, not a reward-rebate programme, and the risk it prices as future ("the desk might reroute to direct mint") is already its base case. The same network is the largest retail flow on all three chains, and the "unlabelled custodial deposit system" the Solana narrative asked to identify is its Solana depository. Robinhood Chain collected 279.2 ETH ($696k) of base fees in the ten hours Ethereum L1 burned 8.96 ETH ($22.3k), a 31x ratio, and charged nothing on 175,818 priority-fee bids. Two headline numbers do not survive re-derivation: TSLA on Robinhood Chain traded within 0.10% of its reference, not +4.4% (a `setdefault` merge in `orbit_scan.py` freezes a stale first-pass price), and the Solana narrative's "USDG 8.32% on Jupiter Lend" contradicts its own table's 5.42%. Robinhood Chain's missing rate rung is measured for the first time by realising share prices forward: $456M sits in steakUSDG earning 3.75%, below Compound v3 USDC at 6.91% on Ethereum and Jupiter Lend USDC at 4.96% on Solana. `scripts/interchain.py` recomputes every join offline.

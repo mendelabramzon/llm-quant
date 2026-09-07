@@ -60,3 +60,20 @@ Stablecoin block moves: $129M USDC hopped through four unlabelled pass-through E
 3. Trace one StacyVault run and one stock-router swap through dRPC `debug_traceTransaction` to settle the reward mechanism and the FeeEscrow's take per swap.
 4. A tokenized-stock monitor: on-chain prices of NVDAON, TSLAON, SPCXON and SPYON against the underlying's last close and the Robinhood Chain venues, mints and burns per day, v4 pool depth. The on-chain price of a stock outside market hours is a new kind of dislocation to measure (SPCXON traded 152 to 154 across USDT and USDC pools here).
 5. A daily blob-share table per inbox with verified labels; Robinhood's share against Base is the number to watch.
+
+## Correction, 2026-09-07 (labels and verification)
+
+The exchange-flow and leverage figures in this note were recomputed after the deposit-sink heuristic in
+`load_address_book` was corrected: it tested `sent == 0` ("originated no transactions"), which every contract satisfies,
+so 22 forwarding contracts were being counted as exchange deposit sinks. On the same blocks the window now reads USDC
+−$97.9M and USDT +$74.8M net, ETH +$12.8M net, and leverage-to-exchange $277k across 31 followed operations.
+
+All 13 checks in `verify.py` re-derive these from the raw blocks through an independent path and pass. The label band
+is unusually wide on this window and worth stating plainly: net stable flow is **+$91.6M** using model-memory labels
+alone and **−$24.8M** once behavioural labels are included. That is a sign flip driven entirely by label confidence, so
+neither figure should be quoted without the other.
+
+The detector sweep (`detectors.md`) independently reattributed the base-fee spike: the fee peaked at 1.012 gwei, 15.1x
+the 0.067 gwei window median, across 202 blocks, and `0x4313c378` — the tokenized-stock router named by hand in the
+original note — holds 12.3% of requested gas inside the spike against 2.6% outside it. The detector was not given that
+address.
