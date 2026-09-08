@@ -1,0 +1,72 @@
+{
+  "block": 31970016,
+  "bridge_tokens": {
+    "0x176211869ca2b568f2a7d4ee941e073a821ee1ff": {
+      "decimals": 6,
+      "legs": 5,
+      "symbol": "USDC",
+      "total_supply": 23299153.247037
+    }
+  },
+  "cctp": {
+    "emitters": {
+      "0x28b5a0e9c621a5badaa536219b3a228c8168cf5d": {
+        "local_domain": 11,
+        "transmitter": "0x81d40f21f12a8f0e3252bccb954d722d4c464b64"
+      }
+    },
+    "local_domain": 11,
+    "unresolved_domain": false
+  },
+  "chain": "linea",
+  "issuance": {
+    "0x176211869ca2b568f2a7d4ee941e073a821ee1ff": {
+      "burn_from": [
+        {
+          "address": "0xfd78ee919681417d192449715b2594ab58f5d002",
+          "amount": 1784.25
+        }
+      ],
+      "burn_legs": 1,
+      "burned": 1784.25,
+      "decimals": 6,
+      "mint_legs": 6,
+      "mint_to": [
+        {
+          "address": "0x1f84833dcb4e7421fe691cb64369580c1e48b287",
+          "amount": 1498.455296
+        },
+        {
+          "address": "0xcbb811f129782ef87e19dea9d3375045219bae00",
+          "amount": 1112.363948
+        },
+        {
+          "address": "0x424a31a57f7c63918ecaa2fac38016a8af5a6ec2",
+          "amount": 598.44015
+        },
+        {
+          "address": "0xfc1bdd1ff58200761d56ccbce73f6f42ebe56379",
+          "amount": 0.254674
+        }
+      ],
+      "minted": 3209.514068,
+      "net_issued": 1425.264068,
+      "symbol": "USDC"
+    }
+  },
+  "issuance_rpc": {
+    "credits": 510,
+    "errors": 0,
+    "keys": 10,
+    "requests": 2
+  },
+  "native_usd": null,
+  "pools": {},
+  "read_at": "2026-09-08T07:48:52+00:00",
+  "rpc": {
+    "credits": 640,
+    "errors": 2,
+    "keys": 10,
+    "requests": 6
+  }
+}

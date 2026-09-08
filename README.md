@@ -216,6 +216,47 @@ Deposit-topic logs per chain, bytecode-filters to CoreVault forks, and scores ea
 and a reward token with real sellable liquidity (a $25k-depth gate, so dust tokens like STACY are flagged as forks but not
 suitable).
 
+## Ten chains at once: the cross-chain dollar surface (2026-09-08)
+
+[One hour, ten chains: the dollar is one asset with ten prices, and nobody is arbitraging it](research/2026-09-08/multi_1h/report.md)
+(06:23-07:29 UTC). `scripts/multichain.py` is a logs-first trailing-window scanner for every EVM the local keys reach
+(Ethereum, Base, Arbitrum, Optimism, Polygon, Avalanche, BSC, Unichain, Linea, Scroll). It is **discovery-first**:
+no pool, bridge or token address is asserted. Lending markets are found by scanning the chain for one topic
+(`ReserveDataUpdated`), so every Aave-v3-family deployment announces itself and hands back its full intra-hour rate
+path in the same query; CCTP is found by its own topics and each emitter is then asked on-chain for its Circle domain
+(`localMessageTransmitter()` -> `localDomain()`), so the chain-to-domain map is verified rather than recalled, and
+USDC's address on each chain falls out of the indexed `burnToken`.
+
+```sh
+uv run --with pycryptodome python scripts/multichain.py collect  --out research/2026-09-08/multi_1h --hours 1   # ~90k credits
+uv run --with pycryptodome python scripts/multichain.py head     --out research/2026-09-08/multi_1h             # ~200k credits
+uv run --with pycryptodome python scripts/multichain.py issuance --out research/2026-09-08/multi_1h
+uv run --with pycryptodome python scripts/multichain.py analyze  --out research/2026-09-08/multi_1h --benchmark-head research/2026-09-08/live_1h_b/head_state.json
+uv run --with pycryptodome python scripts/multichain.py verify   --out research/2026-09-08/multi_1h
+uv run --with pycryptodome python scripts/multichain.py render   --out research/2026-09-08/multi_1h
+```
+
+**The finding.** USDC pays 4.00% on Base and 0.36% on Scroll at the same instant, a 3.64-percentage-point spread on
+$2.78B. It is worth **$177,794 a year**. Capacity is `min(high-side dilution, low-side withdrawable liquidity)` and for
+seven of twenty switches the second one binds -- Optimism's USDC reserve pays 2.56% on $11.3M of which $2.3M can be
+withdrawn. Filling each destination once, cheapest source first, the whole $8.73B cross-chain dollar complex absorbs
+**$37.3M for 48 basis points**. And CCTP does not close it: net flow correlates **-0.57** with the rate, because the
+addresses on both ends of the bridge are solvers rebalancing inventory toward demand, not capital chasing yield.
+
+**`scripts/fee_census.py`** answers the question the trailing hour raised: with the L1 base fee at 0.049 gwei and blocks
+50.6% full, the chain burned 0.44 ETH ($1,098) in an hour while users paid 3.07 ETH ($7,598) in priority fees -- a
+**6.92x ratio**. 35.6% of all gas paid exactly zero tip, and the largest single consumer of Ethereum blockspace was
+**XEN** batch-minting at 8.2% of the chain-hour for $2 of tips. `economics.py` charges gas at the base fee, which
+understates an inclusion-sensitive leg by about sevenfold in this regime.
+
+**And the machinery caught its own errors, which is the other half.** `aToken.totalSupply()` is *not* the denominator
+Aave prices with: Ethereum and Base reproduce their published borrow rate from it, Avalanche reproduces it from
+`getVirtualUnderlyingBalance()` plus debt, and on Avalanche's GHO reserve the 0.46pp difference straddles the 90% kink
+and is worth **151 basis points of borrow rate**. Utilisation is now inverted from the pool's own published rate, which
+is version-independent by construction. Three more: a reserve factor of 1.0 is a mint facility rather than a supply
+market (Aave's $135M Ethereum GHO reserve, which produced the largest fake switch on the first pass); a flat IRM cannot
+be inverted; and two different tokens on Arbitrum both answer `symbol()` with "USDC".
+
 ## Five hours of mainnet, digested: 2026-09-07 02:39 to 07:39 UTC
 
 [What happened in the last five hours](research/2026-09-07/live_5h/report.md) reuses the live-scan pipeline on a five-hour window and adds two offline digests. `scripts/window_events.py` reads the ETH/USD path tick by tick from the v3 USDC/WETH pool, the per-15-minute gas, blob and fullness series, builders, transaction types (including EIP-7702), blob posters by inbox, contract creations, new pools, validator withdrawals, the largest native transfers, the highest tips and the log-heaviest transactions into `events.json`. `scripts/window_followups.py` holds the follow-up checks the narrative asked for, configured at the top of the file: gas-limit attribution per target around a spike, Uniswap v4 volume for a token set, a sybil funding check on fresh wallets, the decode of a flash-loan bot's run, an address-poisoning matcher for look-alike zero-value transactions after large transfers, mass mint and airdrop tokens, and the Spark liquidity layer's operations, into `followups.json`. The narrative (`insights.md`) found a tokenized-stock micro-trading swarm (Ondo's NVDAON, TSLAON, SPCXON, SPYON and Stockereum.fun launch tokens) that pushed the base fee up ten times for forty minutes on half a million dollars of volume, Robinhood Chain as the largest blob poster ahead of Base, Spark's liquidity layer moving $46M of USDT from SparkLend into its savings vault and doubling the SparkLend USDT rate, a $218M Aave position at health factor 1.015, a flash-loan bot farming a memecoin MasterChef with $175M of Morpho liquidity every half hour, and poisoning bots trailing every large ETH transfer.

@@ -36,8 +36,11 @@ def load_keys():
 
 
 class RPC:
-    def __init__(self, log_path=None, max_credits=6_000_000, interval=.06, timeout=90):
+    def __init__(self, log_path=None, max_credits=6_000_000, interval=.06, timeout=90, url=None):
         self.keys = load_keys()
+        # Per-network endpoint. The local keys are enabled for many EVMs, and the cross-chain scan needs several
+        # clients alive at once, so the host cannot be a module global that the last caller wins.
+        self.url = url or URL
         self.parked = {}
         self.i = 0
         self.lock = threading.Lock()
@@ -84,7 +87,7 @@ class RPC:
             if delay:
                 time.sleep(delay)
             payload = [{'jsonrpc': '2.0', 'id': i, 'method': m, 'params': p} for i, (m, p) in enumerate(calls)]
-            req = urllib.request.Request(URL + key, data=json.dumps(payload).encode(),
+            req = urllib.request.Request(self.url + key, data=json.dumps(payload).encode(),
                                          headers={'Content-Type': 'application/json', 'Accept-Encoding': 'gzip'})
             transient, error, result = False, None, None
             try:

@@ -1,0 +1,276 @@
+{
+  "base_fee_burn_eth": 0.44333893490264475,
+  "base_fee_burn_usd": 1097.9997407732535,
+  "blocks": 300,
+  "eth_usd": 2476.65985171,
+  "failed_gas_share": 0.01637039517070611,
+  "gas_used": 9108822325,
+  "gas_weighted_median_tip_gwei": 0.008704286,
+  "note": "the burn is protocol revenue destroyed; the priority fee is paid to the block builder and, through the auction, to the proposer. When the ratio exceeds one the chain is charging less for its blockspace than the private market clearing it is charging for position inside a block.",
+  "priority_fees_eth": 3.0679242382713614,
+  "priority_fees_usd": 7598.204789014665,
+  "tip_above_median_eth": 3.0232346131716223,
+  "tip_above_median_usd": 7487.52378874217,
+  "tip_over_burn_ratio": 6.920042425204689,
+  "top_gas_targets": [
+    {
+      "address": "0x6ef3ef48e48cb00a87afe6132d920c498e34a229",
+      "gas": 747837840,
+      "mean_tip_gwei": 0.0012209353491780786,
+      "tip_eth": 0.00091306165430898,
+      "tip_usd": 2.261343141362966,
+      "txs": 55
+    },
+    {
+      "address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "gas": 720587784,
+      "mean_tip_gwei": 0.7452136755230335,
+      "tip_eth": 0.5369918710516378,
+      "tip_usd": 1329.9462077282249,
+      "txs": 14702
+    },
+    {
+      "address": "0x00fe78205f5f0e63b8ad2b2ae5337f538a610e04",
+      "gas": 492112441,
+      "mean_tip_gwei": 0.00027981132415563537,
+      "tip_eth": 0.000137698633749672,
+      "tip_usd": 0.3410326778431323,
+      "txs": 227
+    },
+    {
+      "address": "0xc10fc8fa761285fa3fa25aafcc10a54456ee8919",
+      "gas": 323662035,
+      "mean_tip_gwei": 0.000159827,
+      "tip_eth": 5.1729932067945e-05,
+      "tip_usd": 0.12811744588436505,
+      "txs": 295
+    },
+    {
+      "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "gas": 278449599,
+      "mean_tip_gwei": 0.5552118385344224,
+      "tip_eth": 0.1545985137999627,
+      "tip_usd": 382.88793226240205,
+      "txs": 5647
+    },
+    {
+      "address": "0x278d858f05b94576c1e6f73285886876ff6ef8d2",
+      "gas": 148092015,
+      "mean_tip_gwei": 0.04565219650967744,
+      "tip_eth": 0.006760725770294099,
+      "tip_usd": 16.74401808370856,
+      "txs": 1170
+    },
+    {
+      "address": "0x8feab81d36e7576107d5de0758c1b839be31b4f6",
+      "gas": 139587708,
+      "mean_tip_gwei": 0.20179502879327396,
+      "tip_eth": 0.028168105555047115,
+      "tip_usd": 69.76281612691461,
+      "txs": 258
+    },
+    {
+      "address": "0x7d9f4ca54131e588fc1fe577973b55fb11231e76",
+      "gas": 139028140,
+      "mean_tip_gwei": 0.0024312153869159438,
+      "tip_eth": 0.000338007353182304,
+      "tip_usd": 0.8371292412093747,
+      "txs": 30
+    },
+    {
+      "address": "0x0000000071727de22e5e9d8baf0edac6f37da032",
+      "gas": 133320158,
+      "mean_tip_gwei": 0.0732998783160972,
+      "tip_eth": 0.009772351358482851,
+      "tip_usd": 24.202790266358157,
+      "txs": 525
+    },
+    {
+      "address": "0x8b71140ad2e5d1e7018d2a7f8a288bd3cd38916f",
+      "gas": 118050745,
+      "mean_tip_gwei": 0.0,
+      "tip_eth": 0.0,
+      "tip_usd": 0.0,
+      "txs": 72
+    },
+    {
+      "address": "0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45",
+      "gas": 105988167,
+      "mean_tip_gwei": 0.06099781771944873,
+      "tip_eth": 0.006465046891084491,
+      "tip_usd": 16.011722074571512,
+      "txs": 724
+    },
+    {
+      "address": "0xccc88a9d1b4ed6b0eaba998850414b24f1c315be",
+      "gas": 101271800,
+      "mean_tip_gwei": 0.128053901819658,
+      "tip_eth": 0.01296824913430004,
+      "tip_usd": 32.11794197789387,
+      "txs": 188
+    },
+    {
+      "address": "0x91ff8bbd8ebb07893010d50a48a1609e5ebd8e34",
+      "gas": 98956763,
+      "mean_tip_gwei": 0.020500723285322146,
+      "tip_eth": 0.002028685215474205,
+      "tip_usd": 5.024363224922614,
+      "txs": 60
+    },
+    {
+      "address": "0x7ec8a30a34b86927dc77b302603d1d53e640bef7",
+      "gas": 95974033,
+      "mean_tip_gwei": 0.001,
+      "tip_eth": 9.5974033e-05,
+      "tip_usd": 0.23769503433779066,
+      "txs": 169
+    },
+    {
+      "address": "0x4337084d9e255ff0702461cf8895ce9e3b5ff108",
+      "gas": 83117422,
+      "mean_tip_gwei": 0.06084713929347929,
+      "tip_eth": 0.0050574573541489,
+      "tip_usd": 12.525601580756064,
+      "txs": 308
+    }
+  ],
+  "top_tippers": [
+    {
+      "address": "0x559432e18b281731c054cd703d4b49872be4ed53",
+      "failed": 0,
+      "gas": 68971383,
+      "mean_tip_gwei": 2.101883406818158,
+      "tip_eth": 0.144969805473,
+      "tip_usd": 359.0408969251878,
+      "txs": 1335
+    },
+    {
+      "address": "0x5b43453fce04b92e190f391a83136bfbecedefd1",
+      "failed": 0,
+      "gas": 69922215,
+      "mean_tip_gwei": 1.8842887407994895,
+      "tip_eth": 0.13175364245626117,
+      "tip_usd": 326.3089565879762,
+      "txs": 64
+    },
+    {
+      "address": "0xae2fc483527b8ef99eb5d9b44875f005ba1fae13",
+      "failed": 0,
+      "gas": 20551462,
+      "mean_tip_gwei": 4.625679625509412,
+      "tip_eth": 0.09506447904783091,
+      "tip_usd": 235.44237858148932,
+      "txs": 67
+    },
+    {
+      "address": "0x3ee92cd00993a4488ae153ab41ac7947cbcbc1de",
+      "failed": 0,
+      "gas": 10058210,
+      "mean_tip_gwei": 7.68569673509793,
+      "tip_eth": 0.07730435175792937,
+      "tip_usd": 191.45658436133104,
+      "txs": 30
+    },
+    {
+      "address": "0x7bf30399dba8051c2bf191afe2cd07ea4e064625",
+      "failed": 0,
+      "gas": 813220,
+      "mean_tip_gwei": 81.31865251415692,
+      "tip_eth": 0.06612995459756268,
+      "tip_usd": 163.78140354718863,
+      "txs": 6
+    },
+    {
+      "address": "0x5934e06498db785ff26807161ce9d09063231321",
+      "failed": 0,
+      "gas": 1358381,
+      "mean_tip_gwei": 29.010204614685353,
+      "tip_eth": 0.0394069107547009,
+      "tip_usd": 97.59751374608675,
+      "txs": 9
+    },
+    {
+      "address": "0x7830c87c02e56aff27fa8ab1241711331fa86f43",
+      "failed": 0,
+      "gas": 37302616,
+      "mean_tip_gwei": 0.9513525754704197,
+      "tip_eth": 0.035487939803384085,
+      "tip_usd": 87.89155573094264,
+      "txs": 102
+    },
+    {
+      "address": "0x28c6c06298d514db089934071355e5743bf21d60",
+      "failed": 0,
+      "gas": 33745989,
+      "mean_tip_gwei": 1.0,
+      "tip_eth": 0.033745989,
+      "tip_usd": 83.57733611254729,
+      "txs": 558
+    },
+    {
+      "address": "0xb275499d30e777b2b404ab945ae45166d6c2ec9d",
+      "failed": 0,
+      "gas": 643072,
+      "mean_tip_gwei": 45.773942665673815,
+      "tip_eth": 0.029435940857900193,
+      "tip_usd": 72.90281292007143,
+      "txs": 3
+    },
+    {
+      "address": "0x05ff6964d21e5dae3b1010d5ae0465b3c450f381",
+      "failed": 0,
+      "gas": 14186938,
+      "mean_tip_gwei": 2.0,
+      "tip_eth": 0.028373876,
+      "tip_usd": 70.27243952659794,
+      "txs": 176
+    },
+    {
+      "address": "0x8d02bb7ffd0ae9f6cf9004f290edcc96cd58ba16",
+      "failed": 0,
+      "gas": 777000,
+      "mean_tip_gwei": 36.428571428,
+      "tip_eth": 0.028304999999556,
+      "tip_usd": 70.10185710155191,
+      "txs": 37
+    },
+    {
+      "address": "0x315d2ee4fccda0def532ef4108ff57204f8d9eba",
+      "failed": 1,
+      "gas": 3171767,
+      "mean_tip_gwei": 8.639605751069771,
+      "tip_eth": 0.027402816414253312,
+      "tip_usd": 67.86745523696096,
+      "txs": 22
+    },
+    {
+      "address": "0x1d425d5c3fe77f5f91f5582f2a98d4a94cb0549b",
+      "failed": 0,
+      "gas": 3011587,
+      "mean_tip_gwei": 7.990827270185107,
+      "tip_eth": 0.024065071526134955,
+      "tip_usd": 59.600996477307945,
+      "txs": 2
+    },
+    {
+      "address": "0xf89d7b9c864f589bbf53a82105107622b35eaa40",
+      "failed": 0,
+      "gas": 10893451,
+      "mean_tip_gwei": 2.0,
+      "tip_eth": 0.021786902,
+      "tip_usd": 53.95874547654031,
+      "txs": 209
+    },
+    {
+      "address": "0x21a31ee1afc51d94c2efccaa2092ad1028285549",
+      "failed": 0,
+      "gas": 18639518,
+      "mean_tip_gwei": 1.0,
+      "tip_eth": 0.018639518,
+      "tip_usd": 46.16374588582588,
+      "txs": 388
+    }
+  ],
+  "transactions": 67905,
+  "window": "research/2026-09-08/live_1h_b"
+}

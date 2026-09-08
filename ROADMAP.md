@@ -5,6 +5,49 @@ the LLM reads evidence, proposes mechanisms, and writes the infrastructure; dete
 reusable detectors and tests; the human steers. The metric we optimise is **time-to-verified-insight**: how fast a raw
 signal becomes a true, capacity-aware, reproducible claim and then a reusable detector — not classification coverage.
 
+## Session log — 2026-09-08 (ten chains at once, and the denominator that was wrong everywhere)
+
+The loop had only ever run one chain at a time, which is a real blind spot for a *dollar*: USDC on Base and USDC on
+Ethereum are the same claim on the same issuer, bridgeable in minutes for approximately nothing, so their lending rates
+are two prices for one asset. This pass built the cross-chain layer and used it on a fresh hour
+(2026-09-08 06:23–07:29 UTC): Ethereum block-by-block plus a logs-only trailing hour on ten EVMs.
+
+Landed: `scripts/multichain.py` (collect / head / issuance / analyze / verify / render — discovery-first, no asserted
+pool, bridge or token addresses), `scripts/fee_census.py`, and an `url=` parameter on `live_rpc.RPC` so several
+networks can be live at once.
+
+**The finding.** USDC pays 4.00% on Base and 0.36% on Scroll at the same instant — 3.64 percentage points across
+$2.78B — and the whole thing is worth **$177,794 a year**. Two corrections get there and both are the point: the high
+side dilutes along its kinked curve, and *the low side may not let you leave*. Optimism's USDC reserve pays 2.56% on
+$11.3M of which **$2.3M is withdrawable**, so the $18.5M the curve calls optimal cannot be moved at an eighth of that
+size. Capacity is `min(high-side optimum, low-side withdrawable)`, and for seven of twenty switches the second binds.
+Filled once, cheapest source first, $8.73B of cross-chain dollars absorbs **$37.3M at 48bp**. Taking the rows
+independently would claim $279k — 57% too high, because every row assumes the destination reserve is empty.
+
+**The bridge is not the arbitrageur.** Net CCTP flow ranks **−0.57** against the USDC rate over eight chains: the two
+highest-paying chains were the only net exporters. Eight addresses appear on both sides of the bridge among the largest
+counterparties, which is inventory rebalancing toward demand rather than capital chasing yield. And 62% of CCTP sends
+left for domains outside the scan entirely.
+
+**The denominator was wrong on every chain, and version-dependently so.** Every capacity, width and best-size number
+this repo computes rests on utilisation, read as `variableDebt.totalSupply() / aToken.totalSupply()`. That is not what
+Aave prices with. Ethereum and Base reproduce their published borrow rate from the aToken total; Avalanche reproduces
+it from `getVirtualUnderlyingBalance()` plus debt, the gap being unbacked aTokens. On Avalanche's GHO reserve the gap
+is 0.46pp of utilisation, it straddles the 90% kink, and it is worth **151 basis points of borrow rate** — the aToken
+ratio says 4.50%, the pool says 6.00%. Utilisation is now **inverted from the pool's own published borrow rate**, which
+is correct whatever the deployment version. Three smaller ones fell out of the same verifier: a reserve factor of 1.0
+is a mint facility, not a supply market (Aave's $135.2M Ethereum GHO reserve, which produced the largest switch on the
+first pass, $12,798/yr, entirely imaginary); a flat IRM carries no information about utilisation and cannot be
+inverted; and two tokens on Arbitrum both answer `symbol()` with "USDC", so switches are keyed by reserve address.
+
+**Ethereum's fee market has stopped pricing blockspace.** Base fee 0.049 gwei at 50.6% fullness: the chain burned
+0.443 ETH ($1,098) in the hour while users paid 3.068 ETH ($7,598) in priority fees, a **6.92x ratio**, of which
+98.5% is spend above the gas-weighted median tip of 0.0087 gwei. **35.6% of all gas paid exactly zero.** The largest
+single consumer of Ethereum blockspace was **XEN** batch-minting — 8.2% of the chain-hour for $2 of tips. Blocks are
+half full because the marginal buyer of blockspace is an activity that only exists at a gas price of zero, which is
+why the price stays at zero. Open item, and the first one in the next-steps list: `economics.py` charges gas at the
+base fee and therefore understates an inclusion-sensitive leg by roughly sevenfold in this regime.
+
 ## Session log — 2026-09-08 (the output: a strategy book, and what the dollar surface is actually worth)
 
 The loop's stated output is insight and proposed strategy. The roadmap had described only machinery, so this pass

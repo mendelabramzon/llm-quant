@@ -1,0 +1,80 @@
+{
+  "block": 58105373,
+  "bridge_tokens": {
+    "0x078d782b760474a361dda0af3839290b0ef57ad6": {
+      "decimals": 6,
+      "legs": 18,
+      "symbol": "USDC",
+      "total_supply": 22707467.579215
+    }
+  },
+  "cctp": {
+    "emitters": {
+      "0x28b5a0e9c621a5badaa536219b3a228c8168cf5d": {
+        "local_domain": 10,
+        "transmitter": "0x81d40f21f12a8f0e3252bccb954d722d4c464b64"
+      }
+    },
+    "local_domain": 10,
+    "unresolved_domain": false
+  },
+  "chain": "unichain",
+  "issuance": {
+    "0x078d782b760474a361dda0af3839290b0ef57ad6": {
+      "burn_from": [
+        {
+          "address": "0xfd78ee919681417d192449715b2594ab58f5d002",
+          "amount": 104805.5658
+        }
+      ],
+      "burn_legs": 12,
+      "burned": 104805.5658,
+      "decimals": 6,
+      "mint_legs": 73,
+      "mint_to": [
+        {
+          "address": "0xe88ade0824ba4dd6a36891dd60b83c20462b3545",
+          "amount": 647.755702
+        },
+        {
+          "address": "0x20b278b9a6715fce84f39bb58382c956cb5c391d",
+          "amount": 151.965042
+        },
+        {
+          "address": "0xd8b14e0e7bf5145ecc76cf56d051ed4857ca6b8c",
+          "amount": 63.985281
+        },
+        {
+          "address": "0xc1062b7c5dc8e4b1df9f200fe360cdc0ed6e7741",
+          "amount": 58.73971
+        },
+        {
+          "address": "0x1da38a31f369343bdd33ccc48e89d165e8ab3450",
+          "amount": 15.5
+        },
+        {
+          "address": "0xfc1bdd1ff58200761d56ccbce73f6f42ebe56379",
+          "amount": 0.035866
+        }
+      ],
+      "minted": 937.981601,
+      "net_issued": -103867.58419899999,
+      "symbol": "USDC"
+    }
+  },
+  "issuance_rpc": {
+    "credits": 510,
+    "errors": 0,
+    "keys": 10,
+    "requests": 2
+  },
+  "native_usd": null,
+  "pools": {},
+  "read_at": "2026-09-08T07:48:52+00:00",
+  "rpc": {
+    "credits": 480,
+    "errors": 0,
+    "keys": 10,
+    "requests": 4
+  }
+}

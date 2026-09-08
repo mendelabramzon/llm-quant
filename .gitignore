@@ -26,3 +26,10 @@ research/2026-09-07/solana_1h/blocks/
 research/2026-09-07/solana_1h/probe_block.json.gz
 research/2026-09-07/robinhood_10h/data/
 research/2026-09-07/robinhood_10h/rpc_errors.jsonl
+
+# Collected raw windows, collector logs and RPC error journals, for any study directory. The per-study entries above
+# were added one window at a time and a new window therefore arrived untracked-but-not-ignored every session.
+research/*/*/raw/
+research/*/*/*.log
+research/*/*/rpc_errors.jsonl
+research/**/rpc_errors.jsonl

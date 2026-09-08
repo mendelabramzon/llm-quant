@@ -69,6 +69,30 @@
   "last_block": 25930550,
   "last_utc": "2026-09-08T05:27:11+00:00"
  },
+ "research/2026-09-08/live_1h_b": {
+  "chain": "ethereum",
+  "detectors_run": [
+   "address_poisoning",
+   "borrow_cost",
+   "dollar_rate_outlier",
+   "fixed_vs_floating",
+   "gas_concentration",
+   "jit_liquidity",
+   "lp_marginal_yield",
+   "mass_distribution",
+   "mislabelled_flow",
+   "nav_discount",
+   "rate_dispersion",
+   "solver_fingerprint"
+  ],
+  "first_block": 25930829,
+  "first_utc": "2026-09-08T06:22:59+00:00",
+  "hours": 1.003,
+  "ingested_at": "2026-09-08T07:31:39+00:00",
+  "label_fingerprint": "ed14a540bacb0af5",
+  "last_block": 25931128,
+  "last_utc": "2026-09-08T07:22:59+00:00"
+ },
  "research/2026-09-08/live_2h": {
   "chain": "ethereum",
   "detectors_run": [

@@ -238,7 +238,32 @@
    "examples": []
   }
  ],
- "mechanisms": null,
+ "mechanisms": [
+  {
+   "id": "stacy-deposit-for",
+   "ok": true,
+   "detail": "depositFor does not set lastDepositBlock",
+   "claim": "StacyVault's `depositFor` never writes `lastDepositBlock`, so a flash depositor skips the lock."
+  },
+  {
+   "id": "msca-not-exchange",
+   "ok": true,
+   "detail": "implementation resolves to 'SingleOwnerMSCA'",
+   "claim": "0xee7ae85f is a modular smart-contract account, not the exchange deposit contract it was tagged as."
+  },
+  {
+   "id": "no-contract-hot-wallets",
+   "ok": true,
+   "detail": "0 contradiction(s); audit checked 96 exchange tags",
+   "claim": "no address counted as a CEX *hot wallet* is a contract."
+  },
+  {
+   "id": "fingerprint-matches-chain",
+   "ok": true,
+   "detail": "4/5 claims checked against Blockscout, 0 wrong; 1 hit(s) declined to guess",
+   "claim": "when `solver_fingerprint` calls an address a contract or an EOA, the chain agrees."
+  }
+ ],
  "claims": {
   "cited": [
    "blocks",
