@@ -149,13 +149,54 @@ idea; the $1B-capacity idea pays 3.48% and is a savings account. Nothing in the 
 mispriced, which is what an efficient dollar market is supposed to look like, and it is worth stating plainly rather
 than implying otherwise by quoting headline rates.
 
-**Only three of the seven have a quote a detector produced.** The other four were measured once in a dated session and
-have not been re-measured since; the Morpho USDT borrow spread is already past its staleness threshold. That gives the
-next round of work an ordering principle: write the detector that re-prices the highest strategy in the book that
-nothing re-prices — the captive-flow LP first, then the Pendle fixed-versus-floating gap, then the sUSDe ask against
-NAV.
+**Only three of the seven had a quote a detector produced**, which gave the next round of work an ordering principle:
+write the detector that re-prices the highest strategy in the book that nothing re-prices. That was the captive-flow
+LP, and it is done — see the next section. The remaining manual ones, in order, are the Pendle fixed-versus-floating
+gap, the sUSDe ask against NAV, and the Morpho USDT borrow spread (already past its staleness threshold).
 
-## 6. Everything else in the window
+## 6. The captive-flow LP thesis, re-priced automatically — and what pricing it properly costs
+
+`detectors/lp_marginal_yield.py` now re-prices any concentrated-LP position from window data alone. It corrects the
+two things that make the LP table in `analysis.json` unquotable.
+
+**An APR at zero size is not a yield.** A pool's liquidity expressed as ±b-band capital is `k(b)·C`, where `C` is the
+full-range-equivalent capital behind its active liquidity and `k(b) = 1 − 1/√(1+b)`; adding `Y` earns
+`passive_fees / (k·C + Y)`, which reduces to the reported band APR at `Y → 0` and dilutes correctly from there.
+
+**A band narrower than the price moved is a position that was not in range.** The table reports 5,981% for a UNI/USDC
+pool whose price moved 3.0% inside this window. Quoting the band the price actually stayed inside, and netting the
+divergence that the same concentration multiplier amplifies, changes the character of the answer completely:
+
+| pool | band | fees over 2h | divergence over 2h | net | annualised, if it repeats |
+|---|---:|---:|---:|---:|---:|
+| WETH/USDT v3 | ±0.28% | 10.7bp | 6.9bp | +3.8bp | 163.6% |
+| WBTC/WETH v3 | ±0.25% | 6.4bp | 6.2bp | +0.2bp | 11.1% |
+| USDe/USDC v4 | ±0.01% | 0.3bp | 0.0bp | +0.3bp | 12.7% |
+
+Volatile-pair LPing in this window roughly **broke even against divergence**. That is the well-known result, now
+measured by the system rather than assumed, and it is the opposite of what a four-digit APR implies.
+
+**The band is the assumption, so the detector reports it.** Fee APR goes as `1/band`, so the band moves the answer
+more than anything else in the calculation. Checking against the hand-built captive-flow study makes the point: that
+study priced a USDC/USDG v4 pool at 14.2% on $1.04M of measured deployed TVL, and this pool's `C` implies its
+incumbent LPs sit in a band of about **±1.2bp** — corroborated by the 0.9bp the price actually moved over five hours.
+Quote the same pool at ±20bp and it pays 1.1%; at its own concentration, about 10%. Both are true statements about
+different positions, so every hit carries a ladder across bands and the headline names the one it used.
+
+Linking that detector to the strategy gives the book its first automatic decay series on a real edge:
+
+| when | window | USDC/USDG marginal LP, ±1bp |
+|---|---|---:|
+| 2026-09-06 20:19 | hand study, deployed TVL measured from the tick distribution | 15.80% |
+| 2026-09-07 02:39–07:39 | live_5h | 6.13% |
+| 2026-09-07 07:39–12:39 | live_midday | 10.37% |
+| 2026-09-07 21:27–23:27 | this window | **not present — zero swaps in two hours** |
+
+The last row is the informative one. The thesis rests on a desk being paid to convert into USDG continuously; a
+two-hour window with no volume at all is the flow-durability risk the study named, showing up in the data rather than
+in prose. One window is not a trend, but the book will now say so on its own every time it is run.
+
+## 7. Everything else in the window
 
 - **Two atomic bot pairs passed $480M each through 7 transactions, ending exactly flat** (0x04ca7a7e, 0x26de7861 —
   the second returned $240,000,001 against $240,000,001 received, to the dollar). Both are contracts, neither is

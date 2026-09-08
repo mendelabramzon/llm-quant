@@ -939,6 +939,14 @@ class State:
                 'largest': sorted(episodes, key=lambda e: -(e['usd'] or 0))[:15]}
 
     def lp_summary(self, hours):
+        # Who the takers are decides whether a pool's fee yield is worth having. Fee income from many small
+        # uninformed clips is rent; the same income from one informed flow is a transfer out of the LP, and the
+        # captive-flow thesis in this repo turns entirely on one desk being 62% of a pool's volume. Concentration is
+        # one pass over the swaps already in memory, so it belongs in the row rather than in a bespoke scanner.
+        takers = collections.defaultdict(collections.Counter)
+        for sw in self.swaps:
+            if sw.get('usd'):
+                takers[sw['pool']][sw.get('sender') or '?'] += sw['usd']
         rows = []
         for pool, ps in self.pools.items():
             if ps['n'] < 3 or ps['vol'] < 2e5:
@@ -954,6 +962,16 @@ class State:
                    'fees_usd': round(fee, 2) if fee else None, 'fees_to_jit_usd': round(ps['fee_jit'], 2), 'passive_fees_usd': round(passive, 2) if passive is not None else None,
                    'full_range_capital_usd': round(cap) if cap else None, 'price_range_pct': round(100 * rng, 3) if rng is not None else None,
                    'lp_added_usd': round(ps['lp_in']), 'lp_removed_usd': round(ps['lp_out'])}
+            tk = takers.get(pool) or collections.Counter()
+            tot = sum(tk.values())
+            if tot:
+                top = tk.most_common(3)
+                row['n_takers'] = len(tk)
+                row['top_taker'] = top[0][0]
+                row['top_taker_share'] = round(top[0][1] / tot, 4)
+                row['top3_taker_share'] = round(sum(v for _, v in top) / tot, 4)
+                # Herfindahl over taker volume shares: 1.0 is a single counterparty, near zero is a crowd.
+                row['taker_herfindahl'] = round(sum((v / tot) ** 2 for v in tk.values()), 4)
             if cap and passive is not None and cap > 0:
                 fr = passive / cap / hours * 8760
                 row['apr_full_range'] = round(fr, 5)

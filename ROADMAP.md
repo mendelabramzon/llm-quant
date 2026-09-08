@@ -320,8 +320,11 @@ actual alternative, and "DAI pays 0.61pp more on Aave than SparkLend" compares t
 savings rate. `dollar_rate_outlier` exists to make that comparison the default one.
 
 That gives the next round of detector work a clear ordering principle: **write the detector that re-prices the highest
-strategy in the book that nothing re-prices.** Today that is the captive-flow LP (a v4 pool's marginal-LP APR by size),
-then the Pendle fixed-versus-floating gap, then the sUSDe ask against NAV.
+strategy in the book that nothing re-prices.** The first of those is done — `detectors/lp_marginal_yield.py` prices a
+concentrated-LP position at the band the price stayed inside, at real size, net of the divergence the same
+concentration amplifies, and it gave the captive-flow LP its first automatic decay series (15.80% hand study → 6.13%
+→ 10.37% → absent, zero swaps in a two-hour window). Remaining, in order: the Pendle fixed-versus-floating gap, the
+sUSDe ask against NAV, and the Morpho USDT borrow spread.
 
 ## Anti-goals
 

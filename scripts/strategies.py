@@ -69,6 +69,19 @@ def latest(s):
     return s['quotes'][-1] if s.get('quotes') else None
 
 
+def last_priced(s):
+    """The most recent quote that actually carries a rate.
+
+    A strategy whose linked detector ran and found nothing gets a quote saying so, and that quote is current and
+    informative — but it is not a price. The book shows both: the last rate seen, in brackets, and the fact that the
+    newest look did not see it.
+    """
+    for q in reversed(s.get('quotes') or []):
+        if q.get('net_apr') is not None:
+            return q
+    return None
+
+
 def age_hours(s):
     q = latest(s)
     t = parse_utc(q.get('at')) if q else None
@@ -107,15 +120,16 @@ def refresh(args):
                 obs.append((i, o))
         if not obs:
             # The detector ran and did not see it. That is a data point about the strategy, not a missing quote.
-            s['quotes'].append({'at': at, 'window': str(args.out), 'source': 'ledger', 'present': False,
-                                'net_apr': None, 'usd': None,
-                                'note': 'linked finding(s) not observed in this window'})
-            updated.append((s['id'], None))
-            continue
-        best = max(obs, key=lambda x: (x[1].get('net_apr') or 0))
-        q = {'at': at, 'window': str(args.out), 'source': 'ledger:' + best[0], 'present': True,
-             'net_apr': best[1].get('net_apr'), 'usd': best[1].get('usd'), 'note': best[1].get('title')}
-        s['quotes'].append(q)
+            q = {'at': at, 'window': str(args.out), 'source': 'ledger', 'present': False,
+                 'net_apr': None, 'usd': None, 'note': 'linked finding(s) not observed in this window'}
+        else:
+            best = max(obs, key=lambda x: (x[1].get('net_apr') or 0))
+            q = {'at': at, 'window': str(args.out), 'source': 'ledger:' + best[0], 'present': True,
+                 'net_apr': best[1].get('net_apr'), 'usd': best[1].get('usd'), 'note': best[1].get('title')}
+        # Upsert on the window, then order by time. Appending blindly made re-running a window read as six
+        # observations of a rate that had been quoted once — the same double-count the findings ledger already fixed.
+        s['quotes'] = sorted([x for x in s['quotes'] if x.get('window') != str(args.out)] + [q],
+                             key=lambda x: (x.get('at') or '', x.get('window') or ''))
         updated.append((s['id'], q['net_apr']))
     save(book)
     print(json.dumps({'window': str(args.out), 're-quoted': [{'id': i, 'net_apr': v} for i, v in updated],
@@ -168,10 +182,12 @@ def book_cmd(args):
           % ('strategy', 'status', 'kind', 'net APR', 'capacity', 'quoted', 'evidence'))
     for s in rows:
         q = latest(s) or {}
+        lp = last_priced(s)
         a = age_hours(s)
+        shown = ('%.2f%%' % (100 * q['net_apr'])) if q.get('net_apr') is not None else (
+            ('(%.2f%%)' % (100 * lp['net_apr'])) if (lp and q.get('present') is False) else '-')
         print('%-26s %-11s %-9s %10s %13s %7s  %s'
-              % (s['id'][:26], s['status'], s.get('kind', '?'),
-                 ('%.2f%%' % (100 * q['net_apr'])) if q.get('net_apr') is not None else '-',
+              % (s['id'][:26], s['status'], s.get('kind', '?'), shown,
                  ('$%s' % format(round(s.get('capacity_usd') or 0), ',')) if s.get('capacity_usd') else '-',
                  ('%.0fh%s' % (a, '!' if is_stale(s) else '')) if a is not None else 'never',
                  ('ledger' if (s.get('evidence', {}).get('findings')) else 'manual')
@@ -182,8 +198,12 @@ def book_cmd(args):
         if len(series) > 1:
             print('  %-26s %s' % (s['id'][:26], ' -> '.join('%.2f%%' % (100 * q['net_apr']) for q in series)))
     live = [s for s in rows if not is_stale(s)]
+    absent = [s for s in rows if (latest(s) or {}).get('present') is False]
     print('\n%d strategy(ies), %d with a current quote, %d stale. A stale quote is a memory, not a price.'
           % (len(rows), len(live), len(rows) - len(live)))
+    if absent:
+        print('A rate in brackets is the last one seen: its detector ran on the newest window and did not find it — '
+              '%s.' % ', '.join(s['id'] for s in absent))
 
 
 def show(args):
