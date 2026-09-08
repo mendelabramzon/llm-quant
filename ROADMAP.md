@@ -232,10 +232,16 @@ fields they report (a supplier earns the borrow rate times utilisation less the 
 IRM curve at that utilisation; a Morpho supply APY carries the market fee instead; a PT's implied yield is a function
 of price and maturity; the Compound read must lie on the curve sampled at the same block), and re-deriving one field
 from the others tests the whole decode — word offsets, ray scaling, config bitmaps, curve parameters — against the
-chain's own arithmetic. 182 individual identities pass on the 2026-09-08 window. Setting Aave's USDC supply APR to its
+chain's own arithmetic. Seven classes and 188 individual identities pass on the 2026-09-08 windows, the last of them a genuine second
+opinion rather than an internal one: `head-nav-crosscheck` reads each exchange rate a second way on chain — an
+ERC-4626 vault's share price against its own `totalAssets / totalSupply`, `wstETH.stEthPerToken()` against
+`stETH.getPooledEthByShares`, rETH's and weETH's share conversions — and the five that publish a second view agree to
+twelve decimal places. Three (cbETH, ezETH, rsETH) publish none, so the check reports how many rates it could compare
+rather than implying it checked them all. Setting Aave's USDC supply APR to its
 borrow value — the exact shape of the rate-series bug found earlier the same day — fails `head-supply-identity`
-immediately, naming the venue, asset, utilisation and reserve factor. Still unchecked: the NAV rates behind
-`nav_discount` and the peg prices they are compared against.
+immediately, naming the venue, asset, utilisation and reserve factor. It also found a reproducibility defect on its first run against fresh
+data: `days_to_maturity` was stored rounded while `implied_apy` was computed from the unrounded value, so the artifact
+did not reproduce its own output — a residual of 2e-6, and exactly the class of thing these checks exist to surface.
 
 *Closed 2026-09-08*: every check now carries a stable id, a sentence cites it as `[[verify: exchange-net-stables]]`,
 and `verify` fails on a citation with no matching check and counts the headline numbers that cite nothing — 55% of the

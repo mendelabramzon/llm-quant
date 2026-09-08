@@ -453,6 +453,24 @@ def run_identities(out, tol=0.0015):
                         'derived_pct': _pct(derived)})
     add('head-morpho-identity', 'Morpho supply APY equals borrow APY x utilisation x (1 - fee)', n, bad, worst)
 
+    # NAV: the same exchange rate read a second way on the same contract at the same block
+    bad, n, worst = [], 0, None
+    for k, r in (hs.get('rates') or {}).items():
+        cc = r.get('crosscheck') or {}
+        a, b = r.get('rate'), cc.get('rate')
+        if a is None or b is None or a <= 0:
+            continue
+        n += 1
+        e = abs(a - b) / a
+        worst = max(worst or 0, e)
+        # 10bp: a vault's share price and its assets-over-supply are the same number computed twice, and the small
+        # residual is rounding, not disagreement. A decode error is orders of magnitude larger than this.
+        if e > 1e-3:
+            bad.append({'asset': k, 'method': r.get('method'), 'rate': a,
+                        'crosscheck_method': cc.get('method'), 'crosscheck_rate': b,
+                        'relative_gap_bps': round(1e4 * e, 2)})
+    add('head-nav-crosscheck', 'each NAV rate matches a second view on the same contract', n, bad, worst)
+
     # Pendle: the implied yield is a function of the PT price and the days remaining, and nothing else
     bad, n, worst = [], 0, None
     for m, r in (hs.get('pendle') or {}).items():

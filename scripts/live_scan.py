@@ -121,6 +121,22 @@ FEEDS = {  # price key -> (feed, expected description)
     'ENS': ('0x5c00128d4d1c2f4f652c267d7bcdd7ac99c16e16', 'ENS / USD'),
     'EUR': ('0xb49f677943bc038e9857d61e7d053caa2c1734c1', 'EUR / USD'),
 }
+# A second, independent view of the same exchange rate, where the contract publishes one. `nav_discount` builds a
+# trade out of the difference between a NAV and a market price, and the NAV side was a single call with nothing to
+# disagree with it — the last unchecked surface in the head state. An ERC-4626 vault's share price is also
+# `totalAssets / totalSupply`, and the two are computed by different code inside the vault; Lido and Rocket Pool each
+# publish a share-conversion function alongside their headline rate. Where a second view exists, `verify` compares it.
+RATE_CROSSCHECK = {
+    'SUSDS': ('ratio', 'totalAssets()', 'totalSupply()'),
+    'SDAI':  ('ratio', 'totalAssets()', 'totalSupply()'),
+    'SUSDE': ('ratio', 'totalAssets()', 'totalSupply()'),
+    # stEthPerToken() lives on wstETH; the share-conversion that reproduces it lives on stETH, so this one needs its
+    # own contract. Pointed at wstETH it simply returns nothing, which is a silent gap rather than a failure — the
+    # reason the check reports how many rates it could compare, not just how many matched.
+    'WSTETH': ('call', 'getPooledEthByShares(uint256)', None, '0xae7ab96520de3a18e5e111b5eaab095312d7fe84'),
+    'RETH':   ('call', 'getEthValue(uint256)', None),
+    'WEETH':  ('call', 'getEETHByWeETH(uint256)', None),
+}
 RATES = {  # price key -> (contract, method, underlying key)
     'WSTETH': ('0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0', 'stEthPerToken()', 'STETH'),
     'RETH': ('0xae78736cd615f374d3085123a210448e74fc6393', 'getExchangeRate()', 'ETH'),
@@ -1223,6 +1239,29 @@ def head_state(args):
     res = rpc.eth_calls(items, blk)
     for (k, (c, m, u)), r in zip(RATES.items(), res):
         hs['rates'][k] = {'contract': c, 'method': m, 'underlying': u, 'rate': word(r, 0) / 1e18 if r else None}
+    # the second view, on the same contract at the same block
+    cc, keys = [], []
+    for k, spec in RATE_CROSSCHECK.items():
+        kind, a, b = spec[0], spec[1], spec[2]
+        if k not in RATES:
+            continue
+        c = spec[3] if len(spec) > 3 else RATES[k][0]
+        keys.append((k, kind))
+        cc.append((c, sel(a) + (enc_uint(10 ** 18) if '(uint256)' in a else '')))
+        cc.append((c, sel(b) if b else sel(a)))
+    res = rpc.eth_calls(cc, blk) if cc else []
+    for i, (k, kind) in enumerate(keys):
+        x, y = res[2 * i], res[2 * i + 1]
+        if kind == 'ratio':
+            ta, ts = (word(x, 0) if x else None), (word(y, 0) if y else None)
+            hs['rates'][k]['crosscheck'] = ({'method': 'totalAssets / totalSupply', 'rate': ta / ts,
+                                             'total_assets': str(ta), 'total_supply': str(ts)}
+                                            if ta and ts else {'method': 'totalAssets / totalSupply', 'rate': None})
+        else:
+            hs['rates'][k]['crosscheck'] = {'method': RATE_CROSSCHECK[k][1],
+                                            'contract': (RATE_CROSSCHECK[k][3]
+                                                         if len(RATE_CROSSCHECK[k]) > 3 else RATES[k][0]),
+                                            'rate': (word(x, 0) / 1e18) if x else None}
     # token metadata check
     items = []
     toks = [(a, v) for a, v in TOKENS.items() if a != '0x' + '0' * 40]
@@ -1544,7 +1583,10 @@ def pendle_state(rpc, out, blk, hn_ts=None):
         p = word(pa, 0) / 1e18 if pa else None
         dec = word(dc, 0) if dc else 18
         r.update({'pt_symbol': dec_str(sy) if sy else None, 'pt_decimals': dec,
-                  'days_to_maturity': round(days, 3) if days is not None else None,
+                  # Full precision, deliberately. `implied_apy` is computed from this value, so storing a rounded
+                  # copy means the artifact no longer reproduces its own output — which is what `head-pendle-apy`
+                  # caught on its first run against fresh data, at a residual of 2e-6.
+                  'days_to_maturity': days,
                   'pt_to_asset': p, 'oracle_ready': satisfied,
                   'pt_depth_units': (word(bal, 0) / 10 ** dec) if bal else None})
         ok = p and days and days > 0 and satisfied
