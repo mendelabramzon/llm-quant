@@ -44,6 +44,29 @@ to 12,056 addresses in one campaign — token-transfer address poisoning at a sc
 cannot see, and which the hand analysis of the same window missed.
 
 
+2026-09-08, reading contracts instead of events: [the window's contracts, from their bytecode](research/2026-09-08/live_10h/contracts/findings.md).
+Every other reader in this repo decides what a contract is from its logs, which is blind to a contract that emits
+nothing, and to a code path the window did not happen to hit. `scripts/bytecode_lens.py` reads the bytes instead:
+it censuses a window's contracts offline (every top-level CREATE, address derived from sender and nonce; every EIP-7702
+delegate, *authority ecrecovered* rather than assumed to be the gas payer), follows the proxy through EIP-1167 /
+1967 / 1822 / zeppelinos / Safe / 2535 / 7702, disassembles PUSH-aware into inbound selectors, outbound call selectors,
+custom-error selectors, address immediates, embedded strings and ~30 structural facts, then writes an evidence packet
+per contract for an LLM to judge and a `verdicts` command that re-checks the falsifiable half of what the LLM said.
+Applied to the 2026-09-08 ten-hour window it found that **one operator burned 5.4% of Ethereum's gas poisoning 16,258
+wallets**: 2,258 transactions, ~one per block, each carrying EIP-7702 authorizations and a single `executeBatch`, and
+containing 335,601 dust legs worth $2.29 in total against $649 of gas. 30.2% of the testable legs come from a sender
+that matches the first four and last four hex characters of an address the recipient genuinely transacted with, against
+0.03% for a shuffled control. Read from bytecode alone the delegate is one function, an immutable operator compared
+against `ORIGIN` at pc `0x41`, and a `WhoAreYou()` revert; asked afterwards, Etherscan returns a verified source that
+matches line for line, names the contract `Poisoner`, calls the immutable `thief`, and carries a comment describing the
+scam. The confirmation is worth having and changes nothing — two of the window's other single-operator 7702 machines
+have no source at all and read the same way. Fourteen detectors missed it and were right to: `address_poisoning` reads
+top-level transactions and these are internal calls; `mass_distribution` needs 500 recipients from one sender and the
+campaign's median sender touches two. `scripts/detectors/delegated_dust.py` now reads the batch calldata and closes
+that hole; `scripts/test_bytecode_lens.py` pins the four extractor bugs the study found, including an EIP-7702 digest
+missing its magic byte — which round-tripped against itself perfectly while recovering a random address from every
+real transaction.
+
 2026-09-07, joining the day's per-chain windows: [three chains, one desk](research/2026-09-07/interchain/findings.md). The same wallet is the entire withdrawal side of Relay's depository on Ethereum *and* Robinhood Chain, a Paxos mint-and-redeem counterparty on both, and the top taker in the thin Uniswap v4 USDC/USDG pools that the captive-flow LP study is built on — so that flow is a cross-chain solver's inventory balancing, not a reward-rebate programme, and the risk it prices as future ("the desk might reroute to direct mint") is already its base case. The same network is the largest retail flow on all three chains, and the "unlabelled custodial deposit system" the Solana narrative asked to identify is its Solana depository. Robinhood Chain collected 279.2 ETH ($696k) of base fees in the ten hours Ethereum L1 burned 8.96 ETH ($22.3k), a 31x ratio, and charged nothing on 175,818 priority-fee bids. Two headline numbers do not survive re-derivation: TSLA on Robinhood Chain traded within 0.10% of its reference, not +4.4% (a `setdefault` merge in `orbit_scan.py` freezes a stale first-pass price), and the Solana narrative's "USDG 8.32% on Jupiter Lend" contradicts its own table's 5.42%. Robinhood Chain's missing rate rung is measured for the first time by realising share prices forward: $456M sits in steakUSDG earning 3.75%, below Compound v3 USDC at 6.91% on Ethereum and Jupiter Lend USDC at 4.96% on Solana. `scripts/interchain.py` recomputes every join offline.
 
 2026-09-07, first window on another chain: [ten hours of Robinhood Chain](research/2026-09-07/robinhood_10h/report.md) (Arbitrum Orbit L2, chain id 4663, 04:06–14:06 UTC, 356,874 blocks, 3.23M user transactions). The chain earns ~$0.7M of base fees per ten hours against $62 of Ethereum blob and execution cost, with L1 pricing switched off and priority-fee bids ignored; the demand is a fleet of 31 Relay solver wallets (a fifth of all gas), an unverified 1%-fee memecoin router (11% of transactions, ~$430k of fees collected for its owner), ERC-4337 bundlers, Axiom, OKX, Kyber and Uniswap routers, and MEV bots whose reverts make up 9% of transactions. Tokenized stocks moved ~$268M in 1.46M transfers with zero mints or burns, three quarters of them through Uniswap pools, and their on-chain prices track their references within 0.2% (the TSLA premium originally reported here was a price-merge artifact, corrected in the interchain study above). New generic tooling: `scripts/orbit_collect.py` (batched blocks + receipts for any Nitro chain, reduced on the fly to compact chunks), `scripts/orbit_scan.py` (streaming analysis with pool-key resolution), `scripts/orbit_followups.py`; method and endpoint notes in `method.md`.
@@ -215,6 +238,45 @@ Ethereum, BSC, Base, Polygon, Arbitrum, Optimism and Avalanche, so it enumerates
 Deposit-topic logs per chain, bytecode-filters to CoreVault forks, and scores each for a flash-mintable blue-chip pool
 and a reward token with real sellable liquidity (a $25k-depth gate, so dust tokens like STACY are flagged as forks but not
 suitable).
+
+## Perpetual futures, and the HIP-3 builder-deployed surface (2026-09-08)
+
+[An hour of perpetual futures: 515 markets, eleven venues inside one venue, and an oracle that is wrong about
+oil](research/2026-09-08/perps_1h/report.md) (10:33–11:33 UTC). The first instruments in this repo that read a
+*market* rather than a settlement layer.
+
+Under HIP-3 anyone staking 500,000 HYPE for 183 days can deploy their own perpetual DEX on Hyperliquid's matching
+engine, list markets, **set the oracle themselves**, and charge 0–300% extra fees. So one venue is eleven, with eleven
+independent opinions about price — the same shape as the cross-chain dollar surface, except the dispersion is held
+open by whoever set the oracle rather than by bridging latency.
+
+```sh
+uv run python scripts/perp_collect.py window --out research/2026-09-08/perps_1h --hours 1   # 515 markets, ~650 requests
+uv run python scripts/perp_collect.py tape   --out research/2026-09-08/perps_1h --minutes 42 --every 20
+uv run python scripts/perp_scan.py analyze|tape|detect|verify|render --out research/2026-09-08/perps_1h
+```
+
+**The finding.** `xyz:BRENTOIL` — $266M of open interest, $3.2M traded in the hour, a 0.6bp spread — sits **54 basis
+points below its own oracle**, and that gap widened monotonically for **eight consecutive hours** with no reversal.
+The tape (all 515 markets every 20s) settles what a single snapshot cannot: mark and oracle move tick for tick with a
+constant offset, so the oracle is live and the disagreement is real. External quotes put Brent near $97.29 and WTI
+near $92.37 against XYZ books of 98.108 and 93.523 and oracles of 98.640 and 93.900 — **the book is the side closer to
+the outside world.** Longs are paid **285% annualised**, the round trip costs **11.9bp at $100k with nothing
+unfilled**, and it breaks even in **3.6 hours**. Held a day it nets 242% — $663 on $100,000 — against $474k of book
+and unhedged energy delta.
+
+**Why the gap survives.** Rather than assert Hyperliquid's funding formula (it did not fit — wrong on 164 of 315
+markets), the loop measured **how much of its own premium each DEX charges as funding**. The median market charges
+under a fifth of it; EntropyIO charges 1.6%. That single table explains the whole report: `io:OAI` carries a +0.997%
+premium and pays 8% a year, and `io:ANTH` sits at **100.0% of its HIP-3 open-interest cap** ($24,011,199 of
+$24,000,000) with $42k of asks behind $24M of position — the cap turns the price into a queue. Six of the ten builder
+DEXes have **zero open interest across 97 listed markets**, behind six separate 500,000-HYPE stakes.
+
+**The loop, recorded in `rounds.json`.** Round 1 joined markets on their ticker and reported a 32,046,130bp
+"dispersion" between Stacks and an unrelated `para:STX`. Round 3's verifier asserted `premium == (mark − oracle) /
+oracle` and **304 of 315 markets failed** — the assertion was wrong, the premium is an hourly average against the
+*impact* prices, and replacing that assertion with a measurement produced the explanation for the headline. The best
+finding in the report came out of an assertion that failed.
 
 ## Ten hours across midnight: the routine, traced (2026-09-08)
 

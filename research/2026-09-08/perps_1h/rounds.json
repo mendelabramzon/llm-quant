@@ -1,0 +1,40 @@
+{
+  "what_this_is": "The self-improving loop, recorded. Each round is what the previous round's output made necessary — not a plan drawn in advance. The entries are the failures, because those are what moved the instruments.",
+  "rounds": [
+    {
+      "round": 1,
+      "built": ["scripts/perp_rpc.py", "scripts/perp_collect.py (window, tape)", "scripts/perp_scan.py (analyze)"],
+      "produced": "515 markets across 11 perp DEXes, $14.6B open interest, $247.4M traded in the hour",
+      "what_it_got_wrong": [
+        "Joined cross-DEX markets on their ticker string. core:STX is Stacks at $0.27 and para:STX is a different asset at $857.79, so the join reported a 32,046,130 basis-point 'dispersion'.",
+        "One snapshot cannot separate a stale oracle from a structural basis, and the two call for opposite trades. The analysis had no way to tell them apart."
+      ]
+    },
+    {
+      "round": 2,
+      "changed": [
+        "Cross-DEX join now requires the two marks to agree within 5%; anything wider is recorded as a ticker collision instead of compared. Nine real pairs survived, one collision was caught.",
+        "Added `perp_scan.py tape`: mark/oracle series from repeated snapshots, with the correlation of first differences as the discriminator. A frozen oracle has zero variance; a live oracle tracking the book has correlation near 1 and can still hold a constant offset."
+      ],
+      "what_it_found": "268 markets where the oracle tracks the book, 2 where the oracle froze while the book moved. xyz:BRENTOIL is in the first group — its oracle moves tick for tick with the mark while holding a constant -55bp gap. That is a real basis, not a stale feed, and it changed the trade."
+    },
+    {
+      "round": 3,
+      "built": ["eight detectors", "perp_scan.py verify"],
+      "what_verify_caught": [
+        "The identity `premium == (mark - oracle) / oracle` failed on 304 of 315 markets. The assertion was wrong, not the data: the venue's premium is an average sampled across the funding hour against the *impact* prices. Fitted against this window it sits closest to the impact mid (median absolute error 1.0e-4 against 3.6e-4 for the mark) and agrees in sign only 86% of the time.",
+        "Trying to fit the published funding formula `premium + clamp(interest - premium)` to the data gave a median error of 2.2e-6 but missed 164 of 315 markets, worst on HIP-3. Rather than assert a formula that does not hold, the ratio of funding actually charged to premium is now *measured* per DEX — and that measurement turned out to be the explanation for the largest finding in the window.",
+        "`dead_market` returned zero hits because it skipped delisted markets, and the six dead builder DEXes have every market delisted. The filter removed the entire finding."
+      ]
+    },
+    {
+      "round": 4,
+      "changed": [
+        "dead_market counts a market as dead whether or not it is formally delisted; what makes it a finding is the staked deployment behind an empty book.",
+        "The premium bound was widened from one percentage point to two: exactly one market of 315 — SOPH, the most extreme premium on the venue — put an hour of averaging more than a point away from the instant, and a bound the widest real market fails is a bound that tests nothing.",
+        "Added `render`."
+      ],
+      "state": "verify: 5 checks, 7 identities, all pass. 58 detector hits, 7 at high severity."
+    }
+  ]
+}

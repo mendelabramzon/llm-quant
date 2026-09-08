@@ -5,6 +5,47 @@ the LLM reads evidence, proposes mechanisms, and writes the infrastructure; dete
 reusable detectors and tests; the human steers. The metric we optimise is **time-to-verified-insight**: how fast a raw
 signal becomes a true, capacity-aware, reproducible claim and then a reusable detector — not classification coverage.
 
+## Session log — 2026-09-08 (perpetual futures: the first instruments that read a market, not a ledger)
+
+Everything before this read *settlement* — transfers, lending state, bridge legs. A perp DEX settles almost nothing on
+chain; it produces a price, a funding rate and an open-interest number, and all the value is in the relationships
+between them. That needs its own collector, and HIP-3 makes it worth the trouble: a 500,000-HYPE stake buys you your
+own perp DEX on Hyperliquid's engine, your own listings, **your own oracle**, and 0–300% of extra fees.
+
+Landed: `scripts/perp_rpc.py`, `scripts/perp_collect.py` (window + tape), `scripts/perp_scan.py`
+(analyze / tape / detect / verify / render) with eight perp detectors, and `rounds.json` recording the loop.
+
+**The finding.** `xyz:BRENTOIL` is 54bp below its own oracle and has widened monotonically for eight hours; `xyz:CL`
+the same; `xyz:NATGAS` the reverse. Longs are paid 285% and 217% annualised, the round trip costs 11.9bp and 10.9bp at
+$100k with nothing unfilled, and both break even in under five hours. External quotes put the *book* closer to the
+real price than the oracle on both, so the deployer's oil oracle is high and the funding rate is paying people to
+correct it. Capacity is $474k of book against $484M of cap headroom, and the delta is unhedged — there is no second
+Brent on the venue.
+
+**The tape is what made it a trade.** One snapshot cannot separate a stale oracle from a structural basis and the two
+call for opposite trades. Sampling all 515 markets every 20 seconds and correlating *first differences* of mark and
+oracle separates them: 268 markets where the oracle tracks the book, 2 where it never moved at all
+(`xyz:ZHIPU`, `xyz:MINIMAX` — private companies with no continuous public market). Brent is firmly in the first group.
+
+**The verifier produced the explanation.** It asserted `premium == (mark − oracle) / oracle` and 304 of 315 markets
+failed. The assertion was wrong — the venue's premium is an hourly average sampled against the *impact* prices. Chasing
+it led to fitting the funding formula, which also did not hold (wrong on 164 of 315, worst on HIP-3), so the loop
+replaced the assertion with a **measurement**: how much of its own premium each DEX charges as funding. Median under a
+fifth; EntropyIO 1.6%. That table is why a 54bp gap can stay open for eight hours against a 285% toll. The best
+finding in the session came out of an assertion that failed.
+
+**The constraint is the door again.** `io:ANTH` sits at 100.0% of its HIP-3 open-interest cap — $24,011,199 against
+$24,000,000 — with $42k of asks and $15k of bids behind $24M of position, and 85% of a $100k order unfillable. At the
+cap, open interest cannot grow, so a buyer can only be filled by a long closing: the cap turns the price into a queue
+and the premium is what the queue costs. That is the third system this week — after cross-chain dollar switches and
+Aave's midnight USDC reserve — where the binding constraint was the size of the door rather than the size of the prize.
+
+**And the dead half.** Six of ten builder DEXes carry zero open interest across 97 listed markets, each behind a
+500,000-HYPE stake locked for 183 days.
+
+Open: funding is a *rate*, and a rate's worth is its size times how long it holds. The findings ledger tracks
+recurrence for EVM findings; funding needs the same, keyed on `(dex, coin)`.
+
 ## Session log — 2026-09-08 (ten hours across midnight: a sentence becomes a detector)
 
 A trailing ten-hour window (2026-09-07 22:26 -> 2026-09-08 08:26 UTC, 2,993 blocks, 675,675 transactions) chosen so it
@@ -394,9 +435,14 @@ or a window that spans midnight. What this pass exposed, in priority order:
    retaining address is. Those are the ones whose mislabelling moves headlines — 0x3cc936b7 was one — so they need a
    cheap identity route: funder graph, first-funding transaction, or a counterparty-set match against known exchange
    infrastructure.
-4. **The data-access layer (item 6).** Still the largest blocker: no trace or archive endpoint means the CoreVault
-   bytecode fingerprint and the JIT-liquidity balance-delta test cannot become detectors, and fork tests only run at
-   latest.
+4. **The data-access layer (item 6).** Partly resolved, and the standing claim here was too pessimistic. The public
+   dRPC endpoint answers *historical state* per call: during the 2026-09-08 bytecode study it returned
+   `eth_getTransactionCount` for an address at 1, 7, 30, 90, 180 and 270 days back, and a binary search over
+   `eth_getCode` dated two contract deployments to within a block. That is enough to age an actor and to date a
+   deployment — it turned "an unlabelled address sent 2,258 transactions" into a six-month history with a measured
+   ramp. What it will not do is bulk: it answers 403 to a batched JSON-RPC request, so an archive read is one call at a
+   time and only affordable for a handful of pinned questions. Traces are still missing, so CREATE2 children remain
+   invisible and the JIT balance-delta test still cannot become a detector.
 5. **Signal-testing harness (item 9).** The ledger now produces exactly the input it needs — a repeated observation of
    the same finding with a predicted number attached — so out-of-sample and FDR control on "does this edge persist" is
    the natural next build after a few more windows accumulate.
