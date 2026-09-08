@@ -1,8 +1,8 @@
 # What the whole book is worth
 
 Ethereum mainnet, **2026-09-08 04:29 to 05:27 UTC**, blocks 25,930,251–25,930,550 (300 blocks)
-[[verify: blocks]] [[verify: transactions]] [[verify: logs]], with head reads at 05:29. A short window, collected to close the loop rather than to study the hour: eleven detectors run in four
-seconds, and six of the seven strategies in the book now re-price themselves from it.
+[[verify: blocks]] [[verify: transactions]] [[verify: logs]], with head reads at 05:29. A short window, collected to close the loop rather than to study the hour: twelve detectors run in
+about five seconds, and **all seven** strategies in the book now re-price themselves from it — none is a memory.
 
 ## 1. Pendle, and the distinction that decides whether an implied yield is a trade
 
@@ -29,24 +29,31 @@ The matcher had to be fixed to do that honestly. Its first version matched under
 It now parses the asset segment of `PT-<asset>-<date>` and matches exactly. That is the error the detector exists to
 prevent, committed by its own matcher.
 
-## 2. The strategy book, sized
-
-Six of seven re-price from detectors. Sorted by what each is worth per year at the capacity it actually supports:
+## 2. The strategy book, sized — all seven re-pricing themselves
 
 | strategy | net APR | capacity | per year |
 |---|---:|---:|---:|
 | Sky savings rate over Aave USDS | 3.48% | $1,000,000,000 | $34,800,000 |
-| Morpho USDT borrow vs Aave *(hand, stale)* | 0.91% | $24,000,000 | $218,400 |
 | sUSDe cooldown redemption | 17.25% | $600,000 | $103,500 |
+| Morpho USDT borrow vs Aave | 1.46% | $6,353,460 | $92,761 |
 | USDG captive-flow v4 LP | 10.37% | $150,000 | $15,555 |
 | PT-sUSDS fixed vs the savings rate | 0.64% | $1,000,000 | $6,400 |
-| Aave USDtb supply | 2.37% | $227,400 | $5,389 |
-| Compound v3 USDC over SparkLend | 0.34% | $1,400,000 | $4,760 |
+| Compound v3 USDC over SparkLend | 0.39% | $1,400,000 | $5,460 |
+| Aave USDtb supply | 2.39% | $227,400 | $5,435 |
 
-**Excluding the savings rate — which is the benchmark, not an edge — the entire book is worth about $354,000 a year,
-and $218,000 of that is a stale hand measurement from two days ago.** The verified, currently-re-priced part is
-roughly $136,000, and $103,500 of *that* is one trade whose annualisation assumes a million dollars of sUSDe is
-offered below NAV every single day.
+**Excluding the savings rate — which is the benchmark, not an edge — the whole book is worth about $229,000 a year**,
+and $103,500 of that is one trade whose annualisation assumes a million dollars of sUSDe is offered below NAV every
+single day. Nothing here is stale: every row was re-priced from this window or the one before it.
+
+The last hand number to fall was the largest. "Borrow USDT on Morpho rather than Aave" was quoted at 91bp on $24M —
+$218,400 a year — from a single afternoon two days ago. Measured: **1.46pp on $6.35M, $92,761**. The rate gap is
+*wider* than the hand note said and the capacity is a quarter of it, because $24M was the vault's size and $6.35M is
+what is actually withdrawable. The detector also names what the hand note omitted: the cheapest Morpho USDT market
+lends against **sUSDS at 96.5% LLTV**, so the rate is only available to a borrower who can post that collateral.
+
+On an isolated-market venue that distinction is the whole thing. A pooled reserve lets any listed collateral reach any
+rate; a Morpho market is a rate *for one collateral*, and quoting it without saying which is quoting a price nobody
+can necessarily trade.
 
 That is the honest state of the mainnet dollar opportunity set as this system currently measures it. It is not a
 disappointing result; it is the result. An efficient market is supposed to look like this, and the value of the loop

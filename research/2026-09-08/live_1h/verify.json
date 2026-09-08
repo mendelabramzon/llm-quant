@@ -28,8 +28,8 @@
   },
   {
    "field": "head",
-   "artifact": 25930561,
-   "current": 25930561,
+   "artifact": 25930925,
+   "current": 25930925,
    "gate": true,
    "ok": true,
    "note": ""
@@ -84,8 +84,8 @@
   {
    "id": "exchange-net-stables",
    "check": "exchange net flow, stables (USD)",
-   "recomputed": -998927,
-   "analysis": -998928,
+   "recomputed": -998928,
+   "analysis": -998929,
    "ok": true,
    "tolerance": 0.03,
    "note": ""
@@ -93,8 +93,8 @@
   {
    "id": "exchange-net-eth",
    "check": "exchange net flow, ETH (USD)",
-   "recomputed": 5629695,
-   "analysis": 5629695,
+   "recomputed": 5612806,
+   "analysis": 5612806,
    "ok": true,
    "tolerance": 0.03,
    "note": ""
@@ -165,13 +165,13 @@
    "min_tier": "model-memory",
    "exchange_addresses": 46,
    "stables_net_usd": 13351,
-   "eth_net_usd": -1863067
+   "eth_net_usd": -1847490
   },
   {
    "min_tier": "behaviour",
    "exchange_addresses": 95,
-   "stables_net_usd": -998927,
-   "eth_net_usd": 5629695
+   "stables_net_usd": -998928,
+   "eth_net_usd": 5612806
   }
  ],
  "mechanisms": null,
@@ -219,15 +219,15 @@
    "usdc-mint"
   ],
   "headline_numbers_tagged": 0,
-  "headline_numbers_untagged": 41,
+  "headline_numbers_untagged": 45,
   "coverage": 0.0,
   "untagged_examples": [
    "| PT | implied | comparison | classification | |---|---:|---|---| | PT-sUSDS-26NOV2026 | 4.89% | Sky savings rate 3.60% | **term premium**, +129bp | |",
    "The eight markets that traded in the earlier 21:27\u201323:27 window were *all* credit spreads \u2014 implied yields of 6% to 23% with no comparable floating ra",
-   "| strategy | net APR | capacity | per year | |---|---:|---:|---:| | Sky savings rate over Aave USDS | 3.48% | $1,000,000,000 | $34,800,000 | | Morpho ",
-   "**Excluding the savings rate \u2014 which is the benchmark, not an edge \u2014 the entire book is worth about $354,000 a year, and $218,000 of that is a stale h",
-   "| strategy | earlier today | now | why | |---|---:|---:|---| | Compound v3 USDC over SparkLend | 1.46% | **0.34%** | utilisation drifted 90.77% \u2192 90.3",
-   "The Compound row is the kink analysis playing out in hours: 0.47 percentage points of utilisation, and three quarters of the opportunity is gone. The "
+   "| strategy | net APR | capacity | per year | |---|---:|---:|---:| | Sky savings rate over Aave USDS | 3.48% | $1,000,000,000 | $34,800,000 | | sUSDe c",
+   "**Excluding the savings rate \u2014 which is the benchmark, not an edge \u2014 the whole book is worth about $229,000 a year**, and $103,500 of that is one trad",
+   "The last hand number to fall was the largest. \"Borrow USDT on Morpho rather than Aave\" was quoted at 91bp on $24M \u2014 $218,400 a year \u2014 from a single af",
+   "| strategy | earlier today | now | why | |---|---:|---:|---| | Compound v3 USDC over SparkLend | 1.46% | **0.34%** | utilisation drifted 90.77% \u2192 90.3"
   ]
  },
  "all_ok": true,

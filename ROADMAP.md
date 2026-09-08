@@ -314,6 +314,12 @@ dated session and have not been re-measured since, which is exactly the failure 
 for findings and had not yet stopped for strategies. A strategy backed by a detector stays current for free; a strategy
 backed by a bespoke scanner decays into a memory the moment the session ends.
 
+Excluding the savings rate, which is the benchmark rather than an edge, the whole book measures at **about $229,000
+a year** — and that is the point of building it. Every row now has legs `economics.py` priced, a capacity that came
+from a rate curve, a withdrawable balance or a traded volume rather than a headline size, and a kill criterion. An
+efficient market is supposed to look like this; the value of the loop is that the number is derived rather than
+asserted, and that it moves on its own when the market does.
+
 The book also disciplines the reading of a finding. A cross-venue rate gap is only an opportunity if the *higher* venue
 clears the risk-free dollar, and most do not: "PYUSD pays 3.29pp more on Aave than SparkLend" is worth 28bps over the
 actual alternative, and "DAI pays 0.61pp more on Aave than SparkLend" compares two rates that are both below the
@@ -333,8 +339,12 @@ the window's own `Swap` logs — the markets with live flow, no hardcoded list a
 `detectors/fixed_vs_floating.py` classifies each implied yield as a *term premium* (the floating rate on the same
 underlying is readable, so the gap is a rate view) or a *credit spread* (it is not, so the excess is the price of an
 issuer's credit that nothing here has assessed). Every Pendle market that traded in the 21:27–23:27 window was the
-second kind, at 6% to 23%. Six of the seven strategies now re-price themselves; only the Morpho USDT borrow spread
-remains a hand measurement.
+second kind, at 6% to 23%. And the fourth: `detectors/borrow_cost.py` ranks the cheapest venue to
+borrow each dollar and caps the saving at the liquidity actually withdrawable there, reading Morpho Blue's isolated
+markets from the window's own event topics. **All seven strategies now re-price themselves; none is a hand
+measurement.** The last one to fall was the largest: "borrow USDT on Morpho rather than Aave" was quoted at 91bp on
+$24M and measures at 1.46pp on $6.35M — a wider rate on a quarter of the size, because $24M was the vault and $6.35M
+is what is withdrawable, and the cheap market lends only against sUSDS at 96.5% LLTV, which the hand note never said.
 
 Two gates were added after the loop fell into the gap between them. `head_state.json` is an input to `analyze` — the
 whole window is priced from it — and it was not fingerprinted, so re-running `head` silently re-priced an analysis

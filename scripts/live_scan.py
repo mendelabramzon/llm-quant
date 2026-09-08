@@ -1313,6 +1313,8 @@ def head_state(args):
                 grid = [0.50, 0.60, 0.70, 0.75, 0.80, 0.84, 0.87, 0.89, 0.895, 0.90, 0.905, 0.91, 0.92, 0.94, 0.96, 0.98, 0.995]
                 cur = rpc.eth_calls([(comet, SEL['getSupplyRate'] + enc_uint(int(x * 1e18))) for x in grid], blk)
                 hs['compound'][name]['supply_curve'] = [[x, word(c, 0) * 31536000 / 1e18] for x, c in zip(grid, cur) if c]
+    # Morpho Blue: the isolated-market side of the borrow book.
+    hs['morpho'] = morpho_state(rpc, out, blk)
     # Pendle: the fixed-rate side of every yield-bearing dollar and ETH claim.
     #
     # The market list is discovered from the window's own `Swap` logs rather than hardcoded or fetched from an API.
@@ -1392,6 +1394,94 @@ def head_state(args):
 # ----------------------------------------------------------------------------------------------------------------------
 # Analyze over raw files
 # ----------------------------------------------------------------------------------------------------------------------
+MORPHO_IRM_SIG = ('borrowRateView((address,address,address,address,uint256),'
+                  '(uint128,uint128,uint128,uint128,uint128,uint128))')
+# Every Morpho Blue market event indexes the market id as topic 1, so the markets that saw activity in a window are
+# readable from its own logs without an index or an API — the same self-updating discovery the Pendle reader uses.
+MORPHO_MARKET_TOPICS = {keccak(sig) for sig in (
+    'Supply(bytes32,address,address,uint256,uint256)',
+    'Withdraw(bytes32,address,address,address,uint256,uint256)',
+    'Borrow(bytes32,address,address,address,uint256,uint256)',
+    'Repay(bytes32,address,address,uint256,uint256)',
+    'AccrueInterest(bytes32,uint256,uint256,uint256)',
+    'SupplyCollateral(bytes32,address,address,uint256)',
+    'WithdrawCollateral(bytes32,address,address,address,uint256)',
+)}
+
+
+def morpho_markets_in_window(out, cap=60):
+    """Morpho Blue market ids that saw activity in this window, busiest first."""
+    import collections as _c
+    c = _c.Counter()
+    d = Path(out) / 'raw' / 'logs'
+    if not d.exists():
+        return []
+    for p in sorted(d.glob('*.json.gz')):
+        for l in read_gz(p):
+            if l['address'].lower() != MORPHO:
+                continue
+            tp = l.get('topics')
+            if tp and len(tp) >= 2 and tp[0] in MORPHO_MARKET_TOPICS:
+                c[tp[1]] += 1
+    return [i for i, _ in c.most_common(cap)]
+
+
+def morpho_state(rpc, out, blk):
+    """Per-market borrow and supply rates, utilisation and *withdrawable liquidity* for the active Morpho markets.
+
+    The number that matters here is liquidity, not size. Morpho's markets are isolated, so a rate is only as good as
+    the amount you could actually borrow against it, and a market at 99% utilisation quoting a cheap rate is quoting a
+    rate on nothing. Aave and Compound blur this behind a single pooled reserve; Morpho does not, which is why the
+    comparison has to carry it.
+
+    The rate comes from the IRM's own view function — the same one Morpho calls on accrual — fed the market params and
+    state structs. Both structs are entirely static types, so the encoding is a straight concatenation of words.
+    """
+    ids = morpho_markets_in_window(out)
+    if not ids:
+        return {}
+    res = rpc.eth_calls([(MORPHO, sel(sg) + i[2:]) for i in ids
+                         for sg in ('idToMarketParams(bytes32)', 'market(bytes32)')], blk)
+    rows = []
+    for k, i in enumerate(ids):
+        pr, mk = res[2 * k], res[2 * k + 1]
+        if not pr or len(pr) < 2 + 64 * 5 or not mk or len(mk) < 2 + 64 * 6:
+            continue
+        loan, coll = '0x' + pr[2:66][-40:], '0x' + pr[66:130][-40:]
+        oracle, irm = '0x' + pr[130:194][-40:], '0x' + pr[194:258][-40:]
+        rows.append({'id': i, 'loan': loan, 'collateral': coll, 'oracle': oracle, 'irm': irm,
+                     'lltv': word(pr, 4) / 1e18,
+                     'params': [loan, coll, oracle, irm, word(pr, 4)],
+                     'state': [word(mk, j) for j in range(6)]})
+    if not rows:
+        return {}
+    calls = []
+    for r in rows:
+        loan, coll, oracle, irm, lltv = r['params']
+        body = (enc_addr(loan) + enc_addr(coll) + enc_addr(oracle) + enc_addr(irm) + enc_uint(lltv)
+                + ''.join(enc_uint(x) for x in r['state']))
+        calls.append((r['irm'], sel(MORPHO_IRM_SIG) + body))
+        calls.append((r['loan'], SEL['decimals']))
+        calls.append((r['loan'], SEL['symbol']))
+    res = rpc.eth_calls(calls, blk)
+    out_rows = {}
+    for k, r in enumerate(rows):
+        rate, dec, sy = res[3 * k], res[3 * k + 1], res[3 * k + 2]
+        d = word(dec, 0) if dec else 18
+        sup, bor, fee = r['state'][0], r['state'][2], r['state'][5] / 1e18
+        per_sec = (word(rate, 0) / 1e18) if rate else None
+        # Morpho quotes a per-second rate; the market compounds continuously, so the APY is the exponential.
+        apy = (math.exp(per_sec * 31_536_000) - 1) if per_sec is not None else None
+        util = (bor / sup) if sup else 0.0
+        out_rows[r['id']] = {
+            'id': r['id'], 'loan': r['loan'], 'collateral': r['collateral'], 'lltv': r['lltv'],
+            'sym': dec_str(sy) if sy else None, 'decimals': d,
+            'supplied': sup / 10 ** d, 'borrowed': bor / 10 ** d, 'liquidity': (sup - bor) / 10 ** d,
+            'utilisation': round(util, 6), 'fee': fee,
+            'borrow_apy': apy, 'supply_apy': (apy * util * (1 - fee)) if apy is not None else None}
+    return out_rows
+
+
 PENDLE_SWAP_TOPIC = keccak('Swap(address,address,int256,int256,uint256,uint256)')
 PENDLE_PY_ORACLE = '0x9a9fa8338dd5e5b2188006f1cd2ef26d921650c2'   # PYLpOracle; every read is checked by getOracleState
 PENDLE_TWAP = 900
