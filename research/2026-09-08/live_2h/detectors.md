@@ -1,35 +1,20 @@
 # Detector sweep — research/2026-09-08/live_2h
 
-Ran 10 detector(s); 28 hit(s).
+Ran 11 detector(s); 35 hit(s).
 
 | detector | hits | seconds | what it looks for |
 |---|---:|---:|---|
-| `address_poisoning` | 1 | 1.26 | lookalike dust transfers that follow a large transfer, aimed at a later copy-paste |
-| `dollar_rate_outlier` | 2 | 1.23 | dollar supply rates ranked against the risk-free dollar, sized from each reserve’s own rate curve |
+| `address_poisoning` | 1 | 1.57 | lookalike dust transfers that follow a large transfer, aimed at a later copy-paste |
+| `dollar_rate_outlier` | 1 | 1.29 | dollar supply rates ranked against the risk-free dollar, sized from each reserve’s own rate curve |
+| `fixed_vs_floating` | 8 | 0.00 | Pendle implied fixed yields against the floating rate on the same underlying, sized by PT depth |
 | `gas_concentration` | 0 | 0.00 | base-fee spikes attributed to the contract whose gas demand caused them |
 | `jit_liquidity` | 1 | 0.00 | fee share taken by liquidity minted for a single swap, per pool and per window |
 | `lp_marginal_yield` | 8 | 0.00 | concentrated-LP fee yield net of divergence, at the band that stayed in range and at real size |
-| `mass_distribution` | 4 | 1.91 | one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam |
-| `mislabelled_flow` | 0 | 1.40 | address labels the window contradicts, which is how a headline moves by a multiple |
+| `mass_distribution` | 4 | 1.94 | one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam |
+| `mislabelled_flow` | 0 | 1.36 | address labels the window contradicts, which is how a headline moves by a multiple |
 | `nav_discount` | 1 | 0.00 | redeemable claims trading away from the value the protocol pays, with the queue that separates them |
 | `rate_dispersion` | 5 | 0.00 | cross-venue supply-rate gaps on one asset, de-spiked and sized by rate dilution |
-| `solver_fingerprint` | 6 | 1.31 | unlabelled contracts that pass value straight through: solvers, routers and searcher bots |
-
-### [high] Aave v3 USDC is fully utilised: $12.0k of exit liquidity on a $2.2B reserve
-
-```json
-{
- "venue": "Aave v3",
- "asset": "USDC",
- "supplied_usd": 2156271448,
- "borrowed_usd": 2156259491,
- "available_usd": 11957,
- "utilisation": 0.999994,
- "supply_apr_pct": 12.866,
- "borrow_apr_pct": 14.296,
- "why": "nobody can withdraw from this reserve until a borrower repays or a supplier arrives; any strategy whose exit leg is this reserve is blocked, and the high rate it prints is the symptom rather than an opportunity"
-}
-```
+| `solver_fingerprint` | 6 | 1.33 | unlabelled contracts that pass value straight through: solvers, routers and searcher bots |
 
 ### [notable] unlabelled atomic bot pair 0x04ca7a7e passed $480.2M through in 7 txs (100% ended flat, 4 counterparties)
 
@@ -118,7 +103,7 @@ Ran 10 detector(s); 28 hit(s).
  "low_venue": "Aave v3",
  "supply_apr_spot_pct": {
   "Aave v3": 0.124,
-  "SparkLend": 2.318,
+  "SparkLend": 2.244,
   "Sky SSR": 3.6
  },
  "supply_apr_median_pct": {},
@@ -128,13 +113,13 @@ Ran 10 detector(s); 28 hit(s).
  "despiked": false,
  "despike_note": "Sky SSR emits no ReserveDataUpdated logs, so the head read is the only source",
  "supplied_usd": {
-  "Aave v3": 11187698,
-  "SparkLend": 748016681,
+  "Aave v3": 11187707,
+  "SparkLend": 754133820,
   "Sky SSR": 1000000000
  },
  "utilisation": {
   "Aave v3": 0.03,
-  "SparkLend": 0.656
+  "SparkLend": 0.646
  },
  "dilution_basis": "modelled",
  "best_size": null,
@@ -142,9 +127,9 @@ Ran 10 detector(s); 28 hit(s).
 }
 ```
 
-Economics: net APR 3.48%, $34,758,805 per year, GO — clears gas, impact and competition at this size
+Economics: net APR 3.48%, $34,759,638 per year, GO — clears gas, impact and competition at this size
 
-### [notable] USDT pays 0.98pp more on Aave v3 than SparkLend; best size $242.8M earns $1.1M a year over SparkLend
+### [notable] USDT pays 0.98pp more on Aave v3 than SparkLend; best size $243.6M earns $1.1M a year over SparkLend
 
 ```json
 {
@@ -152,72 +137,72 @@ Economics: net APR 3.48%, $34,758,805 per year, GO — clears gas, impact and co
  "high_venue": "Aave v3",
  "low_venue": "SparkLend",
  "supply_apr_spot_pct": {
-  "Aave v3": 3.604,
+  "Aave v3": 3.58,
   "SparkLend": 2.619,
-  "Compound v3 USDT": 3.002
+  "Compound v3 USDT": 3.003
  },
  "supply_apr_median_pct": {
   "Aave v3": 3.603
  },
- "gap_pp_spot": 0.985,
+ "gap_pp_spot": 0.961,
  "gap_pp_despiked": 0.984,
  "head_read_spiked": false,
  "despiked": true,
  "despike_note": "median of the window log series",
  "supplied_usd": {
-  "Aave v3": 2962871489,
-  "SparkLend": 391764710,
-  "Compound v3 USDT": 185305997
+  "Aave v3": 2973110657,
+  "SparkLend": 391786693,
+  "Compound v3 USDT": 185229412
  },
  "utilisation": {
-  "Aave v3": 0.936,
+  "Aave v3": 0.932,
   "SparkLend": 0.828,
   "Compound v3 USDT": 0.834
  },
  "dilution_basis": "irm",
  "best_size": {
-  "size_usd": 242777901,
-  "apr_at_size_pct": 3.079,
-  "over_low_venue_usd_per_year": 1116507
+  "size_usd": 243616899,
+  "apr_at_size_pct": 3.058,
+  "over_low_venue_usd_per_year": 1070678
  },
  "marginal_apr_ladder": [
   {
    "size_usd": 100000.0,
-   "apr_pct": 3.603
+   "apr_pct": 3.58
   },
   {
    "size_usd": 1000000.0,
-   "apr_pct": 3.601
+   "apr_pct": 3.577
   },
   {
    "size_usd": 5000000.0,
-   "apr_pct": 3.592
+   "apr_pct": 3.568
   },
   {
    "size_usd": 25000000.0,
-   "apr_pct": 3.544
+   "apr_pct": 3.52
   },
   {
    "size_usd": 100000000.0,
-   "apr_pct": 3.372
+   "apr_pct": 3.351
   }
  ]
 }
 ```
 
-Economics: net APR 0.46%, $1,116,507 per year, GO — clears gas, impact and competition at this size
+Economics: net APR 0.44%, $1,070,678 per year, GO — clears gas, impact and competition at this size
 
-### [notable] sUSDe trades 7.1bp below NAV, 4.4bp after the 2.7bp round trip; cooldownShares, then unstake after cooldownDuration (1 day)
+### [notable] sUSDe trades 7.4bp below NAV, 4.7bp after the 2.7bp round trip; cooldownShares, then unstake after cooldownDuration (1 day)
 
 ```json
 {
  "asset": "sUSDe",
  "nav_source": "0x9d39a5de convertToAssets(uint256)",
- "nav": 1.247001,
+ "nav": 1.247036,
  "market_vw_price": 1.24611,
  "market_median": 1.246198,
  "market_p10": 1.245819,
- "discount_bps": 7.14,
+ "discount_bps": 7.43,
  "traded_volume_usd": 972880,
  "implied_daily_volume_usd": 11657074,
  "refills_needed_per_year": 365,
@@ -233,12 +218,12 @@ Economics: net APR 0.46%, $1,116,507 per year, GO — clears gas, impact and com
   "exit_bps": 2.7,
   "path": "cooldownShares, then unstake after cooldownDuration (1 day)"
  },
- "net_edge_bps": 4.44,
+ "net_edge_bps": 4.73,
  "why": "the protocol pays NAV and the market paid less; the gap closes when you redeem, and the wait is the reason a bot cannot take it from you"
 }
 ```
 
-Economics: net APR 16.21%, $157,656 per year, GO — clears gas, impact and competition at this size
+Economics: net APR 17.25%, $167,853 per year, GO — clears gas, impact and competition at this size
 
 ### [notable] uniswap_v4 USDe/USDC: $1.0M in a ±0.01% band earns 0.3bp of fees less 0.0bp of divergence over 2.0h (12.7% a year if it repeats)
 
@@ -321,71 +306,6 @@ Economics: net APR 16.21%, $157,656 per year, GO — clears gas, impact and comp
 
 Economics: net APR 12.65%, $90,486 per year, GO — nets 12.65% a year at $1,000,000 in a ±0.010% band against a 3.60% savings rate
 
-### [notable] USDC pays 2.15pp more on Compound v3 USDC than SparkLend; best size $1.4M earns $15k a year over SparkLend
-
-```json
-{
- "asset": "USDC",
- "high_venue": "Compound v3 USDC",
- "low_venue": "SparkLend",
- "supply_apr_spot_pct": {
-  "Aave v3": 12.866,
-  "SparkLend": 3.542,
-  "Compound v3 USDC": 5.69,
-  "Sky SSR": 3.6
- },
- "supply_apr_median_pct": {
-  "Aave v3": 3.593
- },
- "gap_pp_spot": 2.148,
- "gap_pp_despiked": 2.148,
- "head_read_spiked": null,
- "despiked": false,
- "despike_note": "Compound v3 USDC emits no ReserveDataUpdated logs, so the head read is the only source",
- "supplied_usd": {
-  "Aave v3": 2156271448,
-  "SparkLend": 25640465,
-  "Compound v3 USDC": 374350853,
-  "Sky SSR": 1000000000
- },
- "utilisation": {
-  "Aave v3": 1.0,
-  "SparkLend": 0.922,
-  "Compound v3 USDC": 0.908
- },
- "dilution_basis": "sampled",
- "best_size": {
-  "size_usd": 1417172,
-  "apr_at_size_pct": 4.596,
-  "over_low_venue_usd_per_year": 14934
- },
- "marginal_apr_ladder": [
-  {
-   "size_usd": 100000.0,
-   "apr_pct": 5.612
-  },
-  {
-   "size_usd": 1000000.0,
-   "apr_pct": 4.917
-  },
-  {
-   "size_usd": 5000000.0,
-   "apr_pct": 3.225
-  },
-  {
-   "size_usd": 25000000.0,
-   "apr_pct": 3.063
-  },
-  {
-   "size_usd": 100000000.0,
-   "apr_pct": 2.579
-  }
- ]
-}
-```
-
-Economics: net APR 1.05%, $14,934 per year, GO — clears gas, impact and competition at this size
-
 ### [notable] uniswap_v3 USDC/USDT: $250.0k in a ±0.01% band earns 0.1bp of fees less 0.0bp of divergence over 2.0h (4.9% a year if it repeats)
 
 ```json
@@ -466,6 +386,71 @@ Economics: net APR 1.05%, $14,934 per year, GO — clears gas, impact and compet
 ```
 
 Economics: net APR 4.86%, $3,149 per year, GO — nets 4.86% a year at $250,000 in a ±0.010% band against a 3.60% savings rate
+
+### [notable] USDC pays 0.65pp more on Compound v3 USDC than SparkLend; best size $405k earns $1k a year over SparkLend
+
+```json
+{
+ "asset": "USDC",
+ "high_venue": "Compound v3 USDC",
+ "low_venue": "SparkLend",
+ "supply_apr_spot_pct": {
+  "Aave v3": 3.601,
+  "SparkLend": 3.542,
+  "Compound v3 USDC": 4.196,
+  "Sky SSR": 3.6
+ },
+ "supply_apr_median_pct": {
+  "Aave v3": 3.593
+ },
+ "gap_pp_spot": 0.654,
+ "gap_pp_despiked": 0.654,
+ "head_read_spiked": null,
+ "despiked": false,
+ "despike_note": "Compound v3 USDC emits no ReserveDataUpdated logs, so the head read is the only source",
+ "supplied_usd": {
+  "Aave v3": 2307858093,
+  "SparkLend": 25641040,
+  "Compound v3 USDC": 376312155,
+  "Sky SSR": 1000000000
+ },
+ "utilisation": {
+  "Aave v3": 0.935,
+  "SparkLend": 0.922,
+  "Compound v3 USDC": 0.903
+ },
+ "dilution_basis": "sampled",
+ "best_size": {
+  "size_usd": 404959,
+  "apr_at_size_pct": 3.886,
+  "over_low_venue_usd_per_year": 1393
+ },
+ "marginal_apr_ladder": [
+  {
+   "size_usd": 100000.0,
+   "apr_pct": 4.12
+  },
+  {
+   "size_usd": 1000000.0,
+   "apr_pct": 3.431
+  },
+  {
+   "size_usd": 5000000.0,
+   "apr_pct": 3.208
+  },
+  {
+   "size_usd": 25000000.0,
+   "apr_pct": 3.048
+  },
+  {
+   "size_usd": 100000000.0,
+   "apr_pct": 2.568
+  }
+ ]
+}
+```
+
+Economics: net APR 0.34%, $1,393 per year, GO — clears gas, impact and competition at this size
 
 ### [notable] dust spam: 0x7d9f4ca54131e588fc1fe577973b55 sent USDT to 4,669 recipients in 60 txs (95 per tx)
 
@@ -935,8 +920,8 @@ Economics: net APR 163.64%, $1,636,366 per year, no — nets 163.64% a year at $
  "despiked": false,
  "despike_note": "too few log observations for Aave v3 PYUSD: this is one block, and a large transfer or flash loan can move a reserve rate several-fold for one block",
  "supplied_usd": {
-  "Aave v3": 7599229,
-  "SparkLend": 100001127
+  "Aave v3": 7599015,
+  "SparkLend": 100000301
  },
  "utilisation": {
   "Aave v3": 0.878,
@@ -944,14 +929,14 @@ Economics: net APR 163.64%, $1,636,366 per year, no — nets 163.64% a year at $
  },
  "dilution_basis": "irm",
  "best_size": {
-  "size_usd": 4405910,
+  "size_usd": 4405786,
   "apr_at_size_pct": 1.736,
-  "over_low_venue_usd_per_year": 50722
+  "over_low_venue_usd_per_year": 50724
  },
  "marginal_apr_ladder": [
   {
    "size_usd": 100000.0,
-   "apr_pct": 3.785
+   "apr_pct": 3.786
   },
   {
    "size_usd": 1000000.0,
@@ -973,7 +958,7 @@ Economics: net APR 163.64%, $1,636,366 per year, no — nets 163.64% a year at $
 }
 ```
 
-Economics: net APR 1.15%, $50,722 per year, GO — clears gas, impact and competition at this size
+Economics: net APR 1.15%, $50,724 per year, GO — clears gas, impact and competition at this size
 
 ### [info] DAI pays 0.61pp more on Aave v3 than SparkLend; best size $7.1M earns $21k a year over SparkLend [one-block read, de-spiking unavailable]
 
@@ -983,7 +968,7 @@ Economics: net APR 1.15%, $50,722 per year, GO — clears gas, impact and compet
  "high_venue": "Aave v3",
  "low_venue": "SparkLend",
  "supply_apr_spot_pct": {
-  "Aave v3": 3.066,
+  "Aave v3": 3.067,
   "SparkLend": 2.459
  },
  "supply_apr_median_pct": {},
@@ -993,8 +978,8 @@ Economics: net APR 1.15%, $50,722 per year, GO — clears gas, impact and compet
  "despiked": false,
  "despike_note": "too few log observations for Aave v3 DAI: this is one block, and a large transfer or flash loan can move a reserve rate several-fold for one block",
  "supplied_usd": {
-  "Aave v3": 131588802,
-  "SparkLend": 308261201
+  "Aave v3": 131600853,
+  "SparkLend": 308290742
  },
  "utilisation": {
   "Aave v3": 0.867,
@@ -1002,9 +987,9 @@ Economics: net APR 1.15%, $50,722 per year, GO — clears gas, impact and compet
  },
  "dilution_basis": "irm",
  "best_size": {
-  "size_usd": 7089600,
+  "size_usd": 7090250,
   "apr_at_size_pct": 2.761,
-  "over_low_venue_usd_per_year": 21408
+  "over_low_venue_usd_per_year": 21414
  },
  "marginal_apr_ladder": [
   {
@@ -1031,7 +1016,7 @@ Economics: net APR 1.15%, $50,722 per year, GO — clears gas, impact and compet
 }
 ```
 
-Economics: net APR 0.30%, $21,408 per year, GO — clears gas, impact and competition at this size
+Economics: net APR 0.30%, $21,414 per year, GO — clears gas, impact and competition at this size
 
 ### [info] uniswap_v3 WBTC/WETH: $50.0k in a ±0.25% band earns 6.4bp of fees less 6.2bp of divergence over 2.0h (11.1% a year if it repeats)
 
@@ -1127,9 +1112,9 @@ Economics: net APR 11.14%, $5,554 per year, no — nets 11.14% a year at $50,000
  "benchmark": "Sky savings rate",
  "benchmark_pct": 3.6,
  "gap_pp": 4.45,
- "supplied_usd": 15446317,
- "borrowed_usd": 12857871,
- "available_usd": 2588446,
+ "supplied_usd": 15447107,
+ "borrowed_usd": 12858858,
+ "available_usd": 2588249,
  "utilisation": 0.8324,
  "curve": {
   "base": 0.0,
@@ -1141,36 +1126,108 @@ Economics: net APR 11.14%, $5,554 per year, no — nets 11.14% a year at $50,000
  "marginal_apr_ladder": [
   {
    "size_usd": 100000.0,
-   "marginal_apr_pct": 7.124,
-   "over_benchmark_usd_per_year": 3524
+   "marginal_apr_pct": 7.128,
+   "over_benchmark_usd_per_year": 3528
   },
   {
    "size_usd": 1000000.0,
    "marginal_apr_pct": 2.445,
-   "over_benchmark_usd_per_year": -11551
+   "over_benchmark_usd_per_year": -11550
   },
   {
    "size_usd": 10000000.0,
    "marginal_apr_pct": 1.021,
-   "over_benchmark_usd_per_year": -257871
+   "over_benchmark_usd_per_year": -257862
   },
   {
    "size_usd": 50000000.0,
    "marginal_apr_pct": 0.154,
-   "over_benchmark_usd_per_year": -1722803
+   "over_benchmark_usd_per_year": -1722793
   }
  ],
  "best": {
   "size_usd": 227373.67544323206,
-  "apr": 0.059634935002953186,
-  "marginal_apr_pct": 5.963,
-  "over_benchmark_usd_per_year": 5374
+  "apr": 0.059672037270375095,
+  "marginal_apr_pct": 5.967,
+  "over_benchmark_usd_per_year": 5382
  },
  "why": "a headline rate is a point on a kinked curve; what it is worth is the marginal APR at the size you can actually put in, over the dollar you would otherwise hold"
 }
 ```
 
-Economics: net APR 2.36%, $5,374 per year, GO — clears gas, impact and competition at this size
+Economics: net APR 2.37%, $5,382 per year, GO — clears gas, impact and competition at this size
+
+### [info] PT-USD3-17DEC2026 implies 14.38% fixed for 100 days against the Sky savings rate (as the risk-free dollar) at 3.60% — credit spread, not a rate trade: nothing here prices that issuer’s credit
+
+```json
+{
+ "market": "0x4a5067c3ff1abb7449244025b0e37feaf77d8e3e",
+ "pt": "0x7f47c3e6b2c00fc4eb4d5ae50d0ab0ab6888eb4d",
+ "pt_symbol": "PT-USD3-17DEC2026",
+ "implied_apy_pct": 14.38,
+ "days_to_maturity": 99.777,
+ "pt_to_asset": 0.9639387926886873,
+ "underlying": "USD3",
+ "comparison": "the Sky savings rate (as the risk-free dollar)",
+ "floating_pct": 3.6,
+ "gap_pp": 10.78,
+ "classification": "credit spread",
+ "pt_depth_units": 4571536,
+ "pt_depth_usd": 4406680,
+ "oracle_ready": true,
+ "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+}
+```
+
+Economics: net APR 5.35%, $3,552 per year, GO — clears gas, impact and competition at this size
+
+### [info] PT-APYUSD-5NOV2026 implies 13.98% fixed for 58 days against the Sky savings rate (as the risk-free dollar) at 3.60% — credit spread, not a rate trade: nothing here prices that issuer’s credit
+
+```json
+{
+ "market": "0xc5f938a8ef5f3bf9e72f5aa094baf5e03f4727d3",
+ "pt": "0xb5be35d8ff83d431899b95851cb17a2b4bcef150",
+ "pt_symbol": "PT-APYUSD-5NOV2026",
+ "implied_apy_pct": 13.975,
+ "days_to_maturity": 57.777,
+ "pt_to_asset": 0.9795066189651939,
+ "underlying": "APYUSD",
+ "comparison": "the Sky savings rate (as the risk-free dollar)",
+ "floating_pct": 3.6,
+ "gap_pp": 10.375,
+ "classification": "credit spread",
+ "pt_depth_units": 6351523,
+ "pt_depth_usd": 6221359,
+ "oracle_ready": true,
+ "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+}
+```
+
+Economics: net APR 5.17%, $2,672 per year, GO — clears gas, impact and competition at this size
+
+### [info] PT-SUSD3-17DEC2026 implies 22.70% fixed for 100 days against the Sky savings rate (as the risk-free dollar) at 3.60% — credit spread, not a rate trade: nothing here prices that issuer’s credit
+
+```json
+{
+ "market": "0x7972de1c2f9f11f622a188fbae8c0a943880424f",
+ "pt": "0x41f45d21502bde8211e94d94ef2eeebcfc48a6ac",
+ "pt_symbol": "PT-SUSD3-17DEC2026",
+ "implied_apy_pct": 22.698,
+ "days_to_maturity": 99.777,
+ "pt_to_asset": 0.9456159590153044,
+ "underlying": "SUSD3",
+ "comparison": "the Sky savings rate (as the risk-free dollar)",
+ "floating_pct": 3.6,
+ "gap_pp": 19.098,
+ "classification": "credit spread",
+ "pt_depth_units": 900024,
+ "pt_depth_usd": 851077,
+ "oracle_ready": true,
+ "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+}
+```
+
+Economics: net APR 9.42%, $2,179 per year, GO — clears gas, impact and competition at this size
 
 ### [info] uniswap_v4 sUSDe/USDT: $50.0k in a ±0.04% band earns 1.1bp of fees less 1.0bp of divergence over 2.0h (3.5% a year if it repeats)
 
@@ -1252,6 +1309,126 @@ Economics: net APR 2.36%, $5,374 per year, GO — clears gas, impact and competi
 ```
 
 Economics: net APR 3.51%, $1,749 per year, no — nets 3.51% a year at $50,000 in a ±0.039% band, before any view on holding the pair
+
+### [info] PT-REUSD-10DEC2026 implies 10.98% fixed for 93 days against the Sky savings rate (as the risk-free dollar) at 3.60% — credit spread, not a rate trade: nothing here prices that issuer’s credit
+
+```json
+{
+ "market": "0x13285bcbc27f92b47b4edb99d744c07b48c977c0",
+ "pt": "0xecfafdc7741323a945a163ed068b5a3c43483957",
+ "pt_symbol": "PT-REUSD-10DEC2026",
+ "implied_apy_pct": 10.977,
+ "days_to_maturity": 92.777,
+ "pt_to_asset": 0.9738734627463088,
+ "underlying": "REUSD",
+ "comparison": "the Sky savings rate (as the risk-free dollar)",
+ "floating_pct": 3.6,
+ "gap_pp": 7.377,
+ "classification": "credit spread",
+ "pt_depth_units": 4048771,
+ "pt_depth_usd": 3942991,
+ "oracle_ready": true,
+ "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+}
+```
+
+Economics: net APR 3.67%, $1,376 per year, GO — clears gas, impact and competition at this size
+
+### [info] PT-SIUSD-22OCT2026 implies 9.41% fixed for 44 days against the Sky savings rate (as the risk-free dollar) at 3.60% — credit spread, not a rate trade: nothing here prices that issuer’s credit
+
+```json
+{
+ "market": "0x1f34887b270bfaf56cf7973572654874c8ed740e",
+ "pt": "0xe3cdf5b8d7aedfc9f768dbdcc334146fae989188",
+ "pt_symbol": "PT-SIUSD-22OCT2026",
+ "implied_apy_pct": 9.406,
+ "days_to_maturity": 43.777,
+ "pt_to_asset": 0.9892762363695291,
+ "underlying": "SIUSD",
+ "comparison": "the Sky savings rate (as the risk-free dollar)",
+ "floating_pct": 3.6,
+ "gap_pp": 5.806,
+ "classification": "credit spread",
+ "pt_depth_units": 1625927,
+ "pt_depth_usd": 1608491,
+ "oracle_ready": true,
+ "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+}
+```
+
+Economics: net APR 2.89%, $163 per year, GO — clears gas, impact and competition at this size
+
+### [info] PT-USDAT-14JAN2027 implies 6.11% fixed for 128 days against the Sky savings rate (as the risk-free dollar) at 3.60% — credit spread, not a rate trade: nothing here prices that issuer’s credit
+
+```json
+{
+ "market": "0x4ccf6deb3d1895373f604b418ff55d8adae8b846",
+ "pt": "0xba96292ee7673e3b546cc90db6d97111cd9a314f",
+ "pt_symbol": "PT-USDAT-14JAN2027",
+ "implied_apy_pct": 6.114,
+ "days_to_maturity": 127.777,
+ "pt_to_asset": 0.9794382239829115,
+ "underlying": "USDAT",
+ "comparison": "the Sky savings rate (as the risk-free dollar)",
+ "floating_pct": 3.6,
+ "gap_pp": 2.514,
+ "classification": "credit spread",
+ "pt_depth_units": 1612595,
+ "pt_depth_usd": 1579438,
+ "oracle_ready": true,
+ "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+}
+```
+
+Economics: net APR 1.25%, $88 per year, GO — clears gas, impact and competition at this size
+
+### [info] PT-APXUSD-5NOV2026 implies 9.30% fixed for 58 days against the Sky savings rate (as the risk-free dollar) at 3.60% — credit spread, not a rate trade: nothing here prices that issuer’s credit
+
+```json
+{
+ "market": "0xaf0349fb9b1ba07d34381870c59b560b31412660",
+ "pt": "0xaf687b5ecb525ccea96115088999b4ed80c388b6",
+ "pt_symbol": "PT-APXUSD-5NOV2026",
+ "implied_apy_pct": 9.304,
+ "days_to_maturity": 57.777,
+ "pt_to_asset": 0.9860166469518631,
+ "underlying": "APXUSD",
+ "comparison": "the Sky savings rate (as the risk-free dollar)",
+ "floating_pct": 3.6,
+ "gap_pp": 5.704,
+ "classification": "credit spread",
+ "pt_depth_units": 389481,
+ "pt_depth_usd": 384035,
+ "oracle_ready": true,
+ "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+}
+```
+
+Economics: net APR 2.83%, $49 per year, GO — clears gas, impact and competition at this size
+
+### [info] PT-SRUSDE-22OCT2026 implies 5.45% fixed for 44 days against the Sky savings rate (as the risk-free dollar) at 3.60% — credit spread, not a rate trade: nothing here prices that issuer’s credit
+
+```json
+{
+ "market": "0x66ec657c59cdcaf171ab43b83da3942758bf8a97",
+ "pt": "0x59bc9fae5d62b19d4f8d07d758047acb9ee19d34",
+ "pt_symbol": "PT-SRUSDE-22OCT2026",
+ "implied_apy_pct": 5.446,
+ "days_to_maturity": 43.777,
+ "pt_to_asset": 0.9936605337378991,
+ "underlying": "SRUSDE",
+ "comparison": "the Sky savings rate (as the risk-free dollar)",
+ "floating_pct": 3.6,
+ "gap_pp": 1.846,
+ "classification": "credit spread",
+ "pt_depth_units": 2120420,
+ "pt_depth_usd": 2106978,
+ "oracle_ready": true,
+ "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+}
+```
+
+Economics: net APR 0.90%, $21 per year, GO — clears gas, impact and competition at this size
 
 ### [info] JIT took $15 of $12707 pool fees (0.12%) across 44 episodes by 10 operator(s)
 

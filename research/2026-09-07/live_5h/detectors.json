@@ -4,21 +4,28 @@
   {
    "detector": "address_poisoning",
    "hits": 1,
-   "seconds": 3.05,
+   "seconds": 4.02,
    "error": null,
    "description": "lookalike dust transfers that follow a large transfer, aimed at a later copy-paste"
   },
   {
    "detector": "dollar_rate_outlier",
    "hits": 1,
-   "seconds": 2.98,
+   "seconds": 3.01,
    "error": null,
    "description": "dollar supply rates ranked against the risk-free dollar, sized from each reserve\u2019s own rate curve"
   },
   {
+   "detector": "fixed_vs_floating",
+   "hits": 0,
+   "seconds": 0.0,
+   "error": null,
+   "description": "Pendle implied fixed yields against the floating rate on the same underlying, sized by PT depth"
+  },
+  {
    "detector": "gas_concentration",
    "hits": 1,
-   "seconds": 3.09,
+   "seconds": 3.14,
    "error": null,
    "description": "base-fee spikes attributed to the contract whose gas demand caused them"
   },
@@ -39,14 +46,14 @@
   {
    "detector": "mass_distribution",
    "hits": 5,
-   "seconds": 4.96,
+   "seconds": 5.11,
    "error": null,
    "description": "one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam"
   },
   {
    "detector": "mislabelled_flow",
    "hits": 0,
-   "seconds": 3.31,
+   "seconds": 3.36,
    "error": null,
    "description": "address labels the window contradicts, which is how a headline moves by a multiple"
   },
@@ -67,7 +74,7 @@
   {
    "detector": "solver_fingerprint",
    "hits": 12,
-   "seconds": 3.23,
+   "seconds": 3.27,
    "error": null,
    "description": "unlabelled contracts that pass value straight through: solvers, routers and searcher bots"
   }

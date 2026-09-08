@@ -4,16 +4,23 @@
   {
    "detector": "address_poisoning",
    "hits": 1,
-   "seconds": 1.26,
+   "seconds": 1.57,
    "error": null,
    "description": "lookalike dust transfers that follow a large transfer, aimed at a later copy-paste"
   },
   {
    "detector": "dollar_rate_outlier",
-   "hits": 2,
-   "seconds": 1.23,
+   "hits": 1,
+   "seconds": 1.29,
    "error": null,
    "description": "dollar supply rates ranked against the risk-free dollar, sized from each reserve\u2019s own rate curve"
+  },
+  {
+   "detector": "fixed_vs_floating",
+   "hits": 8,
+   "seconds": 0.0,
+   "error": null,
+   "description": "Pendle implied fixed yields against the floating rate on the same underlying, sized by PT depth"
   },
   {
    "detector": "gas_concentration",
@@ -39,14 +46,14 @@
   {
    "detector": "mass_distribution",
    "hits": 4,
-   "seconds": 1.91,
+   "seconds": 1.94,
    "error": null,
    "description": "one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam"
   },
   {
    "detector": "mislabelled_flow",
    "hits": 0,
-   "seconds": 1.4,
+   "seconds": 1.36,
    "error": null,
    "description": "address labels the window contradicts, which is how a headline moves by a multiple"
   },
@@ -67,32 +74,12 @@
   {
    "detector": "solver_fingerprint",
    "hits": 6,
-   "seconds": 1.31,
+   "seconds": 1.33,
    "error": null,
    "description": "unlabelled contracts that pass value straight through: solvers, routers and searcher bots"
   }
  ],
  "hits": [
-  {
-   "detector": "dollar_rate_outlier",
-   "title": "Aave v3 USDC is fully utilised: $12.0k of exit liquidity on a $2.2B reserve",
-   "severity": "high",
-   "evidence": {
-    "venue": "Aave v3",
-    "asset": "USDC",
-    "supplied_usd": 2156271448,
-    "borrowed_usd": 2156259491,
-    "available_usd": 11957,
-    "utilisation": 0.999994,
-    "supply_apr_pct": 12.866,
-    "borrow_apr_pct": 14.296,
-    "why": "nobody can withdraw from this reserve until a borrower repays or a supplier arrives; any strategy whose exit leg is this reserve is blocked, and the high rate it prints is the symptom rather than an opportunity"
-   },
-   "economics": null,
-   "usd": 2156271447.6529284,
-   "key": "Aave v3:USDC:blackout",
-   "identity": "dollar_rate_outlier:Aave v3:USDC:blackout"
-  },
   {
    "detector": "solver_fingerprint",
    "title": "unlabelled atomic bot pair 0x04ca7a7e passed $480.2M through in 7 txs (100% ended flat, 4 counterparties)",
@@ -193,7 +180,7 @@
     "low_venue": "Aave v3",
     "supply_apr_spot_pct": {
      "Aave v3": 0.124,
-     "SparkLend": 2.318,
+     "SparkLend": 2.244,
      "Sky SSR": 3.6
     },
     "supply_apr_median_pct": {},
@@ -203,13 +190,13 @@
     "despiked": false,
     "despike_note": "Sky SSR emits no ReserveDataUpdated logs, so the head read is the only source",
     "supplied_usd": {
-     "Aave v3": 11187698,
-     "SparkLend": 748016681,
+     "Aave v3": 11187707,
+     "SparkLend": 754133820,
      "Sky SSR": 1000000000
     },
     "utilisation": {
      "Aave v3": 0.03,
-     "SparkLend": 0.656
+     "SparkLend": 0.646
     },
     "dilution_basis": "modelled",
     "best_size": null,
@@ -217,102 +204,102 @@
    },
    "economics": {
     "net_apr": 0.0348,
-    "net_per_year_usd": 34758805,
+    "net_per_year_usd": 34759638,
     "half_edge_size_usd": null,
     "net_apr_at_half_edge": 0.0186,
     "go": true,
     "reason": "clears gas, impact and competition at this size",
     "gas_gwei": 0.0509
    },
-   "usd": 34758804.61936615,
+   "usd": 34759637.76230582,
    "key": "USDS:Sky SSR/Aave v3",
    "identity": "rate_dispersion:USDS:Sky SSR/Aave v3"
   },
   {
    "detector": "rate_dispersion",
-   "title": "USDT pays 0.98pp more on Aave v3 than SparkLend; best size $242.8M earns $1.1M a year over SparkLend",
+   "title": "USDT pays 0.98pp more on Aave v3 than SparkLend; best size $243.6M earns $1.1M a year over SparkLend",
    "severity": "notable",
    "evidence": {
     "asset": "USDT",
     "high_venue": "Aave v3",
     "low_venue": "SparkLend",
     "supply_apr_spot_pct": {
-     "Aave v3": 3.604,
+     "Aave v3": 3.58,
      "SparkLend": 2.619,
-     "Compound v3 USDT": 3.002
+     "Compound v3 USDT": 3.003
     },
     "supply_apr_median_pct": {
      "Aave v3": 3.603
     },
-    "gap_pp_spot": 0.985,
+    "gap_pp_spot": 0.961,
     "gap_pp_despiked": 0.984,
     "head_read_spiked": false,
     "despiked": true,
     "despike_note": "median of the window log series",
     "supplied_usd": {
-     "Aave v3": 2962871489,
-     "SparkLend": 391764710,
-     "Compound v3 USDT": 185305997
+     "Aave v3": 2973110657,
+     "SparkLend": 391786693,
+     "Compound v3 USDT": 185229412
     },
     "utilisation": {
-     "Aave v3": 0.936,
+     "Aave v3": 0.932,
      "SparkLend": 0.828,
      "Compound v3 USDT": 0.834
     },
     "dilution_basis": "irm",
     "best_size": {
-     "size_usd": 242777901,
-     "apr_at_size_pct": 3.079,
-     "over_low_venue_usd_per_year": 1116507
+     "size_usd": 243616899,
+     "apr_at_size_pct": 3.058,
+     "over_low_venue_usd_per_year": 1070678
     },
     "marginal_apr_ladder": [
      {
       "size_usd": 100000.0,
-      "apr_pct": 3.603
+      "apr_pct": 3.58
      },
      {
       "size_usd": 1000000.0,
-      "apr_pct": 3.601
+      "apr_pct": 3.577
      },
      {
       "size_usd": 5000000.0,
-      "apr_pct": 3.592
+      "apr_pct": 3.568
      },
      {
       "size_usd": 25000000.0,
-      "apr_pct": 3.544
+      "apr_pct": 3.52
      },
      {
       "size_usd": 100000000.0,
-      "apr_pct": 3.372
+      "apr_pct": 3.351
      }
     ]
    },
    "economics": {
-    "net_apr": 0.0046,
-    "net_per_year_usd": 1116507,
-    "half_edge_size_usd": 242777901,
+    "net_apr": 0.0044,
+    "net_per_year_usd": 1070678,
+    "half_edge_size_usd": 243616899,
     "net_apr_at_half_edge": 0.0311,
     "go": true,
     "reason": "clears gas, impact and competition at this size",
     "gas_gwei": 0.0509
    },
-   "usd": 1116507.04922956,
+   "usd": 1070677.6406654292,
    "key": "USDT:Aave v3/SparkLend",
    "identity": "rate_dispersion:USDT:Aave v3/SparkLend"
   },
   {
    "detector": "nav_discount",
-   "title": "sUSDe trades 7.1bp below NAV, 4.4bp after the 2.7bp round trip; cooldownShares, then unstake after cooldownDuration (1 day)",
+   "title": "sUSDe trades 7.4bp below NAV, 4.7bp after the 2.7bp round trip; cooldownShares, then unstake after cooldownDuration (1 day)",
    "severity": "notable",
    "evidence": {
     "asset": "sUSDe",
     "nav_source": "0x9d39a5de convertToAssets(uint256)",
-    "nav": 1.247001,
+    "nav": 1.247036,
     "market_vw_price": 1.24611,
     "market_median": 1.246198,
     "market_p10": 1.245819,
-    "discount_bps": 7.14,
+    "discount_bps": 7.43,
     "traded_volume_usd": 972880,
     "implied_daily_volume_usd": 11657074,
     "refills_needed_per_year": 365,
@@ -328,22 +315,22 @@
      "exit_bps": 2.7,
      "path": "cooldownShares, then unstake after cooldownDuration (1 day)"
     },
-    "net_edge_bps": 4.44,
+    "net_edge_bps": 4.73,
     "why": "the protocol pays NAV and the market paid less; the gap closes when you redeem, and the wait is the reason a bot cannot take it from you"
    },
    "economics": {
-    "net_apr": 0.1621,
-    "net_per_year_usd": 157656,
-    "net_per_run_usd": 431.94,
+    "net_apr": 0.1725,
+    "net_per_year_usd": 167853,
+    "net_per_run_usd": 459.87,
     "go": true,
     "reason": "clears gas, impact and competition at this size",
     "capacity_usd": 972880,
     "hold_days": 1.0,
-    "discount_bps": 7.14,
+    "discount_bps": 7.43,
     "exit_cost_bps": 2.7,
-    "net_edge_bps": 4.44
+    "net_edge_bps": 4.73
    },
-   "usd": 157656,
+   "usd": 167853,
    "key": "sUSDe",
    "identity": "nav_discount:sUSDe"
   },
@@ -438,81 +425,6 @@
    "identity": "lp_marginal_yield:0x56fc29b86900aa0afa6e20b020429bffba1105cfb45070492c67529b46eb48c1"
   },
   {
-   "detector": "rate_dispersion",
-   "title": "USDC pays 2.15pp more on Compound v3 USDC than SparkLend; best size $1.4M earns $15k a year over SparkLend",
-   "severity": "notable",
-   "evidence": {
-    "asset": "USDC",
-    "high_venue": "Compound v3 USDC",
-    "low_venue": "SparkLend",
-    "supply_apr_spot_pct": {
-     "Aave v3": 12.866,
-     "SparkLend": 3.542,
-     "Compound v3 USDC": 5.69,
-     "Sky SSR": 3.6
-    },
-    "supply_apr_median_pct": {
-     "Aave v3": 3.593
-    },
-    "gap_pp_spot": 2.148,
-    "gap_pp_despiked": 2.148,
-    "head_read_spiked": null,
-    "despiked": false,
-    "despike_note": "Compound v3 USDC emits no ReserveDataUpdated logs, so the head read is the only source",
-    "supplied_usd": {
-     "Aave v3": 2156271448,
-     "SparkLend": 25640465,
-     "Compound v3 USDC": 374350853,
-     "Sky SSR": 1000000000
-    },
-    "utilisation": {
-     "Aave v3": 1.0,
-     "SparkLend": 0.922,
-     "Compound v3 USDC": 0.908
-    },
-    "dilution_basis": "sampled",
-    "best_size": {
-     "size_usd": 1417172,
-     "apr_at_size_pct": 4.596,
-     "over_low_venue_usd_per_year": 14934
-    },
-    "marginal_apr_ladder": [
-     {
-      "size_usd": 100000.0,
-      "apr_pct": 5.612
-     },
-     {
-      "size_usd": 1000000.0,
-      "apr_pct": 4.917
-     },
-     {
-      "size_usd": 5000000.0,
-      "apr_pct": 3.225
-     },
-     {
-      "size_usd": 25000000.0,
-      "apr_pct": 3.063
-     },
-     {
-      "size_usd": 100000000.0,
-      "apr_pct": 2.579
-     }
-    ]
-   },
-   "economics": {
-    "net_apr": 0.0105,
-    "net_per_year_usd": 14934,
-    "half_edge_size_usd": 1417172,
-    "net_apr_at_half_edge": 0.0462,
-    "go": true,
-    "reason": "clears gas, impact and competition at this size",
-    "gas_gwei": 0.0509
-   },
-   "usd": 14934.073127155289,
-   "key": "USDC:Compound v3 USDC/SparkLend",
-   "identity": "rate_dispersion:USDC:Compound v3 USDC/SparkLend"
-  },
-  {
    "detector": "lp_marginal_yield",
    "title": "uniswap_v3 USDC/USDT: $250.0k in a \u00b10.01% band earns 0.1bp of fees less 0.0bp of divergence over 2.0h (4.9% a year if it repeats)",
    "severity": "notable",
@@ -601,6 +513,81 @@
    "usd": 3148.8766849725407,
    "key": "0x3416cf6c708da44db2624d63ea0aaef7113527c6",
    "identity": "lp_marginal_yield:0x3416cf6c708da44db2624d63ea0aaef7113527c6"
+  },
+  {
+   "detector": "rate_dispersion",
+   "title": "USDC pays 0.65pp more on Compound v3 USDC than SparkLend; best size $405k earns $1k a year over SparkLend",
+   "severity": "notable",
+   "evidence": {
+    "asset": "USDC",
+    "high_venue": "Compound v3 USDC",
+    "low_venue": "SparkLend",
+    "supply_apr_spot_pct": {
+     "Aave v3": 3.601,
+     "SparkLend": 3.542,
+     "Compound v3 USDC": 4.196,
+     "Sky SSR": 3.6
+    },
+    "supply_apr_median_pct": {
+     "Aave v3": 3.593
+    },
+    "gap_pp_spot": 0.654,
+    "gap_pp_despiked": 0.654,
+    "head_read_spiked": null,
+    "despiked": false,
+    "despike_note": "Compound v3 USDC emits no ReserveDataUpdated logs, so the head read is the only source",
+    "supplied_usd": {
+     "Aave v3": 2307858093,
+     "SparkLend": 25641040,
+     "Compound v3 USDC": 376312155,
+     "Sky SSR": 1000000000
+    },
+    "utilisation": {
+     "Aave v3": 0.935,
+     "SparkLend": 0.922,
+     "Compound v3 USDC": 0.903
+    },
+    "dilution_basis": "sampled",
+    "best_size": {
+     "size_usd": 404959,
+     "apr_at_size_pct": 3.886,
+     "over_low_venue_usd_per_year": 1393
+    },
+    "marginal_apr_ladder": [
+     {
+      "size_usd": 100000.0,
+      "apr_pct": 4.12
+     },
+     {
+      "size_usd": 1000000.0,
+      "apr_pct": 3.431
+     },
+     {
+      "size_usd": 5000000.0,
+      "apr_pct": 3.208
+     },
+     {
+      "size_usd": 25000000.0,
+      "apr_pct": 3.048
+     },
+     {
+      "size_usd": 100000000.0,
+      "apr_pct": 2.568
+     }
+    ]
+   },
+   "economics": {
+    "net_apr": 0.0034,
+    "net_per_year_usd": 1393,
+    "half_edge_size_usd": 465703,
+    "net_apr_at_half_edge": 0.0387,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "gas_gwei": 0.0509
+   },
+   "usd": 1393.452661589266,
+   "key": "USDC:Compound v3 USDC/SparkLend",
+   "identity": "rate_dispersion:USDC:Compound v3 USDC/SparkLend"
   },
   {
    "detector": "mass_distribution",
@@ -1127,8 +1114,8 @@
     "despiked": false,
     "despike_note": "too few log observations for Aave v3 PYUSD: this is one block, and a large transfer or flash loan can move a reserve rate several-fold for one block",
     "supplied_usd": {
-     "Aave v3": 7599229,
-     "SparkLend": 100001127
+     "Aave v3": 7599015,
+     "SparkLend": 100000301
     },
     "utilisation": {
      "Aave v3": 0.878,
@@ -1136,14 +1123,14 @@
     },
     "dilution_basis": "irm",
     "best_size": {
-     "size_usd": 4405910,
+     "size_usd": 4405786,
      "apr_at_size_pct": 1.736,
-     "over_low_venue_usd_per_year": 50722
+     "over_low_venue_usd_per_year": 50724
     },
     "marginal_apr_ladder": [
      {
       "size_usd": 100000.0,
-      "apr_pct": 3.785
+      "apr_pct": 3.786
      },
      {
       "size_usd": 1000000.0,
@@ -1165,14 +1152,14 @@
    },
    "economics": {
     "net_apr": 0.0115,
-    "net_per_year_usd": 50722,
-    "half_edge_size_usd": 2896957,
+    "net_per_year_usd": 50724,
+    "half_edge_size_usd": 2896876,
     "net_apr_at_half_edge": 0.0223,
     "go": true,
     "reason": "clears gas, impact and competition at this size",
     "gas_gwei": 0.0509
    },
-   "usd": 50721.931420119094,
+   "usd": 50724.35523485466,
    "key": "PYUSD:Aave v3/SparkLend",
    "identity": "rate_dispersion:PYUSD:Aave v3/SparkLend"
   },
@@ -1185,7 +1172,7 @@
     "high_venue": "Aave v3",
     "low_venue": "SparkLend",
     "supply_apr_spot_pct": {
-     "Aave v3": 3.066,
+     "Aave v3": 3.067,
      "SparkLend": 2.459
     },
     "supply_apr_median_pct": {},
@@ -1195,8 +1182,8 @@
     "despiked": false,
     "despike_note": "too few log observations for Aave v3 DAI: this is one block, and a large transfer or flash loan can move a reserve rate several-fold for one block",
     "supplied_usd": {
-     "Aave v3": 131588802,
-     "SparkLend": 308261201
+     "Aave v3": 131600853,
+     "SparkLend": 308290742
     },
     "utilisation": {
      "Aave v3": 0.867,
@@ -1204,9 +1191,9 @@
     },
     "dilution_basis": "irm",
     "best_size": {
-     "size_usd": 7089600,
+     "size_usd": 7090250,
      "apr_at_size_pct": 2.761,
-     "over_low_venue_usd_per_year": 21408
+     "over_low_venue_usd_per_year": 21414
     },
     "marginal_apr_ladder": [
      {
@@ -1233,14 +1220,14 @@
    },
    "economics": {
     "net_apr": 0.003,
-    "net_per_year_usd": 21408,
-    "half_edge_size_usd": 7089600,
+    "net_per_year_usd": 21414,
+    "half_edge_size_usd": 7090250,
     "net_apr_at_half_edge": 0.0276,
     "go": true,
     "reason": "clears gas, impact and competition at this size",
     "gas_gwei": 0.0509
    },
-   "usd": 21407.522753542984,
+   "usd": 21414.294609053624,
    "key": "DAI:Aave v3/SparkLend",
    "identity": "rate_dispersion:DAI:Aave v3/SparkLend"
   },
@@ -1348,9 +1335,9 @@
     "benchmark": "Sky savings rate",
     "benchmark_pct": 3.6,
     "gap_pp": 4.45,
-    "supplied_usd": 15446317,
-    "borrowed_usd": 12857871,
-    "available_usd": 2588446,
+    "supplied_usd": 15447107,
+    "borrowed_usd": 12858858,
+    "available_usd": 2588249,
     "utilisation": 0.8324,
     "curve": {
      "base": 0.0,
@@ -1362,42 +1349,144 @@
     "marginal_apr_ladder": [
      {
       "size_usd": 100000.0,
-      "marginal_apr_pct": 7.124,
-      "over_benchmark_usd_per_year": 3524
+      "marginal_apr_pct": 7.128,
+      "over_benchmark_usd_per_year": 3528
      },
      {
       "size_usd": 1000000.0,
       "marginal_apr_pct": 2.445,
-      "over_benchmark_usd_per_year": -11551
+      "over_benchmark_usd_per_year": -11550
      },
      {
       "size_usd": 10000000.0,
       "marginal_apr_pct": 1.021,
-      "over_benchmark_usd_per_year": -257871
+      "over_benchmark_usd_per_year": -257862
      },
      {
       "size_usd": 50000000.0,
       "marginal_apr_pct": 0.154,
-      "over_benchmark_usd_per_year": -1722803
+      "over_benchmark_usd_per_year": -1722793
      }
     ],
     "best": {
      "size_usd": 227373.67544323206,
-     "apr": 0.059634935002953186,
-     "marginal_apr_pct": 5.963,
-     "over_benchmark_usd_per_year": 5374
+     "apr": 0.059672037270375095,
+     "marginal_apr_pct": 5.967,
+     "over_benchmark_usd_per_year": 5382
     },
     "why": "a headline rate is a point on a kinked curve; what it is worth is the marginal APR at the size you can actually put in, over the dollar you would otherwise hold"
    },
    "economics": {
-    "net_apr": 0.0236,
-    "net_per_year_usd": 5374,
+    "net_apr": 0.0237,
+    "net_per_year_usd": 5382,
     "go": true,
     "reason": "clears gas, impact and competition at this size"
    },
-   "usd": 5374,
+   "usd": 5382,
    "key": "Aave v3:USDtb",
    "identity": "dollar_rate_outlier:Aave v3:USDtb"
+  },
+  {
+   "detector": "fixed_vs_floating",
+   "title": "PT-USD3-17DEC2026 implies 14.38% fixed for 100 days against the Sky savings rate (as the risk-free dollar) at 3.60% \u2014 credit spread, not a rate trade: nothing here prices that issuer\u2019s credit",
+   "severity": "info",
+   "evidence": {
+    "market": "0x4a5067c3ff1abb7449244025b0e37feaf77d8e3e",
+    "pt": "0x7f47c3e6b2c00fc4eb4d5ae50d0ab0ab6888eb4d",
+    "pt_symbol": "PT-USD3-17DEC2026",
+    "implied_apy_pct": 14.38,
+    "days_to_maturity": 99.777,
+    "pt_to_asset": 0.9639387926886873,
+    "underlying": "USD3",
+    "comparison": "the Sky savings rate (as the risk-free dollar)",
+    "floating_pct": 3.6,
+    "gap_pp": 10.78,
+    "classification": "credit spread",
+    "pt_depth_units": 4571536,
+    "pt_depth_usd": 4406680,
+    "oracle_ready": true,
+    "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+   },
+   "economics": {
+    "net_apr": 0.0535,
+    "net_per_year_usd": 3552,
+    "net_per_run_usd": 970.96,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 1101670,
+    "hold_days": 99.777
+   },
+   "usd": 3551.9337763269955,
+   "key": "PT-USD3-17DEC2026",
+   "identity": "fixed_vs_floating:PT-USD3-17DEC2026"
+  },
+  {
+   "detector": "fixed_vs_floating",
+   "title": "PT-APYUSD-5NOV2026 implies 13.98% fixed for 58 days against the Sky savings rate (as the risk-free dollar) at 3.60% \u2014 credit spread, not a rate trade: nothing here prices that issuer\u2019s credit",
+   "severity": "info",
+   "evidence": {
+    "market": "0xc5f938a8ef5f3bf9e72f5aa094baf5e03f4727d3",
+    "pt": "0xb5be35d8ff83d431899b95851cb17a2b4bcef150",
+    "pt_symbol": "PT-APYUSD-5NOV2026",
+    "implied_apy_pct": 13.975,
+    "days_to_maturity": 57.777,
+    "pt_to_asset": 0.9795066189651939,
+    "underlying": "APYUSD",
+    "comparison": "the Sky savings rate (as the risk-free dollar)",
+    "floating_pct": 3.6,
+    "gap_pp": 10.375,
+    "classification": "credit spread",
+    "pt_depth_units": 6351523,
+    "pt_depth_usd": 6221359,
+    "oracle_ready": true,
+    "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+   },
+   "economics": {
+    "net_apr": 0.0517,
+    "net_per_year_usd": 2672,
+    "net_per_run_usd": 422.93,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 1555340,
+    "hold_days": 57.777
+   },
+   "usd": 2671.827892731018,
+   "key": "PT-APYUSD-5NOV2026",
+   "identity": "fixed_vs_floating:PT-APYUSD-5NOV2026"
+  },
+  {
+   "detector": "fixed_vs_floating",
+   "title": "PT-SUSD3-17DEC2026 implies 22.70% fixed for 100 days against the Sky savings rate (as the risk-free dollar) at 3.60% \u2014 credit spread, not a rate trade: nothing here prices that issuer\u2019s credit",
+   "severity": "info",
+   "evidence": {
+    "market": "0x7972de1c2f9f11f622a188fbae8c0a943880424f",
+    "pt": "0x41f45d21502bde8211e94d94ef2eeebcfc48a6ac",
+    "pt_symbol": "PT-SUSD3-17DEC2026",
+    "implied_apy_pct": 22.698,
+    "days_to_maturity": 99.777,
+    "pt_to_asset": 0.9456159590153044,
+    "underlying": "SUSD3",
+    "comparison": "the Sky savings rate (as the risk-free dollar)",
+    "floating_pct": 3.6,
+    "gap_pp": 19.098,
+    "classification": "credit spread",
+    "pt_depth_units": 900024,
+    "pt_depth_usd": 851077,
+    "oracle_ready": true,
+    "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+   },
+   "economics": {
+    "net_apr": 0.0942,
+    "net_per_year_usd": 2179,
+    "net_per_run_usd": 595.54,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 212769,
+    "hold_days": 99.777
+   },
+   "usd": 2178.57381900778,
+   "key": "PT-SUSD3-17DEC2026",
+   "identity": "fixed_vs_floating:PT-SUSD3-17DEC2026"
   },
   {
    "detector": "lp_marginal_yield",
@@ -1488,6 +1577,176 @@
    "usd": 1749.375936095856,
    "key": "0xb20351bcf606dcc3525d2ed36760a86a5dec7423b77d41125bd4a416ba93448b",
    "identity": "lp_marginal_yield:0xb20351bcf606dcc3525d2ed36760a86a5dec7423b77d41125bd4a416ba93448b"
+  },
+  {
+   "detector": "fixed_vs_floating",
+   "title": "PT-REUSD-10DEC2026 implies 10.98% fixed for 93 days against the Sky savings rate (as the risk-free dollar) at 3.60% \u2014 credit spread, not a rate trade: nothing here prices that issuer\u2019s credit",
+   "severity": "info",
+   "evidence": {
+    "market": "0x13285bcbc27f92b47b4edb99d744c07b48c977c0",
+    "pt": "0xecfafdc7741323a945a163ed068b5a3c43483957",
+    "pt_symbol": "PT-REUSD-10DEC2026",
+    "implied_apy_pct": 10.977,
+    "days_to_maturity": 92.777,
+    "pt_to_asset": 0.9738734627463088,
+    "underlying": "REUSD",
+    "comparison": "the Sky savings rate (as the risk-free dollar)",
+    "floating_pct": 3.6,
+    "gap_pp": 7.377,
+    "classification": "credit spread",
+    "pt_depth_units": 4048771,
+    "pt_depth_usd": 3942991,
+    "oracle_ready": true,
+    "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+   },
+   "economics": {
+    "net_apr": 0.0367,
+    "net_per_year_usd": 1376,
+    "net_per_run_usd": 349.83,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 985748,
+    "hold_days": 92.777
+   },
+   "usd": 1376.2897844686076,
+   "key": "PT-REUSD-10DEC2026",
+   "identity": "fixed_vs_floating:PT-REUSD-10DEC2026"
+  },
+  {
+   "detector": "fixed_vs_floating",
+   "title": "PT-SIUSD-22OCT2026 implies 9.41% fixed for 44 days against the Sky savings rate (as the risk-free dollar) at 3.60% \u2014 credit spread, not a rate trade: nothing here prices that issuer\u2019s credit",
+   "severity": "info",
+   "evidence": {
+    "market": "0x1f34887b270bfaf56cf7973572654874c8ed740e",
+    "pt": "0xe3cdf5b8d7aedfc9f768dbdcc334146fae989188",
+    "pt_symbol": "PT-SIUSD-22OCT2026",
+    "implied_apy_pct": 9.406,
+    "days_to_maturity": 43.777,
+    "pt_to_asset": 0.9892762363695291,
+    "underlying": "SIUSD",
+    "comparison": "the Sky savings rate (as the risk-free dollar)",
+    "floating_pct": 3.6,
+    "gap_pp": 5.806,
+    "classification": "credit spread",
+    "pt_depth_units": 1625927,
+    "pt_depth_usd": 1608491,
+    "oracle_ready": true,
+    "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+   },
+   "economics": {
+    "net_apr": 0.0289,
+    "net_per_year_usd": 163,
+    "net_per_run_usd": 19.52,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 402123,
+    "hold_days": 43.777
+   },
+   "usd": 162.71990710422244,
+   "key": "PT-SIUSD-22OCT2026",
+   "identity": "fixed_vs_floating:PT-SIUSD-22OCT2026"
+  },
+  {
+   "detector": "fixed_vs_floating",
+   "title": "PT-USDAT-14JAN2027 implies 6.11% fixed for 128 days against the Sky savings rate (as the risk-free dollar) at 3.60% \u2014 credit spread, not a rate trade: nothing here prices that issuer\u2019s credit",
+   "severity": "info",
+   "evidence": {
+    "market": "0x4ccf6deb3d1895373f604b418ff55d8adae8b846",
+    "pt": "0xba96292ee7673e3b546cc90db6d97111cd9a314f",
+    "pt_symbol": "PT-USDAT-14JAN2027",
+    "implied_apy_pct": 6.114,
+    "days_to_maturity": 127.777,
+    "pt_to_asset": 0.9794382239829115,
+    "underlying": "USDAT",
+    "comparison": "the Sky savings rate (as the risk-free dollar)",
+    "floating_pct": 3.6,
+    "gap_pp": 2.514,
+    "classification": "credit spread",
+    "pt_depth_units": 1612595,
+    "pt_depth_usd": 1579438,
+    "oracle_ready": true,
+    "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+   },
+   "economics": {
+    "net_apr": 0.0125,
+    "net_per_year_usd": 88,
+    "net_per_run_usd": 30.68,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 394859,
+    "hold_days": 127.777
+   },
+   "usd": 87.63563198163915,
+   "key": "PT-USDAT-14JAN2027",
+   "identity": "fixed_vs_floating:PT-USDAT-14JAN2027"
+  },
+  {
+   "detector": "fixed_vs_floating",
+   "title": "PT-APXUSD-5NOV2026 implies 9.30% fixed for 58 days against the Sky savings rate (as the risk-free dollar) at 3.60% \u2014 credit spread, not a rate trade: nothing here prices that issuer\u2019s credit",
+   "severity": "info",
+   "evidence": {
+    "market": "0xaf0349fb9b1ba07d34381870c59b560b31412660",
+    "pt": "0xaf687b5ecb525ccea96115088999b4ed80c388b6",
+    "pt_symbol": "PT-APXUSD-5NOV2026",
+    "implied_apy_pct": 9.304,
+    "days_to_maturity": 57.777,
+    "pt_to_asset": 0.9860166469518631,
+    "underlying": "APXUSD",
+    "comparison": "the Sky savings rate (as the risk-free dollar)",
+    "floating_pct": 3.6,
+    "gap_pp": 5.704,
+    "classification": "credit spread",
+    "pt_depth_units": 389481,
+    "pt_depth_usd": 384035,
+    "oracle_ready": true,
+    "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+   },
+   "economics": {
+    "net_apr": 0.0283,
+    "net_per_year_usd": 49,
+    "net_per_run_usd": 7.81,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 96009,
+    "hold_days": 57.777
+   },
+   "usd": 49.348782507830535,
+   "key": "PT-APXUSD-5NOV2026",
+   "identity": "fixed_vs_floating:PT-APXUSD-5NOV2026"
+  },
+  {
+   "detector": "fixed_vs_floating",
+   "title": "PT-SRUSDE-22OCT2026 implies 5.45% fixed for 44 days against the Sky savings rate (as the risk-free dollar) at 3.60% \u2014 credit spread, not a rate trade: nothing here prices that issuer\u2019s credit",
+   "severity": "info",
+   "evidence": {
+    "market": "0x66ec657c59cdcaf171ab43b83da3942758bf8a97",
+    "pt": "0x59bc9fae5d62b19d4f8d07d758047acb9ee19d34",
+    "pt_symbol": "PT-SRUSDE-22OCT2026",
+    "implied_apy_pct": 5.446,
+    "days_to_maturity": 43.777,
+    "pt_to_asset": 0.9936605337378991,
+    "underlying": "SRUSDE",
+    "comparison": "the Sky savings rate (as the risk-free dollar)",
+    "floating_pct": 3.6,
+    "gap_pp": 1.846,
+    "classification": "credit spread",
+    "pt_depth_units": 2120420,
+    "pt_depth_usd": 2106978,
+    "oracle_ready": true,
+    "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+   },
+   "economics": {
+    "net_apr": 0.009,
+    "net_per_year_usd": 21,
+    "net_per_run_usd": 2.53,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 526744,
+    "hold_days": 43.777
+   },
+   "usd": 21.12068372996425,
+   "key": "PT-SRUSDE-22OCT2026",
+   "identity": "fixed_vs_floating:PT-SRUSDE-22OCT2026"
   },
   {
    "detector": "jit_liquidity",

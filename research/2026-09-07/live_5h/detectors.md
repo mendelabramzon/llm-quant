@@ -1,19 +1,20 @@
 # Detector sweep — research/2026-09-07/live_5h
 
-Ran 10 detector(s); 37 hit(s).
+Ran 11 detector(s); 37 hit(s).
 
 | detector | hits | seconds | what it looks for |
 |---|---:|---:|---|
-| `address_poisoning` | 1 | 3.05 | lookalike dust transfers that follow a large transfer, aimed at a later copy-paste |
-| `dollar_rate_outlier` | 1 | 2.98 | dollar supply rates ranked against the risk-free dollar, sized from each reserve’s own rate curve |
-| `gas_concentration` | 1 | 3.09 | base-fee spikes attributed to the contract whose gas demand caused them |
+| `address_poisoning` | 1 | 4.02 | lookalike dust transfers that follow a large transfer, aimed at a later copy-paste |
+| `dollar_rate_outlier` | 1 | 3.01 | dollar supply rates ranked against the risk-free dollar, sized from each reserve’s own rate curve |
+| `fixed_vs_floating` | 0 | 0.00 | Pendle implied fixed yields against the floating rate on the same underlying, sized by PT depth |
+| `gas_concentration` | 1 | 3.14 | base-fee spikes attributed to the contract whose gas demand caused them |
 | `jit_liquidity` | 1 | 0.00 | fee share taken by liquidity minted for a single swap, per pool and per window |
 | `lp_marginal_yield` | 10 | 0.00 | concentrated-LP fee yield net of divergence, at the band that stayed in range and at real size |
-| `mass_distribution` | 5 | 4.96 | one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam |
-| `mislabelled_flow` | 0 | 3.31 | address labels the window contradicts, which is how a headline moves by a multiple |
+| `mass_distribution` | 5 | 5.11 | one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam |
+| `mislabelled_flow` | 0 | 3.36 | address labels the window contradicts, which is how a headline moves by a multiple |
 | `nav_discount` | 1 | 0.00 | redeemable claims trading away from the value the protocol pays, with the queue that separates them |
 | `rate_dispersion` | 5 | 0.00 | cross-venue supply-rate gaps on one asset, de-spiked and sized by rate dilution |
-| `solver_fingerprint` | 12 | 3.23 | unlabelled contracts that pass value straight through: solvers, routers and searcher bots |
+| `solver_fingerprint` | 12 | 3.27 | unlabelled contracts that pass value straight through: solvers, routers and searcher bots |
 
 ### [notable] unlabelled unknown 0x76f30e3f cycled $450.6M and ended the window flat (42 txs, 13 counterparties)
 

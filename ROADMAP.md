@@ -328,8 +328,19 @@ compares what a protocol pays on redemption against what the market paid for the
 three things that decide whether a discount is a trade: the measured round-trip cost (the sUSDe path is −2.7bp, which
 is 38% of a 7.1bp discount), the *availability* of the redemption leg (rETH's larger 17.7bp discount is demoted
 because Rocket Pool's burn pool is empty most of the time), and capacity taken as the volume actually offered rather
-than pool depth. Five of the seven strategies now re-price themselves. Remaining: the Pendle fixed-versus-floating gap
-and the Morpho USDT borrow spread, both of which need new head reads rather than new arithmetic.
+than pool depth. Five of the seven strategies now re-price themselves. The third is done as well: `head` now discovers Pendle markets from
+the window's own `Swap` logs — the markets with live flow, no hardcoded list and no API — and
+`detectors/fixed_vs_floating.py` classifies each implied yield as a *term premium* (the floating rate on the same
+underlying is readable, so the gap is a rate view) or a *credit spread* (it is not, so the excess is the price of an
+issuer's credit that nothing here has assessed). Every Pendle market that traded in the 21:27–23:27 window was the
+second kind, at 6% to 23%. Six of the seven strategies now re-price themselves; only the Morpho USDT borrow spread
+remains a hand measurement.
+
+Two gates were added after the loop fell into the gap between them. `head_state.json` is an input to `analyze` — the
+whole window is priced from it — and it was not fingerprinted, so re-running `head` silently re-priced an analysis
+that was not re-run, with labels and tokens both unchanged and no gate able to see it. `head` is now a provenance
+gate, and `head` itself refuses to read current state for a window collected long ago rather than mixing two
+timeframes.
 
 ## Anti-goals
 

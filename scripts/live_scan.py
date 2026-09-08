@@ -1183,6 +1183,24 @@ def head_state(args):
     rpc = RPC(log_path=out / 'rpc_errors.jsonl', max_credits=args.max_credits)
     hn, hts, hh = rpc_head(rpc)
     blk = hex(hn)
+    # `head` reads state at the *current* block. Pointing it at a window collected hours ago would stamp tonight's
+    # prices, rates and NAVs onto yesterday's blocks — and since `analyze` prices the window from `head_state.json`,
+    # the whole analysis would then be a mix of two timeframes with nothing saying so. The provenance gate cannot
+    # catch this: the labels and the token table would both be unchanged. So it is refused here.
+    mf = out / 'manifest.json'
+    if mf.exists():
+        try:
+            man = json.loads(mf.read_text())
+        except Exception:
+            man = {}
+        last = man.get('last_block_at_collect')
+        span = (last - man['first_block']) if (last and man.get('first_block')) else 0
+        drift = (hn - last) if last else 0
+        if last and drift > max(2 * span, 300) and not getattr(args, 'force', False):
+            raise SystemExit(
+                'refusing: the head is %d blocks past this window (collected to %d, head %d, window %d blocks).\n'
+                'Reading state now would price a past window at present rates. Collect a fresh window, or pass '
+                '--force if you intend the mismatch.' % (drift, last, hn, span))
     hs = {'block': hn, 'timestamp': hts, 'utc': utc(hts), 'feeds': {}, 'rates': {}, 'tokens': {}, 'lending': {}, 'compound': {}, 'health': [], 'sky': {}, 'ethena': {}}
     # Chainlink feeds with description check
     items = []
@@ -1295,6 +1313,13 @@ def head_state(args):
                 grid = [0.50, 0.60, 0.70, 0.75, 0.80, 0.84, 0.87, 0.89, 0.895, 0.90, 0.905, 0.91, 0.92, 0.94, 0.96, 0.98, 0.995]
                 cur = rpc.eth_calls([(comet, SEL['getSupplyRate'] + enc_uint(int(x * 1e18))) for x in grid], blk)
                 hs['compound'][name]['supply_curve'] = [[x, word(c, 0) * 31536000 / 1e18] for x, c in zip(grid, cur) if c]
+    # Pendle: the fixed-rate side of every yield-bearing dollar and ETH claim.
+    #
+    # The market list is discovered from the window's own `Swap` logs rather than hardcoded or fetched from an API.
+    # That has a property a fixed list does not: it enumerates exactly the markets with live flow, updates itself as
+    # markets expire and new ones list, and needs no network call to build. A market nobody traded in the window is a
+    # market whose price is a quote rather than a trade, and leaving it out is the honest default.
+    hs['pendle'] = pendle_state(rpc, out, blk, hn_ts=hs.get('timestamp'))
     # Sky savings rates, Ethena vesting
     r = rpc.eth_calls([('0xa3931d71877c0e7a3148cb7eb4463524fec27fbd', SEL['ssr']), ('0x197e90f9fde81202ff37a6f4ecd0bd4a2f1de6d8', SEL['dsr']),
                        ('0x9d39a5de30e57443bff2a8307a4256c8797a3497', SEL['vestingAmount']), ('0x9d39a5de30e57443bff2a8307a4256c8797a3497', SEL['totalAssets'])], blk)
@@ -1367,6 +1392,77 @@ def head_state(args):
 # ----------------------------------------------------------------------------------------------------------------------
 # Analyze over raw files
 # ----------------------------------------------------------------------------------------------------------------------
+PENDLE_SWAP_TOPIC = keccak('Swap(address,address,int256,int256,uint256,uint256)')
+PENDLE_PY_ORACLE = '0x9a9fa8338dd5e5b2188006f1cd2ef26d921650c2'   # PYLpOracle; every read is checked by getOracleState
+PENDLE_TWAP = 900
+
+
+def pendle_markets_in_window(out, cap=40):
+    """Pendle markets that actually traded in this window, busiest first, from the raw logs."""
+    import collections as _c
+    c = _c.Counter()
+    d = Path(out) / 'raw' / 'logs'
+    if not d.exists():
+        return []
+    for p in sorted(d.glob('*.json.gz')):
+        for l in read_gz(p):
+            tp = l.get('topics')
+            if tp and tp[0] == PENDLE_SWAP_TOPIC:
+                c[l['address'].lower()] += 1
+    return [a for a, _ in c.most_common(cap)]
+
+
+def pendle_state(rpc, out, blk, hn_ts=None):
+    """Implied fixed yield per traded Pendle market, with the depth behind it.
+
+    A principal token redeems 1:1 into its asset at maturity, so its price *is* a fixed rate: `(1/p)^(365/days) − 1`.
+    The rate is only meaningful when the oracle's observation window is populated, which `getOracleState` reports and
+    this refuses to quote without — an unpopulated TWAP returns a number that looks like a price and is not one.
+
+    Depth is the market's own PT balance: buying PT takes it from the market's reserves, so that balance is the most
+    you could buy before the price impact is the whole trade. It is a ceiling, not a fill.
+    """
+    import datetime as _dt
+    markets = pendle_markets_in_window(out)
+    if not markets:
+        return {}
+    now = hn_ts or int(time.time())
+    if isinstance(now, str):
+        now = int(_dt.datetime.fromisoformat(now.replace('Z', '+00:00')).timestamp())
+    res = rpc.eth_calls([(m, sel(sg)) for m in markets for sg in ('readTokens()', 'expiry()')], blk)
+    rows = []
+    for i, m in enumerate(markets):
+        rt, ex = res[2 * i], res[2 * i + 1]
+        if not rt or len(rt) < 2 + 3 * 64 or not ex:
+            continue
+        rows.append({'market': m, 'sy': '0x' + rt[2:66][-40:], 'pt': '0x' + rt[66:130][-40:],
+                     'yt': '0x' + rt[130:194][-40:], 'expiry': word(ex, 0)})
+    if not rows:
+        return {}
+    calls = []
+    for r in rows:
+        calls += [(PENDLE_PY_ORACLE, sel('getPtToAssetRate(address,uint32)') + enc_addr(r['market']) + enc_uint(PENDLE_TWAP)),
+                  (PENDLE_PY_ORACLE, sel('getOracleState(address,uint32)') + enc_addr(r['market']) + enc_uint(PENDLE_TWAP)),
+                  (r['pt'], SEL['symbol']), (r['pt'], SEL['decimals']),
+                  (r['pt'], SEL['balanceOf'] + enc_addr(r['market']))]
+    res = rpc.eth_calls(calls, blk)
+    out_rows = {}
+    for i, r in enumerate(rows):
+        pa, st, sy, dc, bal = res[5 * i: 5 * i + 5]
+        days = (r['expiry'] - now) / 86400 if r['expiry'] else None
+        satisfied = bool(word(st, 2)) if (st and len(st) >= 2 + 3 * 64) else False
+        p = word(pa, 0) / 1e18 if pa else None
+        dec = word(dc, 0) if dc else 18
+        r.update({'pt_symbol': dec_str(sy) if sy else None, 'pt_decimals': dec,
+                  'days_to_maturity': round(days, 3) if days is not None else None,
+                  'pt_to_asset': p, 'oracle_ready': satisfied,
+                  'pt_depth_units': (word(bal, 0) / 10 ** dec) if bal else None})
+        ok = p and days and days > 0 and satisfied
+        r['implied_apy'] = ((1 / p) ** (365 / days) - 1) if ok else None
+        out_rows[r['market']] = r
+    return out_rows
+
+
 def load_state(out, first=None, last=None, quiet=False):
     out = Path(out)
     hs = json.loads((out / 'head_state.json').read_text()) if (out / 'head_state.json').exists() else {}
@@ -1851,6 +1947,7 @@ def main():
     p.add_argument('--date', default='2026-09-06', help='midnight: UTC date whose 00:00 is checked')
     p.add_argument('--max-credits', type=int, default=6_000_000)
     p.add_argument('--mechanisms', action='store_true', help='verify: also run the source-backed mechanism assertions')
+    p.add_argument('--force', action='store_true', help='head: read current state even for a window collected long ago')
     args = p.parse_args()
     {'analyze': analyze, 'head': head_state, 'render': render, 'live': live, 'midnight': midnight, 'show': show,
      'verify': verify_cmd, 'detect': detect_cmd, 'pipeline': pipeline_cmd}[args.command](args)

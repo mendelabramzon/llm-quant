@@ -16,6 +16,11 @@ world the current code no longer believes in:
     tokens      sha over the token table, which `analyze` and `window_raw` share; if it changed since the analysis,
                 a verify mismatch is a pricing difference and not the aggregation drift verify exists to find
     blocks      first/last/count of the raw files, so blocks arriving after an analysis can't silently widen it
+    head        the block `head_state.json` was read at. `analyze` prices the whole window from that file, so a later
+                `head` run re-prices every dollar figure in an analysis that is not re-run -- and nothing said so
+                until this gate existed. It caught its own motivating case: a window collected to 23:27 UTC ended up
+                carrying a head read from 05:21 the next morning, six hours of price drift with the labels and the
+                token table both unchanged, so no other gate could see it.
 
 `code` and `git` are recorded but never gate: `live_scan.py` changes for a dozen unrelated reasons a session and a
 hard gate on it would cry stale constantly, which is the fastest way to teach a reader to ignore the check.
@@ -35,7 +40,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 # Fields whose mismatch invalidates the artifact rather than merely dating it.
-GATES = ('labels', 'tokens', 'blocks')
+GATES = ('labels', 'tokens', 'blocks', 'head')
 # Modules whose source is recorded with an analysis. Recorded, not gated -- see the module docstring.
 CODE = ('live_scan.py', 'window_raw.py', 'verify.py', 'labels.py', 'economics.py')
 
@@ -66,6 +71,19 @@ def block_fingerprint(out):
     d = Path(out) / 'raw' / 'blocks'
     nums = sorted(int(p.name.split('.')[0]) for p in d.glob('*.json.gz')) if d.exists() else []
     return _sha(','.join(map(str, nums))), len(nums), (nums[0] if nums else None), (nums[-1] if nums else None)
+
+
+def head_fingerprint(out):
+    """The block `head_state.json` was read at, or None when the window has no head state."""
+    if out is None:
+        return None
+    p = Path(out) / 'head_state.json'
+    if not p.exists():
+        return None
+    try:
+        return json.loads(p.read_text()).get('block')
+    except Exception:
+        return None
 
 
 def code_fingerprint():
@@ -99,7 +117,8 @@ def stamp(artifact, out=None, **extra):
          'code': code_fingerprint(), 'git': git_state()}
     if out is not None:
         blk, n, first, last = block_fingerprint(out)
-        s.update({'blocks': blk, 'block_count': n, 'first_block': first, 'last_block': last})
+        s.update({'blocks': blk, 'block_count': n, 'first_block': first, 'last_block': last,
+                  'head': head_fingerprint(out)})
     # A caller passing `blocks=1492` would otherwise replace the block *fingerprint* with a count, and the gate would
     # then compare a number against a sha and call every artifact stale. Gate fields are not caller-writable.
     s.update({k: v for k, v in extra.items() if k not in GATES})
@@ -127,7 +146,9 @@ def check(recorded, out=None):
         if not ok:
             note = {'labels': 'the address book changed since this analysis -- re-run `live_scan analyze`',
                     'tokens': 'the token table changed since this analysis -- re-run `live_scan analyze`',
-                    'blocks': 'the raw block set changed since this analysis -- re-run `live_scan analyze`'}[f]
+                    'blocks': 'the raw block set changed since this analysis -- re-run `live_scan analyze`',
+                    'head': 'head_state.json was re-read at a different block, so the price basis this analysis used '
+                            'is not the one on disk -- re-run `live_scan analyze`'}[f]
             stale = True
         rows.append({'field': f, 'artifact': a, 'current': c, 'gate': True, 'ok': ok, 'note': note})
     for name, sha in (cur.get('code') or {}).items():
