@@ -323,8 +323,13 @@ That gives the next round of detector work a clear ordering principle: **write t
 strategy in the book that nothing re-prices.** The first of those is done — `detectors/lp_marginal_yield.py` prices a
 concentrated-LP position at the band the price stayed inside, at real size, net of the divergence the same
 concentration amplifies, and it gave the captive-flow LP its first automatic decay series (15.80% hand study → 6.13%
-→ 10.37% → absent, zero swaps in a two-hour window). Remaining, in order: the Pendle fixed-versus-floating gap, the
-sUSDe ask against NAV, and the Morpho USDT borrow spread.
+→ 10.37% → absent, zero swaps in a two-hour window). The second is done too — `detectors/nav_discount.py`
+compares what a protocol pays on redemption against what the market paid for the claim, and separates the two with the
+three things that decide whether a discount is a trade: the measured round-trip cost (the sUSDe path is −2.7bp, which
+is 38% of a 7.1bp discount), the *availability* of the redemption leg (rETH's larger 17.7bp discount is demoted
+because Rocket Pool's burn pool is empty most of the time), and capacity taken as the volume actually offered rather
+than pool depth. Five of the seven strategies now re-price themselves. Remaining: the Pendle fixed-versus-floating gap
+and the Morpho USDT borrow spread, both of which need new head reads rather than new arithmetic.
 
 ## Anti-goals
 

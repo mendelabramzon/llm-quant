@@ -39,16 +39,23 @@
   {
    "detector": "mass_distribution",
    "hits": 4,
-   "seconds": 1.9,
+   "seconds": 1.91,
    "error": null,
    "description": "one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam"
   },
   {
    "detector": "mislabelled_flow",
    "hits": 0,
-   "seconds": 1.36,
+   "seconds": 1.4,
    "error": null,
    "description": "address labels the window contradicts, which is how a headline moves by a multiple"
+  },
+  {
+   "detector": "nav_discount",
+   "hits": 1,
+   "seconds": 0.0,
+   "error": null,
+   "description": "redeemable claims trading away from the value the protocol pays, with the queue that separates them"
   },
   {
    "detector": "rate_dispersion",
@@ -293,6 +300,52 @@
    "usd": 1116507.04922956,
    "key": "USDT:Aave v3/SparkLend",
    "identity": "rate_dispersion:USDT:Aave v3/SparkLend"
+  },
+  {
+   "detector": "nav_discount",
+   "title": "sUSDe trades 7.1bp below NAV, 4.4bp after the 2.7bp round trip; cooldownShares, then unstake after cooldownDuration (1 day)",
+   "severity": "notable",
+   "evidence": {
+    "asset": "sUSDe",
+    "nav_source": "0x9d39a5de convertToAssets(uint256)",
+    "nav": 1.247001,
+    "market_vw_price": 1.24611,
+    "market_median": 1.246198,
+    "market_p10": 1.245819,
+    "discount_bps": 7.14,
+    "traded_volume_usd": 972880,
+    "implied_daily_volume_usd": 11657074,
+    "refills_needed_per_year": 365,
+    "swaps": 21,
+    "venues": {
+     "uniswap_v4": 18,
+     "curve": 3
+    },
+    "redemption": {
+     "days": 1.0,
+     "atomic": false,
+     "availability": "always",
+     "exit_bps": 2.7,
+     "path": "cooldownShares, then unstake after cooldownDuration (1 day)"
+    },
+    "net_edge_bps": 4.44,
+    "why": "the protocol pays NAV and the market paid less; the gap closes when you redeem, and the wait is the reason a bot cannot take it from you"
+   },
+   "economics": {
+    "net_apr": 0.1621,
+    "net_per_year_usd": 157656,
+    "net_per_run_usd": 431.94,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 972880,
+    "hold_days": 1.0,
+    "discount_bps": 7.14,
+    "exit_cost_bps": 2.7,
+    "net_edge_bps": 4.44
+   },
+   "usd": 157656,
+   "key": "sUSDe",
+   "identity": "nav_discount:sUSDe"
   },
   {
    "detector": "lp_marginal_yield",

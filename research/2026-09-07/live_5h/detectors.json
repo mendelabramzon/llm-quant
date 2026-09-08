@@ -4,7 +4,7 @@
   {
    "detector": "address_poisoning",
    "hits": 1,
-   "seconds": 3.04,
+   "seconds": 3.05,
    "error": null,
    "description": "lookalike dust transfers that follow a large transfer, aimed at a later copy-paste"
   },
@@ -18,7 +18,7 @@
   {
    "detector": "gas_concentration",
    "hits": 1,
-   "seconds": 3.08,
+   "seconds": 3.09,
    "error": null,
    "description": "base-fee spikes attributed to the contract whose gas demand caused them"
   },
@@ -39,7 +39,7 @@
   {
    "detector": "mass_distribution",
    "hits": 5,
-   "seconds": 5.0,
+   "seconds": 4.96,
    "error": null,
    "description": "one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam"
   },
@@ -49,6 +49,13 @@
    "seconds": 3.31,
    "error": null,
    "description": "address labels the window contradicts, which is how a headline moves by a multiple"
+  },
+  {
+   "detector": "nav_discount",
+   "hits": 1,
+   "seconds": 0.0,
+   "error": null,
+   "description": "redeemable claims trading away from the value the protocol pays, with the queue that separates them"
   },
   {
    "detector": "rate_dispersion",
@@ -1507,6 +1514,53 @@
    "usd": 331664.84109534277,
    "key": "0x4068038ab5490063a3ead93b3712ed082e62bd59",
    "identity": "lp_marginal_yield:0x4068038ab5490063a3ead93b3712ed082e62bd59"
+  },
+  {
+   "detector": "nav_discount",
+   "title": "rETH trades 17.7bp below NAV, 12.7bp after the 5.0bp round trip; burn into the Rocket Pool deposit pool, which is empty most of the time \u2014 conditional, so the exit may not be there when you want it",
+   "severity": "info",
+   "evidence": {
+    "asset": "rETH",
+    "nav_source": "0xae78736c getExchangeRate()",
+    "nav": 2909.45091,
+    "market_vw_price": 2904.298196,
+    "market_median": 2904.156629,
+    "market_p10": 2903.378049,
+    "discount_bps": 17.71,
+    "traded_volume_usd": 361204,
+    "implied_daily_volume_usd": 1732740,
+    "refills_needed_per_year": 365,
+    "swaps": 28,
+    "venues": {
+     "uniswap_v3": 15,
+     "uniswap_v4": 7,
+     "curve": 6
+    },
+    "redemption": {
+     "days": 1.0,
+     "atomic": false,
+     "availability": "conditional",
+     "exit_bps": 5.0,
+     "path": "burn into the Rocket Pool deposit pool, which is empty most of the time"
+    },
+    "net_edge_bps": 12.71,
+    "why": "the protocol pays NAV and the market paid less; the gap closes when you redeem, and the wait is the reason a bot cannot take it from you"
+   },
+   "economics": {
+    "net_apr": 0.4638,
+    "net_per_year_usd": 167541,
+    "net_per_run_usd": 459.02,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 361204,
+    "hold_days": 1.0,
+    "discount_bps": 17.71,
+    "exit_cost_bps": 5.0,
+    "net_edge_bps": 12.71
+   },
+   "usd": 167541,
+   "key": "rETH",
+   "identity": "nav_discount:rETH"
   },
   {
    "detector": "rate_dispersion",

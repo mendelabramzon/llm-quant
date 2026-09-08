@@ -4,7 +4,7 @@
   {
    "detector": "address_poisoning",
    "hits": 1,
-   "seconds": 3.17,
+   "seconds": 3.19,
    "error": null,
    "description": "lookalike dust transfers that follow a large transfer, aimed at a later copy-paste"
   },
@@ -18,7 +18,7 @@
   {
    "detector": "gas_concentration",
    "hits": 0,
-   "seconds": 3.09,
+   "seconds": 3.11,
    "error": null,
    "description": "base-fee spikes attributed to the contract whose gas demand caused them"
   },
@@ -51,6 +51,13 @@
    "description": "address labels the window contradicts, which is how a headline moves by a multiple"
   },
   {
+   "detector": "nav_discount",
+   "hits": 0,
+   "seconds": 0.0,
+   "error": null,
+   "description": "redeemable claims trading away from the value the protocol pays, with the queue that separates them"
+  },
+  {
    "detector": "rate_dispersion",
    "hits": 5,
    "seconds": 0.0,
@@ -60,7 +67,7 @@
   {
    "detector": "solver_fingerprint",
    "hits": 12,
-   "seconds": 3.39,
+   "seconds": 3.4,
    "error": null,
    "description": "unlabelled contracts that pass value straight through: solvers, routers and searcher bots"
   }

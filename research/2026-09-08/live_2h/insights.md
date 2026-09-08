@@ -130,15 +130,19 @@ check until today — and it fetches each reserve's IRM parameters, which had be
 The strategy book (`research/strategies.jsonl`, `scripts/strategies.py`) now holds every strategy this repo has
 produced, each with legs, capacity, kill criteria and a quote series. Ranked at this window:
 
-| strategy | status | net APR | capacity | quote age |
-|---|---|---:|---:|---:|
-| USDG captive-flow v4 LP | fork-proven | 15.80% | $150k | 28h |
-| Sky savings rate over Aave USDS | monitored | 3.48% | $1B | current |
-| Aave USDtb supply | proposed | 2.36% | $227k | current |
-| PT-sUSDS fixed vs the savings rate | proposed | 1.37% | $1M | 35h |
-| Compound v3 USDC over SparkLend | monitored | 1.05% | $1.4M | current |
-| sUSDe cooldown redemption | fork-proven | standing bid | $600k | 35h |
-| Morpho USDT borrow vs Aave | proposed | 0.91% | $24M | **stale** |
+| strategy | status | net APR | capacity | re-priced by |
+|---|---|---:|---:|---|
+| sUSDe cooldown redemption | fork-proven | 16.21% | $600k | detector |
+| Sky savings rate over Aave USDS | monitored | 3.48% | $1B | detector |
+| Aave USDtb supply | proposed | 2.36% | $227k | detector |
+| PT-sUSDS fixed vs the savings rate | proposed | 1.37% | $1M | hand, 36h old |
+| Compound v3 USDC over SparkLend | monitored | 1.05% | $1.4M | detector |
+| USDG captive-flow v4 LP | fork-proven | (10.37%) | $150k | detector — absent this window |
+| Morpho USDT borrow vs Aave | proposed | 0.91% | $24M | hand, **stale** |
+
+(The table as first written had three of these carrying a detector quote and four measured by hand. Two detectors
+later — sections 6 and 7 — five of seven re-price themselves, and the captive-flow LP's bracketed rate is the last one
+seen, because its pool did no trades at all in this window.)
 
 Two were retired on economics rather than on mechanism and are not shown: mainnet JIT liquidity (the entire field
 nets ~$6k a year at a 10% win rate) and the StacyVault reward harvest ($7.42 a run — the bug is real and still
@@ -196,7 +200,37 @@ The last row is the informative one. The thesis rests on a desk being paid to co
 two-hour window with no volume at all is the flow-durability risk the study named, showing up in the data rather than
 in prose. One window is not a trend, but the book will now say so on its own every time it is run.
 
-## 7. Everything else in the window
+## 7. The redemption thesis, re-priced — and what the raw NAV gap leaves out
+
+`detectors/nav_discount.py` does the same job for the second manual strategy in the book. Everything it needs was
+already in the artifacts: `head_state.rates` carries what each protocol pays on redemption, `analysis.peg` carries
+what the market actually paid, from the window's own swaps.
+
+The gap between them is not the trade, and three corrections separate the two:
+
+| | sUSDe, this window | rETH, 2026-09-07 05h window |
+|---|---:|---:|
+| discount to NAV | 7.1bp | 17.7bp |
+| measured round-trip cost | −2.7bp | −5.0bp |
+| **net edge** | **4.4bp** | **12.7bp** |
+| hold | 1 day (cooldown) | 1 day, *if the deposit pool has a balance* |
+| capacity — volume actually traded | $972,880 | $361,204 |
+| verdict | 16.2% a year, $158k | demoted: the exit is conditional |
+
+The round-trip cost comes from the 2026-09-06 fork test, which measured the sUSDe path at −2.7bp with the ask *at*
+NAV — two Curve legs. Quoting the raw NAV gap as profit overstates every one of these by roughly that much, which on a
+7.1bp discount is 38% of the edge.
+
+The rETH row is the more important one. A 17.7bp discount and a one-day burn looks better than sUSDe on every number,
+and it is demoted anyway: Rocket Pool's burn pays out of a deposit pool that is empty most of the time, so the exit
+may simply not be there. The detector now carries an `availability` field for exactly this — `always`, `queued`,
+`conditional`, `permissioned` — because a discount whose redemption leg is conditional is not a redemption trade, it
+is a directional position you may have to sell back into the market that sold it to you.
+
+And the annualisation still rests on refilling the position every day, so the evidence reports the implied daily
+volume rather than hiding the assumption inside the APR.
+
+## 8. Everything else in the window
 
 - **Two atomic bot pairs passed $480M each through 7 transactions, ending exactly flat** (0x04ca7a7e, 0x26de7861 —
   the second returned $240,000,001 against $240,000,001 received, to the dollar). Both are contracts, neither is

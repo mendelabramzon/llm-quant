@@ -1,16 +1,17 @@
 # Detector sweep — research/2026-09-07/live_5h
 
-Ran 9 detector(s); 36 hit(s).
+Ran 10 detector(s); 37 hit(s).
 
 | detector | hits | seconds | what it looks for |
 |---|---:|---:|---|
-| `address_poisoning` | 1 | 3.04 | lookalike dust transfers that follow a large transfer, aimed at a later copy-paste |
+| `address_poisoning` | 1 | 3.05 | lookalike dust transfers that follow a large transfer, aimed at a later copy-paste |
 | `dollar_rate_outlier` | 1 | 2.98 | dollar supply rates ranked against the risk-free dollar, sized from each reserve’s own rate curve |
-| `gas_concentration` | 1 | 3.08 | base-fee spikes attributed to the contract whose gas demand caused them |
+| `gas_concentration` | 1 | 3.09 | base-fee spikes attributed to the contract whose gas demand caused them |
 | `jit_liquidity` | 1 | 0.00 | fee share taken by liquidity minted for a single swap, per pool and per window |
 | `lp_marginal_yield` | 10 | 0.00 | concentrated-LP fee yield net of divergence, at the band that stayed in range and at real size |
-| `mass_distribution` | 5 | 5.00 | one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam |
+| `mass_distribution` | 5 | 4.96 | one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam |
 | `mislabelled_flow` | 0 | 3.31 | address labels the window contradicts, which is how a headline moves by a multiple |
+| `nav_discount` | 1 | 0.00 | redeemable claims trading away from the value the protocol pays, with the queue that separates them |
 | `rate_dispersion` | 5 | 0.00 | cross-venue supply-rate gaps on one asset, de-spiked and sized by rate dilution |
 | `solver_fingerprint` | 12 | 3.23 | unlabelled contracts that pass value straight through: solvers, routers and searcher bots |
 
@@ -1281,6 +1282,40 @@ Economics: net APR 1.21%, $1,826,129 per year, GO — clears gas, impact and com
 ```
 
 Economics: net APR 33.17%, $331,665 per year, no — nets 33.17% a year at $1,000,000 in a ±0.010% band, before any view on holding the pair
+
+### [info] rETH trades 17.7bp below NAV, 12.7bp after the 5.0bp round trip; burn into the Rocket Pool deposit pool, which is empty most of the time — conditional, so the exit may not be there when you want it
+
+```json
+{
+ "asset": "rETH",
+ "nav_source": "0xae78736c getExchangeRate()",
+ "nav": 2909.45091,
+ "market_vw_price": 2904.298196,
+ "market_median": 2904.156629,
+ "market_p10": 2903.378049,
+ "discount_bps": 17.71,
+ "traded_volume_usd": 361204,
+ "implied_daily_volume_usd": 1732740,
+ "refills_needed_per_year": 365,
+ "swaps": 28,
+ "venues": {
+  "uniswap_v3": 15,
+  "uniswap_v4": 7,
+  "curve": 6
+ },
+ "redemption": {
+  "days": 1.0,
+  "atomic": false,
+  "availability": "conditional",
+  "exit_bps": 5.0,
+  "path": "burn into the Rocket Pool deposit pool, which is empty most of the time"
+ },
+ "net_edge_bps": 12.71,
+ "why": "the protocol pays NAV and the market paid less; the gap closes when you redeem, and the wait is the reason a bot cannot take it from you"
+}
+```
+
+Economics: net APR 46.38%, $167,541 per year, GO — clears gas, impact and competition at this size
 
 ### [info] PYUSD pays 3.17pp more on Aave v3 than SparkLend; best size $11.9M earns $107k a year over SparkLend [one-block read, de-spiking unavailable]
 

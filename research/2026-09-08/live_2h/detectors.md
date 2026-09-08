@@ -1,6 +1,6 @@
 # Detector sweep — research/2026-09-08/live_2h
 
-Ran 9 detector(s); 27 hit(s).
+Ran 10 detector(s); 28 hit(s).
 
 | detector | hits | seconds | what it looks for |
 |---|---:|---:|---|
@@ -9,8 +9,9 @@ Ran 9 detector(s); 27 hit(s).
 | `gas_concentration` | 0 | 0.00 | base-fee spikes attributed to the contract whose gas demand caused them |
 | `jit_liquidity` | 1 | 0.00 | fee share taken by liquidity minted for a single swap, per pool and per window |
 | `lp_marginal_yield` | 8 | 0.00 | concentrated-LP fee yield net of divergence, at the band that stayed in range and at real size |
-| `mass_distribution` | 4 | 1.90 | one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam |
-| `mislabelled_flow` | 0 | 1.36 | address labels the window contradicts, which is how a headline moves by a multiple |
+| `mass_distribution` | 4 | 1.91 | one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam |
+| `mislabelled_flow` | 0 | 1.40 | address labels the window contradicts, which is how a headline moves by a multiple |
+| `nav_discount` | 1 | 0.00 | redeemable claims trading away from the value the protocol pays, with the queue that separates them |
 | `rate_dispersion` | 5 | 0.00 | cross-venue supply-rate gaps on one asset, de-spiked and sized by rate dilution |
 | `solver_fingerprint` | 6 | 1.31 | unlabelled contracts that pass value straight through: solvers, routers and searcher bots |
 
@@ -205,6 +206,39 @@ Economics: net APR 3.48%, $34,758,805 per year, GO — clears gas, impact and co
 ```
 
 Economics: net APR 0.46%, $1,116,507 per year, GO — clears gas, impact and competition at this size
+
+### [notable] sUSDe trades 7.1bp below NAV, 4.4bp after the 2.7bp round trip; cooldownShares, then unstake after cooldownDuration (1 day)
+
+```json
+{
+ "asset": "sUSDe",
+ "nav_source": "0x9d39a5de convertToAssets(uint256)",
+ "nav": 1.247001,
+ "market_vw_price": 1.24611,
+ "market_median": 1.246198,
+ "market_p10": 1.245819,
+ "discount_bps": 7.14,
+ "traded_volume_usd": 972880,
+ "implied_daily_volume_usd": 11657074,
+ "refills_needed_per_year": 365,
+ "swaps": 21,
+ "venues": {
+  "uniswap_v4": 18,
+  "curve": 3
+ },
+ "redemption": {
+  "days": 1.0,
+  "atomic": false,
+  "availability": "always",
+  "exit_bps": 2.7,
+  "path": "cooldownShares, then unstake after cooldownDuration (1 day)"
+ },
+ "net_edge_bps": 4.44,
+ "why": "the protocol pays NAV and the market paid less; the gap closes when you redeem, and the wait is the reason a bot cannot take it from you"
+}
+```
+
+Economics: net APR 16.21%, $157,656 per year, GO — clears gas, impact and competition at this size
 
 ### [notable] uniswap_v4 USDe/USDC: $1.0M in a ±0.01% band earns 0.3bp of fees less 0.0bp of divergence over 2.0h (12.7% a year if it repeats)
 

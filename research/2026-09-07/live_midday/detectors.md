@@ -1,18 +1,19 @@
 # Detector sweep — research/2026-09-07/live_midday
 
-Ran 9 detector(s); 35 hit(s).
+Ran 10 detector(s); 35 hit(s).
 
 | detector | hits | seconds | what it looks for |
 |---|---:|---:|---|
-| `address_poisoning` | 1 | 3.17 | lookalike dust transfers that follow a large transfer, aimed at a later copy-paste |
+| `address_poisoning` | 1 | 3.19 | lookalike dust transfers that follow a large transfer, aimed at a later copy-paste |
 | `dollar_rate_outlier` | 0 | 0.00 | dollar supply rates ranked against the risk-free dollar, sized from each reserve’s own rate curve |
-| `gas_concentration` | 0 | 3.09 | base-fee spikes attributed to the contract whose gas demand caused them |
+| `gas_concentration` | 0 | 3.11 | base-fee spikes attributed to the contract whose gas demand caused them |
 | `jit_liquidity` | 2 | 0.00 | fee share taken by liquidity minted for a single swap, per pool and per window |
 | `lp_marginal_yield` | 8 | 0.00 | concentrated-LP fee yield net of divergence, at the band that stayed in range and at real size |
 | `mass_distribution` | 5 | 5.25 | one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam |
 | `mislabelled_flow` | 2 | 3.47 | address labels the window contradicts, which is how a headline moves by a multiple |
+| `nav_discount` | 0 | 0.00 | redeemable claims trading away from the value the protocol pays, with the queue that separates them |
 | `rate_dispersion` | 5 | 0.00 | cross-venue supply-rate gaps on one asset, de-spiked and sized by rate dilution |
-| `solver_fingerprint` | 12 | 3.39 | unlabelled contracts that pass value straight through: solvers, routers and searcher bots |
+| `solver_fingerprint` | 12 | 3.40 | unlabelled contracts that pass value straight through: solvers, routers and searcher bots |
 
 ### [notable] unlabelled unknown 0x76f30e3f cycled $288.8M and ended the window flat (30 txs, 13 counterparties)
 

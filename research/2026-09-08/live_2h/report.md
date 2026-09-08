@@ -1,6 +1,6 @@
 # Ethereum mainnet live scan: 2026-09-07T21:27:35+00:00 to 2026-09-07T23:27:35+00:00 UTC
 
-Blocks 25928160 to 25928758 (599 blocks, 2.00 h), 141,411 transactions, 491,580 logs. Prices at head block 25928857: ETH $2486, BTC $79k. Generated 2026-09-07T23:55:33+00:00 UTC by `scripts/live_scan.py`; the narrative section is written by the LLM from `analysis.json` and `head_state.json`, every table below is deterministic.
+Blocks 25928160 to 25928758 (599 blocks, 2.00 h), 141,411 transactions, 491,580 logs. Prices at head block 25928857: ETH $2486, BTC $79k. Generated 2026-09-08T01:40:03+00:00 UTC by `scripts/live_scan.py`; the narrative section is written by the LLM from `analysis.json` and `head_state.json`, every table below is deterministic.
 
 # The dollar-yield surface, and what it is worth at size
 
@@ -134,15 +134,19 @@ check until today — and it fetches each reserve's IRM parameters, which had be
 The strategy book (`research/strategies.jsonl`, `scripts/strategies.py`) now holds every strategy this repo has
 produced, each with legs, capacity, kill criteria and a quote series. Ranked at this window:
 
-| strategy | status | net APR | capacity | quote age |
-|---|---|---:|---:|---:|
-| USDG captive-flow v4 LP | fork-proven | 15.80% | $150k | 28h |
-| Sky savings rate over Aave USDS | monitored | 3.48% | $1B | current |
-| Aave USDtb supply | proposed | 2.36% | $227k | current |
-| PT-sUSDS fixed vs the savings rate | proposed | 1.37% | $1M | 35h |
-| Compound v3 USDC over SparkLend | monitored | 1.05% | $1.4M | current |
-| sUSDe cooldown redemption | fork-proven | standing bid | $600k | 35h |
-| Morpho USDT borrow vs Aave | proposed | 0.91% | $24M | **stale** |
+| strategy | status | net APR | capacity | re-priced by |
+|---|---|---:|---:|---|
+| sUSDe cooldown redemption | fork-proven | 16.21% | $600k | detector |
+| Sky savings rate over Aave USDS | monitored | 3.48% | $1B | detector |
+| Aave USDtb supply | proposed | 2.36% | $227k | detector |
+| PT-sUSDS fixed vs the savings rate | proposed | 1.37% | $1M | hand, 36h old |
+| Compound v3 USDC over SparkLend | monitored | 1.05% | $1.4M | detector |
+| USDG captive-flow v4 LP | fork-proven | (10.37%) | $150k | detector — absent this window |
+| Morpho USDT borrow vs Aave | proposed | 0.91% | $24M | hand, **stale** |
+
+(The table as first written had three of these carrying a detector quote and four measured by hand. Two detectors
+later — sections 6 and 7 — five of seven re-price themselves, and the captive-flow LP's bracketed rate is the last one
+seen, because its pool did no trades at all in this window.)
 
 Two were retired on economics rather than on mechanism and are not shown: mainnet JIT liquidity (the entire field
 nets ~$6k a year at a 10% win rate) and the StacyVault reward harvest ($7.42 a run — the bug is real and still
@@ -153,13 +157,84 @@ idea; the $1B-capacity idea pays 3.48% and is a savings account. Nothing in the 
 mispriced, which is what an efficient dollar market is supposed to look like, and it is worth stating plainly rather
 than implying otherwise by quoting headline rates.
 
-**Only three of the seven have a quote a detector produced.** The other four were measured once in a dated session and
-have not been re-measured since; the Morpho USDT borrow spread is already past its staleness threshold. That gives the
-next round of work an ordering principle: write the detector that re-prices the highest strategy in the book that
-nothing re-prices — the captive-flow LP first, then the Pendle fixed-versus-floating gap, then the sUSDe ask against
-NAV.
+**Only three of the seven had a quote a detector produced**, which gave the next round of work an ordering principle:
+write the detector that re-prices the highest strategy in the book that nothing re-prices. That was the captive-flow
+LP, and it is done — see the next section. The remaining manual ones, in order, are the Pendle fixed-versus-floating
+gap, the sUSDe ask against NAV, and the Morpho USDT borrow spread (already past its staleness threshold).
 
-## 6. Everything else in the window
+## 6. The captive-flow LP thesis, re-priced automatically — and what pricing it properly costs
+
+`detectors/lp_marginal_yield.py` now re-prices any concentrated-LP position from window data alone. It corrects the
+two things that make the LP table in `analysis.json` unquotable.
+
+**An APR at zero size is not a yield.** A pool's liquidity expressed as ±b-band capital is `k(b)·C`, where `C` is the
+full-range-equivalent capital behind its active liquidity and `k(b) = 1 − 1/√(1+b)`; adding `Y` earns
+`passive_fees / (k·C + Y)`, which reduces to the reported band APR at `Y → 0` and dilutes correctly from there.
+
+**A band narrower than the price moved is a position that was not in range.** The table reports 5,981% for a UNI/USDC
+pool whose price moved 3.0% inside this window. Quoting the band the price actually stayed inside, and netting the
+divergence that the same concentration multiplier amplifies, changes the character of the answer completely:
+
+| pool | band | fees over 2h | divergence over 2h | net | annualised, if it repeats |
+|---|---:|---:|---:|---:|---:|
+| WETH/USDT v3 | ±0.28% | 10.7bp | 6.9bp | +3.8bp | 163.6% |
+| WBTC/WETH v3 | ±0.25% | 6.4bp | 6.2bp | +0.2bp | 11.1% |
+| USDe/USDC v4 | ±0.01% | 0.3bp | 0.0bp | +0.3bp | 12.7% |
+
+Volatile-pair LPing in this window roughly **broke even against divergence**. That is the well-known result, now
+measured by the system rather than assumed, and it is the opposite of what a four-digit APR implies.
+
+**The band is the assumption, so the detector reports it.** Fee APR goes as `1/band`, so the band moves the answer
+more than anything else in the calculation. Checking against the hand-built captive-flow study makes the point: that
+study priced a USDC/USDG v4 pool at 14.2% on $1.04M of measured deployed TVL, and this pool's `C` implies its
+incumbent LPs sit in a band of about **±1.2bp** — corroborated by the 0.9bp the price actually moved over five hours.
+Quote the same pool at ±20bp and it pays 1.1%; at its own concentration, about 10%. Both are true statements about
+different positions, so every hit carries a ladder across bands and the headline names the one it used.
+
+Linking that detector to the strategy gives the book its first automatic decay series on a real edge:
+
+| when | window | USDC/USDG marginal LP, ±1bp |
+|---|---|---:|
+| 2026-09-06 20:19 | hand study, deployed TVL measured from the tick distribution | 15.80% |
+| 2026-09-07 02:39–07:39 | live_5h | 6.13% |
+| 2026-09-07 07:39–12:39 | live_midday | 10.37% |
+| 2026-09-07 21:27–23:27 | this window | **not present — zero swaps in two hours** |
+
+The last row is the informative one. The thesis rests on a desk being paid to convert into USDG continuously; a
+two-hour window with no volume at all is the flow-durability risk the study named, showing up in the data rather than
+in prose. One window is not a trend, but the book will now say so on its own every time it is run.
+
+## 7. The redemption thesis, re-priced — and what the raw NAV gap leaves out
+
+`detectors/nav_discount.py` does the same job for the second manual strategy in the book. Everything it needs was
+already in the artifacts: `head_state.rates` carries what each protocol pays on redemption, `analysis.peg` carries
+what the market actually paid, from the window's own swaps.
+
+The gap between them is not the trade, and three corrections separate the two:
+
+| | sUSDe, this window | rETH, 2026-09-07 05h window |
+|---|---:|---:|
+| discount to NAV | 7.1bp | 17.7bp |
+| measured round-trip cost | −2.7bp | −5.0bp |
+| **net edge** | **4.4bp** | **12.7bp** |
+| hold | 1 day (cooldown) | 1 day, *if the deposit pool has a balance* |
+| capacity — volume actually traded | $972,880 | $361,204 |
+| verdict | 16.2% a year, $158k | demoted: the exit is conditional |
+
+The round-trip cost comes from the 2026-09-06 fork test, which measured the sUSDe path at −2.7bp with the ask *at*
+NAV — two Curve legs. Quoting the raw NAV gap as profit overstates every one of these by roughly that much, which on a
+7.1bp discount is 38% of the edge.
+
+The rETH row is the more important one. A 17.7bp discount and a one-day burn looks better than sUSDe on every number,
+and it is demoted anyway: Rocket Pool's burn pays out of a deposit pool that is empty most of the time, so the exit
+may simply not be there. The detector now carries an `availability` field for exactly this — `always`, `queued`,
+`conditional`, `permissioned` — because a discount whose redemption leg is conditional is not a redemption trade, it
+is a directional position you may have to sell back into the market that sold it to you.
+
+And the annualisation still rests on refilling the position every day, so the evidence reports the implied daily
+volume rather than hiding the assumption inside the APR.
+
+## 8. Everything else in the window
 
 - **Two atomic bot pairs passed $480M each through 7 transactions, ending exactly flat** (0x04ca7a7e, 0x26de7861 —
   the second returned $240,000,001 against $240,000,001 received, to the dollar). Both are contracts, neither is
