@@ -25,6 +25,13 @@ one number that silently depends on 47 unverified memory tags.
 against; if either moved, the numbers are re-derived from a world the current code no longer believes in, so `verify`
 stops and says "re-run analyze" instead of reporting a numeric mismatch whose real cause is a label edit.
 
+**Identity checks** cover the surface the other two cannot. `head_state.json` holds every rate and yield in every
+note, and there is no second RPC path to read it through — but the protocols publish identities between the fields
+they report (a supplier earns the borrow rate times utilisation less the reserve factor; a borrow rate is the IRM
+curve at that utilisation; a PT's implied yield is a function of its price and maturity). Re-deriving one field from
+the others tests the whole decode — word offsets, ray scaling, config bitmaps, curve parameters — against the chain's
+own arithmetic.
+
 **Claim tagging** closes the last gap. A sentence in `insights.md` cites its check as `[[verify: exchange-net-stables]]`;
 `verify` reports which recipes are cited, fails on a citation with no matching check, and counts the headline numbers
 that cite nothing, so an unverified number is visibly unverified.
@@ -311,6 +318,160 @@ def run_numeric(out, min_usd=1e4):
 
 
 # ----------------------------------------------------------------------------------------------------------------------
+# Identity checks — the head state re-derived from itself through each protocol's own formula
+# ----------------------------------------------------------------------------------------------------------------------
+"""Why these exist. Every numeric check above re-derives a *window aggregate* from the raw blocks through a second
+code path, so a mismatch means the aggregation drifted. Nothing did that for `head_state.json`, and the head is where
+the entire rate and yield surface lives — every table in every note whose numbers are rates rather than flows. There
+is no second RPC path to read them through, so for a long time they were simply asserted.
+
+There is a second reading available, though: the protocols publish *identities* between the numbers they report. A
+supplier earns the borrow rate, shared over everyone supplying, less the reserve factor. A borrow rate is the IRM
+curve evaluated at the utilisation. A principal token's implied yield is a function of its price and its maturity.
+Each of those is a relationship the protocol enforces, so re-deriving one reported field from the others tests the
+decode end to end — the word offsets, the ray scaling, the config bitmap, the curve parameters — against the chain's
+own arithmetic rather than against a second opinion this repo would have to write.
+
+Two of this session's bugs sat inside exactly that surface: a rate series read at the wrong word index, and rate-curve
+parameters that were silently returning nothing. An identity check over the head state fails on both."""
+
+
+def _pct(x):
+    return None if x is None else round(100 * x, 4)
+
+
+def _close(a, b, tol):
+    return a is not None and b is not None and abs(a - b) <= tol
+
+
+def _aave_borrow_at(curve, util):
+    o = curve.get('optimal') or 0.9
+    base, s1, s2 = curve.get('base', 0.0), curve.get('slope1', 0.05), curve.get('slope2', 0.5)
+    if util <= o:
+        return base + s1 * (util / o if o else 0)
+    return base + s1 + s2 * (util - o) / max(1 - o, 1e-9)
+
+
+def _interp(grid, u):
+    pts = sorted(grid)
+    if not pts or u <= pts[0][0]:
+        return pts[0][1] if pts else None
+    for (u0, r0), (u1, r1) in zip(pts, pts[1:]):
+        if u <= u1:
+            return r0 + (r1 - r0) * (u - u0) / max(u1 - u0, 1e-12)
+    return pts[-1][1]
+
+
+def run_identities(out, tol=0.0015):
+    """Re-derive each head-state field the protocol defines in terms of the others. `tol` is absolute, in rate units."""
+    p = Path(out) / 'head_state.json'
+    if not p.exists():
+        return []
+    hs = json.loads(p.read_text())
+    curves = hs.get('rate_curves') or {}
+    rows = []
+
+    def add(cid, name, checked, bad, worst):
+        rows.append({'id': cid, 'check': name, 'checked': checked, 'failed': len(bad),
+                     'ok': not bad, 'worst': worst, 'examples': bad[:4]})
+
+    # utilisation is borrowed / supplied, on every venue that reports all three
+    bad, n, worst = [], 0, None
+    for venue, res in (hs.get('lending') or {}).items():
+        for _, d in res.items():
+            sup, bor, u = d.get('supplied_usd'), d.get('borrowed_usd'), d.get('utilisation')
+            if not sup or bor is None or u is None:
+                continue
+            n += 1
+            e = abs(u - bor / sup)
+            worst = max(worst or 0, e)
+            if e > 1e-6:
+                bad.append({'venue': venue, 'asset': d.get('sym'), 'reported': u, 'derived': bor / sup})
+    add('head-utilisation', 'utilisation equals borrowed / supplied', n, bad, worst)
+
+    # a supplier earns the borrow rate times utilisation, less the reserve factor
+    bad, n, worst = [], 0, None
+    for venue, res in (hs.get('lending') or {}).items():
+        for _, d in res.items():
+            u, sa, ba = d.get('utilisation'), d.get('supply_apr'), d.get('borrow_apr')
+            rf = (curves.get('%s %s' % (venue, d.get('sym'))) or {}).get('reserve_factor')
+            if u is None or sa is None or ba is None or rf is None or not d.get('supplied_usd'):
+                continue
+            n += 1
+            derived = ba * u * (1 - rf)
+            e = abs(sa - derived)
+            worst = max(worst or 0, e)
+            if e > tol:
+                bad.append({'venue': venue, 'asset': d.get('sym'), 'reported_pct': _pct(sa),
+                            'derived_pct': _pct(derived), 'utilisation': round(u, 4), 'reserve_factor': rf})
+    add('head-supply-identity', 'supply APR equals borrow APR x utilisation x (1 - reserve factor)', n, bad, worst)
+
+    # the borrow rate is the IRM curve evaluated at the observed utilisation
+    bad, n, worst = [], 0, None
+    for venue, res in (hs.get('lending') or {}).items():
+        for _, d in res.items():
+            c = curves.get('%s %s' % (venue, d.get('sym')))
+            u, ba = d.get('utilisation'), d.get('borrow_apr')
+            if not c or u is None or ba is None or not d.get('supplied_usd'):
+                continue
+            n += 1
+            derived = _aave_borrow_at(c, u)
+            e = abs(ba - derived)
+            worst = max(worst or 0, e)
+            if e > tol:
+                bad.append({'venue': venue, 'asset': d.get('sym'), 'reported_pct': _pct(ba),
+                            'derived_pct': _pct(derived), 'utilisation': round(u, 4), 'curve': c})
+    add('head-irm-identity', 'borrow APR equals the reserve IRM evaluated at its utilisation', n, bad, worst)
+
+    # Compound: the head read must sit on the curve the head itself sampled
+    bad, n, worst = [], 0, None
+    for name, d in (hs.get('compound') or {}).items():
+        grid, u, sa = d.get('supply_curve'), d.get('utilisation'), d.get('supply_apr')
+        if not grid or u is None or sa is None:
+            continue
+        n += 1
+        derived = _interp(grid, u)
+        e = abs(sa - (derived or 0))
+        worst = max(worst or 0, e)
+        if e > 0.004:   # the sampled grid is coarse near the kink, so this tolerance is wider by construction
+            bad.append({'market': name, 'reported_pct': _pct(sa), 'interpolated_pct': _pct(derived),
+                        'utilisation': round(u, 5)})
+    add('head-compound-curve', 'the Compound supply read lies on the curve sampled at the same block', n, bad, worst)
+
+    # Morpho: same supplier identity, with the market fee in place of a reserve factor
+    bad, n, worst = [], 0, None
+    for mid, m in (hs.get('morpho') or {}).items():
+        sa, ba, u, fee = m.get('supply_apy'), m.get('borrow_apy'), m.get('utilisation'), m.get('fee')
+        if sa is None or ba is None or u is None or not m.get('supplied'):
+            continue
+        n += 1
+        derived = ba * u * (1 - (fee or 0))
+        e = abs(sa - derived)
+        worst = max(worst or 0, e)
+        if e > tol:
+            bad.append({'market': mid[:18], 'asset': m.get('sym'), 'reported_pct': _pct(sa),
+                        'derived_pct': _pct(derived)})
+    add('head-morpho-identity', 'Morpho supply APY equals borrow APY x utilisation x (1 - fee)', n, bad, worst)
+
+    # Pendle: the implied yield is a function of the PT price and the days remaining, and nothing else
+    bad, n, worst = [], 0, None
+    for m, r in (hs.get('pendle') or {}).items():
+        apy, p_, days = r.get('implied_apy'), r.get('pt_to_asset'), r.get('days_to_maturity')
+        if apy is None or not p_ or not days or days <= 0:
+            continue
+        n += 1
+        derived = (1 / p_) ** (365 / days) - 1
+        e = abs(apy - derived)
+        worst = max(worst or 0, e)
+        if e > 1e-6:
+            bad.append({'market': m[:12], 'pt': r.get('pt_symbol'), 'reported_pct': _pct(apy),
+                        'derived_pct': _pct(derived)})
+    add('head-pendle-apy', 'the Pendle implied yield is (1/price)^(365/days) - 1', n, bad, worst)
+
+    return [r for r in rows if r['checked']]
+
+
+# ----------------------------------------------------------------------------------------------------------------------
 # Mechanism checks — a prose claim turned into a re-runnable assertion
 # ----------------------------------------------------------------------------------------------------------------------
 def m_stacy_deposit_for(_):
@@ -425,7 +586,7 @@ BIG_USD_RE = re.compile(r'\$[\d,]+(?:\.\d+)?\s*(?:[MB]\b|billion|million)|\$[\d,
 RATE_RE = re.compile(r'\d+(?:\.\d+)?\s*(?:pp\b|%)')
 
 
-def claim_audit(out, checks):
+def claim_audit(out, checks, ids=None):
     """Which prose claims cite a verify recipe, and which headline numbers cite nothing.
 
     `verify` can only make a confidence label earned if a reader can get from the sentence to the check. Convention
@@ -441,7 +602,7 @@ def claim_audit(out, checks):
     p = Path(out) / 'insights.md'
     if not p.exists():
         return None
-    known = {c['id'] for c in checks if c.get('id')} | set(MECHANISMS)
+    known = {c['id'] for c in checks if c.get('id')} | set(MECHANISMS) | set(ids or [])
     text = p.read_text()
     # Strip fenced blocks and inline code spans: a JSON dump is evidence, not a claim, and a marker written inside
     # backticks is documentation of the syntax rather than a citation — the first draft of this note tripped exactly
@@ -454,11 +615,21 @@ def claim_audit(out, checks):
     paras = [b for b in re.split(r'\n\s*\n', prose) if b.strip()]
     tagged = untagged = 0
     examples = []
+    prev_tagged = False
     for b in paras:
         n = len(BIG_USD_RE.findall(b)) + len(RATE_RE.findall(b))
+        here = bool(CLAIM_RE.search(b))
+        # A markdown table is its own block and holds most of the numbers in these notes, while the marker naturally
+        # sits in the sentence that introduces it. Counting the table as untagged because the citation is one
+        # paragraph above measures the formatting, not the verification, so a table inherits the preceding block's
+        # markers. Only tables: an ordinary paragraph still has to cite for itself.
+        is_table = b.lstrip().startswith('|')
+        covered = here or (is_table and prev_tagged)
+        if not is_table:
+            prev_tagged = here
         if not n:
             continue
-        if CLAIM_RE.search(b):
+        if covered:
             tagged += n
         else:
             untagged += n
@@ -515,6 +686,7 @@ def main():
         sys.exit(2)
 
     checks, band, R = run_numeric(a.out, a.min_usd)
+    idents = run_identities(a.out)
     # `None`, not `[]`. An empty list reads as "the assertions ran and none failed", which is exactly the wrong thing
     # for a file that gets committed and read later; not running them is a different state and says so.
     mech = run_mechanisms(a.out, a.only) if (a.mechanisms or a.only) else None
@@ -523,6 +695,13 @@ def main():
     for c in checks:
         print('%-52s %18s %18s  %s' % (c['check'][:52], fmt(c['recomputed']), fmt(c['analysis']),
                                        'ok' if c['ok'] else 'MISMATCH'))
+    if idents:
+        print('\nhead-state identities (each protocol’s own formula, re-derived from the fields it reports):')
+        print('  %-24s %8s %8s %10s  %s' % ('id', 'checked', 'failed', 'worst', 'identity'))
+        for r in idents:
+            print('  %-24s %8d %8d %10.5f  %s' % (r['id'], r['checked'], r['failed'], r['worst'] or 0.0, r['check']))
+            for e in (r['examples'] if not r['ok'] else [])[:3]:
+                print('      %s' % json.dumps(e))
     print('\nlabel-provenance band (the same headline at each confidence cut):')
     print('  %-20s %6s %20s %20s' % ('labels used', 'addrs', 'stables net USD', 'ETH net USD'))
     for b in band:
@@ -534,7 +713,7 @@ def main():
         for m in mech:
             print('  [%s] %-26s %s' % ('ok' if m['ok'] else 'FAIL', m['id'], m['detail']))
 
-    cl = claim_audit(a.out, checks)
+    cl = claim_audit(a.out, checks, ids=[r['id'] for r in idents])
     if cl:
         print('\nclaim tagging (insights.md):')
         print('  %d marker(s) citing %d recipe(s); %d headline number(s) tagged, %d untagged%s'
@@ -546,11 +725,11 @@ def main():
             print('  checks no claim cites: %s' % ', '.join(cl['checks_uncited']))
 
     n_bad = (sum(1 for c in checks if not c['ok']) + sum(1 for m in (mech or []) if not m['ok'])
-             + len((cl or {}).get('dangling') or []))
+             + sum(1 for r in idents if not r['ok']) + len((cl or {}).get('dangling') or []))
     # Deliberately no timing in the artifact: `verify.json` is committed, and a duration that changes every run makes
     # every re-run a diff, which trains the reader to ignore diffs on the one file whose diffs matter.
     res = {'window': str(a.out), 'stale': False, 'provenance': prov_rows, 'checks': checks, 'label_band': band,
-           'mechanisms': mech, 'claims': cl, 'all_ok': n_bad == 0, 'failures': n_bad}
+           'identities': idents, 'mechanisms': mech, 'claims': cl, 'all_ok': n_bad == 0, 'failures': n_bad}
     (Path(a.out) / 'verify.json').write_text(json.dumps(res, indent=1) + '\n')
     print('\n%s — %d check(s) failed, %.1fs, wrote %s' % ('ALL OK' if n_bad == 0 else 'FAILURES', n_bad,
                                                           time.monotonic() - t0, Path(a.out) / 'verify.json'))

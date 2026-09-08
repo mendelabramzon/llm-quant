@@ -33,6 +33,14 @@
    "gate": true,
    "ok": true,
    "note": ""
+  },
+  {
+   "field": "code:verify.py",
+   "artifact": "64ed063b45357bb5",
+   "current": "8183aa7b11ed55b1",
+   "gate": false,
+   "ok": true,
+   "note": "source changed since this analysis (recorded, not a gate)"
   }
  ],
  "checks": [
@@ -174,14 +182,76 @@
    "eth_net_usd": 5612806
   }
  ],
+ "identities": [
+  {
+   "id": "head-utilisation",
+   "check": "utilisation equals borrowed / supplied",
+   "checked": 50,
+   "failed": 0,
+   "ok": true,
+   "worst": 1.1102230246251565e-16,
+   "examples": []
+  },
+  {
+   "id": "head-supply-identity",
+   "check": "supply APR equals borrow APR x utilisation x (1 - reserve factor)",
+   "checked": 32,
+   "failed": 0,
+   "ok": true,
+   "worst": 0.00013002301563985394,
+   "examples": []
+  },
+  {
+   "id": "head-irm-identity",
+   "check": "borrow APR equals the reserve IRM evaluated at its utilisation",
+   "checked": 32,
+   "failed": 0,
+   "ok": true,
+   "worst": 0.0004940772727694172,
+   "examples": []
+  },
+  {
+   "id": "head-compound-curve",
+   "check": "the Compound supply read lies on the curve sampled at the same block",
+   "checked": 3,
+   "failed": 0,
+   "ok": true,
+   "worst": 1.3521253561243896e-11,
+   "examples": []
+  },
+  {
+   "id": "head-morpho-identity",
+   "check": "Morpho supply APY equals borrow APY x utilisation x (1 - fee)",
+   "checked": 60,
+   "failed": 0,
+   "ok": true,
+   "worst": 3.0240597514996637e-07,
+   "examples": []
+  },
+  {
+   "id": "head-pendle-apy",
+   "check": "the Pendle implied yield is (1/price)^(365/days) - 1",
+   "checked": 5,
+   "failed": 0,
+   "ok": true,
+   "worst": 5.703655610034275e-07,
+   "examples": []
+  }
+ ],
  "mechanisms": null,
  "claims": {
   "cited": [
    "blocks",
+   "head-compound-curve",
+   "head-irm-identity",
+   "head-morpho-identity",
+   "head-pendle-apy",
+   "head-supply-identity",
+   "head-utilisation",
    "logs",
    "transactions"
   ],
-  "cited_count": 3,
+  "cited_count": 12,
   "dangling": [],
   "checks_available": [
    "blocks",
@@ -192,6 +262,12 @@
    "fingerprint-matches-chain",
    "gas-top-target",
    "gas-top-target-identity",
+   "head-compound-curve",
+   "head-irm-identity",
+   "head-morpho-identity",
+   "head-pendle-apy",
+   "head-supply-identity",
+   "head-utilisation",
    "leverage-to-exchange",
    "logs",
    "msca-not-exchange",
@@ -218,16 +294,15 @@
    "usdc-burn",
    "usdc-mint"
   ],
-  "headline_numbers_tagged": 0,
-  "headline_numbers_untagged": 45,
-  "coverage": 0.0,
+  "headline_numbers_tagged": 22,
+  "headline_numbers_untagged": 23,
+  "coverage": 0.489,
   "untagged_examples": [
-   "| PT | implied | comparison | classification | |---|---:|---|---| | PT-sUSDS-26NOV2026 | 4.89% | Sky savings rate 3.60% | **term premium**, +129bp | |",
    "The eight markets that traded in the earlier 21:27\u201323:27 window were *all* credit spreads \u2014 implied yields of 6% to 23% with no comparable floating ra",
-   "| strategy | net APR | capacity | per year | |---|---:|---:|---:| | Sky savings rate over Aave USDS | 3.48% | $1,000,000,000 | $34,800,000 | | sUSDe c",
    "**Excluding the savings rate \u2014 which is the benchmark, not an edge \u2014 the whole book is worth about $229,000 a year**, and $103,500 of that is one trad",
    "The last hand number to fall was the largest. \"Borrow USDT on Morpho rather than Aave\" was quoted at 91bp on $24M \u2014 $218,400 a year \u2014 from a single af",
-   "| strategy | earlier today | now | why | |---|---:|---:|---| | Compound v3 USDC over SparkLend | 1.46% | **0.34%** | utilisation drifted 90.77% \u2192 90.3"
+   "| strategy | earlier today | now | why | |---|---:|---:|---| | Compound v3 USDC over SparkLend | 1.46% | **0.34%** | utilisation drifted 90.77% \u2192 90.3",
+   "- **JIT liquidity took 15.8% of pool fees in this window** ($26 of $168), against 0.06%\u20130.29% in the three previous ones. The absolute numbers are tri"
   ]
  },
  "all_ok": true,

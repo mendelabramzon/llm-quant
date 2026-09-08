@@ -182,6 +182,18 @@ write `lastDepositBlock`; `msca-not-exchange`; `no-contract-hot-wallets`); and t
 
 Writing it caught two decoder bugs immediately: only the CCTP **v1** `DepositForBurn` topic was being watched, so every
 v2 send was silently dropped, and the destination domain was being sniffed rather than read from its fixed word.
+*Extended 2026-09-08 with a third class of check.* The numeric checks re-derive window aggregates through a second
+code path, but `head_state.json` — where every rate and yield in every note lives — had no second path to read it
+through and so was simply asserted. **Identity checks** cover it: the protocols publish relationships between the
+fields they report (a supplier earns the borrow rate times utilisation less the reserve factor; a borrow rate is the
+IRM curve at that utilisation; a Morpho supply APY carries the market fee instead; a PT's implied yield is a function
+of price and maturity; the Compound read must lie on the curve sampled at the same block), and re-deriving one field
+from the others tests the whole decode — word offsets, ray scaling, config bitmaps, curve parameters — against the
+chain's own arithmetic. 182 individual identities pass on the 2026-09-08 window. Setting Aave's USDC supply APR to its
+borrow value — the exact shape of the rate-series bug found earlier the same day — fails `head-supply-identity`
+immediately, naming the venue, asset, utilisation and reserve factor. Still unchecked: the NAV rates behind
+`nav_discount` and the peg prices they are compared against.
+
 *Closed 2026-09-08*: every check now carries a stable id, a sentence cites it as `[[verify: exchange-net-stables]]`,
 and `verify` fails on a citation with no matching check and counts the headline numbers that cite nothing — 55% of the
 midday note's big numbers are tagged, 46% of the five-hour note's, and the untagged remainder is now visible rather

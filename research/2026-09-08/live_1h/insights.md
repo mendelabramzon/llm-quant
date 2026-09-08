@@ -12,7 +12,8 @@ observation window `getOracleState` reports as unpopulated.
 
 The classification is the point. A principal token's implied yield is a *term premium* only when the floating rate on
 the same underlying is readable; otherwise it is the market's price of an issuer's credit, which this system has not
-assessed. In this window:
+assessed. Each implied yield below is re-derived from its PT price and maturity [[verify: head-pendle-apy]]. In this
+window:
 
 | PT | implied | comparison | classification |
 |---|---:|---|---|
@@ -30,6 +31,10 @@ It now parses the asset segment of `PT-<asset>-<date>` and matches exactly. That
 prevent, committed by its own matcher.
 
 ## 2. The strategy book, sized — all seven re-pricing themselves
+
+Every rate below is a detector's reading of the head state, and each of those readings satisfies its protocol's own
+identity [[verify: head-supply-identity]] [[verify: head-irm-identity]] [[verify: head-morpho-identity]]
+[[verify: head-pendle-apy]] [[verify: head-utilisation]].
 
 | strategy | net APR | capacity | per year |
 |---|---:|---:|---:|
@@ -53,7 +58,8 @@ lends against **sUSDS at 96.5% LLTV**, so the rate is only available to a borrow
 
 On an isolated-market venue that distinction is the whole thing. A pooled reserve lets any listed collateral reach any
 rate; a Morpho market is a rate *for one collateral*, and quoting it without saying which is quoting a price nobody
-can necessarily trade.
+can necessarily trade. Every Morpho rate above satisfies the protocol's own supplier identity
+[[verify: head-morpho-identity]] and every utilisation is re-derived from the balances [[verify: head-utilisation]].
 
 That is the honest state of the mainnet dollar opportunity set as this system currently measures it. It is not a
 disappointing result; it is the result. An efficient market is supposed to look like this, and the value of the loop
@@ -68,7 +74,7 @@ came from a rate curve or a traded volume rather than a pool balance, and a kill
 | PT-sUSDS fixed vs the savings rate | 1.37% *(hand, 09-06)* | **0.64%** | the raw gap narrowed 137bp → 129bp, and the hand study did not net Pendle's entry impact |
 
 The Compound row is the kink analysis playing out in hours: 0.47 percentage points of utilisation, and three quarters
-of the opportunity is gone. The PT row is a modelling correction rather than a market move — and it required its own
+of the opportunity is gone. The read sits on the curve sampled at the same block [[verify: head-compound-curve]]. The PT row is a modelling correction rather than a market move — and it required its own
 correction first. Charging a Pendle purchase the constant-product impact overstates it by about two orders of
 magnitude, because Pendle's AMM is a rate curve; the detector now applies an amplification of 50, anchored to the one
 observation this repo has (a $1M order into a $3.5M pool taking "a real part of" 137bp), and says so. Replacing that
@@ -104,6 +110,24 @@ underneath it reports as stale before a single number is compared.
 
 ## What is checked, and what is not
 
-The window aggregates are re-derived by `live_scan verify`. Everything in sections 1–3 comes from head reads and
-contract calls at 05:29 UTC — no verify recipe re-derives a head read yet, so the entire rate and yield surface in
-this note is a single reading. That remains the largest untagged surface in the system.
+The window aggregates are re-derived by `live_scan verify` from the raw blocks through a second code path. The rate
+and yield surface — sections 1 to 3 — comes from head reads, and there is no second RPC path to read those through.
+What there is instead, added after this note was first written, is a set of **identity checks**: each protocol
+publishes relationships between the fields it reports, and re-deriving one from the others tests the whole decode
+against the chain's own arithmetic. On this window, 182 individual identities pass:
+
+| id | checked | identity |
+|---|---:|---|
+| `head-utilisation` | 50 | utilisation equals borrowed / supplied |
+| `head-supply-identity` | 32 | supply APR equals borrow APR × utilisation × (1 − reserve factor) |
+| `head-irm-identity` | 32 | borrow APR equals the reserve IRM evaluated at its utilisation |
+| `head-compound-curve` | 3 | the Compound supply read lies on the curve sampled at the same block |
+| `head-morpho-identity` | 60 | Morpho supply APY equals borrow APY × utilisation × (1 − fee) |
+| `head-pendle-apy` | 5 | the Pendle implied yield is (1/price)^(365/days) − 1 |
+
+They are not a second opinion on whether a rate is *correct* — the chain is the only source for that. They test that
+the decode is right, which is where this session's two rate bugs actually lived. Setting Aave's USDC supply APR to
+its borrow value, the exact shape of the earlier series bug, fails `head-supply-identity` immediately with the venue,
+asset, utilisation and reserve factor named.
+
+What still carries no check: the NAV rates behind `nav_discount`, and the peg prices they are compared against.

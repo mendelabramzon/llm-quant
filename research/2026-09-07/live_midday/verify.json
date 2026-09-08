@@ -25,6 +25,22 @@
    "gate": true,
    "ok": true,
    "note": ""
+  },
+  {
+   "field": "code:live_scan.py",
+   "artifact": "683cdcaae0771ba3",
+   "current": "5a3289121d96e202",
+   "gate": false,
+   "ok": true,
+   "note": "source changed since this analysis (recorded, not a gate)"
+  },
+  {
+   "field": "code:verify.py",
+   "artifact": "64ed063b45357bb5",
+   "current": "8183aa7b11ed55b1",
+   "gate": false,
+   "ok": true,
+   "note": "source changed since this analysis (recorded, not a gate)"
   }
  ],
  "checks": [
@@ -166,6 +182,17 @@
    "eth_net_usd": -19615184
   }
  ],
+ "identities": [
+  {
+   "id": "head-utilisation",
+   "check": "utilisation equals borrowed / supplied",
+   "checked": 26,
+   "failed": 0,
+   "ok": true,
+   "worst": 1.1102230246251565e-16,
+   "examples": []
+  }
+ ],
  "mechanisms": null,
  "claims": {
   "cited": [
@@ -197,6 +224,7 @@
    "fingerprint-matches-chain",
    "gas-top-target",
    "gas-top-target-identity",
+   "head-utilisation",
    "leverage-to-exchange",
    "logs",
    "msca-not-exchange",
@@ -208,18 +236,19 @@
    "usdc-mint"
   ],
   "checks_uncited": [
-   "fingerprint-matches-chain"
+   "fingerprint-matches-chain",
+   "head-utilisation"
   ],
-  "headline_numbers_tagged": 36,
-  "headline_numbers_untagged": 30,
-  "coverage": 0.545,
+  "headline_numbers_tagged": 44,
+  "headline_numbers_untagged": 22,
+  "coverage": 0.667,
   "untagged_examples": [
    "1. **Compound USDC is paying ~2x Aave.** Compound v3 USDC supply 6.91% / borrow 8.14% at 91% utilisation, versus Aave USDC 3.58% / 4.27% at 93% and Sk",
    "5. **EIP-7702 set-code txs are now ~2% of all traffic** (8,194 type-0x4 txs), most routing through the ERC-4337 EntryPoint v0.8, dominated by one dele",
    "7. **The big \"$15.8M BULL swap\" is a bot wash.** MEV bot 0x00000f91 ran a BULL\u2192WETH and WETH\u2192BULL leg in the same block (25924144), same pool, netting",
-   "| headline | as first published | corrected | |---|---:|---:| | exchange gross inflow, USDC | $823.2M | $497.1M | | exchange net flow, stables | +$44.",
    "How much confidence the remaining flow numbers deserve is itself now reported. Exchange flow computed with model-memory labels alone gives stables +$1",
-   "## Second correction, 2026-09-08 (the deposit sink that swept $10M)"
+   "## Second correction, 2026-09-08 (the deposit sink that swept $10M)",
+   "flagged [0x3cc9\u2026cf18](https://etherscan.io/address/0x3cc936b795a188f0e246cbb2d74c5bd190aecf18) here at high severity \u2014 $170k in from five senders, $10"
   ]
  },
  "all_ok": true,

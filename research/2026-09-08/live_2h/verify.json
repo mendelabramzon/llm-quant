@@ -29,7 +29,15 @@
   {
    "field": "code:live_scan.py",
    "artifact": "683cdcaae0771ba3",
-   "current": "57cede307b8d44e2",
+   "current": "5a3289121d96e202",
+   "gate": false,
+   "ok": true,
+   "note": "source changed since this analysis (recorded, not a gate)"
+  },
+  {
+   "field": "code:verify.py",
+   "artifact": "64ed063b45357bb5",
+   "current": "8183aa7b11ed55b1",
    "gate": false,
    "ok": true,
    "note": "source changed since this analysis (recorded, not a gate)"
@@ -174,18 +182,69 @@
    "eth_net_usd": -2985981
   }
  ],
+ "identities": [
+  {
+   "id": "head-utilisation",
+   "check": "utilisation equals borrowed / supplied",
+   "checked": 50,
+   "failed": 0,
+   "ok": true,
+   "worst": 2.220446049250313e-16,
+   "examples": []
+  },
+  {
+   "id": "head-supply-identity",
+   "check": "supply APR equals borrow APR x utilisation x (1 - reserve factor)",
+   "checked": 32,
+   "failed": 0,
+   "ok": true,
+   "worst": 0.00012994563861198558,
+   "examples": []
+  },
+  {
+   "id": "head-irm-identity",
+   "check": "borrow APR equals the reserve IRM evaluated at its utilisation",
+   "checked": 32,
+   "failed": 0,
+   "ok": true,
+   "worst": 0.0004947900484568481,
+   "examples": []
+  },
+  {
+   "id": "head-compound-curve",
+   "check": "the Compound supply read lies on the curve sampled at the same block",
+   "checked": 3,
+   "failed": 0,
+   "ok": true,
+   "worst": 1.3510388988113853e-11,
+   "examples": []
+  },
+  {
+   "id": "head-pendle-apy",
+   "check": "the Pendle implied yield is (1/price)^(365/days) - 1",
+   "checked": 12,
+   "failed": 0,
+   "ok": true,
+   "worst": 7.712791569858268e-07,
+   "examples": []
+  }
+ ],
  "mechanisms": null,
  "claims": {
   "cited": [
    "blocks",
    "exchange-net-eth",
    "exchange-net-stables",
+   "head-compound-curve",
+   "head-irm-identity",
+   "head-supply-identity",
+   "head-utilisation",
    "logs",
    "transactions",
    "usdc-burn",
    "usdc-mint"
   ],
-  "cited_count": 7,
+  "cited_count": 11,
   "dangling": [],
   "checks_available": [
    "blocks",
@@ -196,6 +255,11 @@
    "fingerprint-matches-chain",
    "gas-top-target",
    "gas-top-target-identity",
+   "head-compound-curve",
+   "head-irm-identity",
+   "head-pendle-apy",
+   "head-supply-identity",
+   "head-utilisation",
    "leverage-to-exchange",
    "logs",
    "msca-not-exchange",
@@ -212,22 +276,23 @@
    "fingerprint-matches-chain",
    "gas-top-target",
    "gas-top-target-identity",
+   "head-pendle-apy",
    "leverage-to-exchange",
    "msca-not-exchange",
    "no-contract-hot-wallets",
    "rate-gap-widest",
    "stacy-deposit-for"
   ],
-  "headline_numbers_tagged": 4,
-  "headline_numbers_untagged": 146,
-  "coverage": 0.027,
+  "headline_numbers_tagged": 75,
+  "headline_numbers_untagged": 75,
+  "coverage": 0.5,
   "untagged_examples": [
-   "The right benchmark for a dollar is not the same dollar on another venue \u2014 it is the dollar an issuer will pay you for in unlimited size at no venue r",
-   "| asset | venue | supply APR | vs savings rate | supplied | utilisation | |---|---|---:|---:|---:|---:| | **USDtb** | **Aave v3** | **8.05%** | **+4.4",
    "Twenty-seven dollar-denominated reserves across Aave, SparkLend and Compound; **two of them pay more than doing nothing.** Roughly $8.5B of supplied d",
    "Two of the recurring findings in the ledger fail exactly that test. \"PYUSD pays 3.29pp more on Aave than SparkLend\" is true and worth **28bps** over t",
    "## 2. The capacity of the best of them is $1.4M, not $94M.",
-   "Compound v3's USDC Comet sits at **90.77% utilisation against a kink at exactly 90.0%**. Read directly from the contract's own :"
+   "Compound v3's USDC Comet sits at **90.77% utilisation against a kink at exactly 90.0%**. Read directly from the contract's own :",
+   "| utilisation | supply APR | |---:|---:| | 89.0% | 3.20% | | 89.5% | 3.22% | | **90.0% (kink)** | **3.24%** | | 90.5% | 4.84% | | 90.77% (now) | 5.70%",
+   "**$1.25M is the entire opportunity, and it is worth about $14,000 a year.** At $5M you are earning less than you would have earned holding USDS and do"
   ]
  },
  "all_ok": true,

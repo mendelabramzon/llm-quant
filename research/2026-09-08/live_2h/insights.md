@@ -14,7 +14,9 @@ place to measure a *standing* surface, because nothing in it is a reaction to an
 ## 1. Two dollar markets on mainnet beat simply holding the savings rate. Both are small.
 
 The right benchmark for a dollar is not the same dollar on another venue — it is the dollar an issuer will pay you for
-in unlimited size at no venue risk. That is Sky's savings rate, **3.60%**. Measured against it, at the head:
+in unlimited size at no venue risk. That is Sky's savings rate, **3.60%**. Measured against it, at the head — every
+row below satisfying the protocol's own supplier identity [[verify: head-supply-identity]] and utilisation
+[[verify: head-utilisation]]:
 
 | asset | venue | supply APR | vs savings rate | supplied | utilisation |
 |---|---|---:|---:|---:|---:|
@@ -56,7 +58,8 @@ contract's own `getSupplyRate`:
 | 91.0% | 6.44% |
 | 92.0% | 9.63% |
 
-The whole 5.69% headline lives in 0.77 percentage points of utilisation. Supplying into it moves you down that cliff:
+The whole 5.69% headline lives in 0.77 percentage points of utilisation, and the head read sits on that curve
+[[verify: head-compound-curve]]. Supplying into it moves you down the cliff:
 
 | you supply | resulting utilisation | your APR | earned over the savings rate, per year |
 |---:|---:|---:|---:|
@@ -70,7 +73,8 @@ The whole 5.69% headline lives in 0.77 percentage points of utilisation. Supplyi
 have earned holding USDS and doing nothing.
 
 The same arithmetic applied to Aave's USDtb reserve (IRM read on-chain: optimal 80%, base 0, slope1 4%, slope2 50%,
-reserve factor 20%) gives **$227k of capacity worth $5.4k a year**. $626k of new supply takes utilisation to the kink
+reserve factor 20%; the reserve's reported borrow rate is the curve evaluated at its utilisation
+[[verify: head-irm-identity]]) gives **$227k of capacity worth $5.4k a year**. $626k of new supply takes utilisation to the kink
 and the rate from 8.05% to 2.56% — below the savings rate.
 
 So the honest summary of the mainnet dollar surface tonight: **the best two rates on the board are jointly worth about
