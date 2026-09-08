@@ -5,6 +5,42 @@ the LLM reads evidence, proposes mechanisms, and writes the infrastructure; dete
 reusable detectors and tests; the human steers. The metric we optimise is **time-to-verified-insight**: how fast a raw
 signal becomes a true, capacity-aware, reproducible claim and then a reusable detector — not classification coverage.
 
+## Session log — 2026-09-08 (ten hours across midnight: a sentence becomes a detector)
+
+A trailing ten-hour window (2026-09-07 22:26 -> 2026-09-08 08:26 UTC, 2,993 blocks, 675,675 transactions) chosen so it
+spans 00:00 UTC, because the one thing every previous window could only see a fragment of is the nightly routine.
+
+Landed: `detectors/liquidity_blackout.py`, `fee_census.py --every N` (regular subsample + a diurnal series),
+`window_events.py` blob inboxes now fall through to the label registry, and six registry entries.
+
+**The routine, traced end to end.** The blackout detector inverts each reserve's published borrow rate through its own
+IRM to recover the utilisation the pool was priced at, then reports episodes where withdrawable liquidity collapses
+*with their clock time* — because an episode that recurs at the same minute is a schedule, and a schedule is a fact you
+can plan an exit around. It fired on the first window that could hold one: **Aave v3 USDC, 23:47–00:08, 21.6 minutes,
+99.9976% utilisation, $55,371 withdrawable on a $2.31B reserve.** Following it through the window's transfers gives
+every leg: 23:35:47 an EOA redeems $245,571,215 of sUSDS to USDC atomically through Sky's plumbing; 23:37:47 a second
+withdraws **$151,780,227 from Aave, 100.16% of the reserve's free liquidity**; both feed one hub; 23:41:23 the hub sends
+**$397,310,079** to a third address; 00:03:59 it comes back; by 00:09:35 both positions are rebuilt to the dollar.
+Nothing traded, nothing earned, all five addresses hold zero USDC now. Cost to the operator: ~$900. Cost to Aave's USDC
+borrowers: **$8,879**, of which $8,214 reached the suppliers who stayed.
+
+**The fee-market claim survived a full diurnal cycle.** Burn $11,334 against $75,713 of priority fees over ten hours, a
+**6.68x** ratio (6.92x on the hour), never under 4.4x in any half-hour bucket, with fullness pinned between 49.8% and
+52.0% and the median base fee in a 0.045–0.072 gwei band. 54.3% of gas tips at or under 0.01 gwei; 17.6% goes to four
+unverified batch contracts paying $9. **And one row of the previous report was mislabelled**: "35.6% of gas paid exactly
+zero" used a 0.001 gwei cutoff. Strictly, that hour reads 9.0% exactly zero and 44.6% at or under 0.01 — the claim is
+unchanged and now confirmed at ten-hour scale, the label was wrong, and both the repo report and the published artifact
+are corrected.
+
+**Two labelling gaps closed by the same window.** `solver_fingerprint` had been reporting the **sUSDS token contract**
+as "an unlabelled bot cycling $249.6M"; and `window_events.py` printed the largest blob poster on Ethereum — Robinhood
+Chain's SequencerInbox, 4,998 of 18,394 blobs, ahead of Base and OP Mainnet — as "(unlabelled)" in every digest since
+the Orbit study, because it kept a hand-written table beside a registry that already knew the name. The registry edit
+made `verify` refuse to compare a number until `analyze` was re-run, which is the staleness gate working as designed.
+
+**Signal on the rest of the window: none.** One liquidation, for $1 of debt, in ten hours. Every dollar peg inside 30bp.
+JIT liquidity took **$236 of $224,564** of pool fees — 0.11%, against the tax it is usually described as.
+
 ## Session log — 2026-09-08 (ten chains at once, and the denominator that was wrong everywhere)
 
 The loop had only ever run one chain at a time, which is a real blind spot for a *dollar*: USDC on Base and USDC on

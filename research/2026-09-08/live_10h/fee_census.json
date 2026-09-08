@@ -1,0 +1,513 @@
+{
+  "base_fee_burn_eth": 1.1456761370529902,
+  "base_fee_burn_usd": 2836.4306098316815,
+  "blocks": 749,
+  "blocks_in_window": 2993,
+  "eth_usd": 2475.77,
+  "failed_gas_share": 0.01734074731012055,
+  "gas_used": 22575808297,
+  "gas_weighted_median_tip_gwei": 0.00683565,
+  "note": "figures are the totals over the 749 sampled blocks (25.0% of the window); scale by the inverse share for a window estimate, but the ratios and per-gas rates need no scaling. the burn is protocol revenue destroyed; the priority fee is paid to the block builder and, through the auction, to the proposer. When the ratio exceeds one the chain is charging less for its blockspace than the private market clearing it is charging for position inside a block.",
+  "priority_fees_eth": 7.653067685044687,
+  "priority_fees_usd": 18947.235382603085,
+  "sample_every": 4,
+  "sample_share": 0.2502505846976278,
+  "series": [
+    {
+      "base_fee_gwei": 0.048222498318495094,
+      "blocks_sampled": 5,
+      "burn_usd": 18.996951223077104,
+      "gas": 159119683,
+      "mean_tip_gwei": 0.33912969751732913,
+      "tip_over_burn": 7.032603231742153,
+      "tip_usd": 133.59802056466012,
+      "txs": 1111,
+      "utc": "2026-09-07T22:00+00:00"
+    },
+    {
+      "base_fee_gwei": 0.055890769773199546,
+      "blocks_sampled": 38,
+      "burn_usd": 150.4479282913289,
+      "gas": 1087266043,
+      "mean_tip_gwei": 0.4671272799973751,
+      "tip_over_burn": 8.357860911433887,
+      "tip_usd": 1257.4228590723064,
+      "txs": 8837,
+      "utc": "2026-09-07T22:30+00:00"
+    },
+    {
+      "base_fee_gwei": 0.044812068717185294,
+      "blocks_sampled": 37,
+      "burn_usd": 126.85001403928797,
+      "gas": 1143365886,
+      "mean_tip_gwei": 0.26733401193769335,
+      "tip_over_burn": 5.96566995433468,
+      "tip_usd": 756.7453174611126,
+      "txs": 8520,
+      "utc": "2026-09-07T23:00+00:00"
+    },
+    {
+      "base_fee_gwei": 0.04525683039331968,
+      "blocks_sampled": 37,
+      "burn_usd": 119.44010841820283,
+      "gas": 1065996450,
+      "mean_tip_gwei": 0.6469715677899761,
+      "tip_over_burn": 14.295556320830524,
+      "tip_usd": 1707.4627968585223,
+      "txs": 8469,
+      "utc": "2026-09-07T23:30+00:00"
+    },
+    {
+      "base_fee_gwei": 0.04895321215299123,
+      "blocks_sampled": 37,
+      "burn_usd": 127.21365107723207,
+      "gas": 1049644482,
+      "mean_tip_gwei": 0.33879667957144266,
+      "tip_over_burn": 6.920826329283908,
+      "tip_usd": 880.4235858196438,
+      "txs": 8599,
+      "utc": "2026-09-08T00:00+00:00"
+    },
+    {
+      "base_fee_gwei": 0.06527400921498151,
+      "blocks_sampled": 38,
+      "burn_usd": 175.0727005560567,
+      "gas": 1083347652,
+      "mean_tip_gwei": 0.3190915458846134,
+      "tip_over_burn": 4.888493134130581,
+      "tip_usd": 855.8416946419825,
+      "txs": 8112,
+      "utc": "2026-09-08T00:30+00:00"
+    },
+    {
+      "base_fee_gwei": 0.047332559090574294,
+      "blocks_sampled": 37,
+      "burn_usd": 130.65242560838132,
+      "gas": 1114928957,
+      "mean_tip_gwei": 0.3792356706561963,
+      "tip_over_burn": 8.012152267755082,
+      "tip_usd": 1046.8071281258947,
+      "txs": 8131,
+      "utc": "2026-09-08T01:00+00:00"
+    },
+    {
+      "base_fee_gwei": 0.045705118849364214,
+      "blocks_sampled": 38,
+      "burn_usd": 130.83093608165046,
+      "gas": 1156206243,
+      "mean_tip_gwei": 0.34078341213250346,
+      "tip_over_burn": 7.456132282593198,
+      "tip_usd": 975.4927660802812,
+      "txs": 8538,
+      "utc": "2026-09-08T01:30+00:00"
+    },
+    {
+      "base_fee_gwei": 0.04487114214059664,
+      "blocks_sampled": 37,
+      "burn_usd": 115.7325013485059,
+      "gas": 1041784567,
+      "mean_tip_gwei": 0.3256862640245313,
+      "tip_over_burn": 7.258256609650024,
+      "tip_usd": 840.0161928641234,
+      "txs": 7670,
+      "utc": "2026-09-08T02:00+00:00"
+    },
+    {
+      "base_fee_gwei": 0.04520619108554619,
+      "blocks_sampled": 37,
+      "burn_usd": 124.37250512163867,
+      "gas": 1111261247,
+      "mean_tip_gwei": 0.26320642010118944,
+      "tip_over_burn": 5.822353394098372,
+      "tip_usd": 724.1406773274902,
+      "txs": 8507,
+      "utc": "2026-09-08T02:30+00:00"
+    },
+    {
+      "base_fee_gwei": 0.04714004241123735,
+      "blocks_sampled": 38,
+      "burn_usd": 130.6652269595849,
+      "gas": 1119591937,
+      "mean_tip_gwei": 0.26346565944480443,
+      "tip_over_burn": 5.588999202554787,
+      "tip_usd": 730.2878492787605,
+      "txs": 8038,
+      "utc": "2026-09-08T03:00+00:00"
+    },
+    {
+      "base_fee_gwei": 0.04650340882274319,
+      "blocks_sampled": 37,
+      "burn_usd": 130.7470577814111,
+      "gas": 1135629955,
+      "mean_tip_gwei": 0.26053401226357126,
+      "tip_over_burn": 5.602471278108824,
+      "tip_usd": 732.5066359175904,
+      "txs": 7795,
+      "utc": "2026-09-08T03:30+00:00"
+    },
+    {
+      "base_fee_gwei": 0.04700612358484012,
+      "blocks_sampled": 38,
+      "burn_usd": 131.47125691285262,
+      "gas": 1129707679,
+      "mean_tip_gwei": 0.3409033215689319,
+      "tip_over_burn": 7.252317263593208,
+      "tip_usd": 953.4712661753792,
+      "txs": 8122,
+      "utc": "2026-09-08T04:00+00:00"
+    },
+    {
+      "base_fee_gwei": 0.05239826025624511,
+      "blocks_sampled": 37,
+      "burn_usd": 138.33632887916642,
+      "gas": 1066372858,
+      "mean_tip_gwei": 0.35363217942331737,
+      "tip_over_burn": 6.7489297868657685,
+      "tip_usd": 933.6221705782656,
+      "txs": 8186,
+      "utc": "2026-09-08T04:30+00:00"
+    },
+    {
+      "base_fee_gwei": 0.04958146687708819,
+      "blocks_sampled": 37,
+      "burn_usd": 144.72736509710117,
+      "gas": 1179019500,
+      "mean_tip_gwei": 0.23613817426716607,
+      "tip_over_burn": 4.762629852250026,
+      "tip_usd": 689.2828694489425,
+      "txs": 8662,
+      "utc": "2026-09-08T05:00+00:00"
+    },
+    {
+      "base_fee_gwei": 0.047428654440163386,
+      "blocks_sampled": 38,
+      "burn_usd": 146.86750393013293,
+      "gas": 1250761815,
+      "mean_tip_gwei": 0.26426970219419227,
+      "tip_over_burn": 5.571941800027204,
+      "tip_usd": 818.3371842139672,
+      "txs": 8811,
+      "utc": "2026-09-08T05:30+00:00"
+    },
+    {
+      "base_fee_gwei": 0.0487574748530618,
+      "blocks_sampled": 37,
+      "burn_usd": 127.53355196322656,
+      "gas": 1056508399,
+      "mean_tip_gwei": 0.4986083088781927,
+      "tip_over_burn": 10.226294745181656,
+      "tip_usd": 1304.1956922758957,
+      "txs": 7888,
+      "utc": "2026-09-08T06:00+00:00"
+    },
+    {
+      "base_fee_gwei": 0.04783456163679791,
+      "blocks_sampled": 38,
+      "burn_usd": 134.0759169659797,
+      "gas": 1132136211,
+      "mean_tip_gwei": 0.3183560409709451,
+      "tip_over_burn": 6.655356087261431,
+      "tip_usd": 892.3229701346911,
+      "txs": 8179,
+      "utc": "2026-09-08T06:30+00:00"
+    },
+    {
+      "base_fee_gwei": 0.04990835043578794,
+      "blocks_sampled": 37,
+      "burn_usd": 141.56454068172022,
+      "gas": 1145700156,
+      "mean_tip_gwei": 0.29286330655688936,
+      "tip_over_burn": 5.868022164621272,
+      "tip_usd": 830.7038624447641,
+      "txs": 8859,
+      "utc": "2026-09-08T07:00+00:00"
+    },
+    {
+      "base_fee_gwei": 0.06411612272605326,
+      "blocks_sampled": 38,
+      "burn_usd": 199.58828477558922,
+      "gas": 1257353799,
+      "mean_tip_gwei": 0.2852902939862189,
+      "tip_over_burn": 4.449587433806141,
+      "tip_usd": 888.0855238723833,
+      "txs": 10155,
+      "utc": "2026-09-08T07:30+00:00"
+    },
+    {
+      "base_fee_gwei": 0.07086127268940855,
+      "blocks_sampled": 33,
+      "burn_usd": 191.2438541195549,
+      "gas": 1090104778,
+      "mean_tip_gwei": 0.36921977773208825,
+      "tip_over_burn": 5.2104593061771896,
+      "tip_usd": 996.4683194464275,
+      "txs": 8807,
+      "utc": "2026-09-08T08:00+00:00"
+    }
+  ],
+  "series_bucket_minutes": 30,
+  "tip_above_median_eth": 7.563318280678396,
+  "tip_above_median_usd": 18725.03649975515,
+  "tip_over_burn_ratio": 6.6799573086427255,
+  "top_gas_targets": [
+    {
+      "address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "gas": 1548547211,
+      "mean_tip_gwei": 0.6539266186787692,
+      "tip_eth": 1.0126362415536687,
+      "tip_usd": 2507.0544277513263,
+      "txs": 32088
+    },
+    {
+      "address": "0x6ef3ef48e48cb00a87afe6132d920c498e34a229",
+      "gas": 1373279208,
+      "mean_tip_gwei": 0.0014449917356498827,
+      "tip_eth": 0.001984377106299816,
+      "tip_usd": 4.912861308463896,
+      "txs": 101
+    },
+    {
+      "address": "0x00fe78205f5f0e63b8ad2b2ae5337f538a610e04",
+      "gas": 1193921186,
+      "mean_tip_gwei": 0.00016156416582881043,
+      "tip_eth": 0.000192894880481434,
+      "tip_usd": 0.47756335824951984,
+      "txs": 553
+    },
+    {
+      "address": "0xc10fc8fa761285fa3fa25aafcc10a54456ee8919",
+      "gas": 845149429,
+      "mean_tip_gwei": 0.00015966441772799212,
+      "tip_eth": 0.00013494029147443,
+      "tip_usd": 0.33408112542364954,
+      "txs": 772
+    },
+    {
+      "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "gas": 685805957,
+      "mean_tip_gwei": 0.489086188092077,
+      "tip_eth": 0.3354182212799689,
+      "tip_usd": 830.4183696983085,
+      "txs": 14010
+    },
+    {
+      "address": "0x7d9f4ca54131e588fc1fe577973b55fb11231e76",
+      "gas": 552131443,
+      "mean_tip_gwei": 0.002415437976947035,
+      "tip_eth": 0.001333639255688767,
+      "tip_usd": 3.3017840600565784,
+      "txs": 91
+    },
+    {
+      "address": "0x0de8bf93da2f7eecb3d9169422413a9bef4ef628",
+      "gas": 452819367,
+      "mean_tip_gwei": 0.007665896271985516,
+      "tip_eth": 0.003471266297368141,
+      "tip_usd": 8.594056961035124,
+      "txs": 62
+    },
+    {
+      "address": "0x278d858f05b94576c1e6f73285886876ff6ef8d2",
+      "gas": 400051121,
+      "mean_tip_gwei": 0.04299243258418301,
+      "tip_eth": 0.01719917084981934,
+      "tip_usd": 42.58119121485723,
+      "txs": 3053
+    },
+    {
+      "address": "0x8feab81d36e7576107d5de0758c1b839be31b4f6",
+      "gas": 383097636,
+      "mean_tip_gwei": 0.17532716517633612,
+      "tip_eth": 0.06716742250563588,
+      "tip_usd": 166.29108961677815,
+      "txs": 591
+    },
+    {
+      "address": "0xccc88a9d1b4ed6b0eaba998850414b24f1c315be",
+      "gas": 357626025,
+      "mean_tip_gwei": 0.12074920802427773,
+      "tip_eth": 0.043183059287620555,
+      "tip_usd": 106.91132269251234,
+      "txs": 648
+    },
+    {
+      "address": "0x0000000071727de22e5e9d8baf0edac6f37da032",
+      "gas": 332279835,
+      "mean_tip_gwei": 0.08260413929986546,
+      "tip_eth": 0.027447689776876307,
+      "tip_usd": 67.95416691889706,
+      "txs": 1282
+    },
+    {
+      "address": "0x4337084d9e255ff0702461cf8895ce9e3b5ff108",
+      "gas": 269153998,
+      "mean_tip_gwei": 0.05110934554589657,
+      "tip_eth": 0.013756284688841556,
+      "tip_usd": 34.057396944093256,
+      "txs": 953
+    },
+    {
+      "address": "0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45",
+      "gas": 262281332,
+      "mean_tip_gwei": 0.13747249903422143,
+      "tip_eth": 0.03605647016006432,
+      "tip_usd": 89.26752712818245,
+      "txs": 1853
+    },
+    {
+      "address": "0x91ff8bbd8ebb07893010d50a48a1609e5ebd8e34",
+      "gas": 251892011,
+      "mean_tip_gwei": 0.01826419263382315,
+      "tip_eth": 0.0046006042118251,
+      "tip_usd": 11.390037889510229,
+      "txs": 145
+    },
+    {
+      "address": "0x51c72848c68a965f66fa7a88855f9f7784502a7f",
+      "gas": 203887086,
+      "mean_tip_gwei": 0.9692228606216469,
+      "tip_eth": 0.1976120247367317,
+      "tip_usd": 489.2419224824582,
+      "txs": 1473
+    }
+  ],
+  "top_tippers": [
+    {
+      "address": "0x5b43453fce04b92e190f391a83136bfbecedefd1",
+      "failed": 0,
+      "gas": 177356851,
+      "mean_tip_gwei": 2.1164909721020218,
+      "tip_eth": 0.3753741739819435,
+      "tip_usd": 929.3401187192762,
+      "txs": 161
+    },
+    {
+      "address": "0xae2fc483527b8ef99eb5d9b44875f005ba1fae13",
+      "failed": 0,
+      "gas": 54401135,
+      "mean_tip_gwei": 3.8891708998157104,
+      "tip_eth": 0.21157531115894596,
+      "tip_usd": 523.8118081079837,
+      "txs": 140
+    },
+    {
+      "address": "0x559432e18b281731c054cd703d4b49872be4ed53",
+      "failed": 0,
+      "gas": 116928965,
+      "mean_tip_gwei": 1.7972545883391682,
+      "tip_eth": 0.210151118856,
+      "tip_usd": 520.2858355301191,
+      "txs": 2281
+    },
+    {
+      "address": "0x91d40e4818f4d4c57b4578d9eca6afc92ac8debe",
+      "failed": 0,
+      "gas": 19440559,
+      "mean_tip_gwei": 6.84925327004743,
+      "tip_eth": 0.1331533123023,
+      "tip_usd": 329.65697599866525,
+      "txs": 451
+    },
+    {
+      "address": "0x7830c87c02e56aff27fa8ab1241711331fa86f43",
+      "failed": 0,
+      "gas": 122215380,
+      "mean_tip_gwei": 0.9495654418470513,
+      "tip_eth": 0.11605150131020528,
+      "tip_usd": 287.3168253987669,
+      "txs": 284
+    },
+    {
+      "address": "0x315d2ee4fccda0def532ef4108ff57204f8d9eba",
+      "failed": 2,
+      "gas": 7755670,
+      "mean_tip_gwei": 11.806276930836232,
+      "tip_eth": 0.09156558780417863,
+      "tip_usd": 226.69533531795133,
+      "txs": 46
+    },
+    {
+      "address": "0x28c6c06298d514db089934071355e5743bf21d60",
+      "failed": 0,
+      "gas": 70423100,
+      "mean_tip_gwei": 1.0,
+      "tip_eth": 0.0704231,
+      "tip_usd": 174.351398287,
+      "txs": 1194
+    },
+    {
+      "address": "0x3ee92cd00993a4488ae153ab41ac7947cbcbc1de",
+      "failed": 0,
+      "gas": 15411919,
+      "mean_tip_gwei": 4.548631791403904,
+      "tip_eth": 0.07010314472994186,
+      "tip_usd": 173.55926262804817,
+      "txs": 38
+    },
+    {
+      "address": "0xa073f85180a236cee3b5ad84a81573b97508d830",
+      "failed": 0,
+      "gas": 355231,
+      "mean_tip_gwei": 191.996618,
+      "tip_eth": 0.068203150608758,
+      "tip_usd": 168.8553141826448,
+      "txs": 5
+    },
+    {
+      "address": "0x8d02bb7ffd0ae9f6cf9004f290edcc96cd58ba16",
+      "failed": 0,
+      "gas": 1701000,
+      "mean_tip_gwei": 36.428571428,
+      "tip_eth": 0.061964999999028,
+      "tip_usd": 153.41108804759355,
+      "txs": 81
+    },
+    {
+      "address": "0x05ff6964d21e5dae3b1010d5ae0465b3c450f381",
+      "failed": 0,
+      "gas": 30853781,
+      "mean_tip_gwei": 2.0,
+      "tip_eth": 0.061707562,
+      "tip_usd": 152.77373077274,
+      "txs": 374
+    },
+    {
+      "address": "0xcbf83d10a021ebc73de69c5c283862a87a120229",
+      "failed": 0,
+      "gas": 274869,
+      "mean_tip_gwei": 207.256890868,
+      "tip_eth": 0.05696849433599629,
+      "tip_usd": 141.04088922222954,
+      "txs": 1
+    },
+    {
+      "address": "0x371903abb32f5f69b536b77495e92adedfea25da",
+      "failed": 0,
+      "gas": 819256,
+      "mean_tip_gwei": 68.40057636996525,
+      "tip_eth": 0.05603758259455226,
+      "tip_usd": 138.73616586011465,
+      "txs": 6
+    },
+    {
+      "address": "0x867bdc57d1b071fe5a9f670dd70b91e4269814d3",
+      "failed": 0,
+      "gas": 3222732,
+      "mean_tip_gwei": 16.671742705689386,
+      "tip_eth": 0.053728558713391765,
+      "tip_usd": 133.01955380585392,
+      "txs": 24
+    },
+    {
+      "address": "0xc0eb094b90d0e026628722259b9f0b9051763907",
+      "failed": 0,
+      "gas": 2121735,
+      "mean_tip_gwei": 23.038117866268855,
+      "tip_eth": 0.04888078101098795,
+      "tip_usd": 121.01757120357364,
+      "txs": 5
+    }
+  ],
+  "transactions": 169996,
+  "window": "research/2026-09-08/live_10h"
+}

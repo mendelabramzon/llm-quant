@@ -1,0 +1,246 @@
+{
+ "window": "research/2026-09-08/live_10h",
+ "stale": false,
+ "provenance": [
+  {
+   "field": "labels",
+   "artifact": "906de2ba7f4b6e22",
+   "current": "906de2ba7f4b6e22",
+   "gate": true,
+   "ok": true,
+   "note": ""
+  },
+  {
+   "field": "tokens",
+   "artifact": "ca4aa94f2ca2208f",
+   "current": "ca4aa94f2ca2208f",
+   "gate": true,
+   "ok": true,
+   "note": ""
+  },
+  {
+   "field": "blocks",
+   "artifact": "1ac04119f9856a5a",
+   "current": "1ac04119f9856a5a",
+   "gate": true,
+   "ok": true,
+   "note": ""
+  },
+  {
+   "field": "head",
+   "artifact": 25931629,
+   "current": 25931629,
+   "gate": true,
+   "ok": true,
+   "note": ""
+  }
+ ],
+ "checks": [
+  {
+   "id": "blocks",
+   "check": "blocks analysed",
+   "recomputed": 2993,
+   "analysis": 2993,
+   "ok": true,
+   "tolerance": 0.0,
+   "note": ""
+  },
+  {
+   "id": "transactions",
+   "check": "transactions",
+   "recomputed": 675675,
+   "analysis": 675675,
+   "ok": true,
+   "tolerance": 0.0,
+   "note": ""
+  },
+  {
+   "id": "logs",
+   "check": "logs",
+   "recomputed": 2371958,
+   "analysis": 2371958,
+   "ok": true,
+   "tolerance": 0.0,
+   "note": ""
+  },
+  {
+   "id": "usdc-mint",
+   "check": "USDC minted (USD, from the zero address)",
+   "recomputed": 140037525,
+   "analysis": 140055768,
+   "ok": true,
+   "tolerance": 0.01,
+   "note": ""
+  },
+  {
+   "id": "usdc-burn",
+   "check": "USDC burned (USD, to the zero address)",
+   "recomputed": 129581033,
+   "analysis": 129597914,
+   "ok": true,
+   "tolerance": 0.01,
+   "note": ""
+  },
+  {
+   "id": "exchange-net-stables",
+   "check": "exchange net flow, stables (USD)",
+   "recomputed": -4929743,
+   "analysis": -4929743,
+   "ok": true,
+   "tolerance": 0.03,
+   "note": ""
+  },
+  {
+   "id": "exchange-net-eth",
+   "check": "exchange net flow, ETH (USD)",
+   "recomputed": -2106592,
+   "analysis": -2106592,
+   "ok": true,
+   "tolerance": 0.03,
+   "note": ""
+  },
+  {
+   "id": "exchange-gross-usdc",
+   "check": "exchange gross in, USDC (USD)",
+   "recomputed": 347586323,
+   "analysis": 347586323,
+   "ok": true,
+   "tolerance": 0.03,
+   "note": ""
+  },
+  {
+   "id": "leverage-to-exchange",
+   "check": "leverage-to-exchange (USD followed to a CEX)",
+   "recomputed": 539873,
+   "analysis": 539873,
+   "ok": true,
+   "tolerance": 0.05,
+   "note": "replays the proceeds walk over an independently decoded transfer stream"
+  },
+  {
+   "id": "cctp-largest",
+   "check": "largest CCTP send: USDC -> domain 15 (USD)",
+   "recomputed": 11637051,
+   "analysis": 11638567,
+   "ok": true,
+   "tolerance": 0.02,
+   "note": ""
+  },
+  {
+   "id": "gas-top-target",
+   "check": "gas requested by the top target 0xdac17f95",
+   "recomputed": 19290955164,
+   "analysis": 19290955164,
+   "ok": true,
+   "tolerance": 0.0,
+   "note": ""
+  },
+  {
+   "id": "gas-top-target-identity",
+   "check": "top gas target is the same address",
+   "recomputed": "0xdac17f958d",
+   "analysis": "0xdac17f958d",
+   "ok": true,
+   "tolerance": 0,
+   "note": ""
+  },
+  {
+   "id": "rate-gap-widest",
+   "check": "widest Aave/Spark borrow-rate gap (weETH, pp)",
+   "recomputed": 3.999,
+   "analysis": 3.999,
+   "ok": true,
+   "tolerance": 0.05,
+   "note": ""
+  }
+ ],
+ "label_band": [
+  {
+   "min_tier": "blockscout-verified",
+   "exchange_addresses": 1,
+   "stables_net_usd": 0,
+   "eth_net_usd": 0
+  },
+  {
+   "min_tier": "model-memory",
+   "exchange_addresses": 46,
+   "stables_net_usd": -3015493,
+   "eth_net_usd": -4154887
+  },
+  {
+   "min_tier": "behaviour",
+   "exchange_addresses": 95,
+   "stables_net_usd": -4929743,
+   "eth_net_usd": -2106592
+  }
+ ],
+ "identities": [
+  {
+   "id": "head-utilisation",
+   "check": "utilisation equals borrowed / supplied",
+   "checked": 50,
+   "failed": 0,
+   "ok": true,
+   "worst": 1.1102230246251565e-16,
+   "examples": []
+  },
+  {
+   "id": "head-supply-identity",
+   "check": "supply APR equals borrow APR x utilisation x (1 - reserve factor)",
+   "checked": 32,
+   "failed": 0,
+   "ok": true,
+   "worst": 0.0001301577106447918,
+   "examples": []
+  },
+  {
+   "id": "head-irm-identity",
+   "check": "borrow APR equals the reserve IRM evaluated at its utilisation",
+   "checked": 32,
+   "failed": 0,
+   "ok": true,
+   "worst": 0.0004951340344375339,
+   "examples": []
+  },
+  {
+   "id": "head-compound-curve",
+   "check": "the Compound supply read lies on the curve sampled at the same block",
+   "checked": 3,
+   "failed": 0,
+   "ok": true,
+   "worst": 2.119108707954176e-11,
+   "examples": []
+  },
+  {
+   "id": "head-morpho-identity",
+   "check": "Morpho supply APY equals borrow APY x utilisation x (1 - fee)",
+   "checked": 60,
+   "failed": 0,
+   "ok": true,
+   "worst": 1.3407421578515155e-07,
+   "examples": []
+  },
+  {
+   "id": "head-nav-crosscheck",
+   "check": "each NAV rate matches a second view on the same contract",
+   "checked": 6,
+   "failed": 0,
+   "ok": true,
+   "worst": 0,
+   "examples": []
+  },
+  {
+   "id": "head-pendle-apy",
+   "check": "the Pendle implied yield is (1/price)^(365/days) - 1",
+   "checked": 24,
+   "failed": 0,
+   "ok": true,
+   "worst": 0,
+   "examples": []
+  }
+ ],
+ "mechanisms": null,
+ "claims": null,
+ "all_ok": true,
+ "failures": 0
+}

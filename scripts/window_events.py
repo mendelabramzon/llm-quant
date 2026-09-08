@@ -25,6 +25,25 @@ T_V3_POOL_CREATED = '0x783cca1c0412dd0d695e784568c96da2e9c22ff989357a2e8b1d9b2b4
 T_V4_INITIALIZE = '0xdd466e674ea557f56295e2d0218a125ea4b4f0f6d3bb446b8c05f4d3d2c9a1a4'
 T_ERC20_TRANSFER = '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef'
 # Blob inbox labels are from memory, not verified on chain; they are printed with that caveat.
+def _inbox_label(addr):
+    """The local table first, then the provenance registry.
+
+    These two lists drifted: the registry has carried Robinhood Chain's SequencerInbox as `known-canonical` since the
+    Orbit study, while this module's hand-written table did not, so the single largest blob poster on Ethereum — ahead
+    of Base and OP Mainnet — printed as "(unlabelled)" in every digest since. A registry exists precisely so that a
+    name learned once is not re-learned per module.
+    """
+    a = (addr or '').lower()
+    if a in BLOB_INBOX_LABELS:
+        return BLOB_INBOX_LABELS[a]
+    try:
+        import labels
+        e = labels.load_registry()['labels'].get(a)
+        return ('%s (%s)' % (e['label'], e.get('source'))) if e else None
+    except Exception:
+        return None
+
+
 BLOB_INBOX_LABELS = {
     '0xff00000000000000000000000000000000008453': 'Base batch inbox',
     '0xff00000000000000000000000000000000000010': 'OP Mainnet batch inbox',
@@ -214,7 +233,7 @@ def main():
         'series': series,
         'builders': builders.most_common(),
         'tx_types': dict(tx_types),
-        'blobs': {'total': sum(v['blobs'] for v in blob_by_to.values()), 'by_inbox': sorted([{'to': k, 'label': BLOB_INBOX_LABELS.get(k), 'txs': v['txs'], 'blobs': v['blobs'], 'senders': sorted(v['senders'])} for k, v in blob_by_to.items()], key=lambda r: -r['blobs'])},
+        'blobs': {'total': sum(v['blobs'] for v in blob_by_to.values()), 'by_inbox': sorted([{'to': k, 'label': _inbox_label(k), 'txs': v['txs'], 'blobs': v['blobs'], 'senders': sorted(v['senders'])} for k, v in blob_by_to.items()], key=lambda r: -r['blobs'])},
         'contract_creations': {'n': len(creations), 'by_creator': collections.Counter(c['from'] for c in creations).most_common(10), 'largest': sorted(creations, key=lambda c: -c['input_bytes'])[:10]},
         'new_pools': new_pools,
         'withdrawals': {'n': withdrawals['n'], 'eth': round(withdrawals['eth'], 2), 'large_n': len(withdrawals['large']), 'large_eth': round(sum(w['eth'] for w in withdrawals['large']), 2), 'largest': sorted(withdrawals['large'], key=lambda w: -w['eth'])[:10]},

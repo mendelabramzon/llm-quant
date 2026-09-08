@@ -216,6 +216,33 @@ Deposit-topic logs per chain, bytecode-filters to CoreVault forks, and scores ea
 and a reward token with real sellable liquidity (a $25k-depth gate, so dust tokens like STACY are flagged as forks but not
 suitable).
 
+## Ten hours across midnight: the routine, traced (2026-09-08)
+
+[Ten hours of Ethereum, and the thirty-four minutes that mattered](research/2026-09-08/live_10h/report.md)
+(2026-09-07 22:26 -> 2026-09-08 08:26 UTC; 2,993 blocks, 675,675 transactions, 2,371,958 logs; `verify` green).
+
+Ten hours of mainnet is, on almost every measure, ten hours of nothing: ETH moved 1.7%, $250.0M of DEX volume,
+**one liquidation for one dollar of debt**, and block fullness between 49.8% and 52.0% in every half-hour bucket.
+Two things happened anyway.
+
+**The nightly balance routine, traced end to end for the first time.** Prior windows had recorded by hand that Aave's
+USDC reserve went to 100% utilisation for about half an hour around 23:41 UTC. This session turned that sentence into
+`detectors/liquidity_blackout.py` -- it inverts each reserve's published borrow rate through its own IRM to recover the
+utilisation the pool was priced at, and reports collapses of withdrawable liquidity **with the clock time they happen**.
+It fired on the first window that could contain one: *Aave v3 USDC closed its exit at 23:47 UTC for 22 minutes, $55.4k
+withdrawable on a $2.3B reserve at 99.9976% utilisation.* Following it through the window's own transfers gives the
+whole mechanism: at 23:35:47 one EOA redeems $245,571,215 of sUSDS into USDC through Sky's PSM plumbing; at 23:37:47 a
+second withdraws **$151,780,227 from Aave -- 100.16% of that reserve's free liquidity**; both send to one hub, which
+forwards **$397,310,079** to a third address at 23:41:23 and takes it back at 00:03:59; every leg reverses to the dollar
+by 00:09:35. Nothing is traded and nothing earned. The routine costs its operator about **$900** in forgone yield and
+imposes **$8,879** of extra interest on Aave's USDC borrowers while a $2.31B exit is shut.
+
+**The fee-market result was not an artifact of a quiet hour.** Over ten hours Ethereum burned **$11,334** and users paid
+**$75,713** to block builders -- a **6.68x** ratio against 6.92x on the one-hour window, never below 4.4x in any
+half-hour bucket. 54.3% of gas paid a tip at or under 0.01 gwei, and 17.6% went to four unverified batch contracts (the
+largest a **XEN** minter) that paid $9 between them. `fee_census.py --every N` makes a ten-hour census cost 753k credits
+instead of 3M by regular subsample; rates and ratios need no scaling and totals are labelled as sampled.
+
 ## Ten chains at once: the cross-chain dollar surface (2026-09-08)
 
 [One hour, ten chains: the dollar is one asset with ten prices, and nobody is arbitraging it](research/2026-09-08/multi_1h/report.md)

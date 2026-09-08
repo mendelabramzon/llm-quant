@@ -1,0 +1,3263 @@
+{
+ "window": "research/2026-09-08/live_10h",
+ "detectors": [
+  {
+   "detector": "address_poisoning",
+   "hits": 1,
+   "seconds": 6.64,
+   "error": null,
+   "description": "lookalike dust transfers that follow a large transfer, aimed at a later copy-paste"
+  },
+  {
+   "detector": "borrow_cost",
+   "hits": 6,
+   "seconds": 8.28,
+   "error": null,
+   "description": "cheapest venue to borrow each asset, capped by the liquidity actually withdrawable there"
+  },
+  {
+   "detector": "dollar_rate_outlier",
+   "hits": 1,
+   "seconds": 0.0,
+   "error": null,
+   "description": "dollar supply rates ranked against the risk-free dollar, sized from each reserve\u2019s own rate curve"
+  },
+  {
+   "detector": "fixed_vs_floating",
+   "hits": 15,
+   "seconds": 0.01,
+   "error": null,
+   "description": "Pendle implied fixed yields against the floating rate on the same underlying, sized by PT depth"
+  },
+  {
+   "detector": "gas_concentration",
+   "hits": 0,
+   "seconds": 0.0,
+   "error": null,
+   "description": "base-fee spikes attributed to the contract whose gas demand caused them"
+  },
+  {
+   "detector": "jit_liquidity",
+   "hits": 1,
+   "seconds": 0.0,
+   "error": null,
+   "description": "fee share taken by liquidity minted for a single swap, per pool and per window"
+  },
+  {
+   "detector": "liquidity_blackout",
+   "hits": 1,
+   "seconds": 0.01,
+   "error": null,
+   "description": "lending reserves whose withdrawable liquidity collapses, and the time of day it happens"
+  },
+  {
+   "detector": "lp_marginal_yield",
+   "hits": 10,
+   "seconds": 0.0,
+   "error": null,
+   "description": "concentrated-LP fee yield net of divergence, at the band that stayed in range and at real size"
+  },
+  {
+   "detector": "mass_distribution",
+   "hits": 8,
+   "seconds": 11.69,
+   "error": null,
+   "description": "one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam"
+  },
+  {
+   "detector": "mislabelled_flow",
+   "hits": 2,
+   "seconds": 8.03,
+   "error": null,
+   "description": "address labels the window contradicts, which is how a headline moves by a multiple"
+  },
+  {
+   "detector": "nav_discount",
+   "hits": 3,
+   "seconds": 0.0,
+   "error": null,
+   "description": "redeemable claims trading away from the value the protocol pays, with the queue that separates them"
+  },
+  {
+   "detector": "rate_dispersion",
+   "hits": 5,
+   "seconds": 0.0,
+   "error": null,
+   "description": "cross-venue supply-rate gaps on one asset, de-spiked and sized by rate dilution"
+  },
+  {
+   "detector": "solver_fingerprint",
+   "hits": 12,
+   "seconds": 7.26,
+   "error": null,
+   "description": "unlabelled contracts that pass value straight through: solvers, routers and searcher bots"
+  }
+ ],
+ "hits": [
+  {
+   "detector": "liquidity_blackout",
+   "title": "Aave v3 USDC closed its exit at 23:47 UTC for 22 minutes: $55.4k withdrawable on a $2.3B reserve at 99.9976% utilisation",
+   "severity": "high",
+   "evidence": {
+    "venue": "Aave v3",
+    "asset": "USDC",
+    "reserve": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "supplied_usd": 2307109260,
+    "utilisation_peak": 0.999976,
+    "utilisation_median": 0.934316,
+    "available_at_peak_usd": 55371,
+    "available_at_median_usd": 151539521,
+    "observations": 64,
+    "window_hours": 9.89,
+    "episodes": [
+     {
+      "from_utc": "2026-09-07T23:47:11+00:00",
+      "to_utc": "2026-09-08T00:08:47+00:00",
+      "clock": "at 23:47 UTC",
+      "minutes": 21.6,
+      "peak_utilisation": 0.999976,
+      "available_at_peak_usd": 55371,
+      "peak_block": 25928856,
+      "open_at_window_end": false
+     }
+    ],
+    "utilisation_source": "inverted from the reserve\u2019s published borrow rate through its own IRM",
+    "why": "utilisation is the share of supply that is lent out, so a supplier can withdraw only supplied x (1 - u); at these levels the reserve pays a spectacular rate and cannot be exited, and the rate is the symptom rather than the opportunity",
+    "next_step": "any strategy whose exit leg is this reserve must either size to the trough of this series or hold through it; the ledger\u2019s recurrence column says whether the episode is a schedule or an accident"
+   },
+   "economics": null,
+   "usd": 2307109259.5005565,
+   "key": "Aave v3:USDC",
+   "identity": "liquidity_blackout:Aave v3:USDC"
+  },
+  {
+   "detector": "solver_fingerprint",
+   "title": "unlabelled venue 0xd0a61f29 passed $1.5B through in 3 txs (100% ended flat, 5 counterparties)",
+   "severity": "notable",
+   "evidence": {
+    "address": "0xd0a61f2963622e992e6534bde4d52fd0a89f39e0",
+    "shape": "pass-through",
+    "gross_usd": 1474223005,
+    "txs": 3,
+    "counterparties": 5,
+    "tokens": 2,
+    "pass_through_share": 1.0,
+    "received_usd": 737111503,
+    "sent_usd": 737111503,
+    "retained_usd": 0,
+    "retention": 0.0,
+    "is_contract": true,
+    "emits_logs": false,
+    "receives_calldata": true,
+    "originates_txs": false,
+    "vanity_zeros": 0,
+    "suggested_kind": "venue",
+    "why": "value arrives and leaves inside the same transaction, so this address holds nothing and its flow is not exchange flow; no vanity prefix, so the shape is the only claim",
+    "next_step": "labels.py resolve --out <window> tries to name it; unnamed, it still must not be counted as an exchange"
+   },
+   "economics": null,
+   "usd": 1474223005,
+   "key": "0xd0a61f2963622e992e6534bde4d52fd0a89f39e0",
+   "identity": "solver_fingerprint:0xd0a61f2963622e992e6534bde4d52fd0a89f39e0"
+  },
+  {
+   "detector": "solver_fingerprint",
+   "title": "unlabelled unknown 0x76f30e3f cycled $522.7M and ended the window flat (82 txs, 19 counterparties)",
+   "severity": "notable",
+   "evidence": {
+    "address": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+    "shape": "cycles",
+    "gross_usd": 1045383395,
+    "txs": 82,
+    "counterparties": 19,
+    "tokens": 8,
+    "pass_through_share": 0.561,
+    "received_usd": 522690573,
+    "sent_usd": 522692822,
+    "retained_usd": -2249,
+    "retention": -0.0,
+    "is_contract": null,
+    "emits_logs": false,
+    "receives_calldata": false,
+    "originates_txs": false,
+    "vanity_zeros": 0,
+    "suggested_kind": "unknown",
+    "why": "it received and returned the same total across separate transactions, so it holds nothing over the window even though no single transaction nets out: a position opened and closed across blocks",
+    "next_step": "labels.py resolve --out <window> tries to name it; unnamed, it still must not be counted as an exchange"
+   },
+   "economics": null,
+   "usd": 1045383395,
+   "key": "0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a",
+   "identity": "solver_fingerprint:0x76f30e3f75437fb862b8d2c4d80a671bceba5b1a"
+  },
+  {
+   "detector": "solver_fingerprint",
+   "title": "unlabelled atomic bot pair 0x3805dbbd passed $943.1M through in 3 txs (100% ended flat, 3 counterparties)",
+   "severity": "notable",
+   "evidence": {
+    "address": "0x3805dbbd0b847f3dee193ae546cc20caaf7e7e5c",
+    "shape": "pass-through",
+    "gross_usd": 943107476,
+    "txs": 3,
+    "counterparties": 3,
+    "tokens": 1,
+    "pass_through_share": 1.0,
+    "received_usd": 471553750,
+    "sent_usd": 471553726,
+    "retained_usd": 24,
+    "retention": 0.0,
+    "is_contract": true,
+    "emits_logs": true,
+    "receives_calldata": true,
+    "originates_txs": false,
+    "vanity_zeros": 0,
+    "suggested_kind": "atomic bot pair",
+    "why": "value arrives and leaves inside the same transaction, so this address holds nothing and its flow is not exchange flow; no vanity prefix, so the shape is the only claim",
+    "next_step": "labels.py resolve --out <window> tries to name it; unnamed, it still must not be counted as an exchange"
+   },
+   "economics": null,
+   "usd": 943107476,
+   "key": "0x3805dbbd0b847f3dee193ae546cc20caaf7e7e5c",
+   "identity": "solver_fingerprint:0x3805dbbd0b847f3dee193ae546cc20caaf7e7e5c"
+  },
+  {
+   "detector": "solver_fingerprint",
+   "title": "unlabelled unknown 0xbfedfd3c passed $943.1M through in 3 txs (100% ended flat, 2 counterparties)",
+   "severity": "notable",
+   "evidence": {
+    "address": "0xbfedfd3c88bad9ef47dae4627ee054eab3a548f1",
+    "shape": "pass-through",
+    "gross_usd": 943107452,
+    "txs": 3,
+    "counterparties": 2,
+    "tokens": 1,
+    "pass_through_share": 1.0,
+    "received_usd": 471553726,
+    "sent_usd": 471553726,
+    "retained_usd": 0,
+    "retention": 0.0,
+    "is_contract": null,
+    "emits_logs": false,
+    "receives_calldata": false,
+    "originates_txs": false,
+    "vanity_zeros": 0,
+    "suggested_kind": "unknown",
+    "why": "value arrives and leaves inside the same transaction, so this address holds nothing and its flow is not exchange flow; no vanity prefix, so the shape is the only claim",
+    "next_step": "labels.py resolve --out <window> tries to name it; unnamed, it still must not be counted as an exchange"
+   },
+   "economics": null,
+   "usd": 943107452,
+   "key": "0xbfedfd3c88bad9ef47dae4627ee054eab3a548f1",
+   "identity": "solver_fingerprint:0xbfedfd3c88bad9ef47dae4627ee054eab3a548f1"
+  },
+  {
+   "detector": "solver_fingerprint",
+   "title": "unlabelled venue 0xd8246178 passed $282.0M through in 1374 txs (100% ended flat, 8 counterparties)",
+   "severity": "notable",
+   "evidence": {
+    "address": "0xd82461784eb72d4b67cbab077989eb215315e272",
+    "shape": "pass-through",
+    "gross_usd": 282037065,
+    "txs": 1374,
+    "counterparties": 8,
+    "tokens": 4,
+    "pass_through_share": 1.0,
+    "received_usd": 141018532,
+    "sent_usd": 141018532,
+    "retained_usd": 0,
+    "retention": 0.0,
+    "is_contract": true,
+    "emits_logs": true,
+    "receives_calldata": true,
+    "originates_txs": false,
+    "vanity_zeros": 0,
+    "suggested_kind": "venue",
+    "why": "value arrives and leaves inside the same transaction, so this address holds nothing and its flow is not exchange flow; no vanity prefix, so the shape is the only claim",
+    "next_step": "labels.py resolve --out <window> tries to name it; unnamed, it still must not be counted as an exchange"
+   },
+   "economics": null,
+   "usd": 282037065,
+   "key": "0xd82461784eb72d4b67cbab077989eb215315e272",
+   "identity": "solver_fingerprint:0xd82461784eb72d4b67cbab077989eb215315e272"
+  },
+  {
+   "detector": "solver_fingerprint",
+   "title": "unlabelled eoa 0xea6df897 cycled $77.1M and ended the window flat (22 txs, 4 counterparties)",
+   "severity": "notable",
+   "evidence": {
+    "address": "0xea6df897fc8ea83d2b81391abec672ae1cfbae1c",
+    "shape": "cycles",
+    "gross_usd": 154116318,
+    "txs": 22,
+    "counterparties": 4,
+    "tokens": 2,
+    "pass_through_share": 0.0,
+    "received_usd": 77058159,
+    "sent_usd": 77058159,
+    "retained_usd": 0,
+    "retention": 0.0,
+    "is_contract": false,
+    "emits_logs": false,
+    "receives_calldata": false,
+    "originates_txs": true,
+    "vanity_zeros": 0,
+    "suggested_kind": "eoa",
+    "why": "it received and returned the same total across separate transactions, so it holds nothing over the window even though no single transaction nets out: a position opened and closed across blocks",
+    "next_step": "labels.py resolve --out <window> tries to name it; unnamed, it still must not be counted as an exchange"
+   },
+   "economics": null,
+   "usd": 154116318,
+   "key": "0xea6df897fc8ea83d2b81391abec672ae1cfbae1c",
+   "identity": "solver_fingerprint:0xea6df897fc8ea83d2b81391abec672ae1cfbae1c"
+  },
+  {
+   "detector": "solver_fingerprint",
+   "title": "unlabelled eoa 0x14681e4e cycled $74.4M and ended the window flat (28 txs, 3 counterparties)",
+   "severity": "notable",
+   "evidence": {
+    "address": "0x14681e4e26f1b5b5774ae3b7f694ff08bbbeb65c",
+    "shape": "cycles",
+    "gross_usd": 148770096,
+    "txs": 28,
+    "counterparties": 3,
+    "tokens": 1,
+    "pass_through_share": 0.0,
+    "received_usd": 74385048,
+    "sent_usd": 74385048,
+    "retained_usd": 0,
+    "retention": 0.0,
+    "is_contract": false,
+    "emits_logs": false,
+    "receives_calldata": false,
+    "originates_txs": true,
+    "vanity_zeros": 0,
+    "suggested_kind": "eoa",
+    "why": "it received and returned the same total across separate transactions, so it holds nothing over the window even though no single transaction nets out: a position opened and closed across blocks",
+    "next_step": "labels.py resolve --out <window> tries to name it; unnamed, it still must not be counted as an exchange"
+   },
+   "economics": null,
+   "usd": 148770096,
+   "key": "0x14681e4e26f1b5b5774ae3b7f694ff08bbbeb65c",
+   "identity": "solver_fingerprint:0x14681e4e26f1b5b5774ae3b7f694ff08bbbeb65c"
+  },
+  {
+   "detector": "solver_fingerprint",
+   "title": "unlabelled venue 0x11111133 passed $141.0M through in 1374 txs (100% ended flat, 7 counterparties)",
+   "severity": "notable",
+   "evidence": {
+    "address": "0x111111338c5091e8440b67b168bae16a668ac0de",
+    "shape": "pass-through",
+    "gross_usd": 141018532,
+    "txs": 1374,
+    "counterparties": 7,
+    "tokens": 4,
+    "pass_through_share": 1.0,
+    "received_usd": 70509266,
+    "sent_usd": 70509266,
+    "retained_usd": 0,
+    "retention": 0.0,
+    "is_contract": true,
+    "emits_logs": true,
+    "receives_calldata": false,
+    "originates_txs": false,
+    "vanity_zeros": 0,
+    "suggested_kind": "venue",
+    "why": "value arrives and leaves inside the same transaction, so this address holds nothing and its flow is not exchange flow; no vanity prefix, so the shape is the only claim",
+    "next_step": "labels.py resolve --out <window> tries to name it; unnamed, it still must not be counted as an exchange"
+   },
+   "economics": null,
+   "usd": 141018532,
+   "key": "0x111111338c5091e8440b67b168bae16a668ac0de",
+   "identity": "solver_fingerprint:0x111111338c5091e8440b67b168bae16a668ac0de"
+  },
+  {
+   "detector": "solver_fingerprint",
+   "title": "unlabelled mev_bot 0x00000000 cycled $67.6M and ended the window flat (82 txs, 1 counterparties)",
+   "severity": "notable",
+   "evidence": {
+    "address": "0x000000000035b5e5ad9019092c665357240f594e",
+    "shape": "cycles",
+    "gross_usd": 135188608,
+    "txs": 82,
+    "counterparties": 1,
+    "tokens": 1,
+    "pass_through_share": 0.0,
+    "received_usd": 67594527,
+    "sent_usd": 67594081,
+    "retained_usd": 446,
+    "retention": 0.0,
+    "is_contract": true,
+    "emits_logs": false,
+    "receives_calldata": true,
+    "originates_txs": false,
+    "vanity_zeros": 10,
+    "suggested_kind": "mev_bot",
+    "why": "it received and returned the same total across separate transactions, so it holds nothing over the window even though no single transaction nets out: a position opened and closed across blocks",
+    "next_step": "labels.py resolve --out <window> tries to name it; unnamed, it still must not be counted as an exchange"
+   },
+   "economics": null,
+   "usd": 135188608,
+   "key": "0x000000000035b5e5ad9019092c665357240f594e",
+   "identity": "solver_fingerprint:0x000000000035b5e5ad9019092c665357240f594e"
+  },
+  {
+   "detector": "solver_fingerprint",
+   "title": "unlabelled eoa 0xcde5d48f cycled $62.7M and ended the window flat (21 txs, 4 counterparties)",
+   "severity": "notable",
+   "evidence": {
+    "address": "0xcde5d48fca07f9c52300d2e65632dd71ed169b90",
+    "shape": "cycles",
+    "gross_usd": 125432750,
+    "txs": 21,
+    "counterparties": 4,
+    "tokens": 7,
+    "pass_through_share": 0.0,
+    "received_usd": 62716375,
+    "sent_usd": 62716375,
+    "retained_usd": 0,
+    "retention": 0.0,
+    "is_contract": false,
+    "emits_logs": false,
+    "receives_calldata": false,
+    "originates_txs": true,
+    "vanity_zeros": 0,
+    "suggested_kind": "eoa",
+    "why": "it received and returned the same total across separate transactions, so it holds nothing over the window even though no single transaction nets out: a position opened and closed across blocks",
+    "next_step": "labels.py resolve --out <window> tries to name it; unnamed, it still must not be counted as an exchange"
+   },
+   "economics": null,
+   "usd": 125432750,
+   "key": "0xcde5d48fca07f9c52300d2e65632dd71ed169b90",
+   "identity": "solver_fingerprint:0xcde5d48fca07f9c52300d2e65632dd71ed169b90"
+  },
+  {
+   "detector": "solver_fingerprint",
+   "title": "unlabelled eoa 0x65c340eb cycled $59.3M and ended the window flat (126 txs, 6 counterparties)",
+   "severity": "notable",
+   "evidence": {
+    "address": "0x65c340eb0688d8f8b64e9c6d580f312a97b615d8",
+    "shape": "cycles",
+    "gross_usd": 118667739,
+    "txs": 126,
+    "counterparties": 6,
+    "tokens": 2,
+    "pass_through_share": 0.0,
+    "received_usd": 59333870,
+    "sent_usd": 59333870,
+    "retained_usd": 0,
+    "retention": 0.0,
+    "is_contract": false,
+    "emits_logs": false,
+    "receives_calldata": false,
+    "originates_txs": true,
+    "vanity_zeros": 0,
+    "suggested_kind": "eoa",
+    "why": "it received and returned the same total across separate transactions, so it holds nothing over the window even though no single transaction nets out: a position opened and closed across blocks",
+    "next_step": "labels.py resolve --out <window> tries to name it; unnamed, it still must not be counted as an exchange"
+   },
+   "economics": null,
+   "usd": 118667739,
+   "key": "0x65c340eb0688d8f8b64e9c6d580f312a97b615d8",
+   "identity": "solver_fingerprint:0x65c340eb0688d8f8b64e9c6d580f312a97b615d8"
+  },
+  {
+   "detector": "rate_dispersion",
+   "title": "USDS pays 3.48pp more on Sky SSR than Aave v3; rate does not dilute with size",
+   "severity": "notable",
+   "evidence": {
+    "asset": "USDS",
+    "high_venue": "Sky SSR",
+    "low_venue": "Aave v3",
+    "supply_apr_spot_pct": {
+     "Aave v3": 0.124,
+     "SparkLend": 2.318,
+     "Sky SSR": 3.6
+    },
+    "supply_apr_median_pct": {
+     "SparkLend": 2.318
+    },
+    "gap_pp_spot": 3.476,
+    "gap_pp_despiked": 3.476,
+    "head_read_spiked": null,
+    "despiked": false,
+    "despike_note": "Sky SSR emits no ReserveDataUpdated logs, so the head read is the only source",
+    "supplied_usd": {
+     "Aave v3": 11187665,
+     "SparkLend": 739235563,
+     "Sky SSR": 1000000000
+    },
+    "utilisation": {
+     "Aave v3": 0.03,
+     "SparkLend": 0.656
+    },
+    "dilution_basis": "modelled",
+    "best_size": null,
+    "marginal_apr_ladder": null
+   },
+   "economics": {
+    "net_apr": 0.0348,
+    "net_per_year_usd": 34759581,
+    "half_edge_size_usd": null,
+    "net_apr_at_half_edge": 0.0186,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "gas_gwei": 0.0486
+   },
+   "usd": 34759580.899288066,
+   "key": "USDS:Sky SSR/Aave v3",
+   "identity": "rate_dispersion:USDS:Sky SSR/Aave v3"
+  },
+  {
+   "detector": "borrow_cost",
+   "title": "USDS borrows 1.60pp cheaper on SparkLend than Aave v3; $254.2M withdrawable there, gas is negligible at this base fee \u2014 the constraint is the collateral and the liquidity",
+   "severity": "notable",
+   "evidence": {
+    "asset": "USDS",
+    "cheapest": {
+     "venue": "SparkLend",
+     "borrow_apy_pct": 3.926,
+     "liquidity_usd": 254161787,
+     "utilisation": 0.6561829542584083,
+     "collateral_required": "any listed on the pool",
+     "market": null
+    },
+    "dearest": {
+     "venue": "Aave v3",
+     "borrow_apy_pct": 5.524,
+     "liquidity_usd": 10852723
+    },
+    "all_venues": [
+     {
+      "venue": "SparkLend",
+      "borrow_apy_pct": 3.926,
+      "liquidity_usd": 254161787,
+      "collateral": "any listed on the pool"
+     },
+     {
+      "venue": "Aave v3",
+      "borrow_apy_pct": 5.524,
+      "liquidity_usd": 10852723,
+      "collateral": "any listed on the pool"
+     }
+    ],
+    "gap_pp": 1.598,
+    "refinance_gas_usd": 0.108,
+    "caveat": "moving a position between venues also pays the spread on any collateral that has to be converted, which this does not price: it compares rates and liquidity only",
+    "why": "the saving is capped by what is withdrawable at the cheap venue, and on an isolated market it is only available against the collateral that market accepts \u2014 which is usually the binding constraint rather than the rate"
+   },
+   "economics": {
+    "net_apr": 0.016,
+    "net_per_year_usd": 4062544,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 254161787,
+    "break_even_size_usd": 7
+   },
+   "usd": 4062544.3162460728,
+   "key": "USDS:SparkLend/Aave v3",
+   "identity": "borrow_cost:USDS:SparkLend/Aave v3"
+  },
+  {
+   "detector": "borrow_cost",
+   "title": "PYUSD borrows 1.47pp cheaper on SparkLend than Morpho Blue; $83.2M withdrawable there, gas is negligible at this base fee \u2014 the constraint is the collateral and the liquidity",
+   "severity": "notable",
+   "evidence": {
+    "asset": "PYUSD",
+    "cheapest": {
+     "venue": "SparkLend",
+     "borrow_apy_pct": 3.89,
+     "liquidity_usd": 83199788,
+     "utilisation": 0.16800668614864578,
+     "collateral_required": "any listed on the pool",
+     "market": null
+    },
+    "dearest": {
+     "venue": "Morpho Blue",
+     "borrow_apy_pct": 5.358,
+     "liquidity_usd": 7814845
+    },
+    "all_venues": [
+     {
+      "venue": "SparkLend",
+      "borrow_apy_pct": 3.89,
+      "liquidity_usd": 83199788,
+      "collateral": "any listed on the pool"
+     },
+     {
+      "venue": "Morpho Blue",
+      "borrow_apy_pct": 5.358,
+      "liquidity_usd": 7814845,
+      "collateral": "sUSDe (0x9d39a5de, LLTV 91.5%)"
+     }
+    ],
+    "gap_pp": 1.468,
+    "refinance_gas_usd": 0.108,
+    "caveat": "moving a position between venues also pays the spread on any collateral that has to be converted, which this does not price: it compares rates and liquidity only",
+    "why": "the saving is capped by what is withdrawable at the cheap venue, and on an isolated market it is only available against the collateral that market accepts \u2014 which is usually the binding constraint rather than the rate"
+   },
+   "economics": {
+    "net_apr": 0.0147,
+    "net_per_year_usd": 1221142,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 83199788,
+    "break_even_size_usd": 7
+   },
+   "usd": 1221141.5347647446,
+   "key": "PYUSD:SparkLend/Morpho Blue",
+   "identity": "borrow_cost:PYUSD:SparkLend/Morpho Blue"
+  },
+  {
+   "detector": "rate_dispersion",
+   "title": "USDT pays 0.96pp more on Aave v3 than SparkLend; best size $244.5M earns $1.0M a year over SparkLend",
+   "severity": "notable",
+   "evidence": {
+    "asset": "USDT",
+    "high_venue": "Aave v3",
+    "low_venue": "SparkLend",
+    "supply_apr_spot_pct": {
+     "Aave v3": 3.559,
+     "SparkLend": 2.619,
+     "Compound v3 USDT": 3.014
+    },
+    "supply_apr_median_pct": {
+     "Aave v3": 3.58,
+     "SparkLend": 2.619
+    },
+    "gap_pp_spot": 0.941,
+    "gap_pp_despiked": 0.961,
+    "head_read_spiked": false,
+    "despiked": true,
+    "despike_note": "median of the window log series",
+    "supplied_usd": {
+     "Aave v3": 2984185012,
+     "SparkLend": 391783079,
+     "Compound v3 USDT": 185226676
+    },
+    "utilisation": {
+     "Aave v3": 0.93,
+     "SparkLend": 0.828,
+     "Compound v3 USDT": 0.837
+    },
+    "dilution_basis": "irm",
+    "best_size": {
+     "size_usd": 244524332,
+     "apr_at_size_pct": 3.041,
+     "over_low_venue_usd_per_year": 1031568
+    },
+    "marginal_apr_ladder": [
+     {
+      "size_usd": 100000.0,
+      "apr_pct": 3.559
+     },
+     {
+      "size_usd": 1000000.0,
+      "apr_pct": 3.557
+     },
+     {
+      "size_usd": 5000000.0,
+      "apr_pct": 3.548
+     },
+     {
+      "size_usd": 25000000.0,
+      "apr_pct": 3.501
+     },
+     {
+      "size_usd": 100000000.0,
+      "apr_pct": 3.333
+     }
+    ]
+   },
+   "economics": {
+    "net_apr": 0.0042,
+    "net_per_year_usd": 1031568,
+    "half_edge_size_usd": 244524332,
+    "net_apr_at_half_edge": 0.031,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "gas_gwei": 0.0486
+   },
+   "usd": 1031568.2432920609,
+   "key": "USDT:Aave v3/SparkLend",
+   "identity": "rate_dispersion:USDT:Aave v3/SparkLend"
+  },
+  {
+   "detector": "nav_discount",
+   "title": "sUSDe trades 7.1bp below NAV, 4.4bp after the 2.7bp round trip; cooldownShares, then unstake after cooldownDuration (1 day)",
+   "severity": "notable",
+   "evidence": {
+    "asset": "sUSDe",
+    "nav_source": "0x9d39a5de convertToAssets(uint256)",
+    "nav": 1.24706,
+    "market_vw_price": 1.24617,
+    "market_median": 1.24628,
+    "market_p10": 1.245945,
+    "discount_bps": 7.14,
+    "traded_volume_usd": 5118581,
+    "implied_daily_volume_usd": 12280910,
+    "refills_needed_per_year": 365,
+    "swaps": 161,
+    "venues": {
+     "curve": 45,
+     "uniswap_v4": 116
+    },
+    "redemption": {
+     "days": 1.0,
+     "atomic": false,
+     "availability": "always",
+     "exit_bps": 2.7,
+     "path": "cooldownShares, then unstake after cooldownDuration (1 day)"
+    },
+    "net_edge_bps": 4.44,
+    "price_dispersion_bps": 4.31,
+    "discount_at_p10_bps": 8.94,
+    "significance_vs_dispersion": 1.03,
+    "dispersion_note": "a dollar claim\u2019s NAV barely moves, so the spread is mostly execution dispersion and the test is meaningful",
+    "why": "the protocol pays NAV and the market paid less; the gap closes when you redeem, and the wait is the reason a bot cannot take it from you"
+   },
+   "economics": {
+    "net_apr": 0.162,
+    "net_per_year_usd": 829464,
+    "net_per_run_usd": 2272.5,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 5118581,
+    "hold_days": 1.0,
+    "discount_bps": 7.14,
+    "exit_cost_bps": 2.7,
+    "net_edge_bps": 4.44,
+    "price_dispersion_bps": 4.31,
+    "significance": 1.03,
+    "inside_price_noise": false
+   },
+   "usd": 829464,
+   "key": "sUSDe",
+   "identity": "nav_discount:sUSDe"
+  },
+  {
+   "detector": "borrow_cost",
+   "title": "DAI borrows 0.67pp cheaper on SparkLend than Aave v3; $99.7M withdrawable there, gas is negligible at this base fee \u2014 the constraint is the collateral and the liquidity",
+   "severity": "notable",
+   "evidence": {
+    "asset": "DAI",
+    "cheapest": {
+     "venue": "SparkLend",
+     "borrow_apy_pct": 4.043,
+     "liquidity_usd": 99710771,
+     "utilisation": 0.6765819959374848,
+     "collateral_required": "any listed on the pool",
+     "market": null
+    },
+    "dearest": {
+     "venue": "Aave v3",
+     "borrow_apy_pct": 4.715,
+     "liquidity_usd": 17418896
+    },
+    "all_venues": [
+     {
+      "venue": "SparkLend",
+      "borrow_apy_pct": 4.043,
+      "liquidity_usd": 99710771,
+      "collateral": "any listed on the pool"
+     },
+     {
+      "venue": "Aave v3",
+      "borrow_apy_pct": 4.715,
+      "liquidity_usd": 17418896,
+      "collateral": "any listed on the pool"
+     }
+    ],
+    "gap_pp": 0.672,
+    "refinance_gas_usd": 0.108,
+    "caveat": "moving a position between venues also pays the spread on any collateral that has to be converted, which this does not price: it compares rates and liquidity only",
+    "why": "the saving is capped by what is withdrawable at the cheap venue, and on an isolated market it is only available against the collateral that market accepts \u2014 which is usually the binding constraint rather than the rate"
+   },
+   "economics": {
+    "net_apr": 0.0067,
+    "net_per_year_usd": 669726,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 99710771,
+    "break_even_size_usd": 16
+   },
+   "usd": 669725.7119371605,
+   "key": "DAI:SparkLend/Aave v3",
+   "identity": "borrow_cost:DAI:SparkLend/Aave v3"
+  },
+  {
+   "detector": "borrow_cost",
+   "title": "USDT borrows 1.46pp cheaper on Morpho Blue than Aave v3; $6.4M withdrawable there, gas is negligible at this base fee \u2014 the constraint is the collateral and the liquidity",
+   "severity": "notable",
+   "evidence": {
+    "asset": "USDT",
+    "cheapest": {
+     "venue": "Morpho Blue",
+     "borrow_apy_pct": 2.796,
+     "liquidity_usd": 6353469,
+     "utilisation": 0.900102,
+     "collateral_required": "sUSDS (0xa3931d71, LLTV 96.5%)",
+     "market": "0x26b178d49895f80c"
+    },
+    "dearest": {
+     "venue": "Aave v3",
+     "borrow_apy_pct": 4.253,
+     "liquidity_usd": 209356608
+    },
+    "all_venues": [
+     {
+      "venue": "Morpho Blue",
+      "borrow_apy_pct": 2.796,
+      "liquidity_usd": 6353469,
+      "collateral": "sUSDS (0xa3931d71, LLTV 96.5%)"
+     },
+     {
+      "venue": "SparkLend",
+      "borrow_apy_pct": 3.516,
+      "liquidity_usd": 67555300,
+      "collateral": "any listed on the pool"
+     },
+     {
+      "venue": "Compound v3 USDT",
+      "borrow_apy_pct": 3.826,
+      "liquidity_usd": 30147757,
+      "collateral": "the Comet\u2019s listed collaterals"
+     },
+     {
+      "venue": "Aave v3",
+      "borrow_apy_pct": 4.253,
+      "liquidity_usd": 209356608,
+      "collateral": "any listed on the pool"
+     }
+    ],
+    "gap_pp": 1.458,
+    "refinance_gas_usd": 0.108,
+    "caveat": "moving a position between venues also pays the spread on any collateral that has to be converted, which this does not price: it compares rates and liquidity only",
+    "why": "the saving is capped by what is withdrawable at the cheap venue, and on an isolated market it is only available against the collateral that market accepts \u2014 which is usually the binding constraint rather than the rate"
+   },
+   "economics": {
+    "net_apr": 0.0146,
+    "net_per_year_usd": 92630,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 6353469,
+    "break_even_size_usd": 7
+   },
+   "usd": 92630.36113756962,
+   "key": "USDT:Morpho Blue/Aave v3",
+   "identity": "borrow_cost:USDT:Morpho Blue/Aave v3"
+  },
+  {
+   "detector": "borrow_cost",
+   "title": "USDC borrows 1.90pp cheaper on SparkLend than Compound v3 USDC; $2.0M withdrawable there, gas is negligible at this base fee \u2014 the constraint is the collateral and the liquidity",
+   "severity": "notable",
+   "evidence": {
+    "asset": "USDC",
+    "cheapest": {
+     "venue": "SparkLend",
+     "borrow_apy_pct": 4.268,
+     "liquidity_usd": 2039766,
+     "utilisation": 0.9220965678575942,
+     "collateral_required": "any listed on the pool",
+     "market": null
+    },
+    "dearest": {
+     "venue": "Compound v3 USDC",
+     "borrow_apy_pct": 6.166,
+     "liquidity_usd": 35250340
+    },
+    "all_venues": [
+     {
+      "venue": "SparkLend",
+      "borrow_apy_pct": 4.268,
+      "liquidity_usd": 2039766,
+      "collateral": "any listed on the pool"
+     },
+     {
+      "venue": "Aave v3",
+      "borrow_apy_pct": 4.292,
+      "liquidity_usd": 142402574,
+      "collateral": "any listed on the pool"
+     },
+     {
+      "venue": "Morpho Blue",
+      "borrow_apy_pct": 4.573,
+      "liquidity_usd": 1594191,
+      "collateral": "0xdc169abe56 (0xdc169abe, LLTV 91.5%)"
+     },
+     {
+      "venue": "Compound v3 USDC",
+      "borrow_apy_pct": 6.166,
+      "liquidity_usd": 35250340,
+      "collateral": "the Comet\u2019s listed collaterals"
+     }
+    ],
+    "gap_pp": 1.898,
+    "refinance_gas_usd": 0.108,
+    "caveat": "moving a position between venues also pays the spread on any collateral that has to be converted, which this does not price: it compares rates and liquidity only",
+    "why": "the saving is capped by what is withdrawable at the cheap venue, and on an isolated market it is only available against the collateral that market accepts \u2014 which is usually the binding constraint rather than the rate"
+   },
+   "economics": {
+    "net_apr": 0.019,
+    "net_per_year_usd": 38709,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 2039766,
+    "break_even_size_usd": 6
+   },
+   "usd": 38709.16788159137,
+   "key": "USDC:SparkLend/Compound v3 USDC",
+   "identity": "borrow_cost:USDC:SparkLend/Compound v3 USDC"
+  },
+  {
+   "detector": "rate_dispersion",
+   "title": "DAI pays 0.61pp more on Aave v3 than SparkLend; best size $7.1M earns $22k a year over SparkLend",
+   "severity": "notable",
+   "evidence": {
+    "asset": "DAI",
+    "high_venue": "Aave v3",
+    "low_venue": "SparkLend",
+    "supply_apr_spot_pct": {
+     "Aave v3": 3.068,
+     "SparkLend": 2.459
+    },
+    "supply_apr_median_pct": {
+     "Aave v3": 3.067
+    },
+    "gap_pp_spot": 0.609,
+    "gap_pp_despiked": 0.608,
+    "head_read_spiked": false,
+    "despiked": true,
+    "despike_note": "median of the window log series",
+    "supplied_usd": {
+     "Aave v3": 131575419,
+     "SparkLend": 308303094
+    },
+    "utilisation": {
+     "Aave v3": 0.868,
+     "SparkLend": 0.677
+    },
+    "dilution_basis": "irm",
+    "best_size": {
+     "size_usd": 7088879,
+     "apr_at_size_pct": 2.763,
+     "over_low_venue_usd_per_year": 21505
+    },
+    "marginal_apr_ladder": [
+     {
+      "size_usd": 100000.0,
+      "apr_pct": 3.064
+     },
+     {
+      "size_usd": 1000000.0,
+      "apr_pct": 3.022
+     },
+     {
+      "size_usd": 5000000.0,
+      "apr_pct": 2.848
+     },
+     {
+      "size_usd": 25000000.0,
+      "apr_pct": 2.167
+     },
+     {
+      "size_usd": 100000000.0,
+      "apr_pct": 0.991
+     }
+    ]
+   },
+   "economics": {
+    "net_apr": 0.003,
+    "net_per_year_usd": 21505,
+    "half_edge_size_usd": 7088879,
+    "net_apr_at_half_edge": 0.0276,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "gas_gwei": 0.0486
+   },
+   "usd": 21505.262335264055,
+   "key": "DAI:Aave v3/SparkLend",
+   "identity": "rate_dispersion:DAI:Aave v3/SparkLend"
+  },
+  {
+   "detector": "rate_dispersion",
+   "title": "USDC pays 1.62pp more on Compound v3 USDC than SparkLend; best size $1.1M earns $9k a year over SparkLend",
+   "severity": "notable",
+   "evidence": {
+    "asset": "USDC",
+    "high_venue": "Compound v3 USDC",
+    "low_venue": "SparkLend",
+    "supply_apr_spot_pct": {
+     "Aave v3": 3.624,
+     "SparkLend": 3.542,
+     "Compound v3 USDC": 5.163,
+     "Sky SSR": 3.6
+    },
+    "supply_apr_median_pct": {
+     "Aave v3": 3.593
+    },
+    "gap_pp_spot": 1.621,
+    "gap_pp_despiked": 1.621,
+    "head_read_spiked": null,
+    "despiked": false,
+    "despike_note": "Compound v3 USDC emits no ReserveDataUpdated logs, so the head read is the only source",
+    "supplied_usd": {
+     "Aave v3": 2307109260,
+     "SparkLend": 26183267,
+     "Compound v3 USDC": 375070520,
+     "Sky SSR": 1000000000
+    },
+    "utilisation": {
+     "Aave v3": 0.938,
+     "SparkLend": 0.922,
+     "Compound v3 USDC": 0.906
+    },
+    "dilution_basis": "sampled",
+    "best_size": {
+     "size_usd": 1073646,
+     "apr_at_size_pct": 4.336,
+     "over_low_venue_usd_per_year": 8530
+    },
+    "marginal_apr_ladder": [
+     {
+      "size_usd": 100000.0,
+      "apr_pct": 5.086
+     },
+     {
+      "size_usd": 1000000.0,
+      "apr_pct": 4.393
+     },
+     {
+      "size_usd": 5000000.0,
+      "apr_pct": 3.219
+     },
+     {
+      "size_usd": 25000000.0,
+      "apr_pct": 3.058
+     },
+     {
+      "size_usd": 100000000.0,
+      "apr_pct": 2.575
+     }
+    ]
+   },
+   "economics": {
+    "net_apr": 0.0079,
+    "net_per_year_usd": 8530,
+    "half_edge_size_usd": 1073646,
+    "net_apr_at_half_edge": 0.0435,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "gas_gwei": 0.0486
+   },
+   "usd": 8530.298100172447,
+   "key": "USDC:Compound v3 USDC/SparkLend",
+   "identity": "rate_dispersion:USDC:Compound v3 USDC/SparkLend"
+  },
+  {
+   "detector": "borrow_cost",
+   "title": "RLUSD borrows 0.67pp cheaper on Morpho Blue than Aave v3; $1.2M withdrawable there, gas is negligible at this base fee \u2014 the constraint is the collateral and the liquidity",
+   "severity": "notable",
+   "evidence": {
+    "asset": "RLUSD",
+    "cheapest": {
+     "venue": "Morpho Blue",
+     "borrow_apy_pct": 3.75,
+     "liquidity_usd": 1246903,
+     "utilisation": 0.900451,
+     "collateral_required": "cbBTC (0xcbb7c000, LLTV 86.0%)",
+     "market": "0xffd010618ed3cb39"
+    },
+    "dearest": {
+     "venue": "Aave v3",
+     "borrow_apy_pct": 4.422,
+     "liquidity_usd": 1786119
+    },
+    "all_venues": [
+     {
+      "venue": "Morpho Blue",
+      "borrow_apy_pct": 3.75,
+      "liquidity_usd": 1246903,
+      "collateral": "cbBTC (0xcbb7c000, LLTV 86.0%)"
+     },
+     {
+      "venue": "Aave v3",
+      "borrow_apy_pct": 4.422,
+      "liquidity_usd": 1786119,
+      "collateral": "any listed on the pool"
+     }
+    ],
+    "gap_pp": 0.672,
+    "refinance_gas_usd": 0.108,
+    "caveat": "moving a position between venues also pays the spread on any collateral that has to be converted, which this does not price: it compares rates and liquidity only",
+    "why": "the saving is capped by what is withdrawable at the cheap venue, and on an isolated market it is only available against the collateral that market accepts \u2014 which is usually the binding constraint rather than the rate"
+   },
+   "economics": {
+    "net_apr": 0.0067,
+    "net_per_year_usd": 8375,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 1246903,
+    "break_even_size_usd": 16
+   },
+   "usd": 8374.625960399242,
+   "key": "RLUSD:Morpho Blue/Aave v3",
+   "identity": "borrow_cost:RLUSD:Morpho Blue/Aave v3"
+  },
+  {
+   "detector": "fixed_vs_floating",
+   "title": "PT-SUSDS-26NOV2026 implies 4.88% fixed for 79 days against Sky savings rate at 3.60% \u2014 term premium",
+   "severity": "notable",
+   "evidence": {
+    "market": "0x9c560ebaf78e596cbcc27411d633a74d628dd7dc",
+    "pt": "0xdc169abe56461a2e0c034da431ac2a3ebf596094",
+    "pt_symbol": "PT-SUSDS-26NOV2026",
+    "implied_apy_pct": 4.884,
+    "days_to_maturity": 78.62278935185185,
+    "pt_to_asset": 0.989780308191319,
+    "underlying": "SUSDS",
+    "comparison": "Sky savings rate",
+    "floating_pct": 3.6,
+    "gap_pp": 1.284,
+    "classification": "term premium",
+    "pt_depth_units": 758529,
+    "pt_depth_usd": 750777,
+    "oracle_ready": true,
+    "why": "the same credit pays more fixed than floating for a fixed term, which is a view on the floating rate and nothing else"
+   },
+   "economics": {
+    "net_apr": 0.0064,
+    "net_per_year_usd": 334,
+    "net_per_run_usd": 71.88,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 187694,
+    "hold_days": 78.62278935185185,
+    "optimal_size_usd": 52035,
+    "amplification_assumed": 50.0
+   },
+   "usd": 333.7025604643621,
+   "key": "PT-SUSDS-26NOV2026",
+   "identity": "fixed_vs_floating:PT-SUSDS-26NOV2026"
+  },
+  {
+   "detector": "mass_distribution",
+   "title": "airdrop or multisend: 0x4d2fb5f8ec243fde4df1a9678b8223 sent 0xbeef007e to 24,563 recipients in 125 txs (212 per tx)",
+   "severity": "notable",
+   "evidence": {
+    "token": "0xbeef007ecfbfdf9b919d0050821a9b6dbd634ff0",
+    "token_symbol": null,
+    "sender": "0x4d2fb5f8ec243fde4df1a9678b82238570c7e0e4",
+    "sender_label": null,
+    "kind": "airdrop or multisend",
+    "transfers": 26475,
+    "recipients": 24563,
+    "txs": 125,
+    "blocks": 125,
+    "transfers_per_tx": 211.8,
+    "carrier_contract": "0x4d2fb5f8ec243fde4df1a9678b82238570c7e0e4",
+    "carrier_label": null,
+    "carrier_share": 1.0,
+    "median_raw_amount": "20591889345070056549",
+    "uniform_amount_share": 0.003,
+    "usd_median": null,
+    "why": "a batched fan-out to this many wallets is a campaign; it explains log-count and gas anomalies, and a funded holder set is what a later coordinated sell looks like beforehand"
+   },
+   "economics": null,
+   "usd": null,
+   "key": "0xbeef007ecfbfdf9b919d0050821a9b6dbd634ff0:0x4d2fb5f8ec243fde4df1a9678b82238570c7e0e4",
+   "identity": "mass_distribution:0xbeef007ecfbfdf9b919d0050821a9b6dbd634ff0:0x4d2fb5f8ec243fde4df1a9678b82238570c7e0e4"
+  },
+  {
+   "detector": "mass_distribution",
+   "title": "dust spam: 0x7d9f4ca54131e588fc1fe577973b55 sent USDT to 21,149 recipients in 300 txs (92 per tx)",
+   "severity": "notable",
+   "evidence": {
+    "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+    "token_symbol": "USDT",
+    "sender": "0x7d9f4ca54131e588fc1fe577973b55fb11231e76",
+    "sender_label": null,
+    "kind": "dust spam",
+    "transfers": 27454,
+    "recipients": 21149,
+    "txs": 300,
+    "blocks": 300,
+    "transfers_per_tx": 91.5,
+    "carrier_contract": "0x7d9f4ca54131e588fc1fe577973b55fb11231e76",
+    "carrier_label": null,
+    "carrier_share": 1.0,
+    "median_raw_amount": "300",
+    "uniform_amount_share": 0.025,
+    "usd_median": 0.00029995709099999996,
+    "why": "a batched fan-out to this many wallets is a campaign; it explains log-count and gas anomalies, and a funded holder set is what a later coordinated sell looks like beforehand"
+   },
+   "economics": null,
+   "usd": null,
+   "key": "0xdac17f958d2ee523a2206206994597c13d831ec7:0x7d9f4ca54131e588fc1fe577973b55fb11231e76",
+   "identity": "mass_distribution:0xdac17f958d2ee523a2206206994597c13d831ec7:0x7d9f4ca54131e588fc1fe577973b55fb11231e76"
+  },
+  {
+   "detector": "mass_distribution",
+   "title": "airdrop or multisend: 0x5eef5946ad78e614bb3ee7b9ed1097 sent 0x5eef5946 to 20,541 recipients in 38 txs (633 per tx)",
+   "severity": "notable",
+   "evidence": {
+    "token": "0x5eef5946ad78e614bb3ee7b9ed1097c517ae97f7",
+    "token_symbol": null,
+    "sender": "0x5eef5946ad78e614bb3ee7b9ed1097c517ae97f7",
+    "sender_label": null,
+    "kind": "airdrop or multisend",
+    "transfers": 24048,
+    "recipients": 20541,
+    "txs": 38,
+    "blocks": 38,
+    "transfers_per_tx": 632.8,
+    "carrier_contract": "0x5eef5946ad78e614bb3ee7b9ed1097c517ae97f7",
+    "carrier_label": null,
+    "carrier_share": 1.0,
+    "median_raw_amount": "5000000000",
+    "uniform_amount_share": 1.0,
+    "usd_median": null,
+    "why": "a batched fan-out to this many wallets is a campaign; it explains log-count and gas anomalies, and a funded holder set is what a later coordinated sell looks like beforehand"
+   },
+   "economics": null,
+   "usd": null,
+   "key": "0x5eef5946ad78e614bb3ee7b9ed1097c517ae97f7:0x5eef5946ad78e614bb3ee7b9ed1097c517ae97f7",
+   "identity": "mass_distribution:0x5eef5946ad78e614bb3ee7b9ed1097c517ae97f7:0x5eef5946ad78e614bb3ee7b9ed1097c517ae97f7"
+  },
+  {
+   "detector": "mass_distribution",
+   "title": "mint distribution: zero address (mint/burn) (known- sent 0x06450dee to 14,831 recipients in 149 txs (199 per tx)",
+   "severity": "notable",
+   "evidence": {
+    "token": "0x06450dee7fd2fb8e39061434babcfc05599a6fb8",
+    "token_symbol": null,
+    "sender": "0x0000000000000000000000000000000000000000",
+    "sender_label": "zero address (mint/burn) (known-canonical)",
+    "kind": "mint distribution",
+    "transfers": 29621,
+    "recipients": 14831,
+    "txs": 149,
+    "blocks": 138,
+    "transfers_per_tx": 198.8,
+    "carrier_contract": "0x0de8bf93da2f7eecb3d9169422413a9bef4ef628",
+    "carrier_label": null,
+    "carrier_share": 0.403,
+    "median_raw_amount": "17576653000000000000000000",
+    "uniform_amount_share": 0.015,
+    "usd_median": null,
+    "why": "a batched fan-out to this many wallets is a campaign; it explains log-count and gas anomalies, and a funded holder set is what a later coordinated sell looks like beforehand"
+   },
+   "economics": null,
+   "usd": null,
+   "key": "0x06450dee7fd2fb8e39061434babcfc05599a6fb8:0x0000000000000000000000000000000000000000",
+   "identity": "mass_distribution:0x06450dee7fd2fb8e39061434babcfc05599a6fb8:0x0000000000000000000000000000000000000000"
+  },
+  {
+   "detector": "mass_distribution",
+   "title": "dust spam: 0x7d9f4ca54131e588fc1fe577973b55 sent USDC to 5,428 recipients in 300 txs (25 per tx)",
+   "severity": "notable",
+   "evidence": {
+    "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "token_symbol": "USDC",
+    "sender": "0x7d9f4ca54131e588fc1fe577973b55fb11231e76",
+    "sender_label": null,
+    "kind": "dust spam",
+    "transfers": 7411,
+    "recipients": 5428,
+    "txs": 300,
+    "blocks": 300,
+    "transfers_per_tx": 24.7,
+    "carrier_contract": "0x7d9f4ca54131e588fc1fe577973b55fb11231e76",
+    "carrier_label": null,
+    "carrier_share": 1.0,
+    "median_raw_amount": "325",
+    "uniform_amount_share": 0.007,
+    "usd_median": 0.00032495766549999996,
+    "why": "a batched fan-out to this many wallets is a campaign; it explains log-count and gas anomalies, and a funded holder set is what a later coordinated sell looks like beforehand"
+   },
+   "economics": null,
+   "usd": null,
+   "key": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48:0x7d9f4ca54131e588fc1fe577973b55fb11231e76",
+   "identity": "mass_distribution:0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48:0x7d9f4ca54131e588fc1fe577973b55fb11231e76"
+  },
+  {
+   "detector": "mass_distribution",
+   "title": "airdrop or multisend: 0xd176aaf656c1b6c6a20f053675a668 sent 0x514b9e54 to 2,563 recipients in 5 txs (513 per tx)",
+   "severity": "notable",
+   "evidence": {
+    "token": "0x514b9e5467b9eb811519e316263c9099eae546ca",
+    "token_symbol": null,
+    "sender": "0xd176aaf656c1b6c6a20f053675a668a974728931",
+    "sender_label": null,
+    "kind": "airdrop or multisend",
+    "transfers": 2563,
+    "recipients": 2563,
+    "txs": 5,
+    "blocks": 5,
+    "transfers_per_tx": 512.6,
+    "carrier_contract": "0x965973a65f49c99e05f56ed00fad4ac50bfced5a",
+    "carrier_label": null,
+    "carrier_share": 1.0,
+    "median_raw_amount": "100000000000000",
+    "uniform_amount_share": 1.0,
+    "usd_median": null,
+    "why": "a batched fan-out to this many wallets is a campaign; it explains log-count and gas anomalies, and a funded holder set is what a later coordinated sell looks like beforehand"
+   },
+   "economics": null,
+   "usd": null,
+   "key": "0x514b9e5467b9eb811519e316263c9099eae546ca:0xd176aaf656c1b6c6a20f053675a668a974728931",
+   "identity": "mass_distribution:0x514b9e5467b9eb811519e316263c9099eae546ca:0xd176aaf656c1b6c6a20f053675a668a974728931"
+  },
+  {
+   "detector": "solver_fingerprint",
+   "title": "unlabelled atomic bot pair 0x691a6c29 passed $87.0M through in 54 txs (100% ended flat, 2 counterparties)",
+   "severity": "info",
+   "evidence": {
+    "address": "0x691a6c29e9e96dd897718305427ad5d534db16ba",
+    "shape": "pass-through",
+    "gross_usd": 87037503,
+    "txs": 54,
+    "counterparties": 2,
+    "tokens": 1,
+    "pass_through_share": 1.0,
+    "received_usd": 43518752,
+    "sent_usd": 43518752,
+    "retained_usd": 0,
+    "retention": 0.0,
+    "is_contract": true,
+    "emits_logs": true,
+    "receives_calldata": false,
+    "originates_txs": false,
+    "vanity_zeros": 0,
+    "suggested_kind": "atomic bot pair",
+    "why": "value arrives and leaves inside the same transaction, so this address holds nothing and its flow is not exchange flow; no vanity prefix, so the shape is the only claim",
+    "next_step": "labels.py resolve --out <window> tries to name it; unnamed, it still must not be counted as an exchange"
+   },
+   "economics": null,
+   "usd": 87037503,
+   "key": "0x691a6c29e9e96dd897718305427ad5d534db16ba",
+   "identity": "solver_fingerprint:0x691a6c29e9e96dd897718305427ad5d534db16ba"
+  },
+  {
+   "detector": "mislabelled_flow",
+   "title": "exchange Binance 28 (model-memory) moved 100% of its flow with one counterparty",
+   "severity": "info",
+   "evidence": {
+    "address": "0x5a52e96bacdabb82fd05763e25335261b270efcb",
+    "label": "Binance 28 (model-memory)",
+    "source": "model-memory",
+    "counterparty": "0x835678a611b28684005a5e2233695fb6cbbb0007",
+    "counterparty_label": null,
+    "share": 1.0,
+    "why": "a venue serving one counterparty is plumbing between related accounts, not exchange flow"
+   },
+   "economics": null,
+   "usd": 27936176.514997646,
+   "key": "0x5a52e96bacdabb82fd05763e25335261b270efcb:one-counterparty",
+   "identity": "mislabelled_flow:0x5a52e96bacdabb82fd05763e25335261b270efcb:one-counterparty"
+  },
+  {
+   "detector": "mislabelled_flow",
+   "title": "exchange 0xc69c42cac383f86f37e4820e34791c0216999c6f ( moved 94% of its flow with one counterparty",
+   "severity": "info",
+   "evidence": {
+    "address": "0xc69c42cac383f86f37e4820e34791c0216999c6f",
+    "label": "0xc69c42cac383f86f37e4820e34791c0216999c6f (behaviour-day-study)",
+    "source": "behaviour-day-study",
+    "counterparty": "0xa9ac43f5b5e38155a288d1a01d2cbc4478e14573",
+    "counterparty_label": "hot wallet (behaviour, day study)",
+    "share": 0.939,
+    "why": "a venue serving one counterparty is plumbing between related accounts, not exchange flow"
+   },
+   "economics": null,
+   "usd": 7971281.337287979,
+   "key": "0xc69c42cac383f86f37e4820e34791c0216999c6f:one-counterparty",
+   "identity": "mislabelled_flow:0xc69c42cac383f86f37e4820e34791c0216999c6f:one-counterparty"
+  },
+  {
+   "detector": "lp_marginal_yield",
+   "title": "uniswap_v4 ETH/0x643c\u20262d66: $1.0M in a \u00b10.01% band earns 30.5bp of fees less 0.0bp of divergence over 10.0h (267.0% a year if it repeats)",
+   "severity": "info",
+   "evidence": {
+    "pool": "0x29dfcb94b1ab021ca46442d2b1a3ed3d2268fdc985d2fe9a3b67a6963670ec02",
+    "venue": "uniswap_v4",
+    "pair": "ETH/0x643c\u20262d66",
+    "stable_pair": false,
+    "window_hours": 10.003,
+    "observed_price_range_pct": 0.0,
+    "band_quoted_pct": 0.01,
+    "concentration_multiplier": 20001.5,
+    "band_ladder": [
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 25624.41
+     },
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 25624.41
+     },
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 25624.41
+     },
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 25624.41
+     }
+    ],
+    "pool_band_capital_usd": 425,
+    "full_range_capital_usd": 8502319,
+    "passive_fees_usd": 3050.42,
+    "volume_usd": 277563,
+    "swaps": 123,
+    "annualisation_factor": 875.7,
+    "n_takers": 48,
+    "top_taker": "0x5b43453fce04b92e190f391a83136bfbecedefd1",
+    "top_taker_share": 0.2741,
+    "taker_herfindahl": 0.1167,
+    "apr_band_1pct_as_reported": 63.3073,
+    "ladder": [
+     {
+      "size_usd": 10000.0,
+      "fee_bps_window": 2926.039,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 2926.039,
+      "over_benchmark_usd": 2926.04,
+      "annualised_net_apr_pct": 25624.41
+     },
+     {
+      "size_usd": 50000.0,
+      "fee_bps_window": 604.941,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 604.941,
+      "over_benchmark_usd": 3024.7,
+      "annualised_net_apr_pct": 5297.69
+     },
+     {
+      "size_usd": 250000.0,
+      "fee_bps_window": 121.81,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 121.81,
+      "over_benchmark_usd": 3045.24,
+      "annualised_net_apr_pct": 1066.73
+     },
+     {
+      "size_usd": 1000000.0,
+      "fee_bps_window": 30.491,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 30.491,
+      "over_benchmark_usd": 3049.12,
+      "annualised_net_apr_pct": 267.02
+     }
+    ],
+    "why": "fee yield priced at the band the price actually stayed inside, at a size that dilutes the pool\u2019s own liquidity, net of the divergence that the same concentration amplifies; no benchmark is applied \u2014 the alternative to LPing a volatile pair is holding the pair, and this detector has no view on that"
+   },
+   "economics": {
+    "net_apr": 2.6702,
+    "net_per_year_usd": 2670228,
+    "size_usd": 1000000.0,
+    "band_pct": 0.01,
+    "go": false,
+    "reason": "nets 267.02% a year at $1,000,000 in a \u00b10.010% band, before any view on holding the pair"
+   },
+   "usd": 2670228.0515845246,
+   "key": "0x29dfcb94b1ab021ca46442d2b1a3ed3d2268fdc985d2fe9a3b67a6963670ec02",
+   "identity": "lp_marginal_yield:0x29dfcb94b1ab021ca46442d2b1a3ed3d2268fdc985d2fe9a3b67a6963670ec02"
+  },
+  {
+   "detector": "lp_marginal_yield",
+   "title": "uniswap_v4 USDC/0xe28b\u2026ca30: $1.0M in a \u00b10.01% band earns 29.1bp of fees less 0.0bp of divergence over 10.0h (254.5% a year if it repeats)",
+   "severity": "info",
+   "evidence": {
+    "pool": "0xbe0c5a04c471267beea7586550008f4892a62833e071a9f96e5ca4bc0ff5cbb3",
+    "venue": "uniswap_v4",
+    "pair": "USDC/0xe28b\u2026ca30",
+    "stable_pair": false,
+    "window_hours": 10.003,
+    "observed_price_range_pct": 0.0,
+    "band_quoted_pct": 0.01,
+    "concentration_multiplier": 20001.5,
+    "band_ladder": [
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 25124.36
+     },
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 25124.36
+     },
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 25124.36
+     },
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 25124.36
+     }
+    ],
+    "pool_band_capital_usd": 132,
+    "full_range_capital_usd": 2647283,
+    "passive_fees_usd": 2906.91,
+    "volume_usd": 264505,
+    "swaps": 148,
+    "annualisation_factor": 875.7,
+    "n_takers": 47,
+    "top_taker": "0x5b43453fce04b92e190f391a83136bfbecedefd1",
+    "top_taker_share": 0.3384,
+    "taker_herfindahl": 0.17,
+    "apr_band_1pct_as_reported": 193.7592,
+    "ladder": [
+     {
+      "size_usd": 10000.0,
+      "fee_bps_window": 2868.938,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 2868.938,
+      "over_benchmark_usd": 2868.94,
+      "annualised_net_apr_pct": 25124.36
+     },
+     {
+      "size_usd": 50000.0,
+      "fee_bps_window": 579.847,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 579.847,
+      "over_benchmark_usd": 2899.24,
+      "annualised_net_apr_pct": 5077.94
+     },
+     {
+      "size_usd": 250000.0,
+      "fee_bps_window": 116.215,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 116.215,
+      "over_benchmark_usd": 2905.37,
+      "annualised_net_apr_pct": 1017.74
+     },
+     {
+      "size_usd": 1000000.0,
+      "fee_bps_window": 29.065,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 29.065,
+      "over_benchmark_usd": 2906.53,
+      "annualised_net_apr_pct": 254.54
+     }
+    ],
+    "why": "fee yield priced at the band the price actually stayed inside, at a size that dilutes the pool\u2019s own liquidity, net of the divergence that the same concentration amplifies; no benchmark is applied \u2014 the alternative to LPing a volatile pair is holding the pair, and this detector has no view on that"
+   },
+   "economics": {
+    "net_apr": 2.5454,
+    "net_per_year_usd": 2545357,
+    "size_usd": 1000000.0,
+    "band_pct": 0.01,
+    "go": false,
+    "reason": "nets 254.54% a year at $1,000,000 in a \u00b10.010% band, before any view on holding the pair"
+   },
+   "usd": 2545356.6729981005,
+   "key": "0xbe0c5a04c471267beea7586550008f4892a62833e071a9f96e5ca4bc0ff5cbb3",
+   "identity": "lp_marginal_yield:0xbe0c5a04c471267beea7586550008f4892a62833e071a9f96e5ca4bc0ff5cbb3"
+  },
+  {
+   "detector": "lp_marginal_yield",
+   "title": "uniswap_v3 USDC/0xbdf4\u2026788b: $1.0M in a \u00b10.01% band earns 12.3bp of fees less 0.0bp of divergence over 10.0h (108.0% a year if it repeats)",
+   "severity": "info",
+   "evidence": {
+    "pool": "0xf8e349d1d827a6edf17ee673664cfad4ca78c533",
+    "venue": "uniswap_v3",
+    "pair": "USDC/0xbdf4\u2026788b",
+    "stable_pair": false,
+    "window_hours": 10.003,
+    "observed_price_range_pct": 0.0,
+    "band_quoted_pct": 0.01,
+    "concentration_multiplier": 20001.5,
+    "band_ladder": [
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 9823.71
+     },
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 9823.71
+     },
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 9823.71
+     },
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 9823.71
+     }
+    ],
+    "pool_band_capital_usd": 1006,
+    "full_range_capital_usd": 20113668,
+    "passive_fees_usd": 1234.57,
+    "volume_usd": 411523,
+    "swaps": 278,
+    "annualisation_factor": 875.7,
+    "n_takers": 110,
+    "top_taker": "0x5b43453fce04b92e190f391a83136bfbecedefd1",
+    "top_taker_share": 0.1697,
+    "taker_herfindahl": 0.0392,
+    "apr_band_1pct_as_reported": 10.8307,
+    "ladder": [
+     {
+      "size_usd": 10000.0,
+      "fee_bps_window": 1121.764,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 1121.764,
+      "over_benchmark_usd": 1121.76,
+      "annualised_net_apr_pct": 9823.71
+     },
+     {
+      "size_usd": 50000.0,
+      "fee_bps_window": 242.046,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 242.046,
+      "over_benchmark_usd": 1210.23,
+      "annualised_net_apr_pct": 2119.69
+     },
+     {
+      "size_usd": 250000.0,
+      "fee_bps_window": 49.185,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 49.185,
+      "over_benchmark_usd": 1229.62,
+      "annualised_net_apr_pct": 430.73
+     },
+     {
+      "size_usd": 1000000.0,
+      "fee_bps_window": 12.333,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 12.333,
+      "over_benchmark_usd": 1233.33,
+      "annualised_net_apr_pct": 108.01
+     }
+    ],
+    "why": "fee yield priced at the band the price actually stayed inside, at a size that dilutes the pool\u2019s own liquidity, net of the divergence that the same concentration amplifies; no benchmark is applied \u2014 the alternative to LPing a volatile pair is holding the pair, and this detector has no view on that"
+   },
+   "economics": {
+    "net_apr": 1.0801,
+    "net_per_year_usd": 1080073,
+    "size_usd": 1000000.0,
+    "band_pct": 0.01,
+    "go": false,
+    "reason": "nets 108.01% a year at $1,000,000 in a \u00b10.010% band, before any view on holding the pair"
+   },
+   "usd": 1080073.0580825752,
+   "key": "0xf8e349d1d827a6edf17ee673664cfad4ca78c533",
+   "identity": "lp_marginal_yield:0xf8e349d1d827a6edf17ee673664cfad4ca78c533"
+  },
+  {
+   "detector": "lp_marginal_yield",
+   "title": "uniswap_v4 ETH/0xe172\u2026f904: $1.0M in a \u00b10.01% band earns 8.9bp of fees less 0.0bp of divergence over 10.0h (77.7% a year if it repeats)",
+   "severity": "info",
+   "evidence": {
+    "pool": "0x909e4a022a7505d44b19b36fe76ee18567379ee4c9697438acde2e159c006c32",
+    "venue": "uniswap_v4",
+    "pair": "ETH/0xe172\u2026f904",
+    "stable_pair": false,
+    "window_hours": 10.003,
+    "observed_price_range_pct": 0.0,
+    "band_quoted_pct": 0.01,
+    "concentration_multiplier": 20001.5,
+    "band_ladder": [
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 7701.1
+     },
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 7701.1
+     },
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 7701.1
+     },
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 7701.1
+     }
+    ],
+    "pool_band_capital_usd": 83,
+    "full_range_capital_usd": 1666223,
+    "passive_fees_usd": 886.71,
+    "volume_usd": 253417,
+    "swaps": 133,
+    "annualisation_factor": 875.7,
+    "n_takers": 68,
+    "top_taker": "0xc24c9c58affc5bf3273139314f717df762d1c6ca",
+    "top_taker_share": 0.2155,
+    "taker_herfindahl": 0.0912,
+    "apr_band_1pct_as_reported": 93.9029,
+    "ladder": [
+     {
+      "size_usd": 10000.0,
+      "fee_bps_window": 879.384,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 879.384,
+      "over_benchmark_usd": 879.38,
+      "annualised_net_apr_pct": 7701.1
+     },
+     {
+      "size_usd": 50000.0,
+      "fee_bps_window": 177.047,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 177.047,
+      "over_benchmark_usd": 885.24,
+      "annualised_net_apr_pct": 1550.47
+     },
+     {
+      "size_usd": 250000.0,
+      "fee_bps_window": 35.457,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 35.457,
+      "over_benchmark_usd": 886.41,
+      "annualised_net_apr_pct": 310.51
+     },
+     {
+      "size_usd": 1000000.0,
+      "fee_bps_window": 8.866,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 8.866,
+      "over_benchmark_usd": 886.64,
+      "annualised_net_apr_pct": 77.65
+     }
+    ],
+    "why": "fee yield priced at the band the price actually stayed inside, at a size that dilutes the pool\u2019s own liquidity, net of the divergence that the same concentration amplifies; no benchmark is applied \u2014 the alternative to LPing a volatile pair is holding the pair, and this detector has no view on that"
+   },
+   "economics": {
+    "net_apr": 0.7765,
+    "net_per_year_usd": 776464,
+    "size_usd": 1000000.0,
+    "band_pct": 0.01,
+    "go": false,
+    "reason": "nets 77.65% a year at $1,000,000 in a \u00b10.010% band, before any view on holding the pair"
+   },
+   "usd": 776463.700889733,
+   "key": "0x909e4a022a7505d44b19b36fe76ee18567379ee4c9697438acde2e159c006c32",
+   "identity": "lp_marginal_yield:0x909e4a022a7505d44b19b36fe76ee18567379ee4c9697438acde2e159c006c32"
+  },
+  {
+   "detector": "lp_marginal_yield",
+   "title": "uniswap_v3 0x4580\u2026af78/USDC: $1.0M in a \u00b10.01% band earns 2.4bp of fees less 0.0bp of divergence over 10.0h (20.6% a year if it repeats)",
+   "severity": "info",
+   "evidence": {
+    "pool": "0x5ae13baaef0620fdae1d355495dc51a17adb4082",
+    "venue": "uniswap_v3",
+    "pair": "0x4580\u2026af78/USDC",
+    "stable_pair": false,
+    "window_hours": 10.003,
+    "observed_price_range_pct": 0.0,
+    "band_quoted_pct": 0.01,
+    "concentration_multiplier": 20001.5,
+    "band_ladder": [
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 1757.17
+     },
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 1757.17
+     },
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 1757.17
+     },
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 1757.17
+     }
+    ],
+    "pool_band_capital_usd": 1764,
+    "full_range_capital_usd": 35287009,
+    "passive_fees_usd": 236.05,
+    "volume_usd": 472104,
+    "swaps": 270,
+    "annualisation_factor": 875.7,
+    "n_takers": 81,
+    "top_taker": "0x5b43453fce04b92e190f391a83136bfbecedefd1",
+    "top_taker_share": 0.1455,
+    "taker_herfindahl": 0.0566,
+    "apr_band_1pct_as_reported": 1.1804,
+    "ladder": [
+     {
+      "size_usd": 10000.0,
+      "fee_bps_window": 200.651,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 200.651,
+      "over_benchmark_usd": 200.65,
+      "annualised_net_apr_pct": 1757.17
+     },
+     {
+      "size_usd": 50000.0,
+      "fee_bps_window": 45.601,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 45.601,
+      "over_benchmark_usd": 228.0,
+      "annualised_net_apr_pct": 399.34
+     },
+     {
+      "size_usd": 250000.0,
+      "fee_bps_window": 9.376,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 9.376,
+      "over_benchmark_usd": 234.4,
+      "annualised_net_apr_pct": 82.11
+     },
+     {
+      "size_usd": 1000000.0,
+      "fee_bps_window": 2.356,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 2.356,
+      "over_benchmark_usd": 235.63,
+      "annualised_net_apr_pct": 20.64
+     }
+    ],
+    "why": "fee yield priced at the band the price actually stayed inside, at a size that dilutes the pool\u2019s own liquidity, net of the divergence that the same concentration amplifies; no benchmark is applied \u2014 the alternative to LPing a volatile pair is holding the pair, and this detector has no view on that"
+   },
+   "economics": {
+    "net_apr": 0.2064,
+    "net_per_year_usd": 206350,
+    "size_usd": 1000000.0,
+    "band_pct": 0.01,
+    "go": false,
+    "reason": "nets 20.64% a year at $1,000,000 in a \u00b10.010% band, before any view on holding the pair"
+   },
+   "usd": 206349.97500749776,
+   "key": "0x5ae13baaef0620fdae1d355495dc51a17adb4082",
+   "identity": "lp_marginal_yield:0x5ae13baaef0620fdae1d355495dc51a17adb4082"
+  },
+  {
+   "detector": "lp_marginal_yield",
+   "title": "uniswap_v3 0x8b14\u2026caea/USDC: $1.0M in a \u00b10.01% band earns 1.9bp of fees less 0.0bp of divergence over 10.0h (16.5% a year if it repeats)",
+   "severity": "info",
+   "evidence": {
+    "pool": "0x41a561b972039a9ccb975a4c17b84c9f95099e15",
+    "venue": "uniswap_v3",
+    "pair": "0x8b14\u2026caea/USDC",
+    "stable_pair": false,
+    "window_hours": 10.003,
+    "observed_price_range_pct": 0.0,
+    "band_quoted_pct": 0.01,
+    "concentration_multiplier": 20001.5,
+    "band_ladder": [
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 1581.83
+     },
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 1581.83
+     },
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 1581.83
+     },
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 1581.83
+     }
+    ],
+    "pool_band_capital_usd": 457,
+    "full_range_capital_usd": 9136934,
+    "passive_fees_usd": 188.88,
+    "volume_usd": 377754,
+    "swaps": 694,
+    "annualisation_factor": 875.7,
+    "n_takers": 229,
+    "top_taker": "0xba6b44209c5344e9fd2882dbac6da0c1cd680cb6",
+    "top_taker_share": 0.1328,
+    "taker_herfindahl": 0.0549,
+    "apr_band_1pct_as_reported": 3.6476,
+    "ladder": [
+     {
+      "size_usd": 10000.0,
+      "fee_bps_window": 180.629,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 180.629,
+      "over_benchmark_usd": 180.63,
+      "annualised_net_apr_pct": 1581.83
+     },
+     {
+      "size_usd": 50000.0,
+      "fee_bps_window": 37.434,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 37.434,
+      "over_benchmark_usd": 187.17,
+      "annualised_net_apr_pct": 327.82
+     },
+     {
+      "size_usd": 250000.0,
+      "fee_bps_window": 7.541,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 7.541,
+      "over_benchmark_usd": 188.54,
+      "annualised_net_apr_pct": 66.04
+     },
+     {
+      "size_usd": 1000000.0,
+      "fee_bps_window": 1.888,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 1.888,
+      "over_benchmark_usd": 188.79,
+      "annualised_net_apr_pct": 16.53
+     }
+    ],
+    "why": "fee yield priced at the band the price actually stayed inside, at a size that dilutes the pool\u2019s own liquidity, net of the divergence that the same concentration amplifies; no benchmark is applied \u2014 the alternative to LPing a volatile pair is holding the pair, and this detector has no view on that"
+   },
+   "economics": {
+    "net_apr": 0.1653,
+    "net_per_year_usd": 165330,
+    "size_usd": 1000000.0,
+    "band_pct": 0.01,
+    "go": false,
+    "reason": "nets 16.53% a year at $1,000,000 in a \u00b10.010% band, before any view on holding the pair"
+   },
+   "usd": 165330.44086773967,
+   "key": "0x41a561b972039a9ccb975a4c17b84c9f95099e15",
+   "identity": "lp_marginal_yield:0x41a561b972039a9ccb975a4c17b84c9f95099e15"
+  },
+  {
+   "detector": "lp_marginal_yield",
+   "title": "uniswap_v4 ETH/0xa27e\u202662d2: $1.0M in a \u00b10.01% band earns 1.8bp of fees less 0.0bp of divergence over 10.0h (16.2% a year if it repeats)",
+   "severity": "info",
+   "evidence": {
+    "pool": "0xce2899b16743cfd5a954d8122d5e07f410305b1aebee39fd73d9f3b9ebf10c2f",
+    "venue": "uniswap_v4",
+    "pair": "ETH/0xa27e\u202662d2",
+    "stable_pair": false,
+    "window_hours": 10.003,
+    "observed_price_range_pct": 0.0,
+    "band_quoted_pct": 0.01,
+    "concentration_multiplier": 20001.5,
+    "band_ladder": [
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 916.49
+     },
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 916.49
+     },
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 916.49
+     },
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 916.49
+     }
+    ],
+    "pool_band_capital_usd": 7798,
+    "full_range_capital_usd": 155968688,
+    "passive_fees_usd": 186.26,
+    "volume_usd": 327136,
+    "swaps": 409,
+    "annualisation_factor": 875.7,
+    "n_takers": 63,
+    "top_taker": "0xae2fc483527b8ef99eb5d9b44875f005ba1fae13",
+    "top_taker_share": 0.1341,
+    "taker_herfindahl": 0.0766,
+    "apr_band_1pct_as_reported": 0.2107,
+    "ladder": [
+     {
+      "size_usd": 10000.0,
+      "fee_bps_window": 104.653,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 104.653,
+      "over_benchmark_usd": 104.65,
+      "annualised_net_apr_pct": 916.49
+     },
+     {
+      "size_usd": 50000.0,
+      "fee_bps_window": 32.226,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 32.226,
+      "over_benchmark_usd": 161.13,
+      "annualised_net_apr_pct": 282.22
+     },
+     {
+      "size_usd": 250000.0,
+      "fee_bps_window": 7.225,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 7.225,
+      "over_benchmark_usd": 180.63,
+      "annualised_net_apr_pct": 63.27
+     },
+     {
+      "size_usd": 1000000.0,
+      "fee_bps_window": 1.848,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 1.848,
+      "over_benchmark_usd": 184.82,
+      "annualised_net_apr_pct": 16.19
+     }
+    ],
+    "why": "fee yield priced at the band the price actually stayed inside, at a size that dilutes the pool\u2019s own liquidity, net of the divergence that the same concentration amplifies; no benchmark is applied \u2014 the alternative to LPing a volatile pair is holding the pair, and this detector has no view on that"
+   },
+   "economics": {
+    "net_apr": 0.1619,
+    "net_per_year_usd": 161854,
+    "size_usd": 1000000.0,
+    "band_pct": 0.01,
+    "go": false,
+    "reason": "nets 16.19% a year at $1,000,000 in a \u00b10.010% band, before any view on holding the pair"
+   },
+   "usd": 161853.76387083874,
+   "key": "0xce2899b16743cfd5a954d8122d5e07f410305b1aebee39fd73d9f3b9ebf10c2f",
+   "identity": "lp_marginal_yield:0xce2899b16743cfd5a954d8122d5e07f410305b1aebee39fd73d9f3b9ebf10c2f"
+  },
+  {
+   "detector": "lp_marginal_yield",
+   "title": "uniswap_v3 0x00f3\u20268917/WETH: $1.0M in a \u00b10.01% band earns 1.8bp of fees less 0.0bp of divergence over 10.0h (15.7% a year if it repeats)",
+   "severity": "info",
+   "evidence": {
+    "pool": "0x4068038ab5490063a3ead93b3712ed082e62bd59",
+    "venue": "uniswap_v3",
+    "pair": "0x00f3\u20268917/WETH",
+    "stable_pair": false,
+    "window_hours": 10.003,
+    "observed_price_range_pct": 0.0,
+    "band_quoted_pct": 0.01,
+    "concentration_multiplier": 20001.5,
+    "band_ladder": [
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 1518.44
+     },
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 1518.44
+     },
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 1518.44
+     },
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 1518.44
+     }
+    ],
+    "pool_band_capital_usd": 351,
+    "full_range_capital_usd": 7013571,
+    "passive_fees_usd": 179.47,
+    "volume_usd": 360994,
+    "swaps": 652,
+    "annualisation_factor": 875.7,
+    "n_takers": 54,
+    "top_taker": "0x3e10ab3b27129eebf0c06b7f8ed5c47119416977",
+    "top_taker_share": 0.3851,
+    "taker_herfindahl": 0.1988,
+    "apr_band_1pct_as_reported": 4.5154,
+    "ladder": [
+     {
+      "size_usd": 10000.0,
+      "fee_bps_window": 173.39,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 173.39,
+      "over_benchmark_usd": 173.39,
+      "annualised_net_apr_pct": 1518.44
+     },
+     {
+      "size_usd": 50000.0,
+      "fee_bps_window": 35.644,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 35.644,
+      "over_benchmark_usd": 178.22,
+      "annualised_net_apr_pct": 312.15
+     },
+     {
+      "size_usd": 250000.0,
+      "fee_bps_window": 7.169,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 7.169,
+      "over_benchmark_usd": 179.22,
+      "annualised_net_apr_pct": 62.78
+     },
+     {
+      "size_usd": 1000000.0,
+      "fee_bps_window": 1.794,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 1.794,
+      "over_benchmark_usd": 179.41,
+      "annualised_net_apr_pct": 15.71
+     }
+    ],
+    "why": "fee yield priced at the band the price actually stayed inside, at a size that dilutes the pool\u2019s own liquidity, net of the divergence that the same concentration amplifies; no benchmark is applied \u2014 the alternative to LPing a volatile pair is holding the pair, and this detector has no view on that"
+   },
+   "economics": {
+    "net_apr": 0.1571,
+    "net_per_year_usd": 157116,
+    "size_usd": 1000000.0,
+    "band_pct": 0.01,
+    "go": false,
+    "reason": "nets 15.71% a year at $1,000,000 in a \u00b10.010% band, before any view on holding the pair"
+   },
+   "usd": 157116.02519244226,
+   "key": "0x4068038ab5490063a3ead93b3712ed082e62bd59",
+   "identity": "lp_marginal_yield:0x4068038ab5490063a3ead93b3712ed082e62bd59"
+  },
+  {
+   "detector": "lp_marginal_yield",
+   "title": "uniswap_v3 0x5a98\u20261b32/WETH: $1.0M in a \u00b10.01% band earns 1.6bp of fees less 0.0bp of divergence over 10.0h (13.8% a year if it repeats)",
+   "severity": "info",
+   "evidence": {
+    "pool": "0xcfecc1c9f3cb6190cb1ff7f65a130bfbe5107d38",
+    "venue": "uniswap_v3",
+    "pair": "0x5a98\u20261b32/WETH",
+    "stable_pair": false,
+    "window_hours": 10.003,
+    "observed_price_range_pct": 0.0,
+    "band_quoted_pct": 0.01,
+    "concentration_multiplier": 20001.5,
+    "band_ladder": [
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 1328.1
+     },
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 1328.1
+     },
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 1328.1
+     },
+     {
+      "band_pct": 0.01,
+      "apr_pct_at_10000": 1328.1
+     }
+    ],
+    "pool_band_capital_usd": 407,
+    "full_range_capital_usd": 8143401,
+    "passive_fees_usd": 157.83,
+    "volume_usd": 327845,
+    "swaps": 358,
+    "annualisation_factor": 875.7,
+    "n_takers": 177,
+    "top_taker": "0x3ee92cd00993a4488ae153ab41ac7947cbcbc1de",
+    "top_taker_share": 0.1587,
+    "taker_herfindahl": 0.0539,
+    "apr_band_1pct_as_reported": 3.42,
+    "ladder": [
+     {
+      "size_usd": 10000.0,
+      "fee_bps_window": 151.656,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 151.656,
+      "over_benchmark_usd": 151.66,
+      "annualised_net_apr_pct": 1328.1
+     },
+     {
+      "size_usd": 50000.0,
+      "fee_bps_window": 31.311,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 31.311,
+      "over_benchmark_usd": 156.56,
+      "annualised_net_apr_pct": 274.2
+     },
+     {
+      "size_usd": 250000.0,
+      "fee_bps_window": 6.303,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 6.303,
+      "over_benchmark_usd": 157.57,
+      "annualised_net_apr_pct": 55.2
+     },
+     {
+      "size_usd": 1000000.0,
+      "fee_bps_window": 1.578,
+      "divergence_bps_window": 0.0,
+      "net_bps_window": 1.578,
+      "over_benchmark_usd": 157.77,
+      "annualised_net_apr_pct": 13.82
+     }
+    ],
+    "why": "fee yield priced at the band the price actually stayed inside, at a size that dilutes the pool\u2019s own liquidity, net of the divergence that the same concentration amplifies; no benchmark is applied \u2014 the alternative to LPing a volatile pair is holding the pair, and this detector has no view on that"
+   },
+   "economics": {
+    "net_apr": 0.1382,
+    "net_per_year_usd": 138165,
+    "size_usd": 1000000.0,
+    "band_pct": 0.01,
+    "go": false,
+    "reason": "nets 13.82% a year at $1,000,000 in a \u00b10.010% band, before any view on holding the pair"
+   },
+   "usd": 138165.07047885636,
+   "key": "0xcfecc1c9f3cb6190cb1ff7f65a130bfbe5107d38",
+   "identity": "lp_marginal_yield:0xcfecc1c9f3cb6190cb1ff7f65a130bfbe5107d38"
+  },
+  {
+   "detector": "lp_marginal_yield",
+   "title": "uniswap_v3 LINK/WETH: $250.0k in a \u00b10.63% band earns 21.6bp of fees less 15.7bp of divergence over 10.0h (52.1% a year if it repeats)",
+   "severity": "info",
+   "evidence": {
+    "pool": "0xa6cc3c2531fdaa6ae1a3ca84c2855806728693e8",
+    "venue": "uniswap_v3",
+    "pair": "LINK/WETH",
+    "stable_pair": false,
+    "window_hours": 10.003,
+    "observed_price_range_pct": 0.627,
+    "band_quoted_pct": 0.627,
+    "concentration_multiplier": 320.5,
+    "band_ladder": [
+     {
+      "band_pct": 0.627,
+      "apr_pct_at_10000": 143.43
+     },
+     {
+      "band_pct": 1.254,
+      "apr_pct_at_10000": 73.47
+     },
+     {
+      "band_pct": 3.135,
+      "apr_pct_at_10000": 30.15
+     },
+     {
+      "band_pct": 12.54,
+      "apr_pct_at_10000": 8.1
+     }
+    ],
+    "pool_band_capital_usd": 487286,
+    "full_range_capital_usd": 156164770,
+    "passive_fees_usd": 1592.73,
+    "volume_usd": 530910,
+    "swaps": 243,
+    "annualisation_factor": 875.7,
+    "n_takers": 184,
+    "top_taker": "0x5b43453fce04b92e190f391a83136bfbecedefd1",
+    "top_taker_share": 0.1995,
+    "taker_herfindahl": 0.0577,
+    "apr_band_1pct_as_reported": 1.7997,
+    "ladder": [
+     {
+      "size_usd": 10000.0,
+      "fee_bps_window": 32.028,
+      "divergence_bps_window": 15.65,
+      "net_bps_window": 16.378,
+      "over_benchmark_usd": 16.38,
+      "annualised_net_apr_pct": 143.43
+     },
+     {
+      "size_usd": 50000.0,
+      "fee_bps_window": 29.644,
+      "divergence_bps_window": 15.65,
+      "net_bps_window": 13.994,
+      "over_benchmark_usd": 69.97,
+      "annualised_net_apr_pct": 122.55
+     },
+     {
+      "size_usd": 250000.0,
+      "fee_bps_window": 21.603,
+      "divergence_bps_window": 15.65,
+      "net_bps_window": 5.952,
+      "over_benchmark_usd": 148.8,
+      "annualised_net_apr_pct": 52.13
+     },
+     {
+      "size_usd": 1000000.0,
+      "fee_bps_window": 10.709,
+      "divergence_bps_window": 15.65,
+      "net_bps_window": -4.941,
+      "over_benchmark_usd": -494.15,
+      "annualised_net_apr_pct": -43.27
+     }
+    ],
+    "why": "fee yield priced at the band the price actually stayed inside, at a size that dilutes the pool\u2019s own liquidity, net of the divergence that the same concentration amplifies; no benchmark is applied \u2014 the alternative to LPing a volatile pair is holding the pair, and this detector has no view on that"
+   },
+   "economics": {
+    "net_apr": 0.5213,
+    "net_per_year_usd": 130310,
+    "size_usd": 250000.0,
+    "band_pct": 0.627,
+    "go": false,
+    "reason": "nets 52.13% a year at $250,000 in a \u00b10.627% band, before any view on holding the pair"
+   },
+   "usd": 130309.70708787364,
+   "key": "0xa6cc3c2531fdaa6ae1a3ca84c2855806728693e8",
+   "identity": "lp_marginal_yield:0xa6cc3c2531fdaa6ae1a3ca84c2855806728693e8"
+  },
+  {
+   "detector": "fixed_vs_floating",
+   "title": "PT-APYUSD-5NOV2026 implies 13.97% fixed for 58 days against the Sky savings rate (as the risk-free dollar) at 3.60% \u2014 credit spread, not a rate trade: nothing here prices that issuer\u2019s credit",
+   "severity": "info",
+   "evidence": {
+    "market": "0xc5f938a8ef5f3bf9e72f5aa094baf5e03f4727d3",
+    "pt": "0xb5be35d8ff83d431899b95851cb17a2b4bcef150",
+    "pt_symbol": "PT-APYUSD-5NOV2026",
+    "implied_apy_pct": 13.973,
+    "days_to_maturity": 57.62278935185185,
+    "pt_to_asset": 0.9795636619149292,
+    "underlying": "APYUSD",
+    "comparison": "the Sky savings rate (as the risk-free dollar)",
+    "floating_pct": 3.6,
+    "gap_pp": 10.373,
+    "classification": "credit spread",
+    "pt_depth_units": 6349371,
+    "pt_depth_usd": 6219613,
+    "oracle_ready": true,
+    "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+   },
+   "economics": {
+    "net_apr": 0.0722,
+    "net_per_year_usd": 112288,
+    "net_per_run_usd": 17726.96,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 1554903,
+    "hold_days": 57.62278935185185,
+    "optimal_size_usd": 1554903,
+    "amplification_assumed": 50.0
+   },
+   "usd": 112287.87602533473,
+   "key": "PT-APYUSD-5NOV2026",
+   "identity": "fixed_vs_floating:PT-APYUSD-5NOV2026"
+  },
+  {
+   "detector": "fixed_vs_floating",
+   "title": "PT-REUSDE-10DEC2026 implies 18.14% fixed for 93 days against the Sky savings rate (as the risk-free dollar) at 3.60% \u2014 credit spread, not a rate trade: nothing here prices that issuer\u2019s credit",
+   "severity": "info",
+   "evidence": {
+    "market": "0x90b70c407f1077f8eb92bf423b44cd92329b737a",
+    "pt": "0x2ae4f59e500b6ddeb88c480edf277eda54a00205",
+    "pt_symbol": "PT-REUSDE-10DEC2026",
+    "implied_apy_pct": 18.137,
+    "days_to_maturity": 92.62278935185185,
+    "pt_to_asset": 0.9585868575366677,
+    "underlying": "REUSDE",
+    "comparison": "the Sky savings rate (as the risk-free dollar)",
+    "floating_pct": 3.6,
+    "gap_pp": 14.537,
+    "classification": "credit spread",
+    "pt_depth_units": 3569317,
+    "pt_depth_usd": 3421501,
+    "oracle_ready": true,
+    "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+   },
+   "economics": {
+    "net_apr": 0.1258,
+    "net_per_year_usd": 107574,
+    "net_per_run_usd": 27298.03,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 855375,
+    "hold_days": 92.62278935185185,
+    "optimal_size_usd": 855375,
+    "amplification_assumed": 50.0
+   },
+   "usd": 107573.73541773084,
+   "key": "PT-REUSDE-10DEC2026",
+   "identity": "fixed_vs_floating:PT-REUSDE-10DEC2026"
+  },
+  {
+   "detector": "fixed_vs_floating",
+   "title": "PT-USD3-17DEC2026 implies 14.34% fixed for 100 days against the Sky savings rate (as the risk-free dollar) at 3.60% \u2014 credit spread, not a rate trade: nothing here prices that issuer\u2019s credit",
+   "severity": "info",
+   "evidence": {
+    "market": "0x4a5067c3ff1abb7449244025b0e37feaf77d8e3e",
+    "pt": "0x7f47c3e6b2c00fc4eb4d5ae50d0ab0ab6888eb4d",
+    "pt_symbol": "PT-USD3-17DEC2026",
+    "implied_apy_pct": 14.345,
+    "days_to_maturity": 99.62278935185185,
+    "pt_to_asset": 0.9640742024343697,
+    "underlying": "USD3",
+    "comparison": "the Sky savings rate (as the risk-free dollar)",
+    "floating_pct": 3.6,
+    "gap_pp": 10.745,
+    "classification": "credit spread",
+    "pt_depth_units": 4557627,
+    "pt_depth_usd": 4393891,
+    "oracle_ready": true,
+    "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+   },
+   "economics": {
+    "net_apr": 0.0892,
+    "net_per_year_usd": 98006,
+    "net_per_run_usd": 26749.56,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 1098473,
+    "hold_days": 99.62278935185185,
+    "optimal_size_usd": 1098473,
+    "amplification_assumed": 50.0
+   },
+   "usd": 98005.58980405286,
+   "key": "PT-USD3-17DEC2026",
+   "identity": "fixed_vs_floating:PT-USD3-17DEC2026"
+  },
+  {
+   "detector": "nav_discount",
+   "title": "rETH trades 21.3bp below NAV, 16.3bp after the 5.0bp round trip; burn into the Rocket Pool deposit pool, which is empty most of the time \u2014 conditional, so the exit may not be there when you want it",
+   "severity": "info",
+   "evidence": {
+    "asset": "rETH",
+    "nav_source": "0xae78736c getExchangeRate()",
+    "nav": 2899.862857,
+    "market_vw_price": 2893.68317,
+    "market_median": 2893.900779,
+    "market_p10": 2893.306878,
+    "discount_bps": 21.31,
+    "traded_volume_usd": 120666,
+    "implied_daily_volume_usd": 289512,
+    "refills_needed_per_year": 365,
+    "swaps": 23,
+    "venues": {
+     "uniswap_v3": 16,
+     "uniswap_v4": 6,
+     "curve": 1
+    },
+    "redemption": {
+     "days": 1.0,
+     "atomic": false,
+     "availability": "conditional",
+     "exit_bps": 5.0,
+     "path": "burn into the Rocket Pool deposit pool, which is empty most of the time"
+    },
+    "net_edge_bps": 16.31,
+    "price_dispersion_bps": 4.08,
+    "discount_at_p10_bps": 22.61,
+    "significance_vs_dispersion": 4.0,
+    "dispersion_note": "the spread of an ETH-denominated claim also contains ETH\u2019s own move over the window, so this test is conservative here",
+    "why": "the protocol pays NAV and the market paid less; the gap closes when you redeem, and the wait is the reason a bot cannot take it from you"
+   },
+   "economics": {
+    "net_apr": 0.5951,
+    "net_per_year_usd": 71814,
+    "net_per_run_usd": 196.75,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 120666,
+    "hold_days": 1.0,
+    "discount_bps": 21.31,
+    "exit_cost_bps": 5.0,
+    "net_edge_bps": 16.31,
+    "price_dispersion_bps": 4.08,
+    "significance": 4.0,
+    "inside_price_noise": false
+   },
+   "usd": 71814,
+   "key": "rETH",
+   "identity": "nav_discount:rETH"
+  },
+  {
+   "detector": "fixed_vs_floating",
+   "title": "PT-SUSDX-3DEC2026 implies 20.33% fixed for 86 days against the Sky savings rate (as the risk-free dollar) at 3.60% \u2014 credit spread, not a rate trade: nothing here prices that issuer\u2019s credit",
+   "severity": "info",
+   "evidence": {
+    "market": "0x5e572498e9f83650f0ff24194999bddb4b390928",
+    "pt": "0x06ebad062fd573ca31a72d6dfb0f425da2153985",
+    "pt_symbol": "PT-SUSDX-3DEC2026",
+    "implied_apy_pct": 20.331,
+    "days_to_maturity": 85.62278935185185,
+    "pt_to_asset": 0.9575132249741323,
+    "underlying": "SUSDX",
+    "comparison": "the Sky savings rate (as the risk-free dollar)",
+    "floating_pct": 3.6,
+    "gap_pp": 16.731,
+    "classification": "credit spread",
+    "pt_depth_units": 1585134,
+    "pt_depth_usd": 1517787,
+    "oracle_ready": true,
+    "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+   },
+   "economics": {
+    "net_apr": 0.1461,
+    "net_per_year_usd": 55438,
+    "net_per_run_usd": 13004.73,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 379447,
+    "hold_days": 85.62278935185185,
+    "optimal_size_usd": 379447,
+    "amplification_assumed": 50.0
+   },
+   "usd": 55437.671824182384,
+   "key": "PT-SUSDX-3DEC2026",
+   "identity": "fixed_vs_floating:PT-SUSDX-3DEC2026"
+  },
+  {
+   "detector": "fixed_vs_floating",
+   "title": "PT-REUSD-10DEC2026 implies 11.05% fixed for 93 days against the Sky savings rate (as the risk-free dollar) at 3.60% \u2014 credit spread, not a rate trade: nothing here prices that issuer\u2019s credit",
+   "severity": "info",
+   "evidence": {
+    "market": "0x13285bcbc27f92b47b4edb99d744c07b48c977c0",
+    "pt": "0xecfafdc7741323a945a163ed068b5a3c43483957",
+    "pt_symbol": "PT-REUSD-10DEC2026",
+    "implied_apy_pct": 11.045,
+    "days_to_maturity": 92.62278935185185,
+    "pt_to_asset": 0.9737643383058269,
+    "underlying": "REUSD",
+    "comparison": "the Sky savings rate (as the risk-free dollar)",
+    "floating_pct": 3.6,
+    "gap_pp": 7.445,
+    "classification": "credit spread",
+    "pt_depth_units": 4101679,
+    "pt_depth_usd": 3994068,
+    "oracle_ready": true,
+    "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+   },
+   "economics": {
+    "net_apr": 0.0548,
+    "net_per_year_usd": 54766,
+    "net_per_run_usd": 13897.36,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 998517,
+    "hold_days": 92.62278935185185,
+    "optimal_size_usd": 998517,
+    "amplification_assumed": 50.0
+   },
+   "usd": 54765.52837268752,
+   "key": "PT-REUSD-10DEC2026",
+   "identity": "fixed_vs_floating:PT-REUSD-10DEC2026"
+  },
+  {
+   "detector": "rate_dispersion",
+   "title": "PYUSD pays 3.30pp more on Aave v3 than SparkLend; best size $4.4M earns $51k a year over SparkLend [one-block read, de-spiking unavailable]",
+   "severity": "info",
+   "evidence": {
+    "asset": "PYUSD",
+    "high_venue": "Aave v3",
+    "low_venue": "SparkLend",
+    "supply_apr_spot_pct": {
+     "Aave v3": 3.886,
+     "SparkLend": 0.588
+    },
+    "supply_apr_median_pct": {},
+    "gap_pp_spot": 3.298,
+    "gap_pp_despiked": 3.298,
+    "head_read_spiked": null,
+    "despiked": false,
+    "despike_note": "too few log observations for Aave v3 PYUSD: this is one block, and a large transfer or flash loan can move a reserve rate several-fold for one block",
+    "supplied_usd": {
+     "Aave v3": 7587490,
+     "SparkLend": 100000549
+    },
+    "utilisation": {
+     "Aave v3": 0.88,
+     "SparkLend": 0.168
+    },
+    "dilution_basis": "irm",
+    "best_size": {
+     "size_usd": 4399104,
+     "apr_at_size_pct": 1.741,
+     "over_low_venue_usd_per_year": 50714
+    },
+    "marginal_apr_ladder": [
+     {
+      "size_usd": 100000.0,
+      "apr_pct": 3.796
+     },
+     {
+      "size_usd": 1000000.0,
+      "apr_pct": 3.115
+     },
+     {
+      "size_usd": 5000000.0,
+      "apr_pct": 1.602
+     },
+     {
+      "size_usd": 25000000.0,
+      "apr_pct": 0.352
+     },
+     {
+      "size_usd": 100000000.0,
+      "apr_pct": 0.071
+     }
+    ]
+   },
+   "economics": {
+    "net_apr": 0.0115,
+    "net_per_year_usd": 50714,
+    "half_edge_size_usd": 2892482,
+    "net_apr_at_half_edge": 0.0224,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "gas_gwei": 0.0486
+   },
+   "usd": 50713.860205782374,
+   "key": "PYUSD:Aave v3/SparkLend",
+   "identity": "rate_dispersion:PYUSD:Aave v3/SparkLend"
+  },
+  {
+   "detector": "fixed_vs_floating",
+   "title": "PT-SUSD3-17DEC2026 implies 22.70% fixed for 100 days against the Sky savings rate (as the risk-free dollar) at 3.60% \u2014 credit spread, not a rate trade: nothing here prices that issuer\u2019s credit",
+   "severity": "info",
+   "evidence": {
+    "market": "0x7972de1c2f9f11f622a188fbae8c0a943880424f",
+    "pt": "0x41f45d21502bde8211e94d94ef2eeebcfc48a6ac",
+    "pt_symbol": "PT-SUSD3-17DEC2026",
+    "implied_apy_pct": 22.696,
+    "days_to_maturity": 99.62278935185185,
+    "pt_to_asset": 0.9457034772231859,
+    "underlying": "SUSD3",
+    "comparison": "the Sky savings rate (as the risk-free dollar)",
+    "floating_pct": 3.6,
+    "gap_pp": 19.096,
+    "classification": "credit spread",
+    "pt_depth_units": 899934,
+    "pt_depth_usd": 851071,
+    "oracle_ready": true,
+    "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+   },
+   "economics": {
+    "net_apr": 0.1727,
+    "net_per_year_usd": 36751,
+    "net_per_run_usd": 10030.79,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 212768,
+    "hold_days": 99.62278935185185,
+    "optimal_size_usd": 212768,
+    "amplification_assumed": 50.0
+   },
+   "usd": 36750.99625707004,
+   "key": "PT-SUSD3-17DEC2026",
+   "identity": "fixed_vs_floating:PT-SUSD3-17DEC2026"
+  },
+  {
+   "detector": "fixed_vs_floating",
+   "title": "PT-STRUSD-26NOV2026 implies 11.71% fixed for 79 days against the Sky savings rate (as the risk-free dollar) at 3.60% \u2014 credit spread, not a rate trade: nothing here prices that issuer\u2019s credit",
+   "severity": "info",
+   "evidence": {
+    "market": "0xac028348c46d3455899a2b9b50077c11960eaddb",
+    "pt": "0x74299580811e1c3c1a2831db079ba0a8f513998f",
+    "pt_symbol": "PT-STRUSD-26NOV2026",
+    "implied_apy_pct": 11.706,
+    "days_to_maturity": 78.62278935185185,
+    "pt_to_asset": 0.9764358344133037,
+    "underlying": "STRUSD",
+    "comparison": "the Sky savings rate (as the risk-free dollar)",
+    "floating_pct": 3.6,
+    "gap_pp": 8.106,
+    "classification": "credit spread",
+    "pt_depth_units": 1785041,
+    "pt_depth_usd": 1742978,
+    "oracle_ready": true,
+    "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+   },
+   "economics": {
+    "net_apr": 0.058,
+    "net_per_year_usd": 25259,
+    "net_per_run_usd": 5440.9,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 435744,
+    "hold_days": 78.62278935185185,
+    "optimal_size_usd": 435744,
+    "amplification_assumed": 50.0
+   },
+   "usd": 25258.96067436869,
+   "key": "PT-STRUSD-26NOV2026",
+   "identity": "fixed_vs_floating:PT-STRUSD-26NOV2026"
+  },
+  {
+   "detector": "fixed_vs_floating",
+   "title": "PT-USDX-3DEC2026 implies 15.08% fixed for 86 days against the Sky savings rate (as the risk-free dollar) at 3.60% \u2014 credit spread, not a rate trade: nothing here prices that issuer\u2019s credit",
+   "severity": "info",
+   "evidence": {
+    "market": "0x0bef762d2094ac80821c657dea6783fc43435292",
+    "pt": "0xa4b3a2eec53863fe2c9ab0041d480cf964942e84",
+    "pt_symbol": "PT-USDX-3DEC2026",
+    "implied_apy_pct": 15.078,
+    "days_to_maturity": 85.62278935185185,
+    "pt_to_asset": 0.9675917776946463,
+    "underlying": "USDX",
+    "comparison": "the Sky savings rate (as the risk-free dollar)",
+    "floating_pct": 3.6,
+    "gap_pp": 11.478,
+    "classification": "credit spread",
+    "pt_depth_units": 609219,
+    "pt_depth_usd": 589475,
+    "oracle_ready": true,
+    "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+   },
+   "economics": {
+    "net_apr": 0.0936,
+    "net_per_year_usd": 13789,
+    "net_per_run_usd": 3234.77,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 147369,
+    "hold_days": 85.62278935185185,
+    "optimal_size_usd": 147369,
+    "amplification_assumed": 50.0
+   },
+   "usd": 13789.456870665827,
+   "key": "PT-USDX-3DEC2026",
+   "identity": "fixed_vs_floating:PT-USDX-3DEC2026"
+  },
+  {
+   "detector": "fixed_vs_floating",
+   "title": "PT-SIUSD-22OCT2026 implies 9.37% fixed for 44 days against the Sky savings rate (as the risk-free dollar) at 3.60% \u2014 credit spread, not a rate trade: nothing here prices that issuer\u2019s credit",
+   "severity": "info",
+   "evidence": {
+    "market": "0x1f34887b270bfaf56cf7973572654874c8ed740e",
+    "pt": "0xe3cdf5b8d7aedfc9f768dbdcc334146fae989188",
+    "pt_symbol": "PT-SIUSD-22OCT2026",
+    "implied_apy_pct": 9.365,
+    "days_to_maturity": 43.62278935185185,
+    "pt_to_asset": 0.9893577254407845,
+    "underlying": "SIUSD",
+    "comparison": "the Sky savings rate (as the risk-free dollar)",
+    "floating_pct": 3.6,
+    "gap_pp": 5.765,
+    "classification": "credit spread",
+    "pt_depth_units": 1547626,
+    "pt_depth_usd": 1531156,
+    "oracle_ready": true,
+    "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+   },
+   "economics": {
+    "net_apr": 0.0288,
+    "net_per_year_usd": 7629,
+    "net_per_run_usd": 911.77,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 382789,
+    "hold_days": 43.62278935185185,
+    "optimal_size_usd": 265125,
+    "amplification_assumed": 50.0
+   },
+   "usd": 7628.956611565224,
+   "key": "PT-SIUSD-22OCT2026",
+   "identity": "fixed_vs_floating:PT-SIUSD-22OCT2026"
+  },
+  {
+   "detector": "fixed_vs_floating",
+   "title": "PT-TRUSD-26NOV2026 implies 9.99% fixed for 79 days against the Sky savings rate (as the risk-free dollar) at 3.60% \u2014 credit spread, not a rate trade: nothing here prices that issuer\u2019s credit",
+   "severity": "info",
+   "evidence": {
+    "market": "0xfcf009cb3135da12a6eb1f73f3ee05392a7bc947",
+    "pt": "0x7191878f1fe834b28f4d0cead0e4375b814c4abb",
+    "pt_symbol": "PT-TRUSD-26NOV2026",
+    "implied_apy_pct": 9.988,
+    "days_to_maturity": 78.62278935185185,
+    "pt_to_asset": 0.9797013262532355,
+    "underlying": "TRUSD",
+    "comparison": "the Sky savings rate (as the risk-free dollar)",
+    "floating_pct": 3.6,
+    "gap_pp": 6.388,
+    "classification": "credit spread",
+    "pt_depth_units": 610808,
+    "pt_depth_usd": 598409,
+    "oracle_ready": true,
+    "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+   },
+   "economics": {
+    "net_apr": 0.0408,
+    "net_per_year_usd": 6102,
+    "net_per_run_usd": 1314.32,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 149602,
+    "hold_days": 78.62278935185185,
+    "optimal_size_usd": 149602,
+    "amplification_assumed": 50.0
+   },
+   "usd": 6101.633269196842,
+   "key": "PT-TRUSD-26NOV2026",
+   "identity": "fixed_vs_floating:PT-TRUSD-26NOV2026"
+  },
+  {
+   "detector": "fixed_vs_floating",
+   "title": "PT-USDAT-14JAN2027 implies 5.89% fixed for 128 days against the Sky savings rate (as the risk-free dollar) at 3.60% \u2014 credit spread, not a rate trade: nothing here prices that issuer\u2019s credit",
+   "severity": "info",
+   "evidence": {
+    "market": "0x4ccf6deb3d1895373f604b418ff55d8adae8b846",
+    "pt": "0xba96292ee7673e3b546cc90db6d97111cd9a314f",
+    "pt_symbol": "PT-USDAT-14JAN2027",
+    "implied_apy_pct": 5.891,
+    "days_to_maturity": 127.62278935185185,
+    "pt_to_asset": 0.9801859720943344,
+    "underlying": "USDAT",
+    "comparison": "the Sky savings rate (as the risk-free dollar)",
+    "floating_pct": 3.6,
+    "gap_pp": 2.291,
+    "classification": "credit spread",
+    "pt_depth_units": 1493179,
+    "pt_depth_usd": 1463593,
+    "oracle_ready": true,
+    "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+   },
+   "economics": {
+    "net_apr": 0.0114,
+    "net_per_year_usd": 3370,
+    "net_per_run_usd": 1178.28,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 365898,
+    "hold_days": 127.62278935185185,
+    "optimal_size_usd": 294832,
+    "amplification_assumed": 50.0
+   },
+   "usd": 3369.877882268688,
+   "key": "PT-USDAT-14JAN2027",
+   "identity": "fixed_vs_floating:PT-USDAT-14JAN2027"
+  },
+  {
+   "detector": "fixed_vs_floating",
+   "title": "PT-APXUSD-5NOV2026 implies 9.30% fixed for 58 days against the Sky savings rate (as the risk-free dollar) at 3.60% \u2014 credit spread, not a rate trade: nothing here prices that issuer\u2019s credit",
+   "severity": "info",
+   "evidence": {
+    "market": "0xaf0349fb9b1ba07d34381870c59b560b31412660",
+    "pt": "0xaf687b5ecb525ccea96115088999b4ed80c388b6",
+    "pt_symbol": "PT-APXUSD-5NOV2026",
+    "implied_apy_pct": 9.303,
+    "days_to_maturity": 57.62278935185185,
+    "pt_to_asset": 0.9860556819716622,
+    "underlying": "APXUSD",
+    "comparison": "the Sky savings rate (as the risk-free dollar)",
+    "floating_pct": 3.6,
+    "gap_pp": 5.703,
+    "classification": "credit spread",
+    "pt_depth_units": 389381,
+    "pt_depth_usd": 383951,
+    "oracle_ready": true,
+    "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+   },
+   "economics": {
+    "net_apr": 0.0284,
+    "net_per_year_usd": 2475,
+    "net_per_run_usd": 390.69,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 95988,
+    "hold_days": 57.62278935185185,
+    "optimal_size_usd": 87002,
+    "amplification_assumed": 50.0
+   },
+   "usd": 2474.721240556345,
+   "key": "PT-APXUSD-5NOV2026",
+   "identity": "fixed_vs_floating:PT-APXUSD-5NOV2026"
+  },
+  {
+   "detector": "fixed_vs_floating",
+   "title": "PT-SUSDD-26NOV2026 implies 5.15% fixed for 79 days against the Sky savings rate (as the risk-free dollar) at 3.60% \u2014 credit spread, not a rate trade: nothing here prices that issuer\u2019s credit",
+   "severity": "info",
+   "evidence": {
+    "market": "0xbeab098b510f758cd35122ee345957b8eccbb322",
+    "pt": "0x459bcab2490843ad1fe1e4feff7f7ea16a14408b",
+    "pt_symbol": "PT-SUSDD-26NOV2026",
+    "implied_apy_pct": 5.15,
+    "days_to_maturity": 78.62278935185185,
+    "pt_to_asset": 0.9892419581945675,
+    "underlying": "SUSDD",
+    "comparison": "the Sky savings rate (as the risk-free dollar)",
+    "floating_pct": 3.6,
+    "gap_pp": 1.55,
+    "classification": "credit spread",
+    "pt_depth_units": 1821479,
+    "pt_depth_usd": 1801883,
+    "oracle_ready": true,
+    "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+   },
+   "economics": {
+    "net_apr": 0.0077,
+    "net_per_year_usd": 1167,
+    "net_per_run_usd": 251.32,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 450471,
+    "hold_days": 78.62278935185185,
+    "optimal_size_usd": 150741,
+    "amplification_assumed": 50.0
+   },
+   "usd": 1166.7442184306672,
+   "key": "PT-SUSDD-26NOV2026",
+   "identity": "fixed_vs_floating:PT-SUSDD-26NOV2026"
+  },
+  {
+   "detector": "dollar_rate_outlier",
+   "title": "Aave v3 USDtb pays 5.62% against the Sky savings rate at 3.60%; best size $116.4k earns $1.2k a year over it [one-block read, de-spiking unavailable]",
+   "severity": "info",
+   "evidence": {
+    "venue": "Aave v3",
+    "asset": "USDtb",
+    "supply_apr_spot_pct": 5.615,
+    "supply_apr_window_median_pct": null,
+    "spiked": false,
+    "despike_unavailable": true,
+    "benchmark": "Sky savings rate",
+    "benchmark_pct": 3.6,
+    "gap_pp": 2.015,
+    "supplied_usd": 15445646,
+    "borrowed_usd": 12640579,
+    "available_usd": 2805066,
+    "utilisation": 0.8184,
+    "curve": {
+     "base": 0.0,
+     "optimal": 0.8,
+     "reserve_factor": 0.2,
+     "slope1": 0.04,
+     "slope2": 0.5
+    },
+    "marginal_apr_ladder": [
+     {
+      "size_usd": 100000.0,
+      "marginal_apr_pct": 4.737,
+      "over_benchmark_usd_per_year": 1137
+     },
+     {
+      "size_usd": 1000000.0,
+      "marginal_apr_pct": 2.363,
+      "over_benchmark_usd_per_year": -12368
+     },
+     {
+      "size_usd": 10000000.0,
+      "marginal_apr_pct": 0.987,
+      "over_benchmark_usd_per_year": -261289
+     },
+     {
+      "size_usd": 50000000.0,
+      "marginal_apr_pct": 0.149,
+      "over_benchmark_usd_per_year": -1725389
+     }
+    ],
+    "best": {
+     "size_usd": 116415.32182693481,
+     "apr": 0.04592401563208606,
+     "marginal_apr_pct": 4.592,
+     "over_benchmark_usd_per_year": 1155
+    },
+    "why": "a headline rate is a point on a kinked curve; what it is worth is the marginal APR at the size you can actually put in, over the dollar you would otherwise hold"
+   },
+   "economics": {
+    "net_apr": 0.0099,
+    "net_per_year_usd": 1155,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size"
+   },
+   "usd": 1155,
+   "key": "Aave v3:USDtb",
+   "identity": "dollar_rate_outlier:Aave v3:USDtb"
+  },
+  {
+   "detector": "fixed_vs_floating",
+   "title": "PT-SRUSDE-22OCT2026 implies 5.45% fixed for 44 days against the Sky savings rate (as the risk-free dollar) at 3.60% \u2014 credit spread, not a rate trade: nothing here prices that issuer\u2019s credit",
+   "severity": "info",
+   "evidence": {
+    "market": "0x66ec657c59cdcaf171ab43b83da3942758bf8a97",
+    "pt": "0x59bc9fae5d62b19d4f8d07d758047acb9ee19d34",
+    "pt_symbol": "PT-SRUSDE-22OCT2026",
+    "implied_apy_pct": 5.45,
+    "days_to_maturity": 43.62278935185185,
+    "pt_to_asset": 0.9936780410333604,
+    "underlying": "SRUSDE",
+    "comparison": "the Sky savings rate (as the risk-free dollar)",
+    "floating_pct": 3.6,
+    "gap_pp": 1.85,
+    "classification": "credit spread",
+    "pt_depth_units": 2123236,
+    "pt_depth_usd": 2109813,
+    "oracle_ready": true,
+    "why": "no floating rate on this underlying is readable, so the excess over the risk-free dollar is the market\u2019s price of an issuer\u2019s credit \u2014 a judgement this system has not made, quoted here only so it is not mistaken for a term premium"
+   },
+   "economics": {
+    "net_apr": 0.0092,
+    "net_per_year_usd": 1079,
+    "net_per_run_usd": 128.99,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 527453,
+    "hold_days": 43.62278935185185,
+    "optimal_size_usd": 116803,
+    "amplification_assumed": 50.0
+   },
+   "usd": 1079.3136731411282,
+   "key": "PT-SRUSDE-22OCT2026",
+   "identity": "fixed_vs_floating:PT-SRUSDE-22OCT2026"
+  },
+  {
+   "detector": "jit_liquidity",
+   "title": "JIT took $236 of $224564 pool fees (0.11%) across 276 episodes by 10 operator(s)",
+   "severity": "info",
+   "evidence": {
+    "episodes": 276,
+    "fee_taken_usd": 236.03,
+    "pool_fees_usd": 224563.55,
+    "share_of_fees": 0.0011,
+    "swap_usd_bracketed": 513572,
+    "top_operators": [
+     {
+      "sender": "0xae2fc483527b8ef99eb5d9b44875f005ba1fae13",
+      "episodes": 78,
+      "fee_taken_usd": 84.72
+     },
+     {
+      "sender": "0x3ee92cd00993a4488ae153ab41ac7947cbcbc1de",
+      "episodes": 30,
+      "fee_taken_usd": 103.84
+     },
+     {
+      "sender": "0x654fae4aa229d104cabead47e56703f58b174be4",
+      "episodes": 23,
+      "fee_taken_usd": 1.81
+     },
+     {
+      "sender": "0x27c2a1733f14e1247c5feb1c37cd52ae7d0d2bf2",
+      "episodes": 17,
+      "fee_taken_usd": 4.6
+     },
+     {
+      "sender": "0x34373bba18aa058f889c3fc28329c0bfb4b3e4ab",
+      "episodes": 6,
+      "fee_taken_usd": 0.0
+     }
+    ],
+    "why": "fees taken by liquidity that was not at risk are credited to passive LPs by any yield number computed from total fees; the honest input is passive_fees_usd"
+   },
+   "economics": {
+    "net_apr": -0.0,
+    "net_per_year_usd": -1654,
+    "net_per_run_usd": 0.76,
+    "go": false,
+    "reason": "net APR -0.00% below the 0.00% floor",
+    "gas_gwei": 0.0933,
+    "edge_per_episode_usd": 0.86,
+    "win_rate": 0.1
+   },
+   "usd": 236.03,
+   "key": "window",
+   "identity": "jit_liquidity:window"
+  },
+  {
+   "detector": "address_poisoning",
+   "title": "404 poisoning attempt(s) from 197 lookalike sender(s) after large transfers",
+   "severity": "info",
+   "evidence": {
+    "matches": [
+     {
+      "big_tx": "0xadbc605e6940e1857bf9e5116f6d455510ab2aaab3385b12a1c9267a78aad28b",
+      "big_eth": 149.96,
+      "victim": "0x66b206c91374453cda591e84287eefef7a3d4f21",
+      "impersonated": "0x6e3f02367d98f10c60c0d4a036fc06a23b392b22",
+      "attacker": "0x6e3f43254494099c2e4b875944ef6c2976a72b22",
+      "dust_tx": "0x5babedeab67ecc0e5b7d4011528f509d0ee2dbb587da67432b5a42c7e2576bd4",
+      "seconds_after": 432
+     },
+     {
+      "big_tx": "0x6bbecd6ec0844aee8f4f435cd9772fdd8e5f7dae241887b7628c5e0e02f4c974",
+      "big_eth": 149.96,
+      "victim": "0x6e3f02367d98f10c60c0d4a036fc06a23b392b22",
+      "impersonated": "0x9220980332edb0131cecbdf69cad76624e172f15",
+      "attacker": "0x922098d2943a62b53559dac1ccd25c645fe72f15",
+      "dust_tx": "0xff8b3da50e31cd043d63395ced46f5bdc8f3db888f05b46d64965e445d95a371",
+      "seconds_after": 348
+     },
+     {
+      "big_tx": "0x9bd5743107c160350d6767bf13dcf4a0b6902d0e5eba0f178dffb298ffbb5354",
+      "big_eth": 160.0,
+      "victim": "0x3fbc815bd9d42dbfc8add93ce12692d838d6c189",
+      "impersonated": "0xc7bf35c9a3bdd1b1c19a6963de669cb45191a019",
+      "attacker": "0xc7bf09fec1d24c9192a9fb87b042af515dd3a019",
+      "dust_tx": "0x7cb9e924ec217f3bf2a9bb58645204d37cf25315348a19222f5b5cbefc85da3b",
+      "seconds_after": 24
+     },
+     {
+      "big_tx": "0x9bd5743107c160350d6767bf13dcf4a0b6902d0e5eba0f178dffb298ffbb5354",
+      "big_eth": 160.0,
+      "victim": "0x3fbc815bd9d42dbfc8add93ce12692d838d6c189",
+      "impersonated": "0xc7bf35c9a3bdd1b1c19a6963de669cb45191a019",
+      "attacker": "0xc7bf436744804c463c2a08bcefd48ac5cd51a019",
+      "dust_tx": "0xa5b407f6173e6ca5bc7bdf963a1596e8361c028f1e4c0c0c2f5c8b7c806ca949",
+      "seconds_after": 216
+     },
+     {
+      "big_tx": "0x9bd5743107c160350d6767bf13dcf4a0b6902d0e5eba0f178dffb298ffbb5354",
+      "big_eth": 160.0,
+      "victim": "0x3fbc815bd9d42dbfc8add93ce12692d838d6c189",
+      "impersonated": "0xc7bf35c9a3bdd1b1c19a6963de669cb45191a019",
+      "attacker": "0xc7bf09fec1d24c9192a9fb87b042af515dd3a019",
+      "dust_tx": "0xb93903b3267999ff23dd0248bc9653ae62bb4f6c06f1bac999e9901cb59941d0",
+      "seconds_after": 252
+     },
+     {
+      "big_tx": "0x9bd5743107c160350d6767bf13dcf4a0b6902d0e5eba0f178dffb298ffbb5354",
+      "big_eth": 160.0,
+      "victim": "0x3fbc815bd9d42dbfc8add93ce12692d838d6c189",
+      "impersonated": "0xc7bf35c9a3bdd1b1c19a6963de669cb45191a019",
+      "attacker": "0xc749ab20bd35d94eb05c5753b74581a65b91a019",
+      "dust_tx": "0x0fe668beba116a0ed80cbb1feb81100e58bdddb8f77a9fdbda99b6acb865403a",
+      "seconds_after": 2004
+     },
+     {
+      "big_tx": "0xe3a663a63f4671d5f0d5267471d048cb41e30655603663d99fe9b8118772d4a0",
+      "big_eth": 149.96,
+      "victim": "0x9220980332edb0131cecbdf69cad76624e172f15",
+      "impersonated": "0x0003b5aa5e30e97fcc596bb5d0f3a75255e08d4e",
+      "attacker": "0x00035c7edf9584cd157a0a5eb3ab1a1124908d4e",
+      "dust_tx": "0xb24fa35dc7d56b6bfb6258da67f8b8e24f86397742140efb0946ef5d5dcfb520",
+      "seconds_after": 276
+     },
+     {
+      "big_tx": "0xe3a663a63f4671d5f0d5267471d048cb41e30655603663d99fe9b8118772d4a0",
+      "big_eth": 149.96,
+      "victim": "0x9220980332edb0131cecbdf69cad76624e172f15",
+      "impersonated": "0x0003b5aa5e30e97fcc596bb5d0f3a75255e08d4e",
+      "attacker": "0x0003f1a2a8403da4712d2f7ea315901509ec8d4e",
+      "dust_tx": "0x3e12e3d6c9998230528b2124f75a842e1cd414627ea67734a78d57d4f79f66d0",
+      "seconds_after": 756
+     },
+     {
+      "big_tx": "0xc8b8ee8c19bc9c0ecb4955c055ff14e8077b130ac587f103093bea595b3f339c",
+      "big_eth": 517.0,
+      "victim": "0x83d8b74721fa3b0b7fdfc1f93238a8a0def50c0b",
+      "impersonated": "0xef13324932a1c34309b092b0631072bffab556c4",
+      "attacker": "0xef1373e076d18968251928c53fe541f205bc56c4",
+      "dust_tx": "0x954c4052bbd1a8a309af603ebe92cb08b1685df3da0921d7fb8244090aa5b35a",
+      "seconds_after": 252
+     },
+     {
+      "big_tx": "0xc8b8ee8c19bc9c0ecb4955c055ff14e8077b130ac587f103093bea595b3f339c",
+      "big_eth": 517.0,
+      "victim": "0xef13324932a1c34309b092b0631072bffab556c4",
+      "impersonated": "0x83d8b74721fa3b0b7fdfc1f93238a8a0def50c0b",
+      "attacker": "0x83d8bd698a07be6507427c7d1084e933c3050c0b",
+      "dust_tx": "0xc8f1a555aea813953b233f28b4fa6ffa0c973eb34d68fa1fc39da0f97574781f",
+      "seconds_after": 252
+     },
+     {
+      "big_tx": "0xba2d11490fe9a394381b1d365d83404e30ae93b3bd2c52ba9e857284c8dddcb9",
+      "big_eth": 192.0,
+      "victim": "0x80f05fe8428986d690a42097891e9512ee653109",
+      "impersonated": "0xc7bf35c9a3bdd1b1c19a6963de669cb45191a019",
+      "attacker": "0xc7bf3bcde370c563d621376b68240e192055a019",
+      "dust_tx": "0xe4c2a501d8a2b5b41479b4fdcdf22d537393753811fb457ab998dfb63b9997a1",
+      "seconds_after": 36
+     },
+     {
+      "big_tx": "0xba2d11490fe9a394381b1d365d83404e30ae93b3bd2c52ba9e857284c8dddcb9",
+      "big_eth": 192.0,
+      "victim": "0x80f05fe8428986d690a42097891e9512ee653109",
+      "impersonated": "0xc7bf35c9a3bdd1b1c19a6963de669cb45191a019",
+      "attacker": "0xc7bf436744804c463c2a08bcefd48ac5cd51a019",
+      "dust_tx": "0xa3a8afdd3418c0418ae590d7c12ec0cc5aded3e2b5222f35ec461f2baf99ea94",
+      "seconds_after": 204
+     }
+    ],
+    "top_senders": [
+     [
+      "0xc7bf436744804c463c2a08bcefd48ac5cd51a019",
+      10
+     ],
+     [
+      "0xc749ab20bd35d94eb05c5753b74581a65b91a019",
+      10
+     ],
+     [
+      "0x760e32fce4b21d3bbe6567b55f4b0e1269a81bdd",
+      9
+     ],
+     [
+      "0xc7bfe875911cbe8eb797b3e6b42480b4d2cea019",
+      8
+     ],
+     [
+      "0x760ed317470ee95d06bc29f5d678d4bf6afb1bdd",
+      8
+     ],
+     [
+      "0xa4e4a3dfb018c39ff7eb286313672a78c5257775",
+      7
+     ]
+    ],
+    "rule": "dust <= 0.001 ETH within 3600s of a >= 100 ETH plain transfer, from an address sharing the first 6 or last 4 hex characters of the counterparty"
+   },
+   "economics": null,
+   "usd": null,
+   "key": "campaign",
+   "identity": "address_poisoning:campaign"
+  },
+  {
+   "detector": "mass_distribution",
+   "title": "airdrop or multisend: 0x644a10116386921c0f42d2572e4d7e sent WETH to 600 recipients in 5 txs (120 per tx)",
+   "severity": "info",
+   "evidence": {
+    "token": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+    "token_symbol": "WETH",
+    "sender": "0x644a10116386921c0f42d2572e4d7eb854c1fbc8",
+    "sender_label": null,
+    "kind": "airdrop or multisend",
+    "transfers": 600,
+    "recipients": 600,
+    "txs": 5,
+    "blocks": 5,
+    "transfers_per_tx": 120.0,
+    "carrier_contract": "0x644a10116386921c0f42d2572e4d7eb854c1fbc8",
+    "carrier_label": null,
+    "carrier_share": 1.0,
+    "median_raw_amount": "6501840559802",
+    "uniform_amount_share": 0.003,
+    "usd_median": 0.016097061802740998,
+    "why": "a batched fan-out to this many wallets is a campaign; it explains log-count and gas anomalies, and a funded holder set is what a later coordinated sell looks like beforehand"
+   },
+   "economics": null,
+   "usd": null,
+   "key": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2:0x644a10116386921c0f42d2572e4d7eb854c1fbc8",
+   "identity": "mass_distribution:0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2:0x644a10116386921c0f42d2572e4d7eb854c1fbc8"
+  },
+  {
+   "detector": "mass_distribution",
+   "title": "airdrop or multisend: 0xbc0c34fb3c04023424ec316a49eb88 sent WETH to 501 recipients in 4 txs (125 per tx)",
+   "severity": "info",
+   "evidence": {
+    "token": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+    "token_symbol": "WETH",
+    "sender": "0xbc0c34fb3c04023424ec316a49eb88d72dc206b3",
+    "sender_label": null,
+    "kind": "airdrop or multisend",
+    "transfers": 501,
+    "recipients": 501,
+    "txs": 4,
+    "blocks": 4,
+    "transfers_per_tx": 125.2,
+    "carrier_contract": "0xbc0c34fb3c04023424ec316a49eb88d72dc206b3",
+    "carrier_label": null,
+    "carrier_share": 1.0,
+    "median_raw_amount": "6491913398505",
+    "uniform_amount_share": 0.003,
+    "usd_median": 0.016072484434616726,
+    "why": "a batched fan-out to this many wallets is a campaign; it explains log-count and gas anomalies, and a funded holder set is what a later coordinated sell looks like beforehand"
+   },
+   "economics": null,
+   "usd": null,
+   "key": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2:0xbc0c34fb3c04023424ec316a49eb88d72dc206b3",
+   "identity": "mass_distribution:0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2:0xbc0c34fb3c04023424ec316a49eb88d72dc206b3"
+  },
+  {
+   "detector": "nav_discount",
+   "title": "sDAI trades 12.3bp above NAV \u2014 the market is paying for immediacy",
+   "severity": "info",
+   "evidence": {
+    "asset": "sDAI",
+    "nav_source": "0x83f20f44 convertToAssets(uint256)",
+    "nav": 1.179876,
+    "market_vw_price": 1.181324,
+    "market_median": 1.181403,
+    "market_p10": 1.181237,
+    "discount_bps": -12.27,
+    "traded_volume_usd": 468343,
+    "implied_daily_volume_usd": 1123686,
+    "refills_needed_per_year": 18250,
+    "swaps": 4,
+    "venues": {
+     "curve": 4
+    },
+    "redemption": {
+     "days": 0.0,
+     "atomic": true,
+     "availability": "always",
+     "exit_bps": 1.0,
+     "path": "ERC-4626 redeem into DAI, same transaction"
+    },
+    "net_edge_bps": -13.27,
+    "price_dispersion_bps": 2.1,
+    "discount_at_p10_bps": -11.53,
+    "significance_vs_dispersion": -6.31,
+    "dispersion_note": "a dollar claim\u2019s NAV barely moves, so the spread is mostly execution dispersion and the test is meaningful",
+    "why": "a claim above NAV is the same mechanism seen from the seller\u2019s side"
+   },
+   "economics": null,
+   "usd": null,
+   "key": "sDAI",
+   "identity": "nav_discount:sDAI"
+  }
+ ]
+}
