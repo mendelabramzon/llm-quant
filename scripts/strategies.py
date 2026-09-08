@@ -125,7 +125,11 @@ def refresh(args):
         else:
             best = max(obs, key=lambda x: (x[1].get('net_apr') or 0))
             q = {'at': at, 'window': str(args.out), 'source': 'ledger:' + best[0], 'present': True,
-                 'net_apr': best[1].get('net_apr'), 'usd': best[1].get('usd'), 'note': best[1].get('title')}
+                 'net_apr': best[1].get('net_apr'), 'usd': best[1].get('usd'),
+                 # The detector's own go/no-go travels with the rate. A quote can be arithmetically fine and still
+                 # fail its detector's significance test — an edge inside its own price noise, an exit that may not
+                 # be there — and a book that showed only the rate would present that as a clean number.
+                 'go': best[1].get('go'), 'note': best[1].get('title')}
         # Upsert on the window, then order by time. Appending blindly made re-running a window read as six
         # observations of a rate that had been quoted once — the same double-count the findings ledger already fixed.
         s['quotes'] = sorted([x for x in s['quotes'] if x.get('window') != str(args.out)] + [q],
@@ -184,8 +188,10 @@ def book_cmd(args):
         q = latest(s) or {}
         lp = last_priced(s)
         a = age_hours(s)
-        shown = ('%.2f%%' % (100 * q['net_apr'])) if q.get('net_apr') is not None else (
-            ('(%.2f%%)' % (100 * lp['net_apr'])) if (lp and q.get('present') is False) else '-')
+        src = q if q.get('net_apr') is not None else (lp or {})
+        mark = '' if src.get('go') is not False else '*'
+        shown = ('%.2f%%%s' % (100 * q['net_apr'], mark)) if q.get('net_apr') is not None else (
+            ('(%.2f%%)%s' % (100 * lp['net_apr'], mark)) if (lp and q.get('present') is False) else '-')
         print('%-26s %-11s %-9s %10s %13s %7s  %s'
               % (s['id'][:26], s['status'], s.get('kind', '?'), shown,
                  ('$%s' % format(round(s.get('capacity_usd') or 0), ',')) if s.get('capacity_usd') else '-',
@@ -204,6 +210,11 @@ def book_cmd(args):
     if absent:
         print('A rate in brackets is the last one seen: its detector ran on the newest window and did not find it — '
               '%s.' % ', '.join(s['id'] for s in absent))
+    failed = [s for s in rows if ((latest(s) if (latest(s) or {}).get('net_apr') is not None else last_priced(s))
+                                  or {}).get('go') is False]
+    if failed:
+        print('A starred rate is one its own detector declines: the arithmetic holds but a gate does not — %s. '
+              'Read the finding before the number.' % ', '.join(s['id'] for s in failed))
 
 
 def show(args):

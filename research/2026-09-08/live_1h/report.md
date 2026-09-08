@@ -1,6 +1,6 @@
 # Ethereum mainnet live scan: 2026-09-08T04:27:11+00:00 to 2026-09-08T05:27:11+00:00 UTC
 
-Blocks 25930251 to 25930550 (300 blocks, 1.00 h), 65,627 transactions, 272,715 logs. Prices at head block 25930925: ETH $2474, BTC $79k. Generated 2026-09-08T06:48:09+00:00 UTC by `scripts/live_scan.py`; the narrative section is written by the LLM from `analysis.json` and `head_state.json`, every table below is deterministic.
+Blocks 25930251 to 25930550 (300 blocks, 1.00 h), 65,627 transactions, 272,715 logs. Prices at head block 25930925: ETH $2474, BTC $79k. Generated 2026-09-08T08:32:23+00:00 UTC by `scripts/live_scan.py`; the narrative section is written by the LLM from `analysis.json` and `head_state.json`, every table below is deterministic.
 
 # What the whole book is worth
 
@@ -16,7 +16,8 @@ observation window `getOracleState` reports as unpopulated.
 
 The classification is the point. A principal token's implied yield is a *term premium* only when the floating rate on
 the same underlying is readable; otherwise it is the market's price of an issuer's credit, which this system has not
-assessed. In this window:
+assessed. Each implied yield below is re-derived from its PT price and maturity [[verify: head-pendle-apy]]. In this
+window:
 
 | PT | implied | comparison | classification |
 |---|---:|---|---|
@@ -35,19 +36,32 @@ prevent, committed by its own matcher.
 
 ## 2. The strategy book, sized — all seven re-pricing themselves
 
-| strategy | net APR | capacity | per year |
-|---|---:|---:|---:|
-| Sky savings rate over Aave USDS | 3.48% | $1,000,000,000 | $34,800,000 |
-| sUSDe cooldown redemption | 17.25% | $600,000 | $103,500 |
-| Morpho USDT borrow vs Aave | 1.46% | $6,353,460 | $92,761 |
-| USDG captive-flow v4 LP | 10.37% | $150,000 | $15,555 |
-| PT-sUSDS fixed vs the savings rate | 0.64% | $1,000,000 | $6,400 |
-| Compound v3 USDC over SparkLend | 0.39% | $1,400,000 | $5,460 |
-| Aave USDtb supply | 2.39% | $227,400 | $5,435 |
+Every rate below is a detector's reading of the head state, and each of those readings satisfies its protocol's own
+identity [[verify: head-supply-identity]] [[verify: head-irm-identity]] [[verify: head-morpho-identity]]
+[[verify: head-pendle-apy]] [[verify: head-utilisation]].
 
-**Excluding the savings rate — which is the benchmark, not an edge — the whole book is worth about $229,000 a year**,
-and $103,500 of that is one trade whose annualisation assumes a million dollars of sUSDe is offered below NAV every
-single day. Nothing here is stale: every row was re-priced from this window or the one before it.
+| strategy | net APR | capacity | per year | its own detector |
+|---|---:|---:|---:|---|
+| Sky savings rate over Aave USDS | 3.48% | $1,000,000,000 | $34,800,000 | go |
+| sUSDe cooldown redemption | 17.25% | $600,000 | $103,500 | **declines** |
+| Morpho USDT borrow vs Aave | 1.46% | $6,353,460 | $92,761 | go |
+| USDG captive-flow v4 LP | 10.37% | $150,000 | $15,555 | go |
+| PT-sUSDS fixed vs the savings rate | 0.64% | $1,000,000 | $6,400 | go |
+| Compound v3 USDC over SparkLend | 0.39% | $1,400,000 | $5,460 | go |
+| Aave USDtb supply | 2.39% | $227,400 | $5,435 | go |
+
+Excluding the savings rate — the benchmark, not an edge — the book totals about **$229,000 a year**, of which
+**$125,600 survives its own detectors' verdicts**. Nothing here is stale: every row was re-priced from this window or
+the one before it.
+
+The declined row is the largest edge in the book, and it was declined by a check written after the table above was
+first drafted. `nav_discount` now compares a discount against the dispersion of the prices it was averaged from. The
+sUSDe reading is 7.4bp to NAV, 4.7bp after the round trip — measured across a window whose p10-to-p90 spread was
+**5.4bp**. Significance 0.87: the edge is *inside* the noise of where the asset traded, so it is not distinguishable
+from a sampling artifact, and the detector says so rather than quoting 17% a year.
+
+That test is meaningful for a dollar claim, whose NAV barely moves inside a window, and deliberately conservative for
+an ETH-denominated one, where the same spread also contains ETH's own move. Both cases are labelled in the evidence.
 
 The last hand number to fall was the largest. "Borrow USDT on Morpho rather than Aave" was quoted at 91bp on $24M —
 $218,400 a year — from a single afternoon two days ago. Measured: **1.46pp on $6.35M, $92,761**. The rate gap is
@@ -57,7 +71,8 @@ lends against **sUSDS at 96.5% LLTV**, so the rate is only available to a borrow
 
 On an isolated-market venue that distinction is the whole thing. A pooled reserve lets any listed collateral reach any
 rate; a Morpho market is a rate *for one collateral*, and quoting it without saying which is quoting a price nobody
-can necessarily trade.
+can necessarily trade. Every Morpho rate above satisfies the protocol's own supplier identity
+[[verify: head-morpho-identity]] and every utilisation is re-derived from the balances [[verify: head-utilisation]].
 
 That is the honest state of the mainnet dollar opportunity set as this system currently measures it. It is not a
 disappointing result; it is the result. An efficient market is supposed to look like this, and the value of the loop
@@ -72,7 +87,7 @@ came from a rate curve or a traded volume rather than a pool balance, and a kill
 | PT-sUSDS fixed vs the savings rate | 1.37% *(hand, 09-06)* | **0.64%** | the raw gap narrowed 137bp → 129bp, and the hand study did not net Pendle's entry impact |
 
 The Compound row is the kink analysis playing out in hours: 0.47 percentage points of utilisation, and three quarters
-of the opportunity is gone. The PT row is a modelling correction rather than a market move — and it required its own
+of the opportunity is gone. The read sits on the curve sampled at the same block [[verify: head-compound-curve]]. The PT row is a modelling correction rather than a market move — and it required its own
 correction first. Charging a Pendle purchase the constant-product impact overstates it by about two orders of
 magnitude, because Pendle's AMM is a rate curve; the detector now applies an amplification of 50, anchored to the one
 observation this repo has (a $1M order into a $3.5M pool taking "a real part of" 137bp), and says so. Replacing that
@@ -108,9 +123,30 @@ underneath it reports as stale before a single number is compared.
 
 ## What is checked, and what is not
 
-The window aggregates are re-derived by `live_scan verify`. Everything in sections 1–3 comes from head reads and
-contract calls at 05:29 UTC — no verify recipe re-derives a head read yet, so the entire rate and yield surface in
-this note is a single reading. That remains the largest untagged surface in the system.
+The window aggregates are re-derived by `live_scan verify` from the raw blocks through a second code path. The rate
+and yield surface — sections 1 to 3 — comes from head reads, and there is no second RPC path to read those through.
+What there is instead, added after this note was first written, is a set of **identity checks**: each protocol
+publishes relationships between the fields it reports, and re-deriving one from the others tests the whole decode
+against the chain's own arithmetic. On this window, 182 individual identities pass:
+
+| id | checked | identity |
+|---|---:|---|
+| `head-utilisation` | 50 | utilisation equals borrowed / supplied |
+| `head-supply-identity` | 32 | supply APR equals borrow APR × utilisation × (1 − reserve factor) |
+| `head-irm-identity` | 32 | borrow APR equals the reserve IRM evaluated at its utilisation |
+| `head-compound-curve` | 3 | the Compound supply read lies on the curve sampled at the same block |
+| `head-morpho-identity` | 60 | Morpho supply APY equals borrow APY × utilisation × (1 − fee) |
+| `head-pendle-apy` | 5 | the Pendle implied yield is (1/price)^(365/days) − 1 |
+
+They are not a second opinion on whether a rate is *correct* — the chain is the only source for that. They test that
+the decode is right, which is where this session's two rate bugs actually lived. Setting Aave's USDC supply APR to
+its borrow value, the exact shape of the earlier series bug, fails `head-supply-identity` immediately with the venue,
+asset, utilisation and reserve factor named.
+
+The peg prices behind `nav_discount` are now checked in the way that matters for the claim built on them: not by
+re-deriving the average, but by asking whether the gap being called a discount is larger than the spread of the
+prices it was averaged from. What still carries no check at all is the NAV side — the exchange rates in
+`head_state.rates` are read from one contract method each, with no second view to disagree with them.
 
 
 ---

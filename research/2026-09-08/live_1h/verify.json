@@ -238,32 +238,7 @@
    "examples": []
   }
  ],
- "mechanisms": [
-  {
-   "id": "stacy-deposit-for",
-   "ok": true,
-   "detail": "depositFor does not set lastDepositBlock",
-   "claim": "StacyVault's `depositFor` never writes `lastDepositBlock`, so a flash depositor skips the lock."
-  },
-  {
-   "id": "msca-not-exchange",
-   "ok": true,
-   "detail": "implementation resolves to 'SingleOwnerMSCA'",
-   "claim": "0xee7ae85f is a modular smart-contract account, not the exchange deposit contract it was tagged as."
-  },
-  {
-   "id": "no-contract-hot-wallets",
-   "ok": true,
-   "detail": "0 contradiction(s); audit checked 96 exchange tags",
-   "claim": "no address counted as a CEX *hot wallet* is a contract."
-  },
-  {
-   "id": "fingerprint-matches-chain",
-   "ok": true,
-   "detail": "4/5 claims checked against Blockscout, 0 wrong; 1 hit(s) declined to guess",
-   "claim": "when `solver_fingerprint` calls an address a contract or an EOA, the chain agrees."
-  }
- ],
+ "mechanisms": null,
  "claims": {
   "cited": [
    "blocks",
@@ -320,11 +295,12 @@
    "usdc-mint"
   ],
   "headline_numbers_tagged": 22,
-  "headline_numbers_untagged": 23,
-  "coverage": 0.489,
+  "headline_numbers_untagged": 24,
+  "coverage": 0.478,
   "untagged_examples": [
    "The eight markets that traded in the earlier 21:27\u201323:27 window were *all* credit spreads \u2014 implied yields of 6% to 23% with no comparable floating ra",
-   "**Excluding the savings rate \u2014 which is the benchmark, not an edge \u2014 the whole book is worth about $229,000 a year**, and $103,500 of that is one trad",
+   "Excluding the savings rate \u2014 the benchmark, not an edge \u2014 the book totals about **$229,000 a year**, of which **$125,600 survives its own detectors' v",
+   "The declined row is the largest edge in the book, and it was declined by a check written after the table above was first drafted. now compares a disco",
    "The last hand number to fall was the largest. \"Borrow USDT on Morpho rather than Aave\" was quoted at 91bp on $24M \u2014 $218,400 a year \u2014 from a single af",
    "| strategy | earlier today | now | why | |---|---:|---:|---| | Compound v3 USDC over SparkLend | 1.46% | **0.34%** | utilisation drifted 90.77% \u2192 90.3",
    "- **JIT liquidity took 15.8% of pool fees in this window** ($26 of $168), against 0.06%\u20130.29% in the three previous ones. The absolute numbers are tri"

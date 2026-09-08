@@ -4,9 +4,16 @@
   {
    "detector": "address_poisoning",
    "hits": 1,
-   "seconds": 4.13,
+   "seconds": 4.04,
    "error": null,
    "description": "lookalike dust transfers that follow a large transfer, aimed at a later copy-paste"
+  },
+  {
+   "detector": "borrow_cost",
+   "hits": 4,
+   "seconds": 3.26,
+   "error": null,
+   "description": "cheapest venue to borrow each asset, capped by the liquidity actually withdrawable there"
   },
   {
    "detector": "dollar_rate_outlier",
@@ -25,7 +32,7 @@
   {
    "detector": "gas_concentration",
    "hits": 0,
-   "seconds": 3.12,
+   "seconds": 0.0,
    "error": null,
    "description": "base-fee spikes attributed to the contract whose gas demand caused them"
   },
@@ -37,6 +44,13 @@
    "description": "fee share taken by liquidity minted for a single swap, per pool and per window"
   },
   {
+   "detector": "liquidity_blackout",
+   "hits": 0,
+   "seconds": 0.0,
+   "error": null,
+   "description": "lending reserves whose withdrawable liquidity collapses, and the time of day it happens"
+  },
+  {
    "detector": "lp_marginal_yield",
    "hits": 8,
    "seconds": 0.0,
@@ -46,14 +60,14 @@
   {
    "detector": "mass_distribution",
    "hits": 5,
-   "seconds": 5.29,
+   "seconds": 5.42,
    "error": null,
    "description": "one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam"
   },
   {
    "detector": "mislabelled_flow",
    "hits": 2,
-   "seconds": 3.49,
+   "seconds": 3.65,
    "error": null,
    "description": "address labels the window contradicts, which is how a headline moves by a multiple"
   },
@@ -74,7 +88,7 @@
   {
    "detector": "solver_fingerprint",
    "hits": 12,
-   "seconds": 3.42,
+   "seconds": 3.59,
    "error": null,
    "description": "unlabelled contracts that pass value straight through: solvers, routers and searcher bots"
   }
@@ -322,6 +336,112 @@
    "identity": "mislabelled_flow:0xf977814e90da44bfa03b6295a0616a897441acec:receives-only"
   },
   {
+   "detector": "borrow_cost",
+   "title": "USDC borrows 3.87pp cheaper on Aave v3 than Compound v3 USDC; $154.7M withdrawable there, gas is negligible at this base fee \u2014 the constraint is the collateral and the liquidity",
+   "severity": "notable",
+   "evidence": {
+    "asset": "USDC",
+    "cheapest": {
+     "venue": "Aave v3",
+     "borrow_apy_pct": 4.268,
+     "liquidity_usd": 154711261,
+     "utilisation": 0.9329911369459044,
+     "collateral_required": "any listed on the pool",
+     "market": null
+    },
+    "dearest": {
+     "venue": "Compound v3 USDC",
+     "borrow_apy_pct": 8.136,
+     "liquidity_usd": 32989475
+    },
+    "all_venues": [
+     {
+      "venue": "Aave v3",
+      "borrow_apy_pct": 4.268,
+      "liquidity_usd": 154711261,
+      "collateral": "any listed on the pool"
+     },
+     {
+      "venue": "SparkLend",
+      "borrow_apy_pct": 4.268,
+      "liquidity_usd": 1997683,
+      "collateral": "any listed on the pool"
+     },
+     {
+      "venue": "Compound v3 USDC",
+      "borrow_apy_pct": 8.136,
+      "liquidity_usd": 32989475,
+      "collateral": "the Comet\u2019s listed collaterals"
+     }
+    ],
+    "gap_pp": 3.868,
+    "refinance_gas_usd": 0.123,
+    "caveat": "moving a position between venues also pays the spread on any collateral that has to be converted, which this does not price: it compares rates and liquidity only",
+    "why": "the saving is capped by what is withdrawable at the cheap venue, and on an isolated market it is only available against the collateral that market accepts \u2014 which is usually the binding constraint rather than the rate"
+   },
+   "economics": {
+    "net_apr": 0.0387,
+    "net_per_year_usd": 5983912,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 154711261,
+    "break_even_size_usd": 3
+   },
+   "usd": 5983911.781070762,
+   "key": "USDC:Aave v3/Compound v3 USDC",
+   "identity": "borrow_cost:USDC:Aave v3/Compound v3 USDC"
+  },
+  {
+   "detector": "borrow_cost",
+   "title": "USDS borrows 1.60pp cheaper on SparkLend than Aave v3; $257.0M withdrawable there, gas is negligible at this base fee \u2014 the constraint is the collateral and the liquidity",
+   "severity": "notable",
+   "evidence": {
+    "asset": "USDS",
+    "cheapest": {
+     "venue": "SparkLend",
+     "borrow_apy_pct": 3.926,
+     "liquidity_usd": 256985170,
+     "utilisation": 0.6561761435300535,
+     "collateral_required": "any listed on the pool",
+     "market": null
+    },
+    "dearest": {
+     "venue": "Aave v3",
+     "borrow_apy_pct": 5.524,
+     "liquidity_usd": 10872998
+    },
+    "all_venues": [
+     {
+      "venue": "SparkLend",
+      "borrow_apy_pct": 3.926,
+      "liquidity_usd": 256985170,
+      "collateral": "any listed on the pool"
+     },
+     {
+      "venue": "Aave v3",
+      "borrow_apy_pct": 5.524,
+      "liquidity_usd": 10872998,
+      "collateral": "any listed on the pool"
+     }
+    ],
+    "gap_pp": 1.598,
+    "refinance_gas_usd": 0.123,
+    "caveat": "moving a position between venues also pays the spread on any collateral that has to be converted, which this does not price: it compares rates and liquidity only",
+    "why": "the saving is capped by what is withdrawable at the cheap venue, and on an isolated market it is only available against the collateral that market accepts \u2014 which is usually the binding constraint rather than the rate"
+   },
+   "economics": {
+    "net_apr": 0.016,
+    "net_per_year_usd": 4107629,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 256985170,
+    "break_even_size_usd": 8
+   },
+   "usd": 4107628.7160507687,
+   "key": "USDS:SparkLend/Aave v3",
+   "identity": "borrow_cost:USDS:SparkLend/Aave v3"
+  },
+  {
    "detector": "rate_dispersion",
    "title": "USDT pays 0.94pp more on Aave v3 than SparkLend; best size $491.1M earns $2.2M a year over SparkLend",
    "severity": "notable",
@@ -468,6 +588,112 @@
    "usd": 2077311.9233247892,
    "key": "USDC:Compound v3 USDC/SparkLend",
    "identity": "rate_dispersion:USDC:Compound v3 USDC/SparkLend"
+  },
+  {
+   "detector": "borrow_cost",
+   "title": "DAI borrows 0.65pp cheaper on SparkLend than Aave v3; $99.7M withdrawable there, gas is negligible at this base fee \u2014 the constraint is the collateral and the liquidity",
+   "severity": "notable",
+   "evidence": {
+    "asset": "DAI",
+    "cheapest": {
+     "venue": "SparkLend",
+     "borrow_apy_pct": 4.043,
+     "liquidity_usd": 99702719,
+     "utilisation": 0.6765682294338793,
+     "collateral_required": "any listed on the pool",
+     "market": null
+    },
+    "dearest": {
+     "venue": "Aave v3",
+     "borrow_apy_pct": 4.695,
+     "liquidity_usd": 17936505
+    },
+    "all_venues": [
+     {
+      "venue": "SparkLend",
+      "borrow_apy_pct": 4.043,
+      "liquidity_usd": 99702719,
+      "collateral": "any listed on the pool"
+     },
+     {
+      "venue": "Aave v3",
+      "borrow_apy_pct": 4.695,
+      "liquidity_usd": 17936505,
+      "collateral": "any listed on the pool"
+     }
+    ],
+    "gap_pp": 0.651,
+    "refinance_gas_usd": 0.123,
+    "caveat": "moving a position between venues also pays the spread on any collateral that has to be converted, which this does not price: it compares rates and liquidity only",
+    "why": "the saving is capped by what is withdrawable at the cheap venue, and on an isolated market it is only available against the collateral that market accepts \u2014 which is usually the binding constraint rather than the rate"
+   },
+   "economics": {
+    "net_apr": 0.0065,
+    "net_per_year_usd": 649493,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 99702719,
+    "break_even_size_usd": 19
+   },
+   "usd": 649492.7281257516,
+   "key": "DAI:SparkLend/Aave v3",
+   "identity": "borrow_cost:DAI:SparkLend/Aave v3"
+  },
+  {
+   "detector": "borrow_cost",
+   "title": "USDT borrows 0.74pp cheaper on SparkLend than Aave v3; $67.4M withdrawable there, gas is negligible at this base fee \u2014 the constraint is the collateral and the liquidity",
+   "severity": "notable",
+   "evidence": {
+    "asset": "USDT",
+    "cheapest": {
+     "venue": "SparkLend",
+     "borrow_apy_pct": 3.516,
+     "liquidity_usd": 67407220,
+     "utilisation": 0.8275397375169153,
+     "collateral_required": "any listed on the pool",
+     "market": null
+    },
+    "dearest": {
+     "venue": "Aave v3",
+     "borrow_apy_pct": 4.255,
+     "liquidity_usd": 207763969
+    },
+    "all_venues": [
+     {
+      "venue": "SparkLend",
+      "borrow_apy_pct": 3.516,
+      "liquidity_usd": 67407220,
+      "collateral": "any listed on the pool"
+     },
+     {
+      "venue": "Compound v3 USDT",
+      "borrow_apy_pct": 3.832,
+      "liquidity_usd": 29565694,
+      "collateral": "the Comet\u2019s listed collaterals"
+     },
+     {
+      "venue": "Aave v3",
+      "borrow_apy_pct": 4.255,
+      "liquidity_usd": 207763969,
+      "collateral": "any listed on the pool"
+     }
+    ],
+    "gap_pp": 0.739,
+    "refinance_gas_usd": 0.123,
+    "caveat": "moving a position between venues also pays the spread on any collateral that has to be converted, which this does not price: it compares rates and liquidity only",
+    "why": "the saving is capped by what is withdrawable at the cheap venue, and on an isolated market it is only available against the collateral that market accepts \u2014 which is usually the binding constraint rather than the rate"
+   },
+   "economics": {
+    "net_apr": 0.0074,
+    "net_per_year_usd": 498386,
+    "go": true,
+    "reason": "clears gas, impact and competition at this size",
+    "capacity_usd": 67407220,
+    "break_even_size_usd": 17
+   },
+   "usd": 498385.71132231585,
+   "key": "USDT:SparkLend/Aave v3",
+   "identity": "borrow_cost:USDT:SparkLend/Aave v3"
   },
   {
    "detector": "lp_marginal_yield",

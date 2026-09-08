@@ -35,13 +35,24 @@ def blocks_in(out):
     return sorted(int(p.name.split('.')[0]) for p in d.glob('*.json.gz'))
 
 
+def census_blocks(out, every):
+    """The blocks the census runs on. `every > 1` takes a regular subsample, which is what makes a ten-hour window
+    affordable: receipts are a 1,000-credit call, so 2,993 blocks is 3M credits against 750k at every=4. A regular
+    stride is used rather than a random sample so the series stays evenly spaced in time and the diurnal profile is
+    not distorted; the sampling share is recorded in the output and every rate is reported per-gas, not per-block, so
+    the estimate does not depend on the sampled blocks being average-sized."""
+    nums = blocks_in(out)
+    return nums[::every] if every > 1 else nums
+
+
 def cmd_receipts(args):
     out = Path(args.out)
     # eth_getBlockReceipts is a 1,000-credit call and the keys throttle on sustained batches of them, so this is
     # paced deliberately rather than fanned out the way block fetching is.
     rpc = RPC(log_path=out / 'rpc_errors.jsonl', max_credits=args.max_credits, interval=args.interval)
-    want = [n for n in blocks_in(out) if not rpath(out, n).exists()]
-    print(json.dumps({'blocks': len(blocks_in(out)), 'missing': len(want)}))
+    target = census_blocks(out, args.every)
+    want = [n for n in target if not rpath(out, n).exists()]
+    print(json.dumps({'blocks': len(blocks_in(out)), 'census_blocks': len(target), 'every': args.every, 'missing': len(want)}))
 
     def fetch(chunk):
         res = rpc.batch([('eth_getBlockReceipts', [hex(n)]) for n in chunk])
@@ -75,12 +86,14 @@ def cmd_analyze(args):
     if eth is None:
         hs = json.loads((out / 'head_state.json').read_text())
         eth = hs['feeds']['ETH']['usd']
-    nums = blocks_in(out)
-    base = {}
+    nums = [n for n in census_blocks(out, args.every) if rpath(out, n).exists()]
+    all_blocks = blocks_in(out)
+    base, ts = {}, {}
     for n in nums:
         with gzip.open(Path(out) / 'raw' / 'blocks' / (str(n) + '.json.gz'), 'rt') as f:
             b = json.load(f)
         base[n] = hx(b['baseFeePerGas'])
+        ts[n] = hx(b['timestamp'])
     burn = tip = 0
     gas_total = 0
     by_sender = collections.defaultdict(lambda: {'txs': 0, 'gas': 0, 'tip_wei': 0, 'burn_wei': 0, 'failed': 0})
@@ -88,6 +101,7 @@ def cmd_analyze(args):
     tip_gwei_weighted = []
     failed_gas = 0
     n_tx = 0
+    buckets = collections.OrderedDict()   # the diurnal profile: is the ratio a property of the hour, or of the chain?
     for n in nums:
         p = rpath(out, n)
         if not p.exists():
@@ -111,6 +125,10 @@ def cmd_analyze(args):
                 d = by_target[x['t'].lower()]
                 d['txs'] += 1; d['gas'] += gu; d['tip_wei'] += gu * t
             tip_gwei_weighted.append((t / 1e9, gu))
+            bk = ts[n] - (ts[n] % (args.bucket * 60))
+            bb = buckets.setdefault(bk, {'gas': 0, 'burn_wei': 0, 'tip_wei': 0, 'txs': 0, 'blocks': set(), 'base_wei': 0})
+            bb['gas'] += gu; bb['burn_wei'] += gu * bf; bb['tip_wei'] += gu * t; bb['txs'] += 1
+            bb['blocks'].add(n); bb['base_wei'] = bf
 
     tip_gwei_weighted.sort()
     cum, half = 0, gas_total / 2
@@ -131,7 +149,20 @@ def cmd_analyze(args):
                  'mean_tip_gwei': (r['tip_wei'] / r['gas'] / 1e9) if r['gas'] else 0}
                 for a, r in sorted(d.items(), key=lambda kv: -kv[1][key])[:n]]
 
-    A = {'window': str(out), 'blocks': len(nums), 'transactions': n_tx, 'eth_usd': eth,
+    series = []
+    for k in sorted(buckets):
+        b = buckets[k]
+        series.append({'utc': __import__('datetime').datetime.fromtimestamp(k, __import__('datetime').timezone.utc).isoformat(timespec='minutes'),
+                       'blocks_sampled': len(b['blocks']), 'txs': b['txs'], 'gas': b['gas'],
+                       'base_fee_gwei': b['burn_wei'] / b['gas'] / 1e9 if b['gas'] else 0,
+                       'mean_tip_gwei': b['tip_wei'] / b['gas'] / 1e9 if b['gas'] else 0,
+                       'burn_usd': b['burn_wei'] / 1e18 * eth, 'tip_usd': b['tip_wei'] / 1e18 * eth,
+                       'tip_over_burn': (b['tip_wei'] / b['burn_wei']) if b['burn_wei'] else None})
+
+    A = {'window': str(out), 'blocks': len(nums), 'blocks_in_window': len(all_blocks),
+         'sample_every': args.every, 'sample_share': len(nums) / max(len(all_blocks), 1),
+         'series_bucket_minutes': args.bucket, 'series': series,
+         'transactions': n_tx, 'eth_usd': eth,
          'gas_used': gas_total,
          'base_fee_burn_eth': burn / 1e18, 'base_fee_burn_usd': burn / 1e18 * eth,
          'priority_fees_eth': tip / 1e18, 'priority_fees_usd': tip / 1e18 * eth,
@@ -141,7 +172,10 @@ def cmd_analyze(args):
          'failed_gas_share': failed_gas / gas_total if gas_total else 0,
          'top_tippers': rows(by_sender, 'tip_wei'),
          'top_gas_targets': rows(by_target, 'gas'),
-         'note': 'the burn is protocol revenue destroyed; the priority fee is paid to the block builder and, through '
+         'note': ('figures are the totals over the %d sampled blocks (%.1f%% of the window); scale by the inverse '
+                  'share for a window estimate, but the ratios and per-gas rates need no scaling. ' %
+                  (len(nums), 100 * len(nums) / max(len(all_blocks), 1))) +
+                 'the burn is protocol revenue destroyed; the priority fee is paid to the block builder and, through '
                  'the auction, to the proposer. When the ratio exceeds one the chain is charging less for its '
                  'blockspace than the private market clearing it is charging for position inside a block.'}
     (out / 'fee_census.json').write_text(json.dumps(A, indent=2, sort_keys=True))
@@ -155,9 +189,11 @@ def main():
     r = sub.add_parser('receipts'); r.set_defaults(fn=cmd_receipts)
     r.add_argument('--out', required=True); r.add_argument('--workers', type=int, default=3)
     r.add_argument('--chunk', type=int, default=2); r.add_argument('--interval', type=float, default=0.25)
+    r.add_argument('--every', type=int, default=1, help='subsample: fetch receipts for every Nth block')
     r.add_argument('--max-credits', type=int, default=2_000_000)
     a = sub.add_parser('analyze'); a.set_defaults(fn=cmd_analyze)
     a.add_argument('--out', required=True); a.add_argument('--eth-usd', type=float, default=None)
+    a.add_argument('--every', type=int, default=1); a.add_argument('--bucket', type=int, default=30)
     x = ap.parse_args()
     raise SystemExit(x.fn(x))
 

@@ -36,19 +36,28 @@ Every rate below is a detector's reading of the head state, and each of those re
 identity [[verify: head-supply-identity]] [[verify: head-irm-identity]] [[verify: head-morpho-identity]]
 [[verify: head-pendle-apy]] [[verify: head-utilisation]].
 
-| strategy | net APR | capacity | per year |
-|---|---:|---:|---:|
-| Sky savings rate over Aave USDS | 3.48% | $1,000,000,000 | $34,800,000 |
-| sUSDe cooldown redemption | 17.25% | $600,000 | $103,500 |
-| Morpho USDT borrow vs Aave | 1.46% | $6,353,460 | $92,761 |
-| USDG captive-flow v4 LP | 10.37% | $150,000 | $15,555 |
-| PT-sUSDS fixed vs the savings rate | 0.64% | $1,000,000 | $6,400 |
-| Compound v3 USDC over SparkLend | 0.39% | $1,400,000 | $5,460 |
-| Aave USDtb supply | 2.39% | $227,400 | $5,435 |
+| strategy | net APR | capacity | per year | its own detector |
+|---|---:|---:|---:|---|
+| Sky savings rate over Aave USDS | 3.48% | $1,000,000,000 | $34,800,000 | go |
+| sUSDe cooldown redemption | 17.25% | $600,000 | $103,500 | **declines** |
+| Morpho USDT borrow vs Aave | 1.46% | $6,353,460 | $92,761 | go |
+| USDG captive-flow v4 LP | 10.37% | $150,000 | $15,555 | go |
+| PT-sUSDS fixed vs the savings rate | 0.64% | $1,000,000 | $6,400 | go |
+| Compound v3 USDC over SparkLend | 0.39% | $1,400,000 | $5,460 | go |
+| Aave USDtb supply | 2.39% | $227,400 | $5,435 | go |
 
-**Excluding the savings rate — which is the benchmark, not an edge — the whole book is worth about $229,000 a year**,
-and $103,500 of that is one trade whose annualisation assumes a million dollars of sUSDe is offered below NAV every
-single day. Nothing here is stale: every row was re-priced from this window or the one before it.
+Excluding the savings rate — the benchmark, not an edge — the book totals about **$229,000 a year**, of which
+**$125,600 survives its own detectors' verdicts**. Nothing here is stale: every row was re-priced from this window or
+the one before it.
+
+The declined row is the largest edge in the book, and it was declined by a check written after the table above was
+first drafted. `nav_discount` now compares a discount against the dispersion of the prices it was averaged from. The
+sUSDe reading is 7.4bp to NAV, 4.7bp after the round trip — measured across a window whose p10-to-p90 spread was
+**5.4bp**. Significance 0.87: the edge is *inside* the noise of where the asset traded, so it is not distinguishable
+from a sampling artifact, and the detector says so rather than quoting 17% a year.
+
+That test is meaningful for a dollar claim, whose NAV barely moves inside a window, and deliberately conservative for
+an ETH-denominated one, where the same spread also contains ETH's own move. Both cases are labelled in the evidence.
 
 The last hand number to fall was the largest. "Borrow USDT on Morpho rather than Aave" was quoted at 91bp on $24M —
 $218,400 a year — from a single afternoon two days ago. Measured: **1.46pp on $6.35M, $92,761**. The rate gap is
@@ -130,4 +139,7 @@ the decode is right, which is where this session's two rate bugs actually lived.
 its borrow value, the exact shape of the earlier series bug, fails `head-supply-identity` immediately with the venue,
 asset, utilisation and reserve factor named.
 
-What still carries no check: the NAV rates behind `nav_discount`, and the peg prices they are compared against.
+The peg prices behind `nav_discount` are now checked in the way that matters for the claim built on them: not by
+re-deriving the average, but by asking whether the gap being called a discount is larger than the spread of the
+prices it was averaged from. What still carries no check at all is the NAV side — the exchange rates in
+`head_state.rates` are read from one contract method each, with no second view to disagree with them.

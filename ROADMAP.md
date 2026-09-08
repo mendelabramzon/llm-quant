@@ -370,7 +370,11 @@ for findings and had not yet stopped for strategies. A strategy backed by a dete
 backed by a bespoke scanner decays into a memory the moment the session ends.
 
 Excluding the savings rate, which is the benchmark rather than an edge, the whole book measures at **about $229,000
-a year** — and that is the point of building it. Every row now has legs `economics.py` priced, a capacity that came
+a year**, of which **$125,600 survives its own detectors' verdicts** — and that is the point of building it. The
+$103,500 difference is one row: the sUSDe redemption trade, the largest edge in the book, declined by a significance
+test written the same day. Its 4.7bp net edge was measured across a window whose p10-to-p90 price spread was 5.4bp,
+so the discount is not distinguishable from where the asset traded. A book that reports that is worth more than one
+that reports 17% a year. Every row now has legs `economics.py` priced, a capacity that came
 from a rate curve, a withdrawable balance or a traded volume rather than a headline size, and a kill criterion. An
 efficient market is supposed to look like this; the value of the loop is that the number is derived rather than
 asserted, and that it moves on its own when the market does.

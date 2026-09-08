@@ -25,6 +25,13 @@ Three things make the difference between a finding and a strategy, and each is r
 
 A premium — the claim trading *above* NAV — is reported too, at low severity. It is not a trade in this direction, but
 it says the market is paying for immediacy, which is the same mechanism seen from the other side.
+
+**And a discount smaller than the spread it was measured across is not a discount.** The market price here is a
+volume-weighted average of the window's swaps, so the window's own p10-to-p90 spread bounds how confidently any gap
+below it can be called. On 2026-09-07 sUSDe showed a 7.1bp discount, 4.4bp after the round trip, across a window whose
+p10-to-p90 spread was 5.4bp: the edge was inside the dispersion of the prices it was averaged from, which is a
+materially weaker claim than the number alone suggests. Every hit now carries that comparison and is demoted when it
+fails it.
 """
 from . import Hit
 from economics import Opportunity, Leg, score
@@ -112,6 +119,14 @@ def scan(ctx):
         red = REDEMPTION.get(key, DEFAULT_REDEMPTION)
         cap = float(p['volume_usd'])          # you can only buy what was offered
         net_bps = disc_bps - red['exit_bps']
+        # How wide were the prices this average came from? A gap narrower than that spread is inside the noise of the
+        # sample it was measured against. For an ETH-denominated claim the spread also contains ETH's own move over
+        # the window, so the test is conservative there rather than wrong — it is noted in the evidence.
+        p10, p90 = p.get('p10'), p.get('p90')
+        disp_bps = (1e4 * (p90 - p10) / nav) if (p10 and p90 and nav) else None
+        best_bps = (1e4 * (nav - p10) / nav) if (p10 and nav) else None
+        significance = (net_bps / disp_bps) if (disp_bps and disp_bps > 0) else None
+        inside_noise = significance is not None and significance < 1.0
         if disc_bps > 0:
             v = score(Opportunity(
                 name='%s at %.1fbp below NAV, redeemed in %.1f day(s)' % (sym, disc_bps, red['days']),
@@ -126,17 +141,31 @@ def scan(ctx):
                       'trade. The redemption leg is assumed to pay NAV exactly, which the fork test of the sDAI path '
                       'confirmed and which a queue under stress would not.' % red['exit_bps']),
                 gas_gwei=gas_gwei, eth_usd=eth, min_net_usd=0.0)
+            # The go/no-go has to carry the significance test, not just the arithmetic: the ledger and the strategy
+            # book read `go` and `net_apr` from here, so an edge inside its own price noise must not reach them as a
+            # clean yes.
             econ = {'net_apr': round(v.net_apr, 4), 'net_per_year_usd': round(v.annual_net_usd),
-                    'net_per_run_usd': round(v.net_per_run_usd, 2), 'go': v.go, 'reason': v.reason,
+                    'net_per_run_usd': round(v.net_per_run_usd, 2),
+                    'go': bool(v.go and not inside_noise),
+                    'reason': (v.reason if not inside_noise else
+                               'net edge %.1fbp is inside the window’s %.1fbp p10-to-p90 price spread (significance '
+                               '%.2f): the discount is not distinguishable from where the asset traded'
+                               % (net_bps, disp_bps, significance)),
                     'capacity_usd': round(cap), 'hold_days': red['days'],
                     'discount_bps': round(disc_bps, 2), 'exit_cost_bps': red['exit_bps'],
-                    'net_edge_bps': round(net_bps, 2)}
-            solid = v.go and not red['atomic'] and red['availability'] in ('always', 'queued')
+                    'net_edge_bps': round(net_bps, 2),
+                    'price_dispersion_bps': None if disp_bps is None else round(disp_bps, 2),
+                    'significance': None if significance is None else round(significance, 2),
+                    'inside_price_noise': inside_noise}
+            solid = (v.go and not red['atomic'] and red['availability'] in ('always', 'queued')
+                     and not inside_noise)
             sev = 'high' if (solid and net_bps >= 15) else ('notable' if solid else 'info')
-            title = ('%s trades %.1fbp below NAV, %.1fbp after the %.1fbp round trip; %s%s'
+            title = ('%s trades %.1fbp below NAV, %.1fbp after the %.1fbp round trip; %s%s%s'
                      % (sym, disc_bps, net_bps, red['exit_bps'], red['path'],
                         '' if red['availability'] in ('always', 'queued') else
-                        ' — %s, so the exit may not be there when you want it' % red['availability']))
+                        ' — %s, so the exit may not be there when you want it' % red['availability'],
+                        (' — but the window’s own p10-to-p90 spread is %.1fbp, so the edge is inside the dispersion '
+                         'of the prices it was averaged from' % disp_bps) if inside_noise else ''))
         else:
             econ, sev = None, 'info'
             title = '%s trades %.1fbp above NAV — the market is paying for immediacy' % (sym, -disc_bps)
@@ -156,6 +185,14 @@ def scan(ctx):
                       'refills_needed_per_year': round(365 / max(red['days'], 0.02)),
                       'swaps': p.get('n'), 'venues': p.get('venues'),
                       'redemption': red, 'net_edge_bps': round(net_bps, 2),
+                      'price_dispersion_bps': None if disp_bps is None else round(disp_bps, 2),
+                      'discount_at_p10_bps': None if best_bps is None else round(best_bps, 2),
+                      'significance_vs_dispersion': None if significance is None else round(significance, 2),
+                      'dispersion_note': ('the spread of an ETH-denominated claim also contains ETH’s own move over '
+                                          'the window, so this test is conservative here'
+                                          if under in ('ETH', 'STETH') else
+                                          'a dollar claim’s NAV barely moves, so the spread is mostly execution '
+                                          'dispersion and the test is meaningful'),
                       'why': ('the protocol pays NAV and the market paid less; the gap closes when you redeem, and '
                               'the wait is the reason a bot cannot take it from you'
                               if disc_bps > 0 else
