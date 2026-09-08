@@ -1,22 +1,23 @@
 # Detector sweep — research/2026-09-07/live_5h
 
-Ran 13 detector(s); 42 hit(s).
+Ran 14 detector(s); 43 hit(s).
 
 | detector | hits | seconds | what it looks for |
 |---|---:|---:|---|
-| `address_poisoning` | 1 | 3.14 | lookalike dust transfers that follow a large transfer, aimed at a later copy-paste |
-| `borrow_cost` | 5 | 3.08 | cheapest venue to borrow each asset, capped by the liquidity actually withdrawable there |
+| `address_poisoning` | 1 | 3.97 | lookalike dust transfers that follow a large transfer, aimed at a later copy-paste |
+| `borrow_cost` | 5 | 3.15 | cheapest venue to borrow each asset, capped by the liquidity actually withdrawable there |
 | `dollar_rate_outlier` | 1 | 0.00 | dollar supply rates ranked against the risk-free dollar, sized from each reserve’s own rate curve |
 | `fixed_vs_floating` | 0 | 0.00 | Pendle implied fixed yields against the floating rate on the same underlying, sized by PT depth |
-| `gas_concentration` | 1 | 3.22 | base-fee spikes attributed to the contract whose gas demand caused them |
+| `gas_concentration` | 1 | 3.26 | base-fee spikes attributed to the contract whose gas demand caused them |
+| `honeypot_signature` | 1 | 3.81 | tokens whose buyers cannot sell: reverting sales, confiscatory taxes, buyers without sellers |
 | `jit_liquidity` | 1 | 0.00 | fee share taken by liquidity minted for a single swap, per pool and per window |
 | `liquidity_blackout` | 0 | 0.00 | lending reserves whose withdrawable liquidity collapses, and the time of day it happens |
 | `lp_marginal_yield` | 10 | 0.00 | concentrated-LP fee yield net of divergence, at the band that stayed in range and at real size |
-| `mass_distribution` | 5 | 5.14 | one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam |
-| `mislabelled_flow` | 0 | 3.51 | address labels the window contradicts, which is how a headline moves by a multiple |
+| `mass_distribution` | 5 | 5.23 | one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam |
+| `mislabelled_flow` | 0 | 3.55 | address labels the window contradicts, which is how a headline moves by a multiple |
 | `nav_discount` | 1 | 0.00 | redeemable claims trading away from the value the protocol pays, with the queue that separates them |
 | `rate_dispersion` | 5 | 0.00 | cross-venue supply-rate gaps on one asset, de-spiked and sized by rate dilution |
-| `solver_fingerprint` | 12 | 3.39 | unlabelled contracts that pass value straight through: solvers, routers and searcher bots |
+| `solver_fingerprint` | 12 | 3.47 | unlabelled contracts that pass value straight through: solvers, routers and searcher bots |
 
 ### [notable] unlabelled unknown 0x76f30e3f cycled $450.6M and ended the window flat (42 txs, 13 counterparties)
 
@@ -1945,4 +1946,33 @@ Economics: net APR 0.00%, $6,134 per year, GO — clears gas, impact and competi
 ```
 
 Economics: net APR 2.45%, $24,480 per year, GO — clears gas, impact and competition at this size
+
+### [info] 0x0ca7244f79: 20 buyers, 2 sellers — buyers far outnumber sellers and sales were attempted, but none is shown to fail
+
+```json
+{
+ "token": "0x0ca7244f798765de51a2b911f16ebcb7367362d1",
+ "symbol": null,
+ "label": null,
+ "distinct_buyers": 20,
+ "distinct_sellers": 2,
+ "seller_to_buyer_ratio": 0.1,
+ "buy_legs": 23,
+ "sell_legs": 6,
+ "router_calls_naming_it": 6,
+ "of_which_emitted_no_logs": 0,
+ "fail_rate": 0.0,
+ "window_base_fail_rate": 0.044,
+ "buy_leg_retention": 1.0,
+ "fee_beneficiary": null,
+ "distinct_secondary_recipients": 0,
+ "fee_concentration": null,
+ "fee_is_a_fee_not_a_split_route": false,
+ "buy_leg_tax": 0.0,
+ "first_seen_block": 25922561,
+ "verdict": "buyers far outnumber sellers and sales were attempted, but none is shown to fail",
+ "why": "a transaction that emitted no logs reverted or did nothing, and a sell gate is what produces reverts; the buyer/seller ratio alone is the shape of any fresh launch, so it is never the finding on its own",
+ "false_positives": "a thin pool reverting on slippage, an anti-sniper cooldown in a token\u2019s first minutes, and calldata that names several tokens so a failure is attributed to all of them. Confirm by reading the contract or simulating a sale before treating this as a verdict."
+}
+```
 

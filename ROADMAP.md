@@ -299,7 +299,17 @@ window and the registry grows the way `type_registry` did. **Shipped**: `detecto
 writes `detectors.json` + `detectors.md`. Four detectors so far — `mislabelled_flow` (label claims the window itself
 refutes), `gas_concentration` (base-fee spikes attributed to the contract whose gas demand caused them),
 `rate_dispersion` (de-spiked cross-venue gaps priced through `economics.py`), `address_poisoning` (lookalike dust after
-a large transfer). Three more landed 2026-09-08: `solver_fingerprint` (the unlabelled tail, split by shape into
+a large transfer). A ninth landed the same day and is defensive rather than economic: `honeypot_signature` finds tokens whose buyers
+cannot sell, from the window alone. Receipts are not collected, but a reverted transaction emits no logs, so a failed
+sale is visible as an absence — against a measured 4.4% base rate for router-targeted transactions that emit nothing.
+Its three signals are individually useless and jointly discriminating, and the write-up in
+`research/2026-09-08/honeypots/method.md` records three wrong versions that each produced a confident false answer: a
+99% sell tax on WETH, a 30% tax on MANA, and a 70% failure rate on Centrifuge's CFG. On seven real windows it now
+proves no honeypot and makes no high-severity claim, so `scripts/test_honeypot.py` builds synthetic windows where the
+answer is known to show it can still fire — and that positive control caught a real bug in the denominator, which had
+been counting buys as attempted sales.
+
+Three more landed 2026-09-08: `solver_fingerprint` (the unlabelled tail, split by shape into
 pass-through, cycling and retaining, with contract-versus-account proven from the window and reported as unknown when
 the window cannot prove it), `jit_liquidity` (the share of pool fees taken by liquidity that arrived for one swap, per
 pool and per window, with the operator economics priced as a race), and `mass_distribution` (one sender fanning a token

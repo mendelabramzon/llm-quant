@@ -4,14 +4,14 @@
   {
    "detector": "address_poisoning",
    "hits": 1,
-   "seconds": 0.8,
+   "seconds": 0.86,
    "error": null,
    "description": "lookalike dust transfers that follow a large transfer, aimed at a later copy-paste"
   },
   {
    "detector": "borrow_cost",
    "hits": 5,
-   "seconds": 0.68,
+   "seconds": 0.77,
    "error": null,
    "description": "cheapest venue to borrow each asset, capped by the liquidity actually withdrawable there"
   },
@@ -37,6 +37,13 @@
    "description": "base-fee spikes attributed to the contract whose gas demand caused them"
   },
   {
+   "detector": "honeypot_signature",
+   "hits": 0,
+   "seconds": 0.88,
+   "error": null,
+   "description": "tokens whose buyers cannot sell: reverting sales, confiscatory taxes, buyers without sellers"
+  },
+  {
    "detector": "jit_liquidity",
    "hits": 1,
    "seconds": 0.0,
@@ -60,14 +67,14 @@
   {
    "detector": "mass_distribution",
    "hits": 5,
-   "seconds": 1.19,
+   "seconds": 1.22,
    "error": null,
    "description": "one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam"
   },
   {
    "detector": "mislabelled_flow",
    "hits": 1,
-   "seconds": 0.75,
+   "seconds": 0.76,
    "error": null,
    "description": "address labels the window contradicts, which is how a headline moves by a multiple"
   },
@@ -88,7 +95,7 @@
   {
    "detector": "solver_fingerprint",
    "hits": 5,
-   "seconds": 0.71,
+   "seconds": 0.72,
    "error": null,
    "description": "unlabelled contracts that pass value straight through: solvers, routers and searcher bots"
   }

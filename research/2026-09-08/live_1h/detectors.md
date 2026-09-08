@@ -1,22 +1,23 @@
 # Detector sweep — research/2026-09-08/live_1h
 
-Ran 13 detector(s); 35 hit(s).
+Ran 14 detector(s); 35 hit(s).
 
 | detector | hits | seconds | what it looks for |
 |---|---:|---:|---|
-| `address_poisoning` | 1 | 0.80 | lookalike dust transfers that follow a large transfer, aimed at a later copy-paste |
-| `borrow_cost` | 5 | 0.68 | cheapest venue to borrow each asset, capped by the liquidity actually withdrawable there |
+| `address_poisoning` | 1 | 0.86 | lookalike dust transfers that follow a large transfer, aimed at a later copy-paste |
+| `borrow_cost` | 5 | 0.77 | cheapest venue to borrow each asset, capped by the liquidity actually withdrawable there |
 | `dollar_rate_outlier` | 1 | 0.00 | dollar supply rates ranked against the risk-free dollar, sized from each reserve’s own rate curve |
 | `fixed_vs_floating` | 3 | 0.00 | Pendle implied fixed yields against the floating rate on the same underlying, sized by PT depth |
 | `gas_concentration` | 0 | 0.00 | base-fee spikes attributed to the contract whose gas demand caused them |
+| `honeypot_signature` | 0 | 0.88 | tokens whose buyers cannot sell: reverting sales, confiscatory taxes, buyers without sellers |
 | `jit_liquidity` | 1 | 0.00 | fee share taken by liquidity minted for a single swap, per pool and per window |
 | `liquidity_blackout` | 0 | 0.00 | lending reserves whose withdrawable liquidity collapses, and the time of day it happens |
 | `lp_marginal_yield` | 8 | 0.00 | concentrated-LP fee yield net of divergence, at the band that stayed in range and at real size |
-| `mass_distribution` | 5 | 1.19 | one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam |
-| `mislabelled_flow` | 1 | 0.75 | address labels the window contradicts, which is how a headline moves by a multiple |
+| `mass_distribution` | 5 | 1.22 | one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam |
+| `mislabelled_flow` | 1 | 0.76 | address labels the window contradicts, which is how a headline moves by a multiple |
 | `nav_discount` | 0 | 0.00 | redeemable claims trading away from the value the protocol pays, with the queue that separates them |
 | `rate_dispersion` | 5 | 0.00 | cross-venue supply-rate gaps on one asset, de-spiked and sized by rate dilution |
-| `solver_fingerprint` | 5 | 0.71 | unlabelled contracts that pass value straight through: solvers, routers and searcher bots |
+| `solver_fingerprint` | 5 | 0.72 | unlabelled contracts that pass value straight through: solvers, routers and searcher bots |
 
 ### [notable] USDS pays 3.48pp more on Sky SSR than Aave v3; rate does not dilute with size
 

@@ -4,14 +4,14 @@
   {
    "detector": "address_poisoning",
    "hits": 1,
-   "seconds": 3.14,
+   "seconds": 3.97,
    "error": null,
    "description": "lookalike dust transfers that follow a large transfer, aimed at a later copy-paste"
   },
   {
    "detector": "borrow_cost",
    "hits": 5,
-   "seconds": 3.08,
+   "seconds": 3.15,
    "error": null,
    "description": "cheapest venue to borrow each asset, capped by the liquidity actually withdrawable there"
   },
@@ -32,9 +32,16 @@
   {
    "detector": "gas_concentration",
    "hits": 1,
-   "seconds": 3.22,
+   "seconds": 3.26,
    "error": null,
    "description": "base-fee spikes attributed to the contract whose gas demand caused them"
+  },
+  {
+   "detector": "honeypot_signature",
+   "hits": 1,
+   "seconds": 3.81,
+   "error": null,
+   "description": "tokens whose buyers cannot sell: reverting sales, confiscatory taxes, buyers without sellers"
   },
   {
    "detector": "jit_liquidity",
@@ -60,14 +67,14 @@
   {
    "detector": "mass_distribution",
    "hits": 5,
-   "seconds": 5.14,
+   "seconds": 5.23,
    "error": null,
    "description": "one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam"
   },
   {
    "detector": "mislabelled_flow",
    "hits": 0,
-   "seconds": 3.51,
+   "seconds": 3.55,
    "error": null,
    "description": "address labels the window contradicts, which is how a headline moves by a multiple"
   },
@@ -88,7 +95,7 @@
   {
    "detector": "solver_fingerprint",
    "hits": 12,
-   "seconds": 3.39,
+   "seconds": 3.47,
    "error": null,
    "description": "unlabelled contracts that pass value straight through: solvers, routers and searcher bots"
   }
@@ -2401,6 +2408,39 @@
    "usd": null,
    "key": "SparkLend:USDT",
    "identity": "dollar_rate_outlier:SparkLend:USDT"
+  },
+  {
+   "detector": "honeypot_signature",
+   "title": "0x0ca7244f79: 20 buyers, 2 sellers \u2014 buyers far outnumber sellers and sales were attempted, but none is shown to fail",
+   "severity": "info",
+   "evidence": {
+    "token": "0x0ca7244f798765de51a2b911f16ebcb7367362d1",
+    "symbol": null,
+    "label": null,
+    "distinct_buyers": 20,
+    "distinct_sellers": 2,
+    "seller_to_buyer_ratio": 0.1,
+    "buy_legs": 23,
+    "sell_legs": 6,
+    "router_calls_naming_it": 6,
+    "of_which_emitted_no_logs": 0,
+    "fail_rate": 0.0,
+    "window_base_fail_rate": 0.044,
+    "buy_leg_retention": 1.0,
+    "fee_beneficiary": null,
+    "distinct_secondary_recipients": 0,
+    "fee_concentration": null,
+    "fee_is_a_fee_not_a_split_route": false,
+    "buy_leg_tax": 0.0,
+    "first_seen_block": 25922561,
+    "verdict": "buyers far outnumber sellers and sales were attempted, but none is shown to fail",
+    "why": "a transaction that emitted no logs reverted or did nothing, and a sell gate is what produces reverts; the buyer/seller ratio alone is the shape of any fresh launch, so it is never the finding on its own",
+    "false_positives": "a thin pool reverting on slippage, an anti-sniper cooldown in a token\u2019s first minutes, and calldata that names several tokens so a failure is attributed to all of them. Confirm by reading the contract or simulating a sale before treating this as a verdict."
+   },
+   "economics": null,
+   "usd": null,
+   "key": "0x0ca7244f798765de51a2b911f16ebcb7367362d1",
+   "identity": "honeypot_signature:0x0ca7244f798765de51a2b911f16ebcb7367362d1"
   }
  ]
 }

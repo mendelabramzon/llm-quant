@@ -1,22 +1,23 @@
 # Detector sweep — research/2026-09-08/live_30m
 
-Ran 13 detector(s); 22 hit(s).
+Ran 14 detector(s); 23 hit(s).
 
 | detector | hits | seconds | what it looks for |
 |---|---:|---:|---|
-| `address_poisoning` | 1 | 0.36 | lookalike dust transfers that follow a large transfer, aimed at a later copy-paste |
-| `borrow_cost` | 6 | 0.33 | cheapest venue to borrow each asset, capped by the liquidity actually withdrawable there |
+| `address_poisoning` | 1 | 0.42 | lookalike dust transfers that follow a large transfer, aimed at a later copy-paste |
+| `borrow_cost` | 6 | 0.36 | cheapest venue to borrow each asset, capped by the liquidity actually withdrawable there |
 | `dollar_rate_outlier` | 1 | 0.00 | dollar supply rates ranked against the risk-free dollar, sized from each reserve’s own rate curve |
 | `fixed_vs_floating` | 3 | 0.00 | Pendle implied fixed yields against the floating rate on the same underlying, sized by PT depth |
 | `gas_concentration` | 0 | 0.00 | base-fee spikes attributed to the contract whose gas demand caused them |
+| `honeypot_signature` | 1 | 0.40 | tokens whose buyers cannot sell: reverting sales, confiscatory taxes, buyers without sellers |
 | `jit_liquidity` | 1 | 0.00 | fee share taken by liquidity minted for a single swap, per pool and per window |
 | `liquidity_blackout` | 0 | 0.00 | lending reserves whose withdrawable liquidity collapses, and the time of day it happens |
 | `lp_marginal_yield` | 1 | 0.00 | concentrated-LP fee yield net of divergence, at the band that stayed in range and at real size |
-| `mass_distribution` | 3 | 0.49 | one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam |
-| `mislabelled_flow` | 0 | 0.36 | address labels the window contradicts, which is how a headline moves by a multiple |
+| `mass_distribution` | 3 | 0.51 | one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam |
+| `mislabelled_flow` | 0 | 0.39 | address labels the window contradicts, which is how a headline moves by a multiple |
 | `nav_discount` | 0 | 0.00 | redeemable claims trading away from the value the protocol pays, with the queue that separates them |
 | `rate_dispersion` | 5 | 0.00 | cross-venue supply-rate gaps on one asset, de-spiked and sized by rate dilution |
-| `solver_fingerprint` | 1 | 0.35 | unlabelled contracts that pass value straight through: solvers, routers and searcher bots |
+| `solver_fingerprint` | 1 | 0.37 | unlabelled contracts that pass value straight through: solvers, routers and searcher bots |
 
 ### [notable] USDS pays 3.48pp more on Sky SSR than Aave v3; rate does not dilute with size
 
@@ -922,6 +923,35 @@ Economics: net APR -0.00%, $-6,960 per year, no — net APR -0.00% below the 0.0
    "impersonated": "0x7ccd004bd52db9563670d0c1325a93191e44e5ec",
    "attacker": "0x7ccd11d7cc9e44b4c1d6b79c0b0731e9a909e5ec",
    "dust_tx": "0x6a483c4807007a4cf35e41cbee1d2dc37bd4cb3
+```
+
+### [info] 0x6982508145: 10 buyers, 1 sellers — buyers far outnumber sellers and sales were attempted, but none is shown to fail
+
+```json
+{
+ "token": "0x6982508145454ce325ddbe47a25d4ec3d2311933",
+ "symbol": null,
+ "label": null,
+ "distinct_buyers": 10,
+ "distinct_sellers": 1,
+ "seller_to_buyer_ratio": 0.1,
+ "buy_legs": 11,
+ "sell_legs": 5,
+ "router_calls_naming_it": 5,
+ "of_which_emitted_no_logs": 0,
+ "fail_rate": 0.0,
+ "window_base_fail_rate": 0.044,
+ "buy_leg_retention": 1.0,
+ "fee_beneficiary": null,
+ "distinct_secondary_recipients": 0,
+ "fee_concentration": null,
+ "fee_is_a_fee_not_a_split_route": false,
+ "buy_leg_tax": 0.0,
+ "first_seen_block": 25931331,
+ "verdict": "buyers far outnumber sellers and sales were attempted, but none is shown to fail",
+ "why": "a transaction that emitted no logs reverted or did nothing, and a sell gate is what produces reverts; the buyer/seller ratio alone is the shape of any fresh launch, so it is never the finding on its own",
+ "false_positives": "a thin pool reverting on slippage, an anti-sniper cooldown in a token\u2019s first minutes, and calldata that names several tokens so a failure is attributed to all of them. Confirm by reading the contract or simulating a sale before treating this as a verdict."
+}
 ```
 
 ### [info] airdrop or multisend: 0x5eef5946ad78e614bb3ee7b9ed1097 sent 0x5eef5946 to 1,503 recipients in 2 txs (752 per tx)
