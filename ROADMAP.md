@@ -5,6 +5,37 @@ the LLM reads evidence, proposes mechanisms, and writes the infrastructure; dete
 reusable detectors and tests; the human steers. The metric we optimise is **time-to-verified-insight**: how fast a raw
 signal becomes a true, capacity-aware, reproducible claim and then a reusable detector — not classification coverage.
 
+## Session log — 2026-09-10 (five-hour Ethereum continuation: 72,446 LPT senders, and two rejected signals)
+
+[Five-hour study](research/2026-09-10/live_5h/report.md), pinned to finalized blocks 25,944,911–25,946,402,
+05:30:48–10:30:48 UTC: 460,074 transactions and 1,338,947 logs. The original request's window is preserved across the pause.
+
+**Small transfers were the missing activity signal.** 72,446 distinct senders transferred 161,357.65 LPT to the same
+Binance-labelled address, 99.91% of positive non-mint/burn LPT transfers and 15.75% of all transactions. All matched
+direct transaction calldata; 72,443 occurred after 08:30, with a median of 2.1502 LPT. This is consistent with coordinated
+consolidation, not proof of ownership or selling. `detectors/token_fan_in.py` makes the pattern repeatable without a
+USD price or $10,000 transfer floor. Tips remain economically material: the 25% receipt sample measures 4.145 ETH of
+tips against 0.846 ETH burned, 4.90x. Exact all-block execution burn is 3.463 ETH.
+
+**Two attractive stories failed verification.** A supposed 24-minute Aave PYUSD blackout came from sorting same-block
+updates by rate instead of log index. Historical state shows 896,452 PYUSD cash and 4.919% borrow APR after both
+intra-block squeezes. The analyzer now preserves log order and complete end-of-block updates; the episode detector
+requires that series and the false alarm disappears. Earlier sampled artifacts need re-analysis before duration claims.
+rETH's 48.53bp discount had almost no direct burn liquidity: `getTotalCollateral()` returned 0.000000034 ETH. Its
+conditional $1.92m/year arithmetic no longer enters the book as GO; conditional/permissioned/unknown exits are gated.
+
+**Two prior TODOs are addressed.** Source cash and withdrawal flags now cap single-chain rate switches: Compound USDT
+→ Aave falls from a destination-only $138.67m / $438k per year to $27.15m / $156k; fixed-rate Sky no longer inherits a
+synthetic $1bn size. Source ownership, collateral constraints and destination caps remain unmeasured. Token-level
+borrower inventories reconcile for three accounts: Spark's $293.73m low-HF debt is WETH against wstETH; Aave's $30.30m
+position is USDC/USDT debt against USDe/sUSDe. Their relevant shocks are relative prices, not a blanket ETH/USD drop.
+Enrichment now keys accounts by venue as well as address, retaining 39 health observations.
+
+All 17 detectors completed with 60 hits; 174 unit tests ran (172 passed, two existing skips), 21 aggregate checks and
+eight state-identity groups passed. The new study retains code, historical reads, raw-cohort checks and a figure.
+Next: older funding/ownership history for the LPT cohort; repeated executable rate/exit quotes; re-analysis of earlier
+rate-duration claims with log ordering preserved. The midnight routine itself is outside this daytime window.
+
 ## Session log — 2026-09-10, second session (develop further: the perps thread and the sUSDe history)
 
 The state review earlier this day found the loop precise about $10k-class Ethereum findings and silent on its two
@@ -62,9 +93,21 @@ the last extreme hour and so scored every episode against the paid side by const
 and compared Markets by Kinetiq's ETF-priced perps against index points; both were caught by printing the raw values
 and are recorded in the module.
 
-Next: a daily perp window with the history appended and the calendar spread in the same snapshot, so premium against
-spread becomes a regression; a `roll_premium` detector that subtracts the step; the hedge leg's depth and roll
-schedule from the scanner; and for sUSDe, whether a permissioned redemption at $5M to $25M exists.
+**Later the same day: the detector, the runner, the scorecard.** `detectors/roll_premium` in `perp_scan.py` turns the
+mechanism into a re-check: it predicts the premium from the curve placement, scores the fit, and prices the carry net
+of a tenth of the spread per trading day; Brent quotes 213% while the roll lasts and 167% after a daily round trip,
+and the book entry is now quoted from that finding rather than from the unhedged 337%. `scripts/perp_daily.py` runs
+one unattended pass (history append, window, references, detectors, verify, ingest, book refresh, history) with a
+launchd template that is not installed by this session. `strategies.py scorecard` prints the two numbers the state
+review asked for beside time-to-verified-insight: **$3.0M a year at capacity across the seven strategies whose own
+detectors say go** (of which $2.84M is the oil carry, so the clock on that number is the calendar spread and one
+book's depth), 88% of the 57 twice-seen rates kept at least half their first reading, and 4 of the 9 out-of-sample
+funding predictions were positive hedged (the three energy ones and one cross-builder book). Ethena's minting contract,
+read on chain, caps redemption at 10,000,000 USDe per block, so the sUSDe bid's scaling limit is approved-minter
+access, not protocol capacity.
+
+Next: let the daily pass accumulate so premium against spread becomes a regression; the hedge leg's schedule from the
+scanner; the cross-chain dollar book's second window (in progress in a parallel worker).
 
 ## Session log — 2026-09-10 (Ethereum: $34.6m of turnover, $0.65 of WETH)
 

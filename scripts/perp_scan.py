@@ -812,6 +812,85 @@ def det_cross_dex_basis(A, args):
     return sorted(hits, key=lambda h: -abs(h['evidence']['funding_spread_apr']))
 
 
+def det_roll_premium(A, args):
+    """The energy premium as a roll: predicted from the futures curve, compared with the observed, and priced net of the step.
+
+    Needs `refs_curve.json` from `perp_refs.py curve` beside the window. For each market it places, the oracle's and
+    the book's implied front-month weights give a lead; the lead times the calendar spread is the premium the roll
+    predicts; the observed premium is the tape's mean mark-to-oracle gap when a tape exists and the snapshot premium
+    otherwise. A constant-maturity price index pays the spread over the roll window, a tenth of it per trading day on
+    the two steps observed on 2026-09-08 and 09-09 (`--roll-days`), and a futures hedge does not share that step, so
+    the carry the paid side keeps is the funding less the step. Both signs are handled by the same arithmetic: in
+    backwardation longs are paid and the index steps down against them; in contango shorts are paid and it steps up.
+    """
+    out = Path(args.out)
+    cp = out / 'refs_curve.json'
+    if not cp.exists():
+        return []
+    C = json.loads(cp.read_text()).get('rows') or {}
+    tp = out / 'tape.json'
+    gap = {r['coin']: r for r in (json.loads(tp.read_text()).get('rows') or [])} if tp.exists() else {}
+    rows = {r['coin']: r for r in A['assets']}
+    hits = []
+    for coin, c in C.items():
+        r = rows.get(coin)
+        w_o, w_m = c.get('implied_front_weight_oracle_median'), c.get('implied_front_weight_mark_median')
+        spread_pct = c.get('front_over_second_pct_median')
+        if not r or r.get('delisted') or w_o is None or w_m is None or spread_pct is None:
+            continue
+        if abs(spread_pct) < args.min_spread_pct:
+            continue
+        lead = w_o - w_m
+        predicted = -lead * spread_pct / 100.0
+        observed = (gap[coin]['gap_bps_mean'] / 1e4) if coin in gap else r.get('premium')
+        if observed is None:
+            continue
+        residual = observed - predicted
+        fit = abs(residual) <= max(0.15 * abs(observed), 1e-3)
+        step_day = abs(spread_pct) / 100.0 / args.roll_days
+        fh = r.get('funding_hourly') or 0.0
+        side = 'long' if fh < 0 else 'short'
+        funding_day = abs(fh) * 24
+        net_day = funding_day - step_day
+        b = r.get('book') or {}
+        rt = b.get('round_trip_bps_%dk' % int(args.size_usd / 1e3))
+        depth = b.get('ask_depth_25bp_usd') if side == 'long' else b.get('bid_depth_25bp_usd')
+        cap_head = max((r.get('oi_cap_usd') or 0) - (r.get('oi_usd') or 0), 0.0) if r.get('oi_cap_usd') else None
+        capacity = min([x for x in (depth, cap_head) if x is not None], default=None)
+        horizon_days = args.horizon_h / 24.0
+        net_apr = net_day * 365.0 - ((rt or 0.0) / 1e4) * (365.0 / horizon_days)
+        be_hours = (((rt or 0.0) / 1e4) / (net_day / 24.0)) if (net_day > 0 and rt is not None) else None
+        go = bool(fit and net_day > 0 and be_hours is not None and be_hours < args.horizon_h and (capacity or 0) >= 1e5)
+        reason = ('the curve predicts the premium, the funding exceeds the step, and the book is six figures' if go else
+                  ('the curve does not predict the premium within 15%' if not fit else
+                   'the step eats the funding' if net_day <= 0 else
+                   'no priced book, break-even beyond the horizon, or under $100k of depth'))
+        hits.append({
+            'detector': 'roll_premium', 'key': coin,
+            'severity': 'high' if go else ('notable' if net_day > 0 else 'info'),
+            'title': '%s: the book prices the roll %.2f of a step ahead of a %+.2f%% calendar spread; %ss are paid %.0f%% a year, '
+                     'the step costs %.0f%%, net %.0f%% while the roll lasts'
+                     % (coin, lead / (1.0 / args.roll_days), spread_pct, side, funding_day * 365 * 100,
+                        step_day * 365 * 100, net_day * 365 * 100),
+            'evidence': {'coin': coin, 'front_weight_oracle': w_o, 'front_weight_mark': w_m, 'lead': lead,
+                         'calendar_spread_pct': spread_pct, 'predicted_premium': predicted, 'observed_premium': observed,
+                         'residual': residual, 'curve_fits': fit, 'observed_from': 'tape' if coin in gap else 'snapshot',
+                         'roll_days_assumed': args.roll_days, 'roll_days_remaining_estimate': w_o * args.roll_days,
+                         'step_per_trading_day': step_day, 'funding_per_day': funding_day,
+                         'contracts': (c.get('last') or {}).get('contracts'), 'front_expiry': c.get('front_expiry'),
+                         'why': 'a constant-maturity price index pays the calendar spread over its roll window and a '
+                                'futures hedge does not; the funding is paid to the side the index rolls against'},
+            'economics': {'net_apr': net_apr, 'go': go, 'reason': reason, 'capacity_usd': capacity,
+                          'funding_apr': funding_day * 365, 'roll_step_apr': step_day * 365,
+                          'round_trip_bps_at_size': rt, 'break_even_hours': be_hours, 'side_paid': side,
+                          'size_usd': args.size_usd, 'depth_25bp_usd': depth, 'oi_cap_headroom_usd': cap_head,
+                          'hedge': 'the front/second-month blend the oracle tracks, in the listed futures, re-weighted '
+                                   'with the roll; the step is what a price index pays and a futures position does not'},
+            'usd': (net_day * capacity * horizon_days) if capacity else None,
+        })
+    return sorted(hits, key=lambda h: -(h['economics']['net_apr'] or 0))
+
+
 DETECTORS = [
     ('funding_carry', det_funding_carry, 'a funding rate that has not changed sign, priced against what it costs to hold it'),
     ('premium_drift', det_premium_drift, 'a premium widening in one direction hour after hour against a rising toll'),
@@ -821,6 +900,7 @@ DETECTORS = [
     ('illiquid_extreme_funding', det_illiquid_extreme_funding, 'a spectacular rate on a market with no trading: a trap, not an edge'),
     ('stale_oracle', det_stale_oracle, 'an oracle that stopped moving while its book did not'),
     ('dead_market', det_dead_market, 'listed markets with no open interest and no trades, against a staked deployment'),
+    ('roll_premium', det_roll_premium, 'the energy premium as a roll: predicted from the futures curve, priced net of the daily step'),
 ]
 
 
@@ -1165,6 +1245,8 @@ def main():
     d.add_argument('--cap-warn', type=float, default=0.85)
     d.add_argument('--size-usd', type=float, default=1e5)
     d.add_argument('--horizon-h', type=int, default=24)
+    d.add_argument('--roll-days', type=float, default=10.0, help='trading days the constant-maturity oracle takes to roll front to second')
+    d.add_argument('--min-spread-pct', type=float, default=1.0)
     rr = sub.add_parser('render'); rr.set_defaults(fn=cmd_render); rr.add_argument('--out', required=True)
     v = sub.add_parser('verify'); v.set_defaults(fn=cmd_verify)
     v.add_argument('--out', required=True); v.add_argument('--tol', type=float, default=1e-6)

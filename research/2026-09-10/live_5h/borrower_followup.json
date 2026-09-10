@@ -1,0 +1,165 @@
+{
+ "block": 25946402,
+ "block_hash": "0x165c037d072a4c312ae3a5b4c76d243bd135d97dc2c6484590493e11b5ede7d1",
+ "accounts": [
+  {
+   "venue": "Aave v3",
+   "account": "0xcf0a12cbd8088fc5f84ad431e71787157041cd69",
+   "oracle": "0x54586be62e3c3580375ae3723c145253060ca0c2",
+   "base_currency_unit": 100000000,
+   "health_raw": "0x000000000000000000000000000000000000000000000000000bf664594ea81b000000000000000000000000000000000000000000000000000ac41a1d65c3e70000000000000000000000000000000000000000000000000000000cffc76cfe00000000000000000000000000000000000000000000000000000000000023f000000000000000000000000000000000000000000000000000000000000023280000000000000000000000000000000000000000000000000e2fbad2e87279ef",
+   "config_raw": "0x0000000000000000000000000000000000000000000000022000000000010040",
+   "health_factor": 1.0222410554421069,
+   "collateral_usd": 33671355.99306779,
+   "debt_usd": 30303662.08508903,
+   "positions": [
+    {
+     "token": "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+     "symbol": "USDe",
+     "supply_raw": "16855211305842006188908278",
+     "debt_raw": "0",
+     "supplied": 16855211.305842005,
+     "variable_debt": 0.0,
+     "oracle_usd": 0.99980827,
+     "supply_usd": 16851979.656178337,
+     "debt_usd": 0.0,
+     "reserve_id": 30,
+     "collateral_enabled": true
+    },
+    {
+     "token": "0x9d39a5de30e57443bff2a8307a4256c8797a3497",
+     "symbol": "sUSDe",
+     "supply_raw": "13486299029317272268620191",
+     "debt_raw": "0",
+     "supplied": 13486299.029317273,
+     "variable_debt": 0.0,
+     "oracle_usd": 1.24714544,
+     "supply_usd": 16819376.33688946,
+     "debt_usd": 0.0,
+     "reserve_id": 32,
+     "collateral_enabled": true
+    },
+    {
+     "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+     "symbol": "USDC",
+     "supply_raw": "0",
+     "debt_raw": "12744909386015",
+     "supplied": 0.0,
+     "variable_debt": 12744909.386015,
+     "oracle_usd": 0.99989594,
+     "supply_usd": 0.0,
+     "debt_usd": 12743583.150744291,
+     "reserve_id": 3,
+     "collateral_enabled": false
+    },
+    {
+     "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+     "symbol": "USDT",
+     "supply_raw": "0",
+     "debt_raw": "17563446373918",
+     "supplied": 0.0,
+     "variable_debt": 17563446.373918,
+     "oracle_usd": 0.99980827,
+     "supply_usd": 0.0,
+     "debt_usd": 17560078.93434473,
+     "reserve_id": 8,
+     "collateral_enabled": false
+    }
+   ],
+   "collateral_reconciliation_usd": 7.450580596923828e-09,
+   "debt_reconciliation_usd": -1.1175870895385742e-08,
+   "reconciles": true
+  },
+  {
+   "venue": "Aave v3",
+   "account": "0xca686974913389d42f3c5f61010503daccdb487a",
+   "oracle": "0x54586be62e3c3580375ae3723c145253060ca0c2",
+   "base_currency_unit": 100000000,
+   "health_raw": "0x00000000000000000000000000000000000000000000000000032c5c4e6df1a10000000000000000000000000000000000000000000000000002f20d164f8a2900000000000000000000000000000000000000000000000000000171b7bfab08000000000000000000000000000000000000000000000000000000000000251c00000000000000000000000000000000000000000000000000000000000024540000000000000000000000000000000000000000000000000e34111d535270f5",
+   "config_raw": "0x0000000000000000000000000000000000000000000000000000000000000009",
+   "health_factor": 1.0234618329695808,
+   "collateral_usd": 8931998.94573473,
+   "debt_usd": 8290879.76229417,
+   "positions": [
+    {
+     "token": "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0",
+     "symbol": "wstETH",
+     "supply_raw": "2910430281587784566946",
+     "debt_raw": "0",
+     "supplied": 2910.4302815877845,
+     "variable_debt": 0.0,
+     "oracle_usd": 3068.96165912,
+     "supply_usd": 8931998.945734736,
+     "debt_usd": 0.0,
+     "reserve_id": 1,
+     "collateral_enabled": true
+    },
+    {
+     "token": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+     "symbol": "WETH",
+     "supply_raw": "0",
+     "debt_raw": "3359720378981077124672",
+     "supplied": 0.0,
+     "variable_debt": 3359.720378981077,
+     "oracle_usd": 2467.72910453,
+     "supply_usd": 0.0,
+     "debt_usd": 8290879.762294165,
+     "reserve_id": 0,
+     "collateral_enabled": false
+    }
+   ],
+   "collateral_reconciliation_usd": 5.587935447692871e-09,
+   "debt_reconciliation_usd": -5.587935447692871e-09,
+   "reconciles": true
+  },
+  {
+   "venue": "SparkLend",
+   "account": "0x3883d8cdcdda03784908cfa2f34ed2cf1604e4d7",
+   "oracle": "0x8105f69d9c41644c6a0803fda7d03aa70996cfd9",
+   "base_currency_unit": 100000000,
+   "health_raw": "0x00000000000000000000000000000000000000000000000000729202b50c08df00000000000000000000000000000000000000000000000000685a63bf26fcac00000000000000000000000000000000000000000000000000010d38580d0b7d000000000000000000000000000000000000000000000000000000000000245400000000000000000000000000000000000000000000000000000000000023f00000000000000000000000000000000000000000000000000e2b85c5869d9f02",
+   "config_raw": "0x0000000000000000000000000000000000000000000000000000000000000240",
+   "health_factor": 1.0210568239430777,
+   "collateral_usd": 322486876.7006947,
+   "debt_usd": 293727820.33173674,
+   "positions": [
+    {
+     "token": "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0",
+     "symbol": "wstETH",
+     "supply_raw": "105113742149574487651207",
+     "debt_raw": "0",
+     "supplied": 105113.7421495745,
+     "variable_debt": 0.0,
+     "oracle_usd": 3067.98017182,
+     "supply_usd": 322486876.70069474,
+     "debt_usd": 0.0,
+     "reserve_id": 4,
+     "collateral_enabled": true
+    },
+    {
+     "token": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+     "symbol": "WETH",
+     "supply_raw": "0",
+     "debt_raw": "119065657244836818343052",
+     "supplied": 0.0,
+     "variable_debt": 119065.65724483682,
+     "oracle_usd": 2466.93989794,
+     "supply_usd": 0.0,
+     "debt_usd": 293727820.33173674,
+     "reserve_id": 3,
+     "collateral_enabled": false
+    }
+   ],
+   "collateral_reconciliation_usd": 5.960464477539063e-08,
+   "debt_reconciliation_usd": 0.0,
+   "reconciles": true
+  }
+ ],
+ "note": "Only registered reserves and variable debt are inventoried; reconcile against aggregate account data before asserting coverage. Oracle values and flags are pinned to the same block.",
+ "rpc": {
+  "credits": 16080,
+  "requests": 64,
+  "errors": 0,
+  "keys": 10
+ }
+}

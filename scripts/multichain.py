@@ -704,7 +704,8 @@ def cmd_analyze(args):
         eth_usd = ((json.loads(Path(args.benchmark_head).read_text()).get('feeds') or {}).get('ETH') or {}).get('usd')
 
     A = {'generated': utc(time.time()), 'benchmark': {'apy': bench, 'name': bench_name},
-         'eth_usd': eth_usd, 'chains': {}, 'domains': {}, 'errors': man.get('errors') or {}}
+         'eth_usd': eth_usd, 'chains': {}, 'domains': {}, 'errors': man.get('errors') or {},
+         'window': window_bounds(man)}
     chains, metas, heads = man['chains'], {}, {}
     for c in chains:
         metas[c] = json.loads((out / c / 'chain.json').read_text())
@@ -919,7 +920,7 @@ def cmd_analyze(args):
             if not hi.get('supplied_effective_usd') or hi.get('curve_reproduces_spot') is not True:
                 continue
             opt, _, _ = best_size(hi['curve'], hi['borrowed_usd'], hi['supplied_effective_usd'], target)
-            movable = max(min(opt, lo['available_usd']), 0.0)
+            movable = switch_capacity(opt, lo['available_usd'])
             if movable <= 0:
                 continue
             apr = supply_apr(hi['curve'], hi['borrowed_usd'], hi['supplied_effective_usd'] + movable)
@@ -1007,6 +1008,132 @@ def cmd_analyze(args):
     write_json(out / 'analysis.json', A)
     print(json.dumps({'chains': len(chains), 'dollar_reserves': len(surface), 'assets_multi_chain': len(A['spreads']),
                       'benchmark': bench, 'cctp_legs': sum(A['chains'][c]['cctp']['out_legs'] + A['chains'][c]['cctp']['in_legs'] for c in chains)}, indent=1))
+    return 0
+
+
+# ---------------------------------------------------------------------------------------------- detect
+
+DETECTOR = 'cross_chain_rate'
+GO_MIN_CAPACITY_USD = 250_000.0
+GO_MIN_NET_APR = 0.005
+
+
+def switch_capacity(opt_usd, available_usd):
+    """The study's definition of a switch's size: min(high-side optimum before it dilutes, low-side withdrawable)."""
+    return max(min(opt_usd or 0.0, available_usd or 0.0), 0.0)
+
+
+def go_rule(capacity_usd, net_apr):
+    """A switch is worth a row in the book at $250k of capacity and 50bp net; below either it is a curiosity."""
+    return bool((capacity_usd or 0.0) >= GO_MIN_CAPACITY_USD and (net_apr or 0.0) >= GO_MIN_NET_APR)
+
+
+def window_bounds(man):
+    """One window for the ledger from the per-chain windows: earliest first, latest last. Blocks are per chain."""
+    ws = man.get('window') or {}
+    firsts = [w['first_utc'] for w in ws.values() if w.get('first_utc')]
+    lasts = [w['last_utc'] for w in ws.values() if w.get('last_utc')]
+    return {'first_utc': min(firsts) if firsts else None, 'last_utc': max(lasts) if lasts else None,
+            'hours': man.get('hours'), 'chains': sorted(ws), 'first_block': None, 'last_block': None,
+            'note': 'per-chain block ranges are in manifest.json; block numbers are not comparable across chains'}
+
+
+def detect_hits(A, bridge_bps=0.0):
+    """Every priced switch as a ledger finding, plus the book filled once as a window-level one.
+
+    `net_apr` is the APR the moved dollars earn at the moved size minus the rate they leave, less a bridge round trip.
+    The study charged that round trip at zero (a standard CCTP transfer has no fee) and said what it did not charge:
+    source-finality latency, destination gas, and the two venues being different credit. `bridge_bps` lets a reader
+    charge it anyway; the default reproduces the study.
+    """
+    hits = []
+    for sw in A.get('switches') or []:
+        cap = switch_capacity(sw.get('unconstrained_size_usd'), sw.get('from_available_usd'))
+        net = (sw.get('apr_at_size') or 0.0) - (sw.get('from_apr') or 0.0) - bridge_bps / 1e4
+        go = go_rule(cap, net)
+        key = '%s:%s->%s' % (sw['asset'], sw['from'], sw['to'])
+        hits.append({
+            'detector': DETECTOR, 'key': key, 'identity': DETECTOR + ':' + key,
+            'severity': 'notable' if go else 'info',
+            'title': '%s pays %.2fpp more on %s than %s; %s of it can move (%s), earning %.2f%% at size for $%s a year'
+                     % (sw['asset'], sw.get('spread_pp') or 0.0, sw['to'], sw['from'], _m(cap),
+                        'bound by ' + sw['binding'], 100 * (sw.get('apr_at_size') or 0.0), format(round(sw.get('annual_usd') or 0), ',')),
+            'evidence': {'asset': sw['asset'], 'from': sw['from'], 'to': sw['to'],
+                         'from_pool': sw.get('from_pool'), 'to_pool': sw.get('to_pool'),
+                         'from_address': sw.get('from_address'), 'to_address': sw.get('to_address'),
+                         'from_apr': sw.get('from_apr'), 'to_apr': sw.get('to_apr'), 'apr_at_size': sw.get('apr_at_size'),
+                         'spread_pp': sw.get('spread_pp'), 'unconstrained_size_usd': sw.get('unconstrained_size_usd'),
+                         'from_available_usd': sw.get('from_available_usd'), 'movable_usd': sw.get('movable_usd'),
+                         'binding': sw.get('binding'), 'from_supplied_usd': sw.get('from_supplied_usd'),
+                         'to_supplied_usd': sw.get('to_supplied_usd'), 'from_utilisation': sw.get('from_utilisation'),
+                         'rate_source': sw.get('rate_source'),
+                         'capacity_matches_row': abs(cap - (sw.get('movable_usd') or 0.0)) < 1e-6,
+                         'why': 'the same dollar on two chains is one claim on one issuer; the spread is what the '
+                                'lending markets fail to equalise, and it is only worth what can be moved'},
+            'economics': {'net_apr': net, 'go': go, 'capacity_usd': cap, 'net_per_year_usd': sw.get('annual_usd'),
+                          'bridge_round_trip_bps': bridge_bps, 'binding': sw.get('binding'),
+                          'reason': ('clears $250k and 50bp net at the movable size' if go else
+                                     'under $250k movable or under 50bp net at that size')},
+            'usd': sw.get('annual_usd')})
+    sb = A.get('switch_book') or {}
+    size = sb.get('total_size_usd') or 0.0
+    ann = sb.get('total_annual_usd') or 0.0
+    blended = (ann / size) if size else None
+    bind = collections.Counter(sw.get('binding') for sw in (A.get('switches') or []))
+    go = go_rule(size, blended)
+    hits.append({
+        'detector': DETECTOR, 'key': 'book', 'identity': DETECTOR + ':book',
+        'severity': 'notable' if go else 'info',
+        'title': 'the cross-chain dollar book absorbs %s at %.0fbp, each destination filled once, cheapest source first '
+                 '(%d legs; the rows summed would claim $%s a year)'
+                 % (_m(size), 1e4 * (blended or 0.0), len(sb.get('legs') or []), format(round(sb.get('sum_of_rows_annual_usd') or 0), ',')),
+        'evidence': {'legs': sb.get('legs'), 'total_size_usd': size, 'total_annual_usd': ann,
+                     'sum_of_rows_annual_usd': sb.get('sum_of_rows_annual_usd'),
+                     'switches_priced': len(A.get('switches') or []), 'bindings': dict(bind),
+                     'dollar_reserves': len(A.get('surface') or []), 'chains': sorted((A.get('chains') or {}).keys()),
+                     'benchmark': A.get('benchmark'), 'flow_vs_yield_spearman': A.get('flow_vs_yield_spearman'),
+                     'why': 'the rows compete for the same destination reserve; filled once, the book is what the whole '
+                            'surface is worth, and the CCTP rank correlation says whether the bridge is closing it'},
+        'economics': {'net_apr': blended, 'go': go, 'capacity_usd': size, 'net_per_year_usd': ann,
+                      'bridge_round_trip_bps': bridge_bps,
+                      'reason': ('the book clears $250k and 50bp blended' if go else 'the book is under $250k or under 50bp blended')},
+        'usd': ann})
+    return hits
+
+
+def cmd_detect(args):
+    out = Path(args.out)
+    A = json.loads((out / 'analysis.json').read_text())
+    if not A.get('window'):
+        # an analysis written before the window key existed: derive it from the manifest so the ledger can date it
+        A['window'] = window_bounds(json.loads((out / 'manifest.json').read_text()))
+        write_json(out / 'analysis.json', A)
+        print(json.dumps({'note': 'analysis.json had no window; added from manifest', 'window': A['window']}))
+    t0 = time.time()
+    hits = detect_hits(A, bridge_bps=args.bridge_bps)
+    order = {'high': 0, 'notable': 1, 'info': 2}
+    hits.sort(key=lambda h: (order.get(h['severity'], 3), -(h.get('usd') or 0)))
+    meta = [{'detector': DETECTOR, 'hits': len(hits), 'seconds': round(time.time() - t0, 3), 'error': None,
+             'description': 'every priced cross-chain dollar switch, sized by min(high-side optimum, low-side withdrawable), '
+                            'plus the book filled once'}]
+    write_json(out / 'detectors.json', {'window': str(out), 'analysis_window': A['window'], 'detectors': meta, 'hits': hits,
+                                        'params': {'bridge_round_trip_bps': args.bridge_bps,
+                                                   'go_min_capacity_usd': GO_MIN_CAPACITY_USD, 'go_min_net_apr': GO_MIN_NET_APR}})
+    L = ['# Detector sweep — %s' % out, '', 'Ran 1 detector; %d hit(s).' % len(hits), '',
+         '| detector | hits | seconds | what it looks for |', '|---|---:|---:|---|']
+    for m in meta:
+        L.append('| `%s` | %d | %.3f | %s |' % (m['detector'], m['hits'], m['seconds'], m['description']))
+    L.append('')
+    for h in hits:
+        L += ['### [%s] %s' % (h['severity'], h['title']), '', '```json',
+              json.dumps({k: v for k, v in h['evidence'].items() if k != 'legs'}, indent=1, default=str)[:2400], '```']
+        e = h['economics']
+        L += ['', 'Economics: net APR %.2f%%, capacity %s, %s — %s' % (100 * (e['net_apr'] or 0), _m(e['capacity_usd']),
+                                                                   'GO' if e['go'] else 'no', e['reason']), '']
+    (out / 'detectors.md').write_text('\n'.join(L) + '\n')
+    for h in hits:
+        print('[%-7s] %s' % (h['severity'], h['title']))
+    print('wrote %s (%d hits)' % (out / 'detectors.json', len(hits)))
     return 0
 
 
@@ -1330,6 +1457,8 @@ def main():
     v.add_argument('--out', required=True); v.add_argument('--tol', type=float, default=0.002)
     v.add_argument('--min-updates', type=int, default=8)
     d = sub.add_parser('render'); d.set_defaults(fn=cmd_render); d.add_argument('--out', required=True)
+    t = sub.add_parser('detect'); t.set_defaults(fn=cmd_detect); t.add_argument('--out', required=True)
+    t.add_argument('--bridge-bps', type=float, default=0.0, help='charge a bridge round trip; the study charged zero')
     a = ap.parse_args()
     raise SystemExit(a.fn(a))
 

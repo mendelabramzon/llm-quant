@@ -1,4 +1,25 @@
 {
+ "/Users/iv/dev/llm-quant/research/2026-09-10/perps_daily": {
+  "chain": "hyperliquid",
+  "detectors_run": [
+   "cross_dex_basis",
+   "cross_venue_funding",
+   "dead_market",
+   "funding_carry",
+   "illiquid_extreme_funding",
+   "oi_cap_pressure",
+   "premium_drift",
+   "roll_premium",
+   "stale_oracle"
+  ],
+  "first_block": null,
+  "first_utc": "2026-09-10T12:57:52+00:00",
+  "hours": 1.0,
+  "ingested_at": "2026-09-10T14:06:22+00:00",
+  "label_fingerprint": null,
+  "last_block": null,
+  "last_utc": "2026-09-10T13:57:52+00:00"
+ },
  "research/2026-09-07/live_5h": {
   "chain": "ethereum",
   "detectors_run": [
@@ -227,6 +248,35 @@
   "last_block": 25942222,
   "last_utc": "2026-09-09T20:32:23+00:00"
  },
+ "research/2026-09-10/live_5h": {
+  "chain": "ethereum",
+  "detectors_run": [
+   "address_poisoning",
+   "borrow_cost",
+   "delegated_dust",
+   "dollar_rate_outlier",
+   "fixed_vs_floating",
+   "gas_concentration",
+   "honeypot_signature",
+   "jit_liquidity",
+   "liquidity_blackout",
+   "lp_marginal_yield",
+   "mass_distribution",
+   "mislabelled_flow",
+   "nav_discount",
+   "rate_dispersion",
+   "recycled_swap_volume",
+   "solver_fingerprint",
+   "token_fan_in"
+  ],
+  "first_block": 25944911,
+  "first_utc": "2026-09-10T05:30:59+00:00",
+  "hours": 5.0,
+  "ingested_at": "2026-09-10T15:30:51+00:00",
+  "label_fingerprint": "906de2ba7f4b6e22",
+  "last_block": 25946402,
+  "last_utc": "2026-09-10T10:30:47+00:00"
+ },
  "research/2026-09-10/perps_2": {
   "chain": "hyperliquid",
   "detectors_run": [
@@ -237,12 +287,13 @@
    "illiquid_extreme_funding",
    "oi_cap_pressure",
    "premium_drift",
+   "roll_premium",
    "stale_oracle"
   ],
   "first_block": null,
   "first_utc": "2026-09-10T11:19:34+00:00",
   "hours": 1.0,
-  "ingested_at": "2026-09-10T12:58:42+00:00",
+  "ingested_at": "2026-09-10T13:54:17+00:00",
   "label_fingerprint": null,
   "last_block": null,
   "last_utc": "2026-09-10T12:19:34+00:00"

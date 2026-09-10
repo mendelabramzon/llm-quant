@@ -1,0 +1,157 @@
+{
+  "all_ok": true,
+  "checks": [
+    {
+      "analysis": 517,
+      "check": "assets in the snapshot",
+      "id": "assets",
+      "note": "",
+      "ok": true,
+      "recomputed": 517,
+      "tolerance": 0.0
+    },
+    {
+      "analysis": 14377508364.012268,
+      "check": "total open interest (USD)",
+      "id": "oi-usd",
+      "note": "",
+      "ok": true,
+      "recomputed": 14377508364.01226,
+      "tolerance": 1e-09
+    },
+    {
+      "analysis": 10515273124.067455,
+      "check": "total 24h notional volume (USD)",
+      "id": "day-vlm",
+      "note": "",
+      "ok": true,
+      "recomputed": 10515273124.067451,
+      "tolerance": 1e-09
+    },
+    {
+      "analysis": 982047924.667113,
+      "check": "notional traded in the window (USD)",
+      "id": "hour-vlm",
+      "note": "",
+      "ok": true,
+      "recomputed": 982047924.6671119,
+      "tolerance": 1e-09
+    },
+    {
+      "analysis": 465882,
+      "check": "trades in the window",
+      "id": "hour-trades",
+      "note": "",
+      "ok": true,
+      "recomputed": 465882,
+      "tolerance": 0.0
+    }
+  ],
+  "coverage": {
+    "assets": 517,
+    "collection_failures": {
+      "ICP": "fail:retry limit: HTTP 429"
+    },
+    "with_book": 140,
+    "with_candles": 315,
+    "with_funding_history": 140
+  },
+  "failures": [],
+  "generated": "2026-09-10T14:06:22+00:00",
+  "identities": [
+    {
+      "check": "the venue\u2019s premium is within two percent of the instantaneous impact-mid basis",
+      "checked": 316,
+      "examples": [],
+      "failed": 0,
+      "id": "premium-bounded",
+      "ok": true,
+      "worst": 0.0
+    },
+    {
+      "check": "the reported basis equals the recomputed one",
+      "checked": 517,
+      "examples": [],
+      "failed": 0,
+      "id": "mark-vs-oracle-bps",
+      "ok": true,
+      "worst": 0.0
+    },
+    {
+      "check": "the annualised funding equals the hourly rate times 8760",
+      "checked": 517,
+      "examples": [],
+      "failed": 0,
+      "id": "funding-apr",
+      "ok": true,
+      "worst": 0.0
+    },
+    {
+      "check": "open interest in USD equals size times mark",
+      "checked": 316,
+      "examples": [],
+      "failed": 0,
+      "id": "oi-usd",
+      "ok": true,
+      "worst": 0.0
+    },
+    {
+      "check": "cap utilisation equals open interest over the cap",
+      "checked": 245,
+      "examples": [],
+      "failed": 0,
+      "id": "cap-use",
+      "ok": true,
+      "worst": 0.0
+    },
+    {
+      "check": "the best ask is not below the best bid",
+      "checked": 140,
+      "examples": [],
+      "failed": 0,
+      "id": "spread-nonneg",
+      "ok": true,
+      "worst": 0.0
+    },
+    {
+      "check": "the round-trip cost never falls as the order grows",
+      "checked": 140,
+      "examples": [],
+      "failed": 0,
+      "id": "cost-monotone",
+      "ok": true,
+      "worst": 0.0
+    }
+  ],
+  "premium_to_funding_transfer": {
+    "by_dex": {
+      "core": {
+        "markets": 60,
+        "median": 0.08807335247267369,
+        "p10": -0.32825393198972436,
+        "p90": 0.5487985825978791
+      },
+      "io": {
+        "markets": 5,
+        "median": 0.11532376564102378,
+        "p10": -0.010288839388450424,
+        "p90": 1.1264440223775818
+      },
+      "para": {
+        "markets": 18,
+        "median": 0.19181939849472926,
+        "p10": -4.128911054950462,
+        "p90": 0.6698291325768183
+      },
+      "xyz": {
+        "markets": 89,
+        "median": 0.1228075217387007,
+        "p10": -0.1513055703750956,
+        "p90": 0.4924622922410508
+      }
+    },
+    "what": "hourly funding divided by one eighth of the venue\u2019s own reported premium, over markets with |premium| above 2 basis points",
+    "why": "a ratio near 1 means the funding rate is charging the whole premium and the gap should close; a ratio near 0 means the venue is not charging for its own premium, and a wide gap has nothing pulling it shut"
+  },
+  "window": "/Users/iv/dev/llm-quant/research/2026-09-10/perps_daily"
+}

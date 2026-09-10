@@ -1,0 +1,58 @@
+{
+  "api": {
+    "errors": 52,
+    "requests": 660,
+    "throttled": 52
+  },
+  "assets": 517,
+  "assets_by_dex": {
+    "": 234,
+    "abcd": 1,
+    "cash": 17,
+    "flx": 16,
+    "hyna": 25,
+    "io": 9,
+    "km": 23,
+    "mkts": 23,
+    "para": 35,
+    "vntl": 15,
+    "xyz": 119
+  },
+  "books": 140,
+  "candle_interval": "1m",
+  "candles": {
+    "candles": 315,
+    "candles_empty": 0,
+    "candles_failed": 1
+  },
+  "collected_at": "2026-09-10T13:57:52+00:00",
+  "dexes": [
+    "",
+    "xyz",
+    "flx",
+    "vntl",
+    "hyna",
+    "km",
+    "abcd",
+    "cash",
+    "para",
+    "mkts",
+    "io"
+  ],
+  "failures": {
+    "ICP": "fail:retry limit: HTTP 429"
+  },
+  "finished_at": "2026-09-10T14:00:54+00:00",
+  "funding_series": 140,
+  "info_url": "https://api.hyperliquid.xyz/info",
+  "predicted_fundings": true,
+  "seconds": 182.8,
+  "venue": "hyperliquid",
+  "window": {
+    "end_ms": 1789048672042,
+    "end_utc": "2026-09-10T13:57:52+00:00",
+    "hours": 1.0,
+    "start_ms": 1789045072042,
+    "start_utc": "2026-09-10T12:57:52+00:00"
+  }
+}

@@ -224,6 +224,81 @@ def book_cmd(args):
               'Read the finding before the number.' % ', '.join(s['id'] for s in failed))
 
 
+def scorecard(args):
+    """The loop's own metrics: what the book is worth at capacity on its detectors' verdicts, and how predictions fared.
+
+    Time-to-verified-insight rewards being right; it says nothing about whether the output is worth anything. Two
+    numbers do: dollars a year at deployable capacity across the strategies whose own detectors currently say go, and
+    whether a rate quoted on one window was still there on the next. The benchmark row (the savings rate every dollar
+    idea has to beat) is excluded from the totals by its `benchmark` flag.
+    """
+    import glob
+    import findings as F
+    book = load()
+    rows = []
+    for s in book.values():
+        if s.get('status') == 'retired':
+            continue
+        q = latest(s) or {}
+        lp = last_priced(s) or {}
+        src = q if q.get('net_apr') is not None else lp
+        apr, cap = src.get('net_apr'), (s.get('capacity_usd') or 0)
+        rows.append({'id': s['id'], 'status': s['status'], 'kind': s.get('kind'), 'net_apr': apr, 'capacity_usd': cap,
+                     'usd_per_year': (apr * cap) if apr is not None else None, 'go': src.get('go'),
+                     'present': q.get('present'), 'stale': is_stale(s), 'benchmark': bool(s.get('benchmark')),
+                     'source': src.get('source')})
+    def total(pred):
+        return sum(r['usd_per_year'] or 0.0 for r in rows if pred(r))
+    edge = lambda r: not r['benchmark']
+    current = lambda r: edge(r) and r['go'] is not False and not r['stale'] and r['present'] is not False
+    T = {'strategies': len(rows), 'benchmark_rows': [r['id'] for r in rows if r['benchmark']],
+         'usd_per_year_at_capacity_all_edges': total(edge),
+         'usd_per_year_go_and_current': total(current),
+         'usd_per_year_declined_stale_or_absent': total(edge) - total(current),
+         'strategies_go_and_current': sum(1 for r in rows if current(r))}
+    # Persistence: economics-bearing findings observed at least twice, whose latest rate kept at least half of the first.
+    L = F.load_ledger()
+    series = {}
+    for r in L.values():
+        xs = [o['net_apr'] for o in r['observations'] if o.get('net_apr') is not None]
+        if len(xs) >= 2:
+            series[r['id']] = xs
+    kept = sum(1 for xs in series.values() if ((xs[-1] >= 0.5 * xs[0]) if xs[0] > 0 else (xs[-1] <= 0.5 * xs[0])))
+    T['findings_with_a_rate_seen_twice'] = len(series)
+    T['share_that_kept_half_their_first_rate'] = (kept / len(series)) if series else None
+    # Out of sample, where a history has scored an earlier window's predictions.
+    oos = []
+    for p in sorted(glob.glob(str(ROOT / 'research' / '*' / '*' / 'history_summary.json'))):
+        H = json.loads(Path(p).read_text())
+        O = H.get('oos') or {}
+        for r in O.get('rows') or []:
+            if r.get('note') or r.get('detector') != 'funding_carry':
+                continue
+            oos.append({'window': O.get('window'), 'coin': r['coin'], 'predicted_apr': r.get('predicted_apr'),
+                        'hours': r.get('hours_held'), 'hedged_net_bps': r.get('hedged_proxy_net_bps'),
+                        'unhedged_net_bps': r.get('unhedged_net_bps')})
+    if oos:
+        T['oos_predictions'] = len(oos)
+        T['oos_hedged_positive'] = sum(1 for r in oos if (r['hedged_net_bps'] or 0) > 0)
+        T['oos_unhedged_positive'] = sum(1 for r in oos if (r['unhedged_net_bps'] or 0) > 0)
+    print('%-28s %-11s %9s %14s %14s %5s  %s' % ('strategy', 'status', 'net APR', 'capacity', '$/yr at cap', 'go', 'state'))
+    for r in sorted(rows, key=lambda r: -(r['usd_per_year'] or 0)):
+        state = ('benchmark' if r['benchmark'] else 'stale' if r['stale'] else 'absent' if r['present'] is False else
+                 'declined' if r['go'] is False else 'current')
+        print('%-28s %-11s %9s %14s %14s %5s  %s' % (
+            r['id'][:28], r['status'], ('%.2f%%' % (100 * r['net_apr'])) if r['net_apr'] is not None else '-',
+            '$%s' % format(round(r['capacity_usd']), ','), ('$%s' % format(round(r['usd_per_year']), ',')) if r['usd_per_year'] is not None else '-',
+            '-' if r['go'] is None else ('yes' if r['go'] else 'no'), state))
+    print()
+    print(json.dumps(T, indent=1))
+    if oos:
+        print('\nout of sample (funding_carry hits scored by a later history):')
+        for r in oos:
+            print('  %-14s predicted %+6.0f%%  held %3dh  hedged %+7.1fbp  unhedged %+7.1fbp' % (
+                r['coin'], 100 * (r['predicted_apr'] or 0), r['hours'] or 0, r['hedged_net_bps'] or 0, r['unhedged_net_bps'] or 0))
+    (ROOT / 'research' / 'scorecard.json').write_text(json.dumps({'generated': now().isoformat(), 'rows': rows, 'totals': T, 'oos': oos}, indent=1) + '\n')
+
+
 def show(args):
     b = load()
     s = b.get(args.id) or next((x for x in b.values() if args.id in x['id']), None)
@@ -239,8 +314,9 @@ def main():
     b = sub.add_parser('propose'); b.add_argument('--out'); b.add_argument('--top', type=int, default=15)
     c = sub.add_parser('book'); c.add_argument('--all', action='store_true')
     d = sub.add_parser('show'); d.add_argument('id')
+    e = sub.add_parser('scorecard')
     args = p.parse_args()
-    {'refresh': refresh, 'propose': propose, 'book': book_cmd, 'show': show}[args.cmd](args)
+    {'refresh': refresh, 'propose': propose, 'book': book_cmd, 'show': show, 'scorecard': scorecard}[args.cmd](args)
 
 
 if __name__ == '__main__':

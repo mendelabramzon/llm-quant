@@ -1,0 +1,513 @@
+{
+  "all_ok": true,
+  "cctp_conservation": [
+    {
+      "burned_for_it_in_window": 4233606.122733001,
+      "chain": "ethereum",
+      "domain": 0,
+      "minted_on_it_in_window": 8396670.513284,
+      "residual": 4163064.390550999
+    },
+    {
+      "burned_for_it_in_window": 183069.550362,
+      "chain": "avalanche",
+      "domain": 1,
+      "minted_on_it_in_window": 48019.266562,
+      "residual": -135050.2838
+    },
+    {
+      "burned_for_it_in_window": 286599.177795,
+      "chain": "optimism",
+      "domain": 2,
+      "minted_on_it_in_window": 315734.599374,
+      "residual": 29135.421578999958
+    },
+    {
+      "burned_for_it_in_window": 1676737.4930560002,
+      "chain": "arbitrum",
+      "domain": 3,
+      "minted_on_it_in_window": 5049826.626494,
+      "residual": 3373089.1334379995
+    },
+    {
+      "burned_for_it_in_window": 910142.7177169998,
+      "chain": "base",
+      "domain": 6,
+      "minted_on_it_in_window": 1166296.14655,
+      "residual": 256153.42883300013
+    },
+    {
+      "burned_for_it_in_window": 4449596.693935001,
+      "chain": "polygon",
+      "domain": 7,
+      "minted_on_it_in_window": 5313005.810766,
+      "residual": 863409.116830999
+    },
+    {
+      "burned_for_it_in_window": 437.99920299999997,
+      "chain": "unichain",
+      "domain": 10,
+      "minted_on_it_in_window": 233.344563,
+      "residual": -204.65463999999997
+    },
+    {
+      "burned_for_it_in_window": 2844.502885,
+      "chain": "linea",
+      "domain": 11,
+      "minted_on_it_in_window": 2914.188859,
+      "residual": 69.68597399999999
+    }
+  ],
+  "cctp_in_flight": {
+    "burned_for_scanned_chains": 11743034.257686002,
+    "burned_for_unscanned_chains": 17200943.675168,
+    "minted_on_scanned_chains": 20292700.496452,
+    "note": "a residual is expected and is the float: attestation takes minutes, so legs near the window edges settle outside it, and chains outside the scan send into it"
+  },
+  "cctp_unknown_destination_domains": [
+    {
+      "domain": 15,
+      "note": "a Circle domain no chain in this scan resolved on-chain; dollars left for it and this scan cannot see them arrive",
+      "usd": 4794110.460317
+    },
+    {
+      "domain": 19,
+      "note": "a Circle domain no chain in this scan resolved on-chain; dollars left for it and this scan cannot see them arrive",
+      "usd": 5965646.780945001
+    },
+    {
+      "domain": 21,
+      "note": "a Circle domain no chain in this scan resolved on-chain; dollars left for it and this scan cannot see them arrive",
+      "usd": 299.736825
+    },
+    {
+      "domain": 25,
+      "note": "a Circle domain no chain in this scan resolved on-chain; dollars left for it and this scan cannot see them arrive",
+      "usd": 2.645
+    },
+    {
+      "domain": 26,
+      "note": "a Circle domain no chain in this scan resolved on-chain; dollars left for it and this scan cannot see them arrive",
+      "usd": 0.49
+    },
+    {
+      "domain": 27,
+      "note": "a Circle domain no chain in this scan resolved on-chain; dollars left for it and this scan cannot see them arrive",
+      "usd": 17636.918856999997
+    },
+    {
+      "domain": 29,
+      "note": "a Circle domain no chain in this scan resolved on-chain; dollars left for it and this scan cannot see them arrive",
+      "usd": 8833.189943
+    },
+    {
+      "domain": 31,
+      "note": "a Circle domain no chain in this scan resolved on-chain; dollars left for it and this scan cannot see them arrive",
+      "usd": 3.638101
+    },
+    {
+      "domain": 37,
+      "note": "a Circle domain no chain in this scan resolved on-chain; dollars left for it and this scan cannot see them arrive",
+      "usd": 2118.168503
+    }
+  ],
+  "chains_failed_to_collect": {},
+  "checks": [
+    {
+      "analysis": 8,
+      "check": "every scanned chain that used CCTP resolved its own domain on-chain",
+      "id": "cctp-scanned-domains-verified",
+      "note": "",
+      "ok": true,
+      "recomputed": 8,
+      "tolerance": 0.0
+    },
+    {
+      "analysis": 1,
+      "check": "arbitrum: CCTP out <= USDC burned",
+      "id": "cctp-le-burn-arbitrum",
+      "note": "",
+      "ok": true,
+      "recomputed": 1,
+      "tolerance": 0.0
+    },
+    {
+      "analysis": 1,
+      "check": "arbitrum: CCTP in <= USDC minted",
+      "id": "cctp-le-mint-arbitrum",
+      "note": "",
+      "ok": true,
+      "recomputed": 1,
+      "tolerance": 0.0
+    },
+    {
+      "analysis": 1,
+      "check": "avalanche: CCTP out <= USDC burned",
+      "id": "cctp-le-burn-avalanche",
+      "note": "",
+      "ok": true,
+      "recomputed": 1,
+      "tolerance": 0.0
+    },
+    {
+      "analysis": 1,
+      "check": "avalanche: CCTP in <= USDC minted",
+      "id": "cctp-le-mint-avalanche",
+      "note": "",
+      "ok": true,
+      "recomputed": 1,
+      "tolerance": 0.0
+    },
+    {
+      "analysis": 1,
+      "check": "base: CCTP out <= USDC burned",
+      "id": "cctp-le-burn-base",
+      "note": "",
+      "ok": true,
+      "recomputed": 1,
+      "tolerance": 0.0
+    },
+    {
+      "analysis": 1,
+      "check": "base: CCTP in <= USDC minted",
+      "id": "cctp-le-mint-base",
+      "note": "",
+      "ok": true,
+      "recomputed": 1,
+      "tolerance": 0.0
+    },
+    {
+      "analysis": 1,
+      "check": "ethereum: CCTP out <= USDC burned",
+      "id": "cctp-le-burn-ethereum",
+      "note": "",
+      "ok": true,
+      "recomputed": 1,
+      "tolerance": 0.0
+    },
+    {
+      "analysis": 1,
+      "check": "ethereum: CCTP in <= USDC minted",
+      "id": "cctp-le-mint-ethereum",
+      "note": "",
+      "ok": true,
+      "recomputed": 1,
+      "tolerance": 0.0
+    },
+    {
+      "analysis": 1,
+      "check": "linea: CCTP out <= USDC burned",
+      "id": "cctp-le-burn-linea",
+      "note": "",
+      "ok": true,
+      "recomputed": 1,
+      "tolerance": 0.0
+    },
+    {
+      "analysis": 1,
+      "check": "linea: CCTP in <= USDC minted",
+      "id": "cctp-le-mint-linea",
+      "note": "",
+      "ok": true,
+      "recomputed": 1,
+      "tolerance": 0.0
+    },
+    {
+      "analysis": 1,
+      "check": "optimism: CCTP out <= USDC burned",
+      "id": "cctp-le-burn-optimism",
+      "note": "",
+      "ok": true,
+      "recomputed": 1,
+      "tolerance": 0.0
+    },
+    {
+      "analysis": 1,
+      "check": "optimism: CCTP in <= USDC minted",
+      "id": "cctp-le-mint-optimism",
+      "note": "",
+      "ok": true,
+      "recomputed": 1,
+      "tolerance": 0.0
+    },
+    {
+      "analysis": 1,
+      "check": "polygon: CCTP out <= USDC burned",
+      "id": "cctp-le-burn-polygon",
+      "note": "",
+      "ok": true,
+      "recomputed": 1,
+      "tolerance": 0.0
+    },
+    {
+      "analysis": 1,
+      "check": "polygon: CCTP in <= USDC minted",
+      "id": "cctp-le-mint-polygon",
+      "note": "",
+      "ok": true,
+      "recomputed": 1,
+      "tolerance": 0.0
+    },
+    {
+      "analysis": 1,
+      "check": "unichain: CCTP out <= USDC burned",
+      "id": "cctp-le-burn-unichain",
+      "note": "",
+      "ok": true,
+      "recomputed": 1,
+      "tolerance": 0.0
+    },
+    {
+      "analysis": 1,
+      "check": "unichain: CCTP in <= USDC minted",
+      "id": "cctp-le-mint-unichain",
+      "note": "",
+      "ok": true,
+      "recomputed": 1,
+      "tolerance": 0.0
+    }
+  ],
+  "failures": [],
+  "gas_sampling": [
+    {
+      "blocks": 14395,
+      "chain": "arbitrum",
+      "sample_share": 0.00417,
+      "sampled_blocks": 60
+    },
+    {
+      "blocks": 3392,
+      "chain": "avalanche",
+      "sample_share": 0.01769,
+      "sampled_blocks": 60
+    },
+    {
+      "blocks": 1801,
+      "chain": "base",
+      "sample_share": 0.03331,
+      "sampled_blocks": 60
+    },
+    {
+      "blocks": 7997,
+      "chain": "bsc",
+      "sample_share": 0.0075,
+      "sampled_blocks": 60
+    },
+    {
+      "blocks": 300,
+      "chain": "ethereum",
+      "sample_share": 0.2,
+      "sampled_blocks": 60
+    },
+    {
+      "blocks": 558,
+      "chain": "linea",
+      "sample_share": 0.10753,
+      "sampled_blocks": 60
+    },
+    {
+      "blocks": 1801,
+      "chain": "optimism",
+      "sample_share": 0.03331,
+      "sampled_blocks": 60
+    },
+    {
+      "blocks": 2401,
+      "chain": "polygon",
+      "sample_share": 0.02499,
+      "sampled_blocks": 60
+    },
+    {
+      "blocks": 757,
+      "chain": "scroll",
+      "sample_share": 0.07926,
+      "sampled_blocks": 60
+    },
+    {
+      "blocks": 3601,
+      "chain": "unichain",
+      "sample_share": 0.01666,
+      "sampled_blocks": 60
+    }
+  ],
+  "generated": "2026-09-10T14:00:15+00:00",
+  "identities": [
+    {
+      "check": "utilisation equals borrowed / supplied",
+      "checked": 63,
+      "examples": [],
+      "failed": 0,
+      "id": "utilisation",
+      "ok": true,
+      "worst": 0.0
+    },
+    {
+      "check": "supply APR equals borrow APR x priced utilisation x (1 - reserve factor)",
+      "checked": 63,
+      "examples": [],
+      "failed": 0,
+      "id": "supply-identity",
+      "ok": true,
+      "worst": 0.0004946944602024217
+    },
+    {
+      "check": "the reserve IRM reproduces the pool's published borrow rate at the inverted utilisation",
+      "checked": 63,
+      "examples": [],
+      "failed": 0,
+      "id": "irm-invertible",
+      "ok": true,
+      "worst": 0.0007724990736491383
+    },
+    {
+      "check": "supply APR replays from the curve at the effective liquidity base",
+      "checked": 63,
+      "examples": [],
+      "failed": 0,
+      "id": "supply-on-effective-liquidity",
+      "ok": true,
+      "worst": 0.0004946944602024772
+    },
+    {
+      "check": "the time-weighted rate lies between the window min and max",
+      "checked": 12,
+      "examples": [],
+      "failed": 0,
+      "id": "twa-in-range",
+      "ok": true,
+      "worst": 0
+    },
+    {
+      "check": "every switch fits the source liquidity and its APR replays on the curve",
+      "checked": 23,
+      "examples": [],
+      "failed": 0,
+      "id": "switch-executable",
+      "ok": true,
+      "worst": 0
+    }
+  ],
+  "liquidity_base_gap": [
+    {
+      "asset": "GHO",
+      "chain": "avalanche",
+      "gap_pp": 0.47698004815104333,
+      "pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+      "rate_error_if_atoken_used_pp": 1.9079201926041678,
+      "supplied_usd": 1073598.1884748554,
+      "utilisation_atoken": 0.9127158574795473,
+      "utilisation_priced": 0.9174856579610577
+    },
+    {
+      "asset": "FRAX",
+      "chain": "avalanche",
+      "gap_pp": -0.11019849868796339,
+      "pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+      "rate_error_if_atoken_used_pp": 0.44079399475186465,
+      "supplied_usd": 6553.6403220797465,
+      "utilisation_atoken": 0.96246672793461,
+      "utilisation_priced": 0.9613647429477303
+    },
+    {
+      "asset": "USD1",
+      "chain": "bsc",
+      "gap_pp": -0.8965726118154549,
+      "pool": "0xcb0620b181140e57d1c0d8b724cde623ca963c8c",
+      "rate_error_if_atoken_used_pp": 0.05603578823846593,
+      "supplied_usd": 4300.704673452268,
+      "utilisation_atoken": 0.44194923284577775,
+      "utilisation_priced": 0.4329835067276232
+    },
+    {
+      "asset": "USDC",
+      "chain": "arbitrum",
+      "gap_pp": -0.4836551173288073,
+      "pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+      "rate_error_if_atoken_used_pp": 0.05373945748097658,
+      "supplied_usd": 1131423.404602,
+      "utilisation_atoken": 0.843332528906494,
+      "utilisation_priced": 0.8384959777332059
+    },
+    {
+      "asset": "BUSD",
+      "chain": "bsc",
+      "gap_pp": -1.011441543085001,
+      "pool": "0xcb0620b181140e57d1c0d8b724cde623ca963c8c",
+      "rate_error_if_atoken_used_pp": 0.05057207715424977,
+      "supplied_usd": 117.99192700532427,
+      "utilisation_atoken": 0.7439131289129784,
+      "utilisation_priced": 0.7337987134821284
+    },
+    {
+      "asset": "USDtb",
+      "chain": "ethereum",
+      "gap_pp": -0.014359237080308063,
+      "pool": "0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+      "rate_error_if_atoken_used_pp": 0.03589809270077987,
+      "supplied_usd": 15495800.835839929,
+      "utilisation_atoken": 0.814141273080659,
+      "utilisation_priced": 0.8139976807098559
+    },
+    {
+      "asset": "USDT",
+      "chain": "bsc",
+      "gap_pp": -0.583900359045908,
+      "pool": "0xcb0620b181140e57d1c0d8b724cde623ca963c8c",
+      "rate_error_if_atoken_used_pp": 0.029195017952294428,
+      "supplied_usd": 564430.5428647224,
+      "utilisation_atoken": 0.7126467370618293,
+      "utilisation_priced": 0.7068077334713703
+    },
+    {
+      "asset": "USDT0",
+      "chain": "polygon",
+      "gap_pp": -0.04743327995185842,
+      "pool": "0x67dc8037db6309dd5571d82c65f5f593f7da1505",
+      "rate_error_if_atoken_used_pp": 0.028459967971110334,
+      "supplied_usd": 8065477.916898,
+      "utilisation_atoken": 0.9298495082967623,
+      "utilisation_priced": 0.9293751754972437
+    },
+    {
+      "asset": "FRAX",
+      "chain": "ethereum",
+      "gap_pp": -0.3577729211804104,
+      "pool": "0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+      "rate_error_if_atoken_used_pp": 0.021863900738802733,
+      "supplied_usd": 38802.25148621988,
+      "utilisation_atoken": 0.7486780345877412,
+      "utilisation_priced": 0.7451003053759371
+    },
+    {
+      "asset": "FDUSD",
+      "chain": "bsc",
+      "gap_pp": -0.2719738685458051,
+      "pool": "0xcb0620b181140e57d1c0d8b724cde623ca963c8c",
+      "rate_error_if_atoken_used_pp": 0.016998366784112123,
+      "supplied_usd": 26724.54841146992,
+      "utilisation_atoken": 0.7777886615526408,
+      "utilisation_priced": 0.7750689228671828
+    },
+    {
+      "asset": "USDC",
+      "chain": "polygon",
+      "gap_pp": -0.1444035447817793,
+      "pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+      "rate_error_if_atoken_used_pp": 0.01604483830908443,
+      "supplied_usd": 3496120.82741,
+      "utilisation_atoken": 0.8245634831410045,
+      "utilisation_priced": 0.8231194476931867
+    },
+    {
+      "asset": "FDUSD",
+      "chain": "bsc",
+      "gap_pp": -0.003542720696947388,
+      "pool": "0x6807dc923806fe8fd134338eabca509979a7e0cb",
+      "rate_error_if_atoken_used_pp": 0.014170882787777062,
+      "supplied_usd": 638115.5980296312,
+      "utilisation_atoken": 0.9143319636815875,
+      "utilisation_priced": 0.9142965364746181
+    }
+  ],
+  "window": "research/2026-09-10/multi_1h"
+}

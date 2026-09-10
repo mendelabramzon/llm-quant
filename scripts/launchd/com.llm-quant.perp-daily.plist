@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <!-- One unattended pass of the perp loop a day. Public endpoints only; nothing is signed or sent.
+       Edit the two absolute paths, copy to ~/Library/LaunchAgents/, then:
+         launchctl load ~/Library/LaunchAgents/com.llm-quant.perp-daily.plist
+       Remove with launchctl unload. 19:00 local in Asia/Tbilisi is 15:00 UTC: US cash equities and the futures are
+       both open, so the equity references are live rather than stale closes. -->
+  <key>Label</key><string>com.llm-quant.perp-daily</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/opt/homebrew/bin/uv</string>
+    <string>run</string>
+    <string>python</string>
+    <string>scripts/perp_daily.py</string>
+    <string>run</string>
+  </array>
+  <key>WorkingDirectory</key><string>/Users/iv/dev/llm-quant</string>
+  <key>StartCalendarInterval</key>
+  <dict><key>Hour</key><integer>19</integer><key>Minute</key><integer>0</integer></dict>
+  <key>StandardOutPath</key><string>/Users/iv/dev/llm-quant/research/perps_daily_launchd.log</string>
+  <key>StandardErrorPath</key><string>/Users/iv/dev/llm-quant/research/perps_daily_launchd.err</string>
+  <key>EnvironmentVariables</key>
+  <dict><key>PATH</key><string>/Users/iv/.local/bin:/opt/homebrew/bin:/usr/bin:/bin</string></dict>
+</dict>
+</plist>

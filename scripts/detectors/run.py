@@ -31,8 +31,9 @@ def digest(hits, meta, out):
         L.append('```')
         if h.economics:
             L.append('')
-            L.append('Economics: net APR %.2f%%, %s per year, %s — %s' % (
-                100 * h.economics['net_apr'], '$%s' % format(h.economics['net_per_year_usd'], ','),
+            apr = h.economics.get('net_apr')
+            L.append('Economics: net APR %s, %s per year, %s — %s' % (
+                ('%.2f%%' % (100 * apr)) if apr is not None else 'unquoted', '$%s' % format(h.economics['net_per_year_usd'], ','),
                 'GO' if h.economics['go'] else 'no', h.economics['reason']))
         L.append('')
     return '\n'.join(L)

@@ -47,9 +47,113 @@
       "hits": 11,
       "seconds": 0.0,
       "what": "listed markets with no open interest and no trades, against a staked deployment"
+    },
+    {
+      "detector": "roll_premium",
+      "hits": 3,
+      "seconds": 0.0,
+      "what": "the energy premium as a roll: predicted from the futures curve, priced net of the daily step"
     }
   ],
   "hits": [
+    {
+      "detector": "roll_premium",
+      "economics": {
+        "break_even_hours": 5.172381325241178,
+        "capacity_usd": 1766121.6027000002,
+        "depth_25bp_usd": 1766121.6027000002,
+        "funding_apr": 3.833750928,
+        "go": true,
+        "hedge": "the front/second-month blend the oracle tracks, in the listed futures, re-weighted with the roll; the step is what a price index pays and a futures position does not",
+        "net_apr": 1.6712222663527354,
+        "oi_cap_headroom_usd": 507665190.50399995,
+        "reason": "the curve predicts the premium, the funding exceeds the step, and the book is six figures",
+        "roll_step_apr": 1.7034053391423882,
+        "round_trip_bps_at_size": 12.57872116451716,
+        "side_paid": "long",
+        "size_usd": 100000.0
+      },
+      "evidence": {
+        "calendar_spread_pct": 4.6668639428558585,
+        "coin": "xyz:BRENTOIL",
+        "contracts": {
+          "ICEEUR:BRNF2027": 96.43,
+          "ICEEUR:BRNX2026": 105.12,
+          "ICEEUR:BRNZ2026": 100.52
+        },
+        "curve_fits": true,
+        "front_expiry": [
+          "ICEEUR:BRNX2026",
+          "2026-09-30",
+          "ICE Brent: last business day of the second month before delivery"
+        ],
+        "front_weight_mark": 0.4502846108792733,
+        "front_weight_oracle": 0.6046297802356684,
+        "funding_per_day": 0.0105034272,
+        "lead": 0.15434516935639508,
+        "observed_from": "tape",
+        "observed_premium": -0.006947880085226412,
+        "predicted_premium": -0.007203079056233412,
+        "residual": 0.0002551989710070004,
+        "roll_days_assumed": 10.0,
+        "roll_days_remaining_estimate": 6.046297802356683,
+        "step_per_trading_day": 0.004666863942855858,
+        "why": "a constant-maturity price index pays the calendar spread over its roll window and a futures hedge does not; the funding is paid to the side the index rolls against"
+      },
+      "key": "xyz:BRENTOIL",
+      "severity": "high",
+      "title": "xyz:BRENTOIL: the book prices the roll 1.54 of a step ahead of a +4.67% calendar spread; longs are paid 383% a year, the step costs 170%, net 213% while the roll lasts",
+      "usd": 10308.080453967346
+    },
+    {
+      "detector": "roll_premium",
+      "economics": {
+        "break_even_hours": 5.425470889435093,
+        "capacity_usd": 463475.48854600004,
+        "depth_25bp_usd": 463475.48854600004,
+        "funding_apr": 3.2748883319999997,
+        "go": true,
+        "hedge": "the front/second-month blend the oracle tracks, in the listed futures, re-weighted with the roll; the step is what a price index pays and a futures position does not",
+        "net_apr": 1.4329339137021428,
+        "oi_cap_headroom_usd": 805858442.6382581,
+        "reason": "the curve predicts the premium, the funding exceeds the step, and the book is six figures",
+        "roll_step_apr": 1.4234059216442674,
+        "round_trip_bps_at_size": 11.467082100098342,
+        "side_paid": "long",
+        "size_usd": 100000.0
+      },
+      "evidence": {
+        "calendar_spread_pct": 3.899742251080185,
+        "coin": "xyz:CL",
+        "contracts": {
+          "NYMEX:CLV2026": 100.24,
+          "NYMEX:CLX2026": 96.47,
+          "NYMEX:CLZ2026": 92.4
+        },
+        "curve_fits": true,
+        "front_expiry": [
+          "NYMEX:CLV2026",
+          "2026-09-22",
+          "NYMEX WTI: three business days before the 25th of the month before delivery"
+        ],
+        "front_weight_mark": 0.4430266615282209,
+        "front_weight_oracle": 0.6060181153706383,
+        "funding_per_day": 0.0089722968,
+        "lead": 0.16299145384241742,
+        "observed_from": "tape",
+        "observed_premium": -0.006346599008262682,
+        "predicted_premium": -0.00635624659114261,
+        "residual": 9.647582879928132e-06,
+        "roll_days_assumed": 10.0,
+        "roll_days_remaining_estimate": 6.060181153706383,
+        "step_per_trading_day": 0.0038997422510801847,
+        "why": "a constant-maturity price index pays the calendar spread over its roll window and a futures hedge does not; the funding is paid to the side the index rolls against"
+      },
+      "key": "xyz:CL",
+      "severity": "high",
+      "title": "xyz:CL: the book prices the roll 1.63 of a step ahead of a +3.90% calendar spread; longs are paid 327% a year, the step costs 142%, net 185% while the roll lasts",
+      "usd": 2351.004697736846
+    },
     {
       "detector": "funding_carry",
       "economics": {
@@ -760,6 +864,55 @@
       "severity": "notable",
       "title": "xyz:COPPER pays shorts 23% a year and costs 20.5bp to get in and out: 77.4 hours to break even",
       "usd": -141.1377772057547
+    },
+    {
+      "detector": "roll_premium",
+      "economics": {
+        "break_even_hours": 11.41186110754285,
+        "capacity_usd": 32694.491459999997,
+        "depth_25bp_usd": 32694.491459999997,
+        "funding_apr": 3.279720348,
+        "go": false,
+        "hedge": "the front/second-month blend the oracle tracks, in the listed futures, re-weighted with the roll; the step is what a price index pays and a futures position does not",
+        "net_apr": 0.82170832321204,
+        "oi_cap_headroom_usd": 87468907.05228001,
+        "reason": "no priced book, break-even beyond the horizon, or under $100k of depth",
+        "roll_step_apr": 1.7130868745716252,
+        "round_trip_bps_at_size": 20.408908225105066,
+        "side_paid": "short",
+        "size_usd": 100000.0
+      },
+      "evidence": {
+        "calendar_spread_pct": -4.693388697456507,
+        "coin": "xyz:NATGAS",
+        "contracts": {
+          "NYMEX:NGV2026": 2.782,
+          "NYMEX:NGX2026": 2.924,
+          "NYMEX:NGZ2026": 3.399
+        },
+        "curve_fits": true,
+        "front_expiry": [
+          "NYMEX:NGV2026",
+          "2026-09-28",
+          "NYMEX Henry Hub: three business days before the first day of the delivery month"
+        ],
+        "front_weight_mark": 0.4594117647058836,
+        "front_weight_oracle": 0.5949969148498551,
+        "funding_per_day": 0.0089855352,
+        "lead": 0.1355851501439715,
+        "observed_from": "tape",
+        "observed_premium": 0.006799260817605087,
+        "predicted_premium": 0.006363538112286593,
+        "residual": 0.0004357227053184932,
+        "roll_days_assumed": 10.0,
+        "roll_days_remaining_estimate": 5.949969148498551,
+        "step_per_trading_day": 0.004693388697456507,
+        "why": "a constant-maturity price index pays the calendar spread over its roll window and a futures hedge does not; the funding is paid to the side the index rolls against"
+      },
+      "key": "xyz:NATGAS",
+      "severity": "notable",
+      "title": "xyz:NATGAS: the book prices the roll 1.36 of a step ahead of a -4.69% calendar spread; shorts are paid 328% a year, the step costs 171%, net 157% while the roll lasts",
+      "usd": 140.3295471724771
     },
     {
       "detector": "funding_carry",
@@ -2608,8 +2761,10 @@
     "min_apr": 0.15,
     "min_oi": 1000000.0,
     "min_run": 5,
+    "min_spread_pct": 1.0,
     "min_trades": 30,
     "out": "research/2026-09-10/perps_2",
+    "roll_days": 10.0,
     "size_usd": 100000.0
   },
   "window": "research/2026-09-10/perps_2"

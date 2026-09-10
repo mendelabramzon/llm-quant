@@ -1,0 +1,565 @@
+{
+  "block": 503729349,
+  "bridge_tokens": {
+    "0xaf88d065e77c8cc2239327c5edb3a432268e5831": {
+      "decimals": 6,
+      "legs": 812,
+      "symbol": "USDC",
+      "total_supply": 2695544987.460115
+    }
+  },
+  "cctp": {
+    "emitters": {
+      "0x19330d10d9cc8751218eaf51e8885d058642e08a": {
+        "local_domain": 3,
+        "transmitter": "0xc30362313fbba5cf9163f0bb16a0e01f01a896ca"
+      },
+      "0x28b5a0e9c621a5badaa536219b3a228c8168cf5d": {
+        "local_domain": 3,
+        "transmitter": "0x81d40f21f12a8f0e3252bccb954d722d4c464b64"
+      }
+    },
+    "local_domain": 3,
+    "unresolved_domain": false
+  },
+  "chain": "arbitrum",
+  "issuance": {
+    "0xaf88d065e77c8cc2239327c5edb3a432268e5831": {
+      "burn_from": [
+        {
+          "address": "0xfd78ee919681417d192449715b2594ab58f5d002",
+          "amount": 6594528.530078
+        },
+        {
+          "address": "0x463f5d63e5a5edb8615b0e485a090a18aba08578",
+          "amount": 4749780.62
+        },
+        {
+          "address": "0x77777777dcc4d5a8b6e418fd04d8997ef11000ee",
+          "amount": 62602.787468
+        },
+        {
+          "address": "0xe7ed1fa7f45d05c508232aa32649d89b73b8ba48",
+          "amount": 995.039136
+        }
+      ],
+      "burn_legs": 494,
+      "burned": 11407906.976682,
+      "decimals": 6,
+      "mint_legs": 667,
+      "mint_to": [
+        {
+          "address": "0x7e1ad5e2bbe30d6d202e7c41036ea0a07c560be9",
+          "amount": 1000255.065741
+        },
+        {
+          "address": "0x6859da14835424957a1e6b397d8026b1d9ff7e1e",
+          "amount": 400000.0
+        },
+        {
+          "address": "0x939f95036d2e7b6d7419ec072bf9d967352204d2",
+          "amount": 399999.8
+        },
+        {
+          "address": "0x3fba77d0c89d9677807e6f7b59a6a2cf6dc3126e",
+          "amount": 324100.509342
+        },
+        {
+          "address": "0x6a2abff960b663462cbc46a2cfcf85063fe8ae14",
+          "amount": 288184.866125
+        },
+        {
+          "address": "0x62f82c3ef1da6093118fadb29090c4e3263f02e6",
+          "amount": 249999.8
+        }
+      ],
+      "minted": 5650677.860263,
+      "net_issued": -5757229.116419,
+      "symbol": "USDC"
+    }
+  },
+  "issuance_rpc": {
+    "credits": 1275,
+    "errors": 1,
+    "keys": 10,
+    "requests": 5
+  },
+  "native_usd": null,
+  "pools": {
+    "0x794a61358d6845594f94dc1db02a252b5b4814ad": {
+      "reserves": {
+        "0x17fc002b466eec40dae837fc4be5c67993ddbd6f": {
+          "aToken": "0x38d693ce1df5aadf7bc62595a37d667ad57922e5",
+          "borrow_apr": 0.017372407459454373,
+          "borrowed": 48760.72895138371,
+          "config": 7237005577332262213973186568751985011653296642585416933334744337722701250560,
+          "curve": {
+            "base": 0.0,
+            "optimal": 0.9,
+            "reserve_factor": 0.2,
+            "slope1": 0.055,
+            "slope2": 0.4,
+            "src": "bps"
+          },
+          "decimals": 18,
+          "reserve_factor": 0.2,
+          "strategy": "0x429f16dba3b9e1900087cbaa7b50d38bc60fb73f",
+          "supplied": 171470.9991556274,
+          "supply_apr": 0.003950837673808869,
+          "sym": "FRAX",
+          "utilisation": 0.28436720606688937,
+          "variableDebt": "0x5d557b07776d12967914379c71a1310e917c7555",
+          "virtual": 122741.4299457148
+        },
+        "0x2416092f143378750bb29b79ed961ab195cceea5": {
+          "aToken": "0xea1132120ddcdda2f119e99fa7a27a0d036f7ac9",
+          "borrow_apr": 0.0,
+          "borrowed": 0.0,
+          "config": 7237005577332262213973186568751985011658696631318293144845044017694088232960,
+          "curve": {
+            "base": 0.0,
+            "optimal": 0.45,
+            "reserve_factor": 0.15,
+            "slope1": 0.07,
+            "slope2": 3.0,
+            "src": "bps"
+          },
+          "decimals": 18,
+          "reserve_factor": 0.15,
+          "strategy": "0x429f16dba3b9e1900087cbaa7b50d38bc60fb73f",
+          "supplied": 66.0348195154801,
+          "supply_apr": 0.0,
+          "sym": "ezETH",
+          "utilisation": 0.0,
+          "variableDebt": "0x1ffd28689da7d0148ff0fcb669e9f9f0fc13a219",
+          "virtual": 66.0348195154801
+        },
+        "0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f": {
+          "aToken": "0x078f358208685046a11c85e8ad32895ded33a249",
+          "borrow_apr": 0.00846761455994318,
+          "borrowed": 202.94613798,
+          "config": 7237005577332262213973186568751985011943982189914132482846053352509837679748,
+          "curve": {
+            "base": 0.005,
+            "optimal": 0.8,
+            "reserve_factor": 0.5,
+            "slope1": 0.04,
+            "slope2": 3.0,
+            "src": "bps"
+          },
+          "decimals": 8,
+          "reserve_factor": 0.5,
+          "strategy": "0x429f16dba3b9e1900087cbaa7b50d38bc60fb73f",
+          "supplied": 2926.09759011,
+          "supply_apr": 0.00029362420948691786,
+          "sym": "WBTC",
+          "utilisation": 0.06935726910337625,
+          "variableDebt": "0x92b42c66840c7ad907b4bf74879ff3ef7c529473",
+          "virtual": 2723.3614759
+        },
+        "0x35751007a407ca6feffe80b3cb397736d2cf4dbe": {
+          "aToken": "0x8437d7c167dfb82ed4cb79cd44b7a32a1dd95c77",
+          "borrow_apr": 0.010011612801475571,
+          "borrowed": 1.840952193451383,
+          "config": 7237005577332262213973187317040823328813961424267390665488411455575521762636,
+          "curve": {
+            "base": 0.01,
+            "optimal": 0.3,
+            "reserve_factor": 0.45,
+            "slope1": 0.07,
+            "slope2": 3.0,
+            "src": "bps"
+          },
+          "decimals": 18,
+          "reserve_factor": 0.45,
+          "strategy": "0x429f16dba3b9e1900087cbaa7b50d38bc60fb73f",
+          "supplied": 36989.62565709431,
+          "supply_apr": 2.7404819808151276e-07,
+          "sym": "weETH",
+          "utilisation": 4.976941941823365e-05,
+          "variableDebt": "0x3ca5fa07689f266e907439afd1fbb59c44fe12f6",
+          "virtual": 36987.76784760649
+        },
+        "0x3f56e0c36d275367b8c502090edf38289b3dea0d": {
+          "aToken": "0xc45a479877e1e9dfe9fcd4056c699575a1045daa",
+          "borrow_apr": 0.0001651076460044149,
+          "borrowed": 12.930480616002852,
+          "config": 7237005577332262213973186568751985038653157230519014428780119338729204875264,
+          "curve": {
+            "base": 0.0,
+            "optimal": 0.45,
+            "reserve_factor": 0.95,
+            "slope1": 0.09,
+            "slope2": 3.0,
+            "src": "bps"
+          },
+          "decimals": 18,
+          "reserve_factor": 0.95,
+          "strategy": "0x429f16dba3b9e1900087cbaa7b50d38bc60fb73f",
+          "supplied": 15661.438454504805,
+          "supply_apr": 6.815132151232975e-09,
+          "sym": "MAI",
+          "utilisation": 0.0008256253506703639,
+          "variableDebt": "0x34e2ed44ef7466d5f9e0b782b5c08b57475e7907",
+          "virtual": 15648.512451136574
+        },
+        "0x4186bfc76e2e237523cbc30fd220fe055156b41f": {
+          "aToken": "0x6b030ff3fb9956b1b69f475b77ae0d3cf2cc5afa",
+          "borrow_apr": 0.0,
+          "borrowed": 0.0,
+          "config": 7237005577332262213973186568751985019130121042125832161176746679690221715456,
+          "curve": {
+            "base": 0.0,
+            "optimal": 0.45,
+            "reserve_factor": 0.2,
+            "slope1": 0.1,
+            "slope2": 3.0,
+            "src": "bps"
+          },
+          "decimals": 18,
+          "reserve_factor": 0.2,
+          "strategy": "0x429f16dba3b9e1900087cbaa7b50d38bc60fb73f",
+          "supplied": 16466.642357218556,
+          "supply_apr": 0.0,
+          "sym": "rsETH",
+          "utilisation": 0.0,
+          "variableDebt": "0x80ca0d8c38d2e2bcbab66aa1648bd1c7160500fe",
+          "virtual": 16466.642357218556
+        },
+        "0x5979d7b546e38e414f7e9822514be443a4800529": {
+          "aToken": "0x513c7e3a9c69ca3e22550ef58ac1c0088e918fff",
+          "borrow_apr": 4.060256922834273e-05,
+          "borrowed": 115.5771234397448,
+          "config": 7237005577332262213973187317040823327900117177166831323719747209963685813580,
+          "curve": {
+            "base": 0.0,
+            "optimal": 0.9,
+            "reserve_factor": 0.05,
+            "slope1": 0.0055,
+            "slope2": 0.85,
+            "src": "bps"
+          },
+          "decimals": 18,
+          "reserve_factor": 0.05,
+          "strategy": "0x429f16dba3b9e1900087cbaa7b50d38bc60fb73f",
+          "supplied": 18216.82681370843,
+          "supply_apr": 2.447238298886942e-07,
+          "sym": "wstETH",
+          "utilisation": 0.0063445255653839395,
+          "variableDebt": "0x77ca01483f379e58174739308945f044e1a764dc",
+          "virtual": 17279.988037910618
+        },
+        "0x6c84a8f1c29108f47a79964b5fe888d4f4d0de40": {
+          "aToken": "0x62fc96b27a510cf4977b59ff952dc32378cc221d",
+          "borrow_apr": 0.0,
+          "borrowed": 0.0,
+          "config": 7237005577332262213973186568751985011656121252076459879564664928370081398784,
+          "curve": {
+            "base": 0.0,
+            "optimal": 0.45,
+            "reserve_factor": 0.2,
+            "slope1": 0.04,
+            "slope2": 3.0,
+            "src": "bps"
+          },
+          "decimals": 18,
+          "reserve_factor": 0.2,
+          "strategy": "0x429f16dba3b9e1900087cbaa7b50d38bc60fb73f",
+          "supplied": 21.570499780736945,
+          "supply_apr": 0.0,
+          "sym": "tBTC",
+          "utilisation": 0.0,
+          "variableDebt": "0xb5b46f918c2923fc7f26db76e8a6a6e9c4347cf9",
+          "virtual": 21.570499780736945
+        },
+        "0x7dff72693f6a4149b17e7c6314655f6a9f7c8b33": {
+          "aToken": "0xebe517846d0f36eced99c735cbf6131e1feb775d",
+          "borrow_apr": 0.03822924009397923,
+          "borrowed": 553750.2954787207,
+          "config": 7237005577332262213973186563042995022498512323109227472553380296632190369792,
+          "curve": {
+            "base": 0.0,
+            "optimal": 0.9,
+            "reserve_factor": 0.1,
+            "slope1": 0.045,
+            "slope2": 0.4,
+            "src": "bps"
+          },
+          "decimals": 18,
+          "reserve_factor": 0.1,
+          "strategy": "0x429f16dba3b9e1900087cbaa7b50d38bc60fb73f",
+          "supplied": 723662.8362820086,
+          "supply_apr": 0.026306527843618983,
+          "sym": "GHO",
+          "utilisation": 0.7652048270486649,
+          "variableDebt": "0x18248226c16bf76c032817854e7c83a2113b4f06",
+          "virtual": 170497.57715134957
+        },
+        "0x82af49447d8a07e3bd95bd0d56f35241523fbab1": {
+          "aToken": "0xe50fa9b3c56ffb159cb0fca61f5c9d750e8128c8",
+          "borrow_apr": 0.0193971693975088,
+          "borrowed": 55241.421721323764,
+          "config": 7237005577332262213973187317040823337537020146769104802801856620795243011904,
+          "curve": {
+            "base": 0.0,
+            "optimal": 0.92,
+            "reserve_factor": 0.15,
+            "slope1": 0.022,
+            "slope2": 0.08,
+            "src": "bps"
+          },
+          "decimals": 18,
+          "reserve_factor": 0.15,
+          "strategy": "0x429f16dba3b9e1900087cbaa7b50d38bc60fb73f",
+          "supplied": 97911.18736699484,
+          "supply_apr": 0.00929979597238086,
+          "sym": "WETH",
+          "utilisation": 0.5641992831142527,
+          "variableDebt": "0x0c84331e39d6658cd6e6b9ba04736cc4c4734351",
+          "virtual": 12860.809417377233
+        },
+        "0x912ce59144191c1204e64559fe8253a0e49e6548": {
+          "aToken": "0x6533afac2e7bccb20dca161449a13a32d391fb00",
+          "borrow_apr": 0.011226996805988156,
+          "borrowed": 1689160.0178240128,
+          "config": 7237005577332262213973186568751989331644199866812267313465633762619233665024,
+          "curve": {
+            "base": 0.0,
+            "optimal": 0.45,
+            "reserve_factor": 0.2,
+            "slope1": 0.07,
+            "slope2": 3.0,
+            "src": "bps"
+          },
+          "decimals": 18,
+          "reserve_factor": 0.2,
+          "strategy": "0x429f16dba3b9e1900087cbaa7b50d38bc60fb73f",
+          "supplied": 23404856.016038973,
+          "supply_apr": 0.0006481597716984203,
+          "sym": "ARB",
+          "utilisation": 0.07217134840165043,
+          "variableDebt": "0x44705f578135cc5d703b4c9c122528c73eb87145",
+          "virtual": 21714965.727362487
+        },
+        "0x93b346b6bc2548da6a1e7d98e9a421b42541425b": {
+          "aToken": "0x8ffdf2de812095b1d19cb146e4c004587c0a0692",
+          "borrow_apr": 0.05142286314841565,
+          "borrowed": 74064.24622402054,
+          "config": 7237005577332262213973186563042994240829457118352273110876995967793244405760,
+          "curve": {
+            "base": 0.02,
+            "optimal": 0.8,
+            "reserve_factor": 0.5,
+            "slope1": 0.065,
+            "slope2": 0.5,
+            "src": "bps"
+          },
+          "decimals": 18,
+          "reserve_factor": 0.5,
+          "strategy": "0x429f16dba3b9e1900087cbaa7b50d38bc60fb73f",
+          "supplied": 191119.05813219203,
+          "supply_apr": 0.00994370581157304,
+          "sym": "LUSD",
+          "utilisation": 0.387529359697829,
+          "variableDebt": "0xa8669021776bc142dfca87c21b4a52595bcbb40a",
+          "virtual": 117372.5116902898
+        },
+        "0xaf88d065e77c8cc2239327c5edb3a432268e5831": {
+          "aToken": "0x724dc807b04555b71ed48a6896b6f41593b8c637",
+          "borrow_apr": 0.0368018103587751,
+          "borrowed": 140665304.304993,
+          "config": 7237005577332262213973186942896424937551795037297819859365743234882012192076,
+          "curve": {
+            "base": 0.0,
+            "optimal": 0.9,
+            "reserve_factor": 0.1,
+            "slope1": 0.04,
+            "slope2": 0.1,
+            "src": "bps"
+          },
+          "decimals": 6,
+          "reserve_factor": 0.1,
+          "strategy": "0x429f16dba3b9e1900087cbaa7b50d38bc60fb73f",
+          "supplied": 169803336.120469,
+          "supply_apr": 0.027425982829202875,
+          "sym": "USDC",
+          "utilisation": 0.8284012995197946,
+          "variableDebt": "0xf611aeb5013fd2c0511c9cd55c7dc5c1140741a6",
+          "virtual": 29211968.335179
+        },
+        "0xba5ddd1f9d7f570dc94a51479a000e3bce967196": {
+          "aToken": "0xf329e36c7bf6e5e86ce2150875a84ce77f477375",
+          "borrow_apr": 0.0,
+          "borrowed": 0.0,
+          "config": 7237005577332262213973186568751985012517211763095874447660854678633373237248,
+          "curve": {
+            "base": 0.0,
+            "optimal": 0.45,
+            "reserve_factor": 0.0,
+            "slope1": 0.07,
+            "slope2": 3.0,
+            "src": "bps"
+          },
+          "decimals": 18,
+          "reserve_factor": 0.0,
+          "strategy": "0x429f16dba3b9e1900087cbaa7b50d38bc60fb73f",
+          "supplied": 10385.310139296169,
+          "supply_apr": 0.0,
+          "sym": "AAVE",
+          "utilisation": 0.0,
+          "variableDebt": "0xe80761ea617f66f96274ea5e8c37f03960ecc679",
+          "virtual": 10385.310380194054
+        },
+        "0xd22a58f79e9481d1a88e00c343885a588b34b68b": {
+          "aToken": "0x6d80113e533a2c0fe82eabd35f1875dcea89ea97",
+          "borrow_apr": 0.03498223521847253,
+          "borrowed": 5414.42,
+          "config": 7237005577332262213973186942896404175010500604982155885329735307437426868224,
+          "curve": {
+            "base": 0.0,
+            "optimal": 0.8,
+            "reserve_factor": 0.2,
+            "slope1": 0.055,
+            "slope2": 0.75,
+            "src": "bps"
+          },
+          "decimals": 2,
+          "reserve_factor": 0.2,
+          "strategy": "0x429f16dba3b9e1900087cbaa7b50d38bc60fb73f",
+          "supplied": 10598.47,
+          "supply_apr": 0.014238880629144744,
+          "sym": "EURS",
+          "utilisation": 0.5108680781282582,
+          "variableDebt": "0x4a1c3ad6ed28a636ee1751c69071f6be75deb8b8",
+          "virtual": 5194.44
+        },
+        "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1": {
+          "aToken": "0x82e64f49ed5ec1bc6e43dad4fc8af9bb3a2312ee",
+          "borrow_apr": 0.0376163362872641,
+          "borrowed": 2432214.9615252465,
+          "config": 7237005577332262213973186942896404575440434340440845293050408405182216142848,
+          "curve": {
+            "base": 0.0,
+            "optimal": 0.9,
+            "reserve_factor": 0.25,
+            "slope1": 0.05,
+            "slope2": 0.4,
+            "src": "bps"
+          },
+          "decimals": 18,
+          "reserve_factor": 0.25,
+          "strategy": "0x429f16dba3b9e1900087cbaa7b50d38bc60fb73f",
+          "supplied": 3588452.9264733074,
+          "supply_apr": 0.01910107912861677,
+          "sym": "DAI",
+          "utilisation": 0.6777892900815062,
+          "variableDebt": "0x8619d80fb0141ba7f184cbf22fd724116d9f7ffc",
+          "virtual": 1159921.123913715
+        },
+        "0xec70dcb4a1efa46b8f2d97c310c9c4790ba5ffa8": {
+          "aToken": "0x8eb270e296023e9d92081fdf967ddd7878724424",
+          "borrow_apr": 0.001999045331557198,
+          "borrowed": 12.865768118436183,
+          "config": 7237005577332262213973186568751985011761213340493204781542750137218694126324,
+          "curve": {
+            "base": 0.0,
+            "optimal": 0.45,
+            "reserve_factor": 0.15,
+            "slope1": 0.07,
+            "slope2": 3.0,
+            "src": "bps"
+          },
+          "decimals": 18,
+          "reserve_factor": 0.15,
+          "strategy": "0x429f16dba3b9e1900087cbaa7b50d38bc60fb73f",
+          "supplied": 1001.1474041109394,
+          "supply_apr": 2.1836281222216394e-05,
+          "sym": "rETH",
+          "utilisation": 0.012851022802043342,
+          "variableDebt": "0xce186f6cccb0c955445bb9d10c59cae488fea559",
+          "virtual": 988.2824825167168
+        },
+        "0xf97f4df75117a78c1a5a0dbb814af92458539fb4": {
+          "aToken": "0x191c10aa4af7c30e871e70c95db0e4eb77237530",
+          "borrow_apr": 0.002913727595142403,
+          "borrowed": 6753.798037856162,
+          "config": 7237005577332262213973186568751985068976170884060177395069367326089300148224,
+          "curve": {
+            "base": 0.0,
+            "optimal": 0.45,
+            "reserve_factor": 0.2,
+            "slope1": 0.07,
+            "slope2": 3.0,
+            "src": "bps"
+          },
+          "decimals": 18,
+          "reserve_factor": 0.2,
+          "strategy": "0x429f16dba3b9e1900087cbaa7b50d38bc60fb73f",
+          "supplied": 360564.999262376,
+          "supply_apr": 4.366184217296348e-05,
+          "sym": "LINK",
+          "utilisation": 0.018731152640086284,
+          "variableDebt": "0x953a573793604af8d41f306feb8274190db4ae0e",
+          "virtual": 353811.5419996958
+        },
+        "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9": {
+          "aToken": "0x6ab707aca953edaefbc4fd23ba73294241490620",
+          "borrow_apr": 0.043544025806125805,
+          "borrowed": 45935512.058947,
+          "config": 7237005577332262213973186942896414137574329148731305227326133385166914592076,
+          "curve": {
+            "base": 0.0,
+            "optimal": 0.9,
+            "reserve_factor": 0.1,
+            "slope1": 0.044,
+            "slope2": 0.1,
+            "src": "bps"
+          },
+          "decimals": 6,
+          "reserve_factor": 0.1,
+          "strategy": "0x429f16dba3b9e1900087cbaa7b50d38bc60fb73f",
+          "supplied": 51575528.767756,
+          "supply_apr": 0.034887042318966346,
+          "sym": "USD\u20ae0",
+          "utilisation": 0.8906454893714045,
+          "variableDebt": "0xfb00ac187a8eb5afae4eace434f493eb62672df7",
+          "virtual": 5638405.395318
+        },
+        "0xff970a61a04b1ca14834a43f5de4533ebddb5cc8": {
+          "aToken": "0x625e7708f30ca75bfd92586e17077590c60eb4cd",
+          "borrow_apr": 0.09316621974813401,
+          "borrowed": 954166.161067,
+          "config": 7237005577332262213973186942896404309594835179975964397915432902157527416832,
+          "curve": {
+            "base": 0.0,
+            "optimal": 0.9,
+            "reserve_factor": 0.5,
+            "slope1": 0.1,
+            "slope2": 0.4,
+            "src": "bps"
+          },
+          "decimals": 6,
+          "reserve_factor": 0.5,
+          "strategy": "0x429f16dba3b9e1900087cbaa7b50d38bc60fb73f",
+          "supplied": 1131423.404602,
+          "supply_apr": 0.03904665684923971,
+          "sym": "USDC",
+          "utilisation": 0.843332528906494,
+          "variableDebt": "0xfccf3cabbe80101232d343252614b6a3ee81c989",
+          "virtual": 183771.725167
+        }
+      },
+      "strategies": [
+        "0x429f16dba3b9e1900087cbaa7b50d38bc60fb73f"
+      ],
+      "updates": 409
+    }
+  },
+  "read_at": "2026-09-10T13:54:09+00:00",
+  "rpc": {
+    "credits": 12960,
+    "errors": 5,
+    "keys": 10,
+    "requests": 48
+  }
+}

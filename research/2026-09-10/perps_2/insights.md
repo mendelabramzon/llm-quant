@@ -191,14 +191,26 @@ it is a permissioned-redemption question, not a signal question.
 * Two strategies added to the book, one re-quoted from history with its kill criterion replaced.
 * By the parallel worker: `scripts/dislocation_history.py` and 22 tests, and the sUSDe study.
 
+## Done the same day, after this note was first written
+
+* **`roll_premium` detector** (`scripts/perp_scan.py`, 5 tests). It reads the curve placement beside the window,
+  predicts the premium as lead times spread, scores the fit, and prices the carry net of a tenth of the spread per
+  trading day. On this window: Brent predicted -0.72% against -0.69% observed, funding 383% less a 170% step, net
+  213% while the roll lasts and **167% after a daily round trip**; WTI 143%; gas 82% and declined on $33k of depth.
+  The book's `hip3-oil-funding-carry` is now quoted from this finding rather than from the unhedged funding figure.
+* **`scripts/perp_daily.py`**, one unattended pass a day: history append, window, references, tape from the reference
+  snapshots, compare, curve, detect, verify, render, ingest, book refresh, history analyze. A launchd template is in
+  `scripts/launchd/`; it is not installed by this session. Each pass appends one line to `research/perps_daily_log.md`.
+* **`strategies.py scorecard`**: dollars a year at capacity on the detectors' own verdicts, the share of twice-seen
+  rates that kept half their first reading, and the out-of-sample table. The benchmark row is excluded by flag.
+* **Ethena's redemption cap, read on chain**: the minting contract allows 10,000,000 USDe of redemption per block, so
+  the sUSDe bid's scaling constraint is access to direct redemption, not protocol capacity.
+
 ## What to build next
 
-1. **A daily perp window with the history appended** (about 650 requests) and the calendar spread recorded from the
-   scanner in the same snapshot, so premium against spread becomes a regression over weeks rather than three points
-   on one day. The roll steps at 22:00 UTC give a clean daily test of the mechanism.
-2. **A `roll_premium` detector**: premium minus lead times spread, flagged when the lead exceeds 0.1 and the spread
-   exceeds 1%, so the regime's end is detected the day it happens instead of read off a ledger a week later.
-3. **The hedge leg priced from the scanner**: the front/second blend the oracle tracks, its quoted depth, and the roll
-   schedule, so the strategy's capacity is min(book, hedge) rather than the book alone.
-4. **sUSDe scaling**: whether a direct USDe redemption at $5M to $25M is available, which multiplies the one binding
-   term of a strategy that is otherwise fully measured.
+1. **Let the daily pass accumulate** so premium against spread becomes a regression over weeks rather than three
+   points on one day; the 22:00 UTC steps give a clean daily test of the mechanism.
+2. **The hedge leg priced from the scanner**: the front/second blend the oracle tracks and the roll schedule, so the
+   strategy's capacity is min(book, hedge) rather than the book alone. Futures depth is not in the free feed; volume
+   and open interest are, and are enough to say the hedge is not the binding side.
+3. **sUSDe scaling** is now a business question: approved-minter access to direct redemption.

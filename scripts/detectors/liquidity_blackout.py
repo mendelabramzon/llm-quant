@@ -79,7 +79,9 @@ def scan(ctx):
     hits = []
     for row in rows:
         venue, sym = row.get('venue'), row.get('sym')
-        series = row.get('series') or []
+        # Complete, log-ordered final updates per block prevent atomic rate spikes from being
+        # carried forward. Old sampled series cannot establish duration reliably; re-analyze first.
+        series = row.get('block_end_series') or []
         if len(series) < MIN_POINTS:
             continue
         curve = curves.get('%s %s' % (venue, sym))
@@ -96,7 +98,7 @@ def scan(ctx):
                 pts.append((ts[n], n, u))
         if len(pts) < MIN_POINTS:
             continue
-        pts.sort()
+        pts.sort(key=lambda p: p[0])
 
         # A rate holds until the next update, so an episode runs from the observation that crossed the threshold to
         # the observation that came back under it. The last point is carried to the window's end, and that fact is
@@ -131,7 +133,7 @@ def scan(ctx):
         avail_at_peak = supplied * (1 - peak_u)
         sev = 'high' if episodes else 'notable'
         if episodes:
-            title = ('%s %s closed its exit %s for %s: %s withdrawable on a %s reserve at %.4f%% utilisation'
+            title = ('%s %s exit liquidity squeezed %s for %s: approximately %s available on a %s reserve at %.4f%% utilisation'
                      % (venue, sym, _clock(worst['start_ts']), _dur(worst['end_ts'] - worst['start_ts']),
                         _m(avail_at_peak), _m(supplied), 100 * peak_u))
         else:
@@ -157,9 +159,9 @@ def scan(ctx):
                               'open_at_window_end': e.get('open_at_window_end', False)}
                              for e in episodes[:8]],
                 'utilisation_source': 'inverted from the reserve’s published borrow rate through its own IRM',
-                'why': 'utilisation is the share of supply that is lent out, so a supplier can withdraw only '
-                       'supplied x (1 - u); at these levels the reserve pays a spectacular rate and cannot be exited, '
-                       'and the rate is the symptom rather than the opportunity',
+                'why': 'High utilisation limits aggregate withdrawals. Available amounts are estimates from '
+                       'endpoint supply times (1 - historical utilisation), not historical cash balance reads '
+                       'or account-specific withdrawability. The curve is also taken from the endpoint.',
                 'next_step': 'any strategy whose exit leg is this reserve must either size to the trough of this '
                              'series or hold through it; the ledger’s recurrence column says whether the '
                              'episode is a schedule or an accident'}))

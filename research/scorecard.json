@@ -1,0 +1,211 @@
+{
+ "generated": "2026-09-10T13:56:04+00:00",
+ "rows": [
+  {
+   "id": "aave-usdtb-supply",
+   "status": "proposed",
+   "kind": "spread",
+   "net_apr": 0.0064,
+   "capacity_usd": 227400,
+   "usd_per_year": 1455.3600000000001,
+   "go": true,
+   "present": true,
+   "stale": false,
+   "benchmark": false,
+   "source": "ledger:9fc10ac52a76"
+  },
+  {
+   "id": "compound-usdc-supply-spread",
+   "status": "monitored",
+   "kind": "spread",
+   "net_apr": 0.0051,
+   "capacity_usd": 1400000,
+   "usd_per_year": 7140.000000000001,
+   "go": true,
+   "present": true,
+   "stale": false,
+   "benchmark": false,
+   "source": "ledger:13b69d88bf8d"
+  },
+  {
+   "id": "hip3-cross-builder-funding",
+   "status": "proposed",
+   "kind": "carry",
+   "net_apr": 3.070868808,
+   "capacity_usd": 25000,
+   "usd_per_year": 76771.72020000001,
+   "go": false,
+   "present": true,
+   "stale": false,
+   "benchmark": false,
+   "source": "ledger:5c1fb4c6475b"
+  },
+  {
+   "id": "hip3-oil-funding-carry",
+   "status": "proposed",
+   "kind": "carry",
+   "net_apr": 1.6712222663527354,
+   "capacity_usd": 1700000,
+   "usd_per_year": 2841077.8527996503,
+   "go": true,
+   "present": true,
+   "stale": false,
+   "benchmark": false,
+   "source": "ledger:c17517811617"
+  },
+  {
+   "id": "morpho-usdt-borrow-vs-aave",
+   "status": "proposed",
+   "kind": "spread",
+   "net_apr": 0.0148,
+   "capacity_usd": 6353460,
+   "usd_per_year": 94031.208,
+   "go": true,
+   "present": true,
+   "stale": false,
+   "benchmark": false,
+   "source": "ledger:a5136b27c0f5"
+  },
+  {
+   "id": "pt-susds-fixed-vs-ssr",
+   "status": "proposed",
+   "kind": "carry",
+   "net_apr": 0.0066,
+   "capacity_usd": 1000000,
+   "usd_per_year": 6600.0,
+   "go": true,
+   "present": true,
+   "stale": false,
+   "benchmark": false,
+   "source": "ledger:0c2d954ed516"
+  },
+  {
+   "id": "sky-ssr-vs-aave-usds",
+   "status": "monitored",
+   "kind": "spread",
+   "net_apr": 0.0345,
+   "capacity_usd": 1000000000,
+   "usd_per_year": 34500000.0,
+   "go": true,
+   "present": true,
+   "stale": false,
+   "benchmark": true,
+   "source": "ledger:0e76997b6c9e"
+  },
+  {
+   "id": "susde-cooldown-redemption",
+   "status": "fork-proven",
+   "kind": "redemption",
+   "net_apr": 0.0692,
+   "capacity_usd": 600000,
+   "usd_per_year": 41520.0,
+   "go": true,
+   "present": true,
+   "stale": false,
+   "benchmark": false,
+   "source": "history"
+  },
+  {
+   "id": "usdg-captive-flow-lp",
+   "status": "fork-proven",
+   "kind": "liquidity",
+   "net_apr": 0.0821,
+   "capacity_usd": 150000,
+   "usd_per_year": 12315.000000000002,
+   "go": true,
+   "present": true,
+   "stale": false,
+   "benchmark": false,
+   "source": "ledger:e9a8311d33de"
+  }
+ ],
+ "totals": {
+  "strategies": 9,
+  "benchmark_rows": [
+   "sky-ssr-vs-aave-usds"
+  ],
+  "usd_per_year_at_capacity_all_edges": 3080911.14099965,
+  "usd_per_year_go_and_current": 3004139.4207996503,
+  "usd_per_year_declined_stale_or_absent": 76771.72019999987,
+  "strategies_go_and_current": 7,
+  "findings_with_a_rate_seen_twice": 57,
+  "share_that_kept_half_their_first_rate": 0.8771929824561403,
+  "oos_predictions": 9,
+  "oos_hedged_positive": 4,
+  "oos_unhedged_positive": 6
+ },
+ "oos": [
+  {
+   "window": "research/2026-09-08/perps_1h",
+   "coin": "xyz:BRENTOIL",
+   "predicted_apr": -2.85454674,
+   "hours": 47,
+   "hedged_net_bps": 145.30901900222264,
+   "unhedged_net_bps": 303.34562350436465
+  },
+  {
+   "window": "research/2026-09-08/perps_1h",
+   "coin": "xyz:NATGAS",
+   "predicted_apr": 2.589537468,
+   "hours": 47,
+   "hedged_net_bps": 124.59826097269789,
+   "unhedged_net_bps": 605.776149166802
+  },
+  {
+   "window": "research/2026-09-08/perps_1h",
+   "coin": "xyz:CL",
+   "predicted_apr": -2.171053872,
+   "hours": 47,
+   "hedged_net_bps": 109.12595071537159,
+   "unhedged_net_bps": 325.0671151177156
+  },
+  {
+   "window": "research/2026-09-08/perps_1h",
+   "coin": "SYRUP",
+   "predicted_apr": 0.20706012000000001,
+   "hours": 47,
+   "hedged_net_bps": -32.13410685849469,
+   "unhedged_net_bps": 1137.7326107342228
+  },
+  {
+   "window": "research/2026-09-08/perps_1h",
+   "coin": "MEGA",
+   "predicted_apr": 0.230743656,
+   "hours": 47,
+   "hedged_net_bps": -20.07638130256441,
+   "unhedged_net_bps": 617.9431082030122
+  },
+  {
+   "window": "research/2026-09-08/perps_1h",
+   "coin": "xyz:AVGO",
+   "predicted_apr": 0.207992184,
+   "hours": 47,
+   "hedged_net_bps": -10.362933236147807,
+   "unhedged_net_bps": -50.52945009281686
+  },
+  {
+   "window": "research/2026-09-08/perps_1h",
+   "coin": "xyz:SOFTBANK",
+   "predicted_apr": 1.3449946320000001,
+   "hours": 47,
+   "hedged_net_bps": -64.27845136956658,
+   "unhedged_net_bps": -400.19297450388456
+  },
+  {
+   "window": "research/2026-09-08/perps_1h",
+   "coin": "io:NBIS",
+   "predicted_apr": 0.308987976,
+   "hours": 47,
+   "hedged_net_bps": 19.8315094243385,
+   "unhedged_net_bps": -80.59407033146957
+  },
+  {
+   "window": "research/2026-09-08/perps_1h",
+   "coin": "xyz:ORCL",
+   "predicted_apr": 0.25827195599999997,
+   "hours": 47,
+   "hedged_net_bps": -8.48561299241038,
+   "unhedged_net_bps": 260.98801132722156
+  }
+ ]
+}

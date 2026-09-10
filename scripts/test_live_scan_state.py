@@ -55,7 +55,8 @@ class EnrichmentTests(unittest.TestCase):
                   'rates': {}, 'lending': {}, 'compound': {}, 'tokens': {}, 'health': [], 'token_registry_mismatches': []}
             (out/'head_state.json').write_text(json.dumps(hs))
             (out/'analysis.json').write_text(json.dumps({'lending_ops': {'large_ops': [
-                {'venue': 'Aave v3', 'usd': 1000000, 'account': '0x'+'1'*40}]}}))
+                {'venue': 'Aave v3', 'usd': 1000000, 'account': '0x'+'1'*40},
+                {'venue': 'SparkLend', 'usd': 1000000, 'account': '0x'+'1'*40}]}}))
             rpc = FakeRPC()
             with patch.object(live_scan, 'RPC', return_value=rpc), contextlib.redirect_stdout(io.StringIO()):
                 live_scan.enrich(argparse.Namespace(out=d, max_credits=1000))
@@ -66,6 +67,7 @@ class EnrichmentTests(unittest.TestCase):
             self.assertEqual(after['health'][0]['health_factor'], 1.6)
             self.assertEqual(after['health'][0]['ltv'], .75)
             self.assertEqual(after['health'][0]['available_borrow_usd'], 25)
+            self.assertEqual({r['venue'] for r in after['health']},{'Aave v3','SparkLend'})
 
 
 if __name__ == '__main__':

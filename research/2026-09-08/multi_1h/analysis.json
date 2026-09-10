@@ -1850,7 +1850,7 @@
     "note": "rank correlation between a chain's USDC supply APR and its net CCTP USDC flow over this one hour; a negative value means dollars moved toward the lower rate",
     "rho": -0.5748606057183643
   },
-  "generated": "2026-09-08T07:56:47+00:00",
+  "generated": "2026-09-10T13:53:46+00:00",
   "spreads": [
     {
       "asset": "FRAX",
@@ -5172,5 +5172,25 @@
       "to_supplied_usd": 1391257.4663792488,
       "unconstrained_size_usd": 1002.3768069517098
     }
-  ]
+  ],
+  "window": {
+    "chains": [
+      "arbitrum",
+      "avalanche",
+      "base",
+      "bsc",
+      "ethereum",
+      "linea",
+      "optimism",
+      "polygon",
+      "scroll",
+      "unichain"
+    ],
+    "first_block": null,
+    "first_utc": "2026-09-08T06:28:25+00:00",
+    "hours": 1.0,
+    "last_block": null,
+    "last_utc": "2026-09-08T07:29:53+00:00",
+    "note": "per-chain block ranges are in manifest.json; block numbers are not comparable across chains"
+  }
 }

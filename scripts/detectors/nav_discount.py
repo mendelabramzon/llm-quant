@@ -65,7 +65,7 @@ REDEMPTION = {
     'WSTETH': {'days': 3.0, 'atomic': False, 'availability': 'queued',       'exit_bps': 3.0,
                'path': 'unwrap to stETH, then the Lido withdrawal queue'},
     'RETH':   {'days': 1.0, 'atomic': False, 'availability': 'conditional',  'exit_bps': 5.0,
-               'path': 'burn into the Rocket Pool deposit pool, which is empty most of the time'},
+               'path': 'burn into available rETH contract ETH and excess deposit-pool ETH; liquidity requires a pinned check'},
     'RSETH':  {'days': 7.0, 'atomic': False, 'availability': 'queued',       'exit_bps': 5.0,
                'path': 'Kelp withdrawal queue'},
     'EZETH':  {'days': 7.0, 'atomic': False, 'availability': 'queued',       'exit_bps': 5.0,
@@ -157,6 +157,13 @@ def scan(ctx):
                     'price_dispersion_bps': None if disp_bps is None else round(disp_bps, 2),
                     'significance': None if significance is None else round(significance, 2),
                     'inside_price_noise': inside_noise}
+            if red['availability'] not in ('always', 'queued'):
+                econ.update({'conditional_model_net_apr': econ['net_apr'],
+                             'conditional_model_net_per_year_usd': econ['net_per_year_usd'],
+                             'net_apr': None, 'net_per_year_usd': 0, 'net_per_run_usd': 0,
+                             'go': False, 'capacity_usd': 0,
+                             'reason': 'Redemption is %s; exit capacity/access has not been verified. '
+                                       'The conditional model is not an executable quote.' % red['availability']})
             solid = (v.go and not red['atomic'] and red['availability'] in ('always', 'queued')
                      and not inside_noise)
             sev = 'high' if (solid and net_bps >= 15) else ('notable' if solid else 'info')

@@ -1,0 +1,1232 @@
+{
+  "analysis_window": {
+    "chains": [
+      "arbitrum",
+      "avalanche",
+      "base",
+      "bsc",
+      "ethereum",
+      "linea",
+      "optimism",
+      "polygon",
+      "scroll",
+      "unichain"
+    ],
+    "first_block": null,
+    "first_utc": "2026-09-10T12:52:23+00:00",
+    "hours": 1.0,
+    "last_block": null,
+    "last_utc": "2026-09-10T13:52:29+00:00",
+    "note": "per-chain block ranges are in manifest.json; block numbers are not comparable across chains"
+  },
+  "detectors": [
+    {
+      "description": "every priced cross-chain dollar switch, sized by min(high-side optimum, low-side withdrawable), plus the book filled once",
+      "detector": "cross_chain_rate",
+      "error": null,
+      "hits": 24,
+      "seconds": 0.0
+    }
+  ],
+  "hits": [
+    {
+      "detector": "cross_chain_rate",
+      "economics": {
+        "bridge_round_trip_bps": 0.0,
+        "capacity_usd": 21082232.97927631,
+        "go": true,
+        "net_apr": 0.006691302958745374,
+        "net_per_year_usd": 141067.6079111909,
+        "reason": "the book clears $250k and 50bp blended"
+      },
+      "evidence": {
+        "benchmark": {
+          "apy": 0.03599999699843881,
+          "name": "Sky savings rate (SSR), read on Ethereum at block 25942222"
+        },
+        "bindings": {
+          "high-side rate dilution": 15,
+          "low-side withdrawable liquidity": 8
+        },
+        "chains": [
+          "arbitrum",
+          "avalanche",
+          "base",
+          "bsc",
+          "ethereum",
+          "linea",
+          "optimism",
+          "polygon",
+          "scroll",
+          "unichain"
+        ],
+        "dollar_reserves": 63,
+        "flow_vs_yield_spearman": {
+          "n": 9,
+          "note": "rank correlation between a chain's USDC supply APR and its net CCTP USDC flow over this one hour; a negative value means dollars moved toward the lower rate",
+          "rho": -0.2677847708018314
+        },
+        "legs": [
+          {
+            "annual_usd": 70990.57370827842,
+            "apr_at_size": 0.03702347318394543,
+            "asset": "USDT",
+            "from": "bsc",
+            "from_apr": 0.0300757130850757,
+            "size_usd": 10217764.099227788,
+            "to": "ethereum"
+          },
+          {
+            "annual_usd": 35160.030246312635,
+            "apr_at_size": 0.042686966718665564,
+            "asset": "USDC",
+            "from": "optimism",
+            "from_apr": 0.02622725522657783,
+            "size_usd": 2136126.764021,
+            "to": "avalanche"
+          },
+          {
+            "annual_usd": 13455.89382950364,
+            "apr_at_size": 0.03230566440164768,
+            "asset": "USDC",
+            "from": "polygon",
+            "from_apr": 0.028652132495210387,
+            "size_usd": 3682982.432915177,
+            "to": "avalanche"
+          },
+          {
+            "annual_usd": 376.5519497697284,
+            "apr_at_size": 0.031694477466387594,
+            "asset": "USDC",
+            "from": "bsc",
+            "from_apr": 0.031091990338652183,
+            "size_usd": 624995.8421270957,
+            "to": "avalanche"
+          },
+          {
+            "annual_usd": 4992.681405531668,
+            "apr_at_size": 0.02950029813322651,
+            "asset": "USDC",
+            "from": "arbitrum",
+            "from_apr": 0.027421394486680965,
+            "size_usd": 2401593.461932621,
+            "to": "avalanche"
+          },
+          {
+            "annual_usd": 7186.895297663636,
+            "apr_at_size": 0.03700231763898845,
+            "asset": "USDT",
+            "from": "optimism",
+            "from_apr": 0.028527991194845056,
+            "size_usd": 848078.646136,
+            "to": "ethereum"
+          },
+          {
+            "annual_usd": 5856.286334059874,
+            "apr_at_size": 0.027681393855474284,
+            "asset": "DAI",
+            "from": "arbitrum",
+            "from_apr": 0.01910107912861677,
+            "size_usd": 682525.8187475253,
+            "to": "polygon"
+          },
+          {
+            "annual_usd": 1658.2284434816333,
+            "apr_at_size": 0.02944470281105246,
+            "asset": "USDC",
+            "from": "scroll",
+            "from_apr": 0.0036621081818068333,
+            "size_usd": 64315.809457,
+            "to": "avalanche"
+          },
+          {
+            "annual_usd": 198.14308391429262,
+            "apr_at_size": 0.026102953032977355,
+            "asset": "DAI",
+            "from": "ethereum",
+            "from_apr": 0.02459267191285984,
+            "size_usd": 131196.16028761258,
+            "to": "polygon"
+          },
+          {
+            "annual_usd": 536.5182701286791,
+            "apr_at_size": 0.031704863218798555,
+            "asset": "GHO",
+            "from": "arbitrum",
+            "from_apr": 0.026306527843618983,
+            "size_usd": 99385.87228119967,
+            "to": "avalanche"
+          },
+          {
+            "annual_usd": 293.58649804490125,
+            "apr_at_size": 0.023183166914320725,
+            "asset": "USDS",
+            "from": "base",
+            "from_apr": 0.017080006548361625,
+            "size_usd": 48104.01176452861,
+            "to": "ethereum"
+          },
+          {
+            "annual_usd": 167.90608335004967,
+            "apr_at_size": 0.037000973180638254,
+            "asset": "USDT",
+            "from": "linea",
+            "from_apr": 0.03388704096416664,
+            "size_usd": 53920.917887,
+            "to": "ethereum"
+          },
+          {
+            "annual_usd": 96.7995300653173,
+            "apr_at_size": 0.012756839018371678,
+            "asset": "LUSD",
+            "from": "ethereum",
+            "from_apr": 0.0054431567105405,
+            "size_usd": 13235.402631813595,
+            "to": "optimism"
+          },
+          {
+            "annual_usd": 53.96686159275735,
+            "apr_at_size": 0.017113662338084635,
+            "asset": "FRAX",
+            "from": "arbitrum",
+            "from_apr": 0.003950837673808869,
+            "size_usd": 4099.945336142382,
+            "to": "avalanche"
+          },
+          {
+            "annual_usd": 3.966043618991639,
+            "apr_at_size": 0.011275815668166163,
+            "asset": "LUSD",
+            "from": "arbitrum",
+            "from_apr": 0.00994370581157304,
+            "size_usd": 2977.264674803034,
+            "to": "optimism"
+          },
+          {
+            "annual_usd": 39.58024397319919,
+            "apr_at_size": 0.01939176978384413,
+            "asset": "USDe",
+            "from": "ethereum",
+            "from_apr": 0.010431712074797974,
+            "size_usd": 4417.409492043629,
+            "to": "avalanche"
+          },
+          {
+            "annual_usd": 8.190146331501949e-05,
+            "apr_at_size": 1.2313580068935613e-09,
+            "asset": "sUSDS",
+            "from": "ethereum",
+            "from_apr": 0.0,
+            "size_usd": 66513.12035696136,
+            "to": "base"
+          }
+        ],
+        "sum_of_rows_annual_usd": 271761.46285229916,
+        "switches_priced": 23,
+        "total_annual_usd": 141067.6079111909,
+        "total_size_usd": 21082232.97927631,
+        "why": "the rows compete for the same destination reserve; filled once, the book is what the whole surface is worth, and the CCTP rank correlation says whether the bridge is closing it"
+      },
+      "identity": "cross_chain_rate:book",
+      "key": "book",
+      "severity": "notable",
+      "title": "the cross-chain dollar book absorbs $21.1M at 67bp, each destination filled once, cheapest source first (17 legs; the rows summed would claim $271,761 a year)",
+      "usd": 141067.6079111909
+    },
+    {
+      "detector": "cross_chain_rate",
+      "economics": {
+        "binding": "low-side withdrawable liquidity",
+        "bridge_round_trip_bps": 0.0,
+        "capacity_usd": 10217764.099227788,
+        "go": true,
+        "net_apr": 0.006947760098869729,
+        "net_per_year_usd": 70990.57370827842,
+        "reason": "clears $250k and 50bp net at the movable size"
+      },
+      "evidence": {
+        "apr_at_size": 0.03702347318394543,
+        "asset": "USDT",
+        "binding": "low-side withdrawable liquidity",
+        "capacity_matches_row": true,
+        "from": "bsc",
+        "from_address": "0x55d398326f99059ff775485246999027b3197955",
+        "from_apr": 0.0300757130850757,
+        "from_available_usd": 10217764.099227788,
+        "from_pool": "0x6807dc923806fe8fd134338eabca509979a7e0cb",
+        "from_supplied_usd": 59020637.18063157,
+        "from_utilisation": 0.8268786024609771,
+        "movable_usd": 10217764.099227788,
+        "rate_source": {
+          "from": "window time-weighted",
+          "to": "window time-weighted"
+        },
+        "spread_pp": 0.8521787034374901,
+        "to": "ethereum",
+        "to_address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+        "to_apr": 0.0385975001194506,
+        "to_pool": "0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+        "to_supplied_usd": 2956748473.356633,
+        "unconstrained_size_usd": 160765341.68298453,
+        "why": "the same dollar on two chains is one claim on one issuer; the spread is what the lending markets fail to equalise, and it is only worth what can be moved"
+      },
+      "identity": "cross_chain_rate:USDT:bsc->ethereum",
+      "key": "USDT:bsc->ethereum",
+      "severity": "notable",
+      "title": "USDT pays 0.85pp more on ethereum than bsc; $10.2M of it can move (bound by low-side withdrawable liquidity), earning 3.70% at size for $70,991 a year",
+      "usd": 70990.57370827842
+    },
+    {
+      "detector": "cross_chain_rate",
+      "economics": {
+        "binding": "low-side withdrawable liquidity",
+        "bridge_round_trip_bps": 0.0,
+        "capacity_usd": 2136126.764021,
+        "go": true,
+        "net_apr": 0.016459711492087734,
+        "net_per_year_usd": 35160.030246312635,
+        "reason": "clears $250k and 50bp net at the movable size"
+      },
+      "evidence": {
+        "apr_at_size": 0.042686966718665564,
+        "asset": "USDC",
+        "binding": "low-side withdrawable liquidity",
+        "capacity_matches_row": true,
+        "from": "optimism",
+        "from_address": "0x0b2c639c533813f4aa9d7837caf62653d097ff85",
+        "from_apr": 0.02622725522657783,
+        "from_available_usd": 2136126.764021,
+        "from_pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        "from_supplied_usd": 11224860.563831,
+        "from_utilisation": 0.8096855310624571,
+        "movable_usd": 2136126.764021,
+        "rate_source": {
+          "from": "window time-weighted",
+          "to": "window time-weighted"
+        },
+        "spread_pp": 4.568532746406211,
+        "to": "avalanche",
+        "to_address": "0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e",
+        "to_apr": 0.07191258269063994,
+        "to_pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        "to_supplied_usd": 59320431.034521,
+        "unconstrained_size_usd": 5998234.465836311,
+        "why": "the same dollar on two chains is one claim on one issuer; the spread is what the lending markets fail to equalise, and it is only worth what can be moved"
+      },
+      "identity": "cross_chain_rate:USDC:optimism->avalanche",
+      "key": "USDC:optimism->avalanche",
+      "severity": "notable",
+      "title": "USDC pays 4.57pp more on avalanche than optimism; $2.1M of it can move (bound by low-side withdrawable liquidity), earning 4.27% at size for $35,160 a year",
+      "usd": 35160.030246312635
+    },
+    {
+      "detector": "cross_chain_rate",
+      "economics": {
+        "binding": "high-side rate dilution",
+        "bridge_round_trip_bps": 0.0,
+        "capacity_usd": 1594142.311305616,
+        "go": true,
+        "net_apr": 0.021079578481224704,
+        "net_per_year_usd": 33603.84796140768,
+        "reason": "clears $250k and 50bp net at the movable size"
+      },
+      "evidence": {
+        "apr_at_size": 0.04973171097643509,
+        "asset": "USDC",
+        "binding": "high-side rate dilution",
+        "capacity_matches_row": true,
+        "from": "polygon",
+        "from_address": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+        "from_apr": 0.028652132495210387,
+        "from_available_usd": 11978104.186307,
+        "from_pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        "from_supplied_usd": 29835947.352788,
+        "from_utilisation": 0.5986535184121433,
+        "movable_usd": 1594142.311305616,
+        "rate_source": {
+          "from": "window time-weighted",
+          "to": "window time-weighted"
+        },
+        "spread_pp": 4.326045019542955,
+        "to": "avalanche",
+        "to_address": "0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e",
+        "to_apr": 0.07191258269063994,
+        "to_pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        "to_supplied_usd": 59320431.034521,
+        "unconstrained_size_usd": 1594142.311305616,
+        "why": "the same dollar on two chains is one claim on one issuer; the spread is what the lending markets fail to equalise, and it is only worth what can be moved"
+      },
+      "identity": "cross_chain_rate:USDC:polygon->avalanche",
+      "key": "USDC:polygon->avalanche",
+      "severity": "notable",
+      "title": "USDC pays 4.33pp more on avalanche than polygon; $1.6M of it can move (bound by high-side rate dilution), earning 4.97% at size for $33,604 a year",
+      "usd": 33603.84796140768
+    },
+    {
+      "detector": "cross_chain_rate",
+      "economics": {
+        "binding": "high-side rate dilution",
+        "bridge_round_trip_bps": 0.0,
+        "capacity_usd": 1497408.658249374,
+        "go": true,
+        "net_apr": 0.019922790817851484,
+        "net_per_year_usd": 29832.55946714194,
+        "reason": "clears $250k and 50bp net at the movable size"
+      },
+      "evidence": {
+        "apr_at_size": 0.051014781156503666,
+        "asset": "USDC",
+        "binding": "high-side rate dilution",
+        "capacity_matches_row": true,
+        "from": "bsc",
+        "from_address": "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d",
+        "from_apr": 0.031091990338652183,
+        "from_available_usd": 2254247.5945793744,
+        "from_pool": "0x6807dc923806fe8fd134338eabca509979a7e0cb",
+        "from_supplied_usd": 14142412.523764009,
+        "from_utilisation": 0.8406040934025607,
+        "movable_usd": 1497408.658249374,
+        "rate_source": {
+          "from": "window time-weighted",
+          "to": "window time-weighted"
+        },
+        "spread_pp": 4.082059235198775,
+        "to": "avalanche",
+        "to_address": "0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e",
+        "to_apr": 0.07191258269063994,
+        "to_pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        "to_supplied_usd": 59320431.034521,
+        "unconstrained_size_usd": 1497408.658249374,
+        "why": "the same dollar on two chains is one claim on one issuer; the spread is what the lending markets fail to equalise, and it is only worth what can be moved"
+      },
+      "identity": "cross_chain_rate:USDC:bsc->avalanche",
+      "key": "USDC:bsc->avalanche",
+      "severity": "notable",
+      "title": "USDC pays 4.08pp more on avalanche than bsc; $1.5M of it can move (bound by high-side rate dilution), earning 5.10% at size for $29,833 a year",
+      "usd": 29832.55946714194
+    },
+    {
+      "detector": "cross_chain_rate",
+      "economics": {
+        "binding": "high-side rate dilution",
+        "bridge_round_trip_bps": 0.0,
+        "capacity_usd": 5311276.731962064,
+        "go": true,
+        "net_apr": 0.005393995283368643,
+        "net_per_year_usd": 28649.001640868995,
+        "reason": "clears $250k and 50bp net at the movable size"
+      },
+      "evidence": {
+        "apr_at_size": 0.03281538977004961,
+        "asset": "USDC",
+        "binding": "high-side rate dilution",
+        "capacity_matches_row": true,
+        "from": "arbitrum",
+        "from_address": "0xaf88d065e77c8cc2239327c5edb3a432268e5831",
+        "from_apr": 0.027421394486680965,
+        "from_available_usd": 29211968.335179,
+        "from_pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        "from_supplied_usd": 169803336.120469,
+        "from_utilisation": 0.8280407330724395,
+        "movable_usd": 5311276.731962064,
+        "rate_source": {
+          "from": "window time-weighted",
+          "to": "window time-weighted"
+        },
+        "spread_pp": 4.449118820395897,
+        "to": "avalanche",
+        "to_address": "0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e",
+        "to_apr": 0.07191258269063994,
+        "to_pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        "to_supplied_usd": 59320431.034521,
+        "unconstrained_size_usd": 5311276.731962064,
+        "why": "the same dollar on two chains is one claim on one issuer; the spread is what the lending markets fail to equalise, and it is only worth what can be moved"
+      },
+      "identity": "cross_chain_rate:USDC:arbitrum->avalanche",
+      "key": "USDC:arbitrum->avalanche",
+      "severity": "notable",
+      "title": "USDC pays 4.45pp more on avalanche than arbitrum; $5.3M of it can move (bound by high-side rate dilution), earning 3.28% at size for $28,649 a year",
+      "usd": 28649.001640868995
+    },
+    {
+      "detector": "cross_chain_rate",
+      "economics": {
+        "binding": "high-side rate dilution",
+        "bridge_round_trip_bps": 0.0,
+        "capacity_usd": 1266084.059629138,
+        "go": true,
+        "net_apr": 0.017095406337836384,
+        "net_per_year_usd": 21644.221457217587,
+        "reason": "clears $250k and 50bp net at the movable size"
+      },
+      "evidence": {
+        "apr_at_size": 0.05411532544936101,
+        "asset": "USDC",
+        "binding": "high-side rate dilution",
+        "capacity_matches_row": true,
+        "from": "base",
+        "from_address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "from_apr": 0.03701991911152463,
+        "from_available_usd": 20464776.341829,
+        "from_pool": "0xa238dd80c259a72e81d7e4664a9801593f98d1c5",
+        "from_supplied_usd": 183784019.323602,
+        "from_utilisation": 0.8886480204986353,
+        "movable_usd": 1266084.059629138,
+        "rate_source": {
+          "from": "window time-weighted",
+          "to": "window time-weighted"
+        },
+        "spread_pp": 3.489266357911531,
+        "to": "avalanche",
+        "to_address": "0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e",
+        "to_apr": 0.07191258269063994,
+        "to_pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        "to_supplied_usd": 59320431.034521,
+        "unconstrained_size_usd": 1266084.059629138,
+        "why": "the same dollar on two chains is one claim on one issuer; the spread is what the lending markets fail to equalise, and it is only worth what can be moved"
+      },
+      "identity": "cross_chain_rate:USDC:base->avalanche",
+      "key": "USDC:base->avalanche",
+      "severity": "notable",
+      "title": "USDC pays 3.49pp more on avalanche than base; $1.3M of it can move (bound by high-side rate dilution), earning 5.41% at size for $21,644 a year",
+      "usd": 21644.221457217587
+    },
+    {
+      "detector": "cross_chain_rate",
+      "economics": {
+        "binding": "high-side rate dilution",
+        "bridge_round_trip_bps": 0.0,
+        "capacity_usd": 1261681.2354983725,
+        "go": true,
+        "net_apr": 0.017040745783471,
+        "net_per_year_usd": 21499.989193903373,
+        "reason": "clears $250k and 50bp net at the movable size"
+      },
+      "evidence": {
+        "apr_at_size": 0.054174783304561984,
+        "asset": "USDC",
+        "binding": "high-side rate dilution",
+        "capacity_matches_row": true,
+        "from": "ethereum",
+        "from_address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "from_apr": 0.037134037521090985,
+        "from_available_usd": 140930288.202934,
+        "from_pool": "0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+        "from_supplied_usd": 2311681888.892313,
+        "from_utilisation": 0.9390385994657926,
+        "movable_usd": 1261681.2354983725,
+        "rate_source": {
+          "from": "window time-weighted",
+          "to": "window time-weighted"
+        },
+        "spread_pp": 3.477854516954895,
+        "to": "avalanche",
+        "to_address": "0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e",
+        "to_apr": 0.07191258269063994,
+        "to_pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        "to_supplied_usd": 59320431.034521,
+        "unconstrained_size_usd": 1261681.2354983725,
+        "why": "the same dollar on two chains is one claim on one issuer; the spread is what the lending markets fail to equalise, and it is only worth what can be moved"
+      },
+      "identity": "cross_chain_rate:USDC:ethereum->avalanche",
+      "key": "USDC:ethereum->avalanche",
+      "severity": "notable",
+      "title": "USDC pays 3.48pp more on avalanche than ethereum; $1.3M of it can move (bound by high-side rate dilution), earning 5.42% at size for $21,500 a year",
+      "usd": 21499.989193903373
+    },
+    {
+      "detector": "cross_chain_rate",
+      "economics": {
+        "binding": "low-side withdrawable liquidity",
+        "bridge_round_trip_bps": 0.0,
+        "capacity_usd": 848078.646136,
+        "go": true,
+        "net_apr": 0.009326044212759076,
+        "net_per_year_usd": 7909.218949761196,
+        "reason": "clears $250k and 50bp net at the movable size"
+      },
+      "evidence": {
+        "apr_at_size": 0.03785403540760413,
+        "asset": "USDT",
+        "binding": "low-side withdrawable liquidity",
+        "capacity_matches_row": true,
+        "from": "optimism",
+        "from_address": "0x94b008aa00579c1307b0ef2c499ad98a8ce58e58",
+        "from_apr": 0.028527991194845056,
+        "from_available_usd": 848078.646136,
+        "from_pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        "from_supplied_usd": 4357967.514115,
+        "from_utilisation": 0.8053360532944651,
+        "movable_usd": 848078.646136,
+        "rate_source": {
+          "from": "head spot (unchecked: 0 updates)",
+          "to": "window time-weighted"
+        },
+        "spread_pp": 1.0069508924605546,
+        "to": "ethereum",
+        "to_address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+        "to_apr": 0.0385975001194506,
+        "to_pool": "0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+        "to_supplied_usd": 2956748473.356633,
+        "unconstrained_size_usd": 200900692.77077216,
+        "why": "the same dollar on two chains is one claim on one issuer; the spread is what the lending markets fail to equalise, and it is only worth what can be moved"
+      },
+      "identity": "cross_chain_rate:USDT:optimism->ethereum",
+      "key": "USDT:optimism->ethereum",
+      "severity": "notable",
+      "title": "USDT pays 1.01pp more on ethereum than optimism; $848k of it can move (bound by low-side withdrawable liquidity), earning 3.79% at size for $7,909 a year",
+      "usd": 7909.218949761196
+    },
+    {
+      "detector": "cross_chain_rate",
+      "economics": {
+        "binding": "high-side rate dilution",
+        "bridge_round_trip_bps": 0.0,
+        "capacity_usd": 682525.8187475253,
+        "go": true,
+        "net_apr": 0.008580314726857514,
+        "net_per_year_usd": 5856.286334059874,
+        "reason": "clears $250k and 50bp net at the movable size"
+      },
+      "evidence": {
+        "apr_at_size": 0.027681393855474284,
+        "asset": "DAI",
+        "binding": "high-side rate dilution",
+        "capacity_matches_row": true,
+        "from": "arbitrum",
+        "from_address": "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1",
+        "from_apr": 0.01910107912861677,
+        "from_available_usd": 1159921.123913715,
+        "from_pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        "from_supplied_usd": 3588452.9264733074,
+        "from_utilisation": 0.6770940531707537,
+        "movable_usd": 682525.8187475253,
+        "rate_source": {
+          "from": "head spot (unchecked: 3 updates)",
+          "to": "head spot (unchecked: 0 updates)"
+        },
+        "spread_pp": 1.9664870749576144,
+        "to": "polygon",
+        "to_address": "0x8f3cf7ad23cd3cadbd9735aff958023239c6a063",
+        "to_apr": 0.038765949878192915,
+        "to_pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        "to_supplied_usd": 3719310.4608114716,
+        "unconstrained_size_usd": 682525.8187475253,
+        "why": "the same dollar on two chains is one claim on one issuer; the spread is what the lending markets fail to equalise, and it is only worth what can be moved"
+      },
+      "identity": "cross_chain_rate:DAI:arbitrum->polygon",
+      "key": "DAI:arbitrum->polygon",
+      "severity": "notable",
+      "title": "DAI pays 1.97pp more on polygon than arbitrum; $683k of it can move (bound by high-side rate dilution), earning 2.77% at size for $5,856 a year",
+      "usd": 5856.286334059874
+    },
+    {
+      "detector": "cross_chain_rate",
+      "economics": {
+        "binding": "high-side rate dilution",
+        "bridge_round_trip_bps": 0.0,
+        "capacity_usd": 434168.9345698657,
+        "go": true,
+        "net_apr": 0.006496395952031352,
+        "net_per_year_usd": 2820.53330903744,
+        "reason": "clears $250k and 50bp net at the movable size"
+      },
+      "evidence": {
+        "apr_at_size": 0.03108906786489119,
+        "asset": "DAI",
+        "binding": "high-side rate dilution",
+        "capacity_matches_row": true,
+        "from": "ethereum",
+        "from_address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+        "from_apr": 0.02459267191285984,
+        "from_available_usd": 99926898.15478468,
+        "from_pool": "0xc13e21b648a5ee794902342038ff3adab66be987",
+        "from_supplied_usd": 307841341.81113034,
+        "from_utilisation": 0.6757838977465762,
+        "movable_usd": 434168.9345698657,
+        "rate_source": {
+          "from": "head spot (unchecked: 0 updates)",
+          "to": "head spot (unchecked: 0 updates)"
+        },
+        "spread_pp": 1.4173277965333075,
+        "to": "polygon",
+        "to_address": "0x8f3cf7ad23cd3cadbd9735aff958023239c6a063",
+        "to_apr": 0.038765949878192915,
+        "to_pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        "to_supplied_usd": 3719310.4608114716,
+        "unconstrained_size_usd": 434168.9345698657,
+        "why": "the same dollar on two chains is one claim on one issuer; the spread is what the lending markets fail to equalise, and it is only worth what can be moved"
+      },
+      "identity": "cross_chain_rate:DAI:ethereum->polygon",
+      "key": "DAI:ethereum->polygon",
+      "severity": "notable",
+      "title": "DAI pays 1.42pp more on polygon than ethereum; $434k of it can move (bound by high-side rate dilution), earning 3.11% at size for $2,821 a year",
+      "usd": 2820.53330903744
+    },
+    {
+      "detector": "cross_chain_rate",
+      "economics": {
+        "binding": "low-side withdrawable liquidity",
+        "bridge_round_trip_bps": 0.0,
+        "capacity_usd": 206874.055717,
+        "go": false,
+        "net_apr": 0.035326650506130555,
+        "net_per_year_usd": 7308.1674651002395,
+        "reason": "under $250k movable or under 50bp net at that size"
+      },
+      "evidence": {
+        "apr_at_size": 0.06891382421852597,
+        "asset": "USDC",
+        "binding": "low-side withdrawable liquidity",
+        "capacity_matches_row": true,
+        "from": "linea",
+        "from_address": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+        "from_apr": 0.03358717371239542,
+        "from_available_usd": 206874.055717,
+        "from_pool": "0xc47b8c00b0f69a36fa203ffeac0334874574a8ac",
+        "from_supplied_usd": 1637912.491149,
+        "from_utilisation": 0.873696453130772,
+        "movable_usd": 206874.055717,
+        "rate_source": {
+          "from": "head spot (unchecked: 1 updates)",
+          "to": "window time-weighted"
+        },
+        "spread_pp": 3.832540897824452,
+        "to": "avalanche",
+        "to_address": "0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e",
+        "to_apr": 0.07191258269063994,
+        "to_pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        "to_supplied_usd": 59320431.034521,
+        "unconstrained_size_usd": 1399408.2224950828,
+        "why": "the same dollar on two chains is one claim on one issuer; the spread is what the lending markets fail to equalise, and it is only worth what can be moved"
+      },
+      "identity": "cross_chain_rate:USDC:linea->avalanche",
+      "key": "USDC:linea->avalanche",
+      "severity": "info",
+      "title": "USDC pays 3.83pp more on avalanche than linea; $207k of it can move (bound by low-side withdrawable liquidity), earning 6.89% at size for $7,308 a year",
+      "usd": 7308.1674651002395
+    },
+    {
+      "detector": "cross_chain_rate",
+      "economics": {
+        "binding": "low-side withdrawable liquidity",
+        "bridge_round_trip_bps": 0.0,
+        "capacity_usd": 64315.809457,
+        "go": false,
+        "net_apr": 0.067321524378007,
+        "net_per_year_usd": 4329.838334250679,
+        "reason": "under $250k movable or under 50bp net at that size"
+      },
+      "evidence": {
+        "apr_at_size": 0.07098363255981383,
+        "asset": "USDC",
+        "binding": "low-side withdrawable liquidity",
+        "capacity_matches_row": true,
+        "from": "scroll",
+        "from_address": "0x06efdbff2a14a7c8e15944d1f4a48f9f95f663a4",
+        "from_apr": 0.0036621081818068333,
+        "from_available_usd": 64315.809457,
+        "from_pool": "0x11fcfe756c05ad438e312a7fd934381537d3cffe",
+        "from_supplied_usd": 248909.88696,
+        "from_utilisation": 0.7413843880721118,
+        "movable_usd": 64315.809457,
+        "rate_source": {
+          "from": "head spot (unchecked: 0 updates)",
+          "to": "window time-weighted"
+        },
+        "spread_pp": 6.825047450883311,
+        "to": "avalanche",
+        "to_address": "0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e",
+        "to_apr": 0.07191258269063994,
+        "to_pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        "to_supplied_usd": 59320431.034521,
+        "unconstrained_size_usd": 36101454.388685256,
+        "why": "the same dollar on two chains is one claim on one issuer; the spread is what the lending markets fail to equalise, and it is only worth what can be moved"
+      },
+      "identity": "cross_chain_rate:USDC:scroll->avalanche",
+      "key": "USDC:scroll->avalanche",
+      "severity": "info",
+      "title": "USDC pays 6.83pp more on avalanche than scroll; $64k of it can move (bound by low-side withdrawable liquidity), earning 7.10% at size for $4,330 a year",
+      "usd": 4329.838334250679
+    },
+    {
+      "detector": "cross_chain_rate",
+      "economics": {
+        "binding": "high-side rate dilution",
+        "bridge_round_trip_bps": 0.0,
+        "capacity_usd": 99385.87228119967,
+        "go": false,
+        "net_apr": 0.005398335375179572,
+        "net_per_year_usd": 536.5182701286791,
+        "reason": "under $250k movable or under 50bp net at that size"
+      },
+      "evidence": {
+        "apr_at_size": 0.031704863218798555,
+        "asset": "GHO",
+        "binding": "high-side rate dilution",
+        "capacity_matches_row": true,
+        "from": "arbitrum",
+        "from_address": "0x7dff72693f6a4149b17e7c6314655f6a9f7c8b33",
+        "from_apr": 0.026306527843618983,
+        "from_available_usd": 170497.57715134957,
+        "from_pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        "from_supplied_usd": 723662.8362820086,
+        "from_utilisation": 0.7645848018795847,
+        "movable_usd": 99385.87228119967,
+        "rate_source": {
+          "from": "head spot (unchecked: 0 updates)",
+          "to": "head spot (unchecked: 2 updates)"
+        },
+        "spread_pp": 6.811117228102037,
+        "to": "avalanche",
+        "to_address": "0xfc421ad3c883bf9e7c4f42de845c4e4405799e73",
+        "to_apr": 0.09441770012463936,
+        "to_pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        "to_supplied_usd": 1073598.1884748554,
+        "unconstrained_size_usd": 99385.87228119967,
+        "why": "the same dollar on two chains is one claim on one issuer; the spread is what the lending markets fail to equalise, and it is only worth what can be moved"
+      },
+      "identity": "cross_chain_rate:GHO:arbitrum->avalanche",
+      "key": "GHO:arbitrum->avalanche",
+      "severity": "info",
+      "title": "GHO pays 6.81pp more on avalanche than arbitrum; $99k of it can move (bound by high-side rate dilution), earning 3.17% at size for $537 a year",
+      "usd": 536.5182701286791
+    },
+    {
+      "detector": "cross_chain_rate",
+      "economics": {
+        "binding": "low-side withdrawable liquidity",
+        "bridge_round_trip_bps": 0.0,
+        "capacity_usd": 84701.39701979009,
+        "go": false,
+        "net_apr": 0.006160001751490191,
+        "net_per_year_usd": 521.760753995573,
+        "reason": "under $250k movable or under 50bp net at that size"
+      },
+      "evidence": {
+        "apr_at_size": 0.03706032103704423,
+        "asset": "DAI",
+        "binding": "low-side withdrawable liquidity",
+        "capacity_matches_row": true,
+        "from": "optimism",
+        "from_address": "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1",
+        "from_apr": 0.030900319285554038,
+        "from_available_usd": 84701.39701979009,
+        "from_pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        "from_supplied_usd": 610179.8790565414,
+        "from_utilisation": 0.8611783440664107,
+        "movable_usd": 84701.39701979009,
+        "rate_source": {
+          "from": "head spot (unchecked: 1 updates)",
+          "to": "head spot (unchecked: 0 updates)"
+        },
+        "spread_pp": 0.7865630592638877,
+        "to": "polygon",
+        "to_address": "0x8f3cf7ad23cd3cadbd9735aff958023239c6a063",
+        "to_apr": 0.038765949878192915,
+        "to_pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        "to_supplied_usd": 3719310.4608114716,
+        "unconstrained_size_usd": 213833.49989947514,
+        "why": "the same dollar on two chains is one claim on one issuer; the spread is what the lending markets fail to equalise, and it is only worth what can be moved"
+      },
+      "identity": "cross_chain_rate:DAI:optimism->polygon",
+      "key": "DAI:optimism->polygon",
+      "severity": "info",
+      "title": "DAI pays 0.79pp more on polygon than optimism; $85k of it can move (bound by low-side withdrawable liquidity), earning 3.71% at size for $522 a year",
+      "usd": 521.760753995573
+    },
+    {
+      "detector": "cross_chain_rate",
+      "economics": {
+        "binding": "high-side rate dilution",
+        "bridge_round_trip_bps": 0.0,
+        "capacity_usd": 10446.912184837853,
+        "go": false,
+        "net_apr": 0.02941802589085883,
+        "net_per_year_usd": 307.32753313308854,
+        "reason": "under $250k movable or under 50bp net at that size"
+      },
+      "evidence": {
+        "apr_at_size": 0.06492225686293046,
+        "asset": "GHO",
+        "binding": "high-side rate dilution",
+        "capacity_matches_row": true,
+        "from": "base",
+        "from_address": "0x6bb7a212910682dcfdbd5bcbb3e28fb4e8da10ee",
+        "from_apr": 0.03550423097207163,
+        "from_available_usd": 158772.94213068526,
+        "from_pool": "0xa238dd80c259a72e81d7e4664a9801593f98d1c5",
+        "from_supplied_usd": 1420744.4360504942,
+        "from_utilisation": 0.8882471869009096,
+        "movable_usd": 10446.912184837853,
+        "rate_source": {
+          "from": "head spot (unchecked: 6 updates)",
+          "to": "head spot (unchecked: 2 updates)"
+        },
+        "spread_pp": 5.891346915256773,
+        "to": "avalanche",
+        "to_address": "0xfc421ad3c883bf9e7c4f42de845c4e4405799e73",
+        "to_apr": 0.09441770012463936,
+        "to_pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        "to_supplied_usd": 1073598.1884748554,
+        "unconstrained_size_usd": 10446.912184837853,
+        "why": "the same dollar on two chains is one claim on one issuer; the spread is what the lending markets fail to equalise, and it is only worth what can be moved"
+      },
+      "identity": "cross_chain_rate:GHO:base->avalanche",
+      "key": "GHO:base->avalanche",
+      "severity": "info",
+      "title": "GHO pays 5.89pp more on avalanche than base; $10k of it can move (bound by high-side rate dilution), earning 6.49% at size for $307 a year",
+      "usd": 307.32753313308854
+    },
+    {
+      "detector": "cross_chain_rate",
+      "economics": {
+        "binding": "low-side withdrawable liquidity",
+        "bridge_round_trip_bps": 0.0,
+        "capacity_usd": 48104.01176452861,
+        "go": false,
+        "net_apr": 0.0061031603659591,
+        "net_per_year_usd": 293.58649804490125,
+        "reason": "under $250k movable or under 50bp net at that size"
+      },
+      "evidence": {
+        "apr_at_size": 0.023183166914320725,
+        "asset": "USDS",
+        "binding": "low-side withdrawable liquidity",
+        "capacity_matches_row": true,
+        "from": "base",
+        "from_address": "0x820c137fa70c8691f0e44dc420a5e53c168921dc",
+        "from_apr": 0.017080006548361625,
+        "from_available_usd": 48104.01176452861,
+        "from_pool": "0x09b11746dfd1b5a8325e30943f8b3d5000922e03",
+        "from_supplied_usd": 125186.90162977694,
+        "from_utilisation": 0.6160809208819105,
+        "movable_usd": 48104.01176452861,
+        "rate_source": {
+          "from": "head spot (unchecked: 0 updates)",
+          "to": "head spot (unchecked: 7 updates)"
+        },
+        "spread_pp": 0.6105544166932222,
+        "to": "ethereum",
+        "to_address": "0xdc035d45d973e3ec169d2276ddab16f1e407384f",
+        "to_apr": 0.023185550715293848,
+        "to_pool": "0xc13e21b648a5ee794902342038ff3adab66be987",
+        "to_supplied_usd": 935624647.1086725,
+        "unconstrained_size_usd": 72762106.27532056,
+        "why": "the same dollar on two chains is one claim on one issuer; the spread is what the lending markets fail to equalise, and it is only worth what can be moved"
+      },
+      "identity": "cross_chain_rate:USDS:base->ethereum",
+      "key": "USDS:base->ethereum",
+      "severity": "info",
+      "title": "USDS pays 0.61pp more on ethereum than base; $48k of it can move (bound by low-side withdrawable liquidity), earning 2.32% at size for $294 a year",
+      "usd": 293.58649804490125
+    },
+    {
+      "detector": "cross_chain_rate",
+      "economics": {
+        "binding": "low-side withdrawable liquidity",
+        "bridge_round_trip_bps": 0.0,
+        "capacity_usd": 53920.917887,
+        "go": false,
+        "net_apr": 0.004333553945631785,
+        "net_per_year_usd": 233.66920646129637,
+        "reason": "under $250k movable or under 50bp net at that size"
+      },
+      "evidence": {
+        "apr_at_size": 0.03822059490979843,
+        "asset": "USDT",
+        "binding": "low-side withdrawable liquidity",
+        "capacity_matches_row": true,
+        "from": "linea",
+        "from_address": "0xa219439258ca9da29e9cc4ce5596924745e12b93",
+        "from_apr": 0.03388704096416664,
+        "from_available_usd": 53920.917887,
+        "from_pool": "0xc47b8c00b0f69a36fa203ffeac0334874574a8ac",
+        "from_supplied_usd": 440514.478855,
+        "from_utilisation": 0.8775876166101686,
+        "movable_usd": 53920.917887,
+        "rate_source": {
+          "from": "head spot (unchecked: 0 updates)",
+          "to": "window time-weighted"
+        },
+        "spread_pp": 0.4710459155283959,
+        "to": "ethereum",
+        "to_address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+        "to_apr": 0.0385975001194506,
+        "to_pool": "0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+        "to_supplied_usd": 2956748473.356633,
+        "unconstrained_size_usd": 70947664.64192843,
+        "why": "the same dollar on two chains is one claim on one issuer; the spread is what the lending markets fail to equalise, and it is only worth what can be moved"
+      },
+      "identity": "cross_chain_rate:USDT:linea->ethereum",
+      "key": "USDT:linea->ethereum",
+      "severity": "info",
+      "title": "USDT pays 0.47pp more on ethereum than linea; $54k of it can move (bound by low-side withdrawable liquidity), earning 3.82% at size for $234 a year",
+      "usd": 233.66920646129637
+    },
+    {
+      "detector": "cross_chain_rate",
+      "economics": {
+        "binding": "high-side rate dilution",
+        "bridge_round_trip_bps": 0.0,
+        "capacity_usd": 13235.402631813595,
+        "go": false,
+        "net_apr": 0.007313682307831178,
+        "net_per_year_usd": 96.7995300653173,
+        "reason": "under $250k movable or under 50bp net at that size"
+      },
+      "evidence": {
+        "apr_at_size": 0.012756839018371678,
+        "asset": "LUSD",
+        "binding": "high-side rate dilution",
+        "capacity_matches_row": true,
+        "from": "ethereum",
+        "from_address": "0x5f98805a4e8be255a32880fdec7f6728c6568ba0",
+        "from_apr": 0.0054431567105405,
+        "from_available_usd": 1271387.0056810286,
+        "from_pool": "0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+        "from_supplied_usd": 1897744.878107187,
+        "from_utilisation": 0.329944798026513,
+        "movable_usd": 13235.402631813595,
+        "rate_source": {
+          "from": "head spot (unchecked: 0 updates)",
+          "to": "head spot (unchecked: 0 updates)"
+        },
+        "spread_pp": 2.0992368277082565,
+        "to": "optimism",
+        "to_address": "0xc40f949f8a4e094d1b49a23ea9241d289b7b2819",
+        "to_apr": 0.026435524987623065,
+        "to_pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        "to_supplied_usd": 24234.075476048238,
+        "unconstrained_size_usd": 13235.402631813595,
+        "why": "the same dollar on two chains is one claim on one issuer; the spread is what the lending markets fail to equalise, and it is only worth what can be moved"
+      },
+      "identity": "cross_chain_rate:LUSD:ethereum->optimism",
+      "key": "LUSD:ethereum->optimism",
+      "severity": "info",
+      "title": "LUSD pays 2.10pp more on optimism than ethereum; $13k of it can move (bound by high-side rate dilution), earning 1.28% at size for $97 a year",
+      "usd": 96.7995300653173
+    },
+    {
+      "detector": "cross_chain_rate",
+      "economics": {
+        "binding": "high-side rate dilution",
+        "bridge_round_trip_bps": 0.0,
+        "capacity_usd": 4099.945336142382,
+        "go": false,
+        "net_apr": 0.013162824664275766,
+        "net_per_year_usd": 53.96686159275735,
+        "reason": "under $250k movable or under 50bp net at that size"
+      },
+      "evidence": {
+        "apr_at_size": 0.017113662338084635,
+        "asset": "FRAX",
+        "binding": "high-side rate dilution",
+        "capacity_matches_row": true,
+        "from": "arbitrum",
+        "from_address": "0x17fc002b466eec40dae837fc4be5c67993ddbd6f",
+        "from_apr": 0.003950837673808869,
+        "from_available_usd": 122741.4299457148,
+        "from_pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        "from_supplied_usd": 171470.9991556274,
+        "from_utilisation": 0.28427575842743513,
+        "movable_usd": 4099.945336142382,
+        "rate_source": {
+          "from": "head spot (unchecked: 0 updates)",
+          "to": "head spot (unchecked: 0 updates)"
+        },
+        "spread_pp": 22.708532811766975,
+        "to": "avalanche",
+        "to_address": "0xd24c2ad096400b6fbcd2ad8b24e7acbc21a1da64",
+        "to_apr": 0.23103616579147865,
+        "to_pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        "to_supplied_usd": 6553.6403220797465,
+        "unconstrained_size_usd": 4099.945336142382,
+        "why": "the same dollar on two chains is one claim on one issuer; the spread is what the lending markets fail to equalise, and it is only worth what can be moved"
+      },
+      "identity": "cross_chain_rate:FRAX:arbitrum->avalanche",
+      "key": "FRAX:arbitrum->avalanche",
+      "severity": "info",
+      "title": "FRAX pays 22.71pp more on avalanche than arbitrum; $4k of it can move (bound by high-side rate dilution), earning 1.71% at size for $54 a year",
+      "usd": 53.96686159275735
+    },
+    {
+      "detector": "cross_chain_rate",
+      "economics": {
+        "binding": "high-side rate dilution",
+        "bridge_round_trip_bps": 0.0,
+        "capacity_usd": 7703.099260473944,
+        "go": false,
+        "net_apr": 0.006638257986074621,
+        "net_per_year_usd": 51.135160183366665,
+        "reason": "under $250k movable or under 50bp net at that size"
+      },
+      "evidence": {
+        "apr_at_size": 0.01658196379764766,
+        "asset": "LUSD",
+        "binding": "high-side rate dilution",
+        "capacity_matches_row": true,
+        "from": "arbitrum",
+        "from_address": "0x93b346b6bc2548da6a1e7d98e9a421b42541425b",
+        "from_apr": 0.00994370581157304,
+        "from_available_usd": 117372.5116902898,
+        "from_pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        "from_supplied_usd": 191119.05813219203,
+        "from_utilisation": 0.3867429310574233,
+        "movable_usd": 7703.099260473944,
+        "rate_source": {
+          "from": "head spot (unchecked: 0 updates)",
+          "to": "head spot (unchecked: 0 updates)"
+        },
+        "spread_pp": 1.6491819176050027,
+        "to": "optimism",
+        "to_address": "0xc40f949f8a4e094d1b49a23ea9241d289b7b2819",
+        "to_apr": 0.026435524987623065,
+        "to_pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        "to_supplied_usd": 24234.075476048238,
+        "unconstrained_size_usd": 7703.099260473944,
+        "why": "the same dollar on two chains is one claim on one issuer; the spread is what the lending markets fail to equalise, and it is only worth what can be moved"
+      },
+      "identity": "cross_chain_rate:LUSD:arbitrum->optimism",
+      "key": "LUSD:arbitrum->optimism",
+      "severity": "info",
+      "title": "LUSD pays 1.65pp more on optimism than arbitrum; $8k of it can move (bound by high-side rate dilution), earning 1.66% at size for $51 a year",
+      "usd": 51.135160183366665
+    },
+    {
+      "detector": "cross_chain_rate",
+      "economics": {
+        "binding": "high-side rate dilution",
+        "bridge_round_trip_bps": 0.0,
+        "capacity_usd": 4417.409492043629,
+        "go": false,
+        "net_apr": 0.008960057709046157,
+        "net_per_year_usd": 39.58024397319919,
+        "reason": "under $250k movable or under 50bp net at that size"
+      },
+      "evidence": {
+        "apr_at_size": 0.01939176978384413,
+        "asset": "USDe",
+        "binding": "high-side rate dilution",
+        "capacity_matches_row": true,
+        "from": "ethereum",
+        "from_address": "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+        "from_apr": 0.010431712074797974,
+        "from_available_usd": 519393724.7539881,
+        "from_pool": "0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+        "from_supplied_usd": 667711099.27809,
+        "from_utilisation": 0.22217324644642844,
+        "movable_usd": 4417.409492043629,
+        "rate_source": {
+          "from": "window time-weighted",
+          "to": "head spot (unchecked: 0 updates)"
+        },
+        "spread_pp": 2.549668188464961,
+        "to": "avalanche",
+        "to_address": "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34",
+        "to_apr": 0.03592839395944759,
+        "to_pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        "to_supplied_usd": 5874.642397648317,
+        "unconstrained_size_usd": 4417.409492043629,
+        "why": "the same dollar on two chains is one claim on one issuer; the spread is what the lending markets fail to equalise, and it is only worth what can be moved"
+      },
+      "identity": "cross_chain_rate:USDe:ethereum->avalanche",
+      "key": "USDe:ethereum->avalanche",
+      "severity": "info",
+      "title": "USDe pays 2.55pp more on avalanche than ethereum; $4k of it can move (bound by high-side rate dilution), earning 1.94% at size for $40 a year",
+      "usd": 39.58024397319919
+    },
+    {
+      "detector": "cross_chain_rate",
+      "economics": {
+        "binding": "high-side rate dilution",
+        "bridge_round_trip_bps": 0.0,
+        "capacity_usd": 231.97445804128296,
+        "go": false,
+        "net_apr": 0.0985050064236194,
+        "net_per_year_usd": 22.850645479472206,
+        "reason": "under $250k movable or under 50bp net at that size"
+      },
+      "evidence": {
+        "apr_at_size": 0.12564400827216105,
+        "asset": "FRAX",
+        "binding": "high-side rate dilution",
+        "capacity_matches_row": true,
+        "from": "ethereum",
+        "from_address": "0x853d955acef822db058eb8505911ed77f175b99e",
+        "from_apr": 0.02713900184854165,
+        "from_available_usd": 9924.463686735166,
+        "from_pool": "0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+        "from_supplied_usd": 38802.25148621988,
+        "from_utilisation": 0.7451003053759371,
+        "movable_usd": 231.97445804128296,
+        "rate_source": {
+          "from": "head spot (unchecked: 0 updates)",
+          "to": "head spot (unchecked: 0 updates)"
+        },
+        "spread_pp": 20.3897163942937,
+        "to": "avalanche",
+        "to_address": "0xd24c2ad096400b6fbcd2ad8b24e7acbc21a1da64",
+        "to_apr": 0.23103616579147865,
+        "to_pool": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        "to_supplied_usd": 6553.6403220797465,
+        "unconstrained_size_usd": 231.97445804128296,
+        "why": "the same dollar on two chains is one claim on one issuer; the spread is what the lending markets fail to equalise, and it is only worth what can be moved"
+      },
+      "identity": "cross_chain_rate:FRAX:ethereum->avalanche",
+      "key": "FRAX:ethereum->avalanche",
+      "severity": "info",
+      "title": "FRAX pays 20.39pp more on avalanche than ethereum; $232 of it can move (bound by high-side rate dilution), earning 12.56% at size for $23 a year",
+      "usd": 22.850645479472206
+    },
+    {
+      "detector": "cross_chain_rate",
+      "economics": {
+        "binding": "high-side rate dilution",
+        "bridge_round_trip_bps": 0.0,
+        "capacity_usd": 66513.12035696136,
+        "go": false,
+        "net_apr": 1.2313580068935613e-09,
+        "net_per_year_usd": 8.190146331501949e-05,
+        "reason": "under $250k movable or under 50bp net at that size"
+      },
+      "evidence": {
+        "apr_at_size": 1.2313580068935613e-09,
+        "asset": "sUSDS",
+        "binding": "high-side rate dilution",
+        "capacity_matches_row": true,
+        "from": "ethereum",
+        "from_address": "0xa3931d71877c0e7a3148cb7eb4463524fec27fbd",
+        "from_apr": 0.0,
+        "from_available_usd": 2978530.2695547114,
+        "from_pool": "0xc13e21b648a5ee794902342038ff3adab66be987",
+        "from_supplied_usd": 2978530.2695547114,
+        "from_utilisation": 3.111507638930571e-61,
+        "movable_usd": 66513.12035696136,
+        "rate_source": {
+          "from": "head spot (unchecked: 0 updates)",
+          "to": "head spot (unchecked: 0 updates)"
+        },
+        "spread_pp": 4.925431933908977e-07,
+        "to": "base",
+        "to_address": "0x5875eee11cf8398102fdad704c9e96607675467a",
+        "to_apr": 4.925431933908977e-09,
+        "to_pool": "0x09b11746dfd1b5a8325e30943f8b3d5000922e03",
+        "to_supplied_usd": 66513.10714001025,
+        "unconstrained_size_usd": 66513.12035696136,
+        "why": "the same dollar on two chains is one claim on one issuer; the spread is what the lending markets fail to equalise, and it is only worth what can be moved"
+      },
+      "identity": "cross_chain_rate:sUSDS:ethereum->base",
+      "key": "sUSDS:ethereum->base",
+      "severity": "info",
+      "title": "sUSDS pays 0.00pp more on base than ethereum; $67k of it can move (bound by high-side rate dilution), earning 0.00% at size for $0 a year",
+      "usd": 8.190146331501949e-05
+    }
+  ],
+  "params": {
+    "bridge_round_trip_bps": 0.0,
+    "go_min_capacity_usd": 250000.0,
+    "go_min_net_apr": 0.005
+  },
+  "window": "research/2026-09-10/multi_1h"
+}

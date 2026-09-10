@@ -1,0 +1,413 @@
+{
+ "window": "research/2026-09-10/live_5h",
+ "stale": false,
+ "provenance": [
+  {
+   "field": "labels",
+   "artifact": "906de2ba7f4b6e22",
+   "current": "906de2ba7f4b6e22",
+   "gate": true,
+   "ok": true,
+   "note": ""
+  },
+  {
+   "field": "tokens",
+   "artifact": "ca4aa94f2ca2208f",
+   "current": "ca4aa94f2ca2208f",
+   "gate": true,
+   "ok": true,
+   "note": ""
+  },
+  {
+   "field": "blocks",
+   "artifact": "50705a899618b6b8",
+   "current": "50705a899618b6b8",
+   "gate": true,
+   "ok": true,
+   "note": ""
+  },
+  {
+   "field": "head",
+   "artifact": 25946402,
+   "current": 25946402,
+   "gate": true,
+   "ok": true,
+   "note": ""
+  }
+ ],
+ "checks": [
+  {
+   "id": "blocks",
+   "check": "blocks analysed",
+   "recomputed": 1492,
+   "analysis": 1492,
+   "ok": true,
+   "tolerance": 0.0,
+   "note": ""
+  },
+  {
+   "id": "transactions",
+   "check": "transactions",
+   "recomputed": 460074,
+   "analysis": 460074,
+   "ok": true,
+   "tolerance": 0.0,
+   "note": ""
+  },
+  {
+   "id": "logs",
+   "check": "logs",
+   "recomputed": 1338947,
+   "analysis": 1338947,
+   "ok": true,
+   "tolerance": 0.0,
+   "note": ""
+  },
+  {
+   "id": "window-complete",
+   "check": "all blocks in the pinned manifest were analyzed",
+   "recomputed": 1492,
+   "analysis": 1492,
+   "ok": true,
+   "tolerance": 0.0,
+   "note": ""
+  },
+  {
+   "id": "blob-header-identity",
+   "check": "blob hashes agree with header blob gas",
+   "recomputed": 10734,
+   "analysis": 10734,
+   "ok": true,
+   "tolerance": 0.0,
+   "note": ""
+  },
+  {
+   "id": "activity-gas",
+   "check": "gas actually used across the window",
+   "recomputed": 45587819415,
+   "analysis": 45587819415,
+   "ok": true,
+   "tolerance": 0.0,
+   "note": ""
+  },
+  {
+   "id": "activity-fullness",
+   "check": "gas used divided by gas limit",
+   "recomputed": 0.5093,
+   "analysis": 0.5093,
+   "ok": true,
+   "tolerance": 0.0,
+   "note": ""
+  },
+  {
+   "id": "activity-senders",
+   "check": "distinct transaction senders",
+   "recomputed": 213622,
+   "analysis": 213622,
+   "ok": true,
+   "tolerance": 0.0,
+   "note": ""
+  },
+  {
+   "id": "activity-blobs",
+   "check": "total blobs posted",
+   "recomputed": 10734,
+   "analysis": 10734,
+   "ok": true,
+   "tolerance": 0.0,
+   "note": ""
+  },
+  {
+   "id": "activity-withdrawals",
+   "check": "consensus withdrawals in ETH",
+   "recomputed": 14628.24,
+   "analysis": 14628.24,
+   "ok": true,
+   "tolerance": 0.0,
+   "note": ""
+  },
+  {
+   "id": "execution-burn",
+   "check": "full-window execution base fee burned (ETH)",
+   "recomputed": 3.4629745502597644,
+   "analysis": 3.4629745502597644,
+   "ok": true,
+   "tolerance": 0.0,
+   "note": ""
+  },
+  {
+   "id": "usdc-mint",
+   "check": "USDC minted (USD, from the zero address)",
+   "recomputed": 42364295,
+   "analysis": 42368879,
+   "ok": true,
+   "tolerance": 0.01,
+   "note": ""
+  },
+  {
+   "id": "usdc-burn",
+   "check": "USDC burned (USD, to the zero address)",
+   "recomputed": 74498028,
+   "analysis": 74506088,
+   "ok": true,
+   "tolerance": 0.01,
+   "note": ""
+  },
+  {
+   "id": "exchange-net-stables",
+   "check": "exchange net flow, stables (USD)",
+   "recomputed": 97150307,
+   "analysis": 97150306,
+   "ok": true,
+   "tolerance": 0.03,
+   "note": ""
+  },
+  {
+   "id": "exchange-net-eth",
+   "check": "exchange net flow, ETH (USD)",
+   "recomputed": -1009962,
+   "analysis": -1009962,
+   "ok": true,
+   "tolerance": 0.03,
+   "note": ""
+  },
+  {
+   "id": "exchange-gross-usdc",
+   "check": "exchange gross in, USDC (USD)",
+   "recomputed": 236907296,
+   "analysis": 236907296,
+   "ok": true,
+   "tolerance": 0.03,
+   "note": ""
+  },
+  {
+   "id": "leverage-to-exchange",
+   "check": "leverage-to-exchange (USD followed to a CEX)",
+   "recomputed": 12888897,
+   "analysis": 12888898,
+   "ok": true,
+   "tolerance": 0.05,
+   "note": "replays the proceeds walk over an independently decoded transfer stream"
+  },
+  {
+   "id": "cctp-largest",
+   "check": "largest CCTP send: USDC -> Polygon (USD)",
+   "recomputed": 5843271,
+   "analysis": 5843903,
+   "ok": true,
+   "tolerance": 0.02,
+   "note": ""
+  },
+  {
+   "id": "gas-top-target",
+   "check": "gas requested by the top target 0xdac17f95",
+   "recomputed": 10247169808,
+   "analysis": 10247169808,
+   "ok": true,
+   "tolerance": 0.0,
+   "note": ""
+  },
+  {
+   "id": "gas-top-target-identity",
+   "check": "top gas target is the same address",
+   "recomputed": "0xdac17f958d",
+   "analysis": "0xdac17f958d",
+   "ok": true,
+   "tolerance": 0,
+   "note": ""
+  },
+  {
+   "id": "rate-gap-widest",
+   "check": "widest Aave/Spark borrow-rate gap (weETH, pp)",
+   "recomputed": 3.999,
+   "analysis": 3.999,
+   "ok": true,
+   "tolerance": 0.05,
+   "note": ""
+  }
+ ],
+ "label_band": [
+  {
+   "min_tier": "blockscout-verified",
+   "exchange_addresses": 1,
+   "stables_net_usd": 0,
+   "eth_net_usd": 0
+  },
+  {
+   "min_tier": "model-memory",
+   "exchange_addresses": 46,
+   "stables_net_usd": 111636137,
+   "eth_net_usd": 4600767
+  },
+  {
+   "min_tier": "behaviour",
+   "exchange_addresses": 95,
+   "stables_net_usd": 97150307,
+   "eth_net_usd": -1009962
+  }
+ ],
+ "identities": [
+  {
+   "id": "head-utilisation",
+   "check": "utilisation equals borrowed / supplied",
+   "checked": 50,
+   "failed": 0,
+   "ok": true,
+   "worst": 1.1102230246251565e-16,
+   "examples": []
+  },
+  {
+   "id": "head-supply-identity",
+   "check": "supply APR equals borrow APR x utilisation x (1 - reserve factor)",
+   "checked": 32,
+   "failed": 0,
+   "ok": true,
+   "worst": 0.00013299309988925104,
+   "examples": []
+  },
+  {
+   "id": "head-irm-identity",
+   "check": "borrow APR equals the reserve IRM evaluated at its utilisation",
+   "checked": 32,
+   "failed": 0,
+   "ok": true,
+   "worst": 0.0005147814002232805,
+   "examples": []
+  },
+  {
+   "id": "head-compound-curve",
+   "check": "the Compound supply read lies on the curve sampled at the same block",
+   "checked": 3,
+   "failed": 0,
+   "ok": true,
+   "worst": 1.1450840275983865e-11,
+   "examples": []
+  },
+  {
+   "id": "head-morpho-identity",
+   "check": "Morpho supply APY equals borrow APY x utilisation x (1 - fee)",
+   "checked": 60,
+   "failed": 0,
+   "ok": true,
+   "worst": 1.2772437538166592e-07,
+   "examples": []
+  },
+  {
+   "id": "head-nav-crosscheck",
+   "check": "each NAV rate matches a second view on the same contract",
+   "checked": 6,
+   "failed": 0,
+   "ok": true,
+   "worst": 0,
+   "examples": []
+  },
+  {
+   "id": "head-pendle-apy",
+   "check": "the Pendle implied yield is (1/price)^(365/days) - 1",
+   "checked": 16,
+   "failed": 0,
+   "ok": true,
+   "worst": 0,
+   "examples": []
+  },
+  {
+   "id": "head-health-identity",
+   "check": "LTV bounds and health factor = collateral x liquidation threshold / debt",
+   "checked": 39,
+   "failed": 0,
+   "ok": true,
+   "worst": 0.00018161007646622096,
+   "examples": []
+  }
+ ],
+ "mechanisms": null,
+ "claims": {
+  "cited": [
+   "activity-blobs",
+   "activity-fullness",
+   "activity-gas",
+   "activity-senders",
+   "activity-withdrawals",
+   "blocks",
+   "exchange-net-eth",
+   "exchange-net-stables",
+   "execution-burn",
+   "head-health-identity",
+   "logs",
+   "transactions"
+  ],
+  "cited_count": 12,
+  "dangling": [],
+  "checks_available": [
+   "activity-blobs",
+   "activity-fullness",
+   "activity-gas",
+   "activity-senders",
+   "activity-withdrawals",
+   "blob-header-identity",
+   "blocks",
+   "cctp-largest",
+   "exchange-gross-usdc",
+   "exchange-net-eth",
+   "exchange-net-stables",
+   "execution-burn",
+   "fingerprint-matches-chain",
+   "gas-top-target",
+   "gas-top-target-identity",
+   "head-compound-curve",
+   "head-health-identity",
+   "head-irm-identity",
+   "head-morpho-identity",
+   "head-nav-crosscheck",
+   "head-pendle-apy",
+   "head-supply-identity",
+   "head-utilisation",
+   "leverage-to-exchange",
+   "logs",
+   "msca-not-exchange",
+   "no-contract-hot-wallets",
+   "rate-gap-widest",
+   "stacy-deposit-for",
+   "transactions",
+   "usdc-burn",
+   "usdc-mint",
+   "window-complete"
+  ],
+  "checks_uncited": [
+   "blob-header-identity",
+   "cctp-largest",
+   "exchange-gross-usdc",
+   "fingerprint-matches-chain",
+   "gas-top-target",
+   "gas-top-target-identity",
+   "head-compound-curve",
+   "head-irm-identity",
+   "head-morpho-identity",
+   "head-nav-crosscheck",
+   "head-pendle-apy",
+   "head-supply-identity",
+   "head-utilisation",
+   "leverage-to-exchange",
+   "msca-not-exchange",
+   "no-contract-hot-wallets",
+   "rate-gap-widest",
+   "stacy-deposit-for",
+   "usdc-burn",
+   "usdc-mint",
+   "window-complete"
+  ],
+  "headline_numbers_tagged": 1,
+  "headline_numbers_untagged": 22,
+  "coverage": 0.043,
+  "untagged_examples": [
+   "ETH slipped **0.53%**, from $2,480.23 to $2,467.07 in the observed USDC/WETH pool, while transaction activity accelerated sharply after 08:30. A large",
+   "**72,446 settled transfers from 72,446 distinct senders sent 161,357.65 LPT to **, labelled Binance 14 in the existing model-memory registry. This is ",
+   "The receipt sample includes 17,425 LPT calls, all successful, consuming **4.70% of sampled execution gas**. Their sampled execution fees were just **0",
+   "The systematic every-fourth-block receipt sample covers **373 blocks and 113,684 transactions**. It measures **4.14510 ETH of tips against 0.84591 ETH",
+   "For the Spark account, a **2.06% fall in oracle-valued collateral relative to the debt**, holding quantities and thresholds fixed, would take HF to 1.",
+   "**The apparent PYUSD blackout was a software error.** The first sweep reported 24 minutes with only about $70,935 available. Raw logs instead show hig"
+  ]
+ },
+ "all_ok": true,
+ "failures": 0
+}

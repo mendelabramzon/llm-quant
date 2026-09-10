@@ -51,6 +51,8 @@ class LiquidityTests(unittest.TestCase):
         hit=self.scan(source_cash=0)
         self.assertFalse(hit.economics['go'])
         self.assertIsNone(hit.economics['net_apr'])
+        from detectors.run import digest
+        self.assertIn('net APR unquoted',digest([hit],[],'.'))
 
 
 if __name__=='__main__':

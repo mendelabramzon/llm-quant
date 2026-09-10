@@ -259,7 +259,13 @@ uv run python scripts/perp_refs.py snap    --out research/2026-09-10/perps_2 --m
 uv run python scripts/perp_refs.py compare --out research/2026-09-10/perps_2
 uv run python scripts/perp_refs.py curve   --out research/2026-09-10/perps_2
 uv run python scripts/findings.py ingest   --out research/2026-09-10/perps_2 --chain hyperliquid
+uv run python scripts/perp_daily.py run                     # one unattended pass; launchd template in scripts/launchd/
+uv run python scripts/strategies.py scorecard               # $/yr at capacity on go verdicts, persistence, out of sample
 ```
+
+`detectors/roll_premium` re-checks the mechanism every window: it predicts the premium from the curve placement, scores
+the fit, and prices the carry net of a tenth of the spread per trading day, which is what the book now quotes for the
+oil carry (167% after a daily round trip, against the unhedged 337%).
 
 [The sUSDe discount history](research/2026-09-10/susde_history/findings.md) (`scripts/dislocation_history.py`)
 prices the cooldown-redemption bid as an option instead of re-measuring it on windows: 45,089 swaps in three pools
@@ -306,6 +312,17 @@ DEXes have **zero open interest across 97 listed markets**, behind six separate 
 oracle` and **304 of 315 markets failed** — the assertion was wrong, the premium is an hourly average against the
 *impact* prices, and replacing that assertion with a measurement produced the explanation for the headline. The best
 finding in the report came out of an assertion that failed.
+
+## Ethereum five-hour continuation (2026-09-10)
+
+[Report: mass LPT transfers, thin exits and recycled volume](research/2026-09-10/live_5h/report.md) covers the
+originally requested finalized window, **05:30:48–10:30:48 UTC**, with 460,074 transactions. 72,446 LPT senders converge
+on one recipient; two round trips account for 5.59% of priced DEX turnover. Receipt-sampled tips are 4.90x burn.
+
+New infrastructure detects settled token fan-in without a USD threshold, caps rate switches by source cash, preserves
+same-block lending update order, retains the same borrower on multiple venues, and rejects unverified conditional
+redemption quotes. Historical checks rejected a false PYUSD blackout and confirmed negligible direct rETH exit liquidity.
+[Method](research/2026-09-10/live_5h/method.md) · [Validation](research/2026-09-10/live_5h/validation.json).
 
 ## Latest Ethereum ten-hour study (2026-09-10 session)
 

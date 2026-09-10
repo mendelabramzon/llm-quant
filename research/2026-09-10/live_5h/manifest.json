@@ -1,4 +1,5 @@
 {
+  "blocks": 1492,
   "blocks_present": 1492,
   "chain": "ethereum",
   "chain_id": 1,
@@ -20,7 +21,16 @@
     "timestamp": 1789036247,
     "utc": "2026-09-10T10:30:47+00:00"
   },
+  "finalized_at_verify": {
+    "hash": "0xfeaf3605ae8835471924cd0da27f7b2b6c4561e79935360c2b0525f1863dfd4e",
+    "number": 25947743,
+    "timestamp": 1789052375
+  },
   "first_block": 25944911,
+  "hash_recheck": {
+    "mismatches": [],
+    "sampled": 4
+  },
   "head_at_collect": {
     "hash": "0x165c037d072a4c312ae3a5b4c76d243bd135d97dc2c6484590493e11b5ede7d1",
     "number": 25946402,
@@ -31,8 +41,10 @@
   "last_block": 25946402,
   "last_block_at_collect": 25946402,
   "log_range_splits": 0,
+  "logs": 1338947,
   "logs_present": 1492,
   "provider": "Infura",
+  "quality_issues": {},
   "rpc": {
     "credits": 184410,
     "errors": 2,
@@ -41,6 +53,8 @@
   },
   "start_timestamp": 1789018248,
   "start_utc": "2026-09-10T05:30:48+00:00",
+  "transactions": 460074,
+  "verified_at": "2026-09-10T15:16:16.058697+00:00",
   "window": "trailing 5.00 h ending at finalized minus 0 blocks",
   "window_definition": "[start_timestamp, end_timestamp)"
 }

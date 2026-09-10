@@ -794,7 +794,7 @@ class State:
             return
         if name == 'AaveRDU' and len(tp) == 2:
             reserve = topic_addr(tp[1])
-            self.rates[(venue, reserve)].append((n, ts, word(d, 0) / RAY, word(d, 2) / RAY))
+            self.rates[(venue, reserve)].append((n, ts, word(d, 0) / RAY, word(d, 2) / RAY, li))
             return
         if name == 'AaveLiq' and len(tp) == 4:
             col, debt, user = topic_addr(tp[1]), topic_addr(tp[2]), topic_addr(tp[3])
@@ -1002,14 +1002,18 @@ class State:
         out = []
         for (venue, reserve), series in self.rates.items():
             tk = self.p.token(reserve)
-            s = sorted(series)
+            # Rates can rise and fall within one block. Sorting whole tuples instead sorted by rate,
+            # reversing a borrow/repay pair and inventing a persistent liquidity squeeze.
+            s = sorted(series, key=lambda x: (x[0], x[4]))
+            block_end = {x[0]: x for x in s}
             sup = [x[2] for x in s]
             bor = [x[3] for x in s]
             out.append({'venue': venue, 'reserve': reserve, 'sym': tk[0] if tk else short(reserve), 'updates': len(s),
                         'supply_first': sup[0], 'supply_last': sup[-1], 'supply_min': min(sup), 'supply_max': max(sup),
                         'borrow_first': bor[0], 'borrow_last': bor[-1], 'borrow_min': min(bor), 'borrow_max': max(bor),
                         'borrow_range_pp': round(100 * (max(bor) - min(bor)), 3),
-                        'series': [(x[0], round(x[2], 5), round(x[3], 5)) for x in s[::max(1, len(s) // 60)]]})
+                        'series': [(x[0], round(x[2], 5), round(x[3], 5)) for x in s[::max(1, len(s) // 60)]],
+                        'block_end_series': [(x[0], x[2], x[3]) for x in block_end.values()]})
         out.sort(key=lambda r: -r['borrow_range_pp'])
         return out
 
@@ -1407,8 +1411,8 @@ def enrich_state(rpc, out, hs, blk):
         an = json.loads(ap.read_text())
         seen = set()
         for o in an.get('lending_ops', {}).get('large_ops', []):
-            if o['venue'] in LENDING_POOLS.values() and (o['usd'] or 0) >= 5e5 and o['account'] not in seen:
-                seen.add(o['account'])
+            if o['venue'] in LENDING_POOLS.values() and (o['usd'] or 0) >= 5e5 and (o['venue'], o['account']) not in seen:
+                seen.add((o['venue'], o['account']))
                 accounts.append((o['venue'], o['account']))
         for l in an.get('liquidations', []):
             if l['venue'] in LENDING_POOLS.values() and (l['venue'], l['user']) not in accounts:
