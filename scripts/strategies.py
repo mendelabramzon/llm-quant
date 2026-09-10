@@ -106,12 +106,18 @@ def refresh(args):
     book = load()
     win = json.loads((Path(args.out) / 'analysis.json').read_text()).get('window', {}) \
         if (Path(args.out) / 'analysis.json').exists() else {}
-    at = win.get('last_utc') or now().isoformat()
-    updated, unlinked = [], []
+    at = win.get('last_utc') or win.get('end_utc') or now().isoformat()
+    ran = set((F.load_windows().get(str(args.out)) or {}).get('detectors_run') or [])
+    updated, unlinked, not_run = [], [], []
     for s in book.values():
         ids = [i for i in (s.get('evidence', {}).get('findings') or []) if i in L]
         if not ids:
             unlinked.append(s['id'])
+            continue
+        # A window only speaks about a strategy whose detectors ran in it. A perp window says nothing about a lending
+        # spread, and stamping "not observed" on it would read as decay when it is silence.
+        if ran and not any(L[i]['detector'] in ran for i in ids):
+            not_run.append(s['id'])
             continue
         obs = []
         for i in ids:
@@ -137,6 +143,7 @@ def refresh(args):
         updated.append((s['id'], q['net_apr']))
     save(book)
     print(json.dumps({'window': str(args.out), 're-quoted': [{'id': i, 'net_apr': v} for i, v in updated],
+                      'detectors_did_not_run_in_this_window': not_run,
                       'not_linked_to_a_detector': unlinked}, indent=1))
 
 

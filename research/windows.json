@@ -179,6 +179,26 @@
   "last_block": 25931479,
   "last_utc": "2026-09-08T08:33:11+00:00"
  },
+ "research/2026-09-08/perps_1h": {
+  "chain": "hyperliquid",
+  "detectors_run": [
+   "cross_dex_basis",
+   "cross_venue_funding",
+   "dead_market",
+   "funding_carry",
+   "illiquid_extreme_funding",
+   "oi_cap_pressure",
+   "premium_drift",
+   "stale_oracle"
+  ],
+  "first_block": null,
+  "first_utc": "2026-09-08T10:33:29+00:00",
+  "hours": 1.0,
+  "ingested_at": "2026-09-10T12:38:24+00:00",
+  "label_fingerprint": null,
+  "last_block": null,
+  "last_utc": "2026-09-08T11:33:29+00:00"
+ },
  "research/2026-09-10/live_10h": {
   "chain": "ethereum",
   "detectors_run": [
@@ -206,5 +226,25 @@
   "label_fingerprint": "906de2ba7f4b6e22",
   "last_block": 25942222,
   "last_utc": "2026-09-09T20:32:23+00:00"
+ },
+ "research/2026-09-10/perps_2": {
+  "chain": "hyperliquid",
+  "detectors_run": [
+   "cross_dex_basis",
+   "cross_venue_funding",
+   "dead_market",
+   "funding_carry",
+   "illiquid_extreme_funding",
+   "oi_cap_pressure",
+   "premium_drift",
+   "stale_oracle"
+  ],
+  "first_block": null,
+  "first_utc": "2026-09-10T11:19:34+00:00",
+  "hours": 1.0,
+  "ingested_at": "2026-09-10T12:58:42+00:00",
+  "label_fingerprint": null,
+  "last_block": null,
+  "last_utc": "2026-09-10T12:19:34+00:00"
  }
 }

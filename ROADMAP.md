@@ -5,6 +5,67 @@ the LLM reads evidence, proposes mechanisms, and writes the infrastructure; dete
 reusable detectors and tests; the human steers. The metric we optimise is **time-to-verified-insight**: how fast a raw
 signal becomes a true, capacity-aware, reproducible claim and then a reusable detector — not classification coverage.
 
+## Session log — 2026-09-10, second session (develop further: the perps thread and the sUSDe history)
+
+The state review earlier this day found the loop precise about $10k-class Ethereum findings and silent on its two
+highest-EV threads, each dropped after one window. This session gave both a second window and, where a window cannot
+answer, a history. Deliverables: [the perps note](research/2026-09-10/perps_2/insights.md), the
+[funding history](research/2026-09-10/perps_history/history.md), the
+[reference comparison](research/2026-09-10/perps_2/refs.md) and the
+[sUSDe discount history](research/2026-09-10/susde_history/findings.md).
+
+Landed: `scripts/perp_history.py` (months of hourly funding and candles for every live market; episodes, premium
+snaps, and an out-of-sample table for any earlier window's hits; 12 tests), `scripts/perp_refs.py` (public delayed
+references for 118 builder markets, delay-aligned, session-gated, with the futures-curve placement of the energy
+oracles), `scripts/dislocation_history.py` (181 days of every sUSDe swap against NAV; 22 tests), the findings ledger
+now accepting perp windows, `net_apr`/`go` on the perp economics blocks, a book refresh that only speaks for
+strategies whose detectors ran in the window, and two new book entries.
+
+**The 09-08 oracle claim was wrong, and the trade was right anyway.** Compared with public quotes aligned by their
+own delay, XYZ's oracles are within a basis point on FX and spot metals and within 25bp on ten of fifteen live
+references; the exceptions are the three energy markets, and the futures curve explains them. All three energy
+oracles sit 0.6 of the way from the front contract to the second and all three books at 0.45: the oracle is a
+constant-maturity blend, the book prices the same blend a few days further along, and the premium is the lead times
+the calendar spread, 0.15 x 4.67% = 0.70% on Brent (observed 0.70%), with the sign reversed on gas because the gas
+curve is in contango (observed +0.68%). The funding history shows the roll: at 22:00 UTC on 09-08 and 09-09 the
+Brent premium narrowed from -1.0% to -0.4% with the mark unmoved and the implied oracle down 0.47%, a tenth of the
+spread, so the oracle steps once a day at the futures reopen over about ten trading days. Longs are paid because
+they are one step behind a roll, not because an oracle is broken.
+
+**Out of sample.** The three 09-08 `funding_carry` hits, held on paper 47 hours through the settled funding series:
++164.5bp, +136.9bp and +156.4bp of funding collected; the premium moved 7 to 17bp against the paid side; net of the
+quoted round trip the oracle-hedged proxy made **+145bp, +109bp and +125bp**, break-even at hour 4, 4 and 5 against
+predictions of 3.6, 4.4 and 6.7. The five other carries that sweep flagged at 20% to 130% collected 5 to 12bp and
+lost on the hedged reading. The rate was only a story where the premium was structural.
+
+**And the history says the regime is eleven days old.** Over 71 days the Brent premium averaged -0.05% and changed
+sign 308 times; the longest run above 100% before 7 September was 19 hours; the current one is 61. Across XYZ's 104
+markets 9.8% of all hours ran above 100% a year in 6,967 episodes with a median length of one hour, 98.7% of which
+flipped within 72 hours: extreme HIP-3 funding is mostly one-hour noise on thin books, and only the energy run is a
+mechanism. The book now holds `hip3-oil-funding-carry` (long the perp, short the futures blend the oracle tracks;
+$1.7M of ask depth at 25bp; kill on funding under 50% for a day, premium beyond -1.5%, oracle 2% off the blend,
+depth under $250k) and `hip3-cross-builder-funding` (UNITREE at 307 points between two builder books, priced at $25k
+because the small book is that thin). The book prints the detector's unhedged 337%; the hedged expectation, funding
+less a tenth of the spread per day, is about 200% a year, and both numbers have a clock: the spread, and a depth that
+was $474k two days earlier.
+
+**The sUSDe bid, priced from history instead of re-measured on windows.** 45,089 swaps in three pools over 181 days
+against the NAV Ethena paid at each block: the discount is frequent and shallow (median 2.8bp, p99 17bp), one real
+stress week in April at 17.5bp for 80 hours, and a $600k standing bid, which is the on-chain USDe exit, would have
+earned **$41,500 a year net of USDe's basis**, $635k without the capacity cap. The exit binds. The kill criterion the
+book carried (no ask 10bp under NAV in 30 days) never came close to firing in six months and was the wrong test; it
+is replaced by the trailing option value and the exit depth, and the strategy is re-quoted at 6.9% on $600k.
+
+**Two of the loop's own errors this session, for the record.** The first `perp_history` episode definition exited on
+the last extreme hour and so scored every episode against the paid side by construction (hedged-positive share 24%;
+84% once fixed, pinned by a test). The first reference map matched a private company to a delisted pharmaceutical
+and compared Markets by Kinetiq's ETF-priced perps against index points; both were caught by printing the raw values
+and are recorded in the module.
+
+Next: a daily perp window with the history appended and the calendar spread in the same snapshot, so premium against
+spread becomes a regression; a `roll_premium` detector that subtracts the step; the hedge leg's depth and roll
+schedule from the scanner; and for sUSDe, whether a permissioned redemption at $5M to $25M exists.
+
 ## Session log — 2026-09-10 (Ethereum: $34.6m of turnover, $0.65 of WETH)
 
 [Ten-hour study](research/2026-09-10/live_10h/report.md), pinned to finalized blocks 25,939,239–25,942,222:

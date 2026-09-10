@@ -1,0 +1,155 @@
+{
+  "all_ok": true,
+  "checks": [
+    {
+      "analysis": 517,
+      "check": "assets in the snapshot",
+      "id": "assets",
+      "note": "",
+      "ok": true,
+      "recomputed": 517,
+      "tolerance": 0.0
+    },
+    {
+      "analysis": 14500658916.239065,
+      "check": "total open interest (USD)",
+      "id": "oi-usd",
+      "note": "",
+      "ok": true,
+      "recomputed": 14500658916.239063,
+      "tolerance": 1e-09
+    },
+    {
+      "analysis": 9073263018.277172,
+      "check": "total 24h notional volume (USD)",
+      "id": "day-vlm",
+      "note": "",
+      "ok": true,
+      "recomputed": 9073263018.277178,
+      "tolerance": 1e-09
+    },
+    {
+      "analysis": 319665618.446005,
+      "check": "notional traded in the window (USD)",
+      "id": "hour-vlm",
+      "note": "",
+      "ok": true,
+      "recomputed": 319665618.4460041,
+      "tolerance": 1e-09
+    },
+    {
+      "analysis": 212436,
+      "check": "trades in the window",
+      "id": "hour-trades",
+      "note": "",
+      "ok": true,
+      "recomputed": 212436,
+      "tolerance": 0.0
+    }
+  ],
+  "coverage": {
+    "assets": 517,
+    "collection_failures": {},
+    "with_book": 140,
+    "with_candles": 316,
+    "with_funding_history": 140
+  },
+  "failures": [],
+  "generated": "2026-09-10T12:58:42+00:00",
+  "identities": [
+    {
+      "check": "the venue\u2019s premium is within two percent of the instantaneous impact-mid basis",
+      "checked": 316,
+      "examples": [],
+      "failed": 0,
+      "id": "premium-bounded",
+      "ok": true,
+      "worst": 0.0
+    },
+    {
+      "check": "the reported basis equals the recomputed one",
+      "checked": 517,
+      "examples": [],
+      "failed": 0,
+      "id": "mark-vs-oracle-bps",
+      "ok": true,
+      "worst": 0.0
+    },
+    {
+      "check": "the annualised funding equals the hourly rate times 8760",
+      "checked": 517,
+      "examples": [],
+      "failed": 0,
+      "id": "funding-apr",
+      "ok": true,
+      "worst": 0.0
+    },
+    {
+      "check": "open interest in USD equals size times mark",
+      "checked": 316,
+      "examples": [],
+      "failed": 0,
+      "id": "oi-usd",
+      "ok": true,
+      "worst": 0.0
+    },
+    {
+      "check": "cap utilisation equals open interest over the cap",
+      "checked": 244,
+      "examples": [],
+      "failed": 0,
+      "id": "cap-use",
+      "ok": true,
+      "worst": 0.0
+    },
+    {
+      "check": "the best ask is not below the best bid",
+      "checked": 140,
+      "examples": [],
+      "failed": 0,
+      "id": "spread-nonneg",
+      "ok": true,
+      "worst": 0.0
+    },
+    {
+      "check": "the round-trip cost never falls as the order grows",
+      "checked": 140,
+      "examples": [],
+      "failed": 0,
+      "id": "cost-monotone",
+      "ok": true,
+      "worst": 0.0
+    }
+  ],
+  "premium_to_funding_transfer": {
+    "by_dex": {
+      "core": {
+        "markets": 61,
+        "median": 0.04652592543206184,
+        "p10": -0.33653082487743546,
+        "p90": 0.4610601047962692
+      },
+      "io": {
+        "markets": 5,
+        "median": 0.278708768250783,
+        "p10": -0.08061701581365438,
+        "p90": 0.7267225549345602
+      },
+      "para": {
+        "markets": 20,
+        "median": 0.3143298004479619,
+        "p10": -0.12892182889365947,
+        "p90": 0.9858605721601621
+      },
+      "xyz": {
+        "markets": 86,
+        "median": 0.23669163273356347,
+        "p10": -0.09352482476841444,
+        "p90": 0.504957815818726
+      }
+    },
+    "what": "hourly funding divided by one eighth of the venue\u2019s own reported premium, over markets with |premium| above 2 basis points",
+    "why": "a ratio near 1 means the funding rate is charging the whole premium and the gap should close; a ratio near 0 means the venue is not charging for its own premium, and a wide gap has nothing pulling it shut"
+  },
+  "window": "research/2026-09-10/perps_2"
+}

@@ -1,0 +1,1668 @@
+{
+ "coverage": {
+  "first_block": 24650913,
+  "grid": 181,
+  "last_block": 25946913,
+  "samples": 181,
+  "sdai_samples": 181,
+  "susde_nav_first": 1.2235624991214797,
+  "susde_nav_last": 1.2473959187331596
+ },
+ "endpoints_in_order": [
+  "https://eth.drpc.org",
+  "https://eth.merkle.io"
+ ],
+ "errors": [],
+ "method": "convertToAssets(1e18) on sUSDe and sDAI at each daily header block via public archive endpoints; linear interpolation between samples in the analysis (sUSDe NAV drifts 1-3bp/day, so the error is under 1bp)",
+ "probe": {
+  "90d": {
+   "block": 25298913,
+   "endpoints": {
+    "https://1rpc.io/eth": "revert-or-missing-state: {\"code\": -32000, \"message\": \"historical state 96585b0eaf5bdaa5774339d69a92296653bce598cebf66626dc95c927ba3c228 is not available\"}",
+    "https://eth.drpc.org": "ok 1.235168",
+    "https://eth.merkle.io": "ok 1.235168",
+    "https://ethereum-rpc.publicnode.com": "RuntimeError: all endpoints failed: https://ethereum-rpc.publicnode.com: HTTP Error 403: Forbidden"
+   }
+  },
+  "start": {
+   "block": 24650913,
+   "endpoints": {
+    "https://1rpc.io/eth": "RuntimeError: all endpoints failed: https://1rpc.io/eth: HTTP Error 410: Gone",
+    "https://eth.drpc.org": "ok 1.223562",
+    "https://eth.merkle.io": "ok 1.223562",
+    "https://ethereum-rpc.publicnode.com": "RuntimeError: all endpoints failed: https://ethereum-rpc.publicnode.com: HTTP Error 403: Forbidden"
+   }
+  }
+ },
+ "samples": [
+  {
+   "block": 24650913,
+   "sdai": 1.1731213035532255,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2235624991214797,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1773433439,
+   "utc": "2026-03-13T20:23:59Z"
+  },
+  {
+   "block": 24658113,
+   "sdai": 1.1731613692345848,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2236759323562298,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1773520139,
+   "utc": "2026-03-14T20:28:59Z"
+  },
+  {
+   "block": 24665313,
+   "sdai": 1.173201441830017,
+   "sdai_endpoint": "https://eth.merkle.io",
+   "susde": 1.2237892179891297,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1773606851,
+   "utc": "2026-03-15T20:34:11Z"
+  },
+  {
+   "block": 24672513,
+   "sdai": 1.1732415712532074,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2239024193529264,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1773693683,
+   "utc": "2026-03-16T20:41:23Z"
+  },
+  {
+   "block": 24679713,
+   "sdai": 1.1732817963325017,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2240158301204165,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1773780719,
+   "utc": "2026-03-17T20:51:59Z"
+  },
+  {
+   "block": 24686913,
+   "sdai": 1.1733219451430525,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2241286814645813,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1773867587,
+   "utc": "2026-03-18T20:59:47Z"
+  },
+  {
+   "block": 24694113,
+   "sdai": 1.1733620454092673,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.224241917065493,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1773954347,
+   "utc": "2026-03-19T21:05:47Z"
+  },
+  {
+   "block": 24701313,
+   "sdai": 1.1734021026727304,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2243571684204462,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1774041011,
+   "utc": "2026-03-20T21:10:11Z"
+  },
+  {
+   "block": 24708513,
+   "sdai": 1.1734422278658458,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2244725393203817,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1774127819,
+   "utc": "2026-03-21T21:16:59Z"
+  },
+  {
+   "block": 24715713,
+   "sdai": 1.1734823433369963,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.224588374741211,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1774214603,
+   "utc": "2026-03-22T21:23:23Z"
+  },
+  {
+   "block": 24722913,
+   "sdai": 1.1735224657267649,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2247045601138418,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1774301399,
+   "utc": "2026-03-23T21:29:59Z"
+  },
+  {
+   "block": 24730113,
+   "sdai": 1.1735625284667976,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.224820831996038,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1774388063,
+   "utc": "2026-03-24T21:34:23Z"
+  },
+  {
+   "block": 24737313,
+   "sdai": 1.1736026425029589,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.224937715257149,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1774474835,
+   "utc": "2026-03-25T21:40:35Z"
+  },
+  {
+   "block": 24744513,
+   "sdai": 1.1736427634580682,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2250547016858093,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1774561619,
+   "utc": "2026-03-26T21:46:59Z"
+  },
+  {
+   "block": 24751713,
+   "sdai": 1.1736829246206395,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2251716511981903,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1774648487,
+   "utc": "2026-03-27T21:54:47Z"
+  },
+  {
+   "block": 24758913,
+   "sdai": 1.173722981742214,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2252883752537094,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1774735127,
+   "utc": "2026-03-28T21:58:47Z"
+  },
+  {
+   "block": 24766113,
+   "sdai": 1.173763073521086,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.225405804767667,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1774821839,
+   "utc": "2026-03-29T22:03:59Z"
+  },
+  {
+   "block": 24773313,
+   "sdai": 1.173803199960714,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2255234268188373,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1774908623,
+   "utc": "2026-03-30T22:10:23Z"
+  },
+  {
+   "block": 24780513,
+   "sdai": 1.1738433277721103,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.225641067645544,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1774995407,
+   "utc": "2026-03-31T22:16:47Z"
+  },
+  {
+   "block": 24787713,
+   "sdai": 1.1738834680531842,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2257586835983598,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1775082215,
+   "utc": "2026-04-01T22:23:35Z"
+  },
+  {
+   "block": 24794913,
+   "sdai": 1.1739235375683108,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2258762331961146,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1775168867,
+   "utc": "2026-04-02T22:27:47Z"
+  },
+  {
+   "block": 24802113,
+   "sdai": 1.173963614000486,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.225992568250152,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1775255531,
+   "utc": "2026-04-03T22:32:11Z"
+  },
+  {
+   "block": 24809313,
+   "sdai": 1.1740036862513268,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2261090767209548,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1775342183,
+   "utc": "2026-04-04T22:36:23Z"
+  },
+  {
+   "block": 24816513,
+   "sdai": 1.1740437765190659,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.226225748234113,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1775428871,
+   "utc": "2026-04-05T22:41:11Z"
+  },
+  {
+   "block": 24823713,
+   "sdai": 1.1740838959052127,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2263425038048161,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1775515619,
+   "utc": "2026-04-06T22:46:59Z"
+  },
+  {
+   "block": 24830913,
+   "sdai": 1.1741239722617738,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.226459072028664,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1775602271,
+   "utc": "2026-04-07T22:51:11Z"
+  },
+  {
+   "block": 24838113,
+   "sdai": 1.1741640499863073,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2265756244756973,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1775688923,
+   "utc": "2026-04-08T22:55:23Z"
+  },
+  {
+   "block": 24845313,
+   "sdai": 1.1742041734824353,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2266930372882576,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1775775671,
+   "utc": "2026-04-09T23:01:11Z"
+  },
+  {
+   "block": 24852513,
+   "sdai": 1.1742443483053937,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2268107858908421,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1775862527,
+   "utc": "2026-04-10T23:08:47Z"
+  },
+  {
+   "block": 24859713,
+   "sdai": 1.17428446344382,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2269287485208484,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1775949251,
+   "utc": "2026-04-11T23:14:11Z"
+  },
+  {
+   "block": 24866913,
+   "sdai": 1.1743245521975998,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2270469702203892,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1776035915,
+   "utc": "2026-04-12T23:18:35Z"
+  },
+  {
+   "block": 24874113,
+   "sdai": 1.1743646312175533,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2271655131615054,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1776122555,
+   "utc": "2026-04-13T23:22:35Z"
+  },
+  {
+   "block": 24881313,
+   "sdai": 1.174404700502591,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2272838695175263,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1776209171,
+   "utc": "2026-04-14T23:26:11Z"
+  },
+  {
+   "block": 24888513,
+   "sdai": 1.1744447878095445,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.22740172491579,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1776295823,
+   "utc": "2026-04-15T23:30:23Z"
+  },
+  {
+   "block": 24895713,
+   "sdai": 1.1744848709330704,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2275190055853478,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1776382463,
+   "utc": "2026-04-16T23:34:23Z"
+  },
+  {
+   "block": 24902913,
+   "sdai": 1.1745249387687198,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2276412460767354,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1776469067,
+   "utc": "2026-04-17T23:37:47Z"
+  },
+  {
+   "block": 24910113,
+   "sdai": 1.1745650412842101,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.227764043053678,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1776555743,
+   "utc": "2026-04-18T23:42:23Z"
+  },
+  {
+   "block": 24917313,
+   "sdai": 1.1746051507212873,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.227888906578489,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1776642431,
+   "utc": "2026-04-19T23:47:11Z"
+  },
+  {
+   "block": 24924513,
+   "sdai": 1.174645222660311,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.228025024086597,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1776729035,
+   "utc": "2026-04-20T23:50:35Z"
+  },
+  {
+   "block": 24931713,
+   "sdai": 1.1746852959663987,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2281757165034537,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1776815639,
+   "utc": "2026-04-21T23:53:59Z"
+  },
+  {
+   "block": 24938913,
+   "sdai": 1.1747254594861722,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.228345083176906,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1776902435,
+   "utc": "2026-04-23T00:00:35Z"
+  },
+  {
+   "block": 24946113,
+   "sdai": 1.1747655355295585,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.228527646774822,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1776989039,
+   "utc": "2026-04-24T00:03:59Z"
+  },
+  {
+   "block": 24953313,
+   "sdai": 1.1748056129401487,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.228696646622656,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1777075643,
+   "utc": "2026-04-25T00:07:23Z"
+  },
+  {
+   "block": 24960513,
+   "sdai": 1.1748456695040719,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2288703698568377,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1777162199,
+   "utc": "2026-04-26T00:09:59Z"
+  },
+  {
+   "block": 24967713,
+   "sdai": 1.1748857496484522,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2290446693388442,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1777248803,
+   "utc": "2026-04-27T00:13:23Z"
+  },
+  {
+   "block": 24974913,
+   "sdai": 1.1749258311601765,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2292186747626783,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1777335407,
+   "utc": "2026-04-28T00:16:47Z"
+  },
+  {
+   "block": 24982113,
+   "sdai": 1.1749659195933386,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2293938779035563,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1777422023,
+   "utc": "2026-04-29T00:20:23Z"
+  },
+  {
+   "block": 24989313,
+   "sdai": 1.1750060205027917,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2295704769003633,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1777508663,
+   "utc": "2026-04-30T00:24:23Z"
+  },
+  {
+   "block": 24996513,
+   "sdai": 1.175046156107428,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2297477584151129,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1777595375,
+   "utc": "2026-05-01T00:29:35Z"
+  },
+  {
+   "block": 25003713,
+   "sdai": 1.1750862597553067,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.22985166001165,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1777682015,
+   "utc": "2026-05-02T00:33:35Z"
+  },
+  {
+   "block": 25010913,
+   "sdai": 1.1751263092238395,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2299574588392759,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1777768535,
+   "utc": "2026-05-03T00:35:35Z"
+  },
+  {
+   "block": 25018113,
+   "sdai": 1.1751664267172892,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2300640531195743,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1777855199,
+   "utc": "2026-05-04T00:39:59Z"
+  },
+  {
+   "block": 25025313,
+   "sdai": 1.1752066344632728,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2301709075265344,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1777942055,
+   "utc": "2026-05-05T00:47:35Z"
+  },
+  {
+   "block": 25032513,
+   "sdai": 1.175246754698936,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2302790023962291,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1778028719,
+   "utc": "2026-05-06T00:51:59Z"
+  },
+  {
+   "block": 25039713,
+   "sdai": 1.1752868707486943,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2303887262011686,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1778115371,
+   "utc": "2026-05-07T00:56:11Z"
+  },
+  {
+   "block": 25046913,
+   "sdai": 1.1753270326138174,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.230500546811073,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1778202119,
+   "utc": "2026-05-08T01:01:59Z"
+  },
+  {
+   "block": 25054113,
+   "sdai": 1.1753670958443512,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.230623288946081,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1778288651,
+   "utc": "2026-05-09T01:04:11Z"
+  },
+  {
+   "block": 25061313,
+   "sdai": 1.1754072548947896,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.230747044846977,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1778375387,
+   "utc": "2026-05-10T01:09:47Z"
+  },
+  {
+   "block": 25068513,
+   "sdai": 1.175447415317352,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2308717152179458,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1778462123,
+   "utc": "2026-05-11T01:15:23Z"
+  },
+  {
+   "block": 25075713,
+   "sdai": 1.17548759933814,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2309969849111306,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1778548907,
+   "utc": "2026-05-12T01:21:47Z"
+  },
+  {
+   "block": 25082913,
+   "sdai": 1.175527718052222,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2311226155595556,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1778635547,
+   "utc": "2026-05-13T01:25:47Z"
+  },
+  {
+   "block": 25090113,
+   "sdai": 1.1755679548302926,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.231249437191251,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1778722439,
+   "utc": "2026-05-14T01:33:59Z"
+  },
+  {
+   "block": 25097313,
+   "sdai": 1.1756081096293616,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2313789907510502,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1778809151,
+   "utc": "2026-05-15T01:39:11Z"
+  },
+  {
+   "block": 25104513,
+   "sdai": 1.1756482380136635,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2315192110320072,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1778895803,
+   "utc": "2026-05-16T01:43:23Z"
+  },
+  {
+   "block": 25111713,
+   "sdai": 1.1756883344229374,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2316601600692465,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1778982383,
+   "utc": "2026-05-17T01:46:23Z"
+  },
+  {
+   "block": 25118913,
+   "sdai": 1.1757284822186018,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2318020524933035,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1779069071,
+   "utc": "2026-05-18T01:51:11Z"
+  },
+  {
+   "block": 25126113,
+   "sdai": 1.1757686425009306,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2319445934539883,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1779155783,
+   "utc": "2026-05-19T01:56:23Z"
+  },
+  {
+   "block": 25133313,
+   "sdai": 1.1758087485747262,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2320873531502647,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1779242375,
+   "utc": "2026-05-20T01:59:35Z"
+  },
+  {
+   "block": 25140513,
+   "sdai": 1.175848917156998,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.232229738369298,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1779329099,
+   "utc": "2026-05-21T02:04:59Z"
+  },
+  {
+   "block": 25147713,
+   "sdai": 1.1758890482026487,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2323705143838615,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1779415739,
+   "utc": "2026-05-22T02:08:59Z"
+  },
+  {
+   "block": 25154913,
+   "sdai": 1.1759292139695565,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2324953130791632,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1779502451,
+   "utc": "2026-05-23T02:14:11Z"
+  },
+  {
+   "block": 25162113,
+   "sdai": 1.1759693811084377,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.232619175341462,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1779589163,
+   "utc": "2026-05-24T02:19:23Z"
+  },
+  {
+   "block": 25169313,
+   "sdai": 1.1760095329423967,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2327424264889577,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1779675839,
+   "utc": "2026-05-25T02:23:59Z"
+  },
+  {
+   "block": 25176513,
+   "sdai": 1.1760497417389926,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.232865943256861,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1779762635,
+   "utc": "2026-05-26T02:30:35Z"
+  },
+  {
+   "block": 25183713,
+   "sdai": 1.17608987407931,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2329893303845774,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1779849263,
+   "utc": "2026-05-27T02:34:23Z"
+  },
+  {
+   "block": 25190913,
+   "sdai": 1.1761300800632895,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2331131704669978,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1779936047,
+   "utc": "2026-05-28T02:40:47Z"
+  },
+  {
+   "block": 25198113,
+   "sdai": 1.176170220704868,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.233237566841162,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1780022687,
+   "utc": "2026-05-29T02:44:47Z"
+  },
+  {
+   "block": 25205313,
+   "sdai": 1.1762104071958668,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.233362848737525,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1780109423,
+   "utc": "2026-05-30T02:50:23Z"
+  },
+  {
+   "block": 25212513,
+   "sdai": 1.1762506562212536,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2334884583406922,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1780196291,
+   "utc": "2026-05-31T02:58:11Z"
+  },
+  {
+   "block": 25219713,
+   "sdai": 1.1762908621414443,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2336141200161475,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1780283063,
+   "utc": "2026-06-01T03:04:23Z"
+  },
+  {
+   "block": 25226913,
+   "sdai": 1.1763310249519245,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.233740072685607,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1780369739,
+   "utc": "2026-06-02T03:08:59Z"
+  },
+  {
+   "block": 25234113,
+   "sdai": 1.176371250301305,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2338665395078636,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1780456547,
+   "utc": "2026-06-03T03:15:47Z"
+  },
+  {
+   "block": 25241313,
+   "sdai": 1.1764114770262155,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2339941887334067,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1780543355,
+   "utc": "2026-06-04T03:22:35Z"
+  },
+  {
+   "block": 25248513,
+   "sdai": 1.1764517718595582,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2341259418349095,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1780630307,
+   "utc": "2026-06-05T03:31:47Z"
+  },
+  {
+   "block": 25255713,
+   "sdai": 1.1764920458280457,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2342745285586452,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1780717211,
+   "utc": "2026-06-06T03:40:11Z"
+  },
+  {
+   "block": 25262913,
+   "sdai": 1.1765322099462103,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.234422292289375,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1780803875,
+   "utc": "2026-06-07T03:44:35Z"
+  },
+  {
+   "block": 25270113,
+   "sdai": 1.1765724143670244,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2345708830232887,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1780890623,
+   "utc": "2026-06-08T03:50:23Z"
+  },
+  {
+   "block": 25277313,
+   "sdai": 1.1766125979143758,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2347202169719393,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1780977323,
+   "utc": "2026-06-09T03:55:23Z"
+  },
+  {
+   "block": 25284513,
+   "sdai": 1.1766527661480535,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.234870440764702,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1781063987,
+   "utc": "2026-06-10T03:59:47Z"
+  },
+  {
+   "block": 25291713,
+   "sdai": 1.1766929802507218,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2350217301712059,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1781150747,
+   "utc": "2026-06-11T04:05:47Z"
+  },
+  {
+   "block": 25298913,
+   "sdai": 1.1767331846029718,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2351682516746272,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1781237483,
+   "utc": "2026-06-12T04:11:23Z"
+  },
+  {
+   "block": 25306113,
+   "sdai": 1.1767734181418523,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2352873166864007,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1781324279,
+   "utc": "2026-06-13T04:17:59Z"
+  },
+  {
+   "block": 25313313,
+   "sdai": 1.1768136141168795,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2354063162073075,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1781410991,
+   "utc": "2026-06-14T04:23:11Z"
+  },
+  {
+   "block": 25320513,
+   "sdai": 1.1768538281538277,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2355257149291778,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1781497739,
+   "utc": "2026-06-15T04:28:59Z"
+  },
+  {
+   "block": 25327713,
+   "sdai": 1.1768939934965115,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2356456101014668,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1781584379,
+   "utc": "2026-06-16T04:32:59Z"
+  },
+  {
+   "block": 25334913,
+   "sdai": 1.1769341323932574,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.235765866822336,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1781670959,
+   "utc": "2026-06-17T04:35:59Z"
+  },
+  {
+   "block": 25342113,
+   "sdai": 1.1769742726589723,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2358866265714452,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1781757539,
+   "utc": "2026-06-18T04:38:59Z"
+  },
+  {
+   "block": 25349313,
+   "sdai": 1.177014508877133,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2360077347646476,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1781844323,
+   "utc": "2026-06-19T04:45:23Z"
+  },
+  {
+   "block": 25356513,
+   "sdai": 1.1770546797037575,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2361258693091683,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1781930963,
+   "utc": "2026-06-20T04:49:23Z"
+  },
+  {
+   "block": 25363713,
+   "sdai": 1.1770948908501684,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2362430889072973,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1782017687,
+   "utc": "2026-06-21T04:54:47Z"
+  },
+  {
+   "block": 25370913,
+   "sdai": 1.1771351534490075,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2363616078264679,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1782104519,
+   "utc": "2026-06-22T05:01:59Z"
+  },
+  {
+   "block": 25378113,
+   "sdai": 1.1771753339576532,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.236480295223234,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1782191171,
+   "utc": "2026-06-23T05:06:11Z"
+  },
+  {
+   "block": 25385313,
+   "sdai": 1.1772155993080538,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.236598901796025,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1782278003,
+   "utc": "2026-06-24T05:13:23Z"
+  },
+  {
+   "block": 25392513,
+   "sdai": 1.17725588273035,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2367167204602416,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1782364871,
+   "utc": "2026-06-25T05:21:11Z"
+  },
+  {
+   "block": 25399713,
+   "sdai": 1.177296145270863,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.236835800970351,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1782451691,
+   "utc": "2026-06-26T05:28:11Z"
+  },
+  {
+   "block": 25406913,
+   "sdai": 1.1773363702315975,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2369613062337101,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1782538427,
+   "utc": "2026-06-27T05:33:47Z"
+  },
+  {
+   "block": 25414113,
+   "sdai": 1.1773765798703788,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2370877958957185,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1782625127,
+   "utc": "2026-06-28T05:38:47Z"
+  },
+  {
+   "block": 25421313,
+   "sdai": 1.1774168131449745,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2372149026836365,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1782711875,
+   "utc": "2026-06-29T05:44:35Z"
+  },
+  {
+   "block": 25428513,
+   "sdai": 1.1774570477944208,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.237342470595339,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1782798623,
+   "utc": "2026-06-30T05:50:23Z"
+  },
+  {
+   "block": 25435713,
+   "sdai": 1.1774972838187638,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.237470417040052,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1782885371,
+   "utc": "2026-07-01T05:56:11Z"
+  },
+  {
+   "block": 25442913,
+   "sdai": 1.17753754904907,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.237598129874921,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1782972179,
+   "utc": "2026-07-02T06:02:59Z"
+  },
+  {
+   "block": 25450113,
+   "sdai": 1.1775778657538192,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2377261133641195,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1783059095,
+   "utc": "2026-07-03T06:11:35Z"
+  },
+  {
+   "block": 25457313,
+   "sdai": 1.1776180892069956,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2378531037211815,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1783145807,
+   "utc": "2026-07-04T06:16:47Z"
+  },
+  {
+   "block": 25464513,
+   "sdai": 1.1776583975357404,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2379806420821595,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1783232699,
+   "utc": "2026-07-05T06:24:59Z"
+  },
+  {
+   "block": 25471713,
+   "sdai": 1.1776986515745311,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2381084463424754,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1783319471,
+   "utc": "2026-07-06T06:31:11Z"
+  },
+  {
+   "block": 25478913,
+   "sdai": 1.1777388680191732,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2382370536739231,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1783406159,
+   "utc": "2026-07-07T06:35:59Z"
+  },
+  {
+   "block": 25486113,
+   "sdai": 1.1777790524330665,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.238366268377889,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1783492775,
+   "utc": "2026-07-08T06:39:35Z"
+  },
+  {
+   "block": 25493313,
+   "sdai": 1.1778192827583347,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2384964524252093,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1783579487,
+   "utc": "2026-07-09T06:44:47Z"
+  },
+  {
+   "block": 25500513,
+   "sdai": 1.177859558999589,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.238629253879291,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1783666295,
+   "utc": "2026-07-10T06:51:35Z"
+  },
+  {
+   "block": 25507713,
+   "sdai": 1.1778997419635389,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2387608927458897,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1783752899,
+   "utc": "2026-07-11T06:54:59Z"
+  },
+  {
+   "block": 25514913,
+   "sdai": 1.1779400153880382,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2388928145064797,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1783839695,
+   "utc": "2026-07-12T07:01:35Z"
+  },
+  {
+   "block": 25522113,
+   "sdai": 1.1779802567797413,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.239024946992564,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1783926419,
+   "utc": "2026-07-13T07:06:59Z"
+  },
+  {
+   "block": 25529313,
+   "sdai": 1.1780205273886257,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2391567657802571,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1784013203,
+   "utc": "2026-07-14T07:13:23Z"
+  },
+  {
+   "block": 25536513,
+   "sdai": 1.1780607882368526,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.239289077154831,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1784099963,
+   "utc": "2026-07-15T07:19:23Z"
+  },
+  {
+   "block": 25543713,
+   "sdai": 1.1781010170478574,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2394203875100365,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1784186651,
+   "utc": "2026-07-16T07:24:11Z"
+  },
+  {
+   "block": 25550913,
+   "sdai": 1.1781412360944943,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.239551254466826,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1784273315,
+   "utc": "2026-07-17T07:28:35Z"
+  },
+  {
+   "block": 25558113,
+   "sdai": 1.178181445375669,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2396837877514015,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1784359955,
+   "utc": "2026-07-18T07:32:35Z"
+  },
+  {
+   "block": 25565313,
+   "sdai": 1.1782217228624166,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2398169190283062,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1784446739,
+   "utc": "2026-07-19T07:38:59Z"
+  },
+  {
+   "block": 25572513,
+   "sdai": 1.1782619794475833,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2399504952249567,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1784533475,
+   "utc": "2026-07-20T07:44:35Z"
+  },
+  {
+   "block": 25579713,
+   "sdai": 1.1783022541176622,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2400832505029944,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1784620247,
+   "utc": "2026-07-21T07:50:47Z"
+  },
+  {
+   "block": 25586913,
+   "sdai": 1.1783424800343065,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2402152873375407,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1784706911,
+   "utc": "2026-07-22T07:55:11Z"
+  },
+  {
+   "block": 25594113,
+   "sdai": 1.1783828075878033,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2403472758743417,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1784793791,
+   "utc": "2026-07-23T08:03:11Z"
+  },
+  {
+   "block": 25601313,
+   "sdai": 1.1784231253806892,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2404838047794322,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1784880647,
+   "utc": "2026-07-24T08:10:47Z"
+  },
+  {
+   "block": 25608513,
+   "sdai": 1.1784633108591027,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2406215161138716,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1784967215,
+   "utc": "2026-07-25T08:13:35Z"
+  },
+  {
+   "block": 25615713,
+   "sdai": 1.1785035032786535,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2407592705337602,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1785053795,
+   "utc": "2026-07-26T08:16:35Z"
+  },
+  {
+   "block": 25622913,
+   "sdai": 1.1785437360657185,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2408975024247824,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1785140459,
+   "utc": "2026-07-27T08:20:59Z"
+  },
+  {
+   "block": 25630113,
+   "sdai": 1.1785840092243383,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2410357281910547,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1785227207,
+   "utc": "2026-07-28T08:26:47Z"
+  },
+  {
+   "block": 25637313,
+   "sdai": 1.1786242781878302,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.241173497520321,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1785313943,
+   "utc": "2026-07-29T08:32:23Z"
+  },
+  {
+   "block": 25644513,
+   "sdai": 1.1786644872403604,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2413106543983015,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1785400547,
+   "utc": "2026-07-30T08:35:47Z"
+  },
+  {
+   "block": 25651713,
+   "sdai": 1.1787047812404492,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2414459993719777,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1785487331,
+   "utc": "2026-07-31T08:42:11Z"
+  },
+  {
+   "block": 25658913,
+   "sdai": 1.1787450041831835,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2415786525556736,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1785573959,
+   "utc": "2026-08-01T08:45:59Z"
+  },
+  {
+   "block": 25666113,
+   "sdai": 1.178785234070615,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.241709283686131,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1785660599,
+   "utc": "2026-08-02T08:49:59Z"
+  },
+  {
+   "block": 25673313,
+   "sdai": 1.1788255489154496,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2418406091647838,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1785747419,
+   "utc": "2026-08-03T08:56:59Z"
+  },
+  {
+   "block": 25680513,
+   "sdai": 1.178865770406862,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2419722375177584,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1785834035,
+   "utc": "2026-08-04T09:00:35Z"
+  },
+  {
+   "block": 25687713,
+   "sdai": 1.17890601556132,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2421043432660472,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1785920699,
+   "utc": "2026-08-05T09:04:59Z"
+  },
+  {
+   "block": 25694913,
+   "sdai": 1.1789462565168396,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2422361431795064,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1786007351,
+   "utc": "2026-08-06T09:09:11Z"
+  },
+  {
+   "block": 25702113,
+   "sdai": 1.1789864654076327,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2423680744309795,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1786093931,
+   "utc": "2026-08-07T09:12:11Z"
+  },
+  {
+   "block": 25709313,
+   "sdai": 1.179026854013569,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2425029702344235,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1786180895,
+   "utc": "2026-08-08T09:21:35Z"
+  },
+  {
+   "block": 25716513,
+   "sdai": 1.1790670990938068,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2426380168792615,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1786267547,
+   "utc": "2026-08-09T09:25:47Z"
+  },
+  {
+   "block": 25723713,
+   "sdai": 1.1791073845631468,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2427741705315936,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1786354283,
+   "utc": "2026-08-10T09:31:23Z"
+  },
+  {
+   "block": 25730913,
+   "sdai": 1.17914771599945,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2429131580969408,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1786441115,
+   "utc": "2026-08-11T09:38:35Z"
+  },
+  {
+   "block": 25738113,
+   "sdai": 1.179188087833333,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2430535687705977,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1786528031,
+   "utc": "2026-08-12T09:47:11Z"
+  },
+  {
+   "block": 25745313,
+   "sdai": 1.179228327268758,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2431976084599738,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1786614659,
+   "utc": "2026-08-13T09:50:59Z"
+  },
+  {
+   "block": 25752513,
+   "sdai": 1.179268590374887,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2433420897344776,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1786701335,
+   "utc": "2026-08-14T09:55:35Z"
+  },
+  {
+   "block": 25759713,
+   "sdai": 1.1793088660048974,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2434854612796415,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1786788035,
+   "utc": "2026-08-15T10:00:35Z"
+  },
+  {
+   "block": 25766913,
+   "sdai": 1.17934917088428,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2436307009079688,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1786874795,
+   "utc": "2026-08-16T10:06:35Z"
+  },
+  {
+   "block": 25774113,
+   "sdai": 1.1793894046667,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2437774360307325,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1786961399,
+   "utc": "2026-08-17T10:09:59Z"
+  },
+  {
+   "block": 25781313,
+   "sdai": 1.179429684422888,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.243925995566995,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1787048099,
+   "utc": "2026-08-18T10:14:59Z"
+  },
+  {
+   "block": 25788513,
+   "sdai": 1.179469948828738,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2440753049512914,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1787134763,
+   "utc": "2026-08-19T10:19:23Z"
+  },
+  {
+   "block": 25795713,
+   "sdai": 1.1795102313357553,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2442264177538531,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1787221463,
+   "utc": "2026-08-20T10:24:23Z"
+  },
+  {
+   "block": 25802913,
+   "sdai": 1.1795505040671055,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2443742628942616,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1787308139,
+   "utc": "2026-08-21T10:28:59Z"
+  },
+  {
+   "block": 25810113,
+   "sdai": 1.1795907725976023,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2445118936337172,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1787394803,
+   "utc": "2026-08-22T10:33:23Z"
+  },
+  {
+   "block": 25817313,
+   "sdai": 1.1796310815355209,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.24464801111402,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1787481551,
+   "utc": "2026-08-23T10:39:11Z"
+  },
+  {
+   "block": 25824513,
+   "sdai": 1.179671347240552,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2447843033018033,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1787568203,
+   "utc": "2026-08-24T10:43:23Z"
+  },
+  {
+   "block": 25831713,
+   "sdai": 1.1797116254729798,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2449224339698572,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1787654879,
+   "utc": "2026-08-25T10:47:59Z"
+  },
+  {
+   "block": 25838913,
+   "sdai": 1.1797519273873365,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2450629148981405,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1787741603,
+   "utc": "2026-08-26T10:53:23Z"
+  },
+  {
+   "block": 25846113,
+   "sdai": 1.1797922306785076,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2452040859552396,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1787828327,
+   "utc": "2026-08-27T10:58:47Z"
+  },
+  {
+   "block": 25853313,
+   "sdai": 1.1798324907301234,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.245353183519099,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1787914955,
+   "utc": "2026-08-28T11:02:35Z"
+  },
+  {
+   "block": 25860513,
+   "sdai": 1.179872813505269,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2455156230199065,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1788001715,
+   "utc": "2026-08-29T11:08:35Z"
+  },
+  {
+   "block": 25867713,
+   "sdai": 1.1799131041939144,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2456768449919482,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1788088403,
+   "utc": "2026-08-30T11:13:23Z"
+  },
+  {
+   "block": 25874913,
+   "sdai": 1.1799534018360436,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2458377347432306,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1788175103,
+   "utc": "2026-08-31T11:18:23Z"
+  },
+  {
+   "block": 25882113,
+   "sdai": 1.1799937343213451,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2459984682459622,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1788261875,
+   "utc": "2026-09-01T11:24:35Z"
+  },
+  {
+   "block": 25889313,
+   "sdai": 1.1800340291392346,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2461571219706526,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1788348563,
+   "utc": "2026-09-02T11:29:23Z"
+  },
+  {
+   "block": 25896513,
+   "sdai": 1.1800743364895154,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2463155338151826,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1788435275,
+   "utc": "2026-09-03T11:34:35Z"
+  },
+  {
+   "block": 25903713,
+   "sdai": 1.1801146452166065,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2464703272223947,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1788521987,
+   "utc": "2026-09-04T11:39:47Z"
+  },
+  {
+   "block": 25910913,
+   "sdai": 1.1801549608991304,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2466202982369454,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1788608711,
+   "utc": "2026-09-05T11:45:11Z"
+  },
+  {
+   "block": 25918113,
+   "sdai": 1.180195261222639,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2467720364912542,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1788695399,
+   "utc": "2026-09-06T11:49:59Z"
+  },
+  {
+   "block": 25925313,
+   "sdai": 1.1802355796592086,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2469247383976254,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1788782123,
+   "utc": "2026-09-07T11:55:23Z"
+  },
+  {
+   "block": 25932513,
+   "sdai": 1.1802759217897492,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2470795105739376,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1788868895,
+   "utc": "2026-09-08T12:01:35Z"
+  },
+  {
+   "block": 25939713,
+   "sdai": 1.1803162652992412,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2472366711967748,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1788955667,
+   "utc": "2026-09-09T12:07:47Z"
+  },
+  {
+   "block": 25946913,
+   "sdai": 1.180356587869614,
+   "sdai_endpoint": "https://eth.drpc.org",
+   "susde": 1.2473959187331596,
+   "susde_endpoint": "https://eth.drpc.org",
+   "ts": 1789042391,
+   "utc": "2026-09-10T12:13:11Z"
+  }
+ ]
+}

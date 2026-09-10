@@ -239,6 +239,35 @@ Deposit-topic logs per chain, bytecode-filters to CoreVault forks, and scores ea
 and a reward token with real sellable liquidity (a $25k-depth gate, so dust tokens like STACY are flagged as forks but not
 suitable).
 
+## HIP-3, second window: the roll behind the oil funding, and the sUSDe bid priced from history (2026-09-10)
+
+[The perps note](research/2026-09-10/perps_2/insights.md) re-checks the 09-08 oil finding three ways. Against
+public quotes aligned by their own delay (`scripts/perp_refs.py`), XYZ's oracles are within a basis point on FX and
+spot metals; the energy markets differ from the front contract by 1.4% to 2% because the oracle is a
+**constant-maturity blend**: all three energy oracles sit 0.6 of the way from the front month to the second and all
+three books at 0.45, so the premium is the lead times the calendar spread and reverses sign on gas, whose curve is
+in contango. The funding history (`scripts/perp_history.py`, 316 markets since 1 July) shows the oracle stepping a
+tenth of the spread at 22:00 UTC each trading day and the premium narrowing with it while the mark stands still.
+Out of sample, the three 09-08 `funding_carry` hits held 47 hours made +145bp, +109bp and +125bp on the oracle-hedged
+proxy net of the quoted round trip. And the history says the regime is eleven days old: the Brent premium averaged
+-0.05% over the summer with 308 sign flips, and the current 61-hour run is three times longer than anything before it.
+
+```sh
+uv run python scripts/perp_history.py collect --out research/2026-09-10/perps_history --since 2026-07-01
+uv run python scripts/perp_history.py analyze --out research/2026-09-10/perps_history --window research/2026-09-08/perps_1h
+uv run python scripts/perp_refs.py snap    --out research/2026-09-10/perps_2 --minutes 16 --every 60   # beside the tape
+uv run python scripts/perp_refs.py compare --out research/2026-09-10/perps_2
+uv run python scripts/perp_refs.py curve   --out research/2026-09-10/perps_2
+uv run python scripts/findings.py ingest   --out research/2026-09-10/perps_2 --chain hyperliquid
+```
+
+[The sUSDe discount history](research/2026-09-10/susde_history/findings.md) (`scripts/dislocation_history.py`)
+prices the cooldown-redemption bid as an option instead of re-measuring it on windows: 45,089 swaps in three pools
+over 181 days against the NAV Ethena paid at each block. The discount is frequent and shallow (median 2.8bp, 99th
+percentile 17bp), a $600k bid would have earned about $41,500 a year net of USDe's basis, and the on-chain USDe
+exit, not frequency or depth, is what binds ($635k a year without the cap). The book's old kill criterion never
+came close to firing and is replaced.
+
 ## Perpetual futures, and the HIP-3 builder-deployed surface (2026-09-08)
 
 [An hour of perpetual futures: 515 markets, eleven venues inside one venue, and an oracle that is wrong about

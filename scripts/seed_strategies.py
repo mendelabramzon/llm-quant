@@ -217,6 +217,65 @@ SEED = [
               'note': '$7.42 per run against a gas cost that is a rounding error, but a flat reward that does not '
                       'scale with the flash size'}],
  },
+ {
+  'id': 'hip3-oil-funding-carry',
+  'name': 'Collect XYZ oil funding: long xyz:BRENTOIL and xyz:CL against a listed-futures hedge',
+  'kind': 'carry',
+  'status': 'proposed',
+  'thesis': 'On XYZ’s Brent and WTI perps the book has sat below the deployer’s oracle for days on end, and the '
+            'HIP-3 funding formula (half of premium/8 per hour) pays longs 250–400% a year to hold that gap. The paid '
+            'side is the side the outside world is on. The edge is the funding; the oil delta is hedged in the listed '
+            'futures whose front/second-month blend the oracle tracks.',
+  'mechanism': 'The premium is one-sided and persistent rather than a spike: the funding history since July (perp_history.py) '
+               'shows how long each run held and what the paid side collected net of the premium moving against it. '
+               'The oracle sits between the front and second ICE/NYMEX contracts with a weight that matches a linear '
+               'roll through the month (perp_refs.py curve), so it is replicable with two futures re-weighted daily; '
+               'the book prices a few days further along that roll than the oracle does, and shorts pay 1% a day for it.',
+  'legs': ['buy xyz:BRENTOIL (or xyz:CL) at the ask',
+           'sell the ICE Brent (NYMEX WTI) front/second-month blend the oracle tracks, re-weighted daily',
+           'collect hourly funding', 'unwind both legs'],
+  'capacity_usd': 1700000,
+  'capital_days': 1.0,
+  'evidence': {'findings': ['befe13dad866', '5b057417be32', '1aae57d55c15', '02777f14c97c'], 'verify': [],
+               'notes': 'research/2026-09-08/perps_1h/insights.md; research/2026-09-10/perps_2/insights.md; '
+                        'research/2026-09-10/perps_history/history.md (out-of-sample table)'},
+  'risks': ['basis: the book can sit further below the oracle — the premium went −0.35% → −0.76% in three days, a '
+            '40bp mark-to-market loss against an oracle hedge, about one day of funding',
+            'the oracle is the deployer’s and unpublished: a methodology change, an outage or a slashing event re-marks the position',
+            'the hedge is off-venue: two margin accounts, a futures roll, and a blend that has to be re-weighted',
+            'funding decays the moment a second hedged arbitrageur arrives; the rate is the price of segmentation, not of risk',
+            'capacity is the ask side of one book at 25bp, not the OI cap headroom'],
+  'kill_criteria': ['funding APR on the paid side below 50% for 24 consecutive hours',
+                    'premium beyond −1.5%: the basis loss exceeds two weeks of funding',
+                    'oracle more than 2% from the futures blend it has tracked',
+                    'ask-side depth at 25bp below $250k'],
+  'recheck_hours': 24,
+  'quotes': [],
+ },
+ {
+  'id': 'hip3-cross-builder-funding',
+  'name': 'Same underlying on two builder books: collect the funding difference delta-neutral',
+  'kind': 'carry',
+  'status': 'proposed',
+  'thesis': 'HIP-3 lists the same company on several builder DEXes with independent oracles and independent funding. '
+            'Long the book that pays longs and short the book that pays shorts: the underlying cancels on the same '
+            'margin engine and the funding difference is the carry.',
+  'mechanism': 'UNITREE: Paragon pays longs 339% while XYZ charges shorts 32%, 307 points net with the marks 21bp apart. '
+               'NBIS: EntropyIO pays shorts 80% against XYZ’s 5%. The small books are the constraint: Paragon’s UNITREE '
+               'traded $6k in the hour and was not deep enough to be priced.',
+  'legs': ['buy the book that pays longs', 'sell the book that pays shorts', 'hold; rebalance when the marks diverge'],
+  'capacity_usd': 25000,
+  'capital_days': 1.0,
+  'evidence': {'findings': ['5c1fb4c6475b', '96ad2ebea2f6', '0a75024ba0f4', '4f84152c2186'], 'verify': [],
+               'notes': 'detectors/cross_dex_basis in scripts/perp_scan.py; research/2026-09-10/perps_2/insights.md'},
+  'risks': ['two deployer oracles can diverge: the pair is delta-neutral in the underlying, not in the oracles',
+            'the small book has no depth, so the round trip on that leg is unknown until it is priced',
+            'funding on a small book is set by a handful of positions and flips'],
+  'kill_criteria': ['funding difference below 30 points', 'mark spread beyond 100bp',
+                    'the smaller book under $10k of depth at 25bp'],
+  'recheck_hours': 24,
+  'quotes': [],
+ },
 ]
 
 

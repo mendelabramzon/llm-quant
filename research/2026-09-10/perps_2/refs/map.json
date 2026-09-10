@@ -1,0 +1,968 @@
+{
+  "io:ANTH": {
+    "currency": null,
+    "description": null,
+    "ticker": null,
+    "type": null,
+    "update_mode": null
+  },
+  "io:GPRO": {
+    "currency": null,
+    "description": null,
+    "ticker": null,
+    "type": null,
+    "update_mode": null
+  },
+  "io:NBIS": {
+    "currency": "USD",
+    "description": "Nebius Group N.V. Class A",
+    "ticker": "NASDAQ:NBIS",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "io:OAI": {
+    "currency": null,
+    "description": null,
+    "ticker": null,
+    "type": null,
+    "update_mode": null
+  },
+  "io:SNDK": {
+    "currency": "USD",
+    "description": "Sandisk Corporation",
+    "ticker": "NASDAQ:SNDK",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "mkts:SMALL2000": {
+    "currency": "USD",
+    "description": "iShares Russell 2000 ETF",
+    "ticker": "AMEX:IWM",
+    "type": "fund",
+    "update_mode": "delayed_streaming_900"
+  },
+  "mkts:US500": {
+    "currency": "USD",
+    "description": "State Street SPDR S&P 500 ETF",
+    "ticker": "AMEX:SPY",
+    "type": "fund",
+    "update_mode": "delayed_streaming_900"
+  },
+  "mkts:USBOND": {
+    "currency": "USD",
+    "description": "iShares 20+ Year Treasury Bond ETF",
+    "ticker": "NASDAQ:TLT",
+    "type": "fund",
+    "update_mode": "delayed_streaming_900"
+  },
+  "mkts:USTECH": {
+    "currency": "USD",
+    "description": "Invesco QQQ Trust Series I",
+    "ticker": "NASDAQ:QQQ",
+    "type": "fund",
+    "update_mode": "delayed_streaming_900"
+  },
+  "para:10Y": {
+    "currency": null,
+    "description": "United States 10 Year Government Bonds Yield",
+    "ticker": "TVC:US10Y",
+    "type": "bond",
+    "update_mode": "streaming"
+  },
+  "para:AAOI": {
+    "currency": "USD",
+    "description": "Applied Optoelectronics, Inc.",
+    "ticker": "NASDAQ:AAOI",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "para:ANSEM": {
+    "currency": null,
+    "description": null,
+    "ticker": null,
+    "type": null,
+    "update_mode": null
+  },
+  "para:AVGO": {
+    "currency": "USD",
+    "description": "Broadcom Inc.",
+    "ticker": "NASDAQ:AVGO",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "para:BTCD": {
+    "currency": null,
+    "description": "Market Cap BTC Dominance, %",
+    "ticker": "CRYPTOCAP:BTC.D",
+    "type": "index",
+    "update_mode": "streaming"
+  },
+  "para:CIEN": {
+    "currency": "USD",
+    "description": "Ciena Corporation",
+    "ticker": "NYSE:CIEN",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "para:COHR": {
+    "currency": "USD",
+    "description": "Coherent Corp.",
+    "ticker": "NYSE:COHR",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "para:CRDO": {
+    "currency": "USD",
+    "description": "Credo Technology Group Holding Ltd.",
+    "ticker": "NASDAQ:CRDO",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "para:CRWD": {
+    "currency": "USD",
+    "description": "CrowdStrike Holdings, Inc. Class A",
+    "ticker": "NASDAQ:CRWD",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "para:GLW": {
+    "currency": "USD",
+    "description": "Corning Inc",
+    "ticker": "NYSE:GLW",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "para:IGV": {
+    "currency": null,
+    "description": null,
+    "ticker": null,
+    "type": null,
+    "update_mode": null
+  },
+  "para:IREN": {
+    "currency": "USD",
+    "description": "IREN Limited",
+    "ticker": "NASDAQ:IREN",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "para:LRCX": {
+    "currency": "USD",
+    "description": "Lam Research Corporation",
+    "ticker": "NASDAQ:LRCX",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "para:MELI": {
+    "currency": "USD",
+    "description": "MercadoLibre, Inc.",
+    "ticker": "NASDAQ:MELI",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "para:NET": {
+    "currency": "USD",
+    "description": "Cloudflare Inc Class A",
+    "ticker": "NYSE:NET",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "para:OTHERS": {
+    "currency": "USD",
+    "description": "Crypto Total Market Cap Excluding Top 10, $",
+    "ticker": "CRYPTOCAP:OTHERS",
+    "type": "index",
+    "update_mode": "streaming"
+  },
+  "para:RDDT": {
+    "currency": "USD",
+    "description": "Reddit, Inc. Class A",
+    "ticker": "NYSE:RDDT",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "para:SMCI": {
+    "currency": "USD",
+    "description": "Super Micro Computer, Inc.",
+    "ticker": "NASDAQ:SMCI",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "para:SOFI": {
+    "currency": "USD",
+    "description": "SoFi Technologies Inc",
+    "ticker": "NASDAQ:SOFI",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "para:STX": {
+    "currency": "USD",
+    "description": "Seagate Technology Holdings PLC",
+    "ticker": "NASDAQ:STX",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "para:TER": {
+    "currency": "USD",
+    "description": "Teradyne, Inc.",
+    "ticker": "NASDAQ:TER",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "para:TOTAL2": {
+    "currency": "USD",
+    "description": "Crypto Total Market Cap Excluding BTC, $",
+    "ticker": "CRYPTOCAP:TOTAL2",
+    "type": "index",
+    "update_mode": "streaming"
+  },
+  "para:TTWO": {
+    "currency": "USD",
+    "description": "Take-Two Interactive Software, Inc.",
+    "ticker": "NASDAQ:TTWO",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "para:UNITREE": {
+    "currency": null,
+    "description": null,
+    "ticker": null,
+    "type": null,
+    "update_mode": null
+  },
+  "para:VST": {
+    "currency": "USD",
+    "description": "Vistra Corp.",
+    "ticker": "NYSE:VST",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:AAOI": {
+    "currency": "USD",
+    "description": "Applied Optoelectronics, Inc.",
+    "ticker": "NASDAQ:AAOI",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:AAPL": {
+    "currency": "USD",
+    "description": "Apple Inc.",
+    "ticker": "NASDAQ:AAPL",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:AMAT": {
+    "currency": "USD",
+    "description": "Applied Materials, Inc.",
+    "ticker": "NASDAQ:AMAT",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:AMD": {
+    "currency": "USD",
+    "description": "Advanced Micro Devices, Inc.",
+    "ticker": "NASDAQ:AMD",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:AMZN": {
+    "currency": "USD",
+    "description": "Amazon.com, Inc.",
+    "ticker": "NASDAQ:AMZN",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:ARM": {
+    "currency": "USD",
+    "description": "ARM Holdings PLC Sponsored ADR",
+    "ticker": "NASDAQ:ARM",
+    "type": "dr",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:ASML": {
+    "currency": "USD",
+    "description": "ASML Holding NV Sponsored ADR",
+    "ticker": "NASDAQ:ASML",
+    "type": "dr",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:AVGO": {
+    "currency": "USD",
+    "description": "Broadcom Inc.",
+    "ticker": "NASDAQ:AVGO",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:BABA": {
+    "currency": "USD",
+    "description": "Alibaba Group Holding Limited Sponsored ADR",
+    "ticker": "NYSE:BABA",
+    "type": "dr",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:BB": {
+    "currency": "USD",
+    "description": "BlackBerry Limited",
+    "ticker": "NYSE:BB",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:BE": {
+    "currency": "USD",
+    "description": "Bloom Energy Corporation Class A",
+    "ticker": "NYSE:BE",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:BIRD": {
+    "currency": "USD",
+    "description": "Smartbird, Inc. Class A",
+    "ticker": "NASDAQ:BIRD",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:BMNR": {
+    "currency": "USD",
+    "description": "BitMine Immersion Technologies Inc",
+    "ticker": "NYSE:BMNR",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:BOT": {
+    "currency": "USD",
+    "description": "RoboStrategy, Inc.",
+    "ticker": "NASDAQ:BOT",
+    "type": "fund",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:BRENTOIL": {
+    "currency": "USD",
+    "description": "Brent Crude Futures",
+    "ticker": "ICEEUR:BRN1!",
+    "type": "futures",
+    "update_mode": "delayed_streaming_600"
+  },
+  "xyz:BX": {
+    "currency": "USD",
+    "description": "Blackstone Inc.",
+    "ticker": "NYSE:BX",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:CBRS": {
+    "currency": "USD",
+    "description": "Cerebras Systems, Inc. Class A",
+    "ticker": "NASDAQ:CBRS",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:CL": {
+    "currency": "USD",
+    "description": "Crude Oil Futures",
+    "ticker": "NYMEX:CL1!",
+    "type": "futures",
+    "update_mode": "delayed_streaming_600"
+  },
+  "xyz:COIN": {
+    "currency": "USD",
+    "description": "Coinbase Global, Inc. Class A",
+    "ticker": "NASDAQ:COIN",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:COPPER": {
+    "currency": "USD",
+    "description": "Copper Futures",
+    "ticker": "COMEX:HG1!",
+    "type": "futures",
+    "update_mode": "delayed_streaming_600"
+  },
+  "xyz:COST": {
+    "currency": "USD",
+    "description": "Costco Wholesale Corporation",
+    "ticker": "NASDAQ:COST",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:CRCL": {
+    "currency": "USD",
+    "description": "Circle Internet Group, Inc. Class A",
+    "ticker": "NYSE:CRCL",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:CRWD": {
+    "currency": "USD",
+    "description": "CrowdStrike Holdings, Inc. Class A",
+    "ticker": "NASDAQ:CRWD",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:CRWV": {
+    "currency": "USD",
+    "description": "CoreWeave, Inc. Class A",
+    "ticker": "NASDAQ:CRWV",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:CXMT": {
+    "currency": null,
+    "description": null,
+    "ticker": null,
+    "type": null,
+    "update_mode": null
+  },
+  "xyz:DELL": {
+    "currency": "USD",
+    "description": "Dell Technologies, Inc. Class C",
+    "ticker": "NYSE:DELL",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:DKNG": {
+    "currency": "USD",
+    "description": "DraftKings, Inc. Class A",
+    "ticker": "NASDAQ:DKNG",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:DRAM": {
+    "currency": null,
+    "description": null,
+    "ticker": null,
+    "type": null,
+    "update_mode": null
+  },
+  "xyz:EBAY": {
+    "currency": "USD",
+    "description": "eBay Inc.",
+    "ticker": "NASDAQ:EBAY",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:EUR": {
+    "currency": "USD",
+    "description": "EURO / U.S. DOLLAR",
+    "ticker": "FX_IDC:EURUSD",
+    "type": "forex",
+    "update_mode": "streaming"
+  },
+  "xyz:EWJ": {
+    "currency": "USD",
+    "description": "iShares MSCI Japan ETF",
+    "ticker": "AMEX:EWJ",
+    "type": "fund",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:EWT": {
+    "currency": "USD",
+    "description": "iShares MSCI Taiwan ETF",
+    "ticker": "AMEX:EWT",
+    "type": "fund",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:EWY": {
+    "currency": "USD",
+    "description": "iShares MSCI South Korea ETF",
+    "ticker": "AMEX:EWY",
+    "type": "fund",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:EWZ": {
+    "currency": "USD",
+    "description": "iShares MSCI Brazil ETF",
+    "ticker": "AMEX:EWZ",
+    "type": "fund",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:GBP": {
+    "currency": "USD",
+    "description": "BRITISH POUND / U.S. DOLLAR",
+    "ticker": "FX_IDC:GBPUSD",
+    "type": "forex",
+    "update_mode": "streaming"
+  },
+  "xyz:GEV": {
+    "currency": "USD",
+    "description": "GE Vernova Inc.",
+    "ticker": "NYSE:GEV",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:GIGADEV": {
+    "currency": null,
+    "description": null,
+    "ticker": null,
+    "type": null,
+    "update_mode": null
+  },
+  "xyz:GME": {
+    "currency": "USD",
+    "description": "GameStop Corp. Class A",
+    "ticker": "NYSE:GME",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:GOLD": {
+    "currency": "USD",
+    "description": "GOLD (US$/OZ)",
+    "ticker": "TVC:GOLD",
+    "type": "commodity",
+    "update_mode": "streaming"
+  },
+  "xyz:GOOGL": {
+    "currency": "USD",
+    "description": "Alphabet Inc. Class A",
+    "ticker": "NASDAQ:GOOGL",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:HIMS": {
+    "currency": "USD",
+    "description": "Hims & Hers Health, Inc. Class A",
+    "ticker": "NYSE:HIMS",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:HOOD": {
+    "currency": "USD",
+    "description": "Robinhood Markets, Inc. Class A",
+    "ticker": "NASDAQ:HOOD",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:HYUNDAI": {
+    "currency": "KRW",
+    "description": "Hyundai Motor Company",
+    "ticker": "KRX:005380",
+    "type": "stock",
+    "update_mode": "delayed_streaming_1200"
+  },
+  "xyz:IBM": {
+    "currency": "USD",
+    "description": "International Business Machines Corporation",
+    "ticker": "NYSE:IBM",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:INTC": {
+    "currency": "USD",
+    "description": "Intel Corporation",
+    "ticker": "NASDAQ:INTC",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:IREN": {
+    "currency": "USD",
+    "description": "IREN Limited",
+    "ticker": "NASDAQ:IREN",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:JP225": {
+    "currency": "JPY",
+    "description": "Japan 225 Index",
+    "ticker": "TVC:NI225",
+    "type": "index",
+    "update_mode": "streaming"
+  },
+  "xyz:JPY": {
+    "currency": "JPY",
+    "description": "U.S. DOLLAR / JAPANESE YEN",
+    "ticker": "FX_IDC:USDJPY",
+    "type": "forex",
+    "update_mode": "streaming"
+  },
+  "xyz:KIOXIA": {
+    "currency": "JPY",
+    "description": "Kioxia Holdings Corporation",
+    "ticker": "TSE:285A",
+    "type": "stock",
+    "update_mode": "delayed_streaming_1200"
+  },
+  "xyz:KORU": {
+    "currency": "USD",
+    "description": "Direxion Daily MSCI South Korea Bull 3X ETF",
+    "ticker": "AMEX:KORU",
+    "type": "fund",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:KR200": {
+    "currency": null,
+    "description": "KOSPI 200 Index",
+    "ticker": "KRX:KOSPI200",
+    "type": "index",
+    "update_mode": "streaming"
+  },
+  "xyz:LITE": {
+    "currency": "USD",
+    "description": "Lumentum Holdings, Inc.",
+    "ticker": "NASDAQ:LITE",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:LLY": {
+    "currency": "USD",
+    "description": "Eli Lilly and Company",
+    "ticker": "NYSE:LLY",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:LYTE": {
+    "currency": null,
+    "description": null,
+    "ticker": null,
+    "type": null,
+    "update_mode": null
+  },
+  "xyz:MAGS": {
+    "currency": null,
+    "description": null,
+    "ticker": null,
+    "type": null,
+    "update_mode": null
+  },
+  "xyz:META": {
+    "currency": "USD",
+    "description": "Meta Platforms Inc Class A",
+    "ticker": "NASDAQ:META",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:MINIMAX": {
+    "currency": null,
+    "description": null,
+    "ticker": null,
+    "type": null,
+    "update_mode": null
+  },
+  "xyz:MRNA": {
+    "currency": "USD",
+    "description": "Moderna, Inc.",
+    "ticker": "NASDAQ:MRNA",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:MRVL": {
+    "currency": "USD",
+    "description": "Marvell Technology, Inc.",
+    "ticker": "NASDAQ:MRVL",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:MSFT": {
+    "currency": "USD",
+    "description": "Microsoft Corporation",
+    "ticker": "NASDAQ:MSFT",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:MSTR": {
+    "currency": "USD",
+    "description": "Strategy Inc Class A",
+    "ticker": "NASDAQ:MSTR",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:MU": {
+    "currency": "USD",
+    "description": "Micron Technology, Inc.",
+    "ticker": "NASDAQ:MU",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:NATGAS": {
+    "currency": "USD",
+    "description": "Henry Hub Natural Gas Futures",
+    "ticker": "NYMEX:NG1!",
+    "type": "futures",
+    "update_mode": "delayed_streaming_600"
+  },
+  "xyz:NBIS": {
+    "currency": "USD",
+    "description": "Nebius Group N.V. Class A",
+    "ticker": "NASDAQ:NBIS",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:NCLD": {
+    "currency": "USD",
+    "description": "Roundhill Neocloud ETF",
+    "ticker": "NASDAQ:NCLD",
+    "type": "fund",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:NET": {
+    "currency": "USD",
+    "description": "Cloudflare Inc Class A",
+    "ticker": "NYSE:NET",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:NFLX": {
+    "currency": "USD",
+    "description": "Netflix, Inc.",
+    "ticker": "NASDAQ:NFLX",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:NOK": {
+    "currency": "USD",
+    "description": "Nokia Oyj Sponsored ADR",
+    "ticker": "NYSE:NOK",
+    "type": "dr",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:NOW": {
+    "currency": "USD",
+    "description": "ServiceNow, Inc.",
+    "ticker": "NYSE:NOW",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:NVDA": {
+    "currency": "USD",
+    "description": "NVIDIA Corporation",
+    "ticker": "NASDAQ:NVDA",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:ORCL": {
+    "currency": "USD",
+    "description": "Oracle Corporation",
+    "ticker": "NYSE:ORCL",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:PALLADIUM": {
+    "currency": "USD",
+    "description": "Palladium Futures",
+    "ticker": "NYMEX:PA1!",
+    "type": "futures",
+    "update_mode": "delayed_streaming_600"
+  },
+  "xyz:PLATINUM": {
+    "currency": "USD",
+    "description": "Platinum Futures",
+    "ticker": "NYMEX:PL1!",
+    "type": "futures",
+    "update_mode": "delayed_streaming_600"
+  },
+  "xyz:PLTR": {
+    "currency": "USD",
+    "description": "Palantir Technologies Inc. Class A",
+    "ticker": "NASDAQ:PLTR",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:PURRDAT": {
+    "currency": null,
+    "description": null,
+    "ticker": null,
+    "type": null,
+    "update_mode": null
+  },
+  "xyz:QCOM": {
+    "currency": "USD",
+    "description": "QUALCOMM Incorporated",
+    "ticker": "NASDAQ:QCOM",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:QNT": {
+    "currency": "USD",
+    "description": "Quantinuum Inc. Class A",
+    "ticker": "NASDAQ:QNT",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:RDDT": {
+    "currency": "USD",
+    "description": "Reddit, Inc. Class A",
+    "ticker": "NYSE:RDDT",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:RIVN": {
+    "currency": "USD",
+    "description": "Rivian Automotive, Inc. Class A",
+    "ticker": "NASDAQ:RIVN",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:RKLB": {
+    "currency": "USD",
+    "description": "Rocket Lab Corporation",
+    "ticker": "NASDAQ:RKLB",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:SHAZ": {
+    "currency": "USD",
+    "description": "SharonAI Holdings, Inc. Class A",
+    "ticker": "NASDAQ:SHAZ",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:SHEIN": {
+    "currency": null,
+    "description": null,
+    "ticker": null,
+    "type": null,
+    "update_mode": null
+  },
+  "xyz:SILVER": {
+    "currency": "USD",
+    "description": "SILVER (US$/OZ)",
+    "ticker": "TVC:SILVER",
+    "type": "commodity",
+    "update_mode": "streaming"
+  },
+  "xyz:SKHX": {
+    "currency": "KRW",
+    "description": "SK hynix Inc.",
+    "ticker": "KRX:000660",
+    "type": "stock",
+    "update_mode": "delayed_streaming_1200"
+  },
+  "xyz:SKHY": {
+    "currency": "USD",
+    "description": "SK hynix Inc. Sponsored ADR",
+    "ticker": "NASDAQ:SKHY",
+    "type": "dr",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:SMH": {
+    "currency": "USD",
+    "description": "VanEck Semiconductor ETF",
+    "ticker": "NASDAQ:SMH",
+    "type": "fund",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:SMSN": {
+    "currency": "KRW",
+    "description": "Samsung Electronics Co., Ltd.",
+    "ticker": "KRX:005930",
+    "type": "stock",
+    "update_mode": "delayed_streaming_1200"
+  },
+  "xyz:SNDK": {
+    "currency": "USD",
+    "description": "Sandisk Corporation",
+    "ticker": "NASDAQ:SNDK",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:SOFTBANK": {
+    "currency": "JPY",
+    "description": "SoftBank Group Corp.",
+    "ticker": "TSE:9984",
+    "type": "stock",
+    "update_mode": "delayed_streaming_1200"
+  },
+  "xyz:SOXL": {
+    "currency": "USD",
+    "description": "Direxion Daily Semiconductor Bull 3X ETF",
+    "ticker": "AMEX:SOXL",
+    "type": "fund",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:SP500": {
+    "currency": null,
+    "description": "S&P 500",
+    "ticker": "SP:SPX",
+    "type": "index",
+    "update_mode": "delayed_streaming_600"
+  },
+  "xyz:SPCX": {
+    "currency": "USD",
+    "description": "Space Exploration Technologies Corp",
+    "ticker": "NASDAQ:SPCX",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:STRC": {
+    "currency": "USD",
+    "description": "Strategy Inc 11.5% Perp Stretch PFD Registered Shs Series A",
+    "ticker": "NASDAQ:STRC",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:TSLA": {
+    "currency": "USD",
+    "description": "Tesla, Inc.",
+    "ticker": "NASDAQ:TSLA",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:TSM": {
+    "currency": "USD",
+    "description": "Taiwan Semiconductor Manufacturing Co., Ltd. Sponsored ADR",
+    "ticker": "NYSE:TSM",
+    "type": "dr",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:UNITREE": {
+    "currency": null,
+    "description": null,
+    "ticker": null,
+    "type": null,
+    "update_mode": null
+  },
+  "xyz:URNM": {
+    "currency": "USD",
+    "description": "Sprott Uranium Miners ETF",
+    "ticker": "AMEX:URNM",
+    "type": "fund",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:USAR": {
+    "currency": "USD",
+    "description": "USA Rare Earth, Inc. Class A",
+    "ticker": "NASDAQ:USAR",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:WDC": {
+    "currency": "USD",
+    "description": "Western Digital Corporation",
+    "ticker": "NASDAQ:WDC",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:XBI": {
+    "currency": "USD",
+    "description": "State Street SPDR S&P Biotech ETF",
+    "ticker": "AMEX:XBI",
+    "type": "fund",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:XLE": {
+    "currency": "USD",
+    "description": "State Street Energy Select Sector SPDR ETF",
+    "ticker": "AMEX:XLE",
+    "type": "fund",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:XYZ100": {
+    "currency": null,
+    "description": "NASDAQ 100 Index",
+    "ticker": "NASDAQ:NDX",
+    "type": "index",
+    "update_mode": "delayed_streaming_900"
+  },
+  "xyz:ZHIPU": {
+    "currency": null,
+    "description": null,
+    "ticker": null,
+    "type": null,
+    "update_mode": null
+  },
+  "xyz:ZM": {
+    "currency": "USD",
+    "description": "Zoom Communications, Inc. Class A",
+    "ticker": "NASDAQ:ZM",
+    "type": "stock",
+    "update_mode": "delayed_streaming_900"
+  }
+}

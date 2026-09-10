@@ -104,11 +104,14 @@ def ingest(out, chain='ethereum'):
     aj = out / 'analysis.json'
     A = json.loads(aj.read_text()) if aj.exists() else {}
     win = A.get('window', {})
+    # A block-chain window names its bounds first/last; the perp windows name them start/end. Either is a window.
+    first_utc = win.get('first_utc') or win.get('start_utc')
+    last_utc = win.get('last_utc') or win.get('end_utc')
     key = str(out)
     ran = [m['detector'] for m in det.get('detectors', []) if not m.get('error')]
 
     W = load_windows()
-    W[key] = {'chain': chain, 'first_utc': win.get('first_utc'), 'last_utc': win.get('last_utc'),
+    W[key] = {'chain': chain, 'first_utc': first_utc, 'last_utc': last_utc,
               'first_block': win.get('first_block'), 'last_block': win.get('last_block'),
               'hours': win.get('hours'), 'detectors_run': sorted(ran),
               'ingested_at': now().isoformat(),
@@ -121,7 +124,7 @@ def ingest(out, chain='ethereum'):
         ident = h.get('identity') or ('%s:%s' % (h['detector'], h.get('key')) if h.get('key') else h['detector'])
         i = fid(ident)
         seen_now.add(i)
-        obs = {'window': key, 'utc': win.get('last_utc'), 'first_block': win.get('first_block'),
+        obs = {'window': key, 'utc': last_utc, 'first_block': win.get('first_block'),
                'last_block': win.get('last_block'), 'severity': h.get('severity'), 'usd': h.get('usd'),
                'title': h.get('title'),
                'net_apr': (h.get('economics') or {}).get('net_apr'),

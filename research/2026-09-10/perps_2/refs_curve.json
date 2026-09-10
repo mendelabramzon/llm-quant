@@ -1,0 +1,132 @@
+{
+  "generated": "2026-09-10T13:06:01+00:00",
+  "rows": {
+    "xyz:BRENTOIL": {
+      "front_expiry": [
+        "ICEEUR:BRNX2026",
+        "2026-09-30",
+        "ICE Brent: last business day of the second month before delivery"
+      ],
+      "front_over_second_pct_median": 4.6668639428558585,
+      "implied_front_weight_mark_median": 0.4502846108792733,
+      "implied_front_weight_oracle_median": 0.6046297802356684,
+      "last": {
+        "contracts": {
+          "ICEEUR:BRNF2027": 96.43,
+          "ICEEUR:BRNX2026": 105.12,
+          "ICEEUR:BRNZ2026": 100.52
+        },
+        "front_over_second_pct": 4.576203740549145,
+        "funding_apr": -3.751869456,
+        "hl_utc": "2026-09-10T12:55:48+00:00",
+        "implied_front_weight_mark": 0.4304347826086957,
+        "implied_front_weight_oracle": 0.5913043478260857,
+        "mark": 102.5,
+        "mark_vs_front_bps": -249.23896499238984,
+        "oracle": 103.24,
+        "oracle_vs_front_bps": -178.84322678843324,
+        "oracle_vs_second_bps": 270.59291683247056,
+        "premium": -0.0072161953,
+        "tv_utc": "2026-09-10T13:05:47+00:00"
+      },
+      "mark_vs_front_bps_median": -244.91254030133635,
+      "n": 20,
+      "oracle_vs_front_bps_median": -176.66463686924038,
+      "oracle_vs_second_bps_median": 281.5079565742806
+    },
+    "xyz:CL": {
+      "front_expiry": [
+        "NYMEX:CLV2026",
+        "2026-09-22",
+        "NYMEX WTI: three business days before the 25th of the month before delivery"
+      ],
+      "front_over_second_pct_median": 3.899742251080185,
+      "implied_front_weight_mark_median": 0.4430266615282209,
+      "implied_front_weight_oracle_median": 0.6060181153706383,
+      "last": {
+        "contracts": {
+          "NYMEX:CLV2026": 100.24,
+          "NYMEX:CLX2026": 96.47,
+          "NYMEX:CLZ2026": 92.4
+        },
+        "front_over_second_pct": 3.907950658235726,
+        "funding_apr": -3.31174866,
+        "hl_utc": "2026-09-10T12:55:48+00:00",
+        "implied_front_weight_mark": 0.4042440318302394,
+        "implied_front_weight_oracle": 0.5766578249336893,
+        "mark": 97.994,
+        "mark_vs_front_bps": -224.06225059856345,
+        "oracle": 98.644,
+        "oracle_vs_front_bps": -159.21787709497147,
+        "oracle_vs_second_bps": 225.35503265263878,
+        "premium": -0.0065893516,
+        "tv_utc": "2026-09-10T13:05:47+00:00"
+      },
+      "mark_vs_front_bps_median": -208.44753478965418,
+      "n": 20,
+      "oracle_vs_front_bps_median": -147.40127084002907,
+      "oracle_vs_second_bps_median": 239.47244582415595
+    },
+    "xyz:GOLD": {
+      "front_expiry": null,
+      "front_over_second_pct_median": -0.9865280859794823,
+      "implied_front_weight_mark_median": 0.9251075263869188,
+      "implied_front_weight_oracle_median": 0.9886059569241521,
+      "last": {
+        "contracts": {
+          "COMEX:GC1!": 4382.9,
+          "TVC:GOLD": 4349.95
+        },
+        "front_over_second_pct": -0.7517853476008973,
+        "funding_apr": 0.23390689199999998,
+        "hl_utc": "2026-09-10T13:05:53+00:00",
+        "implied_front_weight_mark": 0.8497723823975768,
+        "implied_front_weight_oracle": 0.9256449165402175,
+        "mark": 4354.9,
+        "mark_vs_front_bps": 11.379441143000157,
+        "oracle": 4352.4,
+        "oracle_vs_front_bps": 5.632248646536553,
+        "oracle_vs_second_bps": -69.58862853361892,
+        "premium": 0.0004468799,
+        "tv_utc": "2026-09-10T13:05:47+00:00"
+      },
+      "mark_vs_front_bps_median": 9.227115117826923,
+      "n": 22,
+      "oracle_vs_front_bps_median": 1.5033042442058608,
+      "oracle_vs_second_bps_median": -99.8229758528052
+    },
+    "xyz:NATGAS": {
+      "front_expiry": [
+        "NYMEX:NGV2026",
+        "2026-09-28",
+        "NYMEX Henry Hub: three business days before the first day of the delivery month"
+      ],
+      "front_over_second_pct_median": -4.693388697456507,
+      "implied_front_weight_mark_median": 0.4594117647058836,
+      "implied_front_weight_oracle_median": 0.5949969148498551,
+      "last": {
+        "contracts": {
+          "NYMEX:NGV2026": 2.782,
+          "NYMEX:NGX2026": 2.924,
+          "NYMEX:NGZ2026": 3.399
+        },
+        "front_over_second_pct": -4.8563611491108,
+        "funding_apr": 3.467128284,
+        "hl_utc": "2026-09-10T12:55:48+00:00",
+        "implied_front_weight_mark": 0.4922535211267614,
+        "implied_front_weight_oracle": 0.6352112676056331,
+        "mark": 2.8541,
+        "mark_vs_front_bps": 259.1660675772811,
+        "oracle": 2.8338,
+        "oracle_vs_front_bps": 186.19698058950362,
+        "oracle_vs_second_bps": -308.48153214774186,
+        "premium": 0.0072217517,
+        "tv_utc": "2026-09-10T13:05:47+00:00"
+      },
+      "mark_vs_front_bps_median": 265.35100018423964,
+      "n": 20,
+      "oracle_vs_front_bps_median": 198.7064319080134,
+      "oracle_vs_second_bps_median": -282.2622484581999
+    }
+  }
+}

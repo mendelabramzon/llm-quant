@@ -511,7 +511,13 @@ def _carry_economics(r, size_usd, horizon_h):
         cap_head = max(r['oi_cap_usd'] - r['oi_usd'], 0.0)
     depth = b.get('ask_depth_25bp_usd') if fh < 0 else b.get('bid_depth_25bp_usd')
     capacity = min([x for x in (cap_head, depth) if x is not None], default=None)
+    net_apr = (collected * (HOURS_PER_YEAR / horizon_h)) if horizon_h else None
+    # The ledger and the strategy book read `net_apr` and `go` from every economics block, whatever produced it.
+    go = bool(be is not None and be < horizon_h and (capacity or 0) >= 1e5 and (unfilled or 0) < 0.5)
+    reason = ('pays its round trip inside the horizon at six figures of book' if go else
+              'break-even beyond the horizon, or under $100k of book, or half the order unfilled')
     return {
+        'net_apr': net_apr, 'go': go, 'reason': reason,
         'side_paid': 'long' if fh < 0 else 'short',
         'funding_apr': fh * HOURS_PER_YEAR,
         'round_trip_bps_at_size': cost, 'size_usd': size_usd,
@@ -744,8 +750,44 @@ def det_stale_oracle(A, args, tape):
     return hits
 
 
+def _pair_economics(rows, books, size_usd, horizon_h):
+    """Long the book that pays longs, short the one that pays shorts: the underlying cancels on one margin engine.
+
+    Gross carry is the funding difference. It is charged two round trips, one per book, where a book was collected;
+    capacity is the thinner side's depth at 25bp, because the pair is only delta-neutral at equal size. A pair with a
+    book this scan never priced is reported with `capacity_usd` None and cannot pass.
+    """
+    fr = sorted(((r['funding_apr'] or 0.0), r['coin']) for r in rows if r.get('funding_apr') is not None)
+    if len(fr) < 2:
+        return None
+    (lo_apr, lo_coin), (hi_apr, hi_coin) = fr[0], fr[-1]
+    # negative funding pays longs: go long the lowest-funding book, short the highest
+    gross = hi_apr - lo_apr
+    costs, depths, known = 0.0, [], 0
+    key = 'round_trip_bps_%dk' % int(size_usd / 1e3)
+    for coin, side in ((lo_coin, 'long'), (hi_coin, 'short')):
+        b = books.get(coin) or {}
+        if b.get(key) is not None:
+            known += 1
+            costs += b[key]
+            depths.append(b.get('ask_depth_25bp_usd') if side == 'long' else b.get('bid_depth_25bp_usd'))
+    cap = min([d for d in depths if d is not None], default=None) if known == 2 else None
+    per_hour = gross / HOURS_PER_YEAR
+    be = (costs / 1e4 / per_hour) if per_hour > 0 else None
+    net = gross - (costs / 1e4) * (HOURS_PER_YEAR / horizon_h) if horizon_h else None
+    go = bool(known == 2 and be is not None and be < horizon_h and (cap or 0) >= 1e5)
+    return {'long_book': lo_coin, 'short_book': hi_coin, 'gross_apr': gross, 'round_trips_bps': costs if known == 2 else None,
+            'books_priced': known, 'break_even_hours': be if known == 2 else None, 'net_apr': net if known == 2 else gross,
+            'net_apr_basis': ('net of both round trips over %dh' % horizon_h) if known == 2 else 'gross: a book was not priced',
+            'capacity_usd': cap, 'size_usd': size_usd, 'go': go,
+            'reason': ('both books priced, pays its round trips inside the horizon at six figures' if go else
+                       'a book was not priced, or break-even beyond the horizon, or under $100k of depth'),
+            'hedge': 'delta-neutral in the underlying by construction; not neutral to the two deployers\' oracles diverging'}
+
+
 def det_cross_dex_basis(A, args):
     hits = []
+    books = {r['coin']: r.get('book') for r in A['assets'] if r.get('book')}
     for c in A.get('cross_dex') or []:
         rows = [r for r in c['rows'] if (r.get('trades') or 0) >= args.min_trades]
         if len(rows) < 2:
@@ -754,7 +796,9 @@ def det_cross_dex_basis(A, args):
         spread = (max(fr) - min(fr)) if len(fr) >= 2 else 0
         if abs(c['mark_spread_bps'] or 0) < 3 and abs(spread) < args.min_apr:
             continue
+        ec = _pair_economics(rows, books, args.size_usd, args.horizon_h)
         hits.append({
+            'economics': ec, 'usd': (ec['net_apr'] * ec['capacity_usd'] * args.horizon_h / HOURS_PER_YEAR) if (ec and ec.get('capacity_usd')) else None,
             'detector': 'cross_dex_basis', 'key': c['symbol'],
             'severity': 'notable',
             'title': '%s trades on %d builder books at once: %.1fbp apart, with %.0f percentage points between their funding rates'
@@ -1085,6 +1129,10 @@ def cmd_render(args):
     (out / 'tables.md').write_text(tables)
     ins = out / 'insights.md'
     head = ins.read_text() if ins.exists() else '_(no insights.md written yet)_\n'
+    companions = [('refs.md', 'oracles against outside references'), ('refs_curve.json', 'where the oil oracles sit on the futures curve')]
+    links = ['[%s](%s): %s' % (f, f, what) for f, what in companions if (out / f).exists()]
+    if links:
+        tables = 'Companion tables: ' + '; '.join(links) + '.\n\n' + tables
     (out / 'report.md').write_text(head.rstrip() + '\n\n---\n\n' + tables)
     print(json.dumps({'tables.md': len(tables), 'report.md': str(out / 'report.md')}))
     return 0
