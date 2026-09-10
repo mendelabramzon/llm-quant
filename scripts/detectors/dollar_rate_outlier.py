@@ -233,8 +233,7 @@ def _head(ctx):
 
 
 def _gas(ctx):
-    from window_raw import median
-    return median([b['base_gwei'] for b in ctx.blocks]) or 1.0
+    return ctx.gas_quote()['gwei']
 
 
 def _m(v):

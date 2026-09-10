@@ -5,6 +5,45 @@ the LLM reads evidence, proposes mechanisms, and writes the infrastructure; dete
 reusable detectors and tests; the human steers. The metric we optimise is **time-to-verified-insight**: how fast a raw
 signal becomes a true, capacity-aware, reproducible claim and then a reusable detector — not classification coverage.
 
+## Session log — 2026-09-10 (Ethereum: $34.6m of turnover, $0.65 of WETH)
+
+[Ten-hour study](research/2026-09-10/live_10h/report.md), pinned to finalized blocks 25,939,239–25,942,222:
+2026-09-09 10:32–20:32 UTC, 861,766 transactions and 2,365,900 logs. ETH fell 1.04%; decoded DEX turnover was
+$489.89m; two covered lending liquidations repaid $120.87. The daytime window does not test the midnight routine.
+
+**The new detector found another example immediately.** Three flash-funded roundtrips in 7AΩ∞/WETH generated $14.8m
+of turnover in a pool with only 0.023 WETH. They returned nearly all borrowed capital after a token-side reserve
+reduction, leaving $0.29 of WETH before gas. `recycled_swap_volume` requires actual priced-token transfers to match
+the Swap events, then checks whether both token positions almost close in the same transaction. Its first sweep found
+another $19.8m roundtrip in BULL/WETH. Together: **7.07% of all priced DEX volume, 65.43% of v2-style volume, $0.65
+of WETH extracted before gas and $0.29 after execution gas**, before other internal payments. Both factory pairs,
+historical reserves and successful receipts were checked. The prior $44,391 fee estimate on the first pool was
+volume times an assumed tier, not realizable LP income; the report now flags such rows and leaves passive income
+unmeasured. Gross volume stays intact.
+
+**The fee-cost TODO is addressed for six economics detectors.** Every fourth block's receipts (746 blocks) show
+13.623 ETH of tips against 3.071 ETH burned, **4.44x**. Full-window execution burn, available directly from every
+header, is **12.357 ETH**. Effective-fee gas-weighted p75/p90 are 0.706/2.058 gwei; standard/competing scenarios now
+use these, with window checks and a base-plus-tip fallback. Direct bids and blob fees remain separate. Exactly-zero
+tips and <=0.01-gwei tips are distinct fields. Fullness was 50.50% of the maximum, near the fee mechanism's target;
+this alone is not evidence of underutilization.
+
+Landed: finalized collection with immutable resume bounds; explicit-block head reads and `enrich` at the saved block;
+concurrent small RPC batches; receipt completeness and gas reconciliation; exact full-window burn; stricter aggregate
+verification; corrected `getUserAccountData` LTV/available-borrow decoding with health identities; detector failures
+now fail the pipeline. All 16 detectors completed, 68 hits were ingested, and seven linked strategies were re-quoted.
+
+**What remains narrow.** Compound USDC's 4.524% endpoint rate is about a $615k position worth $2.8k/year above the
+3.60% Sky savings benchmark, holding conditions fixed. USDtb's excess is only ~$481/year. The single-chain USDT
+switch detector still quotes a destination optimum ($120.9m) larger than the source's balance-based liquidity
+($25.9m); the report constrains the interpretation. Two sampled Aave accounts carry $34.7m debt near HF 1.02, but
+collateral/debt composition is needed before translating that into a market-price shock.
+
+Next: source-liquidity constraints in single-chain rate switches; repeated pinned snapshots for Compound and other
+venues without rate logs; reserve/balance accounting for extreme roundtrips; composition of the low-HF positions.
+The `dollar_rate_outlier` detector currently traverses Aave/Spark lending rows only; Compound is repriced through
+`rate_dispersion` and the study's explicit benchmark calculation, not through that detector's absence signal.
+
 ## Session log — 2026-09-08 (perpetual futures: the first instruments that read a market, not a ledger)
 
 Everything before this read *settlement* — transfers, lending state, bridge legs. A perp DEX settles almost nothing on

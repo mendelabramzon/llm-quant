@@ -1,0 +1,80 @@
+{
+ "at": "2026-09-10T10:20:17.817811+00:00",
+ "raw_collection_complete": true,
+ "raw_quality_issues": {},
+ "canonical_header_rechecks": {
+  "mismatches": [],
+  "sampled": 7
+ },
+ "numeric_checks": 21,
+ "numeric_failures": 0,
+ "identity_groups": 8,
+ "identity_rows": 260,
+ "identity_failures": 0,
+ "detectors": 16,
+ "detector_hits": 68,
+ "detector_errors": 0,
+ "receipt_sample_blocks": 746,
+ "receipt_sample_complete": true,
+ "receipt_integrity": "transaction sets and gas totals match every sampled block",
+ "roundtrip_factory_receipts_reserve_deltas_match": true,
+ "unit_tests": {
+  "run": 117,
+  "passed": 115,
+  "skipped": 2,
+  "failures": 0,
+  "command": "uv run python -m unittest discover -s scripts -p 'test_*.py'"
+ },
+ "historical_source_mechanism_assertions": "not run; distinct from the current study checks",
+ "code_sha256": {
+  "scripts/live_collect.py": "edd0d02c3265aa44faeeeab6336a05aa3fdca59d5dd659d62687b687c33fa5f7",
+  "scripts/live_rpc.py": "b128c8881434ce462bb7075d9ddb92f094e0b0f58208ac8d9e4d420e22c38dd6",
+  "scripts/live_scan.py": "559b6ffa5831d5f1ddc6d70bf401e9b0a227d4ba67fb6bb596789ba873f91270",
+  "scripts/fee_census.py": "3507e211206f29d56ad9631ffe06ece5f7582345a7b5ca263293230126447670",
+  "scripts/verify.py": "e44bda51f2b95f9b26451cb091089e888113a901adace713fcd6586784de3d24",
+  "scripts/detectors/rate_dispersion.py": "1262dc2f56cff0d3e1b140a0f21fb9f9b99e76d794eeb61f41dff68d39f86124",
+  "scripts/detectors/gas_concentration.py": "50708fa473e2b499b30b9bdf588d1ae704e9c2cb49ffe974e39db815056bd014",
+  "scripts/detectors/dollar_rate_outlier.py": "7caf0fd4d284a5c8b20a949bb918b14949a37799a3abc0f4f7a6125a51f529e6",
+  "scripts/detectors/run.py": "d2125d66f606a42e362f3598447e9d2c18cebeb47eb10924ac3e321631116e64",
+  "scripts/detectors/honeypot_signature.py": "46b8dd482a14cf3b8f4c1d6907fee4b055accc111a0cad80ed1acc185e6df16e",
+  "scripts/detectors/jit_liquidity.py": "3ca81ffd812938d0f98ad239a51f026a70d7d86dedf5067f41c41d6c7218cec4",
+  "scripts/detectors/liquidity_blackout.py": "b01e91e2b4dbed8882e2345a630e625f939f50863862577a8d8d03be410430f9",
+  "scripts/detectors/nav_discount.py": "9bf8bd514818c533a4adb47bf2b6718f84ef89a7d5deeb125d123aacb70321c3",
+  "scripts/detectors/__init__.py": "efb25403d169f08cf4e871c3b37d336b86ba4bb09f13e4d92d70c604eaa44116",
+  "scripts/detectors/recycled_swap_volume.py": "c8502525effbe60acdfd7a6193bb6c53a9a726afa7dae2c0fe8e3688d8a52476",
+  "scripts/detectors/address_poisoning.py": "c1bdc0c25be063a6042a63910a2db69b0cd1184d2ec416e90f973754a6927e92",
+  "scripts/detectors/mass_distribution.py": "64582c096cb8254973e89fbf6fcbe9ee555b482d53b3c05cb48beffc1029c8a0",
+  "scripts/detectors/mislabelled_flow.py": "2f726dc567c657712cd39761f1a6f5efd4a5e119c95c64194523ce78f2412b96",
+  "scripts/detectors/solver_fingerprint.py": "f549ceff193233873de191e811d683dc9dca1959ec88699dfa9e308122b0f45c",
+  "scripts/detectors/delegated_dust.py": "263ee3a8d4de2d521342805f96a5f1efabdb342116fa40d93cf550291d4e07d6",
+  "scripts/detectors/fixed_vs_floating.py": "f82d838dbd1d2fab63d6e074454e4b1d510e26cc7cc70ac0242484b0126de2bd",
+  "scripts/detectors/lp_marginal_yield.py": "3d42722402d3b31d25d11ec9f2923870397689f798a6277e3d90d61ed56ce752",
+  "scripts/detectors/borrow_cost.py": "1d4b84d69a16d2f7cdcd9e103ce2d2e549fcb9b283abd0ad958827cf1dee901c"
+ },
+ "analysis_provenance": {
+  "artifact": "analysis",
+  "generated_at": "2026-09-10T10:18:46+00:00",
+  "labels": "906de2ba7f4b6e22",
+  "label_count": 194,
+  "tokens": "ca4aa94f2ca2208f",
+  "token_count": 47,
+  "code": {
+   "live_scan.py": "559b6ffa5831d5f1",
+   "window_raw.py": "8e7f5d82ea127938",
+   "verify.py": "e44bda51f2b95f9b",
+   "labels.py": "6607aca48787162b",
+   "economics.py": "b3ca4fab5d306d57"
+  },
+  "git": {
+   "commit": "93e17fe",
+   "dirty": true
+  },
+  "blocks": "18fa2e4fa8c4a101",
+  "block_count": 2984,
+  "first_block": 25939239,
+  "last_block": 25942222,
+  "head": 25942222,
+  "first_block_analysed": 25939239,
+  "last_block_analysed": 25942222
+ }
+}

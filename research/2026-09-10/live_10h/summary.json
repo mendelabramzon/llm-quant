@@ -1,0 +1,87 @@
+{
+ "window": {
+  "first_block": 25939239,
+  "last_block": 25942222,
+  "first_utc": "2026-09-09T10:32:35+00:00",
+  "last_utc": "2026-09-09T20:32:23+00:00",
+  "hours": 10.0,
+  "blocks": 2984,
+  "transactions": 861766,
+  "logs": 2365900
+ },
+ "eth_price_pool": {
+  "open": 2491.52,
+  "close": 2465.68,
+  "high": 2518.38,
+  "low": 2459.37,
+  "swaps": 2810,
+  "usd_volume": 47386050,
+  "largest_5min_moves": [
+   {
+    "pct": 0.767,
+    "from_utc": "2026-09-09T15:01:11+00:00",
+    "high": 2511.07,
+    "high_block": 25940575,
+    "low": 2491.96,
+    "low_block": 25940600
+   },
+   {
+    "pct": 0.72,
+    "from_utc": "2026-09-09T15:17:59+00:00",
+    "high": 2492.64,
+    "high_block": 25940659,
+    "low": 2474.83,
+    "low_block": 25940683
+   },
+   {
+    "pct": 0.593,
+    "from_utc": "2026-09-09T10:44:59+00:00",
+    "high": 2489.16,
+    "high_block": 25939305,
+    "low": 2474.48,
+    "low_block": 25939326
+   },
+   {
+    "pct": 0.515,
+    "from_utc": "2026-09-09T14:25:11+00:00",
+    "high": 2510.29,
+    "high_block": 25940420,
+    "low": 2497.42,
+    "low_block": 25940395
+   },
+   {
+    "pct": 0.503,
+    "from_utc": "2026-09-09T12:03:35+00:00",
+    "high": 2502.76,
+    "high_block": 25939717,
+    "low": 2490.23,
+    "low_block": 25939712
+   }
+  ]
+ },
+ "dex_gross_usd": 489885286,
+ "recycled_usd": 34616812.77912682,
+ "recycled_fraction": 0.07066309964477444,
+ "recycled_v2_fraction": 0.6543111465102163,
+ "roundtrip_surplus_usd_before_gas": 0.6503278258785123,
+ "roundtrip_surplus_usd_less_gas": 0.2936176044852195,
+ "liquidation_debt_usd": 120.8696832614509,
+ "compound_usdc_vs_ssr": {
+  "benchmark_apr": 0.036,
+  "basis": "sampled",
+  "best": {
+   "size_usd": 615441,
+   "apr_at_size_pct": 4.052,
+   "over_low_venue_usd_per_year": 2784
+  },
+  "apr_at_1m": 0.03758115136491455,
+  "apr_at_5m": 0.03211762314239288
+ },
+ "compound_usdt_to_aave": {
+  "source_available_usd": 25903932.673995018,
+  "destination_apr_at_available": 0.03569616425955548,
+  "annual_gain_holding_source_rate_fixed_usd": 125035.05491620848,
+  "note": "Source supplied minus borrowed is a balance-based ceiling; withdrawal restrictions and resulting source-rate change are not modeled."
+ },
+ "note": "All dollar valuations inherit the pinned study price basis. LP, carry, and gas scenarios are conditional estimates."
+}

@@ -6,6 +6,7 @@ parked for a minute), sends batched requests with gzip on the wire, retries tran
 credit count. Keys are never written anywhere; error strings are redacted before they are stored or printed.
 """
 import gzip
+import concurrent.futures as cf
 import json
 import re
 import threading
@@ -166,14 +167,20 @@ class RPC:
     def eth_call(self, to, data, block='latest'):
         return self.call('eth_call', [{'to': to, 'data': data}, block])
 
-    def eth_calls(self, items, block='latest'):
+    def eth_calls(self, items, block='latest', workers=4):
         """items: list of (to, data). Returns list of hex results or None per item (errors tolerated)."""
-        out = []
-        for i in range(0, len(items), 20):
-            part = items[i:i + 20]
-            res = self.batch([('eth_call', [{'to': to, 'data': data}, block]) for to, data in part], allow_errors=True)
-            out.extend(None if (isinstance(r, dict) and 'error' in r) or r in (None, '0x') else r for r in res)
-        return out
+        # Each chunk is independent and shares this RPC's credit ceiling, key rotation and rate limiter.
+        # State discovery can otherwise spend minutes on sequential network latency for a few hundred small reads.
+        # Four calls (~320 credits) also avoids the id-less partial quota responses observed with 20-call bursts.
+        chunks = [items[i:i + 4] for i in range(0, len(items), 4)]
+        if not chunks:
+            return []
+        def fetch(part):
+            return self.batch([('eth_call', [{'to': to, 'data': data}, block]) for to, data in part], allow_errors=True)
+        with cf.ThreadPoolExecutor(max_workers=max(1, min(workers, len(chunks)))) as ex:
+            results = list(ex.map(fetch, chunks))  # input order, regardless of completion order
+        return [None if (isinstance(r, dict) and 'error' in r) or r in (None, '0x') else r
+                for chunk in results for r in chunk]
 
     def stats(self):
         return {'credits': self.credits, 'requests': self.requests, 'errors': self.errors, 'keys': len(self.keys)}

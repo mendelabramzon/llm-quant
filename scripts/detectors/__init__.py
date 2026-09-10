@@ -123,6 +123,29 @@ class Context:
         b = self.book.get(a)
         return b.get('kind') if b else None
 
+    def gas_quote(self, race=False):
+        """Observed total execution cost, including tips. Quantiles are scenarios, not inclusion guarantees."""
+        p = self.out / 'fee_census.json'
+        if p.exists():
+            census = json.loads(p.read_text())
+            quantiles = census.get('gas_weighted_effective_gwei')
+            if quantiles:
+                window = self.analysis['window']
+                if not census.get('sample_complete') or any(census.get(k) != window[k]
+                                                           for k in ('first_block', 'last_block')):
+                    raise ValueError('fee census is incomplete or belongs to a different window')
+                q = 'p90' if race else 'p75'
+                return {'gwei': quantiles[q], 'basis': 'gas-weighted effective fee ' + q,
+                        'sampled_blocks': census['blocks'], 'quantiles_gwei': quantiles,
+                        'note': 'historical cost scenario; excludes direct MEV bids and guarantees no inclusion'}
+        from window_raw import median
+        base = median([b['base_gwei'] for b in self.blocks])
+        tip = (self.analysis.get('gas') or {}).get('tip_median_gwei')
+        if base is None or tip is None:
+            raise ValueError('no observed base-plus-tip quote; run the fee census')
+        return {'gwei': base + tip, 'basis': 'median base plus median block tip; no receipt census',
+                'note': 'fallback floor, especially for competing execution'}
+
 
 def registry():
     """Every detector module in this package, in a stable order."""

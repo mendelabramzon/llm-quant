@@ -1,0 +1,21 @@
+strategy                   status      kind         net APR      capacity  quoted  evidence
+usdg-captive-flow-lp       fork-proven liquidity      8.21%      $150,000     14h  ledger, fork
+sky-ssr-vs-aave-usds       monitored   spread         3.45% $1,000,000,000     14h  ledger
+morpho-usdt-borrow-vs-aave proposed    spread         1.48%    $6,353,460     14h  ledger
+pt-susds-fixed-vs-ssr      proposed    carry          0.66%    $1,000,000     14h  ledger
+aave-usdtb-supply          proposed    spread         0.64%      $227,400     14h  ledger
+compound-usdc-supply-sprea monitored   spread         0.51%    $1,400,000     14h  ledger
+susde-cooldown-redemption  fork-proven redemption  (17.25%)*      $600,000     14h  ledger, fork
+jit-liquidity-mainnet      retired     harvest        0.00%             -    75h!  manual
+stacyvault-reward-harvest  retired     harvest            -             -    75h!  manual, fork
+
+  usdg-captive-flow-lp       15.80% -> 6.13% -> 10.37% -> 8.21%
+  sky-ssr-vs-aave-usds       3.48% -> 3.48% -> 3.48% -> 3.48% -> 3.48% -> 3.45%
+  morpho-usdt-borrow-vs-aave 0.91% -> 1.46% -> 0.79% -> 1.48%
+  pt-susds-fixed-vs-ssr      1.37% -> 0.64% -> 0.66%
+  aave-usdtb-supply          2.37% -> 2.39% -> 0.99% -> 0.64%
+  compound-usdc-supply-sprea 0.85% -> 1.46% -> 0.34% -> 0.39% -> 0.37% -> 0.51%
+
+9 strategy(ies), 7 with a current quote, 2 stale. A stale quote is a memory, not a price.
+A rate in brackets is the last one seen: its detector ran on the newest window and did not find it — susde-cooldown-redemption.
+A starred rate is one its own detector declines: the arithmetic holds but a gate does not — susde-cooldown-redemption. Read the finding before the number.

@@ -1,22 +1,24 @@
 # Detector sweep — research/2026-09-08/live_10h
 
-Ran 13 detector(s); 65 hit(s).
+Ran 15 detector(s); 70 hit(s).
 
 | detector | hits | seconds | what it looks for |
 |---|---:|---:|---|
-| `address_poisoning` | 1 | 6.64 | lookalike dust transfers that follow a large transfer, aimed at a later copy-paste |
-| `borrow_cost` | 6 | 8.28 | cheapest venue to borrow each asset, capped by the liquidity actually withdrawable there |
+| `address_poisoning` | 1 | 6.73 | lookalike dust transfers that follow a large transfer, aimed at a later copy-paste |
+| `borrow_cost` | 6 | 6.22 | cheapest venue to borrow each asset, capped by the liquidity actually withdrawable there |
+| `delegated_dust` | 1 | 10.21 | mass dust fan-out inside EIP-7702 / executeBatch calldata, from senders that mimic the recipient's counterparties |
 | `dollar_rate_outlier` | 1 | 0.00 | dollar supply rates ranked against the risk-free dollar, sized from each reserve’s own rate curve |
 | `fixed_vs_floating` | 15 | 0.01 | Pendle implied fixed yields against the floating rate on the same underlying, sized by PT depth |
 | `gas_concentration` | 0 | 0.00 | base-fee spikes attributed to the contract whose gas demand caused them |
+| `honeypot_signature` | 4 | 7.71 | tokens whose buyers cannot sell: reverting sales, confiscatory taxes, buyers without sellers |
 | `jit_liquidity` | 1 | 0.00 | fee share taken by liquidity minted for a single swap, per pool and per window |
 | `liquidity_blackout` | 1 | 0.01 | lending reserves whose withdrawable liquidity collapses, and the time of day it happens |
 | `lp_marginal_yield` | 10 | 0.00 | concentrated-LP fee yield net of divergence, at the band that stayed in range and at real size |
-| `mass_distribution` | 8 | 11.69 | one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam |
-| `mislabelled_flow` | 2 | 8.03 | address labels the window contradicts, which is how a headline moves by a multiple |
+| `mass_distribution` | 8 | 10.52 | one sender fanning a token out to thousands of recipients: airdrop, mint distribution or dust spam |
+| `mislabelled_flow` | 2 | 7.09 | address labels the window contradicts, which is how a headline moves by a multiple |
 | `nav_discount` | 3 | 0.00 | redeemable claims trading away from the value the protocol pays, with the queue that separates them |
 | `rate_dispersion` | 5 | 0.00 | cross-venue supply-rate gaps on one asset, de-spiked and sized by rate dilution |
-| `solver_fingerprint` | 12 | 7.26 | unlabelled contracts that pass value straight through: solvers, routers and searcher bots |
+| `solver_fingerprint` | 12 | 6.94 | unlabelled contracts that pass value straight through: solvers, routers and searcher bots |
 
 ### [high] Aave v3 USDC closed its exit at 23:47 UTC for 22 minutes: $55.4k withdrawable on a $2.3B reserve at 99.9976% utilisation
 
@@ -47,6 +49,55 @@ Ran 13 detector(s); 65 hit(s).
  "utilisation_source": "inverted from the reserve\u2019s published borrow rate through its own IRM",
  "why": "utilisation is the share of supply that is lent out, so a supplier can withdraw only supplied x (1 - u); at these levels the reserve pays a spectacular rate and cannot be exited, and the rate is the symptom rather than the opportunity",
  "next_step": "any strategy whose exit leg is this reserve must either size to the trough of this series or hold through it; the ledger\u2019s recurrence column says whether the episode is a schedule or an accident"
+}
+```
+
+### [high] 0x59aab1bd… sprayed 335,601 dust legs from 9,214 delegated accounts at 16,258 wallets; 30.2% of testable legs came from a lookalike of the recipient's own counterparty
+
+```json
+{
+ "operator": "0x59aab1bd0d26290274398c07b55955c15425e16b",
+ "operator_label": null,
+ "dust_legs": 335601,
+ "executing_accounts": 9214,
+ "recipients": 16258,
+ "legs_with_a_testable_recipient": 156422,
+ "legs_from_a_lookalike_counterparty": 47268,
+ "lookalike_rate": 0.3022,
+ "tokens": {
+  "0xdac17f958d2ee523a2206206994597c13d831ec7": 14484,
+  "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": 7600,
+  "0x6b175474e89094c44da98b954eedeac495271d0f": 43
+ },
+ "native_legs": 313474,
+ "total_wei_moved": 31347400000000,
+ "examples": [
+  {
+   "victim": "0x4d1523891f079a12b5b3d02c1806561f3a1e6a0b",
+   "dust_from": "0xae774571e554d1b6938d09462d0f1132d0393e94",
+   "mimics": "0xae77f554c6983e82354b0b7615f3fd9550a43e94",
+   "tx": "0xff5f8d5920cc692cbe4e73eba4934e2a2e915eefae2a575e1adc40f050b74f53"
+  },
+  {
+   "victim": "0x71bf2fc38a829f556766021b777edc2507212225",
+   "dust_from": "0x7ca6aeffd605cefeb84ac6b749c07169adf809eb",
+   "mimics": "0x7ca6c4c4701fe26a177e6686bd7d39ad761009eb",
+   "tx": "0xff5f8d5920cc692cbe4e73eba4934e2a2e915eefae2a575e1adc40f050b74f53"
+  },
+  {
+   "victim": "0x8e02cd994071cc5b5bf54c76425ddd7337870abc",
+   "dust_from": "0xd17bbba33c857c50389198e03562f3da834f4923",
+   "mimics": "0xd17b7f921e4db383afcd5fd5088f34ce0c954923",
+   "tx": "0xff5f8d5920cc692cbe4e73eba4934e2a2e915eefae2a575e1adc40f050b74f53"
+  },
+  {
+   "victim": "0x9479dd0f97f4906acb5bf269e88a669a33766ad6",
+   "dust_from": "0x7afa8510444a4100275dd2d290139a2d104e85f8",
+   "mimics": "0x7afac48df116c46716d1ec99e8fab21bb49d85f8",
+   "tx": "0xff5f8d5920cc692cbe4e73eba4934e2a2e915eefae2a575e1adc40f050b74f53"
+  }
+ ],
+ "note": "lookalike = first 4 and last 4 hex characters shared with an address the recipient transacted with inside this window; a victim copying from a truncated history sees the same string. The rate is a floor: only in-window counterparties can be tested."
 }
 ```
 
@@ -892,6 +943,35 @@ Economics: net APR 0.67%, $8,375 per year, GO — clears gas, impact and competi
 ```
 
 Economics: net APR 0.64%, $334 per year, GO — clears gas, impact and competition at this size
+
+### [notable] 0x4ac429a7cd: 14 buyers, 15 sellers, 17% of the token leg never reached the buyer — sales fail or are taxed, but sellers do exist — a gate on some holders, or a thin pool
+
+```json
+{
+ "token": "0x4ac429a7cdf2b533e2c0cff1b017f2c344e864e2",
+ "symbol": null,
+ "label": null,
+ "distinct_buyers": 14,
+ "distinct_sellers": 15,
+ "seller_to_buyer_ratio": 1.0714,
+ "buy_legs": 32,
+ "sell_legs": 30,
+ "router_calls_naming_it": 23,
+ "of_which_emitted_no_logs": 0,
+ "fail_rate": 0.0,
+ "window_base_fail_rate": 0.044,
+ "buy_leg_retention": 0.8297,
+ "fee_beneficiary": "0x5ffd71ada755cb2e0635adda04fde47a56fc4dc1",
+ "distinct_secondary_recipients": 1,
+ "fee_concentration": 1.0,
+ "fee_is_a_fee_not_a_split_route": true,
+ "buy_leg_tax": 0.1703,
+ "first_seen_block": 25928775,
+ "verdict": "sales fail or are taxed, but sellers do exist \u2014 a gate on some holders, or a thin pool",
+ "why": "a transaction that emitted no logs reverted or did nothing, and a sell gate is what produces reverts; the buyer/seller ratio alone is the shape of any fresh launch, so it is never the finding on its own",
+ "false_positives": "a thin pool reverting on slippage, an anti-sniper cooldown in a token\u2019s first minutes, and calldata that names several tokens so a failure is attributed to all of them. Confirm by reading the contract or simulating a sale before treating this as a verdict."
+}
+```
 
 ### [notable] airdrop or multisend: 0x4d2fb5f8ec243fde4df1a9678b8223 sent 0xbeef007e to 24,563 recipients in 125 txs (212 per tx)
 
@@ -2490,6 +2570,93 @@ Economics: net APR -0.00%, $-1,654 per year, no — net APR -0.00% below the 0.0
    "impersonated": "0xc7bf35c9a3bdd1b1c19a6963de669cb45191a019",
    "attacker": "0xc749ab20bd35d94eb05c5753b74581a65b91a019",
    "dust_tx": "0x0fe668beba116a0ed80cbb1feb81100e58bdddb8f77
+```
+
+### [info] 0x33e8f27903: 46 buyers, 2 sellers — buyers far outnumber sellers and sales were attempted, but none is shown to fail
+
+```json
+{
+ "token": "0x33e8f279032eb970eea519260e46213414f889b8",
+ "symbol": null,
+ "label": null,
+ "distinct_buyers": 46,
+ "distinct_sellers": 2,
+ "seller_to_buyer_ratio": 0.0435,
+ "buy_legs": 48,
+ "sell_legs": 7,
+ "router_calls_naming_it": 7,
+ "of_which_emitted_no_logs": 0,
+ "fail_rate": 0.0,
+ "window_base_fail_rate": 0.044,
+ "buy_leg_retention": 1.0,
+ "fee_beneficiary": null,
+ "distinct_secondary_recipients": 0,
+ "fee_concentration": null,
+ "fee_is_a_fee_not_a_split_route": false,
+ "buy_leg_tax": 0.0,
+ "first_seen_block": 25928466,
+ "verdict": "buyers far outnumber sellers and sales were attempted, but none is shown to fail",
+ "why": "a transaction that emitted no logs reverted or did nothing, and a sell gate is what produces reverts; the buyer/seller ratio alone is the shape of any fresh launch, so it is never the finding on its own",
+ "false_positives": "a thin pool reverting on slippage, an anti-sniper cooldown in a token\u2019s first minutes, and calldata that names several tokens so a failure is attributed to all of them. Confirm by reading the contract or simulating a sale before treating this as a verdict."
+}
+```
+
+### [info] 0x9447dd95f5: 44 buyers, 2 sellers — buyers far outnumber sellers and sales were attempted, but none is shown to fail
+
+```json
+{
+ "token": "0x9447dd95f576fdf6ed8219fff45bd1362430b787",
+ "symbol": null,
+ "label": null,
+ "distinct_buyers": 44,
+ "distinct_sellers": 2,
+ "seller_to_buyer_ratio": 0.0455,
+ "buy_legs": 53,
+ "sell_legs": 9,
+ "router_calls_naming_it": 9,
+ "of_which_emitted_no_logs": 0,
+ "fail_rate": 0.0,
+ "window_base_fail_rate": 0.044,
+ "buy_leg_retention": 1.0,
+ "fee_beneficiary": null,
+ "distinct_secondary_recipients": 0,
+ "fee_concentration": null,
+ "fee_is_a_fee_not_a_split_route": false,
+ "buy_leg_tax": 0.0,
+ "first_seen_block": 25928466,
+ "verdict": "buyers far outnumber sellers and sales were attempted, but none is shown to fail",
+ "why": "a transaction that emitted no logs reverted or did nothing, and a sell gate is what produces reverts; the buyer/seller ratio alone is the shape of any fresh launch, so it is never the finding on its own",
+ "false_positives": "a thin pool reverting on slippage, an anti-sniper cooldown in a token\u2019s first minutes, and calldata that names several tokens so a failure is attributed to all of them. Confirm by reading the contract or simulating a sale before treating this as a verdict."
+}
+```
+
+### [info] 0x0ca7244f79: 34 buyers, 1 sellers — buyers far outnumber sellers and sales were attempted, but none is shown to fail
+
+```json
+{
+ "token": "0x0ca7244f798765de51a2b911f16ebcb7367362d1",
+ "symbol": null,
+ "label": null,
+ "distinct_buyers": 34,
+ "distinct_sellers": 1,
+ "seller_to_buyer_ratio": 0.0294,
+ "buy_legs": 38,
+ "sell_legs": 12,
+ "router_calls_naming_it": 12,
+ "of_which_emitted_no_logs": 0,
+ "fail_rate": 0.0,
+ "window_base_fail_rate": 0.044,
+ "buy_leg_retention": 1.0,
+ "fee_beneficiary": null,
+ "distinct_secondary_recipients": 0,
+ "fee_concentration": null,
+ "fee_is_a_fee_not_a_split_route": false,
+ "buy_leg_tax": 0.0,
+ "first_seen_block": 25928535,
+ "verdict": "buyers far outnumber sellers and sales were attempted, but none is shown to fail",
+ "why": "a transaction that emitted no logs reverted or did nothing, and a sell gate is what produces reverts; the buyer/seller ratio alone is the shape of any fresh launch, so it is never the finding on its own",
+ "false_positives": "a thin pool reverting on slippage, an anti-sniper cooldown in a token\u2019s first minutes, and calldata that names several tokens so a failure is attributed to all of them. Confirm by reading the contract or simulating a sale before treating this as a verdict."
+}
 ```
 
 ### [info] airdrop or multisend: 0x644a10116386921c0f42d2572e4d7e sent WETH to 600 recipients in 5 txs (120 per tx)

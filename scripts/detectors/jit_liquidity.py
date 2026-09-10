@@ -47,12 +47,8 @@ def scan(ctx):
     # Per-window: the fact a passive LP needs, stated as a share rather than a dollar amount so windows compare.
     econ = None
     if episodes:
-        # Base fee from the block series rather than from `analysis.json`, so this does not break when that file's
-        # shape changes, plus the window's median tip. Both are a *floor*: winning a JIT bracket means outbidding the
-        # other nine operators for adjacency, so the real operator pays more and this verdict is an upper bound.
-        from window_raw import median
-        gas_gwei = (median([b['base_gwei'] for b in ctx.blocks]) or 1.0) + \
-                   ((A.get('gas') or {}).get('tip_median_gwei') or 0.0)
+        # A higher observed cost scenario for competing execution; direct bids and guaranteed adjacency are unpriced.
+        gas_gwei = ctx.gas_quote(race=True)['gwei']
         eth = (A.get('price_basis') or {}).get('ETH') or 2500.0
         v = score(Opportunity(
             name='JIT liquidity, one episode',

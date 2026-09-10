@@ -6,22 +6,22 @@ through a whole quiet Monday, Spark USDT spiking to 7% on an ALM transfer and no
 off a table by hand, so nothing separated a gap worth capital from one block of noise, and nothing said how much capital
 it would take.
 
-Three things decide that, and all three are computed here.
+Rate persistence, destination dilution and source liquidity decide the size worth quoting.
 
 **De-spiking.** A rate is quoted as the median of the window's `ReserveDataUpdated` series where one exists, not the last
 reading. The midnight balance routine and same-block flash loans move a reserve's rate several-fold for one block, so a
 spot read is the single most pollutable number the scan produces. A gap the median keeps but the last reading has lost
 is reported as a transient rather than as an opportunity.
 
-**Dilution capacity.** Supplying into the high-paying venue is what closes the gap: your own capital raises the supply,
-lowers utilisation, and the rate falls with it. A supplier earns the borrow rate times utilisation, and below the kink
-the borrow rate is itself roughly linear in utilisation, so the supply rate goes as `u²`. Every market here sits at 84%
-to 93% utilisation — above the usual kink, where the borrow curve is steeper still — so `u²` is the conservative reading
-and a rate treated as linear in `u` would overstate capacity several-fold. Capital `X` into a pool holding `S` then earns
-an average of `r·S/(S+X)`, which halves the rate at `X = S`: to halve a gap you must roughly match the existing pool.
+**Dilution capacity.** New supply lowers destination utilisation and its rate. Use the saved kinked reserve model or
+Compound's sampled supply curve, holding borrows fixed. A smooth fallback is identified explicitly.
 
 A venue whose rate does not depend on utilisation at all, such as Sky's savings rate, is marked as not diluting and its
 capacity is reported as rate-invariant rather than solved for.
+
+**Source cash.** Cap the position by underlying cash and withdrawal flags at the same saved block, and by total source
+claims. Older snapshots fall back to an explicitly labelled supplied-minus-borrowed estimate. Cash is an aggregate
+ceiling: account collateral constraints, owned positions, destination supply caps and future exits remain unmeasured.
 
 **Economics.** Every gap is scored through `economics.py` and reports a net annual figure after gas, so a wide gap on a
 thin market ranks below a narrow one on a deep market, which is the ordering that matters.
@@ -52,7 +52,7 @@ def scan(ctx):
         return []
     venues = _venue_table(head, ctx)
     medians = _log_medians(ctx)
-    gas_gwei = median([b['base_gwei'] for b in ctx.blocks]) or 1.0
+    gas_gwei = ctx.gas_quote()['gwei']
     eth = ctx.prices.get('ETH', 2500.0)
 
     by_sym = collections.defaultdict(dict)
@@ -106,11 +106,25 @@ def scan(ctx):
         S = float(hi['supplied_usd'])
         dilutes = hi.get('dilutes', True)
         fn, basis = marginal_rate_fn(hi_v, sym, hi, head)
-        half, best = sized(fn, eff_lo, S) if dilutes else (None, None)
+        source_available, source_basis = available_liquidity(lo)
+        limit = source_available if hi.get('supply_enabled') is not False else 0.0
+        half, unconstrained = sized(fn, eff_lo, S) if dilutes else (None, None)
+        _, best = sized(fn, eff_lo, S, limit=limit) if dilutes else (None, None)
+        if not dilutes and limit > 0:
+            best = {'size_usd': limit, 'apr_at_size_pct': 100 * eff_hi,
+                    'over_low_venue_usd_per_year': limit * (eff_hi-eff_lo)}
         # Price at the size that maximises dollars over the alternative venue, not at the headline rate: a rate you
         # cannot deploy into is not an edge, and on a kinked market the deployable size is the entire question.
-        size = (best or {}).get('size_usd') or S
+        size = (best or {}).get('size_usd') or 0.0
         eff_at_size = fn(size) if dilutes else eff_hi
+        if size <= 0:
+            hits.append(Hit(detector=NAME, severity='info', key='%s:%s/%s' % (sym, hi_v, lo_v),
+                            title='%s rate gap has no sized switch: source liquidity or destination constraints bind' % sym,
+                            evidence={'asset': sym, 'high_venue': hi_v, 'low_venue': lo_v,
+                                      'source_available_usd': source_available, 'liquidity_basis': source_basis},
+                            economics={'go': False, 'net_apr': None, 'net_per_year_usd': 0,
+                                       'reason': 'no positive capacity and edge at the saved state'}))
+            continue
         opp = Opportunity(
             name='%s supply spread: %s over %s' % (sym, hi_v, lo_v),
             edge_bps=1e4 * max(eff_at_size - eff_lo, 0.0),
@@ -131,7 +145,8 @@ def scan(ctx):
                      ('best size $%s earns $%s a year over %s' % (_m(best['size_usd']),
                                                                   _m(best['over_low_venue_usd_per_year']), lo_v))
                      if best else ('$%s halves the gap' % _m(half)) if half else 'rate does not dilute with size',
-                     ' [one-block read, de-spiking unavailable]' if unchecked else ''),
+                     (' [source liquidity capped]' if unconstrained and size < unconstrained['size_usd'] else '')
+                     + (' [one-block read, de-spiking unavailable]' if unchecked else '')),
             evidence={'asset': sym, 'high_venue': hi_v, 'low_venue': lo_v,
                       'supply_apr_spot_pct': {k: round(100 * d['supply_apr'], 3) for k, d in vs.items()},
                       'supply_apr_median_pct': {k: round(100 * medians[(k, sym)], 3) for k in vs
@@ -146,10 +161,15 @@ def scan(ctx):
                                        'flash loan can move a reserve rate several-fold for one block' % (hi_v, sym)),
                       'supplied_usd': {k: round(d['supplied_usd']) for k, d in vs.items() if d.get('supplied_usd')},
                       'utilisation': {k: round(d['utilisation'], 3) for k, d in vs.items() if d.get('utilisation')},
-                      'dilution_basis': basis, 'best_size': best,
+                      'dilution_basis': basis, 'best_size': best, 'unconstrained_best_size': unconstrained,
+                      'source_available_usd': source_available, 'source_liquidity_basis': source_basis,
+                      'capacity_note': 'Aggregate source cash is a ceiling, not an owned position. Account collateral, '
+                                       'destination supply caps and exit-time liquidity still need checks. '
+                                       'Source opportunity rate and borrows are held fixed.',
                       'marginal_apr_ladder': [{'size_usd': x, 'apr_pct': round(100 * fn(x), 3)}
                                               for x in (1e5, 1e6, 5e6, 2.5e7, 1e8)] if dilutes else None},
             economics={'net_apr': round(v.net_apr, 4), 'net_per_year_usd': round(v.annual_net_usd),
+                       'size_usd': size,
                        'half_edge_size_usd': round(half) if half else None,
                        'net_apr_at_half_edge': round(eff_lo + (eff_hi - eff_lo) / 2, 4),
                        'go': v.go, 'reason': v.reason, 'gas_gwei': round(gas_gwei, 4)}))
@@ -191,7 +211,7 @@ def marginal_rate_fn(venue, sym, d, head):
     return (lambda add: r0 * supplied / (supplied + add) if supplied > 0 else r0), 'modelled'
 
 
-def sized(fn, lo_rate, supplied_usd):
+def sized(fn, lo_rate, supplied_usd, limit=None):
     """The two sizes worth quoting: where half the gap is gone, and where total dollars over the alternative peak.
 
     Reported together because they answer different questions. `half` is the allocator's rule of thumb for how much
@@ -206,17 +226,34 @@ def sized(fn, lo_rate, supplied_usd):
     best = None
     x = max(supplied_usd, 1e6) * 1e-4
     hi = max(supplied_usd, 1e6) * 10
+    if limit is not None:
+        hi = min(hi, max(limit, 0.0))
+    candidates = [hi] if hi > 0 else []
     while x <= hi:
+        candidates.append(x)
+        x *= 1.15
+    for x in sorted(set(candidates)):
         r = fn(x)
         if half is None and r <= target:
             half = x
         gain = (r - lo_rate) * x
         if best is None or gain > best[1]:
             best = (x, gain, r)
-        x *= 1.15
     return half, (None if not best or best[1] <= 0 else
-                  {'size_usd': round(best[0]), 'apr_at_size_pct': round(100 * best[2], 3),
+                  {'size_usd': best[0], 'apr_at_size_pct': round(100 * best[2], 3),
                    'over_low_venue_usd_per_year': round(best[1])})
+
+
+def available_liquidity(row):
+    if row.get('withdraw_enabled') is False:
+        return 0.0, 'withdrawal disabled at saved block'
+    cash = row.get('available_usd')
+    if cash is not None:
+        return max(0.0, min(cash, row.get('supplied_usd') or 0)), row.get('liquidity_basis', 'saved available liquidity')
+    supplied, borrowed = row.get('supplied_usd'), row.get('borrowed_usd')
+    if supplied is not None and borrowed is not None:
+        return max(supplied-borrowed, 0.0), 'estimated supplied minus borrowed; cash unavailable'
+    return 0.0, 'source liquidity unknown; no sized quote'
 
 
 def _head_state(ctx):
@@ -236,6 +273,7 @@ def _venue_table(head, ctx):
             sup = d.get('supplied_usd') or 0
             out[(venue, sym)] = {'supply_apr': d['supply_apr'], 'supplied_usd': sup,
                                  'borrowed_usd': d.get('borrowed_usd'),
+                                 **{k:d.get(k) for k in ('available_usd','withdraw_enabled','supply_enabled','liquidity_basis')},
                                  'utilisation': (d.get('borrowed_usd') or 0) / sup if sup else None}
     for venue, d in (head.get('compound') or {}).items():
         sym = ctx.window.symbol((d.get('base_token') or '').lower())
@@ -246,6 +284,7 @@ def _venue_table(head, ctx):
         # back to the smooth estimate, which is what overstated Compound USDC's capacity by ~75x.
         out[(venue, sym)] = {'supply_apr': d['supply_apr'], 'supplied_usd': (d.get('supplied') or 0) * px,
                              'borrowed_usd': (d.get('borrowed') or 0) * px,
+                             **{k:d.get(k) for k in ('available_usd','withdraw_enabled','supply_enabled','liquidity_basis')},
                              'supply_curve': d.get('supply_curve'), 'utilisation': d.get('utilisation')}
     ssr = (head.get('sky') or {}).get('ssr_apy')
     if ssr is not None:

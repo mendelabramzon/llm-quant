@@ -278,6 +278,26 @@ oracle` and **304 of 315 markets failed** — the assertion was wrong, the premi
 *impact* prices, and replacing that assertion with a measurement produced the explanation for the headline. The best
 finding in the report came out of an assertion that failed.
 
+## Latest Ethereum ten-hour study (2026-09-10 session)
+
+[Ethereum: turnover, priority fees, and narrow lending edges](research/2026-09-10/live_10h/report.md)
+analyzes **2026-09-09 10:32–20:32 UTC**, pinned to the finalized endpoint: 2,984 blocks, 861,766 transactions,
+and 2,365,900 logs. ETH fell 1.04%, decoded DEX volume was $489.89m, and covered liquidations repaid $121.
+
+The new `recycled_swap_volume` detector found four atomic roundtrips producing **$34.62m of settled turnover**
+(7.07% of all priced DEX volume) with just **$0.65 of WETH extracted before gas**. It checks priced-token settlement
+against the Swap events, and the study confirms both canonical v2 pairs, historical reserves and receipts. The report
+flags gross fee estimates that cannot be interpreted as realized passive income.
+
+Collection now supports `--end-tag finalized` and preserves both boundaries on resume. `live_scan head --block N`
+pins prices and market state, and `enrich` queries analysis-discovered borrowers and pools at that saved block.
+The fee census reconciles every sampled receipt set, computes all-block burn exactly, and supplies observed
+base-plus-tip cost scenarios to the economics detectors. See the [reproduction commands](research/2026-09-10/live_10h/method.md).
+
+The report includes price/fee charts, exchange-label sensitivity, low-HF borrowers, source-liquidity limits,
+peg exceptions, blob consumers, and delegated address-poisoning activity. All 16 detectors completed; seven linked
+strategies were re-quoted in the existing book.
+
 ## Ten hours across midnight: the routine, traced (2026-09-08)
 
 [Ten hours of Ethereum, and the thirty-four minutes that mattered](research/2026-09-08/live_10h/report.md)

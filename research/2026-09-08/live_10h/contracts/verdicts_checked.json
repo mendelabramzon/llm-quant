@@ -1,0 +1,267 @@
+{
+ "window": "research/2026-09-08/live_10h",
+ "verdicts": 6,
+ "checks_passed": 40,
+ "checks_failed": 0,
+ "rows": [
+  {
+   "address": "0x140022b7000081000001094700609300d2187dab",
+   "verdict": "Uniswap v4 arbitrage bot with Balancer flash liquidity",
+   "mechanism": "hand-written, dispatcherless MEV bot: takes flash liquidity from the Balancer v2 Vault, trades against Uniswap v4 through the PoolManager's lock/settle interface, and pays the builder directly",
+   "confidence": "high",
+   "checks": [
+    {
+     "claim": "selector 0x11da60b4 present",
+     "ok": true,
+     "detail": "out"
+    },
+    {
+     "claim": "selector 0xa5841194 present",
+     "ok": true,
+     "detail": "out"
+    },
+    {
+     "claim": "selector 0x80f0b44c present",
+     "ok": true,
+     "detail": "out"
+    },
+    {
+     "claim": "selector 0xf135baaa present",
+     "ok": true,
+     "detail": "out"
+    },
+    {
+     "claim": "selector 0x0dfe1681 present",
+     "ok": true,
+     "detail": "out"
+    },
+    {
+     "claim": "selector 0xd21220a7 present",
+     "ok": true,
+     "detail": "out"
+    },
+    {
+     "claim": "address 0xba12222222228d8ba445958a75a0704d566bf2c8 is an immediate",
+     "ok": true,
+     "detail": "found"
+    },
+    {
+     "claim": "address 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 is an immediate",
+     "ok": true,
+     "detail": "found"
+    },
+    {
+     "claim": "fact transient_storage",
+     "ok": true,
+     "detail": "transient storage (EIP-1153): reentrancy locks, flash accounting"
+    },
+    {
+     "claim": "fact coinbase_pay",
+     "ok": true,
+     "detail": "pays or reads the block builder (MEV)"
+    },
+    {
+     "claim": "fact origin_auth",
+     "ok": true,
+     "detail": "authorises on tx.origin"
+    },
+    {
+     "claim": "fact selfdestruct",
+     "ok": true,
+     "detail": "can destroy itself / force-send its balance"
+    },
+    {
+     "claim": "window.logs == 0",
+     "ok": true,
+     "detail": "actual 0"
+    },
+    {
+     "claim": "window.txs >= 400",
+     "ok": true,
+     "detail": "actual 414"
+    }
+   ],
+   "all_checks_pass": true,
+   "unchecked_opinion": "settle()/sync(address)/clear(address,uint256)/exttload(bytes32) are the Uniswap v4 PoolManager's own interface, and exttload reads v4's transient storage \u2014 so the transient-storage sites are the v4 flash-accounting lock rather than a reentrancy guard. token0()/token1() means it also reads v2/v3-style pairs. Zero logs across 414 calls is the point: an event reader sees the pools move and never sees who moved them. The vanity address (nine zero bytes) is calldata-cost optimisation. UNVERIFIED: that the Balancer leg is a flash loan rather than a plain swap \u2014 that needs a trace."
+  },
+  {
+   "address": "0xe08d97e151473a848c3d9ca3f323cb720472d015",
+   "verdict": "single-operator MEV bot, one caller, WETH-settled",
+   "mechanism": "one hardcoded operator drives it 284 times in ten hours; it unwraps WETH and pays the block builder; it emits nothing",
+   "confidence": "medium",
+   "checks": [
+    {
+     "claim": "selector 0x2e1a7d4d present",
+     "ok": true,
+     "detail": "out"
+    },
+    {
+     "claim": "selector 0x70a08231 present",
+     "ok": true,
+     "detail": "out"
+    },
+    {
+     "claim": "selector 0xcabcfc90 present",
+     "ok": true,
+     "detail": "in"
+    },
+    {
+     "claim": "address 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 is an immediate",
+     "ok": true,
+     "detail": "found"
+    },
+    {
+     "claim": "address 0xc0ffeebabe5d496b2dde509f9fa189c25cf29671 is an immediate",
+     "ok": true,
+     "detail": "found"
+    },
+    {
+     "claim": "fact coinbase_pay",
+     "ok": true,
+     "detail": "pays or reads the block builder (MEV)"
+    },
+    {
+     "claim": "fact origin_auth",
+     "ok": true,
+     "detail": "authorises on tx.origin"
+    },
+    {
+     "claim": "fact transient_storage",
+     "ok": true,
+     "detail": "transient storage (EIP-1153): reentrancy locks, flash accounting"
+    },
+    {
+     "claim": "fact stateless",
+     "ok": true,
+     "detail": "never writes storage: a router, a lens, or a pure library"
+    },
+    {
+     "claim": "window.logs == 0",
+     "ok": true,
+     "detail": "actual 0"
+    },
+    {
+     "claim": "window.senders == 1",
+     "ok": true,
+     "detail": "actual 1"
+    }
+   ],
+   "all_checks_pass": true,
+   "unchecked_opinion": "The single entry point 0xcabcfc90 has no known signature, which is what a private bot looks like. 0xc0ffeebabe\u2026 is a vanity counterparty. UNVERIFIED: what strategy it runs \u2014 the bytecode says how it settles, not what it trades."
+  },
+  {
+   "address": "0xe6b97aa1490c93c28a14d86c13c9dc9c950643ed",
+   "verdict": "address-poisoning executor, delegated into EOAs by EIP-7702",
+   "mechanism": "one function, executeBatch, callable only when tx.origin equals an operator baked into the code; delegated to thousands of accounts so their dust transfers appear to come from thousands of distinct senders",
+   "confidence": "high",
+   "checks": [
+    {
+     "claim": "selector 0x34fcd5be present",
+     "ok": true,
+     "detail": "in"
+    },
+    {
+     "claim": "selector 0x0bf9dbd1 present",
+     "ok": true,
+     "detail": "out"
+    },
+    {
+     "claim": "address 0x59aab1bd0d26290274398c07b55955c15425e16b is an immediate",
+     "ok": true,
+     "detail": "found"
+    },
+    {
+     "claim": "fact origin_auth",
+     "ok": true,
+     "detail": "authorises on tx.origin"
+    },
+    {
+     "claim": "fact stateless",
+     "ok": true,
+     "detail": "never writes storage: a router, a lens, or a pure library"
+    }
+   ],
+   "all_checks_pass": true,
+   "unchecked_opinion": "CONFIRMED independently after the fact: Etherscan's verified source names the contract Poisoner and the immutable thief. tx.origin rather than msg.sender is what lets the operator drive an account it does not otherwise control, through a hub contract in the middle."
+  },
+  {
+   "address": "0x00fe78205f5f0e63b8ad2b2ae5337f538a610e04",
+   "verdict": "the operator's batch hub for the poisoning campaign",
+   "mechanism": "same executeBatch, but the owner lives in storage slot 0 and is checked against msg.sender; it calls each delegated account in turn and reverts the whole batch if any leg fails",
+   "confidence": "high",
+   "checks": [
+    {
+     "claim": "selector 0x34fcd5be present",
+     "ok": true,
+     "detail": "in"
+    },
+    {
+     "claim": "selector 0x0bf9dbd1 present",
+     "ok": true,
+     "detail": "out"
+    },
+    {
+     "claim": "string 'Delegated call failed' embedded",
+     "ok": true,
+     "detail": "found"
+    },
+    {
+     "claim": "fact caller_pin",
+     "ok": true,
+     "detail": "compares msg.sender against a stored/hardcoded value"
+    },
+    {
+     "claim": "fact stateless",
+     "ok": true,
+     "detail": "never writes storage: a router, a lens, or a pure library"
+    }
+   ],
+   "all_checks_pass": true,
+   "unchecked_opinion": "Mutable owner in storage where the delegate has an immutable one \u2014 the hub can change hands, the delegation cannot."
+  },
+  {
+   "address": "0x52d4484874c6755a03297a4684e257c6eff3fa42",
+   "verdict": "not a program: an SVG stored as contract code",
+   "mechanism": "SSTORE2-style data contract \u2014 a leading STOP byte so the body can never execute, then 24,000 bytes of markup",
+   "confidence": "high",
+   "checks": [],
+   "all_checks_pass": null,
+   "unchecked_opinion": "The body begins `<svg xmlns=...viewBox=\"0 0 48 48\" shape-rendering=\"crispEdges\">`: 48x48 pixel art with a Gaussian-blur glow filter, fully on chain. One deployer wrote twelve of these in the window. The first sweep of this window ranked three such blobs as its most capable contracts, because a linear sweep over stored bytes yields an opcode per byte."
+  },
+  {
+   "address": "0x2c6f01799fa9db1e7f2797e5ba892b72b865571d",
+   "verdict": "signature-gated trading executor delegated into EOAs, failing 99% of the time",
+   "mechanism": "17 KB EIP-7702 delegate that routes through WETH and the Uniswap v2 and v3 routers under a signed, expiring authorisation",
+   "confidence": "medium",
+   "checks": [
+    {
+     "claim": "address 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2 is an immediate",
+     "ok": true,
+     "detail": "found"
+    },
+    {
+     "claim": "address 0x7a250d5630b4cf539739df2c5dacb4c659f2488d is an immediate",
+     "ok": true,
+     "detail": "found"
+    },
+    {
+     "claim": "string 'Executor' embedded",
+     "ok": true,
+     "detail": "found"
+    },
+    {
+     "claim": "string 'EXPIRED' embedded",
+     "ok": true,
+     "detail": "found"
+    },
+    {
+     "claim": "string 'BAD_SIG' embedded",
+     "ok": true,
+     "detail": "found"
+    }
+   ],
+   "all_checks_pass": true,
+   "unchecked_opinion": "EXPIRED and BAD_SIG are the two revert reasons of a deadline-plus-signature scheme, which fits a wallet that executes orders its user signed offline. In this window its relayer paid $88 of fees for 5 successful transactions out of 533. UNVERIFIED: whose wallet product this is \u2014 no verified source, and the selectors resolve to nothing."
+  }
+ ]
+}

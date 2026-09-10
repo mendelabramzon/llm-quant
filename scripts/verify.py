@@ -89,6 +89,9 @@ class Recompute:
         self.cctp = collections.defaultdict(lambda: {'n': 0, 'usd': 0.0})
         self.rates = collections.defaultdict(list)
         self.transfers = []                    # kept for the leverage check, which needs to replay hops
+        self.gas_used = self.gas_limit = self.execution_burn_wei = 0
+        self.header_blobs = self.transaction_blobs = self.withdrawals_gwei = 0
+        self.senders = set()
 
     def run(self, min_usd=1e4):
         from window_raw import TRANSFER, RESERVE_DATA_UPDATED, hx, word, topic_addr, RAY
@@ -99,7 +102,14 @@ class Recompute:
             self.blocks += 1
             self.txs += len(b['transactions'])
             self.logs += len(logs)
+            self.gas_used += hx(b['gasUsed'])
+            self.gas_limit += hx(b['gasLimit'])
+            self.execution_burn_wei += hx(b['gasUsed']) * hx(b['baseFeePerGas'])
+            self.header_blobs += hx(b.get('blobGasUsed', 0)) // 131072
+            self.withdrawals_gwei += sum(hx(x['amount']) for x in b.get('withdrawals', []))
             for t in b['transactions']:
+                self.senders.add(t['from'].lower())
+                self.transaction_blobs += len(t.get('blobVersionedHashes') or [])
                 if t.get('to'):
                     self.gas_to[t['to'].lower()] += hx(t['gas'])
                 v = hx(t.get('value', 0))
@@ -210,9 +220,11 @@ def leverage_to_exchange(transfers, followed, exchanges, book):
     return total, per_op
 
 
-def close(a, b, tol=0.02, floor=1.0):
+def close(a, b, tol=0.02, floor=None):
     if a is None or b is None:
         return False
+    if floor is None:
+        floor = 0.0 if tol == 0 else 1.0
     return abs(a - b) <= max(tol * max(abs(a), abs(b)), floor)
 
 
@@ -239,6 +251,29 @@ def run_numeric(out, min_usd=1e4):
     add('blocks', 'blocks analysed', R.blocks, win['blocks'], 0.0)
     add('transactions', 'transactions', R.txs, win['transactions'], 0.0)
     add('logs', 'logs', R.logs, win['logs'], 0.0)
+    manifest_path = Path(out) / 'manifest.json'
+    if manifest_path.exists():
+        m = json.loads(manifest_path.read_text())
+        if m.get('last_block') is not None and m.get('first_block') is not None:
+            add('window-complete', 'all blocks in the pinned manifest were analyzed', R.blocks,
+                m['last_block'] - m['first_block'] + 1, 0.0)
+    add('blob-header-identity', 'blob hashes agree with header blob gas', R.transaction_blobs, R.header_blobs, 0.0)
+    events_path = Path(out) / 'events.json'
+    if events_path.exists():
+        events = json.loads(events_path.read_text())
+        add('activity-gas', 'gas actually used across the window', R.gas_used, events['window']['gas_used'], 0.0)
+        add('activity-fullness', 'gas used divided by gas limit', round(R.gas_used / R.gas_limit, 4),
+            events['window']['fullness'], 0.0)
+        add('activity-senders', 'distinct transaction senders', len(R.senders), events['window']['unique_senders'], 0.0)
+        add('activity-blobs', 'total blobs posted', R.transaction_blobs, events['blobs']['total'], 0.0)
+        add('activity-withdrawals', 'consensus withdrawals in ETH', round(R.withdrawals_gwei / 1e9, 2),
+            events['withdrawals']['eth'], 0.0)
+    fee_path = Path(out) / 'fee_census.json'
+    if fee_path.exists():
+        fees = json.loads(fee_path.read_text())
+        if 'window_base_fee_burn_eth_exact' in fees:
+            add('execution-burn', 'full-window execution base fee burned (ETH)', R.execution_burn_wei / 1e18,
+                fees['window_base_fee_burn_eth_exact'], 0.0)
 
     iss = A.get('issuance', {}).get('totals', {})
     add('usdc-mint', 'USDC minted (USD, from the zero address)', round(R.mint['USDC']),
@@ -485,6 +520,21 @@ def run_identities(out, tol=0.0015):
             bad.append({'market': m[:12], 'pt': r.get('pt_symbol'), 'reported_pct': _pct(apy),
                         'derived_pct': _pct(derived)})
     add('head-pendle-apy', 'the Pendle implied yield is (1/price)^(365/days) - 1', n, bad, worst)
+
+    # getUserAccountData words 2 and 4 are availableBorrowsBase and LTV respectively. Reading word 2 as LTV
+    # produced ratios in the billions while the independently decoded health factor still looked plausible.
+    bad, n, worst = [], 0, None
+    for r in hs.get('health', []):
+        n += 1
+        ltv, threshold = r.get('ltv'), r.get('liq_threshold')
+        debt, collateral, hf = r.get('debt_usd'), r.get('collateral_usd'), r.get('health_factor')
+        bounds = ltv is not None and threshold is not None and 0 <= ltv <= threshold <= 1
+        error = abs(hf - collateral * threshold / debt) if debt and hf is not None else 0.0
+        worst = max(worst or 0, error)
+        if not bounds or error > 0.0015 * max(1, hf or 0):
+            bad.append({'account': r['account'], 'venue': r['venue'], 'ltv': ltv,
+                        'threshold': threshold, 'health_factor_error': error})
+    add('head-health-identity', 'LTV bounds and health factor = collateral x liquidation threshold / debt', n, bad, worst)
 
     return [r for r in rows if r['checked']]
 

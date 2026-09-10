@@ -53,7 +53,9 @@ def main():
     hits, meta = run_all(ctx, only=a.only)
     outdir = Path(a.out)
     (outdir / 'detectors.json').write_text(json.dumps(
-        {'window': str(a.out), 'detectors': meta, 'hits': [h.as_dict() for h in hits]}, indent=1, default=str) + '\n')
+        {'window': str(a.out), 'detectors': meta, 'hits': [h.as_dict() for h in hits],
+         'gas_scenarios': {'standard': ctx.gas_quote(), 'competing': ctx.gas_quote(race=True)}},
+        indent=1, default=str) + '\n')
     (outdir / 'detectors.md').write_text(digest(hits, meta, a.out) + '\n')
     for m in meta:
         print('%-22s %2d hit(s)  %5.2fs  %s' % (m['detector'], m['hits'], m['seconds'], m['error'] or ''))
@@ -61,6 +63,8 @@ def main():
     for h in hits:
         print('[%-7s] %s' % (h.severity, h.title))
     print('\nwrote %s and %s' % (outdir / 'detectors.json', outdir / 'detectors.md'))
+    if any(m['error'] for m in meta):
+        raise SystemExit('detector errors; refusing to report a complete sweep')
 
 
 if __name__ == '__main__':

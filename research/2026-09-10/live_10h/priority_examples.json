@@ -1,0 +1,149 @@
+[
+ {
+  "block": 25941619,
+  "utc": "2026-09-09T18:30:47+00:00",
+  "tx": "0xad4ec59b8712ec25d1984d650bc7a20f98c2ebc8168bf1beca4a152423c8888b",
+  "from": "0x3ee92cd00993a4488ae153ab41ac7947cbcbc1de",
+  "to": "0x9205a569b0ff45df1e4f5ae48e21bc7f0656f0bb",
+  "tip_gwei": 5460.33,
+  "gas_limit": 168328,
+  "max_tip_eth_at_limit": 0.9191,
+  "index": 2,
+  "input_selector": "0x8b578ac6",
+  "native_value": 8.76e-16,
+  "target_label": {},
+  "events": {
+   "Transfer": 2,
+   "0xc2c0245e056d5fb095f04cd6373bc770802ebd1e6c918eb78fdef843cdb37b0f": 1
+  },
+  "priced_token_legs": [
+   {
+    "token": "WETH",
+    "amount": 34.745951257139396,
+    "from": "0x75c8f5bfac89e19cf1a23b0d03c6674e8a3b9fb8",
+    "to": "0x9205a569b0ff45df1e4f5ae48e21bc7f0656f0bb"
+   }
+  ]
+ },
+ {
+  "block": 25941729,
+  "utc": "2026-09-09T18:52:47+00:00",
+  "tx": "0x6e8a3d82d186660f7b94c606a291b872e894cc7ec9f1aa5fe04fc756c547d6aa",
+  "from": "0xc6b9efd99763cbbab529a834b6d04137d0e380e7",
+  "to": "0x51c72848c68a965f66fa7a88855f9f7784502a7f",
+  "tip_gwei": 1802.06,
+  "gas_limit": 132370,
+  "max_tip_eth_at_limit": 0.2385,
+  "index": 2,
+  "input_selector": "0x122067ed",
+  "native_value": 0.0,
+  "target_label": {
+   "tag": "labelled",
+   "kind": "venue",
+   "source": "behaviour-2026-09-08-fingerprint",
+   "label": "router or solver (shape: pass-through, 731 txs, 90% flat, 47 counterparties, $120M gross) (behaviour-2026-09-08-fingerprint)"
+  },
+  "events": {
+   "Transfer": 2,
+   "V3Swap": 1
+  },
+  "priced_token_legs": [
+   {
+    "token": "USDT",
+    "amount": 31521.527522,
+    "from": "0x51c72848c68a965f66fa7a88855f9f7784502a7f",
+    "to": "0x4d68b530920d26c3b01c99fecc19e21011b72bbd"
+   }
+  ]
+ },
+ {
+  "block": 25940574,
+  "utc": "2026-09-09T15:00:59+00:00",
+  "tx": "0x5e3478ddabbe7e0de5990d04630c414951cf54959dda186564e116a4fff2c2f4",
+  "from": "0xeaa9ebddd373c4bd8bb92dfcc9c7e7fcdb268e51",
+  "to": "0x51c72848c68a965f66fa7a88855f9f7784502a7f",
+  "tip_gwei": 1550.31,
+  "gas_limit": 345777,
+  "max_tip_eth_at_limit": 0.5361,
+  "index": 0,
+  "input_selector": "0x771d503f",
+  "native_value": 0.0,
+  "target_label": {
+   "tag": "labelled",
+   "kind": "venue",
+   "source": "behaviour-2026-09-08-fingerprint",
+   "label": "router or solver (shape: pass-through, 731 txs, 90% flat, 47 counterparties, $120M gross) (behaviour-2026-09-08-fingerprint)"
+  },
+  "events": {
+   "Transfer": 2,
+   "V3Swap": 1
+  },
+  "priced_token_legs": [
+   {
+    "token": "WETH",
+    "amount": 210.6097373675564,
+    "from": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+    "to": "0x51c72848c68a965f66fa7a88855f9f7784502a7f"
+   },
+   {
+    "token": "USDC",
+    "amount": 528075.865553,
+    "from": "0x51c72848c68a965f66fa7a88855f9f7784502a7f",
+    "to": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640"
+   }
+  ]
+ },
+ {
+  "block": 25939688,
+  "utc": "2026-09-09T12:02:35+00:00",
+  "tx": "0xe7d4549a16fcaa472499cb02789c53cf9790301b57958a65dcc702c601bb4087",
+  "from": "0x408613ba0eaf85675999cd3729ea3cbff84a6b21",
+  "to": "0x51c72848c68a965f66fa7a88855f9f7784502a7f",
+  "tip_gwei": 1282.45,
+  "gas_limit": 246077,
+  "max_tip_eth_at_limit": 0.3156,
+  "index": 1,
+  "input_selector": "0x122067ed",
+  "native_value": 0.0,
+  "target_label": {
+   "tag": "labelled",
+   "kind": "venue",
+   "source": "behaviour-2026-09-08-fingerprint",
+   "label": "router or solver (shape: pass-through, 731 txs, 90% flat, 47 counterparties, $120M gross) (behaviour-2026-09-08-fingerprint)"
+  },
+  "events": {
+   "Transfer": 2,
+   "V3Swap": 1
+  },
+  "priced_token_legs": [
+   {
+    "token": "WETH",
+    "amount": 206.41260632507314,
+    "from": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+    "to": "0x51c72848c68a965f66fa7a88855f9f7784502a7f"
+   },
+   {
+    "token": "USDC",
+    "amount": 515540.507672,
+    "from": "0x51c72848c68a965f66fa7a88855f9f7784502a7f",
+    "to": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640"
+   }
+  ]
+ },
+ {
+  "block": 25939916,
+  "utc": "2026-09-09T12:48:47+00:00",
+  "tx": "0x5b7b7b7f0435900d333f30b8a66bf5f707c16bf06dee6fcc91cc21908fa67641",
+  "from": "0xfebe8a071d187793052a6bd2575c38394b920146",
+  "to": "0x726dab825c9d75302fab71e5b59e4e304adfb438",
+  "tip_gwei": 1243.43,
+  "gas_limit": 21000,
+  "max_tip_eth_at_limit": 0.0261,
+  "index": 1,
+  "input_selector": "0x",
+  "native_value": 0.04927384865,
+  "target_label": {},
+  "events": {},
+  "priced_token_legs": []
+ }
+]

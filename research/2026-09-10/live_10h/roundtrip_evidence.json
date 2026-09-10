@@ -1,0 +1,127 @@
+{
+ "window": "research/2026-09-10/live_10h",
+ "pinned_block": 25942222,
+ "pools": [
+  {
+   "pool": "0x28cd762e49726a4f0725a2846c85d19462b3e563",
+   "symbol": "BULL",
+   "tokens": [
+    "0x8e9de09f9b28c262e06d10766093e5069b1dcf3e",
+    "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+   ],
+   "factory": "0x5c69bee701ef814a2b6a3edd4b1652cb9cc5aa6f",
+   "factory_get_pair_matches": true,
+   "factory_get_pair_raw": "0x00000000000000000000000028cd762e49726a4f0725a2846c85d19462b3e563",
+   "reserves": [
+    {
+     "block": 25940869,
+     "raw": "0x000000000000000000000000000000000000000000002ebf96637bf9a4b35a31000000000000000000000000000000000000000000000000007fec31255afa11000000000000000000000000000000000000000000000000000000006aa1120b",
+     "values": [
+      "220763022971522728024625",
+      "36007017866525201",
+      "1788940811"
+     ]
+    },
+    {
+     "block": 25942222,
+     "raw": "0x000000000000000000000000000000000000000000002ebf961cfecdf4a3033a000000000000000000000000000000000000000000000000007f681d474ed1f6000000000000000000000000000000000000000000000000000000006aa18297",
+     "values": [
+      "220763003130647767352122",
+      "35861797001941494",
+      "1788969623"
+     ]
+    }
+   ],
+   "receipts": [
+    {
+     "tx": "0x2d1fc502cbd8c511b2919aadcc0e013a453ae902ea268ef1d91abfc8ad513e40",
+     "block": 25940870,
+     "block_hash_matches": true,
+     "status": 1,
+     "gas_used": 273947,
+     "effective_gas_gwei": 0.239026724,
+     "priority_fee_eth": 0.0,
+     "fee_eth": 6.5480653959628e-05
+    }
+   ],
+   "turnover_usd": 19819950.863410585,
+   "visible_weth_surplus_eth": 0.000145220864583707,
+   "execution_fees_eth": 6.5480653959628e-05,
+   "surplus_less_gas_usd": 0.1966510834618041
+  },
+  {
+   "pool": "0xcb62c2d6894736d4216a41f5812bb9771de056d5",
+   "symbol": "7A\u03a9\u221e",
+   "tokens": [
+    "0x622b6330f226bf08427dcad49c9ea9694604bf2d",
+    "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+   ],
+   "factory": "0x5c69bee701ef814a2b6a3edd4b1652cb9cc5aa6f",
+   "factory_get_pair_matches": true,
+   "factory_get_pair_raw": "0x000000000000000000000000cb62c2d6894736d4216a41f5812bb9771de056d5",
+   "reserves": [
+    {
+     "block": 25939239,
+     "raw": "0x000000000000000000000000000000000000000000001d3363ab17b3adbe47a20000000000000000000000000000000000000000000000000051c0425316d3d3000000000000000000000000000000000000000000000000000000006aa1153b",
+     "values": [
+      "137896593811070152230818",
+      "23010864207942611",
+      "1788941627"
+     ]
+    },
+    {
+     "block": 25942222,
+     "raw": "0x000000000000000000000000000000000000000000001d3362a65a579c7e3028000000000000000000000000000000000000000000000000005154804afac39f000000000000000000000000000000000000000000000000000000006aa1ab23",
+     "values": [
+      "137896520419373083406376",
+      "22892383104058271",
+      "1788980003"
+     ]
+    }
+   ],
+   "receipts": [
+    {
+     "tx": "0xf50f34a5a0885bff97fca92e6b48b07e413dc1124587ca01deca3f0b26b25992",
+     "block": 25939240,
+     "block_hash_matches": true,
+     "status": 1,
+     "gas_used": 287200,
+     "effective_gas_gwei": 0.092653762,
+     "priority_fee_eth": 0.0,
+     "fee_eth": 2.66101604464e-05
+    },
+    {
+     "tx": "0x6f5e4ed35fb08f8c74daa1ce20a924196cbc7a6607d4b521678387f81a6cd881",
+     "block": 25941042,
+     "block_hash_matches": true,
+     "status": 1,
+     "gas_used": 287200,
+     "effective_gas_gwei": 0.123228104,
+     "priority_fee_eth": 0.0,
+     "fee_eth": 3.53911114688e-05
+    },
+    {
+     "tx": "0x709cac9346ae05906fb0e6a9ed9f7afa24cec0f31ecfaec88c3b528e33ba50bd",
+     "block": 25941732,
+     "block_hash_matches": true,
+     "status": 1,
+     "gas_used": 287200,
+     "effective_gas_gwei": 0.059752079,
+     "priority_fee_eth": 0.0,
+     "fee_eth": 1.71607970888e-05
+    }
+   ],
+   "turnover_usd": 14796861.915716242,
+   "visible_weth_surplus_eth": 0.00011848110388434,
+   "execution_fees_eth": 7.9162069004e-05,
+   "surplus_less_gas_usd": 0.09696652102341542
+  }
+ ],
+ "note": "Surplus less gas omits other internal transfers/payments and unpriced assets; it is not complete operator profit.",
+ "rpc": {
+  "credits": 880,
+  "requests": 9,
+  "errors": 0,
+  "keys": 10
+ }
+}

@@ -1197,9 +1197,10 @@ def dec_str(hexdata):
 def head_state(args):
     out = Path(args.out)
     rpc = RPC(log_path=out / 'rpc_errors.jsonl', max_credits=args.max_credits)
-    hn, hts, hh = rpc_head(rpc)
+    state_block = getattr(args, 'block', None)
+    hn, hts, hh = rpc_head(rpc, hex(state_block) if state_block is not None else 'latest')
     blk = hex(hn)
-    # `head` reads state at the *current* block. Pointing it at a window collected hours ago would stamp tonight's
+    # Unpinned `head` reads state at the current block. Pointing it at a window collected hours ago would stamp tonight's
     # prices, rates and NAVs onto yesterday's blocks — and since `analyze` prices the window from `head_state.json`,
     # the whole analysis would then be a mix of two timeframes with nothing saying so. The provenance gate cannot
     # catch this: the labels and the token table would both be unchanged. So it is refused here.
@@ -1217,7 +1218,9 @@ def head_state(args):
                 'refusing: the head is %d blocks past this window (collected to %d, head %d, window %d blocks).\n'
                 'Reading state now would price a past window at present rates. Collect a fresh window, or pass '
                 '--force if you intend the mismatch.' % (drift, last, hn, span))
-    hs = {'block': hn, 'timestamp': hts, 'utc': utc(hts), 'feeds': {}, 'rates': {}, 'tokens': {}, 'lending': {}, 'compound': {}, 'health': [], 'sky': {}, 'ethena': {}}
+    hs = {'block': hn, 'block_hash': hh, 'timestamp': hts, 'utc': utc(hts),
+          'state_basis': 'explicit block' if state_block is not None else 'latest at invocation',
+          'feeds': {}, 'rates': {}, 'tokens': {}, 'lending': {}, 'compound': {}, 'health': [], 'sky': {}, 'ethena': {}}
     # Chainlink feeds with description check
     items = []
     for k, (feed, desc) in FEEDS.items():
@@ -1371,6 +1374,32 @@ def head_state(args):
     if r[2] and r[3]:
         va, ta = word(r[2], 0) / 1e18, word(r[3], 0) / 1e18
         hs['ethena'] = {'vesting_usde_8h': va, 'total_assets_usde': ta, 'apr_from_vesting': va * 3 * 365 / ta if ta else None}
+    enrich_state(rpc, out, hs, blk)
+    hs['rpc'] = rpc.stats()
+    save_head(out, hs)
+
+
+def enrich(args):
+    """Read analysis-discovered borrowers and pools at the saved state block, without re-fetching all rates."""
+    out = Path(args.out)
+    hs = json.loads((out / 'head_state.json').read_text())
+    rpc = RPC(log_path=out / 'rpc_errors.jsonl', max_credits=args.max_credits)
+    enrich_state(rpc, out, hs, hex(hs['block']))
+    hs['rpc_enrichment'] = rpc.stats()
+    save_head(out, hs)
+
+
+def save_head(out, hs):
+    (out / 'head_state.json').write_text(json.dumps(hs, indent=1, sort_keys=True))
+    print(json.dumps({'block': hs['block'], 'feeds_ok': sum(1 for v in hs['feeds'].values() if v.get('usd')),
+                      'rates_ok': sum(1 for v in hs['rates'].values() if v.get('rate')),
+                      'token_mismatches': len(hs['token_registry_mismatches']), 'health_rows': len(hs['health']),
+                      'compound': list(hs['compound']), **hs.get('rpc_enrichment', hs.get('rpc', {}))}, indent=1))
+
+
+def enrich_state(rpc, out, hs, blk):
+    liquidity_state(rpc, hs, blk)
+    hs['health'] = []
     # health factors for accounts named by the analysis
     accounts = []
     ap = out / 'analysis.json'
@@ -1389,7 +1418,8 @@ def head_state(args):
     for (v, a), r in zip(accounts, res):
         if r and len(r) >= 2 + 64 * 6:
             hf = word(r, 5) / 1e18
-            hs['health'].append({'venue': v, 'account': a, 'collateral_usd': word(r, 0) / 1e8, 'debt_usd': word(r, 1) / 1e8, 'liq_threshold': word(r, 3) / 1e4, 'ltv': word(r, 2) / 1e4,
+            hs['health'].append({'venue': v, 'account': a, 'collateral_usd': word(r, 0) / 1e8, 'debt_usd': word(r, 1) / 1e8,
+                                 'available_borrow_usd': word(r, 2) / 1e8, 'liq_threshold': word(r, 3) / 1e4, 'ltv': word(r, 4) / 1e4,
                                  'health_factor': hf if hf < 1e6 else None, 'drop_to_liquidation': (1 - 1 / hf) if 0 < hf < 1e6 else None})
     hs['health'].sort(key=lambda h: -h['debt_usd'])
     # Morpho market params for markets named in the window
@@ -1424,10 +1454,45 @@ def head_state(args):
         for i, a in enumerate(unknown):
             s, d = res[2 * i], res[2 * i + 1]
             hs['tokens'][a] = {'symbol': dec_str(s) if s else None, 'decimals': word(d, 0) if d else None}
-    hs['rpc'] = rpc.stats()
-    (out / 'head_state.json').write_text(json.dumps(hs, indent=1, sort_keys=True))
-    print(json.dumps({'block': hn, 'feeds_ok': sum(1 for v in hs['feeds'].values() if v.get('usd')), 'rates_ok': sum(1 for v in hs['rates'].values() if v.get('rate')),
-                      'token_mismatches': len(mismatches), 'health_rows': len(hs['health']), 'compound': list(hs['compound']), **rpc.stats()}, indent=1))
+
+
+def liquidity_state(rpc, hs, blk):
+    """Underlying cash at the saved block, plus protocol pause flags. Not account-specific withdrawability."""
+    pxs = Prices(hs).usd
+    jobs, refs = [], []
+    for rows in hs.get('lending', {}).values():
+        for token, row in rows.items():
+            if token not in TOKENS or not row.get('aToken'):
+                continue
+            jobs.append((token, SEL['balanceOf'] + enc_addr(row['aToken'])))
+            refs.append((token, row))
+    for (token, row), raw in zip(refs, rpc.eth_calls(jobs, blk) if jobs else []):
+        _, dec, key = TOKENS[token]
+        px = pxs.get(key)
+        row['cash_usd'] = word(raw, 0) / 10**dec * px if raw and px is not None else None
+        config = row.get('config')
+        active = bool((config >> 56) & 1) if config is not None else None
+        paused = bool((config >> 60) & 1) if config is not None else None
+        frozen = bool((config >> 57) & 1) if config is not None else None
+        row['withdraw_enabled'] = active and not paused if active is not None else None
+        row['supply_enabled'] = active and not paused and not frozen if active is not None else None
+        row['available_usd'] = 0.0 if row['withdraw_enabled'] is False else row['cash_usd']
+        row['liquidity_basis'] = 'underlying balanceOf(aToken), reserve active/paused flags'
+    for comet, venue in COMETS.items():
+        row = hs.get('compound', {}).get(venue)
+        if not row or row.get('base_token') not in TOKENS:
+            continue
+        token = row['base_token']
+        cash, paused, supply_paused = rpc.eth_calls([
+            (token, SEL['balanceOf'] + enc_addr(comet)), (comet, sel('isWithdrawPaused()')),
+            (comet, sel('isSupplyPaused()'))], blk)
+        _, dec, key = TOKENS[token]
+        px = pxs.get(key)
+        row['cash_usd'] = word(cash, 0) / 10**dec * px if cash and px is not None else None
+        row['withdraw_enabled'] = not bool(word(paused, 0)) if paused else None
+        row['supply_enabled'] = not bool(word(supply_paused, 0)) if supply_paused else None
+        row['available_usd'] = 0.0 if row['withdraw_enabled'] is False else row['cash_usd']
+        row['liquidity_basis'] = 'underlying balanceOf(Comet), isWithdrawPaused'
 
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -1662,18 +1727,30 @@ def render(args):
              % (w['first_block'], w['last_block'], w['blocks'], w['hours'], f"{w['transactions']:,}", f"{w['logs']:,}", hs.get('block'),
                 usd_fmt(an['price_basis'].get('ETH')), usd_fmt(an['price_basis'].get('BTC')), utc()))
     L.append(ins)
+    flagged_pools = set()
+    detector_path = out / 'detectors.json'
+    if detector_path.exists():
+        detectors = json.loads(detector_path.read_text())
+        if Path(detectors.get('window', '')).resolve() == out.resolve():
+            flagged_pools = {h['key'] for h in detectors.get('hits', [])
+                             if h['detector'] == 'recycled_swap_volume'}
     L.append('\n---\n\n## A. Passive LP economics (fees to in-range liquidity, minus what just-in-time liquidity takes)\n')
     L.append('Per pool with at least 3 priced swaps and $200k of volume. `full-range capital` is the USD value a full-range position would need to hold the pool\'s in-range liquidity '
              '(2·L·√P); the band APRs scale that by the capital a ±1%% or ±0.1%% band needs for the same liquidity (×%.0f and ×%.0f) and assume the price stays inside the band, so they are '
              'gross ceilings before impermanent loss and rebalancing, not returns. `price range` is the max/min of the pool price in the window. Fees are the fee tier times input volume; '
              'v4 tiers come from the event, v3 tiers from `fee()`, v2-like pools are assumed 0.30%%.\n' % (1 / (1 - 1 / math.sqrt(1.01)), 1 / (1 - 1 / math.sqrt(1.001))))
+    if flagged_pools:
+        L.append('**Recycled turnover:** the detector found same-pool atomic round trips in %d pool(s). '
+                 'For flagged rows, `fees*` is only gross volume times an assumed tier; realized passive income is '
+                 'unmeasured. Token balance changes through the round trip can contradict that USD fee estimate. '
+                 'See [detector evidence](detectors.md).\n' % len(flagged_pools))
     L.append('| pool | venue | pair | tier | swaps | volume | fees | to JIT | passive fees | full-range capital | APR full-range | APR ±1% band | price range |')
     L.append('|---|---|---|---|---|---|---|---|---|---|---|---|---|')
     for r in an['lp'][:45]:
         L.append('| %s | %s | %s | %s | %d | %s | %s | %s | %s | %s | %s | %s | %s |' % (
             link_addr(r['pool']) if r['venue'] != 'uniswap_v4' else short(r['pool']), r['venue'].replace('uniswap_', 'uni '), r['pair'], pct(r['fee_tier'], 2) if r['fee_tier'] is not None else '?', r['swaps'],
-            usd_fmt(r['volume_usd']), usd_fmt(r['fees_usd']) if r['fees_usd'] else '–', usd_fmt(r['fees_to_jit_usd']) if r['fees_to_jit_usd'] else '$0',
-            usd_fmt(r['passive_fees_usd']) if r['passive_fees_usd'] is not None else '–', usd_fmt(r['full_range_capital_usd']),
+            usd_fmt(r['volume_usd']), (usd_fmt(r['fees_usd']) + ('*' if r['pool'] in flagged_pools else '')) if r['fees_usd'] else '–', usd_fmt(r['fees_to_jit_usd']) if r['fees_to_jit_usd'] else '$0',
+            'unmeasured*' if r['pool'] in flagged_pools else (usd_fmt(r['passive_fees_usd']) if r['passive_fees_usd'] is not None else '–'), usd_fmt(r['full_range_capital_usd']),
             pct(r.get('apr_full_range'), 2) if r.get('apr_full_range') is not None else '–', pct(r.get('apr_band_1pct'), 1) if r.get('apr_band_1pct') is not None else '–',
             ('%.3f%%' % r['price_range_pct']) if r.get('price_range_pct') is not None else '–'))
     j = an['jit']
@@ -2065,12 +2142,13 @@ def pipeline_cmd(args):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument('command', choices=['analyze', 'head', 'render', 'live', 'midnight', 'show', 'verify', 'detect',
+    p.add_argument('command', choices=['analyze', 'head', 'enrich', 'render', 'live', 'midnight', 'show', 'verify', 'detect',
                                        'pipeline'])
     p.add_argument('hashes', nargs='*')
     p.add_argument('--out', default=str(ROOT / 'research' / '2026-09-06' / 'live'))
     p.add_argument('--first', type=int)
     p.add_argument('--last', type=int)
+    p.add_argument('--block', type=int, help='head: read all state at this block instead of the latest head')
     p.add_argument('--hours', type=float, default=1.0, help='live: trailing window to re-analyse')
     p.add_argument('--every', type=int, default=10, help='live: re-analyse every N new blocks')
     p.add_argument('--lag', type=int, default=0)
@@ -2081,7 +2159,7 @@ def main():
     p.add_argument('--mechanisms', action='store_true', help='verify: also run the source-backed mechanism assertions')
     p.add_argument('--force', action='store_true', help='head: read current state even for a window collected long ago')
     args = p.parse_args()
-    {'analyze': analyze, 'head': head_state, 'render': render, 'live': live, 'midnight': midnight, 'show': show,
+    {'analyze': analyze, 'head': head_state, 'enrich': enrich, 'render': render, 'live': live, 'midnight': midnight, 'show': show,
      'verify': verify_cmd, 'detect': detect_cmd, 'pipeline': pipeline_cmd}[args.command](args)
 
 

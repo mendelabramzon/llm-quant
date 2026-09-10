@@ -1,0 +1,46 @@
+{
+  "blocks_present": 1492,
+  "chain": "ethereum",
+  "chain_id": 1,
+  "collect_errors": [],
+  "collect_finished": "2026-09-10T10:53:48+00:00",
+  "collect_started": "2026-09-10T10:46:00+00:00",
+  "complete": true,
+  "end_tag": "finalized",
+  "end_timestamp": 1789036248,
+  "end_utc": "2026-09-10T10:30:48+00:00",
+  "endpoint": {
+    "hash": "0x165c037d072a4c312ae3a5b4c76d243bd135d97dc2c6484590493e11b5ede7d1",
+    "number": 25946402,
+    "timestamp": 1789036247
+  },
+  "finalized_at_start": {
+    "hash": "0x165c037d072a4c312ae3a5b4c76d243bd135d97dc2c6484590493e11b5ede7d1",
+    "number": 25946402,
+    "timestamp": 1789036247,
+    "utc": "2026-09-10T10:30:47+00:00"
+  },
+  "first_block": 25944911,
+  "head_at_collect": {
+    "hash": "0x165c037d072a4c312ae3a5b4c76d243bd135d97dc2c6484590493e11b5ede7d1",
+    "number": 25946402,
+    "timestamp": 1789036247,
+    "utc": "2026-09-10T10:30:47+00:00"
+  },
+  "keys_in_rotation": 10,
+  "last_block": 25946402,
+  "last_block_at_collect": 25946402,
+  "log_range_splits": 0,
+  "logs_present": 1492,
+  "provider": "Infura",
+  "rpc": {
+    "credits": 184410,
+    "errors": 2,
+    "keys": 10,
+    "requests": 638
+  },
+  "start_timestamp": 1789018248,
+  "start_utc": "2026-09-10T05:30:48+00:00",
+  "window": "trailing 5.00 h ending at finalized minus 0 blocks",
+  "window_definition": "[start_timestamp, end_timestamp)"
+}

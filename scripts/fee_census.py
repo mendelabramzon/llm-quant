@@ -41,8 +41,34 @@ def census_blocks(out, every):
     stride is used rather than a random sample so the series stays evenly spaced in time and the diurnal profile is
     not distorted; the sampling share is recorded in the output and every rate is reported per-gas, not per-block, so
     the estimate does not depend on the sampled blocks being average-sized."""
+    if every < 1:
+        raise ValueError('every must be positive')
     nums = blocks_in(out)
     return nums[::every] if every > 1 else nums
+
+
+def weighted_quantile(rows, fraction):
+    """A gas-weighted quantile; rows are (gwei, gas actually used)."""
+    total = sum(w for _, w in rows)
+    if total <= 0:
+        raise ValueError('no gas observations')
+    cumulative = 0
+    for value, weight in sorted(rows):
+        cumulative += weight
+        if cumulative >= fraction * total:
+            return value
+
+
+def validate_receipts(block, receipts):
+    """A partial or unrelated receipt set must never produce a plausible fee census."""
+    hashes = [r['h'] for r in receipts]
+    if len(hashes) != len(set(hashes)) or set(hashes) != {t['hash'] for t in block['transactions']}:
+        raise ValueError('receipt transaction set differs from block %s' % block['number'])
+    if sum(r['gu'] for r in receipts) != hx(block['gasUsed']):
+        raise ValueError('receipt gas does not sum to block gasUsed at %s' % block['number'])
+    base = hx(block['baseFeePerGas'])
+    if any(r['egp'] < base or r['gu'] < 0 or r['st'] not in (0, 1) for r in receipts):
+        raise ValueError('invalid receipt fee, gas or status at %s' % block['number'])
 
 
 def cmd_receipts(args):
@@ -57,7 +83,7 @@ def cmd_receipts(args):
     def fetch(chunk):
         res = rpc.batch([('eth_getBlockReceipts', [hex(n)]) for n in chunk])
         for n, r in zip(chunk, res):
-            if not r:
+            if r is None:
                 raise RuntimeError('no receipts for %d' % n)
             p = rpath(out, n)
             p.parent.mkdir(parents=True, exist_ok=True)
@@ -86,19 +112,32 @@ def cmd_analyze(args):
     if eth is None:
         hs = json.loads((out / 'head_state.json').read_text())
         eth = hs['feeds']['ETH']['usd']
-    nums = [n for n in census_blocks(out, args.every) if rpath(out, n).exists()]
+    if args.bucket <= 0:
+        raise ValueError('bucket must be positive')
+    nums = census_blocks(out, args.every)
+    missing = [n for n in nums if not rpath(out, n).exists()]
+    if not nums or missing:
+        raise ValueError('receipt census incomplete: %d missing of %d target blocks' % (len(missing), len(nums)))
     all_blocks = blocks_in(out)
-    base, ts = {}, {}
-    for n in nums:
+    base, ts, headers = {}, {}, {}
+    full_burn = full_gas = 0
+    selected = set(nums)
+    for n in all_blocks:
         with gzip.open(Path(out) / 'raw' / 'blocks' / (str(n) + '.json.gz'), 'rt') as f:
             b = json.load(f)
-        base[n] = hx(b['baseFeePerGas'])
-        ts[n] = hx(b['timestamp'])
+        full_burn += hx(b['baseFeePerGas']) * hx(b['gasUsed'])
+        full_gas += hx(b['gasUsed'])
+        if n in selected:
+            base[n] = hx(b['baseFeePerGas'])
+            ts[n] = hx(b['timestamp'])
+            headers[n] = {'number': b['number'], 'gasUsed': b['gasUsed'], 'baseFeePerGas': b['baseFeePerGas'],
+                          'transactions': [{'hash': t['hash']} for t in b['transactions']]}
     burn = tip = 0
     gas_total = 0
     by_sender = collections.defaultdict(lambda: {'txs': 0, 'gas': 0, 'tip_wei': 0, 'burn_wei': 0, 'failed': 0})
     by_target = collections.defaultdict(lambda: {'txs': 0, 'gas': 0, 'tip_wei': 0})
     tip_gwei_weighted = []
+    effective_gwei_weighted = []
     failed_gas = 0
     n_tx = 0
     buckets = collections.OrderedDict()   # the diurnal profile: is the ratio a property of the hour, or of the chain?
@@ -108,6 +147,7 @@ def cmd_analyze(args):
             continue
         with gzip.open(p, 'rt') as f:
             rs = json.load(f)
+        validate_receipts(headers[n], rs)
         bf = base[n]
         for x in rs:
             gu, egp = x['gu'], x['egp']
@@ -125,6 +165,7 @@ def cmd_analyze(args):
                 d = by_target[x['t'].lower()]
                 d['txs'] += 1; d['gas'] += gu; d['tip_wei'] += gu * t
             tip_gwei_weighted.append((t / 1e9, gu))
+            effective_gwei_weighted.append((egp / 1e9, gu))
             bk = ts[n] - (ts[n] % (args.bucket * 60))
             bb = buckets.setdefault(bk, {'gas': 0, 'burn_wei': 0, 'tip_wei': 0, 'txs': 0, 'blocks': set(), 'base_wei': 0})
             bb['gas'] += gu; bb['burn_wei'] += gu * bf; bb['tip_wei'] += gu * t; bb['txs'] += 1
@@ -161,9 +202,21 @@ def cmd_analyze(args):
 
     A = {'window': str(out), 'blocks': len(nums), 'blocks_in_window': len(all_blocks),
          'sample_every': args.every, 'sample_share': len(nums) / max(len(all_blocks), 1),
+         'first_block': all_blocks[0], 'last_block': all_blocks[-1],
+         'sample_complete': True, 'receipt_checks': 'transaction sets and gas totals match every sampled block',
          'series_bucket_minutes': args.bucket, 'series': series,
          'transactions': n_tx, 'eth_usd': eth,
          'gas_used': gas_total,
+         'window_gas_used': full_gas,
+         'window_base_fee_burn_eth_exact': full_burn / 1e18,
+         'window_base_fee_burn_usd_exact': full_burn / 1e18 * eth,
+         'gas_weighted_effective_gwei': {'p%d' % q: weighted_quantile(effective_gwei_weighted, q / 100)
+                                          for q in (50, 75, 90, 99)},
+         'gas_weighted_tip_gwei': {'p%d' % q: weighted_quantile(tip_gwei_weighted, q / 100)
+                                    for q in (50, 75, 90, 99)},
+         'gas_tip_shares': {'exactly_zero': sum(w for g, w in tip_gwei_weighted if g == 0) / gas_total,
+                           'at_most_0_01_gwei': sum(w for g, w in tip_gwei_weighted if g <= 0.01) / gas_total,
+                           'above_1_gwei': sum(w for g, w in tip_gwei_weighted if g > 1) / gas_total},
          'base_fee_burn_eth': burn / 1e18, 'base_fee_burn_usd': burn / 1e18 * eth,
          'priority_fees_eth': tip / 1e18, 'priority_fees_usd': tip / 1e18 * eth,
          'tip_over_burn_ratio': (tip / burn) if burn else None,
@@ -175,9 +228,9 @@ def cmd_analyze(args):
          'note': ('figures are the totals over the %d sampled blocks (%.1f%% of the window); scale by the inverse '
                   'share for a window estimate, but the ratios and per-gas rates need no scaling. ' %
                   (len(nums), 100 * len(nums) / max(len(all_blocks), 1))) +
-                 'the burn is protocol revenue destroyed; the priority fee is paid to the block builder and, through '
-                 'the auction, to the proposer. When the ratio exceeds one the chain is charging less for its '
-                 'blockspace than the private market clearing it is charging for position inside a block.'}
+                 'window_base_fee_burn_*_exact uses every block header, without extrapolation. '
+                 'Priority fees exclude direct builder/proposer payments, MEV revenue and blob fees. '
+                 'Gas price quantiles describe observed execution costs, not an inclusion guarantee.'}
     (out / 'fee_census.json').write_text(json.dumps(A, indent=2, sort_keys=True))
     print(json.dumps({k: v for k, v in A.items() if not isinstance(v, (list, dict))}, indent=1))
     return 0

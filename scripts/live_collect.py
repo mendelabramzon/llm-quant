@@ -2,8 +2,9 @@
 """Collect a trailing window of Ethereum mainnet blocks (full transactions) and their logs, then keep tailing the head.
 
 Layout matches `eth_day_collect.py`: `<out>/raw/blocks/<n>.json.gz` and `<out>/raw/logs/<n>.json.gz`, plus `manifest.json`.
-Unlike the day collector, the window ends at the current head (not the finalized block), so `tail` re-checks parent hashes
-and replaces any block that was reorganised away. Receipts are not fetched.
+By default the window ends at the current head; --end-tag finalized pins a finalized window. Resuming collect keeps
+both boundaries fixed; use tail to extend it. `tail` re-checks parent hashes and replaces reorganised blocks.
+Receipts are not fetched.
 
     uv run python scripts/live_collect.py collect --out research/2026-09-06/live --hours 1
     uv run python scripts/live_collect.py tail --out research/2026-09-06/live        # keeps fetching new blocks until stopped
@@ -103,24 +104,44 @@ def fetch_logs(rpc, out, a, b, splits=None):
 
 
 def collect(args):
+    if args.hours <= 0 or args.lag < 0 or min(args.workers, args.block_batch, args.log_range) < 1:
+        raise ValueError('duration and batch sizes must be positive; lag must be nonnegative')
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     rpc = RPC(log_path=out / 'rpc_errors.jsonl', max_credits=args.max_credits)
-    hn, hts, hh = head(rpc)
     mpath = out / 'manifest.json'
     manifest = json.loads(mpath.read_text()) if mpath.exists() else {}
     if manifest.get('first_block'):
         first = manifest['first_block']
+        last = manifest.get('last_block', manifest.get('last_block_at_collect'))
+        if last is None:
+            raise ValueError('existing manifest has no pinned end block')
     else:
-        first = first_block_at(rpc, hts - int(args.hours * 3600), hn)
-    last = hn - args.lag
-    manifest.update({'chain': 'ethereum', 'chain_id': 1, 'provider': 'Infura', 'window': 'trailing %.2f h ending at the head minus %d blocks' % (args.hours, args.lag),
-                     'first_block': first, 'last_block_at_collect': last, 'head_at_collect': {'number': hn, 'timestamp': hts, 'utc': utc(hts), 'hash': hh},
-                     'collect_started': manifest.get('collect_started') or utc(), 'keys_in_rotation': len(rpc.keys)})
+        if hx(rpc.call('eth_chainId', [])) != 1:
+            raise RPCError('expected Ethereum mainnet chain id 1')
+        tag = getattr(args, 'end_tag', 'latest')
+        hn, hts, hh = head(rpc, tag)
+        last = hn - args.lag
+        if last < 0:
+            raise ValueError('lag exceeds chain height')
+        en, ets, eh = head(rpc, hex(last)) if args.lag else (hn, hts, hh)
+        end = ets + 1  # exclusive bound includes the pinned endpoint block
+        start = end - int(args.hours * 3600)
+        first = first_block_at(rpc, start, last)
+        manifest.update({'chain': 'ethereum', 'chain_id': 1, 'provider': 'Infura',
+                         'window': 'trailing %.2f h ending at %s minus %d blocks' % (args.hours, tag, args.lag),
+                         'window_definition': '[start_timestamp, end_timestamp)', 'end_tag': tag,
+                         'start_timestamp': start, 'end_timestamp': end, 'start_utc': utc(start), 'end_utc': utc(end),
+                         'first_block': first, 'last_block': last, 'last_block_at_collect': last,
+                         'head_at_collect': {'number': hn, 'timestamp': hts, 'utc': utc(hts), 'hash': hh},
+                         'endpoint': {'number': en, 'timestamp': ets, 'hash': eh},
+                         'collect_started': utc(), 'keys_in_rotation': len(rpc.keys)})
+        if tag == 'finalized':
+            manifest['finalized_at_start'] = manifest['head_at_collect']
     (mpath).write_text(json.dumps(manifest, indent=2, sort_keys=True))
     missing_blocks = [n for n in range(first, last + 1) if not block_path(out, n).exists()]
     missing_logs = [n for n in range(first, last + 1) if not logs_path(out, n).exists()]
-    print(json.dumps({'first': first, 'last': last, 'blocks': last - first + 1, 'missing_blocks': len(missing_blocks), 'missing_logs': len(missing_logs), 'start_utc': utc(hts - int(args.hours * 3600))}), flush=True)
+    print(json.dumps({'first': first, 'last': last, 'blocks': last - first + 1, 'missing_blocks': len(missing_blocks), 'missing_logs': len(missing_logs), 'start_utc': manifest.get('start_utc'), 'end_utc': manifest.get('end_utc')}), flush=True)
     runs, run = [], []
     for n in missing_logs:
         if run and (n != run[-1] + 1 or len(run) >= args.log_range):
@@ -147,6 +168,8 @@ def collect(args):
                      'collect_finished': utc(), 'collect_errors': errors[:20], 'log_range_splits': len(splits), 'rpc': rpc.stats()})
     mpath.write_text(json.dumps(manifest, indent=2, sort_keys=True))
     print(json.dumps({'complete': manifest['complete'], 'blocks_present': present_b, 'logs_present': present_l, 'errors': len(errors), 'seconds': int(time.monotonic() - started), **rpc.stats()}), flush=True)
+    if not manifest['complete']:
+        raise SystemExit('collection incomplete; resume the same output directory')
 
 
 def chain_check(out, first, last):
@@ -217,6 +240,8 @@ def main():
     p.add_argument('command', choices=['collect', 'tail'])
     p.add_argument('--out', default=str(ROOT / 'research' / '2026-09-06' / 'live'))
     p.add_argument('--hours', type=float, default=1.0)
+    p.add_argument('--end-tag', choices=['latest', 'safe', 'finalized'], default='latest',
+                   help='collect: endpoint for a new window; resume preserves its original boundaries')
     p.add_argument('--lag', type=int, default=0, help='stay this many blocks behind the head')
     p.add_argument('--workers', type=int, default=6)
     p.add_argument('--block-batch', type=int, default=4)
