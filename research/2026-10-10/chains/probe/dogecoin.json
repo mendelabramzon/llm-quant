@@ -1,0 +1,69 @@
+{
+ "tx": {
+  "count": 17919,
+  "se": null,
+  "method": "aggregator-24h",
+  "blocks": 1359,
+  "mempool_transactions": 31,
+  "avg_fee_native": 0.41740677,
+  "note": "Blockchair transactions_24h (its count; coinbase included)"
+ },
+ "transfers": {
+  "assets": [
+   {
+    "asset": "native:DOGE",
+    "symbol": "DOGE",
+    "class": "native",
+    "transfers": 17919,
+    "transfers_se": 0,
+    "amount": 12445943377.511568,
+    "price": 0.08586510635150331,
+    "usd": 1068672251.754819,
+    "usd_se": 0.0,
+    "top_block_share": null,
+    "units_seen": 1,
+    "gross_amount": 12445943377.511568,
+    "gross_usd": 1068672251.754819,
+    "note": "Blockchair volume_24h: gross outputs over its trailing 24 h (change included)",
+    "price_source": "defillama:coingecko:dogecoin"
+   }
+  ],
+  "unpriced_top": [],
+  "unpriced_assets": 0,
+  "unpriced_transfers": 0,
+  "priced_usd": 1068672251.754819,
+  "usd_by_class": {
+   "native": 1068672251.754819
+  },
+  "gross_priced_usd": 1068672251.754819,
+  "method": "aggregator-24h (blockchair); GROSS outputs, change included"
+ },
+ "window": {
+  "start_ts": 1791541341,
+  "end_ts": 1791627741,
+  "start_utc": "2026-10-09T10:22:21+00:00",
+  "end_utc": "2026-10-10T10:22:21+00:00",
+  "hours": 24.0
+ },
+ "probe_window": {
+  "start_ts": 1791504000,
+  "end_ts": 1791590400,
+  "start_utc": "2026-10-09T00:00:00+00:00",
+  "end_utc": "2026-10-10T00:00:00+00:00",
+  "hours": 24.0
+ },
+ "endpoint": "https://api.blockchair.com/stats",
+ "calls": 1,
+ "notes": [
+  "window is Blockchair's trailing 24 h ending at its best block (2026-10-10 10:22:21 UTC), not the probe window"
+ ],
+ "errors": [],
+ "error_count": 0,
+ "seconds": 0.8,
+ "chain": "dogecoin",
+ "name": "Dogecoin",
+ "family": "utxo",
+ "adapter": "blockchair",
+ "ok": true,
+ "probed_at": "2026-10-10T10:24:15+00:00"
+}

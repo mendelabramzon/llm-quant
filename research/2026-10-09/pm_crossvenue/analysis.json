@@ -1,0 +1,1014 @@
+{
+ "generated": "2026-10-09T21:30:11.089587+00:00",
+ "ssr": 0.038,
+ "universe": {
+  "kalshi_events_with_markets": 2770,
+  "pm_events_active": 23089,
+  "candidate_pairs": 3944
+ },
+ "matches": {
+  "pairs": 3226,
+  "by_class": {
+   "election_party": 944,
+   "chamber_control": 4,
+   "tennis": 164,
+   "basketball_hockey": 126,
+   "combat": 20,
+   "other_sport": 33,
+   "esports": 172,
+   "soccer": 1398,
+   "football": 322,
+   "baseball": 32,
+   "fomc": 5,
+   "cpi_release": 6
+  },
+  "acceptance": {
+   "accepted events": 1373,
+   "mapping not one-to-one": 61,
+   "non-sports pair left to manual review": 185,
+   "weak label overlap": 224,
+   "not every Kalshi market mapped": 74,
+   "no candidate for the same office and place": 56,
+   "no candidate of the same sport": 152
+  },
+  "rules_match": {
+   "near-identical": 3220,
+   "identical": 6
+  },
+  "events": 1378
+ },
+ "snapshots": [
+  {
+   "generated": "2026-10-09T20:55:31.882110+00:00",
+   "structures": 6508,
+   "with_touch_on_all_legs": 6407,
+   "median_gross_gap": -0.020000000000000018,
+   "p95_gross_gap": 0.0,
+   "gross_positive_share": 0.0309036990791322,
+   "screened_for_confirmation": 198,
+   "confirmed_positive_after_fees": 59,
+   "confirmed_net_per_set_median": 0.0038388200402805855,
+   "touch_contracts_total": 4801.74,
+   "touch_profit_total": 16.351904411199836,
+   "walk_profit_total": 30.159152163335985,
+   "walk_capital_total": 8584.460847836664,
+   "walk_apr_net_ssr_median": -0.0011520730894078318,
+   "walk_apr_net_ssr_positive": 28,
+   "best": {
+    "id": "KXHOUSERACE-WA05-26-D:yes",
+    "class": "election_party",
+    "kalshi_title": "WA-05 House winner?",
+    "kalshi_label": "Carmela Conroy",
+    "pm_title": "WA-05 House Election Winner",
+    "profit": 4.585246555226718,
+    "cost": 979.4147534447733,
+    "sets": 984.0,
+    "days": 32.33536794795139,
+    "apr_net_ssr": 0.014845876900588764
+   },
+   "by_class": {
+    "election_party": {
+     "structures": 1879,
+     "gross_positive": 163,
+     "confirmed_positive": 57,
+     "touch_profit": 16.145628231199836,
+     "walk_profit": 29.940375983335983,
+     "walk_capital": 8528.339624016664,
+     "median_gross_gap": -0.020000000000000018,
+     "p95_gross_gap": 0.007000000000000006
+    },
+    "chamber_control": {
+     "structures": 8,
+     "gross_positive": 2,
+     "median_gross_gap": -0.00550000000000006,
+     "p95_gross_gap": 0.020000000000000018
+    },
+    "tennis": {
+     "structures": 320,
+     "gross_positive": 5,
+     "median_gross_gap": -0.020000000000000018,
+     "p95_gross_gap": 0.0
+    },
+    "basketball_hockey": {
+     "structures": 248,
+     "gross_positive": 0,
+     "median_gross_gap": -0.08499999999999996,
+     "p95_gross_gap": -0.020000000000000018
+    },
+    "combat": {
+     "structures": 40,
+     "gross_positive": 1,
+     "median_gross_gap": -0.010000000000000009,
+     "p95_gross_gap": 0.0
+    },
+    "esports": {
+     "structures": 322,
+     "gross_positive": 13,
+     "confirmed_positive": 1,
+     "touch_profit": 0.19769250000000227,
+     "walk_profit": 0.210192499999998,
+     "walk_capital": 38.5298075,
+     "median_gross_gap": -0.14500000000000002,
+     "p95_gross_gap": 0.0
+    },
+    "soccer": {
+     "structures": 2782,
+     "gross_positive": 6,
+     "median_gross_gap": -0.020000000000000018,
+     "p95_gross_gap": -0.010000000000000009
+    },
+    "football": {
+     "structures": 627,
+     "gross_positive": 1,
+     "median_gross_gap": -0.030000000000000027,
+     "p95_gross_gap": 0.0
+    },
+    "other_sport": {
+     "structures": 58,
+     "gross_positive": 0,
+     "median_gross_gap": -0.42500000000000004,
+     "p95_gross_gap": -0.018999999999999906
+    },
+    "baseball": {
+     "structures": 64,
+     "gross_positive": 1,
+     "median_gross_gap": -0.050000000000000044,
+     "p95_gross_gap": 0.0
+    },
+    "fomc": {
+     "structures": 7,
+     "gross_positive": 0,
+     "median_gross_gap": -0.010000000000000009,
+     "p95_gross_gap": -0.006000000000000005
+    },
+    "cpi_release": {
+     "structures": 52,
+     "gross_positive": 6,
+     "confirmed_positive": 1,
+     "touch_profit": 0.008583679999997429,
+     "walk_profit": 0.008583680000000982,
+     "walk_capital": 17.59141632,
+     "median_gross_gap": -0.012499999999999956,
+     "p95_gross_gap": 0.010000000000000009
+    }
+   }
+  },
+  {
+   "generated": "2026-10-09T21:23:28.781418+00:00",
+   "structures": 6508,
+   "with_touch_on_all_legs": 6392,
+   "median_gross_gap": -0.020000000000000018,
+   "p95_gross_gap": 0.0,
+   "gross_positive_share": 0.03160200250312891,
+   "screened_for_confirmation": 202,
+   "confirmed_positive_after_fees": 57,
+   "confirmed_net_per_set_median": 0.003969884762988249,
+   "touch_contracts_total": 3998.49,
+   "touch_profit_total": 13.473972055199985,
+   "walk_profit_total": 26.050802026388787,
+   "walk_capital_total": 7276.639197973612,
+   "walk_apr_net_ssr_median": -0.0012328662991656775,
+   "walk_apr_net_ssr_positive": 28,
+   "best": {
+    "id": "KXHOUSERACE-LA03-26-R:no",
+    "class": "election_party",
+    "kalshi_title": "LA-03 House winner?",
+    "kalshi_label": "Republican party",
+    "pm_title": "LA-03 House Election Winner",
+    "profit": 4.225979842589027,
+    "cost": 668.774020157411,
+    "sets": 673.0,
+    "days": 32.315174172256945,
+    "apr_net_ssr": 0.033373072175168376
+   },
+   "by_class": {
+    "election_party": {
+     "structures": 1878,
+     "gross_positive": 163,
+     "confirmed_positive": 54,
+     "touch_profit": 11.663653375199994,
+     "walk_profit": 24.198210846388783,
+     "walk_capital": 7058.031789153614,
+     "median_gross_gap": -0.020000000000000018,
+     "p95_gross_gap": 0.007000000000000006
+    },
+    "chamber_control": {
+     "structures": 8,
+     "gross_positive": 2,
+     "median_gross_gap": -0.00550000000000006,
+     "p95_gross_gap": 0.020000000000000018
+    },
+    "tennis": {
+     "structures": 318,
+     "gross_positive": 6,
+     "median_gross_gap": -0.020000000000000018,
+     "p95_gross_gap": 0.0
+    },
+    "basketball_hockey": {
+     "structures": 248,
+     "gross_positive": 0,
+     "median_gross_gap": -0.08999999999999986,
+     "p95_gross_gap": -0.020000000000000018
+    },
+    "combat": {
+     "structures": 40,
+     "gross_positive": 1,
+     "median_gross_gap": -0.010000000000000009,
+     "p95_gross_gap": 0.0
+    },
+    "other_sport": {
+     "structures": 58,
+     "gross_positive": 4,
+     "median_gross_gap": -0.41999999999999993,
+     "p95_gross_gap": 0.020000000000000018
+    },
+    "esports": {
+     "structures": 320,
+     "gross_positive": 8,
+     "confirmed_positive": 2,
+     "touch_profit": 1.8017349999999936,
+     "walk_profit": 1.8440075000000036,
+     "walk_capital": 201.0159925,
+     "median_gross_gap": -0.1299999999999999,
+     "p95_gross_gap": 0.0
+    },
+    "football": {
+     "structures": 627,
+     "gross_positive": 2,
+     "median_gross_gap": -0.030000000000000027,
+     "p95_gross_gap": 0.0
+    },
+    "baseball": {
+     "structures": 64,
+     "gross_positive": 1,
+     "median_gross_gap": -0.05500000000000005,
+     "p95_gross_gap": 0.0
+    },
+    "soccer": {
+     "structures": 2772,
+     "gross_positive": 8,
+     "median_gross_gap": -0.020000000000000018,
+     "p95_gross_gap": -0.010000000000000009
+    },
+    "fomc": {
+     "structures": 7,
+     "gross_positive": 0,
+     "median_gross_gap": -0.010000000000000009,
+     "p95_gross_gap": -0.006000000000000005
+    },
+    "cpi_release": {
+     "structures": 52,
+     "gross_positive": 7,
+     "confirmed_positive": 1,
+     "touch_profit": 0.008583679999997429,
+     "walk_profit": 0.008583680000000982,
+     "walk_capital": 17.59141632,
+     "median_gross_gap": -0.015999999999999903,
+     "p95_gross_gap": 0.010000000000000009
+    }
+   }
+  }
+ ],
+ "history": {
+  "pairs": 115,
+  "days": 90.0,
+  "pm_half_spread": 0.005,
+  "by_class": {
+   "chamber_control": {
+    "pairs": 4,
+    "hours": 8455,
+    "hours_positive": 2584,
+    "hours_positive_ub": 3877,
+    "hours_over_1c": 729,
+    "episodes": 98,
+    "share_positive": 0.3056179775280899,
+    "share_positive_ub": 0.4585452395032525
+   },
+   "fomc": {
+    "pairs": 5,
+    "hours": 5717,
+    "hours_positive": 346,
+    "hours_positive_ub": 1403,
+    "hours_over_1c": 159,
+    "episodes": 115,
+    "share_positive": 0.06052125240510758,
+    "share_positive_ub": 0.24540843099527723
+   },
+   "cpi_release": {
+    "pairs": 6,
+    "hours": 1617,
+    "hours_positive": 214,
+    "hours_positive_ub": 704,
+    "hours_over_1c": 27,
+    "episodes": 49,
+    "share_positive": 0.13234384662956092,
+    "share_positive_ub": 0.43537414965986393
+   },
+   "election_party": {
+    "pairs": 60,
+    "hours": 97533,
+    "hours_positive": 17969,
+    "hours_positive_ub": 29784,
+    "hours_over_1c": 5611,
+    "episodes": 3641,
+    "share_positive": 0.18423507940902054,
+    "share_positive_ub": 0.30537356587001324
+   },
+   "tennis": {
+    "pairs": 8,
+    "hours": 108,
+    "hours_positive": 2,
+    "hours_positive_ub": 2,
+    "hours_over_1c": 2,
+    "episodes": 2,
+    "share_positive": 0.018518518518518517,
+    "share_positive_ub": 0.018518518518518517
+   },
+   "football": {
+    "pairs": 19,
+    "hours": 4022,
+    "hours_positive": 22,
+    "hours_positive_ub": 340,
+    "hours_over_1c": 12,
+    "episodes": 13,
+    "share_positive": 0.005469915464942815,
+    "share_positive_ub": 0.08453505718547986
+   },
+   "soccer": {
+    "pairs": 8,
+    "hours": 1879,
+    "hours_positive": 15,
+    "hours_positive_ub": 40,
+    "hours_over_1c": 2,
+    "episodes": 6,
+    "share_positive": 0.007982969664715274,
+    "share_positive_ub": 0.021287919105907396
+   },
+   "baseball": {
+    "pairs": 2,
+    "hours": 28,
+    "hours_positive": 0,
+    "hours_positive_ub": 18,
+    "hours_over_1c": 0,
+    "episodes": 0,
+    "share_positive": 0.0,
+    "share_positive_ub": 0.6428571428571429
+   },
+   "basketball_hockey": {
+    "pairs": 3,
+    "hours": 288,
+    "hours_positive": 7,
+    "hours_positive_ub": 30,
+    "hours_over_1c": 6,
+    "episodes": 6,
+    "share_positive": 0.024305555555555556,
+    "share_positive_ub": 0.10416666666666667
+   }
+  },
+  "illiquid_hours_dropped": 3655,
+  "max_kalshi_spread": 0.05,
+  "max_pm_half_spread": 0.025,
+  "episodes": 3930,
+  "episode_hours_median": 2.0,
+  "episode_hours_p90": 13,
+  "episodes_over_24h": 149,
+  "top_episodes": [
+   {
+    "ticker": "KXNCAAFGAME-26OCT10STANND-STAN",
+    "class": "football",
+    "hours": 3,
+    "peak": 0.46612875,
+    "start": "2026-09-29T01:00:00+00:00"
+   },
+   {
+    "ticker": "KXNCAAFGAME-26OCT10BALLNW-BALL",
+    "class": "football",
+    "hours": 1,
+    "peak": 0.46612875,
+    "start": "2026-09-28T23:00:00+00:00"
+   },
+   {
+    "ticker": "KXNCAAFGAME-26OCT10BALLNW-BALL",
+    "class": "football",
+    "hours": 3,
+    "peak": 0.46612875,
+    "start": "2026-09-29T01:00:00+00:00"
+   },
+   {
+    "ticker": "KXNCAAFGAME-26OCT10UCLAORE-UCLA",
+    "class": "football",
+    "hours": 3,
+    "peak": 0.23473275,
+    "start": "2026-09-29T00:00:00+00:00"
+   },
+   {
+    "ticker": "KXNCAAFGAME-26OCT10BALLNW-BALL",
+    "class": "football",
+    "hours": 1,
+    "peak": 0.21315599999999996,
+    "start": "2026-10-01T08:00:00+00:00"
+   },
+   {
+    "ticker": "KXNCAAFGAME-26OCT10UCLAORE-UCLA",
+    "class": "football",
+    "hours": 1,
+    "peak": 0.17570474999999997,
+    "start": "2026-09-29T18:00:00+00:00"
+   },
+   {
+    "ticker": "GOVPARTYNV-26-R",
+    "class": "election_party",
+    "hours": 2,
+    "peak": 0.17371899999999996,
+    "start": "2026-09-13T09:00:00+00:00"
+   },
+   {
+    "ticker": "KXITFMATCH-26OCT09ANDSAL-SAL",
+    "class": "tennis",
+    "hours": 1,
+    "peak": 0.15682151249999998,
+    "start": "2026-10-09T21:00:00+00:00"
+   },
+   {
+    "ticker": "KXLIGAPORTUGALGAME-26OCT09BRASPO-SPO",
+    "class": "soccer",
+    "hours": 2,
+    "peak": 0.1543495125000001,
+    "start": "2026-10-09T20:00:00+00:00"
+   },
+   {
+    "ticker": "KXITFMATCH-26OCT09ANDSAL-AND",
+    "class": "tennis",
+    "hours": 1,
+    "peak": 0.14165124999999992,
+    "start": "2026-10-09T21:00:00+00:00"
+   },
+   {
+    "ticker": "HOUSEPA1-26-D",
+    "class": "election_party",
+    "hours": 1,
+    "peak": 0.0981160000000001,
+    "start": "2026-09-12T20:00:00+00:00"
+   },
+   {
+    "ticker": "HOUSEPA1-26-D",
+    "class": "election_party",
+    "hours": 2,
+    "peak": 0.08785199999999999,
+    "start": "2026-09-04T19:00:00+00:00"
+   },
+   {
+    "ticker": "GOVPARTYNV-26-R",
+    "class": "election_party",
+    "hours": 2,
+    "peak": 0.08784399999999998,
+    "start": "2026-09-13T00:00:00+00:00"
+   },
+   {
+    "ticker": "HOUSETX15-26-D",
+    "class": "election_party",
+    "hours": 115,
+    "peak": 0.08285200000000009,
+    "start": "2026-07-17T21:00:00+00:00"
+   },
+   {
+    "ticker": "HOUSEMT1-26-D",
+    "class": "election_party",
+    "hours": 1,
+    "peak": 0.06835599999999997,
+    "start": "2026-08-07T07:00:00+00:00"
+   }
+  ],
+  "split": {
+   "first_half": {
+    "hours": 48463,
+    "positive": 12694,
+    "over_1c": 5093,
+    "mean_positive_net": 0.01097057851091066
+   },
+   "second_half": {
+    "hours": 71184,
+    "positive": 8465,
+    "over_1c": 1455,
+    "mean_positive_net": 0.0066896174338452324
+   },
+   "midpoint": "2026-08-25T21:30:00+00:00"
+  }
+ },
+ "history_strategy": {
+  "by_hurdle": {
+   "0.00": {
+    "episodes": 1876,
+    "gain_total": 98036.91527303262,
+    "peak_capital": 6191538.976689424,
+    "average_capital": 3573566.707871346,
+    "annualised_on_average_capital": 0.11131128800122896,
+    "gain_first_half": 76467.50570231701,
+    "gain_second_half": 21569.40957071561,
+    "episodes_first_half": 1202,
+    "episodes_second_half": 674,
+    "annualised_on_peak_capital": 0.06424546700086517,
+    "gain_per_year": 397778.31301147095,
+    "span_days": 89.95833333333333,
+    "median_episode_gain": 6.895271955000011,
+    "weekly_gain": {
+     "2026-W28": 2468.162019574998,
+     "2026-W29": 19800.43482669861,
+     "2026-W30": 9281.724299101663,
+     "2026-W31": 11709.183932270795,
+     "2026-W32": 16553.480311170035,
+     "2026-W33": 9547.390931601518,
+     "2026-W34": 6999.095979969388,
+     "2026-W35": 1607.6674286428452,
+     "2026-W36": 2129.3576380713257,
+     "2026-W37": 2859.636674263656,
+     "2026-W38": 4671.8639083302005,
+     "2026-W39": 5687.359430303649,
+     "2026-W40": 3161.9422850187916,
+     "2026-W41": 1559.6156080151334
+    },
+    "top": [
+     {
+      "ticker": "KXFEDDECISION-26OCT-C25",
+      "t": 1783972800,
+      "net": 0.04115699999999993,
+      "apr_net_ssr": 0.10796786845612785,
+      "sets": 20453.5,
+      "gain": 841.8046994999986,
+      "capital": 19611.695300500003
+     },
+     {
+      "ticker": "SENATESC-26-D",
+      "t": 1785146400,
+      "net": 0.039139,
+      "apr_net_ssr": 0.10122187648202141,
+      "sets": 20579.41,
+      "gain": 805.45752799,
+      "capital": 19773.952472009998
+     },
+     {
+      "ticker": "SENATESC-26-D",
+      "t": 1785168000,
+      "net": 0.039139,
+      "apr_net_ssr": 0.10154856271732166,
+      "sets": 20579.41,
+      "gain": 805.45752799,
+      "capital": 19773.952472009998
+     },
+     {
+      "ticker": "KXFEDDECISION-26OCT-C25",
+      "t": 1783958400,
+      "net": 0.03635324999999993,
+      "apr_net_ssr": 0.09008922199503658,
+      "sets": 20453.5,
+      "gain": 743.5511988749985,
+      "capital": 19709.948801125003
+     },
+     {
+      "ticker": "CONTROLH-2026-D",
+      "t": 1788429600,
+      "net": 0.027159000000000034,
+      "apr_net_ssr": 0.11012669285654036,
+      "sets": 25697.930083127667,
+      "gain": 697.9300831276652,
+      "capital": 25000.0
+     },
+     {
+      "ticker": "KXFEDDECISION-26OCT-C25",
+      "t": 1783890000,
+      "net": 0.03155199999999993,
+      "apr_net_ssr": 0.071812353219982,
+      "sets": 20453.5,
+      "gain": 645.3488319999985,
+      "capital": 19808.151168
+     },
+     {
+      "ticker": "KXFEDDECISION-26OCT-C25",
+      "t": 1783983600,
+      "net": 0.030547999999999926,
+      "apr_net_ssr": 0.0692811954091625,
+      "sets": 20453.5,
+      "gain": 624.8135179999985,
+      "capital": 19828.686482
+     },
+     {
+      "ticker": "KXFEDDECISION-26OCT-H0",
+      "t": 1784322000,
+      "net": 0.04547699999999995,
+      "apr_net_ssr": 0.13035883403083484,
+      "sets": 11114.59,
+      "gain": 505.45820942999944,
+      "capital": 10609.13179057
+     }
+    ]
+   },
+   "0.05": {
+    "episodes": 595,
+    "gain_total": 40814.140787112185,
+    "peak_capital": 1546638.9213902224,
+    "average_capital": 851914.5232178924,
+    "annualised_on_average_capital": 0.19438649991724027,
+    "gain_first_half": 28006.899974314176,
+    "gain_second_half": 12807.240812798009,
+    "episodes_first_half": 326,
+    "episodes_second_half": 269,
+    "annualised_on_peak_capital": 0.10707132744864435,
+    "gain_per_year": 165600.68239699063,
+    "span_days": 89.95833333333333,
+    "median_episode_gain": 13.852998799999995,
+    "weekly_gain": {
+     "2026-W28": 2319.5052779449957,
+     "2026-W29": 12146.839717484983,
+     "2026-W30": 3649.7716916099016,
+     "2026-W31": 2477.703527736099,
+     "2026-W32": 930.6205555103,
+     "2026-W33": 4461.555195935499,
+     "2026-W34": 1948.780017372399,
+     "2026-W35": 1534.1728054876303,
+     "2026-W36": 2348.753214846184,
+     "2026-W37": 1962.631142783964,
+     "2026-W38": 1891.218875577569,
+     "2026-W39": 2644.5096869350223,
+     "2026-W40": 1741.9132768695852,
+     "2026-W41": 756.1658010180522
+    },
+    "top": [
+     {
+      "ticker": "KXFEDDECISION-26OCT-C25",
+      "t": 1783972800,
+      "net": 0.04115699999999993,
+      "apr_net_ssr": 0.10796786845612785,
+      "sets": 20453.5,
+      "gain": 841.8046994999986,
+      "capital": 19611.695300500003
+     },
+     {
+      "ticker": "KXFEDDECISION-26OCT-C25",
+      "t": 1783839600,
+      "net": 0.040162999999999935,
+      "apr_net_ssr": 0.10228011866495462,
+      "sets": 20453.5,
+      "gain": 821.4739204999987,
+      "capital": 19632.0260795
+     },
+     {
+      "ticker": "SENATESC-26-D",
+      "t": 1785146400,
+      "net": 0.039139,
+      "apr_net_ssr": 0.10122187648202141,
+      "sets": 20579.41,
+      "gain": 805.45752799,
+      "capital": 19773.952472009998
+     },
+     {
+      "ticker": "SENATESC-26-D",
+      "t": 1785168000,
+      "net": 0.039139,
+      "apr_net_ssr": 0.10154856271732166,
+      "sets": 20579.41,
+      "gain": 805.45752799,
+      "capital": 19773.952472009998
+     },
+     {
+      "ticker": "KXFEDDECISION-26OCT-C25",
+      "t": 1783958400,
+      "net": 0.03635324999999993,
+      "apr_net_ssr": 0.09008922199503658,
+      "sets": 20453.5,
+      "gain": 743.5511988749985,
+      "capital": 19709.948801125003
+     },
+     {
+      "ticker": "KXFEDDECISION-26OCT-C25",
+      "t": 1783854000,
+      "net": 0.03535424999999993,
+      "apr_net_ssr": 0.0850570712752198,
+      "sets": 20453.5,
+      "gain": 723.1181523749985,
+      "capital": 19730.381847625
+     },
+     {
+      "ticker": "CONTROLH-2026-D",
+      "t": 1788076800,
+      "net": 0.027159000000000034,
+      "apr_net_ssr": 0.10182677620023092,
+      "sets": 25697.930083127667,
+      "gain": 697.9300831276652,
+      "capital": 25000.0
+     },
+     {
+      "ticker": "CONTROLH-2026-D",
+      "t": 1788109200,
+      "net": 0.027159000000000034,
+      "apr_net_ssr": 0.10255002507376537,
+      "sets": 25697.930083127667,
+      "gain": 697.9300831276652,
+      "capital": 25000.0
+     }
+    ]
+   },
+   "0.10": {
+    "episodes": 209,
+    "gain_total": 22893.241337005824,
+    "peak_capital": 614279.6693620733,
+    "average_capital": 385125.74492289586,
+    "annualised_on_average_capital": 0.2411882792357798,
+    "gain_first_half": 15518.019498023586,
+    "gain_second_half": 7375.221838982237,
+    "episodes_first_half": 113,
+    "episodes_second_half": 96,
+    "annualised_on_peak_capital": 0.1512142112790656,
+    "gain_per_year": 92887.81570735111,
+    "span_days": 89.95833333333333,
+    "median_episode_gain": 12.757102243199933,
+    "weekly_gain": {
+     "2026-W28": 3595.947716499995,
+     "2026-W29": 7727.230693869992,
+     "2026-W30": 591.4979602615001,
+     "2026-W31": 1890.92900126,
+     "2026-W32": 594.0681584499996,
+     "2026-W33": 885.7888044321002,
+     "2026-W34": 161.00134852999994,
+     "2026-W35": 1473.8860504353302,
+     "2026-W36": 2687.4103747678955,
+     "2026-W37": 692.8072766800009,
+     "2026-W38": 432.1754473749992,
+     "2026-W39": 951.3813700152257,
+     "2026-W40": 1158.0204531062852,
+     "2026-W41": 51.096681322500075
+    },
+    "top": [
+     {
+      "ticker": "KXFEDDECISION-26OCT-C25",
+      "t": 1783861200,
+      "net": 0.05177999999999994,
+      "apr_net_ssr": 0.14549269795189934,
+      "sets": 20453.5,
+      "gain": 1059.0822299999986,
+      "capital": 19394.41777
+     },
+     {
+      "ticker": "KXFEDDECISION-26OCT-C25",
+      "t": 1783908000,
+      "net": 0.046976249999999935,
+      "apr_net_ssr": 0.12846063471684388,
+      "sets": 20453.5,
+      "gain": 960.8287293749987,
+      "capital": 19492.671270625
+     },
+     {
+      "ticker": "KXFEDDECISION-26OCT-C25",
+      "t": 1783962000,
+      "net": 0.045963249999999935,
+      "apr_net_ssr": 0.12564441799102985,
+      "sets": 20453.5,
+      "gain": 940.1093338749987,
+      "capital": 19513.390666125
+     },
+     {
+      "ticker": "KXFEDDECISION-26OCT-C25",
+      "t": 1783868400,
+      "net": 0.042174999999999935,
+      "apr_net_ssr": 0.11007034221373765,
+      "sets": 20453.5,
+      "gain": 862.6263624999987,
+      "capital": 19590.8736375
+     },
+     {
+      "ticker": "KXFEDDECISION-26OCT-C25",
+      "t": 1783972800,
+      "net": 0.04115699999999993,
+      "apr_net_ssr": 0.10796786845612785,
+      "sets": 20453.5,
+      "gain": 841.8046994999986,
+      "capital": 19611.695300500003
+     },
+     {
+      "ticker": "KXFEDDECISION-26OCT-C25",
+      "t": 1783839600,
+      "net": 0.040162999999999935,
+      "apr_net_ssr": 0.10228011866495462,
+      "sets": 20453.5,
+      "gain": 821.4739204999987,
+      "capital": 19632.0260795
+     },
+     {
+      "ticker": "KXFEDDECISION-26OCT-C25",
+      "t": 1783846800,
+      "net": 0.040162999999999935,
+      "apr_net_ssr": 0.1023875725248656,
+      "sets": 20453.5,
+      "gain": 821.4739204999987,
+      "capital": 19632.0260795
+     },
+     {
+      "ticker": "SENATESC-26-D",
+      "t": 1785146400,
+      "net": 0.039139,
+      "apr_net_ssr": 0.10122187648202141,
+      "sets": 20579.41,
+      "gain": 805.45752799,
+      "capital": 19773.952472009998
+     }
+    ]
+   },
+   "0.20": {
+    "episodes": 30,
+    "gain_total": 1185.87377373005,
+    "peak_capital": 17796.09622626995,
+    "average_capital": 8682.809021608991,
+    "annualised_on_average_capital": 0.5934604671059207,
+    "gain_first_half": 420.2619294322999,
+    "gain_second_half": 765.6118442977502,
+    "episodes_first_half": 5,
+    "episodes_second_half": 25,
+    "annualised_on_peak_capital": 0.2895524856821714,
+    "gain_per_year": 5152.903897755575,
+    "span_days": 84.0,
+    "median_episode_gain": 6.326845149999992,
+    "weekly_gain": {
+     "2026-W29": 17.35417992000002,
+     "2026-W32": 344.52859475999986,
+     "2026-W33": 58.37915475229999,
+     "2026-W36": 443.2676679600001,
+     "2026-W37": 237.19329496000017,
+     "2026-W38": 41.76118607282499,
+     "2026-W39": 4.806928572425004,
+     "2026-W40": 37.84438583999995,
+     "2026-W41": 0.738380892500003
+    },
+    "top": [
+     {
+      "ticker": "HOUSEMT1-26-D",
+      "t": 1786086000,
+      "net": 0.06835599999999997,
+      "apr_net_ssr": 0.24120846496098544,
+      "sets": 5040.21,
+      "gain": 344.52859475999986,
+      "capital": 4695.6814052400005
+     },
+     {
+      "ticker": "HOUSEPA1-26-D",
+      "t": 1789243200,
+      "net": 0.0981160000000001,
+      "apr_net_ssr": 0.6307803027099864,
+      "sets": 1892.16,
+      "gain": 185.6511705600002,
+      "capital": 1706.50882944
+     },
+     {
+      "ticker": "HOUSEPA1-26-D",
+      "t": 1788548400,
+      "net": 0.08785199999999999,
+      "apr_net_ssr": 0.4834544826148302,
+      "sets": 1892.16,
+      "gain": 166.23004031999997,
+      "capital": 1725.92995968
+     },
+     {
+      "ticker": "HOUSEPA1-26-D",
+      "t": 1788343200,
+      "net": 0.048299999999999954,
+      "apr_net_ssr": 0.22742429811962042,
+      "sets": 2395.93,
+      "gain": 115.72341899999988,
+      "capital": 2280.206581
+     },
+     {
+      "ticker": "HOUSEPA1-26-D",
+      "t": 1788656400,
+      "net": 0.04262700000000006,
+      "apr_net_ssr": 0.20761888746732035,
+      "sets": 1892.16,
+      "gain": 80.65710432000012,
+      "capital": 1811.50289568
+     },
+     {
+      "ticker": "HOUSEPA1-26-D",
+      "t": 1788670800,
+      "net": 0.04262700000000006,
+      "apr_net_ssr": 0.2082391437094121,
+      "sets": 1892.16,
+      "gain": 80.65710432000012,
+      "capital": 1811.50289568
+     },
+     {
+      "ticker": "HOUSETX15-26-R",
+      "t": 1786690800,
+      "net": 0.06320399999999995,
+      "apr_net_ssr": 0.23895717435286803,
+      "sets": 685.24,
+      "gain": 43.30990895999997,
+      "capital": 641.9300910400001
+     },
+     {
+      "ticker": "GOVPARTYTX-26-R",
+      "t": 1790841600,
+      "net": 0.04261199999999994,
+      "apr_net_ssr": 0.3594535825327284,
+      "sets": 800.73,
+      "gain": 34.120706759999955,
+      "capital": 766.60929324
+     }
+    ]
+   }
+  },
+  "selection": {
+   "chosen": "0.00",
+   "n_variants": 4,
+   "cutoff_index": 42,
+   "in_sample": {
+    "n": 42,
+    "total": 0.012005453451290263,
+    "mean": 0.0002858441297926253,
+    "ann_return": 0.10433310737430825,
+    "ann_vol": 0.0045317923509183,
+    "sharpe": 23.022481900161797,
+    "max_drawdown": 0.0,
+    "hit_rate": 1.0,
+    "active_share": 1.0,
+    "worst": 2.201651488489657e-05,
+    "best": 0.0011577723102903755,
+    "skew": 1.8062075076674642,
+    "kurtosis": 6.571414618370391
+   },
+   "out_of_sample": {
+    "n": 43,
+    "total": 0.003533948218392037,
+    "mean": 8.218484228818691e-05,
+    "ann_return": 0.029997467435188222,
+    "ann_vol": 0.00130464801972918,
+    "sharpe": 22.99276661717167,
+    "max_drawdown": 0.0,
+    "hit_rate": 1.0,
+    "active_share": 1.0,
+    "worst": 1.216486853907731e-06,
+    "best": 0.0002888432468657439,
+    "skew": 1.0297817720841103,
+    "kurtosis": 3.650507416726562
+   },
+   "oos_rank": 1,
+   "oos_t": 7.722470258178764,
+   "oos_p": 1.1546319456101628e-14,
+   "deflated_sharpe_in_sample": 0.9999999918662832,
+   "bh_survivors_full_sample": [
+    "0.00",
+    "0.05",
+    "0.10",
+    "0.20"
+   ],
+   "bh_adjusted_p": {
+    "0.00": 7.408898383687301e-09,
+    "0.05": 8.978549165483685e-06,
+    "0.10": 0.001659090827754876,
+    "0.20": 0.012935958885008203
+   }
+  },
+  "clip_usd": 25000.0,
+  "classes": [
+   "election_party",
+   "chamber_control",
+   "fomc",
+   "cpi_release"
+  ]
+ },
+ "venue_tilt": {
+  "chamber_control_monthly_kalshi_minus_polymarket": {
+   "CONTROLH-2026-R": {
+    "2026-07": 0.023887665198237887,
+    "2026-08": 0.027724184782608702,
+    "2026-09": 0.01617323943661972,
+    "2026-10": 0.010194711538461538
+   },
+   "CONTROLS-2026-R": {
+    "2026-07": 0.0024501108647449876,
+    "2026-08": 0.015658436213991784,
+    "2026-09": 0.02372893258426968,
+    "2026-10": 0.015876777251184842
+   }
+  },
+  "party_coded_races": {
+   "R": {
+    "races": 27,
+    "mean_kalshi_minus_polymarket": 0.004787213317124079,
+    "share_kalshi_higher": 0.7407407407407407
+   },
+   "D": {
+    "races": 31,
+    "mean_kalshi_minus_polymarket": -0.0018467782230729096,
+    "share_kalshi_higher": 0.45161290322580644
+   }
+  }
+ },
+ "proxy_check": {
+  "books_generated": "2026-10-09T21:23:28.781418+00:00",
+  "pairs": 104,
+  "proxy_positive": 3,
+  "live_positive": 3,
+  "both_positive": 3,
+  "median_proxy_minus_live": 6.285988622765221e-07,
+  "mean_proxy_minus_live": 0.009060196479916256,
+  "p10": -0.0032688374410775522,
+  "p90": 0.00019796333333308574
+ }
+}

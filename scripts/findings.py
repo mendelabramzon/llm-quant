@@ -99,7 +99,7 @@ def ingest(out, chain='ethereum'):
     out = Path(out)
     dj = out / 'detectors.json'
     if not dj.exists():
-        raise SystemExit('no detectors.json in %s — run `live_scan detect` first' % out)
+        raise SystemExit('no detectors.json in %s — run `live_scan detect` (or `solana_detect.py detect`) first' % out)
     det = json.loads(dj.read_text())
     aj = out / 'analysis.json'
     A = json.loads(aj.read_text()) if aj.exists() else {}
@@ -107,12 +107,15 @@ def ingest(out, chain='ethereum'):
     # A block-chain window names its bounds first/last; the perp windows name them start/end. Either is a window.
     first_utc = win.get('first_utc') or win.get('start_utc')
     last_utc = win.get('last_utc') or win.get('end_utc')
+    # Solana windows are bounded by slots rather than blocks; the ledger keeps them in the same two fields.
+    first_block = win.get('first_block') if win.get('first_block') is not None else win.get('start_slot')
+    last_block = win.get('last_block') if win.get('last_block') is not None else win.get('end_slot')
     key = str(out)
     ran = [m['detector'] for m in det.get('detectors', []) if not m.get('error')]
 
     W = load_windows()
     W[key] = {'chain': chain, 'first_utc': first_utc, 'last_utc': last_utc,
-              'first_block': win.get('first_block'), 'last_block': win.get('last_block'),
+              'first_block': first_block, 'last_block': last_block,
               'hours': win.get('hours'), 'detectors_run': sorted(ran),
               'ingested_at': now().isoformat(),
               'label_fingerprint': (A.get('provenance') or {}).get('labels')}
@@ -124,8 +127,8 @@ def ingest(out, chain='ethereum'):
         ident = h.get('identity') or ('%s:%s' % (h['detector'], h.get('key')) if h.get('key') else h['detector'])
         i = fid(ident)
         seen_now.add(i)
-        obs = {'window': key, 'utc': last_utc, 'first_block': win.get('first_block'),
-               'last_block': win.get('last_block'), 'severity': h.get('severity'), 'usd': h.get('usd'),
+        obs = {'window': key, 'utc': last_utc, 'first_block': first_block,
+               'last_block': last_block, 'severity': h.get('severity'), 'usd': h.get('usd'),
                'title': h.get('title'),
                'net_apr': (h.get('economics') or {}).get('net_apr'),
                'go': (h.get('economics') or {}).get('go')}

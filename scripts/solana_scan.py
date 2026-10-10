@@ -1099,6 +1099,14 @@ def cmd_render(args):
         L.append(ins.read_text().strip() + '\n\n---\n')
     else:
         L.append('_No insights.md yet — narrative pending._\n\n---\n')
+    # Loop artifacts from solana_detect.py, when they exist: what changed since the previous window, then the detector
+    # sweep whose hits are what findings.py ingests. Both are deterministic; the narrative above is written from them.
+    dif = out / 'diff.md'
+    if dif.exists():
+        L.append(dif.read_text().strip() + '\n\n---\n')
+    det = out / 'detectors.md'
+    if det.exists():
+        L.append(det.read_text().strip().replace('# Solana detectors:', '## Detector sweep (`solana_detect.py detect`):', 1) + '\n\n---\n')
     # A network
     L.append('## A. Network: throughput, fees, compute, leaders\n')
     hrs = w['hours'] or 1

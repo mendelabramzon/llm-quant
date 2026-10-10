@@ -5,6 +5,83 @@ the LLM reads evidence, proposes mechanisms, and writes the infrastructure; dete
 reusable detectors and tests; the human steers. The metric we optimise is **time-to-verified-insight**: how fast a raw
 signal becomes a true, capacity-aware, reproducible claim and then a reusable detector — not classification coverage.
 
+## Session log — 2026-10-09/10, second session (fill the gaps, more data, find alpha: ten history-tested studies)
+
+Asked to "fill the gaps, gain more data, find several alpha strategies". The gap was history: every book line had
+been priced from windows. This session collected a year of Hyperliquid funding (`research/2026-10-09/perps_history`,
+336 markets; 1h candles only reach 2026-03-15 because the venue serves the last 5,000 bars — 4h bars fill earlier
+months), futures by contract month (Yahoo; send UA `Mozilla/5.0`, a Chrome string gets 429), every Pendle market,
+446k resolved Polymarket markets, Kalshi, and DefiLlama's free unlock schedules (`defillama-datasets.llama.fi`; the
+API is paid). New shared harness `scripts/backtest.py` (time splits, Newey–West, block bootstrap, BH, deflated
+Sharpe; ROADMAP P2 item 9). Book entries now enter through `strategies.py add/quote`; the scorecard prefers a quote's
+own capacity-aware dollars.
+
+| study | verdict |
+|---|---|
+| `roll_carry.py` — HIP-3 oil carry | **retired** ($2.84M/yr line). Oracles roll on the GSCI schedule, a fifth a day on the 5th–9th US business days at 22:00 UTC (schedule fits 99% of hours); funding pays 0.89–0.97 of each step; every hedged Sep/Oct window lost after costs. The 09-10 "tenth" read an hourly premium that straddles the step. `roll_premium` now uses 5 days; `perp_refs` curves come from the calendar |
+| `hip3_pairs.py` — cross-builder funding | **retired**: nine pairs −18.4%/yr OOS (t −2.99); UNITREE a watch item |
+| `pendle_history.py` (worker) | **go**: hold the PT instead of the token when implied − trailing-7d ≥ 5%: +7.1%/yr OOS (recomputed 8.4% per capital-year, 96% of 1,004 trades); book carries only measured-interest tokens, $6.6M / $216k a year. Dollar PTs vs the savings rate lost −8.2%/yr after defaults (spreads of 2–6% were where the defaults were). `pt-susds-fixed-vs-ssr` retired (43bp at $250k) |
+| `equity_offhours.py` (worker) | perps price 90% of the cash gap by 09:00 ET (efficient); every open rule fails; **go, thin**: short high-funding xyz equity perps, long the stock at a broker: +3.35%/yr over SSR on capital OOS (t 4.06) after an in-sample period that earned only +1.23% (Sharpe 0.23), hourly-only rerun +1.63% (t 1.32); the book quotes the conservative $330k/yr at an assumed 5% of OI |
+| `unlock_study.py` | pre-registered window failed OOS; the 3 days before a ≥1% insider cliff held (+1.98%/trade after costs vs placebo −0.34%, event-day t 2.18) but 2026Q3 was negative → `unlock-preshort` proposed, go=no, 30-event forward test (`upcoming` lists them) |
+| `polymarket_history.py` (worker) | **no-go** on favourites, neg-risk sums and resolution lag; crypto-price lag was real (106/106) and was automated away in 2026 |
+| `pm_crossvenue.py` (worker) | **no-go**: 3,226 Kalshi–Polymarket pairs; best live gap $4.59 after fees; gaps closing |
+| multichain third window | cross-chain book $18.8M at 58bp ($109k/yr); Avalanche USDC 7.3% and BSC→ETH USDT held for a third reading |
+| Ethereum 1h window (`live_1h`) | re-quoted the stale mainnet lines (USDtb gone, Morpho USDT $1.4M withdrawable); `verify` now classifies idle Aave reserves whose stored rates are consistent at an earlier utilisation as `head-stale-reserves` instead of failing |
+| `dislocation_history.py --assets` (worker, resumed) | **go, three queue bids**: weETH $170k/yr and stETH $130k/yr at $10M, rsETH $44k/yr at $3M, two-year out-of-sample (the 210-day window alone priced Lido at $0 — one stress week is not a regime); bids capped at the median venue’s discount (a single-pool print is a searcher’s arb); funded by WETH borrowed against wstETH so idle capital keeps staking; the three share collateral and are not additive in a stress. sUSDe re-quoted to $7.9k/yr; USDe needs approved-redeemer access; Maple, Renzo, rETH too small or dead |
+| `funding_arb.py` (worker, resumed) | **no-go**: HL vs Binance is statistically real per unit (every month positive, t 5.15) but lives in coins with under $5k of HL depth and in pre-delisting markets (43% of the profit); at live capacity it is below the savings rate; Binance vs Bybit control flat; HL’s structural BTC premium over the exchanges (2.7–4.2pp) is the cost of two-venue capital |
+| chain activity, UTC day 10-09 (`research/2026-10-10/chains`) | second daily pass: Starknet DEX x4.1 for a second day (the first reading asked for one), TON DEX x3.6 new, stablecoin arrivals continue; 39/45 cross-checks agree |
+
+**Where the book stands.** Thirteen live rows (plus the benchmark); nine current and go, worth about $1.03M a year at capacity on their own quotes: the equity funding carry $330k, the Pendle switch $216k, the weETH, stETH and rsETH queue bids $344k between them (one shared collateral pool in a stress), the cross-chain book $109k, and the small mainnet spreads. `unlock-preshort` waits on its forward test. The two studies stopped at the usage limit were resumed and finished; all 440 tests pass. Next: the forward test of `unlock-preshort` (first entries STRK 10-11, ARB 10-12); `roll_carry.py analyze` after the 10-12/13 steps to complete October; an ether.fi payout check before sizing the weETH bid; the funding study's delisting-squeeze event study and Binance TradFi perps against HIP-3; install the launchd jobs (needs the user).
+
+## Session log — 2026-10-09 (every chain at once: activity, tradeability, and what is new)
+
+Asked for "a list of chains with high activity, all types of chains, measuring transactions and volume transferred in
+different assets, as the framework to detect new activity on chains where it is reasonable to trade". Deliverables:
+[the report](research/2026-10-09/chains/report.md) (the ranked list, the directly measured list, the detector hits,
+per-asset flows, cross-source agreement) and [the reading](research/2026-10-09/chains/insights.md).
+
+Landed: `scripts/chain_registry.json` (67 chains, 17 families), `scripts/chain_census.py` (~570 chains from eight
+aggregators, daily history, tiers), `scripts/chain_probe.py` with `scripts/chain_adapters/` (one adapter per family:
+evm/tron, solana, sui, aptos, starknet, near, ton, cosmos, xrpl, stellar, hedera, algorand, tezos, cardano, utxo,
+blockchair, hyperliquid; four of them written by parallel workers), `scripts/chain_activity.py` (analyze, nine
+detectors, verify, render, series, an unattended `run`), a 14-day transaction backfill so probe-only chains have a
+baseline on day one, a launchd template, and 89 tests across five files (274 in the repo, all passing).
+
+**What the measurement taught, in the order it bit.**
+- *Gross transfer sums are meaningless under sampling.* The first EVM sweep summed `Transfer` logs and one Base block of
+  flash-loan loops scaled to "$666B a day" of WETH. Value is now net per transaction (each account's positive net
+  change, `chain_adapters.net_positive`) on every family, which is what balance-delta chains report natively; Gnosis went
+  from $22.8B gross to $9.7M net. Even net, Base and OP carry tens of billions a day through two to four unverified
+  contracts, so transfer value is a measure of what moves, not of economic volume, which stays DefiLlama's.
+- *Solana moved under the repo.* Blocks now carry version-1 transactions (15% of one block), so `getBlock` with
+  `maxSupportedTransactionVersion: 0` fails: fixed here and in `solana_collect.py`, which would otherwise have broken
+  the Solana daily pass. Slots are now ~0.27 s. `getRecentPerformanceSamples` keeps ~4.5 h per node, not 12, and a
+  lagging node records a "60 s" sample of 600+ slots; GetBlock prunes blocks within hours and answers
+  `getBlocksWithLimit` below its retention with its first available block, silently; a calendar day is read from the
+  public endpoint's long-term storage instead.
+- *The aggregators disagree with each other, and the probe can say why.* MegaETH reads 1.98M on the probe and L2Beat,
+  1.11M on growthepie: 43.5% of its transactions go to the system oracle `0x6342…0001`, and 1.98M x 0.565 = 1.12M.
+  Unichain is 74% builder bookkeeping, XDC 56% validator signatures, Flare 86% oracle submissions: `bookkeeping_targets`
+  now reports them beside the headline.
+- *DefiLlama's stablecoin endpoint writes a missing reading as `{}`*, which a naive parse turns into zero and every
+  stablecoin with a gap into a "launch" (USDD on Tron, $1.3B, "new"). Missing is now None and cannot fire.
+- *The market moves every chain at once.* 10-07 to 10-09 was a sell-off (ETH -8%, SOL -9%) and transactions rose on
+  most chains together; a surge now has to exceed the cross-chain median move of the same day by half.
+- Rootstock's public nodes serve no `eth_getLogs`; NEAR's non-archival nodes forget blocks after ~23 h; Aptos limits an
+  IP to 40k compute units per 5 minutes; Blockscout's Base and Arbitrum instances sit behind Cloudflare.
+
+**The first reading** (UTC day 2026-10-08, 67 chains probed, 569 in the census): the probe agrees with the aggregators
+within ±10% on 34 of 42 same-day chain-source pairs; 12 chains are deep and 28 tradeable; the one `high` hit is Cardano
+(34k → 543k transactions in two days, a HOSKY mass distribution), and the most tradeable new activity is a memecoin
+wave on Cronos (x2.6). Arbitrum's tripled active addresses were one contract born that afternoon and pinged by ~1,000
+fresh wallets an hour — the who-layer, not the count, is what says whether new activity is worth a trade.
+
+Next: the who-layer as a detector (a contract newly among a chain's top targets — Arbitrum's `0x12f5…` was born on the
+probe day and tripled the chain's active addresses); identify the unverified contracts that carry Base's and OP's
+value (bytecode lens); an hourly mode for fresher detection; Solana's backfill (blocks are too heavy for the public
+endpoint at 40 a day); Substrate (Bittensor, Polkadot) and Kaspa adapters; per-asset flow history so `probe_new_asset`
+has a baseline; install the launchd job so the series accumulates.
+
 ## Session log — 2026-09-10 (five-hour Ethereum continuation: 72,446 LPT senders, and two rejected signals)
 
 [Five-hour study](research/2026-09-10/live_5h/report.md), pinned to finalized blocks 25,944,911–25,946,402,
@@ -106,8 +183,23 @@ funding predictions were positive hedged (the three energy ones and one cross-bu
 read on chain, caps redemption at 10,000,000 USDe per block, so the sUSDe bid's scaling limit is approved-minter
 access, not protocol capacity.
 
-Next: let the daily pass accumulate so premium against spread becomes a regression; the hedge leg's schedule from the
-scanner; the cross-chain dollar book's second window (in progress in a parallel worker).
+**The cross-chain dollar book, second reading** ([note](research/2026-09-10/multi_1h/insights.md); collection and the
+`cross_chain_rate` detector in `multichain.py` by a parallel worker that was cut off by the account's session limit
+before it could ingest or write, so the numbers were read back from its artifacts). The book absorbs **$21.1M at
+67bp, $141k a year**, against $37.3M at 48bp two days earlier, and it is a different book: the destination rotated
+from Base at 4.00% to Avalanche at 7.19%, and the one row that held is USDT from BSC to Ethereum, 60 to 70bp on about
+$10M, bound by BSC withdrawable liquidity in both windows. The CCTP flow-against-rate correlation is still negative
+(-0.57 then -0.27). Both windows are in the ledger under chain `multichain`, the `book` finding reads 2 of 2, and
+`cross-chain-usdc-switch-book` is a strategy entry quoted from it.
+
+**The first unattended pass ran, and taught the runner something.** With a five-minute reference run there is no
+Hyperliquid snapshot ten or fifteen minutes before a delayed quote, so only the live-quoted FX and metals aligned and
+the energy curve never formed; the runner now samples for twenty minutes and the tape analysis reads the reference
+run's own snapshots. The pass otherwise completed end to end: history appended, window, detectors, verify, ledger,
+book, history re-scored, one line in `research/perps_daily_log.md`.
+
+Next: let the daily pass accumulate so premium against spread becomes a regression; a third cross-chain window at a
+different hour; the per-row benchmark test (destination rate against SSR) inside `cross_chain_rate`.
 
 ## Session log — 2026-09-10 (Ethereum: $34.6m of turnover, $0.65 of WETH)
 
@@ -535,6 +627,14 @@ The Solana port (`solana_rpc` / `solana_collect` / `solana_decode` / `solana_sca
 things" lens must be chain-specific (payer-centric kinds, per-program bot-shape columns, fan-in/fan-out hubs) while the
 deliverable shape stays identical; the data-access layer (item 6) must carry per-provider bandwidth caps (GetBlock ~2.7 MB/s
 from this machine) as well as method capabilities.
+*2026-09-10, second Solana window:* the port became a loop member rather than a one-off. `solana_detect.py` runs 13
+Solana detectors over `analysis.json` + `head_state.json` (wash volume by venue, quote posters, failure bots, fan-in hubs,
+launch factories, flash-loan spam, liquidation drought, exchange flow, unknown CCTP domains, dust senders, large moves,
+LST NAV basis, stable rate gaps) in the Ethereum `Hit` shape, so `findings.py ingest --chain solana` folds them into the
+shared ledger; `diff` writes the window-over-window change table the narrative starts from; `solana_daily.py` chains
+collect → verify → head → prices → analyze → detect → diff → render → ingest unattended (launchd template). Ledger keys
+are the persistent things (program, venue, hub, asset pair), never a pump mint. Not yet done from the 09-07 request list:
+same-block self-match by funder, marginfi on-chain banks, Kamino borrow caps, a second RPC region.
 Problem: the deep tooling is Ethereum-only; the fresh forks (VCORE's `$AAPL` pool, Arbitrum candidates) are cross-chain,
 and BSC is the historical home of the CORE family. Proposal: promote the `CHAINS` preset pattern into the collectors and
 `live_scan` (per-chain blue-chip sets, factories, blob inboxes, RPC). Effort: L. Payoff: the meme waves that spawn these

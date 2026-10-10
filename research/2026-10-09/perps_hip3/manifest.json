@@ -1,0 +1,30 @@
+{
+  "api": {
+    "errors": 143,
+    "requests": 606,
+    "throttled": 143
+  },
+  "candle_interval": "1h",
+  "candle_rows": 289995,
+  "collected_at": "2026-10-09T19:48:47+00:00",
+  "failures": {
+    "para:ANSEM": "retry limit: HTTP 429",
+    "xyz:KR200": "retry limit: HTTP 429",
+    "xyz:MRNA": "retry limit: HTTP 429",
+    "xyz:MSFT": "retry limit: HTTP 429",
+    "xyz:STRC": "retry limit: HTTP 429",
+    "xyz:TWST": "retry limit: HTTP 429",
+    "xyz:ZM": "retry limit: HTTP 429"
+  },
+  "finished_at": "2026-10-09T20:03:28+00:00",
+  "funding_rows": 290586,
+  "info_url": "https://api.hyperliquid.xyz/info",
+  "markets": 158,
+  "markets_this_run": 158,
+  "seconds": 880.6,
+  "since_ms": 1782864000000,
+  "since_utc": "2026-07-01T00:00:00+00:00",
+  "until_ms": 1791572400000,
+  "until_utc": "2026-10-09T19:00:00+00:00",
+  "venue": "hyperliquid"
+}

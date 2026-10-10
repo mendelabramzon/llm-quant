@@ -387,6 +387,30 @@ def _aave_borrow_at(curve, util):
     return base + s1 + s2 * (util - o) / max(1 - o, 1e-9)
 
 
+def _aave_util_from_borrow(curve, rate):
+    """The utilisation at which the reserve's IRM gives `rate` (the curve is increasing, so the inverse is unique)."""
+    o = curve.get('optimal') or 0.9
+    base, s1, s2 = curve.get('base', 0.0), curve.get('slope1', 0.05), curve.get('slope2', 0.5)
+    if rate <= base + s1:
+        return o * (rate - base) / s1 if s1 else o
+    return o + (rate - base - s1) * (1 - o) / s2 if s2 else 1.0
+
+
+def stale_but_consistent(curve, util, supply_apr, borrow_apr, rf, tol):
+    """An Aave-family reserve stores its rates at its last interaction, so an idle reserve's head utilisation drifts
+    up with accrued interest while its rates stay put. Its two stored rates still agree with each other at one earlier
+    utilisation u0: the borrow rate inverts through the IRM to u0, and the supply rate equals borrow x u0 x (1 - rf).
+    A decode error does not produce such a pair. Returns u0 when the read is stale-but-consistent, else None."""
+    if not curve or util is None or supply_apr is None or borrow_apr is None or rf is None:
+        return None
+    u0 = _aave_util_from_borrow(curve, borrow_apr)
+    if not (0.0 <= u0 <= util + 1e-9):
+        return None
+    if abs(supply_apr - borrow_apr * u0 * (1 - rf)) > tol:
+        return None
+    return u0
+
+
 def _interp(grid, u):
     pts = sorted(grid)
     if not pts or u <= pts[0][0]:
@@ -425,6 +449,7 @@ def run_identities(out, tol=0.0015):
     add('head-utilisation', 'utilisation equals borrowed / supplied', n, bad, worst)
 
     # a supplier earns the borrow rate times utilisation, less the reserve factor
+    stale = []
     bad, n, worst = [], 0, None
     for venue, res in (hs.get('lending') or {}).items():
         for _, d in res.items():
@@ -435,10 +460,17 @@ def run_identities(out, tol=0.0015):
             n += 1
             derived = ba * u * (1 - rf)
             e = abs(sa - derived)
-            worst = max(worst or 0, e)
             if e > tol:
+                u0 = stale_but_consistent(curves.get('%s %s' % (venue, d.get('sym'))), u, sa, ba, rf, tol)
+                if u0 is not None:
+                    stale.append({'venue': venue, 'asset': d.get('sym'), 'head_utilisation': round(u, 4),
+                                  'rates_utilisation': round(u0, 4), 'supplied_usd': d.get('supplied_usd')})
+                    continue
+                worst = max(worst or 0, e)
                 bad.append({'venue': venue, 'asset': d.get('sym'), 'reported_pct': _pct(sa),
                             'derived_pct': _pct(derived), 'utilisation': round(u, 4), 'reserve_factor': rf})
+            else:
+                worst = max(worst or 0, e)
     add('head-supply-identity', 'supply APR equals borrow APR x utilisation x (1 - reserve factor)', n, bad, worst)
 
     # the borrow rate is the IRM curve evaluated at the observed utilisation
@@ -452,11 +484,19 @@ def run_identities(out, tol=0.0015):
             n += 1
             derived = _aave_borrow_at(c, u)
             e = abs(ba - derived)
+            if e > tol and any(x['venue'] == venue and x['asset'] == d.get('sym') for x in stale):
+                continue                    # rates stored at an earlier utilisation, consistent with each other
             worst = max(worst or 0, e)
             if e > tol:
                 bad.append({'venue': venue, 'asset': d.get('sym'), 'reported_pct': _pct(ba),
                             'derived_pct': _pct(derived), 'utilisation': round(u, 4), 'curve': c})
     add('head-irm-identity', 'borrow APR equals the reserve IRM evaluated at its utilisation', n, bad, worst)
+    if stale:
+        # Not a failure, and not silent: an idle reserve's quoted rate is its last interaction's, and anything that
+        # quotes it should know the head utilisation has moved on.
+        rows.append({'id': 'head-stale-reserves', 'check': 'reserves whose stored rates are consistent at an earlier '
+                     'utilisation than the head (idle since their last interaction)', 'checked': len(stale),
+                     'failed': 0, 'ok': True, 'worst': None, 'examples': stale[:8]})
 
     # Compound: the head read must sit on the curve the head itself sampled
     bad, n, worst = [], 0, None

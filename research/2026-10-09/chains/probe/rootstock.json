@@ -1,0 +1,132 @@
+{
+ "tx": {
+  "count": 6858.224999999999,
+  "se": 403.08848876378164,
+  "raw_count": 6858.224999999999,
+  "system_count": 0.0,
+  "method": "sampled-blocks",
+  "blocks": 2805,
+  "sampled": 200,
+  "per_block": 2.445,
+  "tps": 0.07937760416666666,
+  "note": "user transactions: OP-stack L1-attributes deposits and Arbitrum internal txs excluded"
+ },
+ "gas": {
+  "gas_per_second": 4899.164464409721,
+  "base_fee_median_gwei": null
+ },
+ "transfers": {
+  "assets": [
+   {
+    "asset": "native:RBTC",
+    "symbol": "RBTC",
+    "class": "native",
+    "transfers": null,
+    "transfers_se": null,
+    "amount": 0.0910398685172064,
+    "price": 82963.86478545325,
+    "usd": 7553.019341746954,
+    "usd_se": 5293.497237162685,
+    "top_block_share": 0.6162135437332842,
+    "units_seen": 3,
+    "note": "top-level transaction value only; internal transfers need traces"
+   }
+  ],
+  "unpriced_top": [],
+  "unpriced_assets": 0,
+  "unpriced_transfers": 0,
+  "priced_usd": 7553.019341746954,
+  "usd_by_class": {
+   "native": 7553.019341746954
+  },
+  "method": "sampled-blocks; native value only \u2014 no public endpoint serves eth_getLogs",
+  "top_targets_by_value": [],
+  "top_targets_by_txs": [
+   {
+    "to": "0x0000000000000000000000000000000001000008",
+    "txs": 2805.0,
+    "share": 0.40899795501022496
+   },
+   {
+    "to": "0xa288319ecb63301e21963e21ef3ca8fb720d2672",
+    "txs": 953.7,
+    "share": 0.1390593047034765
+   },
+   {
+    "to": "0xafb1b8c320acc776c1279bcdb24ab8f84ab727a4",
+    "txs": 701.25,
+    "share": 0.10224948875255624
+   },
+   {
+    "to": "0x0000000000000000000000000000000001000006",
+    "txs": 603.075,
+    "share": 0.08793456032719836
+   },
+   {
+    "to": "0x574f6e33b50b0cd9f6ab1b380283883803a0eb96",
+    "txs": 280.5,
+    "share": 0.0408997955010225
+   },
+   {
+    "to": "0x3c2269811836af69497e5f486a85d7316753cf62",
+    "txs": 266.475,
+    "share": 0.03885480572597137
+   },
+   {
+    "to": "0xa20db4ffe74a31d17fc24bd32a7dd7555441058e",
+    "txs": 196.35,
+    "share": 0.028629856850715747
+   },
+   {
+    "to": "0x5a0d867e0d70fcc6ade25c3f1b89d618b5b4eaa7",
+    "txs": 168.3,
+    "share": 0.024539877300613498
+   },
+   {
+    "to": "0x28be57ce7081dc67e257a0914875fc8a4e98d7f6",
+    "txs": 154.275,
+    "share": 0.022494887525562373
+   },
+   {
+    "to": "0x0b14ff67f0014046b4b99057aec4509640b3947a",
+    "txs": 98.175,
+    "share": 0.014314928425357873
+   }
+  ],
+  "transfer_logs_per_block": 0.0,
+  "logs_missing_blocks": 0
+ },
+ "window": {
+  "start_ts": 1791417600,
+  "end_ts": 1791504000,
+  "start_utc": "2026-10-08T00:00:00+00:00",
+  "end_utc": "2026-10-09T00:00:00+00:00",
+  "hours": 24.0
+ },
+ "blocks": {
+  "first": 9305952,
+  "last": 9308756,
+  "head": 9310513
+ },
+ "endpoint": "https://public-node.rsk.co",
+ "calls": 230,
+ "notes": [
+  "public-node.rsk.co rejected: no getLogs: {\"code\": -32601, \"message\": \"the method eth_getLogs does not exist/is not available\"}",
+  "rootstock.drpc.org rejected: no getLogs: HTTP 400 {\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"the method eth_getLogs does not exist/is not av",
+  "lb.routeme.sh rejected: HTTP 429 {\"jsonrpc\":\"2.0\",\"id\":0,\"error\":{\"code\":-32029,\"message\":\"public rate limit exceeded \u2014 sign up for free at http",
+  "mycrypto.rsk.co rejected: no getLogs: {\"code\": -32601, \"message\": \"the method eth_getLogs does not exist/is not available\"}",
+  "rootstock-mainnet.public.blastapi.io rejected: HTTP 403 {\n  \"jsonrpc\": \"2.0\",\n  \"id\": null,\n  \"error\": {\n    \"code\": -32000,\n    \"message\": \"Blast API is no longer ava",
+  "30.rpc.thirdweb.com rejected: no getLogs: {\"code\": -32601, \"message\": \"the method eth_getLogs does not exist/is not available\"}",
+  "rsk-mainnet.gateway.tatum.io rejected: no getLogs: {\"code\": -32601, \"message\": \"the method eth_getLogs does not exist/is not available\"}",
+  "no endpoint serves eth_getLogs: token transfers not measured"
+ ],
+ "errors": [],
+ "error_count": 0,
+ "seconds": 87.7,
+ "chain": "rootstock",
+ "name": "Rootstock",
+ "family": "evm",
+ "adapter": "evm",
+ "ok": true,
+ "probed_at": "2026-10-09T15:12:24+00:00"
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <!-- One unattended pass of the Solana loop a day (scripts/solana_daily.py). Read-only RPC over the local GetBlock
+       tokens; nothing is signed or sent. Edit the absolute paths, copy to ~/Library/LaunchAgents/, then:
+         launchctl load ~/Library/LaunchAgents/com.llm-quant.solana-daily.plist
+       Remove with launchctl unload. 01:30 local (21:30 UTC in Asia/Tbilisi) so the ~2-hour full-block collection runs
+       while the machine is otherwise idle and the window (20:30-21:30 UTC) lands in the US afternoon session.
+       Disk: a full window is ~8.5 GB; the template prunes the block files after a clean pass. -->
+  <key>Label</key><string>com.llm-quant.solana-daily</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/opt/homebrew/bin/uv</string>
+    <string>run</string>
+    <string>python</string>
+    <string>scripts/solana_daily.py</string>
+    <string>run</string>
+    <string>--prune-blocks</string>
+  </array>
+  <key>WorkingDirectory</key><string>/Users/iv/dev/llm-quant</string>
+  <key>StartCalendarInterval</key>
+  <dict><key>Hour</key><integer>1</integer><key>Minute</key><integer>30</integer></dict>
+  <key>StandardOutPath</key><string>/Users/iv/dev/llm-quant/research/solana_daily_launchd.log</string>
+  <key>StandardErrorPath</key><string>/Users/iv/dev/llm-quant/research/solana_daily_launchd.err</string>
+  <key>EnvironmentVariables</key>
+  <dict><key>PATH</key><string>/Users/iv/.local/bin:/opt/homebrew/bin:/usr/bin:/bin</string></dict>
+</dict>
+</plist>

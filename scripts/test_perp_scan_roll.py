@@ -12,7 +12,7 @@ import perp_scan as P  # noqa: E402
 
 
 def args(out, **kw):
-    d = dict(out=out, size_usd=1e5, horizon_h=24, roll_days=10.0, min_spread_pct=1.0)
+    d = dict(out=out, size_usd=1e5, horizon_h=24, roll_days=5.0, min_spread_pct=1.0)
     d.update(kw)
     return argparse.Namespace(**d)
 
@@ -36,8 +36,10 @@ class RollPremium(unittest.TestCase):
                 (Path(d) / 'tape.json').write_text(json.dumps({'rows': tape_rows}))
             return P.det_roll_premium({'assets': assets}, args(d))
 
-    def test_backwardation_pays_longs_net_of_step(self):
-        # Brent-like: oracle 0.60 front weight, book 0.45, spread +4.67%, funding -0.0437%/h (longs paid)
+    def test_backwardation_pays_longs_and_the_step_takes_it_back(self):
+        # The 2026-09-10 Brent snapshot: oracle 0.60 front weight, book 0.45, spread +4.67%, funding -0.0437%/h. With
+        # the measured step (a fifth of the spread per roll day) the funding nets 42% a year before the round trip and
+        # the daily round trip makes it negative: the detector must decline what the 09-10 reading (a tenth) accepted.
         hits = self.run_det([market('xyz:BRENTOIL', -0.000437, -0.0070)], curve('xyz:BRENTOIL', 0.60, 0.45, 4.67))
         self.assertEqual(len(hits), 1)
         h = hits[0]
@@ -48,8 +50,14 @@ class RollPremium(unittest.TestCase):
         ec = h['economics']
         self.assertEqual(ec['side_paid'], 'long')
         self.assertAlmostEqual(ec['funding_apr'], 0.000437 * 24 * 365, places=6)
-        self.assertAlmostEqual(ec['roll_step_apr'], 0.0467 / 10 * 365, places=6)
-        self.assertTrue(ec['net_apr'] > 1.0)
+        self.assertAlmostEqual(ec['roll_step_apr'], 0.0467 / 5 * 365, places=6)
+        self.assertLess(ec['net_apr'], 0.0)
+        self.assertFalse(ec['go'])
+
+    def test_funding_well_above_the_step_still_fires(self):
+        # positive control: the same curve with funding at 0.1%/h (876% a year) clears the step and the round trip
+        hits = self.run_det([market('xyz:BRENTOIL', -0.001, -0.0070)], curve('xyz:BRENTOIL', 0.60, 0.45, 4.67))
+        ec = hits[0]['economics']
         self.assertTrue(ec['go'])
         self.assertEqual(ec['capacity_usd'], 1.77e6)   # ask side for a long, below the cap headroom
 
@@ -58,7 +66,7 @@ class RollPremium(unittest.TestCase):
         h = hits[0]
         self.assertAlmostEqual(h['evidence']['predicted_premium'], 0.13 * 0.0469, places=6)
         self.assertEqual(h['economics']['side_paid'], 'short')
-        self.assertAlmostEqual(h['economics']['roll_step_apr'], 0.0469 / 10 * 365, places=6)
+        self.assertAlmostEqual(h['economics']['roll_step_apr'], 0.0469 / 5 * 365, places=6)
         self.assertFalse(h['economics']['go'])           # the bid side is $33k of depth
         self.assertEqual(h['economics']['capacity_usd'], 33e3)
 

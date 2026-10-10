@@ -1,0 +1,178 @@
+{
+ "tx": {
+  "count": 2350.0,
+  "se": 0.0,
+  "method": "exact-index",
+  "blocks": 75314,
+  "runs_read": 300,
+  "runs_total": 3766,
+  "run_length": 20,
+  "per_block": 0.03120269803754946,
+  "tps": 0.027199074074074073,
+  "nonempty_block_share": 0.031865198531865195,
+  "index_count": {
+   "count": 2350,
+   "endpoint": "rpc.noble.xyz",
+   "sampled_estimate": 2498.1133333333332,
+   "sampled_se": 227.1257295249992
+  },
+  "failed_share": 0.04032258064516129,
+  "note": "every transaction included in a block (num_txs), successful or failed. Noble is the USDC issuer for IBC: most transfers are IBC receives/sends of uusdc."
+ },
+ "transfers": {
+  "assets": [
+   {
+    "asset": "uusdc",
+    "symbol": "USDC",
+    "class": "usd_stable",
+    "transfers": 2440,
+    "transfers_se": 272,
+    "amount": 877848.4119161551,
+    "price": 0.999607609182977,
+    "usd": 877503.952260581,
+    "usd_se": 279446.8127707128,
+    "top_block_share": 0.2278198537898699,
+    "units_seen": 64,
+    "gross_amount": 2097342.4873221675,
+    "gross_usd": 2096519.50938999,
+    "identity": "registry"
+   },
+   {
+    "asset": "ueure",
+    "symbol": "EURe",
+    "class": "eur_stable",
+    "transfers": 20,
+    "transfers_se": 20,
+    "amount": 17889.35127780042,
+    "price": 1.117910648315996,
+    "usd": 19998.696284918457,
+    "usd_se": 19574.02472414917,
+    "top_block_share": 1.0,
+    "units_seen": 1,
+    "gross_amount": 17889.35127780042,
+    "gross_usd": 19998.696284918457,
+    "identity": "chain-registry"
+   },
+   {
+    "asset": "ausdy",
+    "symbol": "USDY",
+    "class": "usd_stable",
+    "transfers": 40,
+    "transfers_se": 39,
+    "amount": 46.664582729198955,
+    "price": 1.148620278632633,
+    "usd": 53.59988601668805,
+    "usd_se": 52.46169446022502,
+    "top_block_share": 1.0,
+    "units_seen": 1,
+    "gross_amount": 93.32916545839791,
+    "gross_usd": 107.1997720333761,
+    "identity": "chain-registry"
+   }
+  ],
+  "unpriced_top": [
+   {
+    "asset": "uusdn",
+    "symbol": "USDN",
+    "class": "usd_stable",
+    "transfers": 40,
+    "transfers_se": 28,
+    "amount": 2000.4584047879848,
+    "price": null,
+    "usd": null,
+    "usd_se": null,
+    "top_block_share": 0.9997273443613723,
+    "units_seen": 2,
+    "gross_amount": 2000.4584047879848,
+    "gross_usd": null,
+    "identity": "chain-registry"
+   }
+  ],
+  "unpriced_assets": 1,
+  "unpriced_transfers": 40,
+  "priced_usd": 897556.2484315161,
+  "usd_by_class": {
+   "usd_stable": 877557.5521465976,
+   "eur_stable": 19998.696284918457
+  },
+  "gross_priced_usd": 2116625.405446942,
+  "method": "sampled-blocks (transaction-level bank transfer events of successful transactions, fee legs removed; amount = net per transaction and denom, gross_amount = every leg); two-phase: value read from non-empty blocks",
+  "block_level": {
+   "assets": [],
+   "unpriced_top": [],
+   "unpriced_assets": 0,
+   "priced_usd": 0,
+   "gross_priced_usd": null,
+   "usd_by_class": {},
+   "method": "sampled-blocks (finalize/begin/end-block transfer events, staking, inflation and fee plumbing removed; netted per block)"
+  },
+  "fees": {
+   "priced_usd": 18.0075863646531,
+   "assets": [
+    {
+     "asset": "uusdc",
+     "symbol": "USDC",
+     "class": "usd_stable",
+     "transfers": 620,
+     "transfers_se": 90,
+     "amount": 16.620676707513066,
+     "price": 0.999607609182977,
+     "usd": 16.61415490660033,
+     "usd_se": 2.7912164894447744,
+     "top_block_share": 0.0771391098222773,
+     "units_seen": 31,
+     "gross_amount": 16.620676707513066,
+     "gross_usd": 16.61415490660033,
+     "identity": "registry"
+    },
+    {
+     "asset": "ibc/EF48E6B1A1A19F47ECAEA62F5670C37C0580E86A9E88498B7E393EB6F49F33C0",
+     "symbol": "ATOM",
+     "class": "other",
+     "transfers": 80,
+     "transfers_se": 39,
+     "amount": 0.7121690080914248,
+     "price": 1.9566022141107928,
+     "usd": 1.393431458052769,
+     "usd_se": 0.6985219533999125,
+     "top_block_share": 0.28994664420106714,
+     "units_seen": 4,
+     "gross_amount": 0.7121690080914248,
+     "gross_usd": 1.393431458052769,
+     "identity": "chain-registry"
+    }
+   ]
+  },
+  "module_addresses": {
+   "fee_collector": "noble17xpfvakm2amg962yls6f84z3kell8c5lc6kgnn",
+   "prefix": "noble"
+  }
+ },
+ "window": {
+  "start_ts": 1791417600,
+  "end_ts": 1791504000,
+  "start_utc": "2026-10-08T00:00:00+00:00",
+  "end_utc": "2026-10-09T00:00:00+00:00",
+  "hours": 24.0
+ },
+ "blocks": {
+  "first": 61051761,
+  "last": 61127074,
+  "latest": 61175414,
+  "network": "noble-1",
+  "value_sampled_tx": 120,
+  "value_sampled_block": 40
+ },
+ "endpoint": "rpc.noble.xyz, noble-rpc.polkachu.com, rpc.lavenderfive.com:443/noble",
+ "calls": 496,
+ "notes": [],
+ "errors": [],
+ "error_count": 0,
+ "seconds": 30.0,
+ "chain": "noble",
+ "name": "Noble",
+ "family": "cosmos",
+ "adapter": "cosmos",
+ "ok": true,
+ "probed_at": "2026-10-09T15:28:12+00:00"
+}

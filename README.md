@@ -44,6 +44,106 @@ to 12,056 addresses in one campaign — token-transfer address poisoning at a sc
 cannot see, and which the hand analysis of the same window missed.
 
 
+2026-10-09, second session — strategies tested on history rather than windows. Every line in the book had been priced
+from a window (an hour of funding, five hours of a rate gap), which can measure a rate but not whether it pays. This
+session collected history — a year of Hyperliquid funding, futures by contract month, every Pendle market, 446k
+resolved Polymarket markets, Kalshi, DefiLlama's unlock schedules — and held each candidate to one protocol: choose on
+the past, test once on the future, count every variant. The ROADMAP's session log has the table; the short version:
+
+* **The book's largest line was a measurement error.** XYZ's energy oracles roll on the GSCI schedule, a fifth of the
+  way a day on the 5th–9th US business days at 22:00 UTC, and the funding pays 0.89–0.97 of each step: the oil carry
+  ($2.84M a year at capacity) is the roll yield, priced, and is retired ([note](research/2026-10-09/roll_carry/findings.md)).
+* **Survivors.** Holding a Pendle PT instead of its token when the implied rate clears the token's trailing
+  interest by 5% made +7.1% a year out of sample ([note](research/2026-10-09/pendle_history/findings.md)); standing
+  queue bids on weETH, stETH and rsETH below the NAV their protocols redeem at earned $170k, $130k and $44k a year out
+  of sample over two years ([note](research/2026-10-09/redemption_history/findings.md)); shorting high-funding HIP-3
+  equity perps against the stock beat the savings rate out of sample, thinly
+  ([note](research/2026-10-09/equity_offhours/findings.md)). Shorting into large insider unlocks held out of sample
+  only in a window the protocol did not pick, and is in a forward test ([note](research/2026-10-09/unlocks/findings.md)).
+* **Clean negatives.** HIP-3 cross-builder funding pairs, Polymarket favourites, neg-risk sums and resolution lag,
+  Kalshi–Polymarket cross-venue arbitrage, and Hyperliquid-versus-CEX funding spreads, which are real per unit but live
+  in books a few thousand dollars deep ([pairs](research/2026-10-09/hip3_pairs/findings.md),
+  [Polymarket](research/2026-10-09/polymarket_history/findings.md), [cross-venue](research/2026-10-09/pm_crossvenue/findings.md),
+  [funding](research/2026-10-09/funding_arb/findings.md)).
+
+| module | what it does |
+|---|---|
+| `scripts/backtest.py` | the protocol every study uses: time splits, walk-forward, Newey–West t, block bootstrap, Benjamini–Hochberg, deflated Sharpe, `choose_then_test` |
+| `scripts/roll_carry.py` | Yahoo futures by contract month (expiry calendars for Brent/WTI/gas), the oracle's front weight hour by hour, the GSCI roll schedule as code, per-window hedged P&L, funding against the step |
+| `scripts/hip3_pairs.py` | every same-name pair of builder books, the funding-difference rule held out of sample with both legs' round trips |
+| `scripts/unlock_study.py` | DefiLlama cliff schedules matched to perps by symbol and price, short-coin/long-BTC around each cliff with a placebo, per-quarter and event-day statistics, `upcoming` for the forward test |
+| `scripts/pendle_history.py` | every Pendle market on 13 chains (including de-listed and API-blocked ones), PT against floating and against the savings rate, defaults priced at maturity |
+| `scripts/equity_offhours.py` | HIP-3 equity perps against the cash session: price discovery into the open, the off-hours oracle, funding, open-reaction rules, the hedged funding carry |
+| `scripts/polymarket_history.py` | the resolved Polymarket universe, calibration by horizon and category, neg-risk sums with atomic re-reads, resolution-lag flow |
+| `scripts/pm_crossvenue.py` | Kalshi–Polymarket matched pairs with resolution-rule classification, executable gaps after both venues' fees, gap history |
+| `scripts/dislocation_history.py --assets` | the redemption surface: eleven claims priced against the NAV their protocols paid, queues measured from events, bids capped at the median venue, two windows |
+| `scripts/funding_arb.py` | Hyperliquid against Binance, Bybit and OKX funding at each venue's settlements, pair P&L on price levels, capacity from live books |
+| `scripts/strategies.py add/quote` | study entries enter the book through a validated door; the scorecard prefers a quote's own capacity-aware dollars |
+
+```sh
+uv run python scripts/perp_history.py collect --out research/2026-10-09/perps_history --since 2025-10-01   # a year of funding (1h candles: last 5,000 bars only)
+uv run python scripts/roll_carry.py collect|analyze|render --out research/2026-10-09/roll_carry --hl research/2026-10-09/perps_hip3
+uv run python scripts/unlock_study.py collect|prices|analyze|render|upcoming --out research/2026-10-09/unlocks
+uv run python scripts/hip3_pairs.py analyze --hl research/2026-10-09/perps_hip3 --out research/2026-10-09/hip3_pairs
+uv run python scripts/pendle_history.py collect|analyze|render --out research/2026-10-09/pendle_history
+uv run python scripts/equity_offhours.py collect|books|analyze|render --out research/2026-10-09/equity_offhours
+uv run python scripts/strategies.py add --file research/2026-10-09/<study>/book_entries.json [--replace]
+uv run --with pycryptodome python scripts/strategies.py scorecard
+```
+
+2026-10-09, every chain at once — which are busy, which can be traded, and what is new: [the chain list and the
+new-activity sweep](research/2026-10-09/chains/report.md), with [the reading](research/2026-10-09/chains/insights.md).
+Until now every study in this repo picked its chain first. This layer picks the chain: it measures transactions and
+per-asset transfer value on every chain worth measuring, of every VM family, ranks them, tiers them by how reasonable it
+is to trade there, and runs detectors that call activity *new* only when it is new against the chain's own history and
+against the rest of the market that day.
+
+| module | what it does |
+|---|---|
+| `scripts/chain_registry.json` | the list: 67 chains across 17 families (41 EVM, Tron, Solana, Sui, Aptos, NEAR, TON, Starknet, XRPL, Stellar, Hedera, Cardano, Algorand, Tezos, 5 UTXO, 7 Cosmos zones, HyperCore), with each source's identity for the chain and a first-choice endpoint; census-only chains listed so the gap is visible |
+| `scripts/chain_census.py` | the aggregator layer for ~570 chains: DefiLlama (TVL, DEX volume, fees, stablecoin float, per-stablecoin float with 1d/7d/30d changes), growthepie and L2Beat (daily transactions, one year), Blockchair, Tronscan, NEARBlocks, CoinGecko and Hyperliquid (can the chain's own token be traded or hedged). Daily history for every active chain, so a baseline exists on the first run. DefiLlama's internal chain keys are inferred from single-chain protocols rather than typed |
+| `scripts/chain_probe.py` + `scripts/chain_adapters/` | the direct reading, one adapter per family: a cumulative counter where the chain keeps one (Sui checkpoints, Aptos versions, Algorand's header counter, TzKT, Stellar/Hedera/Bitcoin/Cardano by reading every block), a stratified block sample with its standard error where it does not; per-asset transfer value **net per transaction** (each account's positive net change), priced by contract through DefiLlama, with the single-block share that says when a figure is one transfer scaled up; the contracts that receive the transactions and the value; `history` backfills daily counts so probe-only chains have a baseline too |
+| `scripts/chain_activity.py` | the loop member: `analyze` (the ranked list), `detect` (9 detectors, `Hit` shape, ledger keys), `verify` (probe against every aggregator on the same UTC day), `render`, `series`, and `run`, the unattended daily pass (launchd template `scripts/launchd/com.llm-quant.chains-daily.plist`) |
+
+```sh
+uv run python scripts/chain_census.py fetch --out research/2026-10-09/chains        # ~3 min, aggregator raw/ cache (gitignored)
+uv run python scripts/chain_census.py build --out research/2026-10-09/chains        # offline -> census.json (1.5 MB)
+uv run --with pycryptodome python scripts/chain_probe.py run --out research/2026-10-09/chains --day 2026-10-08   # ~25 min, every registry chain
+uv run --with pycryptodome python scripts/chain_probe.py history --days 14 --probe research/2026-10-09/chains/probe.json   # daily-count baseline
+uv run python scripts/chain_activity.py analyze|detect|verify|render|series --out research/2026-10-09/chains
+uv run python scripts/findings.py ingest --chain chains --out research/2026-10-09/chains
+uv run --with pycryptodome python scripts/chain_activity.py run          # all of the above for yesterday's UTC day
+uv run --with pycryptodome python scripts/chain_probe.py one base --hours 1 --samples 20   # one chain, printed
+```
+
+How "reasonable to trade" is decided (`chain_census.tier_of`): *deep* is $100M+/day of DEX volume (or $1B+ of
+stablecoins with $10M+/day); *tradeable* is $1M+/day of DEX volume and $10M+ of stablecoins, i.e. entries and exits
+exist on chain; *token_only* is a chain whose own token is liquid off chain (CoinGecko $10M+/day or a Hyperliquid perp
+$1M+/day) while its on-chain economy is not, so activity there is a reason to trade the token rather than on the chain;
+*thin* and *inactive* below that. Every hit carries its chain's tier.
+
+How "new" is decided (`chain_activity.surge_stats`): the last day against the median of the previous 28 (and the same
+weekday's median, keeping the smaller ratio), and the last week against the 28 days before it; the surge must be rarer
+than one day in twenty *for that chain* (an empirical exceedance rate over its own last 150 days, so a chain that
+doubles every other week is not news when it doubles again), clear an absolute floor ($1M/day of DEX volume, 25k
+transactions), and exceed the cross-chain median move of the same day by half (`MARKET_EXCESS`), so a sell-off that
+lifts every chain at once is reported as the market. A week whose excess comes mostly from one day is labelled a spike.
+
+The first reading (UTC day 2026-10-08). Busiest by user transactions: HyperCore 2.06B actions, Solana 178M, BSC 16.9M,
+Base 12.3M, Tron 11.4M, Aptos 10.2M, Robinhood Chain 8.1M, Sui 7.4M, Monad 6.3M, Polygon 5.4M, Stellar 5.1M, TON 3.4M,
+XRPL 2.4M; 12 chains are deep and 28 tradeable of 569. Against every aggregator that counts the same UTC day the probe
+agrees within ±10% on 34 of 42 chain-source pairs, and where two aggregators disagree it can say why: growthepie's
+MegaETH is L2Beat's minus the 43.5% of transactions that are the system oracle. Value per transaction separates busy
+from active (MegaETH $0.23, opBNB $0.05, XDC $1.58 against Ethereum's $36k), and the contracts that receive the
+transactions say who the activity is (Unichain 74% builder bookkeeping, Flare 86% oracle submissions, Base 74% of value
+through four unverified contracts). The detectors' one `high` hit is Cardano, whose transactions went from 34k to 543k
+in two days — a HOSKY mass distribution, not trading; Arbitrum's tripled active addresses are one contract born on the
+day and pinged by ~1,000 fresh wallets an hour; Cronos's x2.6 is a memecoin wave on a chain with on-chain liquidity;
+stablecoins arrived on Tempo (+$678M in 30 days), Plasma, XRPL, Arc and X Layer. Two pipeline bugs surfaced on the way and
+are fixed: Solana's version-1 transactions break `maxSupportedTransactionVersion: 0` (also in `solana_collect.py`), and
+DefiLlama writes a missing stablecoin reading as `{}`, which a naive parse turns into a $1.3B "launch".
+
+
 2026-09-08, reading contracts instead of events: [the window's contracts, from their bytecode](research/2026-09-08/live_10h/contracts/findings.md).
 Every other reader in this repo decides what a contract is from its logs, which is blind to a contract that emits
 nothing, and to a code path the window did not happen to hit. `scripts/bytecode_lens.py` reads the bytes instead:
@@ -132,7 +232,26 @@ uv run python scripts/solana_scan.py analyze --out research/2026-09-07/solana_li
 uv run python scripts/solana_scan.py render  --out research/2026-09-07/solana_live   # insights.md + tables -> report.md
 uv run python scripts/solana_scan.py show <signature>                                # decoded instructions, balances, logs from the local blocks
 uv run python scripts/solana_followups.py profile|program|token|cluster --out ...     # address profiles, program shape, token tape, sybil-funding check
+uv run python scripts/solana_detect.py detect --out research/2026-09-10/solana_live    # 13 Solana detectors over analysis.json + head_state.json -> detectors.json/.md
+uv run python scripts/solana_detect.py diff   --out research/2026-09-10/solana_live --prev research/2026-09-07/solana_live   # what changed -> diff.json/.md
+uv run python scripts/findings.py ingest --chain solana --out research/2026-09-10/solana_live   # fold the hits into research/findings.jsonl
+uv run python scripts/solana_daily.py run [--every 4] [--prune-blocks]                # the whole sequence unattended; launchd template in scripts/launchd/
 ```
+
+2026-09-10, second window (`research/2026-09-10/solana_live/`): the Solana scan became a loop member. `scripts/solana_detect.py
+detect` runs 14 Solana detectors over `analysis.json` + `head_state.json` — wash volume by venue, quote posters, failure bots,
+fan-in hubs and distributors, launch factories, flash-loan spam, liquidation drought, exchange flow, unknown CCTP domains,
+dust senders, large moves, LST NAV basis, stable rate gaps across Kamino/Save/Jupiter Lend, and tips by provider — in the
+same `Hit` shape as the Ethereum registry, keyed by the persistent thing (program, venue, hub, asset pair, provider) and
+never by a pump mint, so `findings.py ingest --chain solana` folds them into the shared ledger and `findings.py report`
+shows Solana recurrence beside Ethereum's. `diff` writes the window-over-window table (27 standing metrics, programs that
+entered or left the top 40, which named actors persisted) that the narrative starts from, and flags partial windows so a
+6-minute collection is not compared with an hour as if both were totals. `render` folds `diff.md` and `detectors.md` into
+`report.md`. `scripts/solana_daily.py run` chains the whole sequence unattended (launchd template in `scripts/launchd/`;
+`--every K` samples blocks, `--prune-blocks` frees the ~8.5 GB a full window costs). The tip-account registry now covers
+Helius Sender (10 accounts, from its docs), Astralane (`astra4uej…` from its docs plus four same-prefix accounts) and two
+unidentified success-conditional families (`ste11…`, `ASTRaoF9…`), all found by a census of payer→account SOL transfers
+shared by ≥50 payers; "Jito tips" in the tables is therefore "tips to any tip account" from this window on.
 
 What `analyze` computes (all from the saved blocks; USD basis = stables at par, SOL from the in-window swap path, registry
 tokens from the Jupiter head read, everything else priced only through the opposite leg of a swap): throughput, vote/non-vote
@@ -262,6 +381,11 @@ uv run python scripts/findings.py ingest   --out research/2026-09-10/perps_2 --c
 uv run python scripts/perp_daily.py run                     # one unattended pass; launchd template in scripts/launchd/
 uv run python scripts/strategies.py scorecard               # $/yr at capacity on go verdicts, persistence, out of sample
 ```
+
+The cross-chain dollar book has a second window ([note](research/2026-09-10/multi_1h/insights.md)): $21.1M at 67bp
+against $37.3M at 48bp on 09-08, the destination rotated from Base to Avalanche, and the one standing row is USDT from
+BSC to Ethereum at 60 to 70bp on about $10M. `multichain.py detect` writes the `cross_chain_rate` hits the ledger
+ingests, so the book re-prices itself from here.
 
 `detectors/roll_premium` re-checks the mechanism every window: it predicts the premium from the curve placement, scores
 the fit, and prices the carry net of a tenth of the spread per trading day, which is what the book now quotes for the

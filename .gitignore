@@ -42,3 +42,16 @@ research/*/*/refs/hl_*.json.gz
 research/*/*/history_analysis.json
 research/*.log
 research/*.err
+
+# chain-activity caches: chainlist's endpoint list, the per-run price cache (re-fetchable, not evidence)
+research/chains/cache/
+research/*/chains/cache/
+
+# 2026-10-09 history studies: bulky intermediate files outside raw/
+research/2026-10-09/pm_crossvenue/candidates.json
+research/2026-10-09/pm_crossvenue/history.json
+research/2026-10-09/pm_crossvenue/books_*.json
+research/2026-10-09/pm_crossvenue/books.json
+research/2026-10-09/pendle_history/trades*.json.gz
+research/2026-10-09/equity_offhours/sessions.json.gz
+research/2026-10-09/funding_arb/snapshot.json

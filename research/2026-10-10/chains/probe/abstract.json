@@ -1,0 +1,377 @@
+{
+ "tx": {
+  "count": 105527.16,
+  "se": 3663.0804007161178,
+  "raw_count": 105527.16,
+  "system_count": 0.0,
+  "method": "sampled-blocks",
+  "system_per_block": 0.0,
+  "bookkeeping": null,
+  "count_ex_bookkeeping": null,
+  "bookkeeping_targets": null,
+  "blocks": 81804,
+  "sampled": 200,
+  "per_block": 1.29,
+  "tps": 1.2213791666666667,
+  "note": "user transactions: OP-stack L1-attributes deposits and Arbitrum internal txs excluded"
+ },
+ "gas": {
+  "gas_per_second": 257158.06498819444,
+  "base_fee_median_gwei": 0.04525
+ },
+ "transfers": {
+  "assets": [
+   {
+    "asset": "0x000000000000000000000000000000000000800a",
+    "symbol": "ETH",
+    "class": "eth",
+    "transfers": 295312,
+    "transfers_se": 13764,
+    "amount": 1819.2946448240177,
+    "price": 2492.872233158254,
+    "usd": 4535269.104015302,
+    "usd_se": 3630478.029549248,
+    "top_block_share": 0.7883474105340048,
+    "units_seen": 200,
+    "gross_amount": 2557.42470926295,
+    "gross_usd": 6375333.046114428
+   },
+   {
+    "asset": "0x3439153eb7af838ad19d56e1571fbd09333c2809",
+    "symbol": "WETH",
+    "class": "eth",
+    "transfers": 14316,
+    "transfers_se": 4449,
+    "amount": 675.4380117686724,
+    "price": 2493.3242061028295,
+    "usd": 1684085.9444647986,
+    "usd_se": 927002.7265933523,
+    "top_block_share": 0.43405672452443367,
+    "units_seen": 18,
+    "gross_amount": 997.8308283160256,
+    "gross_usd": 2487915.7578359833
+   },
+   {
+    "asset": "0x9ebe3a824ca958e4b3da772d2065518f009cba62",
+    "symbol": "PENGU",
+    "class": "other",
+    "transfers": 7771,
+    "transfers_se": 4187,
+    "amount": 187108285.4272337,
+    "price": 0.008369144781664903,
+    "usd": 1565936.3305896001,
+    "usd_se": 1032417.8351401526,
+    "top_block_share": 0.5465017210035144,
+    "units_seen": 8,
+    "gross_amount": 465609178.7083421,
+    "gross_usd": 3896750.6282822024
+   },
+   {
+    "asset": "0x84a71ccd554cc1b02749b35d22f684cc8ec987e1",
+    "symbol": "USDC.e",
+    "class": "usd_stable",
+    "transfers": 28222,
+    "transfers_se": 6238,
+    "amount": 1377253.3174783802,
+    "price": 0.9997234662620624,
+    "usd": 1376872.460470411,
+    "usd_se": 857820.4021737055,
+    "top_block_share": 0.5863405042139146,
+    "units_seen": 32,
+    "gross_amount": 3244423.3578363,
+    "gross_usd": 3243526.165317706
+   },
+   {
+    "asset": "native:ETH",
+    "symbol": "ETH",
+    "class": "eth",
+    "transfers": null,
+    "transfers_se": null,
+    "amount": 337.88243891078497,
+    "price": 2492.872233158254,
+    "usd": 842297.7500324858,
+    "usd_se": 600488.3074803955,
+    "top_block_share": 0.7043480367202826,
+    "units_seen": 59,
+    "note": "top-level transaction value only; internal transfers need traces"
+   },
+   {
+    "asset": "0x0709f39376deee2a2dfc94a58edeb2eb9df012bd",
+    "symbol": "USDT",
+    "class": "usd_stable",
+    "transfers": 7362,
+    "transfers_se": 3547,
+    "amount": 338952.66201984,
+    "price": 0.9991848160012318,
+    "usd": 338676.3532334215,
+    "usd_se": 176248.3400760537,
+    "top_block_share": 0.41527651962763146,
+    "units_seen": 5,
+    "gross_amount": 544220.32862274,
+    "gross_usd": 543776.6889190424
+   },
+   {
+    "asset": "0xa8726bd058bea1973b61a9bc2a5e0e605b797307",
+    "symbol": "absETH",
+    "class": "other",
+    "transfers": 3681,
+    "transfers_se": 1532,
+    "amount": 0.23782613025086563,
+    "price": 2636.871011024129,
+    "usd": 627.1168285225563,
+    "usd_se": 281.37834261586664,
+    "top_block_share": 0.29605145502113533,
+    "units_seen": 7,
+    "gross_amount": 0.27868474141476,
+    "gross_usd": 734.8557158513362
+   },
+   {
+    "asset": "0x27f095d85132e08fc7a3f5d6dde4f000c7f56515",
+    "symbol": "CHESTER",
+    "class": "other",
+    "transfers": 1227,
+    "transfers_se": 1229,
+    "amount": 93660803.75672674,
+    "price": 5.801409047097735e-06,
+    "usd": 543.3646342727201,
+    "usd_se": 544.0618594306754,
+    "top_block_share": 1.0,
+    "units_seen": 1,
+    "gross_amount": 187321607.51345348,
+    "gross_usd": 1086.7292685454402
+   },
+   {
+    "asset": "0x85ca16fd0e81659e0b8be337294149e722528731",
+    "symbol": "NOOT",
+    "class": "other",
+    "transfers": 1227,
+    "transfers_se": 1229,
+    "amount": 4631151.51934,
+    "price": 3.1865883641069564e-05,
+    "usd": 147.57573543945097,
+    "usd_se": 147.76509909869958,
+    "top_block_share": 1.0,
+    "units_seen": 1,
+    "gross_amount": 9262303.03868,
+    "gross_usd": 295.15147087890193
+   },
+   {
+    "asset": "0x4c68e4102c0f120cce9f08625bd12079806b7c4d",
+    "symbol": "ABX",
+    "class": "other",
+    "transfers": 818,
+    "transfers_se": 579,
+    "amount": 6519.572804711615,
+    "price": 2.6773195205029606e-05,
+    "usd": 0.17454979535394644,
+    "usd_se": 0.14843661053510293,
+    "top_block_share": 0.8326579375176634,
+    "units_seen": 2,
+    "gross_amount": 6519.572804711615,
+    "gross_usd": 0.17454979535394644
+   }
+  ],
+  "unpriced_top": [
+   {
+    "asset": "0x4b16703f7b0de03d23fd54606ed5786a59e3f27e",
+    "symbol": "BURR",
+    "class": "other",
+    "transfers": 1636,
+    "transfers_se": 1638,
+    "amount": 4090615.056457243,
+    "price": null,
+    "usd": null,
+    "usd_se": null,
+    "top_block_share": 1.0,
+    "units_seen": 1,
+    "gross_amount": 8181230.112914486,
+    "gross_usd": null
+   },
+   {
+    "asset": "0xb72207e1fb50f341415999732a20b6d25d8127aa",
+    "symbol": "rabsETH",
+    "class": "other",
+    "transfers": 1227,
+    "transfers_se": 579,
+    "amount": 0.13961642209402272,
+    "price": null,
+    "usd": null,
+    "usd_se": null,
+    "top_block_share": 0.5318364032086568,
+    "units_seen": 3,
+    "gross_amount": 0.13961642209402272,
+    "gross_usd": null
+   },
+   {
+    "asset": "0xdf70075737e9f96b078ab4461eee3e055e061223",
+    "symbol": "BIG",
+    "class": "other",
+    "transfers": 409,
+    "transfers_se": 410,
+    "amount": 409.02,
+    "price": null,
+    "usd": null,
+    "usd_se": null,
+    "top_block_share": 1.0,
+    "units_seen": 1,
+    "gross_amount": 409.02,
+    "gross_usd": null
+   },
+   {
+    "asset": "0xf3d2e788c24497e395197329c82117bb8d663175",
+    "symbol": "DEPTH",
+    "class": "other",
+    "transfers": 409,
+    "transfers_se": 410,
+    "amount": 1269.5365506088046,
+    "price": null,
+    "usd": null,
+    "usd_se": null,
+    "top_block_share": 1.0,
+    "units_seen": 1,
+    "gross_amount": 1269.5365506088046,
+    "gross_usd": null
+   }
+  ],
+  "unpriced_assets": 4,
+  "unpriced_transfers": 3681,
+  "priced_usd": 10344456.174554048,
+  "usd_by_class": {
+   "eth": 7061652.798512586,
+   "other": 1567254.5623376304,
+   "usd_stable": 1715548.8137038324
+  },
+  "gross_priced_usd": 16549419.197474435,
+  "method": "sampled-blocks; value = net per transaction (each account's positive net change), gross beside it",
+  "top_targets_by_value": [
+   {
+    "to": "0x643e1471f37c4680df30cf0c540cd379a0ff58a5",
+    "usd": 3575367.654225339,
+    "share": 0.3762690006302816
+   },
+   {
+    "to": "0x3186e907ae8935257bcc456f307df0282f1e5fac",
+    "usd": 2515868.1340867197,
+    "share": 0.26476806865208574
+   },
+   {
+    "to": "0x7fb4822fc565bcacf0ab1fece1afeea787c07c37",
+    "usd": 1809195.9408200085,
+    "share": 0.1903984189688042
+   },
+   {
+    "to": "0x7d5f8be5e01916562b7f48ef7d7515d1b6f3cecd",
+    "usd": 421748.43926803436,
+    "share": 0.04438448828422576
+   },
+   {
+    "to": "0x84a71ccd554cc1b02749b35d22f684cc8ec987e1",
+    "usd": 233262.02138204523,
+    "share": 0.024548319546018313
+   },
+   {
+    "to": "0xada5d0e79681038a9547fe6a59f1413f3e720839",
+    "usd": 163928.79292612788,
+    "share": 0.01725174277278815
+   },
+   {
+    "to": "0x508381b4ced348bf97a565693e5d6102316a8faf",
+    "usd": 142662.84827274462,
+    "share": 0.015013730765063283
+   },
+   {
+    "to": "0x94fbf512d18346ba4af721820061be6450057858",
+    "usd": 140760.24560788512,
+    "share": 0.01481350229276697
+   },
+   {
+    "to": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+    "usd": 79733.88128538393,
+    "share": 0.00839113364807939
+   },
+   {
+    "to": "0x8ea5d48884728cd1c41af95733011b4276f83e0b",
+    "usd": 55308.616901480505,
+    "share": 0.005820637210041604
+   }
+  ],
+  "top_targets_by_txs": [
+   {
+    "to": "0x99bb83ae9bb0c0a6be865cacf67760947f91cb70",
+    "txs": 22087.079999999998,
+    "share": 0.20930232558139536
+   },
+   {
+    "to": "0x569dcb79238866ba7198ee5b8c0c7a350f969218",
+    "txs": 13088.64,
+    "share": 0.12403100775193798
+   },
+   {
+    "to": "0x84a71ccd554cc1b02749b35d22f684cc8ec987e1",
+    "txs": 4908.24,
+    "share": 0.046511627906976744
+   },
+   {
+    "to": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+    "txs": 4908.24,
+    "share": 0.046511627906976744
+   },
+   {
+    "to": "0x27edd16ee56958fddcba08947f12c43ddec2b20c",
+    "txs": 3272.16,
+    "share": 0.031007751937984496
+   },
+   {
+    "to": "0x959390bd18ced6fbddeba36248243b91db6f820d",
+    "txs": 2863.14,
+    "share": 0.027131782945736434
+   },
+   {
+    "to": "0x3b50de27506f0a8c1f4122a1e6f470009a76ce2a",
+    "txs": 2863.14,
+    "share": 0.027131782945736434
+   },
+   {
+    "to": "0xa8726bd058bea1973b61a9bc2a5e0e605b797307",
+    "txs": 2045.1,
+    "share": 0.01937984496124031
+   },
+   {
+    "to": "0x9ebe3a824ca958e4b3da772d2065518f009cba62",
+    "txs": 2045.1,
+    "share": 0.01937984496124031
+   },
+   {
+    "to": "0x508381b4ced348bf97a565693e5d6102316a8faf",
+    "txs": 2045.1,
+    "share": 0.01937984496124031
+   }
+  ],
+  "transfer_logs_per_block": 4.445,
+  "logs_missing_blocks": 0
+ },
+ "window": {
+  "start_ts": 1791504000,
+  "end_ts": 1791590400,
+  "start_utc": "2026-10-09T00:00:00+00:00",
+  "end_utc": "2026-10-10T00:00:00+00:00",
+  "hours": 24.0
+ },
+ "blocks": {
+  "first": 87219445,
+  "last": 87301248,
+  "head": 87334757
+ },
+ "endpoint": "https://api.mainnet.abs.xyz",
+ "calls": 449,
+ "notes": [],
+ "errors": [],
+ "error_count": 0,
+ "seconds": 30.5,
+ "chain": "abstract",
+ "name": "Abstract",
+ "family": "evm",
+ "adapter": "evm",
+ "ok": true,
+ "probed_at": "2026-10-10T10:18:55+00:00"
+}

@@ -1,0 +1,29 @@
+{
+ "sources": {
+  "kalshi": "https://api.elections.kalshi.com/trade-api/v2/",
+  "kalshi_fee_doc": "https://docs.kalshi.com/getting_started/fee_rounding.md",
+  "limitless": "https://api.limitless.exchange/",
+  "polymarket_clob": "https://clob.polymarket.com/",
+  "polymarket_fee_doc": "https://docs.polymarket.com/trading/fees.md",
+  "polymarket_gamma": "https://gamma-api.polymarket.com/"
+ },
+ "steps": {
+  "analyze": {
+   "books_snapshots": [
+    "2026-10-09T20:55:31.882110+00:00",
+    "2026-10-09T21:23:28.781418+00:00"
+   ],
+   "history_pairs": 115,
+   "matches": 3226,
+   "note": "The raw universe (2026-10-09 ~20:13-20:30 UTC) was fetched by scratch copies of fetch_kalshi_events, fetch_kalshi_markets, fetch_polymarket_events and fetch_limitless; `snapshot` is the packaged form and was not re-run against the venues.",
+   "raw": {
+    "history_files": 228,
+    "kalshi_events_open": "2026-10-09T20:30:37.047599+00:00",
+    "kalshi_markets_dir_files": 568,
+    "kalshi_series_all": "2026-10-09T20:32:11.553189+00:00",
+    "limitless_markets_active": "2026-10-09T20:29:58.271059+00:00",
+    "polymarket_events_all": "2026-10-09T20:39:41.359353+00:00"
+   }
+  }
+ }
+}

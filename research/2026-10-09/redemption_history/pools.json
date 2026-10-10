@@ -1,0 +1,534 @@
+{
+ "etherfi": [
+  {
+   "address": "0x86f874212335af27c41cdb855c2255543d1499ce",
+   "decimals": [
+    18,
+    18
+   ],
+   "fee_bps": 0.83,
+   "fee_source": "Fluid API configs.fee=83",
+   "name": "fluid-weeth-eth",
+   "symbols": [
+    "weETH",
+    "ETH"
+   ],
+   "tokens": [
+    "0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee",
+    "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+   ],
+   "venue": "fluid"
+  },
+  {
+   "address": "0xdb74dfdd3bb46be8ce6c33dc9d82777bcfc3ded5",
+   "coins": [
+    "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+    "0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee"
+   ],
+   "decimals": [
+    18,
+    18
+   ],
+   "fee_bps": 0.5,
+   "fee_source": "fee() at latest",
+   "name": "curve-weeth-weth",
+   "symbols": [
+    "WETH",
+    "weETH"
+   ],
+   "venue": "curve"
+  },
+  {
+   "address": "0x202a6012894ae5c288ea824cbc8a9bfb26a49b93",
+   "decimals": [
+    18,
+    18
+   ],
+   "fee_bps": 1.0,
+   "fee_source": "fee() at latest",
+   "name": "v3-weeth-weth-1bp",
+   "symbols": [
+    "WETH",
+    "weETH"
+   ],
+   "tokens": [
+    "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+    "0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee"
+   ],
+   "venue": "uniswap_v3"
+  }
+ ],
+ "frax": [
+  {
+   "address": "0xf292eb6c5dcb693eaaf392d0562a01c3710e5978",
+   "coins": [
+    "0xcf62f905562626cfcdd2261162a51fd02fc9c5b6",
+    "0xcacd6fd266af91b8aed52accc382b4e165586e29"
+   ],
+   "decimals": [
+    18,
+    18
+   ],
+   "fee_bps": 1.0,
+   "fee_source": "fee() at latest",
+   "name": "curve-sfrxusd-frxusd",
+   "symbols": [
+    "sfrxUSD",
+    "frxUSD"
+   ],
+   "venue": "curve"
+  }
+ ],
+ "kelp": [
+  {
+   "address": "0x276084527b801e00db8e4410504f9baf93f72c67",
+   "decimals": [
+    18,
+    18
+   ],
+   "fee_bps": 1.0,
+   "fee_source": "assumed (pool not in the Fluid API list)",
+   "name": "fluid-rseth-eth",
+   "symbols": [
+    "rsETH",
+    "ETH"
+   ],
+   "tokens": [
+    "0xa1290d69c65a6fe4df752f95823fae25cb99e5a7",
+    "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+   ],
+   "venue": "fluid"
+  },
+  {
+   "decimals": [
+    18,
+    18
+   ],
+   "fee_source": "per swap, from the event",
+   "name": "v4-rseth-eth-5bp",
+   "pool_id": "0x3ffa23dc8cbb32957059d95efdc2722e1206e295fe72c90d4563721937921f5a",
+   "symbols": [
+    "ETH",
+    "rsETH"
+   ],
+   "tokens": [
+    "0x0000000000000000000000000000000000000000",
+    "0xa1290d69c65a6fe4df752f95823fae25cb99e5a7"
+   ],
+   "venue": "uniswap_v4"
+  }
+ ],
+ "lido": [
+  {
+   "address": "0xdc24316b9ae028f1497c275eb9192a3ea0f67022",
+   "coins": [
+    "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "0xae7ab96520de3a18e5e111b5eaab095312d7fe84"
+   ],
+   "decimals": [
+    18,
+    18
+   ],
+   "fee_bps": 1.0,
+   "fee_source": "fee() at latest",
+   "name": "curve-steth-eth",
+   "symbols": [
+    "ETH",
+    "stETH"
+   ],
+   "venue": "curve"
+  },
+  {
+   "address": "0x21e27a5e5513d6e65c4f830167390997aa84843a",
+   "coins": [
+    "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "0xae7ab96520de3a18e5e111b5eaab095312d7fe84"
+   ],
+   "decimals": [
+    18,
+    18
+   ],
+   "fee_bps": 0.8,
+   "fee_source": "fee() at latest",
+   "name": "curve-steth-ng",
+   "symbols": [
+    "ETH",
+    "stETH"
+   ],
+   "venue": "curve"
+  },
+  {
+   "address": "0x0b1a513ee24972daef112bc777a5610d4325c9e7",
+   "decimals": [
+    18,
+    18
+   ],
+   "fee_bps": 1.0,
+   "fee_source": "Fluid API configs.fee=100",
+   "name": "fluid-wsteth-eth",
+   "symbols": [
+    "wstETH",
+    "ETH"
+   ],
+   "tokens": [
+    "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0",
+    "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+   ],
+   "venue": "fluid"
+  },
+  {
+   "address": "0x109830a1aaad605bbf02a9dfa7b0b92ec2fb7daa",
+   "decimals": [
+    18,
+    18
+   ],
+   "fee_bps": 1.0,
+   "fee_source": "fee() at latest",
+   "name": "v3-wsteth-weth-1bp",
+   "symbols": [
+    "wstETH",
+    "WETH"
+   ],
+   "tokens": [
+    "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0",
+    "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+   ],
+   "venue": "uniswap_v3"
+  }
+ ],
+ "maple_usdc": [
+  {
+   "decimals": [
+    6,
+    6
+   ],
+   "fee_source": "per swap, from the event",
+   "name": "v4-syrupusdc-usdc-8bp",
+   "pool_id": "0xcdb422a853a4fa2deb364317db92ad76d1cb7a8e1b82a32219bcb41720a90228",
+   "symbols": [
+    "syrupUSDC",
+    "USDC"
+   ],
+   "tokens": [
+    "0x80ac24aa929eaf5013f6436cda2a7ba190f5cc0b",
+    "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+   ],
+   "venue": "uniswap_v4"
+  },
+  {
+   "address": "0x79eea4a1be86c43a9a9c4384b0b28a07af24ae29",
+   "decimals": [
+    6,
+    6
+   ],
+   "fee_bps": 5.0,
+   "fee_source": "Fluid API configs.fee=500",
+   "name": "fluid-syrupusdc-usdc",
+   "symbols": [
+    "syrupUSDC",
+    "USDC"
+   ],
+   "tokens": [
+    "0x80ac24aa929eaf5013f6436cda2a7ba190f5cc0b",
+    "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+   ],
+   "venue": "fluid"
+  }
+ ],
+ "maple_usdt": [
+  {
+   "decimals": [
+    6,
+    6
+   ],
+   "fee_source": "per swap, from the event",
+   "name": "v4-syrupusdt-usdt-8bp",
+   "pool_id": "0xd861038a98942312d1495dd1313fb66c7e7de48f549a15edf3a45decf7338e1d",
+   "symbols": [
+    "syrupUSDT",
+    "USDT"
+   ],
+   "tokens": [
+    "0x356b8d89c1e1239cbbb9de4815c39a1474d5ba7d",
+    "0xdac17f958d2ee523a2206206994597c13d831ec7"
+   ],
+   "venue": "uniswap_v4"
+  }
+ ],
+ "renzo": [
+  {
+   "address": "0xdd72157a021804141817d46d9852a97addfb9f59",
+   "decimals": [
+    18,
+    18
+   ],
+   "fee_bps": 1.0,
+   "fee_source": "assumed (pool not in the Fluid API list)",
+   "name": "fluid-ezeth-eth",
+   "symbols": [
+    "ezETH",
+    "ETH"
+   ],
+   "tokens": [
+    "0xbf5495efe5db9ce00f80364c8b423567e58d2110",
+    "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+   ],
+   "venue": "fluid"
+  }
+ ],
+ "rocketpool": [
+  {
+   "address": "0x553e9c493678d8606d6a5ba284643db2110df823",
+   "decimals": [
+    18,
+    18
+   ],
+   "fee_bps": 1.0,
+   "fee_source": "fee() at latest",
+   "name": "v3-reth-weth-1bp",
+   "symbols": [
+    "rETH",
+    "WETH"
+   ],
+   "tokens": [
+    "0xae78736cd615f374d3085123a210448e74fc6393",
+    "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+   ],
+   "venue": "uniswap_v3"
+  },
+  {
+   "decimals": [
+    18,
+    18
+   ],
+   "fee_source": "per swap, from the event",
+   "name": "v4-reth-eth-1bp",
+   "pool_id": "0x70946c979da3e5587a00b3a750cc76902d187894501ba9e8be9efd1849b6e0b7",
+   "symbols": [
+    "ETH",
+    "rETH"
+   ],
+   "tokens": [
+    "0x0000000000000000000000000000000000000000",
+    "0xae78736cd615f374d3085123a210448e74fc6393"
+   ],
+   "venue": "uniswap_v4"
+  },
+  {
+   "address": "0x9efe1a1cbd6ca51ee8319afc4573d253c3b732af",
+   "coins": [
+    "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+    "0xae78736cd615f374d3085123a210448e74fc6393"
+   ],
+   "decimals": [
+    18,
+    18
+   ],
+   "fee_bps": 1.0,
+   "fee_source": "fee() at latest",
+   "name": "curve-reth-weth",
+   "symbols": [
+    "WETH",
+    "rETH"
+   ],
+   "venue": "curve"
+  }
+ ],
+ "sky": [
+  {
+   "address": "0x8b83c4aa949254895507d09365229bc3a8c7f710",
+   "coins": [
+    "0x865377367054516e17014ccded1e7d814edc9ce4",
+    "0xa3931d71877c0e7a3148cb7eb4463524fec27fbd"
+   ],
+   "decimals": [
+    18,
+    18
+   ],
+   "fee_bps": 1.0,
+   "fee_source": "fee() at latest",
+   "name": "curve-dola-susds",
+   "symbols": [
+    "DOLA",
+    "sUSDS"
+   ],
+   "venue": "curve"
+  },
+  {
+   "address": "0x81a2612f6dea269a6dd1f6deab45c5424ee2c4b7",
+   "coins": [
+    "0xcacd6fd266af91b8aed52accc382b4e165586e29",
+    "0xa3931d71877c0e7a3148cb7eb4463524fec27fbd"
+   ],
+   "decimals": [
+    18,
+    18
+   ],
+   "fee_bps": 1.0,
+   "fee_source": "fee() at latest",
+   "name": "curve-frxusd-susds",
+   "symbols": [
+    "frxUSD",
+    "sUSDS"
+   ],
+   "venue": "curve"
+  },
+  {
+   "address": "0x00836fe54625be242bcfa286207795405ca4fd10",
+   "coins": [
+    "0xa3931d71877c0e7a3148cb7eb4463524fec27fbd",
+    "0xdac17f958d2ee523a2206206994597c13d831ec7"
+   ],
+   "decimals": [
+    18,
+    6
+   ],
+   "fee_bps": 0.1,
+   "fee_source": "fee() at latest",
+   "name": "curve-susds-usdt",
+   "symbols": [
+    "sUSDS",
+    "USDT"
+   ],
+   "venue": "curve"
+  }
+ ],
+ "susde": [
+  {
+   "address": "0x167478921b907422f8e88b43c4af2b8bea278d3a",
+   "coins": [
+    "0x83f20f44975d03b1b09e64809b757c47f942beea",
+    "0x9d39a5de30e57443bff2a8307a4256c8797a3497"
+   ],
+   "decimals": [
+    18,
+    18
+   ],
+   "fee_bps": 2.0,
+   "fee_source": "fee() at latest",
+   "name": "curve-sdai-susde",
+   "symbols": [
+    "sDAI",
+    "sUSDe"
+   ],
+   "venue": "curve"
+  },
+  {
+   "address": "0x47ab5f9d8c9c7d002a92320f23a696d348c56a7f",
+   "coins": [
+    "0xcacd6fd266af91b8aed52accc382b4e165586e29",
+    "0x9d39a5de30e57443bff2a8307a4256c8797a3497"
+   ],
+   "decimals": [
+    18,
+    18
+   ],
+   "fee_bps": 1.0,
+   "fee_source": "fee() at latest",
+   "name": "curve-susde-frxusd",
+   "symbols": [
+    "frxUSD",
+    "sUSDe"
+   ],
+   "venue": "curve"
+  },
+  {
+   "currency0": "0x9d39a5de30e57443bff2a8307a4256c8797a3497",
+   "currency1": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+   "decimals": [
+    18,
+    6
+   ],
+   "fee_source": "per swap, from the event",
+   "name": "v4-susde-usdt",
+   "pool_id": "0xb20351bcf606dcc3525d2ed36760a86a5dec7423b77d41125bd4a416ba93448b",
+   "symbols": [
+    "sUSDe",
+    "USDT"
+   ],
+   "tokens": [
+    "0x9d39a5de30e57443bff2a8307a4256c8797a3497",
+    "0xdac17f958d2ee523a2206206994597c13d831ec7"
+   ],
+   "venue": "uniswap_v4"
+  }
+ ],
+ "usde": [
+  {
+   "address": "0x5b03cccab7ba3010fa5cad23746cbf0794938e96",
+   "coins": [
+    "0xdac17f958d2ee523a2206206994597c13d831ec7",
+    "0x4c9edd5852cd905f086c759e8383e09bff1e68b3"
+   ],
+   "decimals": [
+    6,
+    18
+   ],
+   "fee_bps": 0.3,
+   "fee_source": "fee() at latest",
+   "name": "curve-usdt-usde",
+   "symbols": [
+    "USDT",
+    "USDe"
+   ],
+   "venue": "curve"
+  },
+  {
+   "address": "0x02950460e2b9529d0e00284a5fa2d7bdf3fa4d72",
+   "coins": [
+    "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+    "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+   ],
+   "decimals": [
+    18,
+    6
+   ],
+   "fee_bps": 1.0,
+   "fee_source": "fee() at latest",
+   "name": "curve-usde-usdc",
+   "symbols": [
+    "USDe",
+    "USDC"
+   ],
+   "venue": "curve"
+  },
+  {
+   "address": "0xe6d7ebb9f1a9519dc06d557e03c522d53520e76a",
+   "decimals": [
+    18,
+    6
+   ],
+   "fee_bps": 1.0,
+   "fee_source": "fee() at latest",
+   "name": "v3-usde-usdc-1bp",
+   "symbols": [
+    "USDe",
+    "USDC"
+   ],
+   "tokens": [
+    "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+    "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+   ],
+   "venue": "uniswap_v3"
+  },
+  {
+   "address": "0xf063bd202e45d6b2843102cb4ece339026645d4a",
+   "decimals": [
+    18,
+    6
+   ],
+   "fee_bps": 1.0,
+   "fee_source": "Fluid API configs.fee=100",
+   "name": "fluid-usde-usdt",
+   "symbols": [
+    "USDe",
+    "USDT"
+   ],
+   "tokens": [
+    "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+    "0xdac17f958d2ee523a2206206994597c13d831ec7"
+   ],
+   "venue": "fluid"
+  }
+ ]
+}

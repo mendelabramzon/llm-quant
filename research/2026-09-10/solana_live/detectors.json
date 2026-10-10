@@ -1,0 +1,481 @@
+{
+ "window": "research/2026-09-10/solana_live",
+ "chain": "solana",
+ "detectors": [
+  {
+   "detector": "sol_wash_volume",
+   "description": "self-matched swap volume by venue and token",
+   "hits": 2,
+   "seconds": 0.0,
+   "error": null
+  },
+  {
+   "detector": "sol_quote_poster",
+   "description": "programs that post quotes/parameters without moving tokens",
+   "hits": 0,
+   "seconds": 0.0,
+   "error": null
+  },
+  {
+   "detector": "sol_failure_spam",
+   "description": "programs failing >=90% of >=20k transactions",
+   "hits": 0,
+   "seconds": 0.0,
+   "error": null
+  },
+  {
+   "detector": "sol_collector_hub",
+   "description": "unlabelled fan-in hubs and fan-out distributors",
+   "hits": 0,
+   "seconds": 0.0,
+   "error": null
+  },
+  {
+   "detector": "sol_launch_factory",
+   "description": "creators launching >=20 tokens per hour",
+   "hits": 1,
+   "seconds": 0.0,
+   "error": null
+  },
+  {
+   "detector": "sol_flash_loan_spam",
+   "description": "flash-loan payers with hundreds of failures and no success",
+   "hits": 0,
+   "seconds": 0.0,
+   "error": null
+  },
+  {
+   "detector": "sol_liquidation_drought",
+   "description": "zero liquidations across venues while bots keep trying",
+   "hits": 1,
+   "seconds": 0.0,
+   "error": null
+  },
+  {
+   "detector": "sol_exchange_flow",
+   "description": "net exchange flow above $5M",
+   "hits": 2,
+   "seconds": 0.0,
+   "error": null
+  },
+  {
+   "detector": "sol_cctp_unknown_domain",
+   "description": "CCTP domains not in the chain map",
+   "hits": 1,
+   "seconds": 0.0,
+   "error": null
+  },
+  {
+   "detector": "sol_dust_poisoning",
+   "description": "address-poisoning dust senders",
+   "hits": 1,
+   "seconds": 0.0,
+   "error": null
+  },
+  {
+   "detector": "sol_large_move",
+   "description": "single-tx position changes above $5M",
+   "hits": 4,
+   "seconds": 0.0,
+   "error": null
+  },
+  {
+   "detector": "sol_lst_nav_basis",
+   "description": "LST market price vs on-chain stake-pool NAV",
+   "hits": 0,
+   "seconds": 0.0,
+   "error": null
+  },
+  {
+   "detector": "sol_stable_rate_gap",
+   "description": "same stable lending at different supply rates across venues",
+   "hits": 2,
+   "seconds": 0.0,
+   "error": null
+  }
+ ],
+ "hits": [
+  {
+   "detector": "sol_wash_volume",
+   "title": "$6,328,565 of $20,552,771 priced DEX volume (31%) is self-matched in 7,489 swaps by 2,889 wallet pairs",
+   "severity": "notable",
+   "evidence": {
+    "self_matched_usd": 6328565,
+    "priced_usd": 20552771,
+    "share": 0.3079,
+    "swaps": 7489,
+    "wallet_pairs": 2889,
+    "method": "second signer whose token and native-SOL legs mirror the trader inside one tx"
+   },
+   "economics": null,
+   "usd": 6328565,
+   "key": "all",
+   "identity": "sol_wash_volume:all"
+  },
+  {
+   "detector": "sol_wash_volume",
+   "title": "Pump.fun Amm: $6,328,561 (42% of its priced volume) self-matched in 7,485 swaps; top washed tokens BxrC\u2026fL97 $1.8M",
+   "severity": "notable",
+   "evidence": {
+    "venue": "Pump.fun Amm",
+    "usd": 6328561,
+    "swaps": 7485,
+    "share_of_venue": 0.419400277639005,
+    "top_tokens": [
+     {
+      "mint": "BxrCP8BnBwxDFwVQtLWAXbBeuMV9pB1K62FkZcQ3fL97",
+      "symbol": null,
+      "usd": 1759011,
+      "swaps": 1387
+     }
+    ]
+   },
+   "economics": null,
+   "usd": 6328561,
+   "key": "venue:Pump.fun Amm",
+   "identity": "sol_wash_volume:venue:Pump.fun Amm"
+  },
+  {
+   "detector": "sol_stable_rate_gap",
+   "title": "USDT pays 2.53pp more on Kamino JLP (4.39%, $1,859,279) than Save main (1.86%, $5,148,730)",
+   "severity": "notable",
+   "evidence": {
+    "asset": "USDT",
+    "high_venue": "Kamino JLP",
+    "low_venue": "Save main",
+    "gap_pp": 2.527,
+    "markets": [
+     {
+      "venue": "Kamino SOL/BTC",
+      "supply_apy_pct": 3.861,
+      "supplied_usd": 9899662
+     },
+     {
+      "venue": "Kamino JLP",
+      "supply_apy_pct": 4.387,
+      "supplied_usd": 1859279
+     },
+     {
+      "venue": "Save main",
+      "supply_apy_pct": 1.86,
+      "supplied_usd": 5148730
+     },
+     {
+      "venue": "Jupiter Lend",
+      "supply_apy_pct": 3.7,
+      "supplied_usd": 17622939
+     }
+    ],
+    "note": "head read only (one block); no in-window rate series exists on Solana yet, so this is not de-spiked"
+   },
+   "economics": {
+    "go": null,
+    "net_apr": 0.02527,
+    "capacity_usd": 1859279,
+    "reason": "smaller of the two markets caps the switch; dilution of the high side not modelled"
+   },
+   "usd": 46977.31608586616,
+   "key": "USDT:Kamino JLP/Save main",
+   "identity": "sol_stable_rate_gap:USDT:Kamino JLP/Save main"
+  },
+  {
+   "detector": "sol_stable_rate_gap",
+   "title": "PYUSD pays 2.55pp more on Kamino JLP (4.50%, $1,399,456) than Kamino SOL/BTC (1.96%, $40,434,072)",
+   "severity": "notable",
+   "evidence": {
+    "asset": "PYUSD",
+    "high_venue": "Kamino JLP",
+    "low_venue": "Kamino SOL/BTC",
+    "gap_pp": 2.547,
+    "markets": [
+     {
+      "venue": "Kamino SOL/BTC",
+      "supply_apy_pct": 1.958,
+      "supplied_usd": 40434072
+     },
+     {
+      "venue": "Kamino JLP",
+      "supply_apy_pct": 4.505,
+      "supplied_usd": 1399456
+     },
+     {
+      "venue": "Kamino Ethena",
+      "supply_apy_pct": 3.413,
+      "supplied_usd": 251452980
+     }
+    ],
+    "note": "head read only (one block); no in-window rate series exists on Solana yet, so this is not de-spiked"
+   },
+   "economics": {
+    "go": null,
+    "net_apr": 0.02547,
+    "capacity_usd": 1399456,
+    "reason": "smaller of the two markets caps the switch; dilution of the high side not modelled"
+   },
+   "usd": 35638.967008360276,
+   "key": "PYUSD:Kamino JLP/Kamino SOL/BTC",
+   "identity": "sol_stable_rate_gap:PYUSD:Kamino JLP/Kamino SOL/BTC"
+  },
+  {
+   "detector": "sol_exchange_flow",
+   "title": "Coinbase 3 net +$20,756,722 over 68 txs (USDC +20.8M, SOL -0.0M, PYUSD +0.0M, EURC +0.0M)",
+   "severity": "info",
+   "evidence": {
+    "exchange": "Coinbase 3",
+    "usd_net": 20756722,
+    "txs": 68,
+    "usd_by_asset": {
+     "USDC": 20760120,
+     "SOL": -3718,
+     "PYUSD": 250,
+     "EURC": 71
+    },
+    "sign": "deposits exceed withdrawals"
+   },
+   "economics": null,
+   "usd": 20756722,
+   "key": "Coinbase 3",
+   "identity": "sol_exchange_flow:Coinbase 3"
+  },
+  {
+   "detector": "sol_large_move",
+   "title": "3ADz\u2026EFib sent $19,614,838 USDT in one tx \u2014 Binance-bound consolidation wallet (receives from Gate/KuCoin, sends to Binance)",
+   "severity": "info",
+   "evidence": {
+    "owner": "3ADzk5YDP9sgorvPSs9YPxigJiSqhgddpwHwwPwmEFib",
+    "label": "Binance-bound consolidation wallet (receives from Gate/KuCoin, sends to Binance)",
+    "asset": "USDT",
+    "delta": -19614837.9853,
+    "usd": 19614838,
+    "kind": "transfer",
+    "sig": "2qKEEgqXa9bvynxDp3XK6P1djMb2FcsJMjgUf8weVFUyqYYfvyQrvHhd9sNqNXpWpQzn1dqbPKCwCMF8dodKpras",
+    "slot": 445935477,
+    "time": "2026-09-10T17:00:01+00:00",
+    "payer": "5JPAWfhLNsYVk3tPpD3gHvpHbvaXDbpUpy1wUfQVYRS2",
+    "programs": []
+   },
+   "economics": null,
+   "usd": 19614838,
+   "key": "3ADzk5YDP9sgorvPSs9YPxigJiSqhgddpwHwwPwmEFib",
+   "identity": "sol_large_move:3ADzk5YDP9sgorvPSs9YPxigJiSqhgddpwHwwPwmEFib"
+  },
+  {
+   "detector": "sol_large_move",
+   "title": "5tzF\u2026uAi9 received $19,614,838 USDT in one tx \u2014 Binance",
+   "severity": "info",
+   "evidence": {
+    "owner": "5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9",
+    "label": "Binance",
+    "asset": "USDT",
+    "delta": 19614837.9853,
+    "usd": 19614838,
+    "kind": "transfer",
+    "sig": "2qKEEgqXa9bvynxDp3XK6P1djMb2FcsJMjgUf8weVFUyqYYfvyQrvHhd9sNqNXpWpQzn1dqbPKCwCMF8dodKpras",
+    "slot": 445935477,
+    "time": "2026-09-10T17:00:01+00:00",
+    "payer": "5JPAWfhLNsYVk3tPpD3gHvpHbvaXDbpUpy1wUfQVYRS2",
+    "programs": []
+   },
+   "economics": null,
+   "usd": 19614838,
+   "key": "5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9",
+   "identity": "sol_large_move:5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9"
+  },
+  {
+   "detector": "sol_exchange_flow",
+   "title": "Binance net +$19,317,641 over 100 txs (USDT +19.6M, USD1 -0.2M, PENGU -0.1M, RAY -0.0M)",
+   "severity": "info",
+   "evidence": {
+    "exchange": "Binance",
+    "usd_net": 19317641,
+    "txs": 100,
+    "usd_by_asset": {
+     "USDT": 19602986,
+     "USD1": -150084,
+     "PENGU": -50712,
+     "RAY": -36452
+    },
+    "sign": "deposits exceed withdrawals"
+   },
+   "economics": null,
+   "usd": 19317641,
+   "key": "Binance",
+   "identity": "sol_exchange_flow:Binance"
+  },
+  {
+   "detector": "sol_large_move",
+   "title": "GJRs\u20267npE received $18,894,647 USDC in one tx \u2014 Coinbase 3",
+   "severity": "info",
+   "evidence": {
+    "owner": "GJRs4FwHtemZ5ZE9x3FNvJ8TMwitKTh21yxdRPqn7npE",
+    "label": "Coinbase 3",
+    "asset": "USDC",
+    "delta": 18894647.055132,
+    "usd": 18894647,
+    "kind": "transfer",
+    "sig": "28R6QncV7Qmbi3u75NWHQSckBYX1FxYGBz7FYWMawhjPUFsAWK5Ts8FwhpGVijjWjUSuVva41J8NCkmhdEmn2gHx",
+    "slot": 445935668,
+    "time": "2026-09-10T17:01:02+00:00",
+    "payer": "BjYtrpedqFgveTy8u55fYadfhcepwMtneJQL9SkK6ZmU",
+    "programs": []
+   },
+   "economics": null,
+   "usd": 18894647,
+   "key": "GJRs4FwHtemZ5ZE9x3FNvJ8TMwitKTh21yxdRPqn7npE",
+   "identity": "sol_large_move:GJRs4FwHtemZ5ZE9x3FNvJ8TMwitKTh21yxdRPqn7npE"
+  },
+  {
+   "detector": "sol_large_move",
+   "title": "BjYt\u20266ZmU sent $18,894,647 USDC in one tx",
+   "severity": "info",
+   "evidence": {
+    "owner": "BjYtrpedqFgveTy8u55fYadfhcepwMtneJQL9SkK6ZmU",
+    "label": null,
+    "asset": "USDC",
+    "delta": -18894647.055132,
+    "usd": 18894647,
+    "kind": "transfer",
+    "sig": "28R6QncV7Qmbi3u75NWHQSckBYX1FxYGBz7FYWMawhjPUFsAWK5Ts8FwhpGVijjWjUSuVva41J8NCkmhdEmn2gHx",
+    "slot": 445935668,
+    "time": "2026-09-10T17:01:02+00:00",
+    "payer": "BjYtrpedqFgveTy8u55fYadfhcepwMtneJQL9SkK6ZmU",
+    "programs": []
+   },
+   "economics": null,
+   "usd": 18894647,
+   "key": "BjYtrpedqFgveTy8u55fYadfhcepwMtneJQL9SkK6ZmU",
+   "identity": "sol_large_move:BjYtrpedqFgveTy8u55fYadfhcepwMtneJQL9SkK6ZmU"
+  },
+  {
+   "detector": "sol_cctp_unknown_domain",
+   "title": "CCTP out to unmapped domain 27: $3,021 in 3 transfers",
+   "severity": "info",
+   "evidence": {
+    "chain": "domain 27",
+    "usd": 3021,
+    "n": 3,
+    "direction": "out"
+   },
+   "economics": null,
+   "usd": 3021,
+   "key": "out:domain 27",
+   "identity": "sol_cctp_unknown_domain:out:domain 27"
+  },
+  {
+   "detector": "sol_launch_factory",
+   "title": "225 token launches by 151 creators; top 3 creators [7, 6, 5]",
+   "severity": "info",
+   "evidence": {
+    "total": 225,
+    "unique_creators": 151,
+    "by_program": [
+     [
+      "Pump.fun",
+      "6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P",
+      150
+     ],
+     [
+      "Raydium Launchlab",
+      "LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj",
+      39
+     ],
+     [
+      "Dynamic Bonding Curve",
+      "dbcij3LWUppWqq96dh6gJWwBifmcGfLSB5D4DuSMaqN",
+      29
+     ],
+     [
+      "unlabelled launchpad (new mints + trades, tied to bundler wallet 6pSPqc\u2026)",
+      "6Vo3245eszAb5wuqEMw8mGdbfRUdKbHhDHP5LcaGuTAB",
+      5
+     ],
+     [
+      "T1TA\u2026XvGT",
+      "T1TANpTeScyeqVzzgNViGDNrkQ6qHz9KrSBS4aNXvGT",
+      2
+     ]
+    ]
+   },
+   "economics": null,
+   "usd": null,
+   "key": "all",
+   "identity": "sol_launch_factory:all"
+  },
+  {
+   "detector": "sol_liquidation_drought",
+   "title": "0 liquidations on any lending venue; 69 failed attempts (marginfi v2 69)",
+   "severity": "info",
+   "evidence": {
+    "attempts": {
+     "marginfi v2": {
+      "ok": 0,
+      "failed": 69,
+      "top_payers": [
+       [
+        "ewcjNU4XWcwE3sJDafm43cxGsiihRmzTtX7bwMHqaEP",
+        69
+       ]
+      ]
+     }
+    },
+    "events": {
+     "Kamino Lend": {
+      "tx": 174,
+      "failed": 30
+     },
+     "Jupiter Lend Earn": {
+      "tx": 27,
+      "failed": 4
+     },
+     "marginfi v2": {
+      "tx": 111,
+      "failed": 86
+     },
+     "Save (Solend)": {
+      "tx": 6,
+      "failed": 0
+     }
+    }
+   },
+   "economics": null,
+   "usd": null,
+   "key": "all",
+   "identity": "sol_liquidation_drought:all"
+  },
+  {
+   "detector": "sol_dust_poisoning",
+   "title": "6uqx\u2026XSPy: 1,141 dust transfers to 323 recipients",
+   "severity": "info",
+   "evidence": {
+    "sender": "6uqxgxbsVJWLWJfKipEJ5n21Jq51nYba9aVSjnEdXSPy",
+    "label": null,
+    "dust_transfers": 1141,
+    "recipients": 323
+   },
+   "economics": null,
+   "usd": null,
+   "key": "6uqxgxbsVJWLWJfKipEJ5n21Jq51nYba9aVSjnEdXSPy",
+   "identity": "sol_dust_poisoning:6uqxgxbsVJWLWJfKipEJ5n21Jq51nYba9aVSjnEdXSPy"
+  }
+ ],
+ "sol_usd": 99.5939,
+ "thresholds": {
+  "WASH_MIN_USD": 1000000.0,
+  "WASH_MIN_SHARE": 0.2,
+  "QUOTE_MIN_TX": 50000,
+  "QUOTE_MAX_TOKEN_MOVE": 0.05,
+  "QUOTE_MAX_PAYERS": 200,
+  "SPAM_MIN_TX": 20000,
+  "SPAM_MIN_FAIL": 0.9,
+  "HUB_MIN_SENDERS": 500,
+  "DISTRIBUTOR_MIN_OUT": 1000,
+  "FACTORY_MIN_LAUNCHES": 20,
+  "FLASH_MIN_FAILED": 100,
+  "NAV_MIN_BASIS_BP": 25,
+  "RATE_MIN_GAP_PP": 1.5,
+  "RATE_MIN_SUPPLIED_USD": 1000000.0,
+  "EXCHANGE_MIN_NET_USD": 5000000.0,
+  "DUST_MIN_TRANSFERS": 1000,
+  "LARGE_MIN_USD": 5000000.0
+ }
+}

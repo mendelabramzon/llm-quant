@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <!-- One unattended pass of the chain-activity loop a day (scripts/chain_activity.py run): aggregator census, direct
+       probe of every registry chain over yesterday's UTC day, detectors, cross-source verify, report, ledger ingest.
+       Public endpoints plus the local Infura/GetBlock keys; read-only, nothing is signed or sent.
+       Edit the absolute paths, copy to ~/Library/LaunchAgents/, then:
+         launchctl load ~/Library/LaunchAgents/com.llm-quant.chains-daily.plist
+       Remove with launchctl unload. 11:00 local in Asia/Tbilisi is 07:00 UTC: DefiLlama, growthepie and L2Beat have
+       published the previous UTC day by then, so the census and the probe read the same complete day. ~20 minutes. -->
+  <key>Label</key><string>com.llm-quant.chains-daily</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/opt/homebrew/bin/uv</string>
+    <string>run</string>
+    <string>--with</string>
+    <string>pycryptodome</string>
+    <string>python</string>
+    <string>scripts/chain_activity.py</string>
+    <string>run</string>
+  </array>
+  <key>WorkingDirectory</key><string>/Users/iv/dev/llm-quant</string>
+  <key>StartCalendarInterval</key>
+  <dict><key>Hour</key><integer>11</integer><key>Minute</key><integer>0</integer></dict>
+  <key>StandardOutPath</key><string>/Users/iv/dev/llm-quant/research/chains_daily_launchd.log</string>
+  <key>StandardErrorPath</key><string>/Users/iv/dev/llm-quant/research/chains_daily_launchd.err</string>
+  <key>EnvironmentVariables</key>
+  <dict><key>PATH</key><string>/Users/iv/.local/bin:/opt/homebrew/bin:/usr/bin:/bin</string></dict>
+</dict>
+</plist>

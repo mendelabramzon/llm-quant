@@ -1,0 +1,90 @@
+[
+ {
+  "kalshi_ticker": "KXFEDDECISION-26OCT-H0",
+  "pm_slug": "will-there-be-no-change-in-fed-interest-rates-after-the-october-2026-meeting-20260617190324031",
+  "pm_yes_outcome": "Yes",
+  "class": "fomc",
+  "rules_match": "near-identical",
+  "reason": "both resolve on the change in the target range at the October 28, 2026 FOMC meeting; Polymarket reads the upper bound and rounds an odd move up to the next 25bp, Kalshi names the move; a cancelled meeting resolves \"maintains\" Yes on Kalshi and is not addressed in the Polymarket excerpt"
+ },
+ {
+  "kalshi_ticker": "KXFEDDECISION-26OCT-H25",
+  "pm_slug": "will-the-fed-increase-interest-rates-by-25-bps-after-the-october-2026-meeting-20260617190324032",
+  "pm_yes_outcome": "Yes",
+  "class": "fomc",
+  "rules_match": "near-identical",
+  "reason": "both resolve on the change in the target range at the October 28, 2026 FOMC meeting; Polymarket reads the upper bound and rounds an odd move up to the next 25bp, Kalshi names the move; a cancelled meeting resolves \"maintains\" Yes on Kalshi and is not addressed in the Polymarket excerpt"
+ },
+ {
+  "kalshi_ticker": "KXFEDDECISION-26OCT-H26",
+  "pm_slug": "will-the-fed-increase-interest-rates-by-50-bps-after-the-october-2026-meeting-20260617190324033",
+  "pm_yes_outcome": "Yes",
+  "class": "fomc",
+  "rules_match": "near-identical",
+  "reason": "both resolve on the change in the target range at the October 28, 2026 FOMC meeting; Polymarket reads the upper bound and rounds an odd move up to the next 25bp, Kalshi names the move; a cancelled meeting resolves \"maintains\" Yes on Kalshi and is not addressed in the Polymarket excerpt"
+ },
+ {
+  "kalshi_ticker": "KXFEDDECISION-26OCT-C25",
+  "pm_slug": "will-the-fed-decrease-interest-rates-by-25-bps-after-the-october-2026-meeting-20260617190324030",
+  "pm_yes_outcome": "Yes",
+  "class": "fomc",
+  "rules_match": "near-identical",
+  "reason": "both resolve on the change in the target range at the October 28, 2026 FOMC meeting; Polymarket reads the upper bound and rounds an odd move up to the next 25bp, Kalshi names the move; a cancelled meeting resolves \"maintains\" Yes on Kalshi and is not addressed in the Polymarket excerpt"
+ },
+ {
+  "kalshi_ticker": "KXFEDDECISION-26OCT-C26",
+  "pm_slug": "will-the-fed-decrease-interest-rates-by-50-bps-after-the-october-2026-meeting-20260617190324029",
+  "pm_yes_outcome": "Yes",
+  "class": "fomc",
+  "rules_match": "near-identical",
+  "reason": "both resolve on the change in the target range at the October 28, 2026 FOMC meeting; Polymarket reads the upper bound and rounds an odd move up to the next 25bp, Kalshi names the move; a cancelled meeting resolves \"maintains\" Yes on Kalshi and is not addressed in the Polymarket excerpt"
+ },
+ {
+  "kalshi_ticker": "KXCPI-26SEP-T0.7",
+  "pm_slug": "will-monthly-inflation-increase-by-0pt8-or-more-in-september-2026",
+  "pm_yes_outcome": "Yes",
+  "class": "cpi_release",
+  "rules_match": "identical",
+  "reason": "both resolve on the one-decimal BLS figure for September 2026; Kalshi \"Above X%\" is the same set as the Polymarket bucket at or beyond the next tenth"
+ },
+ {
+  "kalshi_ticker": "KXCPI-26SEP-T0.0",
+  "pm_slug": "will-monthly-inflation-be-0pt0-or-less-in-september-2026",
+  "pm_yes_outcome": "No",
+  "class": "cpi_release",
+  "rules_match": "identical",
+  "reason": "both resolve on the one-decimal BLS figure for September 2026; Kalshi \"Above X%\" is the same set as the Polymarket bucket at or beyond the next tenth"
+ },
+ {
+  "kalshi_ticker": "KXCPICORE-26SEP-T0.5",
+  "pm_slug": "will-core-cpi-mom-be-0pt6-or-more-in-september-2026",
+  "pm_yes_outcome": "Yes",
+  "class": "cpi_release",
+  "rules_match": "identical",
+  "reason": "both resolve on the one-decimal BLS figure for September 2026; Kalshi \"Above X%\" is the same set as the Polymarket bucket at or beyond the next tenth"
+ },
+ {
+  "kalshi_ticker": "KXCPICORE-26SEP-T0.0",
+  "pm_slug": "will-core-cpi-mom-be-0pt0-or-less-in-september-2026",
+  "pm_yes_outcome": "No",
+  "class": "cpi_release",
+  "rules_match": "identical",
+  "reason": "both resolve on the one-decimal BLS figure for September 2026; Kalshi \"Above X%\" is the same set as the Polymarket bucket at or beyond the next tenth"
+ },
+ {
+  "kalshi_ticker": "KXCPICOREYOY-26SEP-T2.8",
+  "pm_slug": "will-core-cpi-yoy-be-2pt9-or-more-in-september-2026",
+  "pm_yes_outcome": "Yes",
+  "class": "cpi_release",
+  "rules_match": "identical",
+  "reason": "both resolve on the one-decimal BLS figure for September 2026; Kalshi \"Above X%\" is the same set as the Polymarket bucket at or beyond the next tenth"
+ },
+ {
+  "kalshi_ticker": "KXCPIYOY-26SEP-T3.9",
+  "pm_slug": "will-annual-inflation-be-4pt0-or-more-in-september-2026",
+  "pm_yes_outcome": "Yes",
+  "class": "cpi_release",
+  "rules_match": "identical",
+  "reason": "both resolve on the one-decimal BLS figure for September 2026; Kalshi \"Above X%\" is the same set as the Polymarket bucket at or beyond the next tenth"
+ }
+]

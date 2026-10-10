@@ -1,0 +1,107 @@
+{
+ "tx": {
+  "count": 134585.14666666667,
+  "se": 225.65106939045702,
+  "method": "sampled-blocks",
+  "blocks": 30133,
+  "runs_read": 300,
+  "runs_total": 1507,
+  "run_length": 20,
+  "per_block": 4.466370645692983,
+  "tps": 1.5576984567901235,
+  "nonempty_block_share": 0.9996666666666667,
+  "index_count": null,
+  "failed_share": 0.0018867924528301887,
+  "note": "every transaction included in a block (num_txs), successful or failed. Most Celestia transactions are PayForBlobs from rollup sequencers; their value is the blob fee, not a transfer."
+ },
+ "transfers": {
+  "assets": [
+   {
+    "asset": "utia",
+    "symbol": "TIA",
+    "class": "native",
+    "transfers": 4269,
+    "transfers_se": 1744,
+    "amount": 12250312.25052841,
+    "price": 0.4669811612956085,
+    "usd": 5720665.040985577,
+    "usd_se": 2912032.431030981,
+    "top_block_share": 0.38437032817173666,
+    "units_seen": 11,
+    "gross_amount": 12250312.25052841,
+    "gross_usd": 5720665.040985577,
+    "identity": "registry"
+   }
+  ],
+  "unpriced_top": [],
+  "unpriced_assets": 0,
+  "unpriced_transfers": 0,
+  "priced_usd": 5720665.040985577,
+  "usd_by_class": {
+   "native": 5720665.040985577
+  },
+  "gross_priced_usd": 5720665.040985577,
+  "method": "sampled-blocks (transaction-level bank transfer events of successful transactions, fee legs removed; amount = net per transaction and denom, gross_amount = every leg)",
+  "block_level": {
+   "assets": [],
+   "unpriced_top": [],
+   "unpriced_assets": 0,
+   "priced_usd": 0,
+   "gross_priced_usd": null,
+   "usd_by_class": {},
+   "method": "sampled-blocks (finalize/begin/end-block transfer events, staking, inflation and fee plumbing removed; netted per block)"
+  },
+  "fees": {
+   "priced_usd": 76.16527712598648,
+   "assets": [
+    {
+     "asset": "utia",
+     "symbol": "TIA",
+     "class": "native",
+     "transfers": 132836,
+     "transfers_se": 3242,
+     "amount": 163.10139131666668,
+     "price": 0.4669811612956085,
+     "usd": 76.16527712598648,
+     "usd_se": 16.131630465422372,
+     "top_block_share": 0.21972022674996844,
+     "units_seen": 120,
+     "gross_amount": 163.10139131666668,
+     "gross_usd": 76.16527712598648,
+     "identity": "registry"
+    }
+   ]
+  },
+  "module_addresses": {
+   "fee_collector": "celestia17xpfvakm2amg962yls6f84z3kell8c5lpnjs3s",
+   "prefix": "celestia"
+  }
+ },
+ "window": {
+  "start_ts": 1791417600,
+  "end_ts": 1791504000,
+  "start_utc": "2026-10-08T00:00:00+00:00",
+  "end_utc": "2026-10-09T00:00:00+00:00",
+  "hours": 24.0
+ },
+ "blocks": {
+  "first": 14750594,
+  "last": 14780726,
+  "latest": 14800108,
+  "network": "celestia",
+  "value_sampled_tx": 120,
+  "value_sampled_block": 120
+ },
+ "endpoint": "rpc.celestia.pops.one, celestia.rpc.kjnodes.com, celestia-rpc.publicnode.com",
+ "calls": 456,
+ "notes": [],
+ "errors": [],
+ "error_count": 0,
+ "seconds": 70.9,
+ "chain": "celestia",
+ "name": "Celestia",
+ "family": "cosmos",
+ "adapter": "cosmos",
+ "ok": true,
+ "probed_at": "2026-10-09T15:27:56+00:00"
+}

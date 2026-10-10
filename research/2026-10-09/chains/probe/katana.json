@@ -1,0 +1,249 @@
+{
+ "tx": {
+  "count": 38746.39175257732,
+  "se": 6974.0576091934845,
+  "raw_count": 125146.39175257731,
+  "system_count": 86400.0,
+  "method": "sampled-blocks",
+  "blocks": 86400,
+  "sampled": 194,
+  "per_block": 0.4484536082474227,
+  "tps": 0.4484536082474227,
+  "note": "user transactions: OP-stack L1-attributes deposits and Arbitrum internal txs excluded"
+ },
+ "gas": {
+  "gas_per_second": 226848.2010309278,
+  "base_fee_median_gwei": 0.001
+ },
+ "transfers": {
+  "assets": [
+   {
+    "asset": "0x203a662b0bd271a6ed5a60edfbd04bfce608fd36",
+    "symbol": "vbUSDC",
+    "class": "other",
+    "transfers": 8462,
+    "transfers_se": 3090,
+    "amount": 67281135.64359589,
+    "price": 0.9996037338968583,
+    "usd": 67254474.41015945,
+    "usd_se": 47581463.37369857,
+    "top_block_share": 0.5457838110106247,
+    "units_seen": 11,
+    "gross_amount": 67417846.05807835,
+    "gross_usd": 67391130.6509387
+   },
+   {
+    "asset": "0xee7d8bcfb72bc1880d0cf19822eb0a2e6577ab62",
+    "symbol": "vbETH",
+    "class": "other",
+    "transfers": 5790,
+    "transfers_se": 3367,
+    "amount": 15361.05540335633,
+    "price": 2487.3726217515073,
+    "usd": 38208668.65151659,
+    "usd_se": 36531449.18830414,
+    "top_block_share": 0.9538709084220287,
+    "units_seen": 6,
+    "gross_amount": 15363.57471741385,
+    "gross_usd": 38214935.12432886
+   },
+   {
+    "asset": "0x7f1f4b4b29f5058fa32cc7a97141b8d7e5abdc2d",
+    "symbol": "KAT",
+    "class": "other",
+    "transfers": 4008,
+    "transfers_se": 1995,
+    "amount": 2679151322.5628843,
+    "price": 0.004528820393453594,
+    "usd": 12133395.146770958,
+    "usd_se": 10555679.717081284,
+    "top_block_share": 0.8590033010960847,
+    "units_seen": 6,
+    "gross_amount": 2679151322.5628843,
+    "gross_usd": 12133395.146770958
+   },
+   {
+    "asset": "0x0913da6da4b42f538b445599b46bb4622342cf52",
+    "symbol": "vbWBTC",
+    "class": "other",
+    "transfers": 1781,
+    "transfers_se": 1410,
+    "amount": 1.5935500206185564,
+    "price": 82823.39397025251,
+    "usd": 131983.2211689947,
+    "usd_se": 132097.40320465603,
+    "top_block_share": 0.9994047136616817,
+    "units_seen": 2,
+    "gross_amount": 1.5954472577319587,
+    "gross_usd": 132140.356785893
+   },
+   {
+    "asset": "0x00000000efe302beaa2b3e6e1b18d08d69a9012a",
+    "symbol": "AUSD",
+    "class": "usd_stable",
+    "transfers": 445,
+    "transfers_se": 446,
+    "amount": 89824.23820206187,
+    "price": 0.999234701668731,
+    "usd": 89755.49586245832,
+    "usd_se": 89886.63797252442,
+    "top_block_share": 1.0,
+    "units_seen": 1,
+    "gross_amount": 89824.23820206187,
+    "gross_usd": 89755.49586245832
+   },
+   {
+    "asset": "native:ETH",
+    "symbol": "ETH",
+    "class": "eth",
+    "transfers": null,
+    "transfers_se": null,
+    "amount": 0.0,
+    "price": 2488.5011217474294,
+    "usd": 0.0,
+    "usd_se": 0.0,
+    "top_block_share": null,
+    "units_seen": 0,
+    "note": "top-level transaction value only; internal transfers need traces"
+   }
+  ],
+  "unpriced_top": [],
+  "unpriced_assets": 0,
+  "unpriced_transfers": 0,
+  "priced_usd": 117818276.92547846,
+  "usd_by_class": {
+   "other": 117728521.42961599,
+   "usd_stable": 89755.49586245832,
+   "eth": 0.0
+  },
+  "gross_priced_usd": 117961356.77468687,
+  "method": "sampled-blocks; value = net per transaction (each account's positive net change), gross beside it",
+  "top_targets_by_value": [
+   {
+    "to": "0x2659c6085d26144117d904c46b48b6d180393d27",
+    "usd": 116825261.4712009,
+    "share": 0.9915716348923892
+   },
+   {
+    "to": "0x22ea738c91c848b7476f13d316305773b942ad0d",
+    "usd": 284487.14917682006,
+    "share": 0.0024146266317980683
+   },
+   {
+    "to": "0xa3f6beaddffff55abec0a7e73a95d6a79f7889c0",
+    "usd": 262298.4846464443,
+    "share": 0.0022262970694466315
+   },
+   {
+    "to": "0x6048ea7b606bb8c2dbf5206fa6425316703fdcbb",
+    "usd": 214903.95381701112,
+    "share": 0.0018240289997870248
+   },
+   {
+    "to": "0x7f1f4b4b29f5058fa32cc7a97141b8d7e5abdc2d",
+    "usd": 137246.9869740451,
+    "share": 0.001164904041678148
+   },
+   {
+    "to": "0x4208d6e27538189bb48e603d6123a94b8abe0a0b",
+    "usd": 89755.49586245831,
+    "share": 0.0007618130073250843
+   },
+   {
+    "to": "0x415669455d93b755efe7f20ef6f1dbdce7f68f7d",
+    "usd": 4166.455534561506,
+    "share": 3.5363405774444e-05
+   },
+   {
+    "to": "0xccc88a9d1b4ed6b0eaba998850414b24f1c315be",
+    "usd": 156.92826619582297,
+    "share": 1.3319518014601598e-06
+   }
+  ],
+  "top_targets_by_txs": [
+   {
+    "to": "0x62230cea619f734cc215bb8074bbf07be4eb633e",
+    "txs": 21377.319587628866,
+    "share": 0.5517241379310345
+   },
+   {
+    "to": "0x3c2269811836af69497e5f486a85d7316753cf62",
+    "txs": 3562.8865979381444,
+    "share": 0.09195402298850575
+   },
+   {
+    "to": "0x2659c6085d26144117d904c46b48b6d180393d27",
+    "txs": 3562.8865979381444,
+    "share": 0.09195402298850575
+   },
+   {
+    "to": "0x6048ea7b606bb8c2dbf5206fa6425316703fdcbb",
+    "txs": 2672.1649484536083,
+    "share": 0.06896551724137931
+   },
+   {
+    "to": "0xa3f6beaddffff55abec0a7e73a95d6a79f7889c0",
+    "txs": 890.7216494845361,
+    "share": 0.022988505747126436
+   },
+   {
+    "to": "0x7f1f4b4b29f5058fa32cc7a97141b8d7e5abdc2d",
+    "txs": 890.7216494845361,
+    "share": 0.022988505747126436
+   },
+   {
+    "to": "0x106f7d67ea25cb9eff5064cf604ebf6259ff296d",
+    "txs": 445.36082474226805,
+    "share": 0.011494252873563218
+   },
+   {
+    "to": "0x4208d6e27538189bb48e603d6123a94b8abe0a0b",
+    "txs": 445.36082474226805,
+    "share": 0.011494252873563218
+   },
+   {
+    "to": "0x2b10fed8bac7708be619390a1d19909c96cf45b0",
+    "txs": 445.36082474226805,
+    "share": 0.011494252873563218
+   },
+   {
+    "to": "0xccc88a9d1b4ed6b0eaba998850414b24f1c315be",
+    "txs": 445.36082474226805,
+    "share": 0.011494252873563218
+   }
+  ],
+  "transfer_logs_per_block": 0.23711340206185566,
+  "logs_missing_blocks": 0
+ },
+ "window": {
+  "start_ts": 1791417600,
+  "end_ts": 1791504000,
+  "start_utc": "2026-10-08T00:00:00+00:00",
+  "end_utc": "2026-10-09T00:00:00+00:00",
+  "hours": 24.0
+ },
+ "blocks": {
+  "first": 44674789,
+  "last": 44761188,
+  "head": 44815717
+ },
+ "endpoint": "https://rpc.katana.network",
+ "calls": 461,
+ "notes": [],
+ "errors": [
+  "block 44701116: {'error': {'code': -32017, 'message': 'Rate Limit Exceeded. Please get an api ke",
+  "block 44701349: {'error': {'code': -32017, 'message': 'Rate Limit Exceeded. Please get an api ke",
+  "block 44701744: {'error': {'code': -32017, 'message': 'Rate Limit Exceeded. Please get an api ke",
+  "block 44702768: {'error': {'code': -32017, 'message': 'Rate Limit Exceeded. Please get an api ke",
+  "block 44703105: {'error': {'code': -32017, 'message': 'Rate Limit Exceeded. Please get an api ke",
+  "block 44704503: {'error': {'code': -32017, 'message': 'Rate Limit Exceeded. Please get an api ke"
+ ],
+ "error_count": 6,
+ "seconds": 55.3,
+ "chain": "katana",
+ "name": "Katana",
+ "family": "evm",
+ "adapter": "evm",
+ "ok": true,
+ "probed_at": "2026-10-09T15:09:40+00:00"
+}

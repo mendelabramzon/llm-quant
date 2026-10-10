@@ -1,0 +1,176 @@
+{
+ "universe": {
+  "fetched_at": "2026-10-09T19:57:03+00:00",
+  "finished_at": "2026-10-09T20:17:15+00:00",
+  "source": "https://gamma-api.polymarket.com/markets/keyset",
+  "filters": {
+   "closed": true,
+   "volume_num_min": 10000,
+   "include_tag": true
+  },
+  "pages": 4466,
+  "markets": 446503,
+  "http": {
+   "requests": 4466,
+   "errors": 0,
+   "throttled": 0
+  },
+  "seconds": 1211.9
+ },
+ "negrisk": {
+  "finished_at": "2026-10-09T20:33:22+00:00",
+  "events": 400,
+  "member_tokens": 7196,
+  "min_event_volume": 1000000.0,
+  "errors": 0,
+  "http": {
+   "requests": 6421,
+   "errors": 0,
+   "throttled": 0
+  },
+  "seconds": 420.8
+ },
+ "collect": {
+  "finished_at": "2026-10-09T20:41:38+00:00",
+  "sample": 25483,
+  "targets": {
+   "1m+": 3000,
+   "100k-1m": 1500,
+   "10k-100k": 800
+  },
+  "errors": 7,
+  "error_examples": [
+   {
+    "id": "120003",
+    "coarse": null,
+    "fine": null,
+    "err": "HTTP 400 b'{\"error\":\"invalid filters: invalid time component, \\'startTs\\' can\\'t be older than \\'endTs\\'\"}\\n'"
+   },
+   {
+    "id": "238944",
+    "coarse": null,
+    "fine": null,
+    "err": "HTTP 400 b'{\"error\":\"invalid filters: invalid time component, \\'startTs\\' can\\'t be older than \\'endTs\\'\"}\\n'"
+   },
+   {
+    "id": "242140",
+    "coarse": null,
+    "fine": null,
+    "err": "HTTP 400 b'{\"error\":\"invalid filters: invalid time component, \\'startTs\\' can\\'t be older than \\'endTs\\'\"}\\n'"
+   },
+   {
+    "id": "243024",
+    "coarse": null,
+    "fine": null,
+    "err": "HTTP 400 b'{\"error\":\"invalid filters: invalid time component, \\'startTs\\' can\\'t be older than \\'endTs\\'\"}\\n'"
+   },
+   {
+    "id": "248308",
+    "coarse": null,
+    "fine": null,
+    "err": "HTTP 400 b'{\"error\":\"invalid filters: invalid time component, \\'startTs\\' can\\'t be older than \\'endTs\\'\"}\\n'"
+   },
+   {
+    "id": "248451",
+    "coarse": null,
+    "fine": null,
+    "err": "HTTP 400 b'{\"error\":\"invalid filters: invalid time component, \\'startTs\\' can\\'t be older than \\'endTs\\'\"}\\n'"
+   },
+   {
+    "id": "248738",
+    "coarse": null,
+    "fine": null,
+    "err": "HTTP 400 b'{\"error\":\"invalid filters: invalid time component, \\'startTs\\' can\\'t be older than \\'endTs\\'\"}\\n'"
+   }
+  ],
+  "http": {
+   "requests": 43028,
+   "errors": 7,
+   "throttled": 0
+  },
+  "seconds": 921.1,
+  "source": "https://clob.polymarket.com/prices-history (coarse: interval=max fidelity=720; fine: last 14.5 days, fidelity 60 or 5)"
+ },
+ "live_snapshots": [
+  {
+   "file": "raw/live/snap_1791576369.json.gz",
+   "at": "2026-10-09T20:06:09+00:00",
+   "events_scanned": null,
+   "neg_risk_events": 2100,
+   "yes_books": 7694,
+   "confirmed_rereads": 0,
+   "favourites": 4775,
+   "neg_risk_filter": false,
+   "seconds": 132.3
+  },
+  {
+   "file": "raw/live/snap_1791576591.json.gz",
+   "at": "2026-10-09T20:09:51+00:00",
+   "events_scanned": 23068,
+   "neg_risk_events": 10444,
+   "yes_books": 105214,
+   "confirmed_rereads": 0,
+   "favourites": 4833,
+   "neg_risk_filter": true,
+   "seconds": 709.2
+  },
+  {
+   "file": "raw/live/snap_1791577389.json.gz",
+   "at": "2026-10-09T20:23:09+00:00",
+   "events_scanned": 23081,
+   "neg_risk_events": 10446,
+   "yes_books": 105037,
+   "confirmed_rereads": 257,
+   "favourites": 4849,
+   "neg_risk_filter": true,
+   "seconds": 856.7
+  },
+  {
+   "file": "raw/live/snap_1791578509.json.gz",
+   "at": "2026-10-09T20:41:49+00:00",
+   "events_scanned": 23053,
+   "neg_risk_events": 10437,
+   "yes_books": 104916,
+   "confirmed_rereads": 256,
+   "favourites": 4895,
+   "neg_risk_filter": true,
+   "seconds": 575.8
+  }
+ ],
+ "analysis": {
+  "generated": "2026-10-09T21:00:48+00:00",
+  "cutoff": "2026-01-01T00:00:00+00:00",
+  "start": "2024-01-01T00:00:00+00:00",
+  "ssr": 0.038,
+  "trades_A": 68065,
+  "trades_C": 32013,
+  "variants_tried": 62,
+  "fee_schedule": "docs.polymarket.com/trading/fees read 2026-10-09: fee = shares x feeRate x p x (1 - p), taker only"
+ },
+ "lagflow_crypto_price": {
+  "generated": "2026-10-09T20:56:46+00:00",
+  "source": "https://data-api.polymarket.com/trades (takerOnly, scheduled end to close)",
+  "markets": 611,
+  "http": {
+   "requests": 0,
+   "errors": 0,
+   "throttled": 0
+  },
+  "raw": "raw/lagflow/<market id>.json.gz"
+ },
+ "trades_check": {
+  "generated": "2026-10-09T20:57:54+00:00",
+  "source": "https://data-api.polymarket.com/trades (takerOnly, +-30 min of entry)",
+  "entries": 506,
+  "variants": {
+   "A": "A|30d|0.98-0.995",
+   "C": "C|0.95",
+   "Ccat": "Ccat|0.99|crypto_price"
+  },
+  "http": {
+   "requests": 506,
+   "errors": 2,
+   "throttled": 2
+  }
+ }
+}

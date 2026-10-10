@@ -1,0 +1,1640 @@
+{
+ "window": "research/2026-10-10/chains",
+ "analysis_window": {
+  "first_utc": "2026-10-09T00:00:00+00:00",
+  "last_utc": "2026-10-10T00:00:00+00:00",
+  "hours": 24.0,
+  "kind": "probe window"
+ },
+ "detectors": [
+  {
+   "detector": "chain_surge",
+   "hits": 24,
+   "seconds": 0.093,
+   "error": null,
+   "description": "a metric (DEX volume, fees, transactions, active addresses, TVL) against its trailing 28 days, empirical exceedance <= 5%"
+  },
+  {
+   "detector": "chain_new",
+   "hits": 0,
+   "seconds": 0.001,
+   "error": null,
+   "description": "first non-zero aggregator day within 60 days and already above the thin tier"
+  },
+  {
+   "detector": "stable_inflow",
+   "hits": 7,
+   "seconds": 0.0,
+   "error": null,
+   "description": "stablecoin float arriving on a chain, in total and per stablecoin"
+  },
+  {
+   "detector": "dex_share_shift",
+   "hits": 1,
+   "seconds": 0.002,
+   "error": null,
+   "description": "a chain's share of all DEX volume up x1.5 against its four-week share"
+  },
+  {
+   "detector": "activity_divergence",
+   "hits": 1,
+   "seconds": 0.005,
+   "error": null,
+   "description": "transactions and DEX volume moving apart over a week"
+  },
+  {
+   "detector": "unregistered_active",
+   "hits": 3,
+   "seconds": 0.0,
+   "error": null,
+   "description": "deep or tradeable chains with no direct probe yet"
+  },
+  {
+   "detector": "probe_tx_surge",
+   "hits": 2,
+   "seconds": 0.002,
+   "error": null,
+   "description": "the chain's own daily transactions (probe + backfill) x2 against its previous 14 days"
+  },
+  {
+   "detector": "probe_new_asset",
+   "hits": 2,
+   "seconds": 0.002,
+   "error": null,
+   "description": "an asset carrying >= $5M/day on the probe that the previous probes did not see"
+  }
+ ],
+ "hits": [
+  {
+   "detector": "chain_surge",
+   "title": "TON dex last day: $13.1M/day vs $3.6M baseline (x3.6, market x0.69, rarer than 1% of its days)",
+   "severity": "high",
+   "evidence": {
+    "chain": "TON",
+    "metric": "dex",
+    "window": "d1",
+    "recent": 13123473.0,
+    "base": 3633988.0,
+    "ratio": 3.6113,
+    "delta": 9489485.0,
+    "n_base": 28,
+    "p_up": 0.0132,
+    "p_down": 0.9934,
+    "n_hist": 150,
+    "last_day": "2026-10-09",
+    "recent_days": 1,
+    "max_day_excess_share": null,
+    "days_above_2x": null,
+    "market_ratio": 0.6918,
+    "excess_ratio": 5.2205,
+    "series_source": "defillama",
+    "tradeability": {
+     "tier": "tradeable",
+     "dex_7d_avg": 5003600.755714285,
+     "stables": 718953672.3114583,
+     "tvl": 52494226.8628225,
+     "native_volume_24h": 71403360,
+     "perp_volume_24h": 10429468.905799994,
+     "perp_coin": "GRAM"
+    }
+   },
+   "economics": null,
+   "usd": 9489485.0,
+   "key": "TON:dex:d1",
+   "identity": "chain_surge:TON:dex:d1"
+  },
+  {
+   "detector": "probe_tx_surge",
+   "title": "Cardano transactions 542.5k on 2026-10-08 vs a 33.5k median over the 13 days before (x16.2, market x1.08; 10-05 34.0k, 10-06 34.2k, 10-07 326.7k)",
+   "severity": "high",
+   "evidence": {
+    "chain": "cardano",
+    "recent": 542532.0,
+    "base": 33467.0,
+    "ratio": 16.211,
+    "delta": 509065.0,
+    "n_base": 13,
+    "p_up": 0.1429,
+    "p_down": 1.0,
+    "n_hist": 6,
+    "last_day": "2026-10-08",
+    "recent_days": 1,
+    "max_day_excess_share": null,
+    "days_above_2x": null,
+    "market_ratio": 1.078,
+    "excess_ratio": 15.038,
+    "days": {
+     "2026-09-25": 25296.0,
+     "2026-09-26": 24298.0,
+     "2026-09-27": 23601.0,
+     "2026-09-28": 30096.0,
+     "2026-09-29": 30081.0,
+     "2026-09-30": 33467.0,
+     "2026-10-01": 43181.0,
+     "2026-10-02": 37338.0,
+     "2026-10-03": 34905.0,
+     "2026-10-04": 25631.0,
+     "2026-10-05": 33989.0,
+     "2026-10-06": 34178.0,
+     "2026-10-07": 326661.0,
+     "2026-10-08": 542532.0
+    },
+    "tradeability": {
+     "tier": "tradeable",
+     "dex_7d_avg": 3331678.714285714,
+     "stables": 71444412.71675281,
+     "tvl": 69918035.31991714,
+     "native_volume_24h": 556130514,
+     "perp_volume_24h": 7580520.989060001,
+     "perp_coin": "ADA"
+    },
+    "note": "empirical p is limited by 6 days of history"
+   },
+   "economics": null,
+   "usd": null,
+   "key": "cardano",
+   "identity": "probe_tx_surge:cardano"
+  },
+  {
+   "detector": "stable_inflow",
+   "title": "Tempo stablecoin float +$585.3M in 30 days ($145.4M -> $730.7M, +403%); largest step $309.8M on 2026-09-30",
+   "severity": "notable",
+   "evidence": {
+    "chain": "Tempo",
+    "stables_now": 730668965.0,
+    "stables_30d_ago": 145400850.0,
+    "change": 585268115.0,
+    "largest_daily_steps": [
+     {
+      "day": "2026-09-30",
+      "usd": 309777837.0
+     },
+     {
+      "day": "2026-09-19",
+      "usd": 55084306.0
+     },
+     {
+      "day": "2026-09-29",
+      "usd": 47615475.0
+     }
+    ],
+    "by_asset": [
+     {
+      "symbol": "OUSD",
+      "usd": 511174888.088116,
+      "prev_week": 472056323.0689498,
+      "prev_month": null
+     },
+     {
+      "symbol": "USDB",
+      "usd": 88710134.01,
+      "prev_week": 86016699.62,
+      "prev_month": 32693122.46
+     },
+     {
+      "symbol": "pathUSD",
+      "usd": 71262591.02764596,
+      "prev_week": 60945335.525461815,
+      "prev_month": 36661852.84272597
+     },
+     {
+      "symbol": "USDC",
+      "usd": 44837116.36221314,
+      "prev_week": 92737226.25882445,
+      "prev_month": 68266343.39597887
+     },
+     {
+      "symbol": "USDT",
+      "usd": 11340775.076689823,
+      "prev_week": 11764343.184685526,
+      "prev_month": 9674308.963802297
+     },
+     {
+      "symbol": "DLUSD",
+      "usd": 3789304.010539,
+      "prev_week": 3380855.954959,
+      "prev_month": 3716405.084959
+     }
+    ],
+    "tradeability": {
+     "tier": "tradeable",
+     "dex_7d_avg": 1077819.2957142857,
+     "stables": 730850598.2665098,
+     "tvl": 106103529.4025531,
+     "native_volume_24h": null,
+     "perp_volume_24h": null,
+     "perp_coin": null
+    }
+   },
+   "economics": null,
+   "usd": 585268115.0,
+   "key": "Tempo:30d",
+   "identity": "stable_inflow:Tempo:30d"
+  },
+  {
+   "detector": "stable_inflow",
+   "title": "Plasma stablecoin float +$317.0M in 30 days ($1.1B -> $1.4B, +30%); largest step $137.0M on 2026-09-17",
+   "severity": "notable",
+   "evidence": {
+    "chain": "Plasma",
+    "stables_now": 1372545607.0,
+    "stables_30d_ago": 1055589774.0,
+    "change": 316955833.0,
+    "largest_daily_steps": [
+     {
+      "day": "2026-09-17",
+      "usd": 136958883.0
+     },
+     {
+      "day": "2026-09-23",
+      "usd": 58904610.0
+     },
+     {
+      "day": "2026-09-22",
+      "usd": 58429702.0
+     }
+    ],
+    "by_asset": [
+     {
+      "symbol": "USDT",
+      "usd": 774697131.070369,
+      "prev_week": 839813917.6884725,
+      "prev_month": 690523269.4583877
+     },
+     {
+      "symbol": "USDe",
+      "usd": 558708491.0077832,
+      "prev_week": 542144567.7540985,
+      "prev_month": 319748417.6190891
+     },
+     {
+      "symbol": "YZUSD",
+      "usd": 59247237.82608547,
+      "prev_week": 58142548.50109711,
+      "prev_month": 57958178.51237849
+     },
+     {
+      "symbol": "USDai",
+      "usd": 657005.7794284347,
+      "prev_week": 653523.4533365675,
+      "prev_month": 657993.6429214284
+     },
+     {
+      "symbol": "MSUSD",
+      "usd": 30808.852411336982,
+      "prev_week": 30808.852411336982,
+      "prev_month": 31529.626888183917
+     },
+     {
+      "symbol": "reUSD",
+      "usd": 8888.172148869497,
+      "prev_week": 8888.172148869497,
+      "prev_month": 10384.86453071354
+     }
+    ],
+    "tradeability": {
+     "tier": "tradeable",
+     "dex_7d_avg": 4708763.714285715,
+     "stables": 1333355682.3372574,
+     "tvl": 511470860.3639295,
+     "native_volume_24h": 26501438,
+     "perp_volume_24h": 7818310.333817999,
+     "perp_coin": "XPL"
+    }
+   },
+   "economics": null,
+   "usd": 316955833.0,
+   "key": "Plasma:30d",
+   "identity": "stable_inflow:Plasma:30d"
+  },
+  {
+   "detector": "stable_inflow",
+   "title": "USDC on X Layer +$109.8M in 7 days ($17.9M -> $127.7M)",
+   "severity": "notable",
+   "evidence": {
+    "chain": "X Layer",
+    "asset": {
+     "symbol": "USDC",
+     "name": "USD Coin",
+     "id": "2",
+     "peg": "peggedUSD",
+     "usd": 127700084.73125875,
+     "prev_day": 48429613.89999923,
+     "prev_week": 17904199.83957006,
+     "prev_month": 15534451.14682847
+    },
+    "tradeability": {
+     "tier": "deep",
+     "dex_7d_avg": 18049647.55,
+     "stables": 1646004835.2789304,
+     "tvl": 164722688.18322626,
+     "native_volume_24h": 19643899,
+     "perp_volume_24h": null,
+     "perp_coin": null
+    }
+   },
+   "economics": null,
+   "usd": 109795884.89168869,
+   "key": "X Layer:USDC",
+   "identity": "stable_inflow:X Layer:USDC"
+  },
+  {
+   "detector": "dex_share_shift",
+   "title": "OP Mainnet took 1.23% of all DEX volume this week, from 0.36% over the four weeks before (x3.4)",
+   "severity": "notable",
+   "evidence": {
+    "chain": "OP Mainnet",
+    "share_7d": 0.01228878347836677,
+    "share_prior_28d": 0.003568652895618348,
+    "all_chains_dex_7d": 53901178026.77999,
+    "tradeability": {
+     "tier": "tradeable",
+     "dex_7d_avg": 94625700.78142858,
+     "stables": 644112339.8336618,
+     "tvl": 452791557.49278927,
+     "native_volume_24h": 158361376,
+     "perp_volume_24h": 3628962.9815119994,
+     "perp_coin": "OP"
+    }
+   },
+   "economics": null,
+   "usd": 94625700.85714285,
+   "key": "OP Mainnet",
+   "identity": "dex_share_shift:OP Mainnet"
+  },
+  {
+   "detector": "chain_surge",
+   "title": "OP Mainnet dex last 7 days: $94.6M/day vs $35.5M baseline (x2.7, market x0.81, rarer than 5% of its days); one day carries 99% of the excess",
+   "severity": "notable",
+   "evidence": {
+    "chain": "OP Mainnet",
+    "metric": "dex",
+    "window": "d7",
+    "recent": 94625700.8571,
+    "base": 35532805.7143,
+    "ratio": 2.6631,
+    "delta": 59092895.1429,
+    "n_base": 28,
+    "p_up": 0.0464,
+    "p_down": 0.9603,
+    "n_hist": 150,
+    "last_day": "2026-10-09",
+    "recent_days": 7,
+    "max_day_excess_share": 0.985,
+    "days_above_2x": 1,
+    "market_ratio": 0.8141,
+    "excess_ratio": 3.2713,
+    "series_source": "defillama",
+    "tradeability": {
+     "tier": "tradeable",
+     "dex_7d_avg": 94625700.78142858,
+     "stables": 644112339.8336618,
+     "tvl": 452791557.49278927,
+     "native_volume_24h": 158361376,
+     "perp_volume_24h": 3628962.9815119994,
+     "perp_coin": "OP"
+    }
+   },
+   "economics": null,
+   "usd": 59092895.142857134,
+   "key": "OP Mainnet:dex:d7",
+   "identity": "chain_surge:OP Mainnet:dex:d7"
+  },
+  {
+   "detector": "activity_divergence",
+   "title": "OP Mainnet value without activity: transactions x0.99, DEX volume x2.66 (last 7 days vs 28 before)",
+   "severity": "notable",
+   "evidence": {
+    "chain": "OP Mainnet",
+    "kind": "value_without_activity",
+    "tx": {
+     "recent": 1601234.1429,
+     "base": 1623637.1786,
+     "ratio": 0.9862,
+     "delta": -22403.0357,
+     "n_base": 28,
+     "p_up": 0.619,
+     "p_down": 0.3968,
+     "n_hist": 62,
+     "last_day": "2026-10-09",
+     "recent_days": 7,
+     "max_day_excess_share": 0.5557,
+     "days_above_2x": 0
+    },
+    "dex": {
+     "recent": 94625700.8571,
+     "base": 35532805.7143,
+     "ratio": 2.6631,
+     "delta": 59092895.1429,
+     "n_base": 28,
+     "p_up": 0.0464,
+     "p_down": 0.9603,
+     "n_hist": 150,
+     "last_day": "2026-10-09",
+     "recent_days": 7,
+     "max_day_excess_share": 0.985,
+     "days_above_2x": 1
+    },
+    "tradeability": {
+     "tier": "tradeable",
+     "dex_7d_avg": 94625700.78142858,
+     "stables": 644112339.8336618,
+     "tvl": 452791557.49278927,
+     "native_volume_24h": 158361376,
+     "perp_volume_24h": 3628962.9815119994,
+     "perp_coin": "OP"
+    },
+    "reading": "more value through no more transactions is fewer, larger hands: a market maker, a fund, or one integrator routing size"
+   },
+   "economics": null,
+   "usd": 59092895.142857134,
+   "key": "OP Mainnet:value_without_activity",
+   "identity": "activity_divergence:OP Mainnet:value_without_activity"
+  },
+  {
+   "detector": "stable_inflow",
+   "title": "Near stablecoin float +$40.1M in 7 days ($88.7M -> $128.8M, +45%)",
+   "severity": "notable",
+   "evidence": {
+    "chain": "Near",
+    "stables_now": 128800781.0,
+    "stables_7d_ago": 88706662.0,
+    "change": 40094119.0,
+    "by_asset": [
+     {
+      "symbol": "USDC",
+      "usd": 88630708.23442052,
+      "prev_week": 63427130.70030094,
+      "prev_month": 40406678.60875151
+     },
+     {
+      "symbol": "USDT",
+      "usd": 39177242.108648956,
+      "prev_week": 39184202.86848066,
+      "prev_month": 64170310.05563251
+     },
+     {
+      "symbol": "USN",
+      "usd": 809966.6731510983,
+      "prev_week": 809966.6731510983,
+      "prev_month": 809966.6731510983
+     },
+     {
+      "symbol": "DAI",
+      "usd": 781481.5120009541,
+      "prev_week": 785476.7793738785,
+      "prev_month": 769752.7647516987
+     },
+     {
+      "symbol": "FRAX",
+      "usd": 242153.40522021605,
+      "prev_week": 237774.5711053994,
+      "prev_month": 174117.79244229576
+     },
+     {
+      "symbol": "TUSD",
+      "usd": 509.23684035082374,
+      "prev_week": 509.23684035082374,
+      "prev_month": 509.23684035082374
+     }
+    ],
+    "tradeability": {
+     "tier": "deep",
+     "dex_7d_avg": 165861093.39857143,
+     "stables": 129643626.43293218,
+     "tvl": 246987320.86997798,
+     "native_volume_24h": 860165963,
+     "perp_volume_24h": 169371699.0878599,
+     "perp_coin": "NEAR"
+    }
+   },
+   "economics": null,
+   "usd": 40094119.0,
+   "key": "Near",
+   "identity": "stable_inflow:Near"
+  },
+  {
+   "detector": "stable_inflow",
+   "title": "USDe on Monad +$31.6M in 7 days ($69.7M -> $101.4M)",
+   "severity": "notable",
+   "evidence": {
+    "chain": "Monad",
+    "asset": {
+     "symbol": "USDe",
+     "name": "Ethena USDe",
+     "id": "146",
+     "peg": "peggedUSD",
+     "usd": 101366367.76000644,
+     "prev_day": 98658626.13508624,
+     "prev_week": 69734139.37927371,
+     "prev_month": 87911435.6446312
+    },
+    "tradeability": {
+     "tier": "tradeable",
+     "dex_7d_avg": 41150756.288571425,
+     "stables": 736809868.4888692,
+     "tvl": 1000311891.6209097,
+     "native_volume_24h": 22588175,
+     "perp_volume_24h": 4477358.397332002,
+     "perp_coin": "MON"
+    }
+   },
+   "economics": null,
+   "usd": 31632228.38073273,
+   "key": "Monad:USDe",
+   "identity": "stable_inflow:Monad:USDe"
+  },
+  {
+   "detector": "chain_surge",
+   "title": "Starknet dex last day: $39.8M/day vs $9.7M baseline (x4.1, market x0.69, rarer than 4% of its days)",
+   "severity": "notable",
+   "evidence": {
+    "chain": "Starknet",
+    "metric": "dex",
+    "window": "d1",
+    "recent": 39752601.0,
+    "base": 9652001.0,
+    "ratio": 4.1186,
+    "delta": 30100600.0,
+    "n_base": 28,
+    "p_up": 0.0397,
+    "p_down": 0.9669,
+    "n_hist": 150,
+    "last_day": "2026-10-09",
+    "recent_days": 1,
+    "max_day_excess_share": null,
+    "days_above_2x": null,
+    "market_ratio": 0.6918,
+    "excess_ratio": 5.9538,
+    "series_source": "defillama",
+    "tradeability": {
+     "tier": "tradeable",
+     "dex_7d_avg": 21550808.0,
+     "stables": 152389910.7268573,
+     "tvl": 165286115.14763984,
+     "native_volume_24h": 245848658,
+     "perp_volume_24h": 49795274.668463014,
+     "perp_coin": "STRK"
+    }
+   },
+   "economics": null,
+   "usd": 30100600.0,
+   "key": "Starknet:dex:d1",
+   "identity": "chain_surge:Starknet:dex:d1"
+  },
+  {
+   "detector": "stable_inflow",
+   "title": "USDC on Near +$25.2M in 7 days ($63.4M -> $88.6M)",
+   "severity": "notable",
+   "evidence": {
+    "chain": "Near",
+    "asset": {
+     "symbol": "USDC",
+     "name": "USD Coin",
+     "id": "2",
+     "peg": "peggedUSD",
+     "usd": 88630708.23442052,
+     "prev_day": 88606274.96280359,
+     "prev_week": 63427130.70030094,
+     "prev_month": 40406678.60875151
+    },
+    "tradeability": {
+     "tier": "deep",
+     "dex_7d_avg": 165861093.39857143,
+     "stables": 129643626.43293218,
+     "tvl": 246987320.86997798,
+     "native_volume_24h": 860165963,
+     "perp_volume_24h": 169371699.0878599,
+     "perp_coin": "NEAR"
+    }
+   },
+   "economics": null,
+   "usd": 25203577.534119584,
+   "key": "Near:USDC",
+   "identity": "stable_inflow:Near:USDC"
+  },
+  {
+   "detector": "probe_new_asset",
+   "title": "QI on solana: $23.2M/day of transfers, absent from the previous 1 probe(s)",
+   "severity": "notable",
+   "evidence": {
+    "chain": "solana",
+    "asset": {
+     "asset": "8TiMkgvsrat9tM2esko8zVTt99LZLpefUM4SnZaziXaQ",
+     "symbol": "QI",
+     "class": "other",
+     "usd": 23223478.649864484,
+     "usd_se": 8555286.562277518,
+     "transfers": 108101,
+     "top_block_share": 0.3083088231789157,
+     "price_source": null
+    },
+    "previous_windows": [
+     "2026-10-09T00:00:00+00:00"
+    ]
+   },
+   "economics": null,
+   "usd": 23223478.649864484,
+   "key": "solana:8TiMkgvsrat9tM2esko8zVTt99LZLpefUM4SnZaziXaQ",
+   "identity": "probe_new_asset:solana:8TiMkgvsrat9tM2esko8zVTt99LZLpefUM4SnZaziXaQ"
+  },
+  {
+   "detector": "stable_inflow",
+   "title": "USDT on Monad +$21.3M in 7 days ($34.8M -> $56.0M)",
+   "severity": "notable",
+   "evidence": {
+    "chain": "Monad",
+    "asset": {
+     "symbol": "USDT",
+     "name": "Tether",
+     "id": "1",
+     "peg": "peggedUSD",
+     "usd": 56035567.22762206,
+     "prev_day": 45521270.98588614,
+     "prev_week": 34779089.15333445,
+     "prev_month": 49338011.97593724
+    },
+    "tradeability": {
+     "tier": "tradeable",
+     "dex_7d_avg": 41150756.288571425,
+     "stables": 736809868.4888692,
+     "tvl": 1000311891.6209097,
+     "native_volume_24h": 22588175,
+     "perp_volume_24h": 4477358.397332002,
+     "perp_coin": "MON"
+    }
+   },
+   "economics": null,
+   "usd": 21256478.07428761,
+   "key": "Monad:USDT",
+   "identity": "stable_inflow:Monad:USDT"
+  },
+  {
+   "detector": "probe_new_asset",
+   "title": "WETH on arc: $11.7M/day of transfers, absent from the previous 1 probe(s)",
+   "severity": "notable",
+   "evidence": {
+    "chain": "arc",
+    "asset": {
+     "asset": "0x128cc466b61f542da60c70e3aa11c10e19b84edb",
+     "symbol": "WETH",
+     "class": "eth",
+     "usd": 11693221.077805422,
+     "usd_se": 7391023.682001338,
+     "transfers": 4257,
+     "top_block_share": 0.4477664177181221,
+     "price_source": null
+    },
+    "previous_windows": [
+     "2026-10-09T00:00:00+00:00"
+    ]
+   },
+   "economics": null,
+   "usd": 11693221.077805422,
+   "key": "arc:0x128cc466b61f542da60c70e3aa11c10e19b84edb",
+   "identity": "probe_new_asset:arc:0x128cc466b61f542da60c70e3aa11c10e19b84edb"
+  },
+  {
+   "detector": "chain_surge",
+   "title": "Kaia dex last day: $4.0M/day vs $308.1k baseline (x12.9, market x0.69, rarer than 1% of its days)",
+   "severity": "notable",
+   "evidence": {
+    "chain": "Kaia",
+    "metric": "dex",
+    "window": "d1",
+    "recent": 3979257.0,
+    "base": 308108.785,
+    "ratio": 12.9074,
+    "delta": 3671148.215,
+    "n_base": 28,
+    "p_up": 0.0066,
+    "p_down": 1.0,
+    "n_hist": 150,
+    "last_day": "2026-10-09",
+    "recent_days": 1,
+    "max_day_excess_share": null,
+    "days_above_2x": null,
+    "market_ratio": 0.6918,
+    "excess_ratio": 18.6587,
+    "series_source": "defillama",
+    "tradeability": {
+     "tier": "token_only",
+     "dex_7d_avg": 839602.6814285713,
+     "stables": 221950882.2046206,
+     "tvl": 9273441.14021869,
+     "native_volume_24h": 325540551,
+     "perp_volume_24h": null,
+     "perp_coin": null
+    }
+   },
+   "economics": null,
+   "usd": 3671148.215,
+   "key": "Kaia:dex:d1",
+   "identity": "chain_surge:Kaia:dex:d1"
+  },
+  {
+   "detector": "chain_surge",
+   "title": "Saga dex last day: $3.6M/day vs $686.1k baseline (x5.1, rarer than 4% of its days)",
+   "severity": "notable",
+   "evidence": {
+    "chain": "Saga",
+    "metric": "dex",
+    "window": "d1",
+    "recent": 3604949.0,
+    "base": 686081.0,
+    "ratio": 5.1124,
+    "delta": 2918868.0,
+    "n_base": 28,
+    "p_up": 0.0435,
+    "p_down": 1.0,
+    "n_hist": 22,
+    "last_day": "2026-01-21",
+    "recent_days": 1,
+    "max_day_excess_share": null,
+    "days_above_2x": null,
+    "market_ratio": null,
+    "excess_ratio": 5.1124,
+    "series_source": "defillama",
+    "tradeability": {
+     "tier": "tradeable",
+     "dex_7d_avg": 1193290.857142857,
+     "stables": 154494675.41283727,
+     "tvl": 0,
+     "native_volume_24h": 12768035,
+     "perp_volume_24h": 64276.190207,
+     "perp_coin": "SAGA"
+    }
+   },
+   "economics": null,
+   "usd": 2918868.0,
+   "key": "Saga:dex:d1",
+   "identity": "chain_surge:Saga:dex:d1"
+  },
+  {
+   "detector": "chain_surge",
+   "title": "OP Mainnet fees last 7 days: $379.5k/day vs $148.0k baseline (x2.6, market x0.93, rarer than 1% of its days); one day carries 65% of the excess",
+   "severity": "notable",
+   "evidence": {
+    "chain": "OP Mainnet",
+    "metric": "fees",
+    "window": "d7",
+    "recent": 379539.2229,
+    "base": 147958.2043,
+    "ratio": 2.5652,
+    "delta": 231581.0186,
+    "n_base": 28,
+    "p_up": 0.0066,
+    "p_down": 1.0,
+    "n_hist": 150,
+    "last_day": "2026-10-09",
+    "recent_days": 7,
+    "max_day_excess_share": 0.6544,
+    "days_above_2x": 3,
+    "market_ratio": 0.9325,
+    "excess_ratio": 2.7509,
+    "series_source": "defillama",
+    "tradeability": {
+     "tier": "tradeable",
+     "dex_7d_avg": 94625700.78142858,
+     "stables": 644112339.8336618,
+     "tvl": 452791557.49278927,
+     "native_volume_24h": 158361376,
+     "perp_volume_24h": 3628962.9815119994,
+     "perp_coin": "OP"
+    }
+   },
+   "economics": null,
+   "usd": 231581.01857142858,
+   "key": "OP Mainnet:fees:d7",
+   "identity": "chain_surge:OP Mainnet:fees:d7"
+  },
+  {
+   "detector": "chain_surge",
+   "title": "OP Mainnet fees last day: $322.4k/day vs $116.9k baseline (x2.5, market x0.91, rarer than 3% of its days)",
+   "severity": "notable",
+   "evidence": {
+    "chain": "OP Mainnet",
+    "metric": "fees",
+    "window": "d1",
+    "recent": 322410.39,
+    "base": 116853.63,
+    "ratio": 2.4891,
+    "delta": 205556.76,
+    "n_base": 28,
+    "p_up": 0.0265,
+    "p_down": 0.9801,
+    "n_hist": 150,
+    "last_day": "2026-10-09",
+    "recent_days": 1,
+    "max_day_excess_share": null,
+    "days_above_2x": null,
+    "market_ratio": 0.9078,
+    "excess_ratio": 2.7419,
+    "series_source": "defillama",
+    "tradeability": {
+     "tier": "tradeable",
+     "dex_7d_avg": 94625700.78142858,
+     "stables": 644112339.8336618,
+     "tvl": 452791557.49278927,
+     "native_volume_24h": 158361376,
+     "perp_volume_24h": 3628962.9815119994,
+     "perp_coin": "OP"
+    }
+   },
+   "economics": null,
+   "usd": 205556.76,
+   "key": "OP Mainnet:fees:d1",
+   "identity": "chain_surge:OP Mainnet:fees:d1"
+  },
+  {
+   "detector": "chain_surge",
+   "title": "Stable fees last day: $96.5k/day vs $10.4k baseline (x5.7, market x0.91, rarer than 1% of its days)",
+   "severity": "notable",
+   "evidence": {
+    "chain": "Stable",
+    "metric": "fees",
+    "window": "d1",
+    "recent": 96518.09,
+    "base": 10430.52,
+    "ratio": 5.7363,
+    "delta": 86087.57,
+    "n_base": 28,
+    "p_up": 0.0132,
+    "p_down": 0.9934,
+    "n_hist": 150,
+    "last_day": "2026-10-09",
+    "recent_days": 1,
+    "max_day_excess_share": null,
+    "days_above_2x": null,
+    "market_ratio": 0.9078,
+    "excess_ratio": 6.3188,
+    "series_source": "defillama",
+    "tradeability": {
+     "tier": "token_only",
+     "dex_7d_avg": 257.68142857142857,
+     "stables": 21016917.470382728,
+     "tvl": 30136359.82963377,
+     "native_volume_24h": 13786063,
+     "perp_volume_24h": 236297.373746,
+     "perp_coin": "STABLE"
+    }
+   },
+   "economics": null,
+   "usd": 86087.56999999999,
+   "key": "Stable:fees:d1",
+   "identity": "chain_surge:Stable:fees:d1"
+  },
+  {
+   "detector": "chain_surge",
+   "title": "Cronos fees last day: $34.5k/day vs $11.9k baseline (x2.4, market x0.91, rarer than 3% of its days)",
+   "severity": "notable",
+   "evidence": {
+    "chain": "Cronos",
+    "metric": "fees",
+    "window": "d1",
+    "recent": 34545.52,
+    "base": 11861.495,
+    "ratio": 2.3635,
+    "delta": 22684.025,
+    "n_base": 28,
+    "p_up": 0.0265,
+    "p_down": 0.9801,
+    "n_hist": 150,
+    "last_day": "2026-10-09",
+    "recent_days": 1,
+    "max_day_excess_share": null,
+    "days_above_2x": null,
+    "market_ratio": 0.9078,
+    "excess_ratio": 2.6035,
+    "series_source": "defillama",
+    "tradeability": {
+     "tier": "tradeable",
+     "dex_7d_avg": 2704038.2114285715,
+     "stables": 138993442.53874782,
+     "tvl": 152415723.92551365,
+     "native_volume_24h": 6503321,
+     "perp_volume_24h": null,
+     "perp_coin": null
+    }
+   },
+   "economics": null,
+   "usd": 22684.024999999998,
+   "key": "Cronos:fees:d1",
+   "identity": "chain_surge:Cronos:fees:d1"
+  },
+  {
+   "detector": "chain_surge",
+   "title": "Arbitrum daa last 7 days: 213.8k/day vs 118.1k baseline (x1.8, market x0.97, rarer than 2% of its days)",
+   "severity": "notable",
+   "evidence": {
+    "chain": "Arbitrum",
+    "metric": "daa",
+    "window": "d7",
+    "recent": 213819.2857,
+    "base": 118074.2857,
+    "ratio": 1.8109,
+    "delta": 95745.0,
+    "n_base": 28,
+    "p_up": 0.0159,
+    "p_down": 1.0,
+    "n_hist": 62,
+    "last_day": "2026-10-09",
+    "recent_days": 7,
+    "max_day_excess_share": 0.3413,
+    "days_above_2x": 3,
+    "market_ratio": 0.9708,
+    "excess_ratio": 1.8653,
+    "series_source": "defillama",
+    "tradeability": {
+     "tier": "deep",
+     "dex_7d_avg": 132578221.7257143,
+     "stables": 3780685093.0201235,
+     "tvl": 1367817839.3483043,
+     "native_volume_24h": 135960078,
+     "perp_volume_24h": 8221118.182035,
+     "perp_coin": "ARB"
+    }
+   },
+   "economics": null,
+   "usd": null,
+   "key": "Arbitrum:daa:d7",
+   "identity": "chain_surge:Arbitrum:daa:d7"
+  },
+  {
+   "detector": "chain_surge",
+   "title": "Near daa last 7 days: 126.7k/day vs 62.9k baseline (x2.0, market x0.97, rarer than 2% of its days)",
+   "severity": "notable",
+   "evidence": {
+    "chain": "Near",
+    "metric": "daa",
+    "window": "d7",
+    "recent": 126698.1429,
+    "base": 62873.5714,
+    "ratio": 2.0151,
+    "delta": 63824.5714,
+    "n_base": 28,
+    "p_up": 0.0199,
+    "p_down": 0.9868,
+    "n_hist": 150,
+    "last_day": "2026-10-09",
+    "recent_days": 7,
+    "max_day_excess_share": 0.2509,
+    "days_above_2x": 3,
+    "market_ratio": 0.9708,
+    "excess_ratio": 2.0756,
+    "series_source": "defillama",
+    "tradeability": {
+     "tier": "deep",
+     "dex_7d_avg": 165861093.39857143,
+     "stables": 129643626.43293218,
+     "tvl": 246987320.86997798,
+     "native_volume_24h": 860165963,
+     "perp_volume_24h": 169371699.0878599,
+     "perp_coin": "NEAR"
+    }
+   },
+   "economics": null,
+   "usd": null,
+   "key": "Near:daa:d7",
+   "identity": "chain_surge:Near:daa:d7"
+  },
+  {
+   "detector": "chain_surge",
+   "title": "World Chain daa last day: 41.2k/day vs 7.3k baseline (x5.5, market x0.92, rarer than 4% of its days)",
+   "severity": "notable",
+   "evidence": {
+    "chain": "World Chain",
+    "metric": "daa",
+    "window": "d1",
+    "recent": 41242.0,
+    "base": 7290.5,
+    "ratio": 5.5026,
+    "delta": 33951.5,
+    "n_base": 28,
+    "p_up": 0.0435,
+    "p_down": 0.971,
+    "n_hist": 68,
+    "last_day": "2026-10-09",
+    "recent_days": 1,
+    "max_day_excess_share": null,
+    "days_above_2x": null,
+    "market_ratio": 0.9182,
+    "excess_ratio": 5.9925,
+    "series_source": "defillama",
+    "tradeability": {
+     "tier": "token_only",
+     "dex_7d_avg": 530836.3328571429,
+     "stables": 16183831.419190887,
+     "tvl": 43549948.21414103,
+     "native_volume_24h": 271212992,
+     "perp_volume_24h": 22309862.048844993,
+     "perp_coin": "WLD"
+    }
+   },
+   "economics": null,
+   "usd": null,
+   "key": "World Chain:daa:d1",
+   "identity": "chain_surge:World Chain:daa:d1"
+  },
+  {
+   "detector": "probe_tx_surge",
+   "title": "Cronos transactions 90.9k on 2026-10-08 vs a 35.6k median over the 13 days before (x2.6, market x1.08; 10-05 30.4k, 10-06 70.6k, 10-07 60.2k)",
+   "severity": "notable",
+   "evidence": {
+    "chain": "cronos",
+    "recent": 90895.08,
+    "base": 35577.15,
+    "ratio": 2.5549,
+    "delta": 55317.93,
+    "n_base": 13,
+    "p_up": 0.1429,
+    "p_down": 1.0,
+    "n_hist": 6,
+    "last_day": "2026-10-08",
+    "recent_days": 1,
+    "max_day_excess_share": null,
+    "days_above_2x": null,
+    "market_ratio": 1.078,
+    "excess_ratio": 2.37,
+    "days": {
+     "2026-09-25": 40934.4,
+     "2026-09-26": 15305.699999999999,
+     "2026-09-27": 35577.149999999994,
+     "2026-09-28": 35484.225,
+     "2026-09-29": 53757.00000000001,
+     "2026-09-30": 49537.0,
+     "2026-10-01": 24258.5,
+     "2026-10-02": 29071.95,
+     "2026-10-03": 67942.7,
+     "2026-10-04": 19242.8,
+     "2026-10-05": 30380.85,
+     "2026-10-06": 70554.75,
+     "2026-10-07": 60176.7,
+     "2026-10-08": 90895.08
+    },
+    "tradeability": {
+     "tier": "tradeable",
+     "dex_7d_avg": 2704038.2114285715,
+     "stables": 138993442.53874782,
+     "tvl": 152415723.92551365,
+     "native_volume_24h": 6503321,
+     "perp_volume_24h": null,
+     "perp_coin": null
+    },
+    "note": "empirical p is limited by 6 days of history"
+   },
+   "economics": null,
+   "usd": null,
+   "key": "cronos",
+   "identity": "probe_tx_surge:cronos"
+  },
+  {
+   "detector": "chain_drop",
+   "title": "Monad dex fell to $41.2M/day over the last week from $130.6M (x0.32)",
+   "severity": "info",
+   "evidence": {
+    "chain": "Monad",
+    "metric": "dex",
+    "recent": 41150756.1429,
+    "base": 130568975.5,
+    "ratio": 0.3152,
+    "delta": -89418219.3571,
+    "n_base": 28,
+    "p_up": 1.0,
+    "p_down": 0.0066,
+    "n_hist": 150,
+    "last_day": "2026-10-09",
+    "recent_days": 7,
+    "max_day_excess_share": null,
+    "days_above_2x": 0,
+    "market_ratio": 0.8141,
+    "excess_ratio": 0.3871,
+    "tradeability": {
+     "tier": "tradeable",
+     "dex_7d_avg": 41150756.288571425,
+     "stables": 736809868.4888692,
+     "tvl": 1000311891.6209097,
+     "native_volume_24h": 22588175,
+     "perp_volume_24h": 4477358.397332002,
+     "perp_coin": "MON"
+    }
+   },
+   "economics": null,
+   "usd": 89418219.35714287,
+   "key": "Monad:dex",
+   "identity": "chain_drop:Monad:dex"
+  },
+  {
+   "detector": "unregistered_active",
+   "title": "Provenance is tradeable (DEX $18.3M/day, stables $460.3M) and has no probe in chain_registry.json",
+   "severity": "info",
+   "evidence": {
+    "chain": "Provenance",
+    "tradeability": {
+     "tier": "tradeable",
+     "dex_7d_avg": 18324615.285714287,
+     "stables": 460333731.35659707,
+     "tvl": 146907209.85694024,
+     "native_volume_24h": 8251.9,
+     "perp_volume_24h": null,
+     "perp_coin": null
+    },
+    "llama_key": "provenance",
+    "evm_chain_id": null
+   },
+   "economics": null,
+   "usd": 18324615.285714287,
+   "key": "Provenance",
+   "identity": "unregistered_active:Provenance"
+  },
+  {
+   "detector": "chain_surge",
+   "title": "Mayachain dex last day: $13.4M/day vs $933.8k baseline (x8.1, market x0.69, rarer than 4% of its days)",
+   "severity": "info",
+   "evidence": {
+    "chain": "Mayachain",
+    "metric": "dex",
+    "window": "d1",
+    "recent": 13428724.0,
+    "base": 933790.5,
+    "ratio": 8.1169,
+    "delta": 12494933.5,
+    "n_base": 28,
+    "p_up": 0.0397,
+    "p_down": 0.9669,
+    "n_hist": 150,
+    "last_day": "2026-10-09",
+    "recent_days": 1,
+    "max_day_excess_share": null,
+    "days_above_2x": null,
+    "market_ratio": 0.6918,
+    "excess_ratio": 11.7337,
+    "series_source": "defillama",
+    "tradeability": {
+     "tier": "thin",
+     "dex_7d_avg": 5170654.428571428,
+     "stables": null,
+     "tvl": 0,
+     "native_volume_24h": 606869,
+     "perp_volume_24h": null,
+     "perp_coin": null
+    }
+   },
+   "economics": null,
+   "usd": 12494933.5,
+   "key": "Mayachain:dex:d1",
+   "identity": "chain_surge:Mayachain:dex:d1"
+  },
+  {
+   "detector": "chain_drop",
+   "title": "Injective dex fell to $4.7M/day over the last week from $12.7M (x0.37)",
+   "severity": "info",
+   "evidence": {
+    "chain": "Injective",
+    "metric": "dex",
+    "recent": 4704271.1429,
+    "base": 12651676.9286,
+    "ratio": 0.3718,
+    "delta": -7947405.7857,
+    "n_base": 28,
+    "p_up": 0.9735,
+    "p_down": 0.0331,
+    "n_hist": 150,
+    "last_day": "2026-10-09",
+    "recent_days": 7,
+    "max_day_excess_share": null,
+    "days_above_2x": 0,
+    "market_ratio": 0.8141,
+    "excess_ratio": 0.4568,
+    "tradeability": {
+     "tier": "tradeable",
+     "dex_7d_avg": 4704271.142857143,
+     "stables": 15117960.139386714,
+     "tvl": 12214996.325417763,
+     "native_volume_24h": 89652510,
+     "perp_volume_24h": 2598512.832,
+     "perp_coin": "INJ"
+    }
+   },
+   "economics": null,
+   "usd": 7947405.785714286,
+   "key": "Injective:dex",
+   "identity": "chain_drop:Injective:dex"
+  },
+  {
+   "detector": "chain_drop",
+   "title": "Robinhood Chain fees fell to $3.2M/day over the last week from $9.8M (x0.33)",
+   "severity": "info",
+   "evidence": {
+    "chain": "Robinhood Chain",
+    "metric": "fees",
+    "recent": 3222411.5714,
+    "base": 9786353.75,
+    "ratio": 0.3293,
+    "delta": -6563942.1786,
+    "n_base": 28,
+    "p_up": 0.988,
+    "p_down": 0.0241,
+    "n_hist": 82,
+    "last_day": "2026-10-09",
+    "recent_days": 7,
+    "max_day_excess_share": null,
+    "days_above_2x": 0,
+    "market_ratio": 0.9325,
+    "excess_ratio": 0.3531,
+    "tradeability": {
+     "tier": "deep",
+     "dex_7d_avg": 988254608.2128571,
+     "stables": 1069589835.8753824,
+     "tvl": 1047973188.596766,
+     "native_volume_24h": null,
+     "perp_volume_24h": null,
+     "perp_coin": null
+    }
+   },
+   "economics": null,
+   "usd": 6563942.178571429,
+   "key": "Robinhood Chain:fees",
+   "identity": "chain_drop:Robinhood Chain:fees"
+  },
+  {
+   "detector": "chain_drop",
+   "title": "Plasma dex fell to $4.7M/day over the last week from $10.3M (x0.46)",
+   "severity": "info",
+   "evidence": {
+    "chain": "Plasma",
+    "metric": "dex",
+    "recent": 4708763.7143,
+    "base": 10290929.3214,
+    "ratio": 0.4576,
+    "delta": -5582165.6071,
+    "n_base": 28,
+    "p_up": 1.0,
+    "p_down": 0.0066,
+    "n_hist": 150,
+    "last_day": "2026-10-09",
+    "recent_days": 7,
+    "max_day_excess_share": null,
+    "days_above_2x": 0,
+    "market_ratio": 0.8141,
+    "excess_ratio": 0.5621,
+    "tradeability": {
+     "tier": "tradeable",
+     "dex_7d_avg": 4708763.714285715,
+     "stables": 1333355682.3372574,
+     "tvl": 511470860.3639295,
+     "native_volume_24h": 26501438,
+     "perp_volume_24h": 7818310.333817999,
+     "perp_coin": "XPL"
+    }
+   },
+   "economics": null,
+   "usd": 5582165.607142856,
+   "key": "Plasma:dex",
+   "identity": "chain_drop:Plasma:dex"
+  },
+  {
+   "detector": "chain_surge",
+   "title": "Mayachain dex last 7 days: $5.2M/day vs $1.5M baseline (x3.5, market x0.81, rarer than 5% of its days)",
+   "severity": "info",
+   "evidence": {
+    "chain": "Mayachain",
+    "metric": "dex",
+    "window": "d7",
+    "recent": 5170654.4286,
+    "base": 1470395.7986,
+    "ratio": 3.5165,
+    "delta": 3700258.63,
+    "n_base": 28,
+    "p_up": 0.0464,
+    "p_down": 0.9603,
+    "n_hist": 150,
+    "last_day": "2026-10-09",
+    "recent_days": 7,
+    "max_day_excess_share": 0.4455,
+    "days_above_2x": 5,
+    "market_ratio": 0.8141,
+    "excess_ratio": 4.3196,
+    "series_source": "defillama",
+    "tradeability": {
+     "tier": "thin",
+     "dex_7d_avg": 5170654.428571428,
+     "stables": null,
+     "tvl": 0,
+     "native_volume_24h": 606869,
+     "perp_volume_24h": null,
+     "perp_coin": null
+    }
+   },
+   "economics": null,
+   "usd": 3700258.63,
+   "key": "Mayachain:dex:d7",
+   "identity": "chain_surge:Mayachain:dex:d7"
+  },
+  {
+   "detector": "unregistered_active",
+   "title": "Stacks is tradeable (DEX $3.1M/day, stables $11.5M) and has no probe in chain_registry.json",
+   "severity": "info",
+   "evidence": {
+    "chain": "Stacks",
+    "tradeability": {
+     "tier": "tradeable",
+     "dex_7d_avg": 3108403.8571428573,
+     "stables": 11523564.772253145,
+     "tvl": 93089127.89701074,
+     "native_volume_24h": 32359840,
+     "perp_volume_24h": 1792875.3685490002,
+     "perp_coin": "STX"
+    },
+    "llama_key": "stacks",
+    "evm_chain_id": null
+   },
+   "economics": null,
+   "usd": 3108403.8571428573,
+   "key": "Stacks",
+   "identity": "unregistered_active:Stacks"
+  },
+  {
+   "detector": "chain_drop",
+   "title": "Hydration dex fell to $934.0k/day over the last week from $2.3M (x0.41)",
+   "severity": "info",
+   "evidence": {
+    "chain": "Hydration",
+    "metric": "dex",
+    "recent": 934031.4286,
+    "base": 2287952.5357,
+    "ratio": 0.4082,
+    "delta": -1353921.1071,
+    "n_base": 28,
+    "p_up": 1.0,
+    "p_down": 0.0066,
+    "n_hist": 150,
+    "last_day": "2026-10-09",
+    "recent_days": 7,
+    "max_day_excess_share": null,
+    "days_above_2x": 0,
+    "market_ratio": 0.8141,
+    "excess_ratio": 0.5015,
+    "tradeability": {
+     "tier": "thin",
+     "dex_7d_avg": 934031.4285714285,
+     "stables": 13591047.696538039,
+     "tvl": 56489967.82614218,
+     "native_volume_24h": 20605,
+     "perp_volume_24h": null,
+     "perp_coin": null
+    }
+   },
+   "economics": null,
+   "usd": 1353921.1071428573,
+   "key": "Hydration:dex",
+   "identity": "chain_drop:Hydration:dex"
+  },
+  {
+   "detector": "unregistered_active",
+   "title": "Saga is tradeable (DEX $1.2M/day, stables $154.5M) and has no probe in chain_registry.json",
+   "severity": "info",
+   "evidence": {
+    "chain": "Saga",
+    "tradeability": {
+     "tier": "tradeable",
+     "dex_7d_avg": 1193290.857142857,
+     "stables": 154494675.41283727,
+     "tvl": 0,
+     "native_volume_24h": 12768035,
+     "perp_volume_24h": 64276.190207,
+     "perp_coin": "SAGA"
+    },
+    "llama_key": null,
+    "evm_chain_id": 5464
+   },
+   "economics": null,
+   "usd": 1193290.857142857,
+   "key": "Saga",
+   "identity": "unregistered_active:Saga"
+  },
+  {
+   "detector": "chain_drop",
+   "title": "Arbitrum fees fell to $306.2k/day over the last week from $682.5k (x0.45)",
+   "severity": "info",
+   "evidence": {
+    "chain": "Arbitrum",
+    "metric": "fees",
+    "recent": 306202.53,
+    "base": 682470.2461,
+    "ratio": 0.4487,
+    "delta": -376267.7161,
+    "n_base": 28,
+    "p_up": 1.0,
+    "p_down": 0.0066,
+    "n_hist": 150,
+    "last_day": "2026-10-09",
+    "recent_days": 7,
+    "max_day_excess_share": null,
+    "days_above_2x": 0,
+    "market_ratio": 0.9325,
+    "excess_ratio": 0.4812,
+    "tradeability": {
+     "tier": "deep",
+     "dex_7d_avg": 132578221.7257143,
+     "stables": 3780685093.0201235,
+     "tvl": 1367817839.3483043,
+     "native_volume_24h": 135960078,
+     "perp_volume_24h": 8221118.182035,
+     "perp_coin": "ARB"
+    }
+   },
+   "economics": null,
+   "usd": 376267.7160714287,
+   "key": "Arbitrum:fees",
+   "identity": "chain_drop:Arbitrum:fees"
+  },
+  {
+   "detector": "chain_drop",
+   "title": "OP Mainnet daa fell to 14.6k/day over the last week from 31.3k (x0.47)",
+   "severity": "info",
+   "evidence": {
+    "chain": "OP Mainnet",
+    "metric": "daa",
+    "recent": 14577.0,
+    "base": 31270.0,
+    "ratio": 0.4662,
+    "delta": -16693.0,
+    "n_base": 28,
+    "p_up": 1.0,
+    "p_down": 0.0159,
+    "n_hist": 62,
+    "last_day": "2026-10-09",
+    "recent_days": 7,
+    "max_day_excess_share": null,
+    "days_above_2x": 0,
+    "market_ratio": 0.9708,
+    "excess_ratio": 0.4802,
+    "tradeability": {
+     "tier": "tradeable",
+     "dex_7d_avg": 94625700.78142858,
+     "stables": 644112339.8336618,
+     "tvl": 452791557.49278927,
+     "native_volume_24h": 158361376,
+     "perp_volume_24h": 3628962.9815119994,
+     "perp_coin": "OP"
+    }
+   },
+   "economics": null,
+   "usd": null,
+   "key": "OP Mainnet:daa",
+   "identity": "chain_drop:OP Mainnet:daa"
+  },
+  {
+   "detector": "chain_drop",
+   "title": "Ink tx fell to 318.7k/day over the last week from 705.4k (x0.45)",
+   "severity": "info",
+   "evidence": {
+    "chain": "Ink",
+    "metric": "tx",
+    "recent": 318663.0,
+    "base": 705406.6429,
+    "ratio": 0.4517,
+    "delta": -386743.6429,
+    "n_base": 28,
+    "p_up": 1.0,
+    "p_down": 0.0159,
+    "n_hist": 62,
+    "last_day": "2026-10-09",
+    "recent_days": 7,
+    "max_day_excess_share": null,
+    "days_above_2x": 0,
+    "market_ratio": 0.8835,
+    "excess_ratio": 0.5113,
+    "tradeability": {
+     "tier": "tradeable",
+     "dex_7d_avg": 2954174.7357142856,
+     "stables": 184168072.04332167,
+     "tvl": 206910066.9629814,
+     "native_volume_24h": null,
+     "perp_volume_24h": null,
+     "perp_coin": null
+    }
+   },
+   "economics": null,
+   "usd": null,
+   "key": "Ink:tx",
+   "identity": "chain_drop:Ink:tx"
+  },
+  {
+   "detector": "chain_surge",
+   "title": "Ronin daa last day: 157.9k/day vs 10.9k baseline (x13.4, market x0.92, rarer than 3% of its days)",
+   "severity": "info",
+   "evidence": {
+    "chain": "Ronin",
+    "metric": "daa",
+    "window": "d1",
+    "recent": 157916.0,
+    "base": 10948.0,
+    "ratio": 13.3663,
+    "delta": 146968.0,
+    "n_base": 28,
+    "p_up": 0.029,
+    "p_down": 0.9855,
+    "n_hist": 68,
+    "last_day": "2026-10-09",
+    "recent_days": 1,
+    "max_day_excess_share": null,
+    "days_above_2x": null,
+    "market_ratio": 0.9182,
+    "excess_ratio": 14.5564,
+    "series_source": "defillama",
+    "tradeability": {
+     "tier": "thin",
+     "dex_7d_avg": 736332.8571428572,
+     "stables": 1.0359381660330482,
+     "tvl": 12361160.742626457,
+     "native_volume_24h": 7570807,
+     "perp_volume_24h": null,
+     "perp_coin": null
+    }
+   },
+   "economics": null,
+   "usd": null,
+   "key": "Ronin:daa:d1",
+   "identity": "chain_surge:Ronin:daa:d1"
+  },
+  {
+   "detector": "chain_surge",
+   "title": "Ronin daa last 7 days: 74.4k/day vs 17.1k baseline (x4.3, market x0.97, rarer than 2% of its days); one day carries 67% of the excess",
+   "severity": "info",
+   "evidence": {
+    "chain": "Ronin",
+    "metric": "daa",
+    "window": "d7",
+    "recent": 74438.8571,
+    "base": 17133.0,
+    "ratio": 4.3448,
+    "delta": 57305.8571,
+    "n_base": 28,
+    "p_up": 0.0159,
+    "p_down": 1.0,
+    "n_hist": 62,
+    "last_day": "2026-10-09",
+    "recent_days": 7,
+    "max_day_excess_share": 0.671,
+    "days_above_2x": 2,
+    "market_ratio": 0.9708,
+    "excess_ratio": 4.4752,
+    "series_source": "defillama",
+    "tradeability": {
+     "tier": "thin",
+     "dex_7d_avg": 736332.8571428572,
+     "stables": 1.0359381660330482,
+     "tvl": 12361160.742626457,
+     "native_volume_24h": 7570807,
+     "perp_volume_24h": null,
+     "perp_coin": null
+    }
+   },
+   "economics": null,
+   "usd": null,
+   "key": "Ronin:daa:d7",
+   "identity": "chain_surge:Ronin:daa:d7"
+  }
+ ],
+ "params": {
+  "BASE_DAYS": 28,
+  "HISTORY_DAYS": 150,
+  "MIN_HISTORY": 21,
+  "D1_MIN_RATIO": 2.0,
+  "D7_MIN_RATIO": 1.5,
+  "DROP_MAX_RATIO": 0.5,
+  "MAX_P": 0.05,
+  "HIGH_RATIO": 3.0,
+  "HIGH_P": 0.02,
+  "FLOORS": {
+   "dex": 1000000.0,
+   "fees": 20000.0,
+   "tx": 25000,
+   "daa": 5000,
+   "tvl": 10000000.0
+  },
+  "NEW_CHAIN_DAYS": 60,
+  "STABLE_7D_MIN_USD": 25000000.0,
+  "STABLE_7D_MIN_SHARE": 0.1,
+  "STABLE_ASSET_MIN_USD": 20000000.0,
+  "STABLE_ASSET_MIN_SHARE": 0.25,
+  "NEW_STABLE_MIN_USD": 10000000.0,
+  "SHARE_MIN": 0.005,
+  "SHARE_MIN_RATIO": 1.5,
+  "DIVERGE_UP": 1.5,
+  "DIVERGE_FLAT": 1.1,
+  "SPIKE_SHARE": 0.5,
+  "MARKET_EXCESS": 1.5,
+  "STABLE_30D_MIN_USD": 50000000.0,
+  "STABLE_30D_MIN_SHARE": 0.3,
+  "PROBE_NEW_ASSET_MIN_USD": 5000000.0,
+  "TRADEABLE": [
+   "deep",
+   "tradeable"
+  ],
+  "PROBE_BASE_DAYS": 14,
+  "PROBE_MIN_HISTORY": 7
+ }
+}

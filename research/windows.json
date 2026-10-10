@@ -20,6 +20,27 @@
   "last_block": null,
   "last_utc": "2026-09-10T13:57:52+00:00"
  },
+ "/Users/iv/dev/llm-quant/research/2026-10-09/perps_daily": {
+  "chain": "hyperliquid",
+  "detectors_run": [
+   "cross_dex_basis",
+   "cross_venue_funding",
+   "dead_market",
+   "funding_carry",
+   "illiquid_extreme_funding",
+   "oi_cap_pressure",
+   "premium_drift",
+   "roll_premium",
+   "stale_oracle"
+  ],
+  "first_block": null,
+  "first_utc": "2026-10-09T20:25:54+00:00",
+  "hours": 1.0,
+  "ingested_at": "2026-10-09T21:49:29+00:00",
+  "label_fingerprint": null,
+  "last_block": null,
+  "last_utc": "2026-10-09T21:25:54+00:00"
+ },
  "research/2026-09-07/live_5h": {
   "chain": "ethereum",
   "detectors_run": [
@@ -71,6 +92,31 @@
   "label_fingerprint": "ed14a540bacb0af5",
   "last_block": 25925535,
   "last_utc": "2026-09-07T12:39:59+00:00"
+ },
+ "research/2026-09-07/solana_live": {
+  "chain": "solana",
+  "detectors_run": [
+   "sol_cctp_unknown_domain",
+   "sol_collector_hub",
+   "sol_dust_poisoning",
+   "sol_exchange_flow",
+   "sol_failure_spam",
+   "sol_flash_loan_spam",
+   "sol_large_move",
+   "sol_launch_factory",
+   "sol_liquidation_drought",
+   "sol_lst_nav_basis",
+   "sol_quote_poster",
+   "sol_stable_rate_gap",
+   "sol_wash_volume"
+  ],
+  "first_block": 445075051,
+  "first_utc": "2026-09-07T13:19:41+00:00",
+  "hours": 1.0,
+  "ingested_at": "2026-09-10T18:05:04+00:00",
+  "label_fingerprint": null,
+  "last_block": 445086411,
+  "last_utc": "2026-09-07T14:19:41+00:00"
  },
  "research/2026-09-08/live_10h": {
   "chain": "ethereum",
@@ -200,6 +246,19 @@
   "last_block": 25931479,
   "last_utc": "2026-09-08T08:33:11+00:00"
  },
+ "research/2026-09-08/multi_1h": {
+  "chain": "multichain",
+  "detectors_run": [
+   "cross_chain_rate"
+  ],
+  "first_block": null,
+  "first_utc": "2026-09-08T06:28:25+00:00",
+  "hours": 1.0,
+  "ingested_at": "2026-09-10T17:48:41+00:00",
+  "label_fingerprint": null,
+  "last_block": null,
+  "last_utc": "2026-09-08T07:29:53+00:00"
+ },
  "research/2026-09-08/perps_1h": {
   "chain": "hyperliquid",
   "detectors_run": [
@@ -277,6 +336,19 @@
   "last_block": 25946402,
   "last_utc": "2026-09-10T10:30:47+00:00"
  },
+ "research/2026-09-10/multi_1h": {
+  "chain": "multichain",
+  "detectors_run": [
+   "cross_chain_rate"
+  ],
+  "first_block": null,
+  "first_utc": "2026-09-10T12:52:23+00:00",
+  "hours": 1.0,
+  "ingested_at": "2026-09-10T17:48:41+00:00",
+  "label_fingerprint": null,
+  "last_block": null,
+  "last_utc": "2026-09-10T13:52:29+00:00"
+ },
  "research/2026-09-10/perps_2": {
   "chain": "hyperliquid",
   "detectors_run": [
@@ -297,5 +369,87 @@
   "label_fingerprint": null,
   "last_block": null,
   "last_utc": "2026-09-10T12:19:34+00:00"
+ },
+ "research/2026-10-09/chains": {
+  "chain": "chains",
+  "detectors_run": [
+   "activity_divergence",
+   "chain_new",
+   "chain_surge",
+   "dex_share_shift",
+   "probe_new_asset",
+   "probe_tx_surge",
+   "stable_inflow",
+   "unregistered_active"
+  ],
+  "first_block": null,
+  "first_utc": "2026-10-08T00:00:00+00:00",
+  "hours": 24.0,
+  "ingested_at": "2026-10-09T16:12:17+00:00",
+  "label_fingerprint": null,
+  "last_block": null,
+  "last_utc": "2026-10-09T00:00:00+00:00"
+ },
+ "research/2026-10-09/live_1h": {
+  "chain": "ethereum",
+  "detectors_run": [
+   "address_poisoning",
+   "borrow_cost",
+   "delegated_dust",
+   "dollar_rate_outlier",
+   "fixed_vs_floating",
+   "gas_concentration",
+   "honeypot_signature",
+   "jit_liquidity",
+   "liquidity_blackout",
+   "lp_marginal_yield",
+   "mass_distribution",
+   "mislabelled_flow",
+   "nav_discount",
+   "rate_dispersion",
+   "recycled_swap_volume",
+   "solver_fingerprint",
+   "token_fan_in"
+  ],
+  "first_block": 26157129,
+  "first_utc": "2026-10-09T20:05:11+00:00",
+  "hours": 1.0,
+  "ingested_at": "2026-10-09T21:13:02+00:00",
+  "label_fingerprint": "906de2ba7f4b6e22",
+  "last_block": 26157427,
+  "last_utc": "2026-10-09T21:04:59+00:00"
+ },
+ "research/2026-10-09/multi_1h": {
+  "chain": "multichain",
+  "detectors_run": [
+   "cross_chain_rate"
+  ],
+  "first_block": null,
+  "first_utc": "2026-10-09T19:02:51+00:00",
+  "hours": 1.0,
+  "ingested_at": "2026-10-09T20:11:41+00:00",
+  "label_fingerprint": null,
+  "last_block": null,
+  "last_utc": "2026-10-09T20:03:03+00:00"
+ },
+ "research/2026-10-10/chains": {
+  "chain": "chains",
+  "detectors_run": [
+   "activity_divergence",
+   "chain_new",
+   "chain_surge",
+   "dex_share_shift",
+   "probe_new_asset",
+   "probe_tx_surge",
+   "stable_inflow",
+   "unregistered_active"
+  ],
+  "first_block": null,
+  "first_utc": "2026-10-09T00:00:00+00:00",
+  "hours": 24.0,
+  "ingested_at": "2026-10-10T10:36:13+00:00",
+  "label_fingerprint": null,
+  "last_block": null,
+  "last_utc": "2026-10-10T00:00:00+00:00"
  }
 }

@@ -415,7 +415,9 @@ def cmd_tape(args):
     whether the offset is widening, so nothing downstream has to guess which regime it is in.
     """
     out = Path(args.out)
-    snaps = sorted((out / 'snap').glob('*.json.gz'))
+    # The tape's own snapshots, plus the Hyperliquid snapshots the reference run records once a minute: a daily pass
+    # has no separate tape, and twenty of those are enough to separate a frozen oracle from a tracking one.
+    snaps = sorted((out / 'snap').glob('*.json.gz')) + sorted((out / 'refs').glob('hl_*.json.gz'))
     if len(snaps) < 3:
         raise SystemExit('need at least 3 snapshots; found %d' % len(snaps))
     series = collections.defaultdict(list)
@@ -818,10 +820,17 @@ def det_roll_premium(A, args):
     Needs `refs_curve.json` from `perp_refs.py curve` beside the window. For each market it places, the oracle's and
     the book's implied front-month weights give a lead; the lead times the calendar spread is the premium the roll
     predicts; the observed premium is the tape's mean mark-to-oracle gap when a tape exists and the snapshot premium
-    otherwise. A constant-maturity price index pays the spread over the roll window, a tenth of it per trading day on
-    the two steps observed on 2026-09-08 and 09-09 (`--roll-days`), and a futures hedge does not share that step, so
-    the carry the paid side keeps is the funding less the step. Both signs are handled by the same arithmetic: in
-    backwardation longs are paid and the index steps down against them; in contango shorts are paid and it steps up.
+    otherwise. A constant-maturity price index pays the spread over the roll window and a futures hedge does not share
+    that step, so the carry the paid side keeps is the funding less the step. Both signs are handled by the same
+    arithmetic: in backwardation longs are paid and the index steps down against them; in contango shorts are paid and
+    it steps up.
+
+    The step is a fifth of the spread per roll day, not a tenth (`--roll-days` 5). The 2026-09-10 reading of "a tenth"
+    came from the 22:00 UTC funding row, whose premium is an hourly mean that straddles the step and so shows half of
+    it. Hour-by-hour against the futures (`roll_carry.py`, 2026-10-09) the three XYZ energy oracles roll 20% a day at
+    the Globex reopen on the 5th to 9th US business days of each month — the S&P GSCI convention — and the funding
+    collected per step is a median 0.89-0.97 of the step: the carry is the roll yield, priced, and nets to about zero
+    before costs. The detector therefore now reports these markets as `info`, which is the correct answer.
     """
     out = Path(args.out)
     cp = out / 'refs_curve.json'
@@ -1245,7 +1254,7 @@ def main():
     d.add_argument('--cap-warn', type=float, default=0.85)
     d.add_argument('--size-usd', type=float, default=1e5)
     d.add_argument('--horizon-h', type=int, default=24)
-    d.add_argument('--roll-days', type=float, default=10.0, help='trading days the constant-maturity oracle takes to roll front to second')
+    d.add_argument('--roll-days', type=float, default=5.0, help='trading days the oracle takes to roll front to second (5: the GSCI 5th-9th business days, measured 2026-10-09)')
     d.add_argument('--min-spread-pct', type=float, default=1.0)
     rr = sub.add_parser('render'); rr.set_defaults(fn=cmd_render); rr.add_argument('--out', required=True)
     v = sub.add_parser('verify'); v.set_defaults(fn=cmd_verify)

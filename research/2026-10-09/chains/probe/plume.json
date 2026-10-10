@@ -1,0 +1,144 @@
+{
+ "tx": {
+  "count": 206374.0,
+  "se": 0.0,
+  "raw_count": 412748.0,
+  "system_count": 206374.0,
+  "method": "sampled-blocks",
+  "blocks": 206374,
+  "sampled": 200,
+  "per_block": 1.0,
+  "tps": 2.388587962962963,
+  "note": "user transactions: OP-stack L1-attributes deposits and Arbitrum internal txs excluded"
+ },
+ "gas": {
+  "gas_per_second": 60417.994913888884,
+  "base_fee_median_gwei": 1000.0
+ },
+ "transfers": {
+  "assets": [
+   {
+    "asset": "0xdddd73f5df1f0dc31373357beac77545dc5a6f3f",
+    "symbol": "pUSD",
+    "class": "other",
+    "transfers": 1032,
+    "transfers_se": 1034,
+    "amount": 102470.16816595999,
+    "price": 0.9994286187592814,
+    "usd": 102411.61863413667,
+    "usd_se": 102618.85093747822,
+    "top_block_share": 1.0,
+    "units_seen": 1,
+    "gross_amount": 102470.16816595999,
+    "gross_usd": 102411.61863413667
+   },
+   {
+    "asset": "0x222365ef19f7947e5484218551b56bb3965aa7af",
+    "symbol": "USDC",
+    "class": "usd_stable",
+    "transfers": 1032,
+    "transfers_se": 1034,
+    "amount": 102342.12341766,
+    "price": 0.9996299483363408,
+    "usd": 102304.25154462688,
+    "usd_se": 102511.26658815394,
+    "top_block_share": 1.0,
+    "units_seen": 1,
+    "gross_amount": 102342.12341766,
+    "gross_usd": 102304.25154462688
+   },
+   {
+    "asset": "native:PLUME",
+    "symbol": "PLUME",
+    "class": "native",
+    "transfers": null,
+    "transfers_se": null,
+    "amount": 28409.13063727209,
+    "price": 0.01794430010370949,
+    "usd": 509.781965840698,
+    "usd_se": 510.81352156056744,
+    "top_block_share": 1.0,
+    "units_seen": 1,
+    "note": "top-level transaction value only; internal transfers need traces"
+   }
+  ],
+  "unpriced_top": [],
+  "unpriced_assets": 0,
+  "unpriced_transfers": 0,
+  "priced_usd": 205225.65214460425,
+  "usd_by_class": {
+   "other": 102411.61863413667,
+   "usd_stable": 102304.25154462688,
+   "native": 509.781965840698
+  },
+  "gross_priced_usd": 204715.87017876355,
+  "method": "sampled-blocks; value = net per transaction (each account's positive net change), gross beside it",
+  "top_targets_by_value": [
+   {
+    "to": "0x1716058d7211f5abe4ea334474a1a22719bbbbbb",
+    "usd": 204715.87017876352,
+    "share": 1.0
+   }
+  ],
+  "top_targets_by_txs": [
+   {
+    "to": "0xee96619e247f69cf5ee49df56ce44a10514074ba",
+    "txs": 200182.77999999997,
+    "share": 0.97
+   },
+   {
+    "to": "0x62b96c686af5acd018a1b3908b0abfb31aab73f0",
+    "txs": 2063.74,
+    "share": 0.01
+   },
+   {
+    "to": "0xc1a83bed9d7e434a3e8608f7c5438f805d404f8f",
+    "txs": 1031.87,
+    "share": 0.005
+   },
+   {
+    "to": "0x30c791e4654edac575fa1700ed8633cb2fede871",
+    "txs": 1031.87,
+    "share": 0.005
+   },
+   {
+    "to": "0x6c2bdce15f2a70036d82a89cff6bf7dc006314ba",
+    "txs": 1031.87,
+    "share": 0.005
+   },
+   {
+    "to": "0x1716058d7211f5abe4ea334474a1a22719bbbbbb",
+    "txs": 1031.87,
+    "share": 0.005
+   }
+  ],
+  "transfer_logs_per_block": 0.01,
+  "logs_missing_blocks": 0
+ },
+ "window": {
+  "start_ts": 1791417600,
+  "end_ts": 1791504000,
+  "start_utc": "2026-10-08T00:00:00+00:00",
+  "end_utc": "2026-10-09T00:00:00+00:00",
+  "hours": 24.0
+ },
+ "blocks": {
+  "first": 98035874,
+  "last": 98242247,
+  "head": 98376263
+ },
+ "endpoint": "https://rpc.plume.org",
+ "calls": 435,
+ "notes": [
+  "lb.routeme.sh rejected: HTTP 429 {\"jsonrpc\":\"2.0\",\"id\":0,\"error\":{\"code\":-32029,\"message\":\"public rate limit exceeded \u2014 sign up for free at http"
+ ],
+ "errors": [],
+ "error_count": 0,
+ "seconds": 64.3,
+ "chain": "plume",
+ "name": "Plume",
+ "family": "evm",
+ "adapter": "evm",
+ "ok": true,
+ "probed_at": "2026-10-09T15:10:56+00:00"
+}

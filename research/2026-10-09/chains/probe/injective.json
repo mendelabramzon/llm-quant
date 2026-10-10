@@ -1,0 +1,236 @@
+{
+ "tx": {
+  "count": 1790393.0,
+  "se": 0.0,
+  "method": "exact-index",
+  "blocks": 145132,
+  "runs_read": 300,
+  "runs_total": 7257,
+  "run_length": 20,
+  "per_block": 12.33630763718546,
+  "tps": 20.722141203703703,
+  "nonempty_block_share": 0.9903333333333333,
+  "index_count": {
+   "count": 1790393,
+   "endpoint": "rpc.cosmos.directory/injective",
+   "sampled_estimate": 1778714.89,
+   "sampled_se": 21805.24851290238
+  },
+  "failed_share": 0.05916473317865429,
+  "note": "every transaction included in a block (num_txs), successful or failed. Injective order-book trades settle in the end blocker; transaction-level transfers are deposits, sends and contract calls, and block-level settlement is in transfers.block_level."
+ },
+ "transfers": {
+  "assets": [
+   {
+    "asset": "erc20:0xa00C59fF5a080D2b954d0c75e46E22a0c371235a",
+    "symbol": "USDC.inj",
+    "class": "usd_stable",
+    "transfers": 924631,
+    "transfers_se": 117381,
+    "amount": 702897024.2752624,
+    "price": 0.999607609182977,
+    "usd": 702621213.937624,
+    "usd_se": 280377976.9544938,
+    "top_block_share": 0.2710139898107178,
+    "units_seen": 55,
+    "gross_amount": 3153094556.23359,
+    "gross_usd": 3151857310.8845186,
+    "identity": "chain-registry"
+   },
+   {
+    "asset": "inj",
+    "symbol": "INJ",
+    "class": "native",
+    "transfers": 2001417,
+    "transfers_se": 289501,
+    "amount": 13078217.713591937,
+    "price": 6.882188853260564,
+    "usd": 90006764.16899729,
+    "usd_se": 80077884.72160834,
+    "top_block_share": 0.8738405869204989,
+    "units_seen": 59,
+    "gross_amount": 35823144.93487458,
+    "gross_usd": 246541648.75953144,
+    "identity": "registry"
+   },
+   {
+    "asset": "peggy0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "symbol": "WETH",
+    "class": "eth",
+    "transfers": 63203,
+    "transfers_se": 9289,
+    "amount": 10216.665482728868,
+    "price": 2490.2046281392327,
+    "usd": 25441587.669241775,
+    "usd_se": 3693302.178289371,
+    "top_block_share": 0.040869741208299636,
+    "units_seen": 26,
+    "gross_amount": 10389.884969025978,
+    "gross_usd": 25872939.635702737,
+    "identity": "peggy"
+   }
+  ],
+  "unpriced_top": [
+   {
+    "asset": "erc20:0x0000000088827d2d103ee2d9A6b781773AE03FfB",
+    "symbol": null,
+    "class": "other",
+    "transfers": 81929,
+    "transfers_se": 10683,
+    "amount": 0.0,
+    "price": null,
+    "usd": null,
+    "usd_se": null,
+    "top_block_share": null,
+    "units_seen": 30,
+    "gross_amount": 0.0,
+    "gross_usd": null,
+    "identity": null
+   },
+   {
+    "asset": "factory/inj13j2rpnlwl30c02d4pzukykwfeyyhelvry9cqte/shroom_157_99c09d972f9c1f79",
+    "symbol": null,
+    "class": "other",
+    "transfers": 7023,
+    "transfers_se": 7078,
+    "amount": 0.0,
+    "price": null,
+    "usd": null,
+    "usd_se": null,
+    "top_block_share": null,
+    "units_seen": 1,
+    "gross_amount": 0.0,
+    "gross_usd": null,
+    "identity": null
+   }
+  ],
+  "unpriced_assets": 2,
+  "unpriced_transfers": 88952,
+  "priced_usd": 818069565.775863,
+  "usd_by_class": {
+   "usd_stable": 702621213.937624,
+   "native": 90006764.16899729,
+   "eth": 25441587.669241775
+  },
+  "gross_priced_usd": 3424271899.2797527,
+  "method": "sampled-blocks (transaction-level bank transfer events of successful transactions, fee legs removed; amount = net per transaction and denom, gross_amount = every leg)",
+  "block_level": {
+   "assets": [
+    {
+     "asset": "erc20:0xa00C59fF5a080D2b954d0c75e46E22a0c371235a",
+     "symbol": "USDC.inj",
+     "class": "usd_stable",
+     "transfers": 227061,
+     "transfers_se": 52122,
+     "amount": 5161751.509669678,
+     "price": 0.999607609182977,
+     "usd": 5159726.0857775295,
+     "usd_se": 5186341.626691714,
+     "top_block_share": 0.9972301642644055,
+     "units_seen": 32,
+     "gross_amount": 5161751.509669678,
+     "gross_usd": 5159726.0857775295,
+     "identity": "chain-registry"
+    },
+    {
+     "asset": "inj",
+     "symbol": "INJ",
+     "class": "native",
+     "transfers": 2341,
+     "transfers_se": 2359,
+     "amount": 0.013828180705341935,
+     "price": 6.882188853260564,
+     "usd": 0.09516815111117706,
+     "usd_se": 0.09592455094570913,
+     "top_block_share": 1.0,
+     "units_seen": 1,
+     "gross_amount": 0.013828180705341935,
+     "gross_usd": 0.09516815111117706,
+     "identity": "registry"
+    }
+   ],
+   "unpriced_top": [],
+   "unpriced_assets": 0,
+   "priced_usd": 5159726.1809456805,
+   "gross_priced_usd": 5159726.1809456805,
+   "usd_by_class": {
+    "usd_stable": 5159726.0857775295,
+    "native": 0.09516815111117706
+   },
+   "method": "sampled-blocks (finalize/begin/end-block transfer events, staking, inflation and fee plumbing removed; netted per block)"
+  },
+  "fees": {
+   "priced_usd": 97.88756850003658,
+   "assets": [
+    {
+     "asset": "inj",
+     "symbol": "INJ",
+     "class": "native",
+     "transfers": 138109,
+     "transfers_se": 12923,
+     "amount": 14.223319148479998,
+     "price": 6.882188853260564,
+     "usd": 97.88756850003658,
+     "usd_se": 14.75407709664509,
+     "top_block_share": 0.16290513095591921,
+     "units_seen": 45,
+     "gross_amount": 14.223319148479998,
+     "gross_usd": 97.88756850003658,
+     "identity": "registry"
+    }
+   ]
+  },
+  "module_addresses": {
+   "fee_collector": "inj17xpfvakm2amg962yls6f84z3kell8c5l6s5ye9",
+   "prefix": "inj"
+  }
+ },
+ "window": {
+  "start_ts": 1791417600,
+  "end_ts": 1791504000,
+  "start_utc": "2026-10-08T00:00:00+00:00",
+  "end_utc": "2026-10-09T00:00:00+00:00",
+  "hours": 24.0
+ },
+ "blocks": {
+  "first": 186317998,
+  "last": 186463129,
+  "latest": 186556358,
+  "network": "injective-1",
+  "value_sampled_tx": 62,
+  "value_sampled_block": 62
+ },
+ "endpoint": "injective-rpc.publicnode.com, rpc.cosmos.directory/injective",
+ "calls": 400,
+ "notes": [],
+ "errors": [
+  "block_results 186319190: /block_results h=186319190 failed on every endpoint: HTTP 500 {\"jsonrpc\":\"2.0\",\"id\":-1,\"error\":{\"cod",
+  "block_results 186320296: /block_results h=186320296 failed on every endpoint: HTTP 500 {\"jsonrpc\":\"2.0\",\"id\":-1,\"error\":{\"cod",
+  "block_results 186321529: /block_results h=186321529 failed on every endpoint: HTTP 500 {\"jsonrpc\":\"2.0\",\"id\":-1,\"error\":{\"cod",
+  "block_results 186322353: /block_results h=186322353 failed on every endpoint: HTTP 500 {\"jsonrpc\":\"2.0\",\"id\":-1,\"error\":{\"cod",
+  "block_results 186323683: /block_results h=186323683 failed on every endpoint: HTTP 500 {\"jsonrpc\":\"2.0\",\"id\":-1,\"error\":{\"cod",
+  "block_results 186325085: /block_results h=186325085 failed on every endpoint: HTTP 500 {\"jsonrpc\":\"2.0\",\"id\":-1,\"error\":{\"cod",
+  "block_results 186326304: /block_results h=186326304 failed on every endpoint: HTTP 500 {\"jsonrpc\":\"2.0\",\"id\":-1,\"error\":{\"cod",
+  "block_results 186327259: /block_results h=186327259 failed on every endpoint: HTTP 500 {\"jsonrpc\":\"2.0\",\"id\":-1,\"error\":{\"cod",
+  "block_results 186327974: /block_results h=186327974 failed on every endpoint: HTTP 500 {\"jsonrpc\":\"2.0\",\"id\":-1,\"error\":{\"cod",
+  "block_results 186329393: /block_results h=186329393 failed on every endpoint: HTTP 500 {\"jsonrpc\":\"2.0\",\"id\":-1,\"error\":{\"cod",
+  "block_results 186330262: /block_results h=186330262 failed on every endpoint: HTTP 500 {\"jsonrpc\":\"2.0\",\"id\":-1,\"error\":{\"cod",
+  "block_results 186331900: /block_results h=186331900 failed on every endpoint: HTTP 500 {\"jsonrpc\":\"2.0\",\"id\":-1,\"error\":{\"cod",
+  "block_results 186333385: /block_results h=186333385 failed on every endpoint: HTTP 500 {\"jsonrpc\":\"2.0\",\"id\":-1,\"error\":{\"cod",
+  "block_results 186334738: /block_results h=186334738 failed on every endpoint: HTTP 500 {\"jsonrpc\":\"2.0\",\"id\":-1,\"error\":{\"cod",
+  "block_results 186336138: /block_results h=186336138 failed on every endpoint: HTTP 500 {\"jsonrpc\":\"2.0\",\"id\":-1,\"error\":{\"cod",
+  "block_results 186336894: /block_results h=186336894 failed on every endpoint: HTTP 500 {\"jsonrpc\":\"2.0\",\"id\":-1,\"error\":{\"cod",
+  "block_results 186337612: /block_results h=186337612 failed on every endpoint: HTTP 500 {\"jsonrpc\":\"2.0\",\"id\":-1,\"error\":{\"cod",
+  "block_results 186339325: /block_results h=186339325 failed on every endpoint: HTTP 500 {\"jsonrpc\":\"2.0\",\"id\":-1,\"error\":{\"cod",
+  "block_results 186340020: /block_results h=186340020 failed on every endpoint: HTTP 500 {\"jsonrpc\":\"2.0\",\"id\":-1,\"error\":{\"cod",
+  "block_results 186342063: /block_results h=186342063 failed on every endpoint: HTTP 500 {\"jsonrpc\":\"2.0\",\"id\":-1,\"error\":{\"cod"
+ ],
+ "error_count": 58,
+ "seconds": 458.8,
+ "chain": "injective",
+ "name": "Injective",
+ "family": "cosmos",
+ "adapter": "cosmos",
+ "ok": true,
+ "probed_at": "2026-10-09T15:34:24+00:00"
+}

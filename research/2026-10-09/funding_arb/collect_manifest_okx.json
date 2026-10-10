@@ -1,0 +1,48 @@
+{
+ "collected_at": "2026-10-09T20:29:46+00:00",
+ "finished_at": "2026-10-09T20:40:57+00:00",
+ "since_utc": "2025-09-25T00:00:00+00:00",
+ "until_utc": "2026-10-09T20:00:00+00:00",
+ "venues": [
+  "okx"
+ ],
+ "jobs": 147,
+ "ok": 147,
+ "failures": {},
+ "binance_api": {
+  "requests": 0,
+  "errors": 0,
+  "throttled": 0,
+  "funding_endpoint": {
+   "requests": 0,
+   "errors": 0,
+   "throttled": 0
+  }
+ },
+ "bybit_api": {
+  "requests": 0,
+  "errors": 0,
+  "throttled": 0
+ },
+ "okx_api": {
+  "requests": 2672,
+  "errors": 0,
+  "throttled": 0
+ },
+ "sources": {
+  "binance": [
+   "https://fapi.binance.com/fapi/v1/fundingRate",
+   "https://fapi.binance.com/fapi/v1/premiumIndexKlines",
+   "https://fapi.binance.com/fapi/v1/klines",
+   "https://fapi.binance.com/fapi/v1/exchangeInfo",
+   "https://fapi.binance.com/fapi/v1/fundingInfo"
+  ],
+  "bybit": [
+   "https://api.bybit.com/v5/market/funding/history",
+   "https://api.bybit.com/v5/market/premium-index-price-kline",
+   "https://api.bybit.com/v5/market/kline",
+   "https://api.bybit.com/v5/market/instruments-info"
+  ]
+ },
+ "seconds": 670.7
+}

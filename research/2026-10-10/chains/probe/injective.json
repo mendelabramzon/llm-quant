@@ -1,0 +1,280 @@
+{
+ "tx": {
+  "count": 1587418.0,
+  "se": 0.0,
+  "method": "exact-index",
+  "blocks": 144857,
+  "runs_read": 300,
+  "runs_total": 7243,
+  "run_length": 20,
+  "per_block": 10.958517710569735,
+  "tps": 18.37289351851852,
+  "nonempty_block_share": 0.9915,
+  "index_count": {
+   "count": 1587418,
+   "endpoint": "rpc.cosmos.directory/injective",
+   "sampled_estimate": 1593242.71,
+   "sampled_se": 13732.83109986276
+  },
+  "failed_share": 0.07035573122529644,
+  "note": "every transaction included in a block (num_txs), successful or failed. Injective order-book trades settle in the end blocker; transaction-level transfers are deposits, sends and contract calls, and block-level settlement is in transfers.block_level."
+ },
+ "transfers": {
+  "assets": [
+   {
+    "asset": "erc20:0xa00C59fF5a080D2b954d0c75e46E22a0c371235a",
+    "symbol": "USDC.inj",
+    "class": "usd_stable",
+    "transfers": 816028,
+    "transfers_se": 128277,
+    "amount": 302355386.33749443,
+    "price": 0.9997050037994787,
+    "usd": 302266192.6473177,
+    "usd_se": 137468543.8301003,
+    "top_block_share": 0.43291965926116016,
+    "units_seen": 91,
+    "gross_amount": 1262006828.3236873,
+    "gross_usd": 1261634541.1042998,
+    "identity": "chain-registry"
+   },
+   {
+    "asset": "inj",
+    "symbol": "INJ",
+    "class": "native",
+    "transfers": 1565663,
+    "transfers_se": 150244,
+    "amount": 5043065.365960088,
+    "price": 7.171361328189421,
+    "usd": 36165643.9409776,
+    "usd_se": 24763121.676758666,
+    "top_block_share": 0.48278454148859967,
+    "units_seen": 117,
+    "gross_amount": 21007499.648260962,
+    "gross_usd": 150652370.57949153,
+    "identity": "registry"
+   },
+   {
+    "asset": "peggy0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "symbol": "WETH",
+    "class": "eth",
+    "transfers": 59150,
+    "transfers_se": 7899,
+    "amount": 9230.167215072694,
+    "price": 2492.030706671448,
+    "usd": 23001860.12767324,
+    "usd_se": 2932417.6198183238,
+    "top_block_share": 0.03089784561986311,
+    "units_seen": 46,
+    "gross_amount": 9321.90901000125,
+    "gross_usd": 23230483.497720357,
+    "identity": "peggy"
+   },
+   {
+    "asset": "peggy0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    "symbol": "USDT",
+    "class": "usd_stable",
+    "transfers": 6036,
+    "transfers_se": 4369,
+    "amount": 3487526.1483717086,
+    "price": 0.9991791387599079,
+    "usd": 3484663.3733327026,
+    "usd_se": 3495395.352549515,
+    "top_block_share": 0.9993052904202459,
+    "units_seen": 2,
+    "gross_amount": 3768393.835195892,
+    "gross_usd": 3765300.506759178,
+    "identity": "chain-registry"
+   },
+   {
+    "asset": "ibc/C4CFF46FD6DE35CA4CF4CE031E643C8FDC9BA4B99AE598E9B0ED98FE3A2319F9",
+    "symbol": "ATOM",
+    "class": "other",
+    "transfers": 3621,
+    "transfers_se": 3635,
+    "amount": 1174.0502921583331,
+    "price": 1.9306755158977453,
+    "usd": 2266.7101535026886,
+    "usd_se": 2275.2712140953176,
+    "top_block_share": 1.0,
+    "units_seen": 1,
+    "gross_amount": 2345.6235296166665,
+    "gross_usd": 4528.637918144548,
+    "identity": "ibc-trace:uatom"
+   }
+  ],
+  "unpriced_top": [
+   {
+    "asset": "erc20:0x0000000088827d2d103ee2d9A6b781773AE03FfB",
+    "symbol": null,
+    "class": "other",
+    "transfers": 78464,
+    "transfers_se": 9992,
+    "amount": 0.0,
+    "price": null,
+    "usd": null,
+    "usd_se": null,
+    "top_block_share": null,
+    "units_seen": 52,
+    "gross_amount": 0.0,
+    "gross_usd": null,
+    "identity": null
+   },
+   {
+    "asset": "factory/inj14ejqjyq8um4p3xfqj74yld5waqljf88f9eneuk/inj18luqttqyckgpddndh8hvaq25d5nfwjc78m56lc",
+    "symbol": "hINJ",
+    "class": "other",
+    "transfers": 7243,
+    "transfers_se": 5141,
+    "amount": 101098.11458333333,
+    "price": null,
+    "usd": null,
+    "usd_se": null,
+    "top_block_share": 0.7534328358208955,
+    "units_seen": 2,
+    "gross_amount": 215701.7301333333,
+    "gross_usd": null,
+    "identity": "chain-registry"
+   },
+   {
+    "asset": "erc20:0x503f2A7bAc1E2ff2800Aa92EdB82abeF0bFA631E",
+    "symbol": null,
+    "class": "other",
+    "transfers": 1207,
+    "transfers_se": 1212,
+    "amount": 0.0,
+    "price": null,
+    "usd": null,
+    "usd_se": null,
+    "top_block_share": null,
+    "units_seen": 1,
+    "gross_amount": 0.0,
+    "gross_usd": null,
+    "identity": null
+   }
+  ],
+  "unpriced_assets": 3,
+  "unpriced_transfers": 86914,
+  "priced_usd": 364920626.79945475,
+  "usd_by_class": {
+   "usd_stable": 305750856.0206504,
+   "native": 36165643.9409776,
+   "eth": 23001860.12767324,
+   "other": 2266.7101535026886
+  },
+  "gross_priced_usd": 1439287224.326189,
+  "method": "sampled-blocks (transaction-level bank transfer events of successful transactions, fee legs removed; amount = net per transaction and denom, gross_amount = every leg)",
+  "block_level": {
+   "assets": [
+    {
+     "asset": "erc20:0xa00C59fF5a080D2b954d0c75e46E22a0c371235a",
+     "symbol": "USDC.inj",
+     "class": "usd_stable",
+     "transfers": 232978,
+     "transfers_se": 35493,
+     "amount": 8551090.655220566,
+     "price": 0.9997050037994787,
+     "usd": 8548568.115966963,
+     "usd_se": 5809427.78896122,
+     "top_block_share": 0.5392737156966055,
+     "units_seen": 56,
+     "gross_amount": 8551090.655220566,
+     "gross_usd": 8548568.115966963,
+     "identity": "chain-registry"
+    },
+    {
+     "asset": "peggy0xdAC17F958D2ee523a2206206994597C13D831ec7",
+     "symbol": "USDT",
+     "class": "usd_stable",
+     "transfers": 1207,
+     "transfers_se": 1212,
+     "amount": 3485099.147800917,
+     "price": 0.9991791387599079,
+     "usd": 3482238.3649926092,
+     "usd_se": 3495390.3128032326,
+     "top_block_share": 1.0,
+     "units_seen": 1,
+     "gross_amount": 3485099.147800917,
+     "gross_usd": 3482238.3649926092,
+     "identity": "chain-registry"
+    },
+    {
+     "asset": "inj",
+     "symbol": "INJ",
+     "class": "native",
+     "transfers": 10864,
+     "transfers_se": 6296,
+     "amount": 45339.11744795796,
+     "price": 7.171361328189421,
+     "usd": 325143.1935205239,
+     "usd_se": 303704.2311262894,
+     "top_block_share": 0.9277386447427304,
+     "units_seen": 4,
+     "gross_amount": 45339.11744795796,
+     "gross_usd": 325143.1935205239,
+     "identity": "registry"
+    }
+   ],
+   "unpriced_top": [],
+   "unpriced_assets": 0,
+   "priced_usd": 12355949.674480096,
+   "gross_priced_usd": 12355949.674480096,
+   "usd_by_class": {
+    "usd_stable": 12030806.480959572,
+    "native": 325143.1935205239
+   },
+   "method": "sampled-blocks (finalize/begin/end-block transfer events, staking, inflation and fee plumbing removed; netted per block)"
+  },
+  "fees": {
+   "priced_usd": 84.81789294600125,
+   "assets": [
+    {
+     "asset": "inj",
+     "symbol": "INJ",
+     "class": "native",
+     "transfers": 129164,
+     "transfers_se": 11006,
+     "amount": 11.827307126834667,
+     "price": 7.171361328189421,
+     "usd": 84.81789294600125,
+     "usd_se": 7.730902552047421,
+     "top_block_share": 0.04123715027134803,
+     "units_seen": 76,
+     "gross_amount": 11.827307126834667,
+     "gross_usd": 84.81789294600125,
+     "identity": "registry"
+    }
+   ]
+  },
+  "module_addresses": {
+   "fee_collector": "inj17xpfvakm2amg962yls6f84z3kell8c5l6s5ye9",
+   "prefix": "inj"
+  }
+ },
+ "window": {
+  "start_ts": 1791504000,
+  "end_ts": 1791590400,
+  "start_utc": "2026-10-09T00:00:00+00:00",
+  "end_utc": "2026-10-10T00:00:00+00:00",
+  "hours": 24.0
+ },
+ "blocks": {
+  "first": 186463130,
+  "last": 186607986,
+  "latest": 186670685,
+  "network": "injective-1",
+  "value_sampled_tx": 120,
+  "value_sampled_block": 120
+ },
+ "endpoint": "injective-rpc.publicnode.com, rpc.cosmos.directory/injective",
+ "calls": 457,
+ "notes": [],
+ "errors": [],
+ "error_count": 0,
+ "seconds": 36.8,
+ "chain": "injective",
+ "name": "Injective",
+ "family": "cosmos",
+ "adapter": "cosmos",
+ "ok": true,
+ "probed_at": "2026-10-10T10:26:17+00:00"
+}

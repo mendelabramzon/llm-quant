@@ -1,0 +1,2551 @@
+{
+  "detectors": [
+    {
+      "detector": "funding_carry",
+      "hits": 16,
+      "seconds": 0.0,
+      "what": "a funding rate that has not changed sign, priced against what it costs to hold it"
+    },
+    {
+      "detector": "premium_drift",
+      "hits": 3,
+      "seconds": 0.0,
+      "what": "a premium widening in one direction hour after hour against a rising toll"
+    },
+    {
+      "detector": "oi_cap_pressure",
+      "hits": 0,
+      "seconds": 0.0,
+      "what": "HIP-3 markets at their open-interest cap, where the price becomes a queue"
+    },
+    {
+      "detector": "cross_dex_basis",
+      "hits": 2,
+      "seconds": 0.0,
+      "what": "the same underlying on two builder books with two oracles and two funding rates"
+    },
+    {
+      "detector": "cross_venue_funding",
+      "hits": 13,
+      "seconds": 0.0,
+      "what": "Hyperliquid funding against Binance and Bybit, net of both round trips"
+    },
+    {
+      "detector": "illiquid_extreme_funding",
+      "hits": 15,
+      "seconds": 0.0,
+      "what": "a spectacular rate on a market with no trading: a trap, not an edge"
+    },
+    {
+      "detector": "stale_oracle",
+      "hits": 11,
+      "seconds": 0.0,
+      "what": "an oracle that stopped moving while its book did not"
+    },
+    {
+      "detector": "dead_market",
+      "hits": 11,
+      "seconds": 0.0,
+      "what": "listed markets with no open interest and no trades, against a staked deployment"
+    },
+    {
+      "detector": "roll_premium",
+      "hits": 2,
+      "seconds": 0.0,
+      "what": "the energy premium as a roll: predicted from the futures curve, priced net of the daily step"
+    }
+  ],
+  "hits": [
+    {
+      "detector": "roll_premium",
+      "economics": {
+        "break_even_hours": 18.52299972651256,
+        "capacity_usd": 1147946.2514,
+        "depth_25bp_usd": 1147946.2514,
+        "funding_apr": 3.105812448,
+        "go": true,
+        "hedge": "the front/second-month blend the oracle tracks, in the listed futures, re-weighted with the roll; the step is what a price index pays and a futures position does not",
+        "net_apr": 0.13783448270223697,
+        "oi_cap_headroom_usd": 545583628.8004,
+        "reason": "the curve predicts the premium, the funding exceeds the step, and the book is six figures",
+        "roll_step_apr": 2.50182716049383,
+        "round_trip_bps_at_size": 12.771254926135168,
+        "side_paid": "long",
+        "size_usd": 100000.0
+      },
+      "evidence": {
+        "calendar_spread_pct": 3.427160493827164,
+        "coin": "xyz:BRENTOIL",
+        "contracts": {
+          "ICEEUR:BRNF2027": 101.25,
+          "ICEEUR:BRNG2027": 98.52,
+          "ICEEUR:BRNZ2026": 104.72
+        },
+        "curve_fits": true,
+        "front_expiry": [
+          "ICEEUR:BRNZ2026",
+          "2026-10-30",
+          "ICE Brent: last business day of the second month before delivery"
+        ],
+        "front_weight_mark": 0.27377521613832945,
+        "front_weight_oracle": 0.3515850144092217,
+        "funding_per_day": 0.0085090752,
+        "lead": 0.07780979827089224,
+        "observed_from": "tape",
+        "observed_premium": -0.00225847732197431,
+        "predicted_premium": -0.0026666666666666306,
+        "residual": 0.00040818934469232047,
+        "roll_days_assumed": 5.0,
+        "roll_days_remaining_estimate": 1.7579250720461084,
+        "step_per_trading_day": 0.006854320987654328,
+        "why": "a constant-maturity price index pays the calendar spread over its roll window and a futures hedge does not; the funding is paid to the side the index rolls against"
+      },
+      "key": "xyz:BRENTOIL",
+      "severity": "high",
+      "title": "xyz:BRENTOIL: the book prices the roll 0.39 of a step ahead of a +3.43% calendar spread; longs are paid 311% a year, the step costs 250%, net 60% while the roll lasts",
+      "usd": 1899.5688950505746
+    },
+    {
+      "detector": "funding_carry",
+      "economics": {
+        "break_even_hours": 3.602155475453361,
+        "capacity_usd": 1147946.2514,
+        "depth_25bp_usd": 1147946.2514,
+        "funding_apr": -3.105812448,
+        "go": true,
+        "hedge": "unhedged: this prices the funding only. The position carries the underlying's delta unless it is hedged somewhere this scan cannot see, and no such hedge exists on this venue for a HIP-3 market whose underlying is not also listed here.",
+        "net_apr": 2.639661643196067,
+        "net_apr_over_24h": 2.639661643196067,
+        "net_usd_over_24h": 723.1949707386484,
+        "oi_cap_headroom_usd": 545583628.8004,
+        "reason": "pays its round trip inside the horizon at six figures of book",
+        "round_trip_bps_at_size": 12.771254926135168,
+        "side_paid": "long",
+        "size_usd": 100000.0,
+        "unfilled_share": 0.0
+      },
+      "evidence": {
+        "coin": "xyz:BRENTOIL",
+        "dex": "xyz",
+        "funding_hours_observed": 8,
+        "hour_ntl_vlm": 3269967.1325,
+        "mark": 102.14,
+        "mark_vs_oracle_bps": -39.98049731838094,
+        "oi_usd": 204416371.1996,
+        "oracle": 102.55,
+        "premium_max": -0.0053832597,
+        "premium_mean": -0.00673808635,
+        "premium_min": -0.0083927352,
+        "sign_flips": 0,
+        "spread_bps": 0.9790962941210276,
+        "trades": 1597,
+        "why": "the funding rate has not changed sign in the observed window, so the toll is being paid consistently by one side; the other side collects it"
+      },
+      "key": "xyz:BRENTOIL",
+      "severity": "high",
+      "title": "xyz:BRENTOIL pays longs 311% a year and costs 12.8bp to get in and out: 3.6 hours to break even",
+      "usd": 723.1949707386484
+    },
+    {
+      "detector": "premium_drift",
+      "economics": {
+        "break_even_hours": 9.822707384372043,
+        "capacity_usd": 135008.325925,
+        "depth_25bp_usd": 135008.325925,
+        "funding_apr": -1.1318375520000001,
+        "go": true,
+        "hedge": "unhedged: this prices the funding only. The position carries the underlying's delta unless it is hedged somewhere this scan cannot see, and no such hedge exists on this venue for a HIP-3 market whose underlying is not also listed here.",
+        "net_apr": 0.6685996736691676,
+        "net_apr_over_24h": 0.6685996736691676,
+        "net_usd_over_24h": 183.17799278607333,
+        "oi_cap_headroom_usd": 864306166.6978,
+        "reason": "pays its round trip inside the horizon at six figures of book",
+        "round_trip_bps_at_size": 12.691448721392668,
+        "side_paid": "long",
+        "size_usd": 100000.0,
+        "unfilled_share": 0.0
+      },
+      "evidence": {
+        "coin": "xyz:CL",
+        "dex": "xyz",
+        "mark_vs_oracle_bps": -17.22775753851673,
+        "monotone_run_hours": 7,
+        "oi_usd": 135693833.3022,
+        "premium_series_pct": [
+          -0.1726,
+          -0.1782,
+          -0.1976,
+          -0.2208,
+          -0.2298,
+          -0.2353,
+          -0.2532,
+          -0.3009
+        ],
+        "why": "funding exists to pull the mark back to the oracle; a premium that widens for hours against a rising toll means the flow paying that toll is not price-sensitive, or the oracle is not where the market thinks fair value is"
+      },
+      "key": "xyz:CL",
+      "severity": "high",
+      "title": "xyz:CL: the premium moved the same way 7 hours running, -0.173% to -0.301%, and funding is now -113% a year"
+    },
+    {
+      "detector": "premium_drift",
+      "economics": {
+        "break_even_hours": 2.4878783901417636,
+        "capacity_usd": 30185.64075,
+        "depth_25bp_usd": 30185.64075,
+        "funding_apr": 7.710380304,
+        "go": false,
+        "hedge": "unhedged: this prices the funding only. The position carries the underlying's delta unless it is hedged somewhere this scan cannot see, and no such hedge exists on this venue for a HIP-3 market whose underlying is not also listed here.",
+        "net_apr": 6.911109948245988,
+        "net_apr_over_24h": 6.911109948245988,
+        "net_usd_over_24h": 1893.4547803413666,
+        "oi_cap_headroom_usd": 79558582.21203999,
+        "reason": "break-even beyond the horizon, or under $100k of book, or half the order unfilled",
+        "round_trip_bps_at_size": 21.897817965863332,
+        "side_paid": "short",
+        "size_usd": 100000.0,
+        "unfilled_share": 0.6981435924999998
+      },
+      "evidence": {
+        "coin": "xyz:NATGAS",
+        "dex": "xyz",
+        "mark_vs_oracle_bps": 69.06568650699512,
+        "monotone_run_hours": 7,
+        "oi_usd": 20441417.787960004,
+        "premium_series_pct": [
+          1.5603,
+          1.6492,
+          1.7081,
+          1.8279,
+          1.9263,
+          2.0707,
+          2.221,
+          2.3711
+        ],
+        "why": "funding exists to pull the mark back to the oracle; a premium that widens for hours against a rising toll means the flow paying that toll is not price-sensitive, or the oracle is not where the market thinks fair value is"
+      },
+      "key": "xyz:NATGAS",
+      "severity": "high",
+      "title": "xyz:NATGAS: the premium moved the same way 7 hours running, 1.560% to 2.371%, and funding is now 771% a year"
+    },
+    {
+      "detector": "premium_drift",
+      "economics": {
+        "break_even_hours": 3.602155475453361,
+        "capacity_usd": 1147946.2514,
+        "depth_25bp_usd": 1147946.2514,
+        "funding_apr": -3.105812448,
+        "go": true,
+        "hedge": "unhedged: this prices the funding only. The position carries the underlying's delta unless it is hedged somewhere this scan cannot see, and no such hedge exists on this venue for a HIP-3 market whose underlying is not also listed here.",
+        "net_apr": 2.639661643196067,
+        "net_apr_over_24h": 2.639661643196067,
+        "net_usd_over_24h": 723.1949707386484,
+        "oi_cap_headroom_usd": 545583628.8004,
+        "reason": "pays its round trip inside the horizon at six figures of book",
+        "round_trip_bps_at_size": 12.771254926135168,
+        "side_paid": "long",
+        "size_usd": 100000.0,
+        "unfilled_share": 0.0
+      },
+      "evidence": {
+        "coin": "xyz:BRENTOIL",
+        "dex": "xyz",
+        "mark_vs_oracle_bps": -39.98049731838094,
+        "monotone_run_hours": 7,
+        "oi_usd": 204416371.1996,
+        "premium_series_pct": [
+          -0.5383,
+          -0.5902,
+          -0.6337,
+          -0.6402,
+          -0.6738,
+          -0.713,
+          -0.762,
+          -0.8393
+        ],
+        "why": "funding exists to pull the mark back to the oracle; a premium that widens for hours against a rising toll means the flow paying that toll is not price-sensitive, or the oracle is not where the market thinks fair value is"
+      },
+      "key": "xyz:BRENTOIL",
+      "severity": "high",
+      "title": "xyz:BRENTOIL: the premium moved the same way 7 hours running, -0.538% to -0.839%, and funding is now -311% a year"
+    },
+    {
+      "detector": "funding_carry",
+      "economics": {
+        "break_even_hours": 2.4878783901417636,
+        "capacity_usd": 30185.64075,
+        "depth_25bp_usd": 30185.64075,
+        "funding_apr": 7.710380304,
+        "go": false,
+        "hedge": "unhedged: this prices the funding only. The position carries the underlying's delta unless it is hedged somewhere this scan cannot see, and no such hedge exists on this venue for a HIP-3 market whose underlying is not also listed here.",
+        "net_apr": 6.911109948245988,
+        "net_apr_over_24h": 6.911109948245988,
+        "net_usd_over_24h": 1893.4547803413666,
+        "oi_cap_headroom_usd": 79558582.21203999,
+        "reason": "break-even beyond the horizon, or under $100k of book, or half the order unfilled",
+        "round_trip_bps_at_size": 21.897817965863332,
+        "side_paid": "short",
+        "size_usd": 100000.0,
+        "unfilled_share": 0.6981435924999998
+      },
+      "evidence": {
+        "coin": "xyz:NATGAS",
+        "dex": "xyz",
+        "funding_hours_observed": 8,
+        "hour_ntl_vlm": 726353.04235,
+        "mark": 3.3969,
+        "mark_vs_oracle_bps": 69.06568650699512,
+        "oi_usd": 20441417.787960004,
+        "oracle": 3.3736,
+        "premium_max": 0.0237110203,
+        "premium_mean": 0.0191683410375,
+        "premium_min": 0.0156033178,
+        "sign_flips": 0,
+        "spread_bps": 0.8831191769321761,
+        "trades": 2553,
+        "why": "the funding rate has not changed sign in the observed window, so the toll is being paid consistently by one side; the other side collects it"
+      },
+      "key": "xyz:NATGAS",
+      "severity": "notable",
+      "title": "xyz:NATGAS pays shorts 771% a year and costs 21.9bp to get in and out: 2.5 hours to break even",
+      "usd": 1893.4547803413666
+    },
+    {
+      "detector": "funding_carry",
+      "economics": {
+        "break_even_hours": 178.98015690395755,
+        "capacity_usd": 7007.459,
+        "depth_25bp_usd": 7007.459,
+        "funding_apr": 0.25167480000000003,
+        "go": false,
+        "hedge": "unhedged: this prices the funding only. The position carries the underlying's delta unless it is hedged somewhere this scan cannot see, and no such hedge exists on this venue for a HIP-3 market whose underlying is not also listed here.",
+        "net_apr": -1.6251916663655055,
+        "net_apr_over_24h": -1.6251916663655055,
+        "net_usd_over_24h": -445.25799078507,
+        "oi_cap_headroom_usd": 32451773.62,
+        "reason": "break-even beyond the horizon, or under $100k of book, or half the order unfilled",
+        "round_trip_bps_at_size": 51.420999078507,
+        "side_paid": "short",
+        "size_usd": 100000.0,
+        "unfilled_share": 0.9299254099999998
+      },
+      "evidence": {
+        "coin": "xyz:PURRDAT",
+        "dex": "xyz",
+        "funding_hours_observed": 8,
+        "hour_ntl_vlm": 22171.567,
+        "mark": 11.17,
+        "mark_vs_oracle_bps": 13.44688480502068,
+        "oi_usd": 17548226.38,
+        "oracle": 11.155,
+        "premium_max": 0.0010949628,
+        "premium_mean": 0.0005096207500000001,
+        "premium_min": -0.000263495,
+        "sign_flips": 0,
+        "spread_bps": 6.267066565199582,
+        "trades": 63,
+        "why": "the funding rate has not changed sign in the observed window, so the toll is being paid consistently by one side; the other side collects it"
+      },
+      "key": "xyz:PURRDAT",
+      "severity": "notable",
+      "title": "xyz:PURRDAT pays shorts 25% a year and costs 51.4bp to get in and out: 179.0 hours to break even",
+      "usd": -445.25799078507
+    },
+    {
+      "detector": "funding_carry",
+      "economics": {
+        "break_even_hours": 179.71784937308885,
+        "capacity_usd": 16057.832285,
+        "depth_25bp_usd": 16057.832285,
+        "funding_apr": -0.199740264,
+        "go": false,
+        "hedge": "unhedged: this prices the funding only. The position carries the underlying's delta unless it is hedged somewhere this scan cannot see, and no such hedge exists on this venue for a HIP-3 market whose underlying is not also listed here.",
+        "net_apr": -1.2959635143038752,
+        "net_apr_over_24h": -1.2959635143038752,
+        "net_usd_over_24h": -355.05849706955485,
+        "oi_cap_headroom_usd": null,
+        "reason": "break-even beyond the horizon, or under $100k of book, or half the order unfilled",
+        "round_trip_bps_at_size": 40.978185706955486,
+        "side_paid": "long",
+        "size_usd": 100000.0,
+        "unfilled_share": 0.86541962229
+      },
+      "evidence": {
+        "coin": "CHIP",
+        "dex": "core",
+        "funding_hours_observed": 8,
+        "hour_ntl_vlm": 57548.102345,
+        "mark": 0.050985,
+        "mark_vs_oracle_bps": -15.666307647115783,
+        "oi_usd": 11099435.72364,
+        "oracle": 0.051065,
+        "premium_max": -0.000513815,
+        "premium_mean": -0.0006549750375,
+        "premium_min": -0.0008224933,
+        "sign_flips": 0,
+        "spread_bps": 2.550820186798352,
+        "trades": 500,
+        "why": "the funding rate has not changed sign in the observed window, so the toll is being paid consistently by one side; the other side collects it"
+      },
+      "key": "CHIP",
+      "severity": "notable",
+      "title": "CHIP pays longs 20% a year and costs 41.0bp to get in and out: 179.7 hours to break even",
+      "usd": -355.05849706955485
+    },
+    {
+      "detector": "funding_carry",
+      "economics": {
+        "break_even_hours": 181.24346480130654,
+        "capacity_usd": 10769.96933,
+        "depth_25bp_usd": 10769.96933,
+        "funding_apr": 0.190437144,
+        "go": false,
+        "hedge": "unhedged: this prices the funding only. The position carries the underlying's delta unless it is hedged somewhere this scan cannot see, and no such hedge exists on this venue for a HIP-3 market whose underlying is not also listed here.",
+        "net_apr": -1.2477081812260562,
+        "net_apr_over_24h": -1.2477081812260562,
+        "net_usd_over_24h": -341.8378578701524,
+        "oi_cap_headroom_usd": null,
+        "reason": "break-even beyond the horizon, or under $100k of book, or half the order unfilled",
+        "round_trip_bps_at_size": 39.40124178701524,
+        "side_paid": "short",
+        "size_usd": 100000.0,
+        "unfilled_share": 0.8562798053999999
+      },
+      "evidence": {
+        "coin": "USELESS",
+        "dex": "core",
+        "funding_hours_observed": 8,
+        "hour_ntl_vlm": 183066.51247,
+        "mark": 0.18321,
+        "mark_vs_oracle_bps": 16.127709591887896,
+        "oi_usd": 9804024.39216,
+        "oracle": 0.182915,
+        "premium_max": 0.0009282826,
+        "premium_mean": 0.000510143225,
+        "premium_min": 0.0002495758,
+        "sign_flips": 0,
+        "spread_bps": 0.5458664264844698,
+        "trades": 1270,
+        "why": "the funding rate has not changed sign in the observed window, so the toll is being paid consistently by one side; the other side collects it"
+      },
+      "key": "USELESS",
+      "severity": "notable",
+      "title": "USELESS pays shorts 19% a year and costs 39.4bp to get in and out: 181.2 hours to break even",
+      "usd": -341.8378578701524
+    },
+    {
+      "detector": "funding_carry",
+      "economics": {
+        "break_even_hours": 188.59057996280035,
+        "capacity_usd": 36478.5254,
+        "depth_25bp_usd": 36478.5254,
+        "funding_apr": 0.168969888,
+        "go": false,
+        "hedge": "unhedged: this prices the funding only. The position carries the underlying's delta unless it is hedged somewhere this scan cannot see, and no such hedge exists on this venue for a HIP-3 market whose underlying is not also listed here.",
+        "net_apr": -1.1587854942570592,
+        "net_apr_over_24h": -1.1587854942570592,
+        "net_usd_over_24h": -317.47547787864636,
+        "oi_cap_headroom_usd": 19972013.556,
+        "reason": "break-even beyond the horizon, or under $100k of book, or half the order unfilled",
+        "round_trip_bps_at_size": 36.37685978786463,
+        "side_paid": "short",
+        "size_usd": 100000.0,
+        "unfilled_share": 0.6217426350000003
+      },
+      "evidence": {
+        "coin": "xyz:QCOM",
+        "dex": "xyz",
+        "funding_hours_observed": 8,
+        "hour_ntl_vlm": 61633.093,
+        "mark": 175.66,
+        "mark_vs_oracle_bps": 6.266021076615506,
+        "oi_usd": 5027986.444,
+        "oracle": 175.55,
+        "premium_max": 0.000580424,
+        "premium_mean": 0.0003856602375,
+        "premium_min": 0.0002090657,
+        "sign_flips": 0,
+        "spread_bps": 2.276996641429501,
+        "trades": 105,
+        "why": "the funding rate has not changed sign in the observed window, so the toll is being paid consistently by one side; the other side collects it"
+      },
+      "key": "xyz:QCOM",
+      "severity": "notable",
+      "title": "xyz:QCOM pays shorts 17% a year and costs 36.4bp to get in and out: 188.6 hours to break even",
+      "usd": -317.47547787864636
+    },
+    {
+      "detector": "funding_carry",
+      "economics": {
+        "break_even_hours": 9.822707384372043,
+        "capacity_usd": 135008.325925,
+        "depth_25bp_usd": 135008.325925,
+        "funding_apr": -1.1318375520000001,
+        "go": true,
+        "hedge": "unhedged: this prices the funding only. The position carries the underlying's delta unless it is hedged somewhere this scan cannot see, and no such hedge exists on this venue for a HIP-3 market whose underlying is not also listed here.",
+        "net_apr": 0.6685996736691676,
+        "net_apr_over_24h": 0.6685996736691676,
+        "net_usd_over_24h": 183.17799278607333,
+        "oi_cap_headroom_usd": 864306166.6978,
+        "reason": "pays its round trip inside the horizon at six figures of book",
+        "round_trip_bps_at_size": 12.691448721392668,
+        "side_paid": "long",
+        "size_usd": 100000.0,
+        "unfilled_share": 0.0
+      },
+      "evidence": {
+        "coin": "xyz:CL",
+        "dex": "xyz",
+        "funding_hours_observed": 8,
+        "hour_ntl_vlm": 2844314.393461,
+        "mark": 90.975,
+        "mark_vs_oracle_bps": -17.22775753851673,
+        "oi_usd": 135693833.3022,
+        "oracle": 91.132,
+        "premium_max": -0.0017261999,
+        "premium_mean": -0.0022354768124999997,
+        "premium_min": -0.0030092504,
+        "sign_flips": 0,
+        "spread_bps": 0.219843032074586,
+        "trades": 1692,
+        "why": "the funding rate has not changed sign in the observed window, so the toll is being paid consistently by one side; the other side collects it"
+      },
+      "key": "xyz:CL",
+      "severity": "notable",
+      "title": "xyz:CL pays longs 113% a year and costs 12.7bp to get in and out: 9.8 hours to break even",
+      "usd": 183.17799278607333
+    },
+    {
+      "detector": "funding_carry",
+      "economics": {
+        "break_even_hours": 97.66373246591093,
+        "capacity_usd": 19310.9665,
+        "depth_25bp_usd": 19310.9665,
+        "funding_apr": 0.193456716,
+        "go": false,
+        "hedge": "unhedged: this prices the funding only. The position carries the underlying's delta unless it is hedged somewhere this scan cannot see, and no such hedge exists on this venue for a HIP-3 market whose underlying is not also listed here.",
+        "net_apr": -0.5937809904649045,
+        "net_apr_over_24h": -0.5937809904649045,
+        "net_usd_over_24h": -162.67972341504233,
+        "oi_cap_headroom_usd": 45406732.77194,
+        "reason": "break-even beyond the horizon, or under $100k of book, or half the order unfilled",
+        "round_trip_bps_at_size": 21.568156341504235,
+        "side_paid": "short",
+        "size_usd": 100000.0,
+        "unfilled_share": 0.8068903350000001
+      },
+      "evidence": {
+        "coin": "xyz:WDC",
+        "dex": "xyz",
+        "funding_hours_observed": 8,
+        "hour_ntl_vlm": 30194.19103,
+        "mark": 395.79,
+        "mark_vs_oracle_bps": 11.129379031238086,
+        "oi_usd": 4593267.228060001,
+        "oracle": 395.35,
+        "premium_max": 0.0007961994,
+        "premium_mean": 0.000554261425,
+        "premium_min": 0.0004010019,
+        "sign_flips": 0,
+        "spread_bps": 1.768123263450194,
+        "trades": 177,
+        "why": "the funding rate has not changed sign in the observed window, so the toll is being paid consistently by one side; the other side collects it"
+      },
+      "key": "xyz:WDC",
+      "severity": "notable",
+      "title": "xyz:WDC pays shorts 19% a year and costs 21.6bp to get in and out: 97.7 hours to break even",
+      "usd": -162.67972341504233
+    },
+    {
+      "detector": "funding_carry",
+      "economics": {
+        "break_even_hours": 89.36564818817337,
+        "capacity_usd": 98751.47630000001,
+        "depth_25bp_usd": 98751.47630000001,
+        "funding_apr": 0.20972316,
+        "go": false,
+        "hedge": "unhedged: this prices the funding only. The position carries the underlying's delta unless it is hedged somewhere this scan cannot see, and no such hedge exists on this venue for a HIP-3 market whose underlying is not also listed here.",
+        "net_apr": -0.5711954288946665,
+        "net_apr_over_24h": -0.5711954288946665,
+        "net_usd_over_24h": -156.49189832730588,
+        "oi_cap_headroom_usd": 48380748.1884,
+        "reason": "break-even beyond the horizon, or under $100k of book, or half the order unfilled",
+        "round_trip_bps_at_size": 21.395029832730586,
+        "side_paid": "short",
+        "size_usd": 100000.0,
+        "unfilled_share": 0.08965398700000002
+      },
+      "evidence": {
+        "coin": "xyz:CBRS",
+        "dex": "xyz",
+        "funding_hours_observed": 8,
+        "hour_ntl_vlm": 68097.3835,
+        "mark": 164.46,
+        "mark_vs_oracle_bps": 0.0,
+        "oi_usd": 101619251.8116,
+        "oracle": 164.46,
+        "premium_max": 0.0007159138,
+        "premium_mean": 0.000583612075,
+        "premium_min": 0.0004025745,
+        "sign_flips": 0,
+        "spread_bps": 0.6080690766465541,
+        "trades": 281,
+        "why": "the funding rate has not changed sign in the observed window, so the toll is being paid consistently by one side; the other side collects it"
+      },
+      "key": "xyz:CBRS",
+      "severity": "notable",
+      "title": "xyz:CBRS pays shorts 21% a year and costs 21.4bp to get in and out: 89.4 hours to break even",
+      "usd": -156.49189832730588
+    },
+    {
+      "detector": "funding_carry",
+      "economics": {
+        "break_even_hours": 92.35657681719495,
+        "capacity_usd": 182966.92902,
+        "depth_25bp_usd": 182966.92902,
+        "funding_apr": 0.19668214799999997,
+        "go": false,
+        "hedge": "unhedged: this prices the funding only. The position carries the underlying's delta unless it is hedged somewhere this scan cannot see, and no such hedge exists on this venue for a HIP-3 market whose underlying is not also listed here.",
+        "net_apr": -0.5601882649305376,
+        "net_apr_over_24h": -0.5601882649305376,
+        "net_usd_over_24h": -153.47623696727058,
+        "oi_cap_headroom_usd": 120891796.33746,
+        "reason": "break-even beyond the horizon, or under $100k of book, or half the order unfilled",
+        "round_trip_bps_at_size": 20.73617569672706,
+        "side_paid": "short",
+        "size_usd": 100000.0,
+        "unfilled_share": 0.0
+      },
+      "evidence": {
+        "coin": "xyz:HOOD",
+        "dex": "xyz",
+        "funding_hours_observed": 8,
+        "hour_ntl_vlm": 30893.428170000003,
+        "mark": 109.11,
+        "mark_vs_oracle_bps": 4.584632312488278,
+        "oi_usd": 29108203.662540004,
+        "oracle": 109.06,
+        "premium_max": 0.0006103414,
+        "premium_mean": 0.00040783221249999997,
+        "premium_min": 0.0001686066,
+        "sign_flips": 0,
+        "spread_bps": 0.9162963302336662,
+        "trades": 50,
+        "why": "the funding rate has not changed sign in the observed window, so the toll is being paid consistently by one side; the other side collects it"
+      },
+      "key": "xyz:HOOD",
+      "severity": "notable",
+      "title": "xyz:HOOD pays shorts 20% a year and costs 20.7bp to get in and out: 92.4 hours to break even",
+      "usd": -153.47623696727058
+    },
+    {
+      "detector": "funding_carry",
+      "economics": {
+        "break_even_hours": 87.34844025993063,
+        "capacity_usd": 11634.800599999999,
+        "depth_25bp_usd": 11634.800599999999,
+        "funding_apr": 0.207218676,
+        "go": false,
+        "hedge": "unhedged: this prices the funding only. The position carries the underlying's delta unless it is hedged somewhere this scan cannot see, and no such hedge exists on this venue for a HIP-3 market whose underlying is not also listed here.",
+        "net_apr": -0.5469574965553301,
+        "net_apr_over_24h": -0.5469574965553301,
+        "net_usd_over_24h": -149.85136891926854,
+        "oi_cap_headroom_usd": 6323816.8116,
+        "reason": "break-even beyond the horizon, or under $100k of book, or half the order unfilled",
+        "round_trip_bps_at_size": 20.662360891926852,
+        "side_paid": "short",
+        "size_usd": 100000.0,
+        "unfilled_share": 0.8836519939999999
+      },
+      "evidence": {
+        "coin": "io:NBIS",
+        "dex": "io",
+        "funding_hours_observed": 8,
+        "hour_ntl_vlm": 269972.2009,
+        "mark": 221.82,
+        "mark_vs_oracle_bps": 7.669749605232912,
+        "oi_usd": 8676183.1884,
+        "oracle": 221.65,
+        "premium_max": 0.0013040425,
+        "premium_mean": 0.0005943771625,
+        "premium_min": 0.0002940464,
+        "sign_flips": 0,
+        "spread_bps": 3.153650350281423,
+        "trades": 1366,
+        "why": "the funding rate has not changed sign in the observed window, so the toll is being paid consistently by one side; the other side collects it"
+      },
+      "key": "io:NBIS",
+      "severity": "notable",
+      "title": "io:NBIS pays shorts 21% a year and costs 20.7bp to get in and out: 87.3 hours to break even",
+      "usd": -149.85136891926854
+    },
+    {
+      "detector": "funding_carry",
+      "economics": {
+        "break_even_hours": 104.57635116621718,
+        "capacity_usd": 73795.3028,
+        "depth_25bp_usd": 73795.3028,
+        "funding_apr": 0.15814428000000003,
+        "go": false,
+        "hedge": "unhedged: this prices the funding only. The position carries the underlying's delta unless it is hedged somewhere this scan cannot see, and no such hedge exists on this venue for a HIP-3 market whose underlying is not also listed here.",
+        "net_apr": -0.5309453766753574,
+        "net_apr_over_24h": -0.5309453766753574,
+        "net_usd_over_24h": -145.46448676037187,
+        "oi_cap_headroom_usd": 62298403.1976,
+        "reason": "break-even beyond the horizon, or under $100k of book, or half the order unfilled",
+        "round_trip_bps_at_size": 18.87916867603719,
+        "side_paid": "short",
+        "size_usd": 100000.0,
+        "unfilled_share": 0.460733139
+      },
+      "evidence": {
+        "coin": "xyz:AVGO",
+        "dex": "xyz",
+        "funding_hours_observed": 8,
+        "hour_ntl_vlm": 37954.783,
+        "mark": 362.34,
+        "mark_vs_oracle_bps": 2.2083586374422812,
+        "oi_usd": 12701596.802399999,
+        "oracle": 362.26,
+        "premium_max": 0.0006374939,
+        "premium_mean": 0.000444988775,
+        "premium_min": 0.0002973174,
+        "sign_flips": 0,
+        "spread_bps": 2.4836835787129505,
+        "trades": 63,
+        "why": "the funding rate has not changed sign in the observed window, so the toll is being paid consistently by one side; the other side collects it"
+      },
+      "key": "xyz:AVGO",
+      "severity": "notable",
+      "title": "xyz:AVGO pays shorts 16% a year and costs 18.9bp to get in and out: 104.6 hours to break even",
+      "usd": -145.46448676037187
+    },
+    {
+      "detector": "funding_carry",
+      "economics": {
+        "break_even_hours": 66.53368428259385,
+        "capacity_usd": 2788.0342,
+        "depth_25bp_usd": 2788.0342,
+        "funding_apr": 0.291941016,
+        "go": false,
+        "hedge": "unhedged: this prices the funding only. The position carries the underlying's delta unless it is hedged somewhere this scan cannot see, and no such hedge exists on this venue for a HIP-3 market whose underlying is not also listed here.",
+        "net_apr": -0.5173886251534867,
+        "net_apr_over_24h": -0.5173886251534867,
+        "net_usd_over_24h": -141.75030826122926,
+        "oi_cap_headroom_usd": 6459295.38,
+        "reason": "break-even beyond the horizon, or under $100k of book, or half the order unfilled",
+        "round_trip_bps_at_size": 22.173414826122922,
+        "side_paid": "short",
+        "size_usd": 100000.0,
+        "unfilled_share": 0.9698001539999997
+      },
+      "evidence": {
+        "coin": "io:OAI",
+        "dex": "io",
+        "funding_hours_observed": 8,
+        "hour_ntl_vlm": 125341.8113,
+        "mark": 1685.0,
+        "mark_vs_oracle_bps": 12.478459801532527,
+        "oi_usd": 5540704.62,
+        "oracle": 1682.9,
+        "premium_max": 0.0021775725,
+        "premium_mean": 0.0018777660375,
+        "premium_min": 0.0010781254,
+        "sign_flips": 0,
+        "spread_bps": 2.3738168006875973,
+        "trades": 1034,
+        "why": "the funding rate has not changed sign in the observed window, so the toll is being paid consistently by one side; the other side collects it"
+      },
+      "key": "io:OAI",
+      "severity": "notable",
+      "title": "io:OAI pays shorts 29% a year and costs 22.2bp to get in and out: 66.5 hours to break even",
+      "usd": -141.75030826122926
+    },
+    {
+      "detector": "funding_carry",
+      "economics": {
+        "break_even_hours": 70.34414078207817,
+        "capacity_usd": 56678.199894000005,
+        "depth_25bp_usd": 56678.199894000005,
+        "funding_apr": 0.20256711600000002,
+        "go": false,
+        "hedge": "unhedged: this prices the funding only. The position carries the underlying's delta unless it is hedged somewhere this scan cannot see, and no such hedge exists on this venue for a HIP-3 market whose underlying is not also listed here.",
+        "net_apr": -0.3911582892384817,
+        "net_apr_over_24h": -0.3911582892384817,
+        "net_usd_over_24h": -107.1666545858854,
+        "oi_cap_headroom_usd": 77098198.64442,
+        "reason": "break-even beyond the horizon, or under $100k of book, or half the order unfilled",
+        "round_trip_bps_at_size": 16.26644945858854,
+        "side_paid": "short",
+        "size_usd": 100000.0,
+        "unfilled_share": 0.43321800106
+      },
+      "evidence": {
+        "coin": "xyz:CRCL",
+        "dex": "xyz",
+        "funding_hours_observed": 8,
+        "hour_ntl_vlm": 1767079.436651,
+        "mark": 84.851,
+        "mark_vs_oracle_bps": 6.014150943396454,
+        "oi_usd": 122901801.35558,
+        "oracle": 84.8,
+        "premium_max": 0.0006800322,
+        "premium_mean": 0.0004891276124999999,
+        "premium_min": 0.0002948117,
+        "sign_flips": 0,
+        "spread_bps": 1.7674089784376774,
+        "trades": 1356,
+        "why": "the funding rate has not changed sign in the observed window, so the toll is being paid consistently by one side; the other side collects it"
+      },
+      "key": "xyz:CRCL",
+      "severity": "notable",
+      "title": "xyz:CRCL pays shorts 20% a year and costs 16.3bp to get in and out: 70.3 hours to break even",
+      "usd": -107.1666545858854
+    },
+    {
+      "detector": "cross_dex_basis",
+      "economics": {
+        "books_priced": 2,
+        "break_even_hours": 7876.216215885899,
+        "capacity_usd": 30061.999099999997,
+        "go": false,
+        "gross_apr": 0.003600359999999997,
+        "hedge": "delta-neutral in the underlying by construction; not neutral to the two deployers' oracles diverging",
+        "long_book": "io:SNDK",
+        "net_apr": -1.1779502156261221,
+        "net_apr_basis": "net of both round trips over 24h",
+        "reason": "a book was not priced, or break-even beyond the horizon, or under $100k of depth",
+        "round_trips_bps": 32.37124864729102,
+        "short_book": "xyz:SNDK",
+        "size_usd": 100000.0
+      },
+      "evidence": {
+        "funding_spread_apr": 0.003600359999999997,
+        "mark_spread_bps": 5.6936800151822835,
+        "rows": [
+          {
+            "coin": "xyz:SNDK",
+            "dex": "xyz",
+            "fee_scale": 1.0,
+            "funding_apr": 0.05475,
+            "hour_ntl_vlm": 2460934.5001,
+            "mark": 1580.7,
+            "oi_cap_usd": 500000000.0,
+            "oi_usd": 122073967.653,
+            "oracle": 1580.1,
+            "trades": 1786
+          },
+          {
+            "coin": "io:SNDK",
+            "dex": "io",
+            "fee_scale": 1.0,
+            "funding_apr": 0.05114964,
+            "hour_ntl_vlm": 577164.2970499999,
+            "mark": 1581.6,
+            "oi_cap_usd": 10000000.0,
+            "oi_usd": 4792787.641919999,
+            "oracle": 1581.1,
+            "trades": 4069
+          }
+        ],
+        "symbol": "SNDK",
+        "total_oi_usd": 126866755.29492,
+        "why": "each builder sets its own oracle under HIP-3, so two books on the same underlying are two independent opinions with independent funding; the pair is delta-neutral by construction and the funding difference is the carry"
+      },
+      "key": "SNDK",
+      "severity": "notable",
+      "title": "SNDK trades on 2 builder books at once: 5.7bp apart, with 0 percentage points between their funding rates",
+      "usd": -97.01791321095146
+    },
+    {
+      "detector": "funding_carry",
+      "economics": {
+        "break_even_hours": 44.59930651011836,
+        "capacity_usd": 45097.4974,
+        "depth_25bp_usd": 45097.4974,
+        "funding_apr": 0.40526826,
+        "go": false,
+        "hedge": "unhedged: this prices the funding only. The position carries the underlying's delta unless it is hedged somewhere this scan cannot see, and no such hedge exists on this venue for a HIP-3 market whose underlying is not also listed here.",
+        "net_apr": -0.34784354610676416,
+        "net_apr_over_24h": -0.34784354610676416,
+        "net_usd_over_24h": -95.29960167308606,
+        "oi_cap_headroom_usd": 120279602.96700001,
+        "reason": "break-even beyond the horizon, or under $100k of book, or half the order unfilled",
+        "round_trip_bps_at_size": 20.63320016730861,
+        "side_paid": "short",
+        "size_usd": 100000.0,
+        "unfilled_share": 0.549025026
+      },
+      "evidence": {
+        "coin": "xyz:NBIS",
+        "dex": "xyz",
+        "funding_hours_observed": 8,
+        "hour_ntl_vlm": 219196.6854,
+        "mark": 221.85,
+        "mark_vs_oracle_bps": 4.058441558441713,
+        "oi_usd": 29720397.032999996,
+        "oracle": 221.76,
+        "premium_max": 0.0007390065,
+        "premium_mean": 0.0003821598875,
+        "premium_min": 0.0002668727,
+        "sign_flips": 0,
+        "spread_bps": 0.4507854937236832,
+        "trades": 699,
+        "why": "the funding rate has not changed sign in the observed window, so the toll is being paid consistently by one side; the other side collects it"
+      },
+      "key": "xyz:NBIS",
+      "severity": "notable",
+      "title": "xyz:NBIS pays shorts 41% a year and costs 20.6bp to get in and out: 44.6 hours to break even",
+      "usd": -95.29960167308606
+    },
+    {
+      "detector": "funding_carry",
+      "economics": {
+        "break_even_hours": 49.81097535427264,
+        "capacity_usd": 63616.859319999996,
+        "depth_25bp_usd": 63616.859319999996,
+        "funding_apr": -0.292326456,
+        "go": false,
+        "hedge": "unhedged: this prices the funding only. The position carries the underlying's delta unless it is hedged somewhere this scan cannot see, and no such hedge exists on this venue for a HIP-3 market whose underlying is not also listed here.",
+        "net_apr": -0.31438462296741104,
+        "net_apr_over_24h": -0.31438462296741104,
+        "net_usd_over_24h": -86.13277341572906,
+        "oi_cap_headroom_usd": null,
+        "reason": "break-even beyond the horizon, or under $100k of book, or half the order unfilled",
+        "round_trip_bps_at_size": 16.622221341572907,
+        "side_paid": "long",
+        "size_usd": 100000.0,
+        "unfilled_share": 0.3638314068
+      },
+      "evidence": {
+        "coin": "TRX",
+        "dex": "core",
+        "funding_hours_observed": 8,
+        "hour_ntl_vlm": 43026.72639,
+        "mark": 0.33178,
+        "mark_vs_oracle_bps": -8.73309844309805,
+        "oi_usd": 13724506.369080001,
+        "oracle": 0.33207,
+        "premium_max": -0.0006136643,
+        "premium_mean": -0.0008833977,
+        "premium_min": -0.0009915157,
+        "sign_flips": 0,
+        "spread_bps": 0.6028272598492932,
+        "trades": 166,
+        "why": "the funding rate has not changed sign in the observed window, so the toll is being paid consistently by one side; the other side collects it"
+      },
+      "key": "TRX",
+      "severity": "notable",
+      "title": "TRX pays longs 29% a year and costs 16.6bp to get in and out: 49.8 hours to break even",
+      "usd": -86.13277341572906
+    },
+    {
+      "detector": "roll_premium",
+      "economics": {
+        "break_even_hours": 19.19868474571045,
+        "capacity_usd": 30185.64075,
+        "depth_25bp_usd": 30185.64075,
+        "funding_apr": 7.710380303999999,
+        "go": false,
+        "hedge": "the front/second-month blend the oracle tracks, in the listed futures, re-weighted with the roll; the step is what a price index pays and a futures position does not",
+        "net_apr": 0.1998860339763946,
+        "oi_cap_headroom_usd": 79558582.21203999,
+        "reason": "no priced book, break-even beyond the horizon, or under $100k of depth",
+        "roll_step_apr": 6.711223914269593,
+        "round_trip_bps_at_size": 21.897817965863332,
+        "side_paid": "short",
+        "size_usd": 100000.0
+      },
+      "evidence": {
+        "calendar_spread_pct": -9.19345741680766,
+        "coin": "xyz:NATGAS",
+        "contracts": {
+          "NYMEX:NGF2027": 3.972,
+          "NYMEX:NGX2026": 3.22,
+          "NYMEX:NGZ2026": 3.546
+        },
+        "curve_fits": true,
+        "front_expiry": [
+          "NYMEX:NGX2026",
+          "2026-10-28",
+          "NYMEX Henry Hub: three business days before the first day of the delivery month"
+        ],
+        "front_weight_mark": 0.4573619631901839,
+        "front_weight_oracle": 0.5150306748466261,
+        "funding_per_day": 0.0211243296,
+        "lead": 0.05766871165644222,
+        "observed_from": "tape",
+        "observed_premium": 0.0054557812073467065,
+        "predicted_premium": 0.005301748448956612,
+        "residual": 0.00015403275839009477,
+        "roll_days_assumed": 5.0,
+        "roll_days_remaining_estimate": 2.5751533742331305,
+        "step_per_trading_day": 0.018386914833615323,
+        "why": "a constant-maturity price index pays the calendar spread over its roll window and a futures hedge does not; the funding is paid to the side the index rolls against"
+      },
+      "key": "xyz:NATGAS",
+      "severity": "notable",
+      "title": "xyz:NATGAS: the book prices the roll 0.29 of a step ahead of a -9.19% calendar spread; shorts are paid 771% a year, the step costs 671%, net 100% while the roll lasts",
+      "usd": 82.63061872183297
+    },
+    {
+      "detector": "cross_dex_basis",
+      "economics": {
+        "books_priced": 2,
+        "break_even_hours": 182.6558317228794,
+        "capacity_usd": 20668.4746,
+        "go": false,
+        "gross_apr": 0.198049584,
+        "hedge": "delta-neutral in the underlying by construction; not neutral to the two deployers' oracles diverging",
+        "long_book": "io:NBIS",
+        "net_apr": -1.3092383946620945,
+        "net_apr_basis": "net of both round trips over 24h",
+        "reason": "a book was not priced, or break-even beyond the horizon, or under $100k of depth",
+        "round_trips_bps": 41.29556105923546,
+        "short_book": "xyz:NBIS",
+        "size_usd": 100000.0
+      },
+      "evidence": {
+        "funding_spread_apr": 0.198049584,
+        "mark_spread_bps": 1.3524479307547173,
+        "rows": [
+          {
+            "coin": "xyz:NBIS",
+            "dex": "xyz",
+            "fee_scale": 1.0,
+            "funding_apr": 0.40526826,
+            "hour_ntl_vlm": 219196.6854,
+            "mark": 221.85,
+            "oi_cap_usd": 150000000.0,
+            "oi_usd": 29720397.032999996,
+            "oracle": 221.76,
+            "trades": 699
+          },
+          {
+            "coin": "io:NBIS",
+            "dex": "io",
+            "fee_scale": 1.0,
+            "funding_apr": 0.207218676,
+            "hour_ntl_vlm": 269972.2009,
+            "mark": 221.82,
+            "oi_cap_usd": 15000000.0,
+            "oi_usd": 8676183.1884,
+            "oracle": 221.65,
+            "trades": 1366
+          }
+        ],
+        "symbol": "NBIS",
+        "total_oi_usd": 38396580.22139999,
+        "why": "each builder sets its own oracle under HIP-3, so two books on the same underlying are two independent opinions with independent funding; the pair is delta-neutral by construction and the funding difference is the carry"
+      },
+      "key": "NBIS",
+      "severity": "notable",
+      "title": "NBIS trades on 2 builder books at once: 1.4bp apart, with 20 percentage points between their funding rates",
+      "usd": -74.13687809703637
+    },
+    {
+      "detector": "illiquid_extreme_funding",
+      "evidence": {
+        "book_present": false,
+        "coin": "xyz:BIRD",
+        "dex": "xyz",
+        "funding_apr": 5.033814864,
+        "hour_ntl_vlm": 47.96673,
+        "mark_vs_oracle_bps": 52.06738131699954,
+        "oi_usd": 87108.15276000001,
+        "round_trip_bps_10k": null,
+        "spread_bps": null,
+        "trades": 4,
+        "why": "the rate is derived from a premium that a book with no trading cannot correct; the position already in it is paying or receiving that rate with no way out at size"
+      },
+      "key": "xyz:BIRD",
+      "severity": "notable",
+      "title": "xyz:BIRD prints 503% a year on 4 trades in the hour, with $87.1k of open interest already in it"
+    },
+    {
+      "detector": "illiquid_extreme_funding",
+      "evidence": {
+        "book_present": false,
+        "coin": "xyz:TWST",
+        "dex": "xyz",
+        "funding_apr": 2.32510548,
+        "hour_ntl_vlm": 0.0,
+        "mark_vs_oracle_bps": 0.0,
+        "oi_usd": 46569.222,
+        "round_trip_bps_10k": null,
+        "spread_bps": null,
+        "trades": 0,
+        "why": "the rate is derived from a premium that a book with no trading cannot correct; the position already in it is paying or receiving that rate with no way out at size"
+      },
+      "key": "xyz:TWST",
+      "severity": "notable",
+      "title": "xyz:TWST prints 233% a year on 0 trades in the hour, with $46.6k of open interest already in it"
+    },
+    {
+      "detector": "illiquid_extreme_funding",
+      "evidence": {
+        "book_present": false,
+        "coin": "para:TER",
+        "dex": "para",
+        "funding_apr": 1.890317772,
+        "hour_ntl_vlm": 6463.7976,
+        "mark_vs_oracle_bps": 27.104988312528768,
+        "oi_usd": 157138.731,
+        "round_trip_bps_10k": null,
+        "spread_bps": null,
+        "trades": 2,
+        "why": "the rate is derived from a premium that a book with no trading cannot correct; the position already in it is paying or receiving that rate with no way out at size"
+      },
+      "key": "para:TER",
+      "severity": "notable",
+      "title": "para:TER prints 189% a year on 2 trades in the hour, with $157.1k of open interest already in it"
+    },
+    {
+      "detector": "illiquid_extreme_funding",
+      "evidence": {
+        "book_present": false,
+        "coin": "xyz:CVX",
+        "dex": "xyz",
+        "funding_apr": 1.359968976,
+        "hour_ntl_vlm": 0.0,
+        "mark_vs_oracle_bps": 5.659843410997836,
+        "oi_usd": 34578.82,
+        "round_trip_bps_10k": null,
+        "spread_bps": null,
+        "trades": 0,
+        "why": "the rate is derived from a premium that a book with no trading cannot correct; the position already in it is paying or receiving that rate with no way out at size"
+      },
+      "key": "xyz:CVX",
+      "severity": "notable",
+      "title": "xyz:CVX prints 136% a year on 0 trades in the hour, with $34.6k of open interest already in it"
+    },
+    {
+      "detector": "illiquid_extreme_funding",
+      "evidence": {
+        "book_present": false,
+        "coin": "para:TREAD",
+        "dex": "para",
+        "funding_apr": -1.197898464,
+        "hour_ntl_vlm": 346.7762,
+        "mark_vs_oracle_bps": -40.76166959494717,
+        "oi_usd": 461382.25489200006,
+        "round_trip_bps_10k": null,
+        "spread_bps": null,
+        "trades": 17,
+        "why": "the rate is derived from a premium that a book with no trading cannot correct; the position already in it is paying or receiving that rate with no way out at size"
+      },
+      "key": "para:TREAD",
+      "severity": "notable",
+      "title": "para:TREAD prints -120% a year on 17 trades in the hour, with $461.4k of open interest already in it"
+    },
+    {
+      "detector": "illiquid_extreme_funding",
+      "evidence": {
+        "book_present": false,
+        "coin": "para:UNITREE",
+        "dex": "para",
+        "funding_apr": -1.116613548,
+        "hour_ntl_vlm": null,
+        "mark_vs_oracle_bps": 0.0,
+        "oi_usd": 1532535.431796,
+        "round_trip_bps_10k": null,
+        "spread_bps": null,
+        "trades": null,
+        "why": "the rate is derived from a premium that a book with no trading cannot correct; the position already in it is paying or receiving that rate with no way out at size"
+      },
+      "key": "para:UNITREE",
+      "severity": "notable",
+      "title": "para:UNITREE prints -112% a year on 0 trades in the hour, with $1.5M of open interest already in it"
+    },
+    {
+      "detector": "illiquid_extreme_funding",
+      "evidence": {
+        "book_present": false,
+        "coin": "xyz:EBAY",
+        "dex": "xyz",
+        "funding_apr": 0.955299024,
+        "hour_ntl_vlm": 2135.8257999999996,
+        "mark_vs_oracle_bps": 19.5625111150643,
+        "oi_usd": 239460.7752,
+        "round_trip_bps_10k": null,
+        "spread_bps": null,
+        "trades": 4,
+        "why": "the rate is derived from a premium that a book with no trading cannot correct; the position already in it is paying or receiving that rate with no way out at size"
+      },
+      "key": "xyz:EBAY",
+      "severity": "notable",
+      "title": "xyz:EBAY prints 96% a year on 4 trades in the hour, with $239.5k of open interest already in it"
+    },
+    {
+      "detector": "illiquid_extreme_funding",
+      "evidence": {
+        "book_present": false,
+        "coin": "mkts:BVIV",
+        "dex": "mkts",
+        "funding_apr": 0.952730592,
+        "hour_ntl_vlm": 7582.358489999999,
+        "mark_vs_oracle_bps": -3.1528336092063936,
+        "oi_usd": 305823.40338,
+        "round_trip_bps_10k": null,
+        "spread_bps": null,
+        "trades": 19,
+        "why": "the rate is derived from a premium that a book with no trading cannot correct; the position already in it is paying or receiving that rate with no way out at size"
+      },
+      "key": "mkts:BVIV",
+      "severity": "notable",
+      "title": "mkts:BVIV prints 95% a year on 19 trades in the hour, with $305.8k of open interest already in it"
+    },
+    {
+      "detector": "illiquid_extreme_funding",
+      "evidence": {
+        "book_present": false,
+        "coin": "xyz:SOFTBANK",
+        "dex": "xyz",
+        "funding_apr": 0.6898210920000001,
+        "hour_ntl_vlm": 1256.0128,
+        "mark_vs_oracle_bps": -0.5477351152989112,
+        "oi_usd": 1385891.09568,
+        "round_trip_bps_10k": null,
+        "spread_bps": null,
+        "trades": 6,
+        "why": "the rate is derived from a premium that a book with no trading cannot correct; the position already in it is paying or receiving that rate with no way out at size"
+      },
+      "key": "xyz:SOFTBANK",
+      "severity": "notable",
+      "title": "xyz:SOFTBANK prints 69% a year on 6 trades in the hour, with $1.4M of open interest already in it"
+    },
+    {
+      "detector": "illiquid_extreme_funding",
+      "evidence": {
+        "book_present": false,
+        "coin": "xyz:NCLD",
+        "dex": "xyz",
+        "funding_apr": 0.620690676,
+        "hour_ntl_vlm": 0.0,
+        "mark_vs_oracle_bps": -29.85760220486967,
+        "oi_usd": 351185.5977,
+        "round_trip_bps_10k": null,
+        "spread_bps": null,
+        "trades": 0,
+        "why": "the rate is derived from a premium that a book with no trading cannot correct; the position already in it is paying or receiving that rate with no way out at size"
+      },
+      "key": "xyz:NCLD",
+      "severity": "notable",
+      "title": "xyz:NCLD prints 62% a year on 0 trades in the hour, with $351.2k of open interest already in it"
+    },
+    {
+      "detector": "illiquid_extreme_funding",
+      "evidence": {
+        "book_present": false,
+        "coin": "para:RDDT",
+        "dex": "para",
+        "funding_apr": -0.617231352,
+        "hour_ntl_vlm": 19.1616,
+        "mark_vs_oracle_bps": -6.633872804876181,
+        "oi_usd": 92071.48800000001,
+        "round_trip_bps_10k": null,
+        "spread_bps": null,
+        "trades": 2,
+        "why": "the rate is derived from a premium that a book with no trading cannot correct; the position already in it is paying or receiving that rate with no way out at size"
+      },
+      "key": "para:RDDT",
+      "severity": "notable",
+      "title": "para:RDDT prints -62% a year on 2 trades in the hour, with $92.1k of open interest already in it"
+    },
+    {
+      "detector": "illiquid_extreme_funding",
+      "evidence": {
+        "book_present": false,
+        "coin": "xyz:SHEIN",
+        "dex": "xyz",
+        "funding_apr": -0.608572968,
+        "hour_ntl_vlm": 37.118430000000004,
+        "mark_vs_oracle_bps": 0.8955157051065796,
+        "oi_usd": 832496.79678,
+        "round_trip_bps_10k": null,
+        "spread_bps": null,
+        "trades": 2,
+        "why": "the rate is derived from a premium that a book with no trading cannot correct; the position already in it is paying or receiving that rate with no way out at size"
+      },
+      "key": "xyz:SHEIN",
+      "severity": "notable",
+      "title": "xyz:SHEIN prints -61% a year on 2 trades in the hour, with $832.5k of open interest already in it"
+    },
+    {
+      "detector": "illiquid_extreme_funding",
+      "evidence": {
+        "book_present": false,
+        "coin": "xyz:EWJ",
+        "dex": "xyz",
+        "funding_apr": -0.5859923159999999,
+        "hour_ntl_vlm": 84.62275199999999,
+        "mark_vs_oracle_bps": -14.477239129326188,
+        "oi_usd": 949130.745292,
+        "round_trip_bps_10k": null,
+        "spread_bps": null,
+        "trades": 1,
+        "why": "the rate is derived from a premium that a book with no trading cannot correct; the position already in it is paying or receiving that rate with no way out at size"
+      },
+      "key": "xyz:EWJ",
+      "severity": "notable",
+      "title": "xyz:EWJ prints -59% a year on 1 trades in the hour, with $949.1k of open interest already in it"
+    },
+    {
+      "detector": "illiquid_extreme_funding",
+      "evidence": {
+        "book_present": false,
+        "coin": "para:ANSEM",
+        "dex": "para",
+        "funding_apr": 0.530436396,
+        "hour_ntl_vlm": 435.76772,
+        "mark_vs_oracle_bps": 0.0,
+        "oi_usd": 1105357.00332,
+        "round_trip_bps_10k": null,
+        "spread_bps": null,
+        "trades": 6,
+        "why": "the rate is derived from a premium that a book with no trading cannot correct; the position already in it is paying or receiving that rate with no way out at size"
+      },
+      "key": "para:ANSEM",
+      "severity": "notable",
+      "title": "para:ANSEM prints 53% a year on 6 trades in the hour, with $1.1M of open interest already in it"
+    },
+    {
+      "detector": "illiquid_extreme_funding",
+      "evidence": {
+        "book_present": false,
+        "coin": "xyz:URNM",
+        "dex": "xyz",
+        "funding_apr": 0.526776468,
+        "hour_ntl_vlm": 416.74997,
+        "mark_vs_oracle_bps": 20.118548003288957,
+        "oi_usd": 2038945.7051600001,
+        "round_trip_bps_10k": null,
+        "spread_bps": null,
+        "trades": 19,
+        "why": "the rate is derived from a premium that a book with no trading cannot correct; the position already in it is paying or receiving that rate with no way out at size"
+      },
+      "key": "xyz:URNM",
+      "severity": "notable",
+      "title": "xyz:URNM prints 53% a year on 19 trades in the hour, with $2.0M of open interest already in it"
+    },
+    {
+      "detector": "stale_oracle",
+      "evidence": {
+        "coin": "xyz:UMC",
+        "dex": "xyz",
+        "diff_corr": null,
+        "funding_apr": 0.130039572,
+        "funding_apr_first": 0.130039572,
+        "funding_apr_last": 4.887767268,
+        "gap_bps_first": 0.0,
+        "gap_bps_last": -61.14872242847808,
+        "gap_bps_mean": -30.554507732930926,
+        "gap_bps_stdev": 10.990242425371466,
+        "gap_widening_bps": 12.269451448311788,
+        "mark_moves": 13,
+        "oi_change_pct": 0.0,
+        "oi_first": 3135.8,
+        "oi_last": 3135.8,
+        "oi_usd": 71794.141,
+        "oracle_moves": 0,
+        "points": 22,
+        "regime": "oracle frozen while the book moved",
+        "span_s": 1410.6050369739532,
+        "why": "funding is charged on the gap between mark and oracle, so a frozen oracle turns every move in the book into a funding charge that reverses when the oracle catches up"
+      },
+      "key": "xyz:UMC",
+      "severity": "notable",
+      "title": "xyz:UMC: the oracle did not move for 22 snapshots while the book moved 13 times, gap -61.1bp"
+    },
+    {
+      "detector": "stale_oracle",
+      "evidence": {
+        "coin": "xyz:RDDT",
+        "dex": "xyz",
+        "diff_corr": null,
+        "funding_apr": -0.7931908440000001,
+        "funding_apr_first": -0.7931908440000001,
+        "funding_apr_last": -0.695488812,
+        "gap_bps_first": -12.522697389018662,
+        "gap_bps_last": -17.531776344624703,
+        "gap_bps_mean": -13.860349155572083,
+        "gap_bps_stdev": 2.3374169363139017,
+        "gap_widening_bps": 1.764561904815805,
+        "mark_moves": 9,
+        "oi_change_pct": -0.02032427378828583,
+        "oi_first": 3936.18,
+        "oi_last": 3935.38,
+        "oi_usd": 627860.0717999999,
+        "oracle_moves": 0,
+        "points": 22,
+        "regime": "oracle frozen while the book moved",
+        "span_s": 1410.6050369739532,
+        "why": "funding is charged on the gap between mark and oracle, so a frozen oracle turns every move in the book into a funding charge that reverses when the oracle catches up"
+      },
+      "key": "xyz:RDDT",
+      "severity": "notable",
+      "title": "xyz:RDDT: the oracle did not move for 22 snapshots while the book moved 9 times, gap -17.5bp"
+    },
+    {
+      "detector": "stale_oracle",
+      "evidence": {
+        "coin": "para:RDDT",
+        "dex": "para",
+        "diff_corr": null,
+        "funding_apr": -0.617231352,
+        "funding_apr_first": -0.617231352,
+        "funding_apr_last": -0.6871484160000001,
+        "gap_bps_first": -6.633872804876181,
+        "gap_bps_last": -12.579324846982427,
+        "gap_bps_mean": -11.798166411211373,
+        "gap_bps_stdev": 1.3925026488745442,
+        "gap_widening_bps": 1.5304560759103296,
+        "mark_moves": 16,
+        "oi_change_pct": 0.0,
+        "oi_first": 576.6,
+        "oi_last": 576.6,
+        "oi_usd": 92071.48800000001,
+        "oracle_moves": 0,
+        "points": 22,
+        "regime": "oracle frozen while the book moved",
+        "span_s": 1410.6050369739532,
+        "why": "funding is charged on the gap between mark and oracle, so a frozen oracle turns every move in the book into a funding charge that reverses when the oracle catches up"
+      },
+      "key": "para:RDDT",
+      "severity": "notable",
+      "title": "para:RDDT: the oracle did not move for 22 snapshots while the book moved 16 times, gap -12.6bp"
+    },
+    {
+      "detector": "stale_oracle",
+      "evidence": {
+        "coin": "xyz:LYTE",
+        "dex": "xyz",
+        "diff_corr": null,
+        "funding_apr": -0.23197969200000002,
+        "funding_apr_first": -0.23197969200000002,
+        "funding_apr_last": 0.05475,
+        "gap_bps_first": 10.427528675703778,
+        "gap_bps_last": 8.021175904387412,
+        "gap_bps_mean": 8.349314918657695,
+        "gap_bps_stdev": 0.6693146178888391,
+        "gap_widening_bps": -0.6562780285405676,
+        "mark_moves": 5,
+        "oi_change_pct": 0.0,
+        "oi_first": 20921.16,
+        "oi_last": 20921.16,
+        "oi_usd": 522192.1536,
+        "oracle_moves": 0,
+        "points": 22,
+        "regime": "oracle frozen while the book moved",
+        "span_s": 1410.6050369739532,
+        "why": "funding is charged on the gap between mark and oracle, so a frozen oracle turns every move in the book into a funding charge that reverses when the oracle catches up"
+      },
+      "key": "xyz:LYTE",
+      "severity": "notable",
+      "title": "xyz:LYTE: the oracle did not move for 22 snapshots while the book moved 5 times, gap 8.0bp"
+    },
+    {
+      "detector": "stale_oracle",
+      "evidence": {
+        "coin": "xyz:NET",
+        "dex": "xyz",
+        "diff_corr": null,
+        "funding_apr": 0.0135999,
+        "funding_apr_first": 0.0135999,
+        "funding_apr_last": 0.010945620000000001,
+        "gap_bps_first": -4.427472466654717,
+        "gap_bps_last": -3.043887320826101,
+        "gap_bps_mean": -4.578409028018696,
+        "gap_bps_stdev": 1.5173107985047132,
+        "gap_widening_bps": -1.71061436211681,
+        "mark_moves": 15,
+        "oi_change_pct": 0.0,
+        "oi_first": 1597.98,
+        "oi_last": 1597.98,
+        "oi_usd": 577222.3356000001,
+        "oracle_moves": 0,
+        "points": 22,
+        "regime": "oracle frozen while the book moved",
+        "span_s": 1410.6050369739532,
+        "why": "funding is charged on the gap between mark and oracle, so a frozen oracle turns every move in the book into a funding charge that reverses when the oracle catches up"
+      },
+      "key": "xyz:NET",
+      "severity": "notable",
+      "title": "xyz:NET: the oracle did not move for 22 snapshots while the book moved 15 times, gap -3.0bp"
+    },
+    {
+      "detector": "stale_oracle",
+      "evidence": {
+        "coin": "para:UNITREE",
+        "dex": "para",
+        "diff_corr": null,
+        "funding_apr": -1.116613548,
+        "funding_apr_first": -1.116613548,
+        "funding_apr_last": -1.128468456,
+        "gap_bps_first": 0.0,
+        "gap_bps_last": -12.87811979451093,
+        "gap_bps_mean": -3.40758330091917,
+        "gap_bps_stdev": 5.565942610508344,
+        "gap_widening_bps": 6.81516660183834,
+        "mark_moves": 6,
+        "oi_change_pct": 0.0,
+        "oi_first": 23835.96,
+        "oi_last": 23835.96,
+        "oi_usd": 1532535.431796,
+        "oracle_moves": 0,
+        "points": 22,
+        "regime": "oracle frozen while the book moved",
+        "span_s": 1410.6050369739532,
+        "why": "funding is charged on the gap between mark and oracle, so a frozen oracle turns every move in the book into a funding charge that reverses when the oracle catches up"
+      },
+      "key": "para:UNITREE",
+      "severity": "notable",
+      "title": "para:UNITREE: the oracle did not move for 22 snapshots while the book moved 6 times, gap -12.9bp"
+    },
+    {
+      "detector": "stale_oracle",
+      "evidence": {
+        "coin": "xyz:HYUNDAI",
+        "dex": "xyz",
+        "diff_corr": null,
+        "funding_apr": -0.143642976,
+        "funding_apr_first": -0.143642976,
+        "funding_apr_last": -0.132553692,
+        "gap_bps_first": -4.185151083953893,
+        "gap_bps_last": 5.8592115175364015,
+        "gap_bps_mean": -2.2067160260846825,
+        "gap_bps_stdev": 3.4191378495416713,
+        "gap_widening_bps": -0.6087492485749175,
+        "mark_moves": 6,
+        "oi_change_pct": -0.0007852110215367247,
+        "oi_first": 5094.172,
+        "oi_last": 5094.132,
+        "oi_usd": 1216692.04048,
+        "oracle_moves": 0,
+        "points": 22,
+        "regime": "oracle frozen while the book moved",
+        "span_s": 1410.6050369739532,
+        "why": "funding is charged on the gap between mark and oracle, so a frozen oracle turns every move in the book into a funding charge that reverses when the oracle catches up"
+      },
+      "key": "xyz:HYUNDAI",
+      "severity": "notable",
+      "title": "xyz:HYUNDAI: the oracle did not move for 22 snapshots while the book moved 6 times, gap 5.9bp"
+    },
+    {
+      "detector": "stale_oracle",
+      "evidence": {
+        "coin": "xyz:SHAZ",
+        "dex": "xyz",
+        "diff_corr": null,
+        "funding_apr": -0.30440036400000003,
+        "funding_apr_first": -0.30440036400000003,
+        "funding_apr_last": -0.019501512,
+        "gap_bps_first": -22.333158171308682,
+        "gap_bps_last": 0.2627430373088989,
+        "gap_bps_mean": -0.919600630583777,
+        "gap_bps_stdev": 7.444468017492163,
+        "gap_widening_bps": -1.839201261167554,
+        "mark_moves": 17,
+        "oi_change_pct": -0.06743428673554597,
+        "oi_first": 24171.68,
+        "oi_last": 24155.38,
+        "oi_usd": 917919.5480000001,
+        "oracle_moves": 0,
+        "points": 22,
+        "regime": "oracle frozen while the book moved",
+        "span_s": 1410.6050369739532,
+        "why": "funding is charged on the gap between mark and oracle, so a frozen oracle turns every move in the book into a funding charge that reverses when the oracle catches up"
+      },
+      "key": "xyz:SHAZ",
+      "severity": "notable",
+      "title": "xyz:SHAZ: the oracle did not move for 22 snapshots while the book moved 17 times, gap 0.3bp"
+    },
+    {
+      "detector": "stale_oracle",
+      "evidence": {
+        "coin": "xyz:KSTR",
+        "dex": "xyz",
+        "diff_corr": null,
+        "funding_apr": 0.27585677999999997,
+        "funding_apr_first": 0.27585677999999997,
+        "funding_apr_last": 0.05475,
+        "gap_bps_first": -7.088846880907641,
+        "gap_bps_last": 0.0,
+        "gap_bps_mean": -0.6014779171679465,
+        "gap_bps_stdev": 1.6567124492747216,
+        "gap_widening_bps": -1.202955834335893,
+        "mark_moves": 4,
+        "oi_change_pct": 0.0,
+        "oi_first": 2105.68,
+        "oi_last": 2105.68,
+        "oi_usd": 44524.603599999995,
+        "oracle_moves": 0,
+        "points": 22,
+        "regime": "oracle frozen while the book moved",
+        "span_s": 1410.6050369739532,
+        "why": "funding is charged on the gap between mark and oracle, so a frozen oracle turns every move in the book into a funding charge that reverses when the oracle catches up"
+      },
+      "key": "xyz:KSTR",
+      "severity": "notable",
+      "title": "xyz:KSTR: the oracle did not move for 22 snapshots while the book moved 4 times, gap 0.0bp"
+    },
+    {
+      "detector": "stale_oracle",
+      "evidence": {
+        "coin": "xyz:BABA",
+        "dex": "xyz",
+        "diff_corr": null,
+        "funding_apr": 0.05475,
+        "funding_apr_first": 0.05475,
+        "funding_apr_last": 0.05475,
+        "gap_bps_first": 0.0,
+        "gap_bps_last": -0.8992805755400284,
+        "gap_bps_mean": -0.5313930673645623,
+        "gap_bps_stdev": 0.4421457581097736,
+        "gap_widening_bps": 0.5722694571618362,
+        "mark_moves": 7,
+        "oi_change_pct": 0.013093865451230258,
+        "oi_first": 109883.518,
+        "oi_last": 109897.906,
+        "oi_usd": 12219047.2016,
+        "oracle_moves": 0,
+        "points": 22,
+        "regime": "oracle frozen while the book moved",
+        "span_s": 1410.6050369739532,
+        "why": "funding is charged on the gap between mark and oracle, so a frozen oracle turns every move in the book into a funding charge that reverses when the oracle catches up"
+      },
+      "key": "xyz:BABA",
+      "severity": "notable",
+      "title": "xyz:BABA: the oracle did not move for 22 snapshots while the book moved 7 times, gap -0.9bp"
+    },
+    {
+      "detector": "stale_oracle",
+      "evidence": {
+        "coin": "xyz:BX",
+        "dex": "xyz",
+        "diff_corr": null,
+        "funding_apr": 0.05475,
+        "funding_apr_first": 0.05475,
+        "funding_apr_last": 0.05475,
+        "gap_bps_first": 0.0,
+        "gap_bps_last": 0.0,
+        "gap_bps_mean": 0.31778062014870406,
+        "gap_bps_stdev": 0.5617620785921255,
+        "gap_widening_bps": -0.6355612402974081,
+        "mark_moves": 3,
+        "oi_change_pct": -0.21594410211267512,
+        "oi_first": 4362.24,
+        "oi_last": 4352.82,
+        "oi_usd": 499171.12320000003,
+        "oracle_moves": 0,
+        "points": 22,
+        "regime": "oracle frozen while the book moved",
+        "span_s": 1410.6050369739532,
+        "why": "funding is charged on the gap between mark and oracle, so a frozen oracle turns every move in the book into a funding charge that reverses when the oracle catches up"
+      },
+      "key": "xyz:BX",
+      "severity": "notable",
+      "title": "xyz:BX: the oracle did not move for 22 snapshots while the book moved 3 times, gap 0.0bp"
+    },
+    {
+      "detector": "dead_market",
+      "evidence": {
+        "all_markets_dead": true,
+        "count": 25,
+        "deployer": "0x53e655101ea361537124ef814ad4e654b54d0637",
+        "dex": "hyna",
+        "dex_hour_vlm": 0,
+        "dex_oi_usd": 0,
+        "full_name": "HyENA",
+        "markets": [
+          "hyna:1000PEPE*",
+          "hyna:ADA*",
+          "hyna:BASED*",
+          "hyna:BCH*",
+          "hyna:BNB*",
+          "hyna:BTC*",
+          "hyna:DOGE*",
+          "hyna:ENA*",
+          "hyna:ETH*",
+          "hyna:FARTCOIN*",
+          "hyna:GOLD*",
+          "hyna:HYPE*",
+          "hyna:IP*",
+          "hyna:LIGHTER*",
+          "hyna:LINK*",
+          "hyna:LIT*",
+          "hyna:LTC*",
+          "hyna:PUMP*",
+          "hyna:SILVER*",
+          "hyna:SOL*",
+          "hyna:SUI*",
+          "hyna:XMR*",
+          "hyna:XPL*",
+          "hyna:XRP*",
+          "hyna:ZEC*"
+        ],
+        "markets_total": 25,
+        "note": "a market name marked * is formally delisted",
+        "why": "HIP-3 requires the deployer to stake 500,000 HYPE for at least 183 days; a book with no open interest earns its deployer no fee share against that locked stake"
+      },
+      "key": "hyna",
+      "severity": "notable",
+      "title": "hyna (HyENA): 25 of 25 markets carry no open interest and did not trade in the window"
+    },
+    {
+      "detector": "dead_market",
+      "evidence": {
+        "all_markets_dead": true,
+        "count": 23,
+        "deployer": "0x71f0019cc7fa79e4f42587fb7b9a817d8d2429ec",
+        "dex": "km",
+        "dex_hour_vlm": 0,
+        "dex_oi_usd": 0,
+        "full_name": "Markets by Kinetiq",
+        "markets": [
+          "km:AAPL*",
+          "km:BABA*",
+          "km:BMNR*",
+          "km:EUR*",
+          "km:GLDMINE*",
+          "km:GOLD*",
+          "km:GOOGL*",
+          "km:JPN225*",
+          "km:MU*",
+          "km:NVDA*",
+          "km:PLTR*",
+          "km:RTX*",
+          "km:SEMI*",
+          "km:SILVER*",
+          "km:SMALL2000*",
+          "km:TENCENT*",
+          "km:TSLA*",
+          "km:US500*",
+          "km:USBOND*",
+          "km:USENERGY*",
+          "km:USOIL*",
+          "km:USTECH*",
+          "km:XIAOMI*"
+        ],
+        "markets_total": 23,
+        "note": "a market name marked * is formally delisted",
+        "why": "HIP-3 requires the deployer to stake 500,000 HYPE for at least 183 days; a book with no open interest earns its deployer no fee share against that locked stake"
+      },
+      "key": "km",
+      "severity": "notable",
+      "title": "km (Markets by Kinetiq): 23 of 23 markets carry no open interest and did not trade in the window"
+    },
+    {
+      "detector": "dead_market",
+      "evidence": {
+        "all_markets_dead": true,
+        "count": 17,
+        "deployer": "0xffa8198c62adb1e811629bd54c9b646d726deef7",
+        "dex": "cash",
+        "dex_hour_vlm": 0,
+        "dex_oi_usd": 0,
+        "full_name": "dreamcash",
+        "markets": [
+          "cash:AMZN*",
+          "cash:BTC*",
+          "cash:CAR*",
+          "cash:ETH*",
+          "cash:EWY*",
+          "cash:GOLD*",
+          "cash:GOOGL*",
+          "cash:HOOD*",
+          "cash:INTC*",
+          "cash:KWEB*",
+          "cash:META*",
+          "cash:MSFT*",
+          "cash:NVDA*",
+          "cash:SILVER*",
+          "cash:TSLA*",
+          "cash:USA500*",
+          "cash:WTI*"
+        ],
+        "markets_total": 17,
+        "note": "a market name marked * is formally delisted",
+        "why": "HIP-3 requires the deployer to stake 500,000 HYPE for at least 183 days; a book with no open interest earns its deployer no fee share against that locked stake"
+      },
+      "key": "cash",
+      "severity": "notable",
+      "title": "cash (dreamcash): 17 of 17 markets carry no open interest and did not trade in the window"
+    },
+    {
+      "detector": "dead_market",
+      "evidence": {
+        "all_markets_dead": true,
+        "count": 16,
+        "deployer": "0x2fab552502a6d45920d5741a2f3ebf4c35536352",
+        "dex": "flx",
+        "dex_hour_vlm": 0,
+        "dex_oi_usd": 0,
+        "full_name": "Felix Exchange",
+        "markets": [
+          "flx:BTC*",
+          "flx:COIN*",
+          "flx:COPPER*",
+          "flx:CRCL*",
+          "flx:GAS*",
+          "flx:GOLD*",
+          "flx:NVDA*",
+          "flx:OIL*",
+          "flx:PALLADIUM*",
+          "flx:PLATINUM*",
+          "flx:SILVER*",
+          "flx:TSLA*",
+          "flx:USA100*",
+          "flx:USA500*",
+          "flx:USDE*",
+          "flx:XMR*"
+        ],
+        "markets_total": 16,
+        "note": "a market name marked * is formally delisted",
+        "why": "HIP-3 requires the deployer to stake 500,000 HYPE for at least 183 days; a book with no open interest earns its deployer no fee share against that locked stake"
+      },
+      "key": "flx",
+      "severity": "notable",
+      "title": "flx (Felix Exchange): 16 of 16 markets carry no open interest and did not trade in the window"
+    },
+    {
+      "detector": "dead_market",
+      "evidence": {
+        "all_markets_dead": true,
+        "count": 15,
+        "deployer": "0x8888888192a4a0593c13532ba48449fc24c3beda",
+        "dex": "vntl",
+        "dex_hour_vlm": 0,
+        "dex_oi_usd": 0,
+        "full_name": "Ventuals",
+        "markets": [
+          "vntl:ANTHROPIC*",
+          "vntl:BIOTECH*",
+          "vntl:DEFENSE*",
+          "vntl:ENERGY*",
+          "vntl:GOLDJM*",
+          "vntl:INFOTECH*",
+          "vntl:MAG7*",
+          "vntl:NUCLEAR*",
+          "vntl:OPENAI*",
+          "vntl:ROBOT*",
+          "vntl:SEMIS*",
+          "vntl:SILVERJM*",
+          "vntl:SOY*",
+          "vntl:SPACEX*",
+          "vntl:WHEAT*"
+        ],
+        "markets_total": 15,
+        "note": "a market name marked * is formally delisted",
+        "why": "HIP-3 requires the deployer to stake 500,000 HYPE for at least 183 days; a book with no open interest earns its deployer no fee share against that locked stake"
+      },
+      "key": "vntl",
+      "severity": "notable",
+      "title": "vntl (Ventuals): 15 of 15 markets carry no open interest and did not trade in the window"
+    },
+    {
+      "detector": "cross_venue_funding",
+      "evidence": {
+        "assumed_total_round_trip_bps": 26.12827136980708,
+        "break_even_hours": 102.48390417653296,
+        "coin": "XRP",
+        "hl_apr": 0.1095,
+        "hl_hour_vlm": 1058343.1261,
+        "hl_oi_usd": 279181805.952,
+        "hl_round_trip_bps": 13.06413568490354,
+        "other_apr": -0.1138362,
+        "other_venue": "BybitPerp",
+        "size_usd": 100000.0,
+        "spread_apr": 0.22333619999999998,
+        "venues": {
+          "BinPerp": {
+            "apr": 0.017859450000000002,
+            "interval_h": 8.0,
+            "rate": 1.631e-05
+          },
+          "BybitPerp": {
+            "apr": -0.1138362,
+            "interval_h": 8.0,
+            "rate": -0.00010396
+          },
+          "HlPerp": {
+            "apr": 0.1095,
+            "interval_h": 1.0,
+            "rate": 1.25e-05
+          }
+        },
+        "why": "the other venue is a prediction for its next interval, not a settled rate, and it can move before the interval closes; the Hyperliquid leg is the only one this window measures directly"
+      },
+      "key": "XRP",
+      "severity": "info",
+      "title": "XRP funding is 11% on Hyperliquid against -11% on Bybit: 22% a year for a delta-neutral pair, 102 hours to clear both round trips"
+    },
+    {
+      "detector": "cross_venue_funding",
+      "evidence": {
+        "assumed_total_round_trip_bps": 78.80248357403048,
+        "break_even_hours": 133.5909289431061,
+        "coin": "USELESS",
+        "hl_apr": 0.221142696,
+        "hl_hour_vlm": 183066.51247,
+        "hl_oi_usd": 9804024.39216,
+        "hl_round_trip_bps": 39.40124178701524,
+        "other_apr": 0.7378766999999999,
+        "other_venue": "BinPerp",
+        "size_usd": 100000.0,
+        "spread_apr": -0.5167340039999999,
+        "venues": {
+          "BinPerp": {
+            "apr": 0.7378766999999999,
+            "interval_h": 4.0,
+            "rate": 0.00033693
+          },
+          "BybitPerp": {
+            "apr": 0.1095,
+            "interval_h": 4.0,
+            "rate": 5e-05
+          },
+          "HlPerp": {
+            "apr": 0.221142696,
+            "interval_h": 1.0,
+            "rate": 2.52446e-05
+          }
+        },
+        "why": "the other venue is a prediction for its next interval, not a settled rate, and it can move before the interval closes; the Hyperliquid leg is the only one this window measures directly"
+      },
+      "key": "USELESS",
+      "severity": "info",
+      "title": "USELESS funding is 22% on Hyperliquid against 74% on Bin: 52% a year for a delta-neutral pair, 134 hours to clear both round trips"
+    },
+    {
+      "detector": "cross_venue_funding",
+      "evidence": {
+        "assumed_total_round_trip_bps": 33.24444268314581,
+        "break_even_hours": 136.43643434318298,
+        "coin": "TRX",
+        "hl_apr": -0.289956,
+        "hl_hour_vlm": 43026.72639,
+        "hl_oi_usd": 13724506.369080001,
+        "hl_round_trip_bps": 16.622221341572907,
+        "other_apr": -0.50340435,
+        "other_venue": "BinPerp",
+        "size_usd": 100000.0,
+        "spread_apr": 0.21344834999999995,
+        "venues": {
+          "BinPerp": {
+            "apr": -0.50340435,
+            "interval_h": 8.0,
+            "rate": -0.00045973
+          },
+          "BybitPerp": {
+            "apr": -0.4575348,
+            "interval_h": 8.0,
+            "rate": -0.00041784
+          },
+          "HlPerp": {
+            "apr": -0.289956,
+            "interval_h": 1.0,
+            "rate": -3.31e-05
+          }
+        },
+        "why": "the other venue is a prediction for its next interval, not a settled rate, and it can move before the interval closes; the Hyperliquid leg is the only one this window measures directly"
+      },
+      "key": "TRX",
+      "severity": "info",
+      "title": "TRX funding is -29% on Hyperliquid against -50% on Bin: 21% a year for a delta-neutral pair, 136 hours to clear both round trips"
+    },
+    {
+      "detector": "cross_venue_funding",
+      "evidence": {
+        "assumed_total_round_trip_bps": 56.657128334561406,
+        "break_even_hours": 147.61187607519417,
+        "coin": "VVV",
+        "hl_apr": 0.1095,
+        "hl_hour_vlm": 177944.15894,
+        "hl_oi_usd": 68618419.77017999,
+        "hl_round_trip_bps": 28.328564167280703,
+        "other_apr": -0.2267307,
+        "other_venue": "BybitPerp",
+        "size_usd": 100000.0,
+        "spread_apr": 0.3362307,
+        "venues": {
+          "BinPerp": {
+            "apr": 0.1095,
+            "interval_h": 4.0,
+            "rate": 5e-05
+          },
+          "BybitPerp": {
+            "apr": -0.2267307,
+            "interval_h": 4.0,
+            "rate": -0.00010353
+          },
+          "HlPerp": {
+            "apr": 0.1095,
+            "interval_h": 1.0,
+            "rate": 1.25e-05
+          }
+        },
+        "why": "the other venue is a prediction for its next interval, not a settled rate, and it can move before the interval closes; the Hyperliquid leg is the only one this window measures directly"
+      },
+      "key": "VVV",
+      "severity": "info",
+      "title": "VVV funding is 11% on Hyperliquid against -23% on Bybit: 34% a year for a delta-neutral pair, 148 hours to clear both round trips"
+    },
+    {
+      "detector": "cross_venue_funding",
+      "evidence": {
+        "assumed_total_round_trip_bps": 48.634789134033106,
+        "break_even_hours": 150.118957123337,
+        "coin": "AAVE",
+        "hl_apr": 0.1095,
+        "hl_hour_vlm": 207139.4347,
+        "hl_oi_usd": 72748341.6912,
+        "hl_round_trip_bps": 24.317394567016553,
+        "other_apr": -0.17430210000000002,
+        "other_venue": "BybitPerp",
+        "size_usd": 100000.0,
+        "spread_apr": 0.2838021,
+        "venues": {
+          "BinPerp": {
+            "apr": 0.07186485,
+            "interval_h": 8.0,
+            "rate": 6.563e-05
+          },
+          "BybitPerp": {
+            "apr": -0.17430210000000002,
+            "interval_h": 8.0,
+            "rate": -0.00015918
+          },
+          "HlPerp": {
+            "apr": 0.1095,
+            "interval_h": 1.0,
+            "rate": 1.25e-05
+          }
+        },
+        "why": "the other venue is a prediction for its next interval, not a settled rate, and it can move before the interval closes; the Hyperliquid leg is the only one this window measures directly"
+      },
+      "key": "AAVE",
+      "severity": "info",
+      "title": "AAVE funding is 11% on Hyperliquid against -17% on Bybit: 28% a year for a delta-neutral pair, 150 hours to clear both round trips"
+    },
+    {
+      "detector": "cross_venue_funding",
+      "evidence": {
+        "assumed_total_round_trip_bps": 52.02239861233225,
+        "break_even_hours": 150.77863520710744,
+        "coin": "MON",
+        "hl_apr": 0.1095,
+        "hl_hour_vlm": 77791.027227,
+        "hl_oi_usd": 46670319.656562,
+        "hl_round_trip_bps": 26.011199306166127,
+        "other_apr": -0.19274190000000002,
+        "other_venue": "BybitPerp",
+        "size_usd": 100000.0,
+        "spread_apr": 0.3022419,
+        "venues": {
+          "BinPerp": {
+            "apr": 0.1095,
+            "interval_h": 4.0,
+            "rate": 5e-05
+          },
+          "BybitPerp": {
+            "apr": -0.19274190000000002,
+            "interval_h": 8.0,
+            "rate": -0.00017602
+          },
+          "HlPerp": {
+            "apr": 0.1095,
+            "interval_h": 1.0,
+            "rate": 1.25e-05
+          }
+        },
+        "why": "the other venue is a prediction for its next interval, not a settled rate, and it can move before the interval closes; the Hyperliquid leg is the only one this window measures directly"
+      },
+      "key": "MON",
+      "severity": "info",
+      "title": "MON funding is 11% on Hyperliquid against -19% on Bybit: 30% a year for a delta-neutral pair, 151 hours to clear both round trips"
+    },
+    {
+      "detector": "cross_venue_funding",
+      "evidence": {
+        "assumed_total_round_trip_bps": 60.11417975005283,
+        "break_even_hours": 179.1511838773739,
+        "coin": "GRAM",
+        "hl_apr": 0.1095,
+        "hl_hour_vlm": 253694.5556,
+        "hl_oi_usd": 32511661.67196,
+        "hl_round_trip_bps": 30.057089875026413,
+        "other_apr": -0.18444180000000002,
+        "other_venue": "BinPerp",
+        "size_usd": 100000.0,
+        "spread_apr": 0.29394180000000003,
+        "venues": {
+          "BinPerp": {
+            "apr": -0.18444180000000002,
+            "interval_h": 4.0,
+            "rate": -8.422e-05
+          },
+          "BybitPerp": {
+            "apr": 0.1095,
+            "interval_h": 4.0,
+            "rate": 5e-05
+          },
+          "HlPerp": {
+            "apr": 0.1095,
+            "interval_h": 1.0,
+            "rate": 1.25e-05
+          }
+        },
+        "why": "the other venue is a prediction for its next interval, not a settled rate, and it can move before the interval closes; the Hyperliquid leg is the only one this window measures directly"
+      },
+      "key": "GRAM",
+      "severity": "info",
+      "title": "GRAM funding is 11% on Hyperliquid against -18% on Bin: 29% a year for a delta-neutral pair, 179 hours to clear both round trips"
+    },
+    {
+      "detector": "cross_venue_funding",
+      "evidence": {
+        "assumed_total_round_trip_bps": 63.438678273266945,
+        "break_even_hours": 183.57480097827656,
+        "coin": "SKY",
+        "hl_apr": -0.193222824,
+        "hl_hour_vlm": 5245.778747,
+        "hl_oi_usd": 6510734.528716,
+        "hl_round_trip_bps": 31.719339136633472,
+        "other_apr": 0.1095,
+        "other_venue": "BinPerp",
+        "size_usd": 100000.0,
+        "spread_apr": -0.302722824,
+        "venues": {
+          "BinPerp": {
+            "apr": 0.1095,
+            "interval_h": 4.0,
+            "rate": 5e-05
+          },
+          "BybitPerp": {
+            "apr": 0.0382374,
+            "interval_h": 4.0,
+            "rate": 1.746e-05
+          },
+          "HlPerp": {
+            "apr": -0.193222824,
+            "interval_h": 1.0,
+            "rate": -2.20574e-05
+          }
+        },
+        "why": "the other venue is a prediction for its next interval, not a settled rate, and it can move before the interval closes; the Hyperliquid leg is the only one this window measures directly"
+      },
+      "key": "SKY",
+      "severity": "info",
+      "title": "SKY funding is -19% on Hyperliquid against 11% on Bin: 30% a year for a delta-neutral pair, 184 hours to clear both round trips"
+    },
+    {
+      "detector": "cross_venue_funding",
+      "evidence": {
+        "assumed_total_round_trip_bps": 81.95637141391097,
+        "break_even_hours": 239.22581340351726,
+        "coin": "CHIP",
+        "hl_apr": -0.19060884,
+        "hl_hour_vlm": 57548.102345,
+        "hl_oi_usd": 11099435.72364,
+        "hl_round_trip_bps": 40.978185706955486,
+        "other_apr": 0.1095,
+        "other_venue": "BybitPerp",
+        "size_usd": 100000.0,
+        "spread_apr": -0.30010884,
+        "venues": {
+          "BinPerp": {
+            "apr": -0.2329065,
+            "interval_h": 4.0,
+            "rate": -0.00010635
+          },
+          "BybitPerp": {
+            "apr": 0.1095,
+            "interval_h": 4.0,
+            "rate": 5e-05
+          },
+          "HlPerp": {
+            "apr": -0.19060884,
+            "interval_h": 1.0,
+            "rate": -2.1759e-05
+          }
+        },
+        "why": "the other venue is a prediction for its next interval, not a settled rate, and it can move before the interval closes; the Hyperliquid leg is the only one this window measures directly"
+      },
+      "key": "CHIP",
+      "severity": "info",
+      "title": "CHIP funding is -19% on Hyperliquid against 11% on Bybit: 30% a year for a delta-neutral pair, 239 hours to clear both round trips"
+    },
+    {
+      "detector": "cross_venue_funding",
+      "evidence": {
+        "assumed_total_round_trip_bps": 47.382903069121966,
+        "break_even_hours": 242.89582503714962,
+        "coin": "kPEPE",
+        "hl_apr": 0.1095,
+        "hl_hour_vlm": 271049.917454,
+        "hl_oi_usd": 27272061.98976,
+        "hl_round_trip_bps": 23.691451534560983,
+        "other_apr": -0.0613857,
+        "other_venue": "BinPerp",
+        "size_usd": 100000.0,
+        "spread_apr": 0.1708857,
+        "venues": {
+          "BinPerp": {
+            "apr": -0.0613857,
+            "interval_h": 8.0,
+            "rate": -5.606e-05
+          },
+          "BybitPerp": {
+            "apr": 0.1095,
+            "interval_h": 8.0,
+            "rate": 0.0001
+          },
+          "HlPerp": {
+            "apr": 0.1095,
+            "interval_h": 1.0,
+            "rate": 1.25e-05
+          }
+        },
+        "why": "the other venue is a prediction for its next interval, not a settled rate, and it can move before the interval closes; the Hyperliquid leg is the only one this window measures directly"
+      },
+      "key": "kPEPE",
+      "severity": "info",
+      "title": "kPEPE funding is 11% on Hyperliquid against -6% on Bin: 17% a year for a delta-neutral pair, 243 hours to clear both round trips"
+    },
+    {
+      "detector": "cross_venue_funding",
+      "evidence": {
+        "assumed_total_round_trip_bps": 46.364720326627506,
+        "break_even_hours": 246.97555173188897,
+        "coin": "BCH",
+        "hl_apr": 0.07236198,
+        "hl_hour_vlm": 30975.23598,
+        "hl_oi_usd": 7266336.47152,
+        "hl_round_trip_bps": 23.182360163313753,
+        "other_apr": -0.09208949999999999,
+        "other_venue": "BinPerp",
+        "size_usd": 100000.0,
+        "spread_apr": 0.16445147999999998,
+        "venues": {
+          "BinPerp": {
+            "apr": -0.09208949999999999,
+            "interval_h": 8.0,
+            "rate": -8.41e-05
+          },
+          "BybitPerp": {
+            "apr": 0.1095,
+            "interval_h": 8.0,
+            "rate": 0.0001
+          },
+          "HlPerp": {
+            "apr": 0.07236198,
+            "interval_h": 1.0,
+            "rate": 8.2605e-06
+          }
+        },
+        "why": "the other venue is a prediction for its next interval, not a settled rate, and it can move before the interval closes; the Hyperliquid leg is the only one this window measures directly"
+      },
+      "key": "BCH",
+      "severity": "info",
+      "title": "BCH funding is 7% on Hyperliquid against -9% on Bin: 16% a year for a delta-neutral pair, 247 hours to clear both round trips"
+    },
+    {
+      "detector": "cross_venue_funding",
+      "evidence": {
+        "assumed_total_round_trip_bps": 59.68431057207381,
+        "break_even_hours": 250.06100483106516,
+        "coin": "MET",
+        "hl_apr": 0.036576503999999996,
+        "hl_hour_vlm": 67092.31394000001,
+        "hl_oi_usd": 8571783.47976,
+        "hl_round_trip_bps": 29.842155286036906,
+        "other_apr": -0.1725063,
+        "other_venue": "BybitPerp",
+        "size_usd": 100000.0,
+        "spread_apr": 0.209082804,
+        "venues": {
+          "BinPerp": {
+            "apr": -0.1535847,
+            "interval_h": 4.0,
+            "rate": -7.013e-05
+          },
+          "BybitPerp": {
+            "apr": -0.1725063,
+            "interval_h": 4.0,
+            "rate": -7.877e-05
+          },
+          "HlPerp": {
+            "apr": 0.036576503999999996,
+            "interval_h": 1.0,
+            "rate": 4.1754e-06
+          }
+        },
+        "why": "the other venue is a prediction for its next interval, not a settled rate, and it can move before the interval closes; the Hyperliquid leg is the only one this window measures directly"
+      },
+      "key": "MET",
+      "severity": "info",
+      "title": "MET funding is 4% on Hyperliquid against -17% on Bybit: 21% a year for a delta-neutral pair, 250 hours to clear both round trips"
+    },
+    {
+      "detector": "cross_venue_funding",
+      "evidence": {
+        "assumed_total_round_trip_bps": 55.566109470141,
+        "break_even_hours": 265.59206499570297,
+        "coin": "JUP",
+        "hl_apr": -0.073773216,
+        "hl_hour_vlm": 446414.79388,
+        "hl_oi_usd": 16453181.823176,
+        "hl_round_trip_bps": 27.7830547350705,
+        "other_apr": 0.1095,
+        "other_venue": "BybitPerp",
+        "size_usd": 100000.0,
+        "spread_apr": -0.18327321600000002,
+        "venues": {
+          "BinPerp": {
+            "apr": 0.0203451,
+            "interval_h": 4.0,
+            "rate": 9.29e-06
+          },
+          "BybitPerp": {
+            "apr": 0.1095,
+            "interval_h": 4.0,
+            "rate": 5e-05
+          },
+          "HlPerp": {
+            "apr": -0.073773216,
+            "interval_h": 1.0,
+            "rate": -8.4216e-06
+          }
+        },
+        "why": "the other venue is a prediction for its next interval, not a settled rate, and it can move before the interval closes; the Hyperliquid leg is the only one this window measures directly"
+      },
+      "key": "JUP",
+      "severity": "info",
+      "title": "JUP funding is -7% on Hyperliquid against 11% on Bybit: 18% a year for a delta-neutral pair, 266 hours to clear both round trips"
+    },
+    {
+      "detector": "dead_market",
+      "evidence": {
+        "all_markets_dead": false,
+        "count": 56,
+        "deployer": null,
+        "dex": "core",
+        "dex_hour_vlm": 84340622.823469,
+        "dex_oi_usd": 11800767108.374847,
+        "full_name": "HyperCore (first-party)",
+        "markets": [
+          "AI*",
+          "AI16Z*",
+          "ARK*",
+          "BADGER*",
+          "BLAST*",
+          "BLZ*",
+          "BNT*",
+          "CANTO*",
+          "CATI*",
+          "CHILLGUY*",
+          "CYBER*",
+          "DOOD*",
+          "FRIEND*",
+          "FTM*",
+          "FTT*",
+          "FXS*",
+          "HPOS*",
+          "ILV*",
+          "IP*",
+          "JELLY*",
+          "LAUNCHCOIN*",
+          "LISTA*",
+          "LOOM*",
+          "MATIC*",
+          "MAV*",
+          "MAVIA*",
+          "MEW*",
+          "MKR*",
+          "MYRO*",
+          "NEIROETH*",
+          "NFTI*",
+          "NTRN*",
+          "OGN*",
+          "OM*",
+          "OMNI*",
+          "ORBS*",
+          "OX*",
+          "PANDORA*",
+          "PIXEL*",
+          "PROMPT*"
+        ],
+        "markets_total": 234,
+        "note": "a market name marked * is formally delisted",
+        "why": "HIP-3 requires the deployer to stake 500,000 HYPE for at least 183 days; a book with no open interest earns its deployer no fee share against that locked stake"
+      },
+      "key": "core",
+      "severity": "info",
+      "title": "core (HyperCore (first-party)): 56 of 234 markets carry no open interest and did not trade in the window"
+    },
+    {
+      "detector": "dead_market",
+      "evidence": {
+        "all_markets_dead": false,
+        "count": 19,
+        "deployer": "0x88806a71d74ad0a510b350545c9ae490912f0888",
+        "dex": "xyz",
+        "dex_hour_vlm": 31519585.719576,
+        "dex_oi_usd": 3534510686.245086,
+        "full_name": "XYZ",
+        "markets": [
+          "xyz:ACN*",
+          "xyz:ALUMINIUM*",
+          "xyz:AMEC*",
+          "xyz:CAMBRICON*",
+          "xyz:CATL*",
+          "xyz:CORN*",
+          "xyz:DXY*",
+          "xyz:H100*",
+          "xyz:IBIDEN*",
+          "xyz:IBOV*",
+          "xyz:INNOLIGHT*",
+          "xyz:KRW*",
+          "xyz:NIFTY*",
+          "xyz:TTF*",
+          "xyz:URANIUM*",
+          "xyz:VIX*",
+          "xyz:VOL*",
+          "xyz:WHEAT*",
+          "xyz:YMTC*"
+        ],
+        "markets_total": 133,
+        "note": "a market name marked * is formally delisted",
+        "why": "HIP-3 requires the deployer to stake 500,000 HYPE for at least 183 days; a book with no open interest earns its deployer no fee share against that locked stake"
+      },
+      "key": "xyz",
+      "severity": "info",
+      "title": "xyz (XYZ): 19 of 133 markets carry no open interest and did not trade in the window"
+    },
+    {
+      "detector": "dead_market",
+      "evidence": {
+        "all_markets_dead": false,
+        "count": 19,
+        "deployer": "0x71f0019cc7fa79e4f42587fb7b9a817d8d2429ec",
+        "dex": "mkts",
+        "dex_hour_vlm": 24143.61649,
+        "dex_oi_usd": 11144994.3321,
+        "full_name": "Markets By Kinetiq",
+        "markets": [
+          "mkts:AAPL*",
+          "mkts:BABA*",
+          "mkts:BMNR*",
+          "mkts:EUR*",
+          "mkts:GLDMINE*",
+          "mkts:GOLD*",
+          "mkts:GOOGL*",
+          "mkts:JPN225*",
+          "mkts:MU*",
+          "mkts:NVDA*",
+          "mkts:PLTR*",
+          "mkts:RTX*",
+          "mkts:SEMI*",
+          "mkts:SILVER*",
+          "mkts:TENCENT*",
+          "mkts:TSLA*",
+          "mkts:USENERGY*",
+          "mkts:USOIL*",
+          "mkts:XIAOMI*"
+        ],
+        "markets_total": 24,
+        "note": "a market name marked * is formally delisted",
+        "why": "HIP-3 requires the deployer to stake 500,000 HYPE for at least 183 days; a book with no open interest earns its deployer no fee share against that locked stake"
+      },
+      "key": "mkts",
+      "severity": "info",
+      "title": "mkts (Markets By Kinetiq): 19 of 24 markets carry no open interest and did not trade in the window"
+    },
+    {
+      "detector": "dead_market",
+      "evidence": {
+        "all_markets_dead": false,
+        "count": 8,
+        "deployer": "0x8888888c43cbb7e1c4132542e46831bffd866ed3",
+        "dex": "para",
+        "dex_hour_vlm": 257088.35156,
+        "dex_oi_usd": 18168465.162104,
+        "full_name": "Paragon",
+        "markets": [
+          "para:ANTH*",
+          "para:CAMBRICON*",
+          "para:DRV*",
+          "para:GDX*",
+          "para:H100*",
+          "para:INNOLIGHT*",
+          "para:NAVER*",
+          "para:TENCENT*"
+        ],
+        "markets_total": 38,
+        "note": "a market name marked * is formally delisted",
+        "why": "HIP-3 requires the deployer to stake 500,000 HYPE for at least 183 days; a book with no open interest earns its deployer no fee share against that locked stake"
+      },
+      "key": "para",
+      "severity": "info",
+      "title": "para (Paragon): 8 of 38 markets carry no open interest and did not trade in the window"
+    },
+    {
+      "detector": "dead_market",
+      "evidence": {
+        "all_markets_dead": false,
+        "count": 2,
+        "deployer": "0x320c8988e3d1b5198f335802d7bfd2728a8fcac6",
+        "dex": "io",
+        "dex_hour_vlm": 1341203.552679,
+        "dex_oi_usd": 62683975.95413,
+        "full_name": "EntropyIO",
+        "markets": [
+          "io:PRL*",
+          "io:SBE*"
+        ],
+        "markets_total": 11,
+        "note": "a market name marked * is formally delisted",
+        "why": "HIP-3 requires the deployer to stake 500,000 HYPE for at least 183 days; a book with no open interest earns its deployer no fee share against that locked stake"
+      },
+      "key": "io",
+      "severity": "info",
+      "title": "io (EntropyIO): 2 of 11 markets carry no open interest and did not trade in the window"
+    },
+    {
+      "detector": "dead_market",
+      "evidence": {
+        "all_markets_dead": true,
+        "count": 1,
+        "deployer": "0x372c7f69d0ecc14f73f89bd8a7dfb41bdf29857c",
+        "dex": "abcd",
+        "dex_hour_vlm": 0,
+        "dex_oi_usd": 0,
+        "full_name": "ABCDEx",
+        "markets": [
+          "abcd:USA500*"
+        ],
+        "markets_total": 1,
+        "note": "a market name marked * is formally delisted",
+        "why": "HIP-3 requires the deployer to stake 500,000 HYPE for at least 183 days; a book with no open interest earns its deployer no fee share against that locked stake"
+      },
+      "key": "abcd",
+      "severity": "info",
+      "title": "abcd (ABCDEx): 1 of 1 markets carry no open interest and did not trade in the window"
+    }
+  ],
+  "params": {
+    "cap_warn": 0.85,
+    "cmd": "detect",
+    "horizon_h": 24,
+    "min_apr": 0.15,
+    "min_oi": 1000000.0,
+    "min_run": 5,
+    "min_spread_pct": 1.0,
+    "min_trades": 30,
+    "out": "/Users/iv/dev/llm-quant/research/2026-10-09/perps_daily",
+    "roll_days": 5.0,
+    "size_usd": 100000.0
+  },
+  "window": "/Users/iv/dev/llm-quant/research/2026-10-09/perps_daily"
+}

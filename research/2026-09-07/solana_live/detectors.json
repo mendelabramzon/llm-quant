@@ -1,0 +1,1809 @@
+{
+ "window": "research/2026-09-07/solana_live",
+ "chain": "solana",
+ "detectors": [
+  {
+   "detector": "sol_wash_volume",
+   "description": "self-matched swap volume by venue and token",
+   "hits": 2,
+   "seconds": 0.0,
+   "error": null
+  },
+  {
+   "detector": "sol_quote_poster",
+   "description": "programs that post quotes/parameters without moving tokens",
+   "hits": 21,
+   "seconds": 0.0,
+   "error": null
+  },
+  {
+   "detector": "sol_failure_spam",
+   "description": "programs failing >=90% of >=20k transactions",
+   "hits": 10,
+   "seconds": 0.0,
+   "error": null
+  },
+  {
+   "detector": "sol_collector_hub",
+   "description": "unlabelled fan-in hubs and fan-out distributors",
+   "hits": 14,
+   "seconds": 0.0,
+   "error": null
+  },
+  {
+   "detector": "sol_launch_factory",
+   "description": "creators launching >=20 tokens per hour",
+   "hits": 6,
+   "seconds": 0.0,
+   "error": null
+  },
+  {
+   "detector": "sol_flash_loan_spam",
+   "description": "flash-loan payers with hundreds of failures and no success",
+   "hits": 2,
+   "seconds": 0.0,
+   "error": null
+  },
+  {
+   "detector": "sol_liquidation_drought",
+   "description": "zero liquidations across venues while bots keep trying",
+   "hits": 1,
+   "seconds": 0.0,
+   "error": null
+  },
+  {
+   "detector": "sol_exchange_flow",
+   "description": "net exchange flow above $5M",
+   "hits": 1,
+   "seconds": 0.0,
+   "error": null
+  },
+  {
+   "detector": "sol_cctp_unknown_domain",
+   "description": "CCTP domains not in the chain map",
+   "hits": 2,
+   "seconds": 0.0,
+   "error": null
+  },
+  {
+   "detector": "sol_dust_poisoning",
+   "description": "address-poisoning dust senders",
+   "hits": 4,
+   "seconds": 0.0,
+   "error": null
+  },
+  {
+   "detector": "sol_large_move",
+   "description": "single-tx position changes above $5M",
+   "hits": 7,
+   "seconds": 0.0,
+   "error": null
+  },
+  {
+   "detector": "sol_lst_nav_basis",
+   "description": "LST market price vs on-chain stake-pool NAV",
+   "hits": 0,
+   "seconds": 0.0,
+   "error": null
+  },
+  {
+   "detector": "sol_stable_rate_gap",
+   "description": "same stable lending at different supply rates across venues",
+   "hits": 4,
+   "seconds": 0.001,
+   "error": null
+  }
+ ],
+ "hits": [
+  {
+   "detector": "sol_wash_volume",
+   "title": "$86,773,770 of $205,189,806 priced DEX volume (42%) is self-matched in 91,743 swaps by 8,751 wallet pairs",
+   "severity": "notable",
+   "evidence": {
+    "self_matched_usd": 86773770,
+    "priced_usd": 205189806,
+    "share": 0.4229,
+    "swaps": 91743,
+    "wallet_pairs": 8751,
+    "method": "second signer whose token and native-SOL legs mirror the trader inside one tx"
+   },
+   "economics": null,
+   "usd": 86773770,
+   "key": "all",
+   "identity": "sol_wash_volume:all"
+  },
+  {
+   "detector": "sol_wash_volume",
+   "title": "Pump.fun Amm: $86,773,758 (60% of its priced volume) self-matched in 91,726 swaps; top washed tokens DkDs\u20261n2M $12.6M, GyKY\u2026mApJ $11.9M, AfUe\u2026Jb5p $9.8M",
+   "severity": "notable",
+   "evidence": {
+    "venue": "Pump.fun Amm",
+    "usd": 86773758,
+    "swaps": 91726,
+    "share_of_venue": 0.6004236696826339,
+    "top_tokens": [
+     {
+      "mint": "DkDsTu1BWViRD5PTrRiGgEQNRMrmcWZt1FLENziQ1n2M",
+      "symbol": null,
+      "usd": 12631881,
+      "swaps": 9643
+     },
+     {
+      "mint": "GyKYZw8MdBWMsfmotfP4S4EJh9ejuLhTWRE5wa4zmApJ",
+      "symbol": null,
+      "usd": 11925548,
+      "swaps": 7842
+     },
+     {
+      "mint": "AfUeAt7VeDf3ADW4oy9tjKYHerdBueUuUhN14dJrJb5p",
+      "symbol": null,
+      "usd": 9841418,
+      "swaps": 10648
+     },
+     {
+      "mint": "5dYha89NwbYATV3WZixMNvndNQKVDBdV9MET8vyhftag",
+      "symbol": null,
+      "usd": 7725824,
+      "swaps": 7481
+     },
+     {
+      "mint": "Bii2ijTaE65mAegGm42V8r9ZiJb3o5vLmLMFDX3sSAwR",
+      "symbol": null,
+      "usd": 6922229,
+      "swaps": 6705
+     },
+     {
+      "mint": "Gzptc4VmK4RFb51oQbNZK1qv2kZWMHwfnrpwTVMADyGN",
+      "symbol": null,
+      "usd": 5644558,
+      "swaps": 6109
+     },
+     {
+      "mint": "3SdgWP5H8X4tpN3wnhUXaiss5FAShZqcoqZcdtZP9nsq",
+      "symbol": null,
+      "usd": 5495625,
+      "swaps": 5466
+     },
+     {
+      "mint": "7UF1JT4XG8fS9vVJsTMGMqLQUuNk9HNJ33f4d4iB5y14",
+      "symbol": null,
+      "usd": 4230443,
+      "swaps": 4509
+     },
+     {
+      "mint": "DiSrtDhLVEnNnNfx6EtirxMaJJPEDhPMd671vdC5BxVL",
+      "symbol": null,
+      "usd": 3912771,
+      "swaps": 8107
+     },
+     {
+      "mint": "HtbyRQURthA2nJFPdzSArUp5siTxxrKi1SpzH4TQVGte",
+      "symbol": null,
+      "usd": 3843833,
+      "swaps": 3666
+     }
+    ]
+   },
+   "economics": null,
+   "usd": 86773758,
+   "key": "venue:Pump.fun Amm",
+   "identity": "sol_wash_volume:venue:Pump.fun Amm"
+  },
+  {
+   "detector": "sol_collector_hub",
+   "title": "9 unlabelled fan-in hubs with >=500 senders collected 15194 SOL; 4 fan-out distributors with >=1,000 transfers",
+   "severity": "notable",
+   "evidence": {
+    "hubs": [
+     "7uTT8Xi5RWXzy7h9XL244GRgEycDYDhLjr3ZyNdXi8pZ",
+     "AcNhnoXP933a5A78m3Vpy2rKeuzKY1bPyZWFppgkZHJW",
+     "A1zqWmtRyPvy3en6EKZDoivQ3ABz4xApc5ExzDcB2mos",
+     "BTRkMytz72cCNt3QbCzGrgLim8CSJr3koK9c5wgNg4WT",
+     "62jw1nT7xfh5y4CvV2ym8hBeBpN6pfkFCvavuipiMZ4F",
+     "ArLh5MKcHRb8ZJbZwaSuLoGrkfEnUc4QndCExVysdbDf",
+     "4QoHvvN9U3c5SuVsxo1WHDPm4AXU7q4LPvjqXhjYWEax",
+     "BiAByV6PVF3qsRhMiUEincR1jjYGHSYvT2nKiWuT8MPm",
+     "6sBT3V93pQNCFCuEpvAvfKrFkZhLV3uNHGuxfGUYN6P6"
+    ],
+    "sol_received": 15193.8,
+    "distributors": [
+     "F7p3dFrjRTbtRp8FRF6qHLomXbKRBzpvBLjtQcfcgmNe",
+     "BwWK17cbHxwWBKZkUYvzxLcNQ1YVyaFezduWbtm2de6s",
+     "5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9",
+     "CVrbFfQuU3L1bv1UAMrZkfJNYjUk6V5znZptZHZfQKWa"
+    ]
+   },
+   "economics": null,
+   "usd": 1596506.76756,
+   "key": "all",
+   "identity": "sol_collector_hub:all"
+  },
+  {
+   "detector": "sol_collector_hub",
+   "title": "7uTT\u2026i8pZ: 2,348 senders, 9739 SOL in (median 0.537), 60 transfer(s) out to 1 destination(s) \u2014 vault of deposit router 99vQ\u2026 (largest unlabelled fan-in)",
+   "severity": "notable",
+   "evidence": {
+    "address": "7uTT8Xi5RWXzy7h9XL244GRgEycDYDhLjr3ZyNdXi8pZ",
+    "label": "vault of deposit router 99vQ\u2026 (largest unlabelled fan-in)",
+    "unique_senders": 2348,
+    "transfers": 4209,
+    "sol_received": 9739.1,
+    "median_sol": 0.537,
+    "out_transfers": 60,
+    "out_destinations": "1",
+    "sol_sent": 9850.4,
+    "shape": "collector hub (many in, \u22642 out)"
+   },
+   "economics": null,
+   "usd": 1023347.61942,
+   "key": "in:7uTT8Xi5RWXzy7h9XL244GRgEycDYDhLjr3ZyNdXi8pZ",
+   "identity": "sol_collector_hub:in:7uTT8Xi5RWXzy7h9XL244GRgEycDYDhLjr3ZyNdXi8pZ"
+  },
+  {
+   "detector": "sol_stable_rate_gap",
+   "title": "USDC pays 1.60pp more on Jupiter Lend (4.56%, $451,679,926) than Save main (2.96%, $22,177,432)",
+   "severity": "notable",
+   "evidence": {
+    "asset": "USDC",
+    "high_venue": "Jupiter Lend",
+    "low_venue": "Save main",
+    "gap_pp": 1.6,
+    "markets": [
+     {
+      "venue": "Kamino SOL/BTC",
+      "supply_apy_pct": 3.538,
+      "supplied_usd": 123187712
+     },
+     {
+      "venue": "Kamino JLP",
+      "supply_apy_pct": 3.534,
+      "supplied_usd": 20445719
+     },
+     {
+      "venue": "Save main",
+      "supply_apy_pct": 2.96,
+      "supplied_usd": 22177432
+     },
+     {
+      "venue": "Jupiter Lend",
+      "supply_apy_pct": 4.56,
+      "supplied_usd": 451679926
+     }
+    ],
+    "note": "head read only (one block); no in-window rate series exists on Solana yet, so this is not de-spiked"
+   },
+   "economics": {
+    "go": null,
+    "net_apr": 0.016,
+    "capacity_usd": 22177432,
+    "reason": "smaller of the two markets caps the switch; dilution of the high side not modelled"
+   },
+   "usd": 354838.9155905442,
+   "key": "USDC:Jupiter Lend/Save main",
+   "identity": "sol_stable_rate_gap:USDC:Jupiter Lend/Save main"
+  },
+  {
+   "detector": "sol_collector_hub",
+   "title": "AcNh\u2026ZHJW: 729 senders, 1131 SOL in (median 0.317), 1 transfer(s) out to 1 destination(s) \u2014 sybil-cluster collector (3,253 wallets \u2192 1 sweep, same playbook and token amount as A1zq\u2026)",
+   "severity": "notable",
+   "evidence": {
+    "address": "AcNhnoXP933a5A78m3Vpy2rKeuzKY1bPyZWFppgkZHJW",
+    "label": "sybil-cluster collector (3,253 wallets \u2192 1 sweep, same playbook and token amount as A1zq\u2026)",
+    "unique_senders": 729,
+    "transfers": 729,
+    "sol_received": 1131.3,
+    "median_sol": 0.317,
+    "out_transfers": 1,
+    "out_destinations": "1",
+    "sol_sent": 1279.1,
+    "shape": "collector hub (many in, \u22642 out)"
+   },
+   "economics": null,
+   "usd": 118872.70506,
+   "key": "in:AcNhnoXP933a5A78m3Vpy2rKeuzKY1bPyZWFppgkZHJW",
+   "identity": "sol_collector_hub:in:AcNhnoXP933a5A78m3Vpy2rKeuzKY1bPyZWFppgkZHJW"
+  },
+  {
+   "detector": "sol_collector_hub",
+   "title": "A1zq\u20262mos: 710 senders, 820 SOL in (median 0.297), 1 transfer(s) out to 1 destination(s) \u2014 sybil-cluster collector (3,254 wallets \u2192 1 sweep in 6 min)",
+   "severity": "notable",
+   "evidence": {
+    "address": "A1zqWmtRyPvy3en6EKZDoivQ3ABz4xApc5ExzDcB2mos",
+    "label": "sybil-cluster collector (3,254 wallets \u2192 1 sweep in 6 min)",
+    "unique_senders": 710,
+    "transfers": 710,
+    "sol_received": 819.6,
+    "median_sol": 0.297,
+    "out_transfers": 1,
+    "out_destinations": "1",
+    "sol_sent": 1266.1,
+    "shape": "collector hub (many in, \u22642 out)"
+   },
+   "economics": null,
+   "usd": 86120.45352,
+   "key": "in:A1zqWmtRyPvy3en6EKZDoivQ3ABz4xApc5ExzDcB2mos",
+   "identity": "sol_collector_hub:in:A1zqWmtRyPvy3en6EKZDoivQ3ABz4xApc5ExzDcB2mos"
+  },
+  {
+   "detector": "sol_collector_hub",
+   "title": "ArLh\u2026dbDf: 532 senders, 684 SOL in (median 0.576), 1 transfer(s) out to 1 destination(s) \u2014 sybil-cluster collector (532 wallets, 683.6 SOL round trip funded by 2Fs1\u2026)",
+   "severity": "notable",
+   "evidence": {
+    "address": "ArLh5MKcHRb8ZJbZwaSuLoGrkfEnUc4QndCExVysdbDf",
+    "label": "sybil-cluster collector (532 wallets, 683.6 SOL round trip funded by 2Fs1\u2026)",
+    "unique_senders": 532,
+    "transfers": 532,
+    "sol_received": 683.5,
+    "median_sol": 0.576,
+    "out_transfers": 1,
+    "out_destinations": "1",
+    "sol_sent": 683.6,
+    "shape": "collector hub (many in, \u22642 out)"
+   },
+   "economics": null,
+   "usd": 71819.5827,
+   "key": "in:ArLh5MKcHRb8ZJbZwaSuLoGrkfEnUc4QndCExVysdbDf",
+   "identity": "sol_collector_hub:in:ArLh5MKcHRb8ZJbZwaSuLoGrkfEnUc4QndCExVysdbDf"
+  },
+  {
+   "detector": "sol_collector_hub",
+   "title": "62jw\u2026MZ4F: 533 senders, 680 SOL in (median 0.582), 1 transfer(s) out to 1 destination(s) \u2014 sybil-cluster collector (533 wallets \u2192 1 sweep)",
+   "severity": "notable",
+   "evidence": {
+    "address": "62jw1nT7xfh5y4CvV2ym8hBeBpN6pfkFCvavuipiMZ4F",
+    "label": "sybil-cluster collector (533 wallets \u2192 1 sweep)",
+    "unique_senders": 533,
+    "transfers": 533,
+    "sol_received": 680.1,
+    "median_sol": 0.582,
+    "out_transfers": 1,
+    "out_destinations": "1",
+    "sol_sent": 680.1,
+    "shape": "collector hub (many in, \u22642 out)"
+   },
+   "economics": null,
+   "usd": 71462.32362,
+   "key": "in:62jw1nT7xfh5y4CvV2ym8hBeBpN6pfkFCvavuipiMZ4F",
+   "identity": "sol_collector_hub:in:62jw1nT7xfh5y4CvV2ym8hBeBpN6pfkFCvavuipiMZ4F"
+  },
+  {
+   "detector": "sol_collector_hub",
+   "title": "BTRk\u2026g4WT: 536 senders, 662 SOL in (median 0.548), 0 transfer(s) out to 0 destination(s)",
+   "severity": "notable",
+   "evidence": {
+    "address": "BTRkMytz72cCNt3QbCzGrgLim8CSJr3koK9c5wgNg4WT",
+    "label": null,
+    "unique_senders": 536,
+    "transfers": 536,
+    "sol_received": 662.2,
+    "median_sol": 0.548,
+    "out_transfers": 0,
+    "out_destinations": "0",
+    "sol_sent": 0,
+    "shape": "deposit address (many in, little out)"
+   },
+   "economics": null,
+   "usd": 69581.45964,
+   "key": "in:BTRkMytz72cCNt3QbCzGrgLim8CSJr3koK9c5wgNg4WT",
+   "identity": "sol_collector_hub:in:BTRkMytz72cCNt3QbCzGrgLim8CSJr3koK9c5wgNg4WT"
+  },
+  {
+   "detector": "sol_collector_hub",
+   "title": "4QoH\u2026WEax: 531 senders, 654 SOL in (median 0.514), 1 transfer(s) out to 1 destination(s) \u2014 sybil-cluster collector (531 wallets, 654.1 SOL round trip funded by C1yb\u2026)",
+   "severity": "notable",
+   "evidence": {
+    "address": "4QoHvvN9U3c5SuVsxo1WHDPm4AXU7q4LPvjqXhjYWEax",
+    "label": "sybil-cluster collector (531 wallets, 654.1 SOL round trip funded by C1yb\u2026)",
+    "unique_senders": 531,
+    "transfers": 531,
+    "sol_received": 654.1,
+    "median_sol": 0.514,
+    "out_transfers": 1,
+    "out_destinations": "1",
+    "sol_sent": 654.1,
+    "shape": "collector hub (many in, \u22642 out)"
+   },
+   "economics": null,
+   "usd": 68730.34242,
+   "key": "in:4QoHvvN9U3c5SuVsxo1WHDPm4AXU7q4LPvjqXhjYWEax",
+   "identity": "sol_collector_hub:in:4QoHvvN9U3c5SuVsxo1WHDPm4AXU7q4LPvjqXhjYWEax"
+  },
+  {
+   "detector": "sol_collector_hub",
+   "title": "BiAB\u20268MPm: 523 senders, 648 SOL in (median 0.486), 0 transfer(s) out to 0 destination(s)",
+   "severity": "notable",
+   "evidence": {
+    "address": "BiAByV6PVF3qsRhMiUEincR1jjYGHSYvT2nKiWuT8MPm",
+    "label": null,
+    "unique_senders": 523,
+    "transfers": 904,
+    "sol_received": 647.8,
+    "median_sol": 0.486,
+    "out_transfers": 0,
+    "out_destinations": "0",
+    "sol_sent": 0,
+    "shape": "deposit address (many in, little out)"
+   },
+   "economics": null,
+   "usd": 68068.36236,
+   "key": "in:BiAByV6PVF3qsRhMiUEincR1jjYGHSYvT2nKiWuT8MPm",
+   "identity": "sol_collector_hub:in:BiAByV6PVF3qsRhMiUEincR1jjYGHSYvT2nKiWuT8MPm"
+  },
+  {
+   "detector": "sol_stable_rate_gap",
+   "title": "USDT pays 2.62pp more on Kamino JLP (4.38%, $1,870,868) than Save main (1.76%, $5,172,673)",
+   "severity": "notable",
+   "evidence": {
+    "asset": "USDT",
+    "high_venue": "Kamino JLP",
+    "low_venue": "Save main",
+    "gap_pp": 2.623,
+    "markets": [
+     {
+      "venue": "Kamino SOL/BTC",
+      "supply_apy_pct": 3.221,
+      "supplied_usd": 10587533
+     },
+     {
+      "venue": "Kamino JLP",
+      "supply_apy_pct": 4.383,
+      "supplied_usd": 1870868
+     },
+     {
+      "venue": "Save main",
+      "supply_apy_pct": 1.76,
+      "supplied_usd": 5172673
+     },
+     {
+      "venue": "Jupiter Lend",
+      "supply_apy_pct": 4.25,
+      "supplied_usd": 17558785
+     }
+    ],
+    "note": "head read only (one block); no in-window rate series exists on Solana yet, so this is not de-spiked"
+   },
+   "economics": {
+    "go": null,
+    "net_apr": 0.02623,
+    "capacity_usd": 1870868,
+    "reason": "smaller of the two markets caps the switch; dilution of the high side not modelled"
+   },
+   "usd": 49067.55500325571,
+   "key": "USDT:Kamino JLP/Save main",
+   "identity": "sol_stable_rate_gap:USDT:Kamino JLP/Save main"
+  },
+  {
+   "detector": "sol_stable_rate_gap",
+   "title": "USDG pays 1.65pp more on Jupiter Lend (5.42%, $2,923,981) than Kamino SOL/BTC (3.77%, $44,702,438)",
+   "severity": "notable",
+   "evidence": {
+    "asset": "USDG",
+    "high_venue": "Jupiter Lend",
+    "low_venue": "Kamino SOL/BTC",
+    "gap_pp": 1.654,
+    "markets": [
+     {
+      "venue": "Kamino SOL/BTC",
+      "supply_apy_pct": 3.766,
+      "supplied_usd": 44702438
+     },
+     {
+      "venue": "Jupiter Lend",
+      "supply_apy_pct": 5.42,
+      "supplied_usd": 2923981
+     }
+    ],
+    "note": "head read only (one block); no in-window rate series exists on Solana yet, so this is not de-spiked"
+   },
+   "economics": {
+    "go": null,
+    "net_apr": 0.01654,
+    "capacity_usd": 2923981,
+    "reason": "smaller of the two markets caps the switch; dilution of the high side not modelled"
+   },
+   "usd": 48360.03720387267,
+   "key": "USDG:Jupiter Lend/Kamino SOL/BTC",
+   "identity": "sol_stable_rate_gap:USDG:Jupiter Lend/Kamino SOL/BTC"
+  },
+  {
+   "detector": "sol_stable_rate_gap",
+   "title": "PYUSD pays 2.20pp more on Kamino JLP (4.18%, $1,416,976) than Kamino SOL/BTC (1.98%, $40,029,136)",
+   "severity": "notable",
+   "evidence": {
+    "asset": "PYUSD",
+    "high_venue": "Kamino JLP",
+    "low_venue": "Kamino SOL/BTC",
+    "gap_pp": 2.202,
+    "markets": [
+     {
+      "venue": "Kamino SOL/BTC",
+      "supply_apy_pct": 1.98,
+      "supplied_usd": 40029136
+     },
+     {
+      "venue": "Kamino JLP",
+      "supply_apy_pct": 4.182,
+      "supplied_usd": 1416976
+     },
+     {
+      "venue": "Kamino Ethena",
+      "supply_apy_pct": 3.409,
+      "supplied_usd": 251446547
+     }
+    ],
+    "note": "head read only (one block); no in-window rate series exists on Solana yet, so this is not de-spiked"
+   },
+   "economics": {
+    "go": null,
+    "net_apr": 0.02202,
+    "capacity_usd": 1416976,
+    "reason": "smaller of the two markets caps the switch; dilution of the high side not modelled"
+   },
+   "usd": 31202.15405116247,
+   "key": "PYUSD:Kamino JLP/Kamino SOL/BTC",
+   "identity": "sol_stable_rate_gap:PYUSD:Kamino JLP/Kamino SOL/BTC"
+  },
+  {
+   "detector": "sol_collector_hub",
+   "title": "6sBT\u2026N6P6: 522 senders, 176 SOL in (median 0.197), 0 transfer(s) out to 0 destination(s)",
+   "severity": "notable",
+   "evidence": {
+    "address": "6sBT3V93pQNCFCuEpvAvfKrFkZhLV3uNHGuxfGUYN6P6",
+    "label": null,
+    "unique_senders": 522,
+    "transfers": 789,
+    "sol_received": 176.1,
+    "median_sol": 0.197,
+    "out_transfers": 0,
+    "out_destinations": "0",
+    "sol_sent": 0,
+    "shape": "deposit address (many in, little out)"
+   },
+   "economics": null,
+   "usd": 18503.91882,
+   "key": "in:6sBT3V93pQNCFCuEpvAvfKrFkZhLV3uNHGuxfGUYN6P6",
+   "identity": "sol_collector_hub:in:6sBT3V93pQNCFCuEpvAvfKrFkZhLV3uNHGuxfGUYN6P6"
+  },
+  {
+   "detector": "sol_large_move",
+   "title": "9936\u2026L3QK sent $10,000,000 USDC in one tx \u2014 Huma-linked treasury ($10M USDC in via Huma, out to a Squads multisig)",
+   "severity": "info",
+   "evidence": {
+    "owner": "9936VFvgRmW1STvdgeyPQaKHDx5DwBtbhZkT3HcdL3QK",
+    "label": "Huma-linked treasury ($10M USDC in via Huma, out to a Squads multisig)",
+    "asset": "USDC",
+    "delta": -10000000.0,
+    "usd": 10000000,
+    "kind": "protocol",
+    "sig": "4NSr6mgbdWRyey5e1SvkeHrMKvNaZi4F2YDWvNQBw7c8yzRhSrazZhR28cd4N5yQg9q35kUiPcUG2c3ge5mpZi2L",
+    "slot": 445083336,
+    "time": "2026-09-07T14:03:25+00:00",
+    "payer": "9Juq83cRfcYXR6aoCyzVAjjXkQtRCd2DuBDPZ7FXYhxw",
+    "programs": [
+     "SQDS\u20262pCf"
+    ]
+   },
+   "economics": null,
+   "usd": 10000000,
+   "key": "9936VFvgRmW1STvdgeyPQaKHDx5DwBtbhZkT3HcdL3QK",
+   "identity": "sol_large_move:9936VFvgRmW1STvdgeyPQaKHDx5DwBtbhZkT3HcdL3QK"
+  },
+  {
+   "detector": "sol_large_move",
+   "title": "7s1d\u2026or2Z sent $10,000,000 USDC in one tx",
+   "severity": "info",
+   "evidence": {
+    "owner": "7s1da8DduuBFqGra5bJBjpnvL5E9mGzCuMk1Qkh4or2Z",
+    "label": null,
+    "asset": "USDC",
+    "delta": -10000000.0,
+    "usd": 10000000,
+    "kind": "lending",
+    "sig": "3rgDSjVEYVizGxoCJfXaP94KvcKejz3FcAjoT9XTuNsC19sAFW9P8tMYvXyrPLfECB15P77MDR3sQvGQtwPFzrjY",
+    "slot": 445081582,
+    "time": "2026-09-07T13:54:08+00:00",
+    "payer": "HGLsFsHy9NxuYWJe88Lyyrxvw95rDkHfPvid3AUPMbpj",
+    "programs": [
+     "Huma"
+    ]
+   },
+   "economics": null,
+   "usd": 10000000,
+   "key": "7s1da8DduuBFqGra5bJBjpnvL5E9mGzCuMk1Qkh4or2Z",
+   "identity": "sol_large_move:7s1da8DduuBFqGra5bJBjpnvL5E9mGzCuMk1Qkh4or2Z"
+  },
+  {
+   "detector": "sol_large_move",
+   "title": "6q76\u20263ad2 received $10,000,000 USDC in one tx",
+   "severity": "info",
+   "evidence": {
+    "owner": "6q76D2fJxPqzQQfUBMmkb2MzT4Vg7VGe2dgXHKd33ad2",
+    "label": null,
+    "asset": "USDC",
+    "delta": 10000000.0,
+    "usd": 10000000,
+    "kind": "protocol",
+    "sig": "4NSr6mgbdWRyey5e1SvkeHrMKvNaZi4F2YDWvNQBw7c8yzRhSrazZhR28cd4N5yQg9q35kUiPcUG2c3ge5mpZi2L",
+    "slot": 445083336,
+    "time": "2026-09-07T14:03:25+00:00",
+    "payer": "9Juq83cRfcYXR6aoCyzVAjjXkQtRCd2DuBDPZ7FXYhxw",
+    "programs": [
+     "SQDS\u20262pCf"
+    ]
+   },
+   "economics": null,
+   "usd": 10000000,
+   "key": "6q76D2fJxPqzQQfUBMmkb2MzT4Vg7VGe2dgXHKd33ad2",
+   "identity": "sol_large_move:6q76D2fJxPqzQQfUBMmkb2MzT4Vg7VGe2dgXHKd33ad2"
+  },
+  {
+   "detector": "sol_large_move",
+   "title": "81w9\u2026ytUj received $9,767,758 USDC in one tx",
+   "severity": "info",
+   "evidence": {
+    "owner": "81w96XvKAZZFmmuzaohSQUyxtGnAPJmkjwoBFBmtytUj",
+    "label": null,
+    "asset": "USDC",
+    "delta": 9767757.9989,
+    "usd": 9767758,
+    "kind": "transfer",
+    "sig": "4gLjQzf87TfAePhSv6UX1GVjxjkhvCQQGRJCgLzx5z8TFJUQCGpXYwxTPRmRThNUgBpVWivEewEikoR7msnhm2px",
+    "slot": 445085945,
+    "time": "2026-09-07T14:17:12+00:00",
+    "payer": "Bc5bth4Mn2n8DX1etZwvnq3uDEGg479s2D24TCEsnXHf",
+    "programs": []
+   },
+   "economics": null,
+   "usd": 9767758,
+   "key": "81w96XvKAZZFmmuzaohSQUyxtGnAPJmkjwoBFBmtytUj",
+   "identity": "sol_large_move:81w96XvKAZZFmmuzaohSQUyxtGnAPJmkjwoBFBmtytUj"
+  },
+  {
+   "detector": "sol_large_move",
+   "title": "Bc5b\u2026nXHf sent $9,767,758 USDC in one tx",
+   "severity": "info",
+   "evidence": {
+    "owner": "Bc5bth4Mn2n8DX1etZwvnq3uDEGg479s2D24TCEsnXHf",
+    "label": null,
+    "asset": "USDC",
+    "delta": -9767757.9989,
+    "usd": 9767758,
+    "kind": "transfer",
+    "sig": "4gLjQzf87TfAePhSv6UX1GVjxjkhvCQQGRJCgLzx5z8TFJUQCGpXYwxTPRmRThNUgBpVWivEewEikoR7msnhm2px",
+    "slot": 445085945,
+    "time": "2026-09-07T14:17:12+00:00",
+    "payer": "Bc5bth4Mn2n8DX1etZwvnq3uDEGg479s2D24TCEsnXHf",
+    "programs": []
+   },
+   "economics": null,
+   "usd": 9767758,
+   "key": "Bc5bth4Mn2n8DX1etZwvnq3uDEGg479s2D24TCEsnXHf",
+   "identity": "sol_large_move:Bc5bth4Mn2n8DX1etZwvnq3uDEGg479s2D24TCEsnXHf"
+  },
+  {
+   "detector": "sol_large_move",
+   "title": "3ADz\u2026EFib sent $7,956,238 USDC in one tx \u2014 Binance-bound consolidation wallet (receives from Gate/KuCoin, sends to Binance)",
+   "severity": "info",
+   "evidence": {
+    "owner": "3ADzk5YDP9sgorvPSs9YPxigJiSqhgddpwHwwPwmEFib",
+    "label": "Binance-bound consolidation wallet (receives from Gate/KuCoin, sends to Binance)",
+    "asset": "USDC",
+    "delta": -7956238.0,
+    "usd": 7956238,
+    "kind": "transfer",
+    "sig": "5iH1aodJbygw7EFiiYEdBr3nGgRrsX1zwSi9gKf7Q1pj6PJQz6dLtmic3tfGygfzY57ZPQw7FDbjo5Zd4c2GLSWo",
+    "slot": 445078098,
+    "time": "2026-09-07T13:35:44+00:00",
+    "payer": "5JPAWfhLNsYVk3tPpD3gHvpHbvaXDbpUpy1wUfQVYRS2",
+    "programs": []
+   },
+   "economics": null,
+   "usd": 7956238,
+   "key": "3ADzk5YDP9sgorvPSs9YPxigJiSqhgddpwHwwPwmEFib",
+   "identity": "sol_large_move:3ADzk5YDP9sgorvPSs9YPxigJiSqhgddpwHwwPwmEFib"
+  },
+  {
+   "detector": "sol_large_move",
+   "title": "5tzF\u2026uAi9 received $7,956,238 USDC in one tx \u2014 Binance",
+   "severity": "info",
+   "evidence": {
+    "owner": "5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9",
+    "label": "Binance",
+    "asset": "USDC",
+    "delta": 7956238.0,
+    "usd": 7956238,
+    "kind": "transfer",
+    "sig": "5iH1aodJbygw7EFiiYEdBr3nGgRrsX1zwSi9gKf7Q1pj6PJQz6dLtmic3tfGygfzY57ZPQw7FDbjo5Zd4c2GLSWo",
+    "slot": 445078098,
+    "time": "2026-09-07T13:35:44+00:00",
+    "payer": "5JPAWfhLNsYVk3tPpD3gHvpHbvaXDbpUpy1wUfQVYRS2",
+    "programs": []
+   },
+   "economics": null,
+   "usd": 7956238,
+   "key": "5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9",
+   "identity": "sol_large_move:5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9"
+  },
+  {
+   "detector": "sol_exchange_flow",
+   "title": "Binance net +$5,770,838 over 1,912 txs (USDC +5.5M, USDT +2.9M, SOL -2.5M, BONK -0.1M)",
+   "severity": "info",
+   "evidence": {
+    "exchange": "Binance",
+    "usd_net": 5770838,
+    "txs": 1912,
+    "usd_by_asset": {
+     "USDC": 5530112,
+     "USDT": 2875217,
+     "SOL": -2481618,
+     "BONK": -86604
+    },
+    "sign": "deposits exceed withdrawals"
+   },
+   "economics": null,
+   "usd": 5770838,
+   "key": "Binance",
+   "identity": "sol_exchange_flow:Binance"
+  },
+  {
+   "detector": "sol_collector_hub",
+   "title": "5tzF\u2026uAi9: 1,063 SOL transfers out (35122 SOL) to 6+ destinations \u2014 Binance",
+   "severity": "info",
+   "evidence": {
+    "address": "5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9",
+    "label": "Binance",
+    "out_transfers": 1063,
+    "sol_sent": 35122.5,
+    "destinations": "6+"
+   },
+   "economics": null,
+   "usd": 3690538.8345,
+   "key": "out:5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9",
+   "identity": "sol_collector_hub:out:5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9"
+  },
+  {
+   "detector": "sol_collector_hub",
+   "title": "F7p3\u2026gmNe: 3,220 SOL transfers out (14666 SOL) to 6+ destinations \u2014 sweep destination of deposit vault 7uTT8X\u2026",
+   "severity": "info",
+   "evidence": {
+    "address": "F7p3dFrjRTbtRp8FRF6qHLomXbKRBzpvBLjtQcfcgmNe",
+    "label": "sweep destination of deposit vault 7uTT8X\u2026",
+    "out_transfers": 3220,
+    "sol_sent": 14665.9,
+    "destinations": "6+"
+   },
+   "economics": null,
+   "usd": 1541037.04158,
+   "key": "out:F7p3dFrjRTbtRp8FRF6qHLomXbKRBzpvBLjtQcfcgmNe",
+   "identity": "sol_collector_hub:out:F7p3dFrjRTbtRp8FRF6qHLomXbKRBzpvBLjtQcfcgmNe"
+  },
+  {
+   "detector": "sol_collector_hub",
+   "title": "CVrb\u2026QKWa: 1,027 SOL transfers out (1517 SOL) to 6+ destinations",
+   "severity": "info",
+   "evidence": {
+    "address": "CVrbFfQuU3L1bv1UAMrZkfJNYjUk6V5znZptZHZfQKWa",
+    "label": null,
+    "out_transfers": 1027,
+    "sol_sent": 1516.8,
+    "destinations": "6+"
+   },
+   "economics": null,
+   "usd": 159379.58015999998,
+   "key": "out:CVrbFfQuU3L1bv1UAMrZkfJNYjUk6V5znZptZHZfQKWa",
+   "identity": "sol_collector_hub:out:CVrbFfQuU3L1bv1UAMrZkfJNYjUk6V5znZptZHZfQKWa"
+  },
+  {
+   "detector": "sol_collector_hub",
+   "title": "BwWK\u2026de6s: 1,645 SOL transfers out (591 SOL) to 6+ destinations",
+   "severity": "info",
+   "evidence": {
+    "address": "BwWK17cbHxwWBKZkUYvzxLcNQ1YVyaFezduWbtm2de6s",
+    "label": null,
+    "out_transfers": 1645,
+    "sol_sent": 590.7,
+    "destinations": "6+"
+   },
+   "economics": null,
+   "usd": 62068.511340000005,
+   "key": "out:BwWK17cbHxwWBKZkUYvzxLcNQ1YVyaFezduWbtm2de6s",
+   "identity": "sol_collector_hub:out:BwWK17cbHxwWBKZkUYvzxLcNQ1YVyaFezduWbtm2de6s"
+  },
+  {
+   "detector": "sol_cctp_unknown_domain",
+   "title": "CCTP out to unmapped domain 27: $20,523 in 33 transfers",
+   "severity": "info",
+   "evidence": {
+    "chain": "domain 27",
+    "usd": 20523,
+    "n": 33,
+    "direction": "out"
+   },
+   "economics": null,
+   "usd": 20523,
+   "key": "out:domain 27",
+   "identity": "sol_cctp_unknown_domain:out:domain 27"
+  },
+  {
+   "detector": "sol_cctp_unknown_domain",
+   "title": "CCTP out to unmapped domain 15: $80 in 1 transfers",
+   "severity": "info",
+   "evidence": {
+    "chain": "domain 15",
+    "usd": 80,
+    "n": 1,
+    "direction": "out"
+   },
+   "economics": null,
+   "usd": 80,
+   "key": "out:domain 15",
+   "identity": "sol_cctp_unknown_domain:out:domain 15"
+  },
+  {
+   "detector": "sol_quote_poster",
+   "title": "20 quote-posting programs sent 2,335,133 txs = 36.5% of non-vote transactions",
+   "severity": "info",
+   "evidence": {
+    "programs": 20,
+    "tx": 2335133,
+    "nonvote": 6394363,
+    "thresholds": {
+     "min_tx": 50000,
+     "max_token_move_share": 0.05,
+     "max_payers": 200
+    }
+   },
+   "economics": null,
+   "usd": null,
+   "key": "all",
+   "identity": "sol_quote_poster:all"
+  },
+  {
+   "detector": "sol_quote_poster",
+   "title": "Phoenix Eternal (Ellipsis) \u2014 market-maker spline/oracle parameter updates: 362,138 txs from 143 payer(s), 0.0% move a token, 22% failed, 1.9 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "EtrnLzgbS7nMMy5fbD42kXiUzGg8XQzJ972Xtk1cjWih",
+    "label": "Phoenix Eternal (Ellipsis) \u2014 market-maker spline/oracle parameter updates",
+    "kind": "prop_amm",
+    "tx": 362138,
+    "failed": 80762,
+    "fail_share": 0.22301443096278215,
+    "fee_sol": 1.922,
+    "unique_payers": 143,
+    "top_payer": "sp1nLqqjVZ1kTusFjJmHp1xHDpH6M4F7KXCr1iJ3xpX",
+    "top_payer_share": 0.49936764437866227,
+    "token_move_share": 6.0750321700567186e-05,
+    "avg_cu": 41724.94672196787
+   },
+   "economics": null,
+   "usd": null,
+   "key": "EtrnLzgbS7nMMy5fbD42kXiUzGg8XQzJ972Xtk1cjWih",
+   "identity": "sol_quote_poster:EtrnLzgbS7nMMy5fbD42kXiUzGg8XQzJ972Xtk1cjWih"
+  },
+  {
+   "detector": "sol_quote_poster",
+   "title": "HumidiFi: 239,076 txs from 22 payer(s), 0.0% move a token, 28% failed, 2.4 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "9H6tua7jkLhdm3w8BvgpTn5LZNU7g4ZynDmCiNN3q6Rp",
+    "label": "HumidiFi",
+    "kind": "dex",
+    "tx": 239076,
+    "failed": 67729,
+    "fail_share": 0.28329485184627484,
+    "fee_sol": 2.373,
+    "unique_payers": 22,
+    "top_payer": "2kSZmeVFchN9sejN7MKvrj8zySbbyywopt2gUSsTVmmK",
+    "top_payer_share": 0.11528133313256035,
+    "token_move_share": 0.0,
+    "avg_cu": 361.75732821362243
+   },
+   "economics": null,
+   "usd": null,
+   "key": "9H6tua7jkLhdm3w8BvgpTn5LZNU7g4ZynDmCiNN3q6Rp",
+   "identity": "sol_quote_poster:9H6tua7jkLhdm3w8BvgpTn5LZNU7g4ZynDmCiNN3q6Rp"
+  },
+  {
+   "detector": "sol_quote_poster",
+   "title": "TesseraV: 210,243 txs from 1 payer(s), 0.0% move a token, 31% failed, 1.1 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "TessVdML9pBGgG9yGks7o4HewRaXVAMuoVj4x83GLQH",
+    "label": "TesseraV",
+    "kind": "dex",
+    "tx": 210243,
+    "failed": 64979,
+    "fail_share": 0.309066175806091,
+    "fee_sol": 1.118,
+    "unique_payers": 1,
+    "top_payer": "FVnv5qH7dsrBzEDwJ8dN2m9PFtKTBAQFtqWF3M9LpwMg",
+    "top_payer_share": 1.0,
+    "token_move_share": 2.8538405559281403e-05,
+    "avg_cu": 460.86423329195264
+   },
+   "economics": null,
+   "usd": null,
+   "key": "TessVdML9pBGgG9yGks7o4HewRaXVAMuoVj4x83GLQH",
+   "identity": "sol_quote_poster:TessVdML9pBGgG9yGks7o4HewRaXVAMuoVj4x83GLQH"
+  },
+  {
+   "detector": "sol_quote_poster",
+   "title": "pump.fun sniper program (94% failed, 4 payers): 139,654 txs from 4 payer(s), 0.0% move a token, 94% failed, 1.6 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "DhpyNWkdxFh3DRPsBrwRwrK3TYC5t7Q4arnSvf3t84HY",
+    "label": "pump.fun sniper program (94% failed, 4 payers)",
+    "kind": "bot",
+    "tx": 139654,
+    "failed": 130707,
+    "fail_share": 0.9359345238947685,
+    "fee_sol": 1.55,
+    "unique_payers": 4,
+    "top_payer": "2KP9miexioqgNbjPwysggcbi3sKqhH8JsPaDmFxRPURD",
+    "top_payer_share": 0.2503114840964097,
+    "token_move_share": 1.4321107880905666e-05,
+    "avg_cu": 4673.796189153193
+   },
+   "economics": null,
+   "usd": null,
+   "key": "DhpyNWkdxFh3DRPsBrwRwrK3TYC5t7Q4arnSvf3t84HY",
+   "identity": "sol_quote_poster:DhpyNWkdxFh3DRPsBrwRwrK3TYC5t7Q4arnSvf3t84HY"
+  },
+  {
+   "detector": "sol_quote_poster",
+   "title": "arbitrage bot program (logs \"No arb opportunity found\"; 1 payer): 137,824 txs from 1 payer(s), 0.1% move a token, 22% failed, 1.3 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "9L1qqo7q7vq7sKuMsBGKPF81z6GK7N4orWGgGFwwqqDF",
+    "label": "arbitrage bot program (logs \"No arb opportunity found\"; 1 payer)",
+    "kind": "bot",
+    "tx": 137824,
+    "failed": 30963,
+    "fail_share": 0.2246560831205015,
+    "fee_sol": 1.321,
+    "unique_payers": 1,
+    "top_payer": "AjkDC1KdkgPaFRtrCbeSh6B6dhVX2JM4o2XhPSs2qu4b",
+    "top_payer_share": 1.0,
+    "token_move_share": 0.001349547248664964,
+    "avg_cu": 38534.57310047597
+   },
+   "economics": null,
+   "usd": null,
+   "key": "9L1qqo7q7vq7sKuMsBGKPF81z6GK7N4orWGgGFwwqqDF",
+   "identity": "sol_quote_poster:9L1qqo7q7vq7sKuMsBGKPF81z6GK7N4orWGgGFwwqqDF"
+  },
+  {
+   "detector": "sol_quote_poster",
+   "title": "copychain.cc copy-trading bot program: 136,317 txs from 8 payer(s), 0.0% move a token, 55% failed, 1.2 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "Prism8hsRo6Ww5jiN5Zeh3YDPLZHqHduCPSAV7JF7qv",
+    "label": "copychain.cc copy-trading bot program",
+    "kind": "bot",
+    "tx": 136317,
+    "failed": 74949,
+    "fail_share": 0.5498140364004489,
+    "fee_sol": 1.218,
+    "unique_payers": 8,
+    "top_payer": "327677XqTEwYxo8kaQxAJUWvUvzpVoSjiMXMc8u4wQS6",
+    "top_payer_share": 0.46378661502233764,
+    "token_move_share": 0.0004548222158644923,
+    "avg_cu": 44698.09501382806
+   },
+   "economics": null,
+   "usd": null,
+   "key": "Prism8hsRo6Ww5jiN5Zeh3YDPLZHqHduCPSAV7JF7qv",
+   "identity": "sol_quote_poster:Prism8hsRo6Ww5jiN5Zeh3YDPLZHqHduCPSAV7JF7qv"
+  },
+  {
+   "detector": "sol_quote_poster",
+   "title": "Scorch: 106,523 txs from 1 payer(s), 0.0% move a token, 47% failed, 0.8 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "ojh19ojaKduoJZuaJADhcVGp4xt1TcdAvZmpVsCorch",
+    "label": "Scorch",
+    "kind": "launchpad",
+    "tx": 106523,
+    "failed": 50203,
+    "fail_share": 0.47128789087802636,
+    "fee_sol": 0.784,
+    "unique_payers": 1,
+    "top_payer": "83TSSS7qojPowqrrvH23mCrhEJjnJG2ygaf7FEq9ZgKC",
+    "top_payer_share": 1.0,
+    "token_move_share": 0.0,
+    "avg_cu": 797.53860668588
+   },
+   "economics": null,
+   "usd": null,
+   "key": "ojh19ojaKduoJZuaJADhcVGp4xt1TcdAvZmpVsCorch",
+   "identity": "sol_quote_poster:ojh19ojaKduoJZuaJADhcVGp4xt1TcdAvZmpVsCorch"
+  },
+  {
+   "detector": "sol_quote_poster",
+   "title": "unlabelled tiny-payload poster (40 bytes, 2 accounts, ~20 payers): 106,140 txs from 24 payer(s), 0.0% move a token, 20% failed, 0.5 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "W1LDCARDa67SPBG7TFpQivHnEZXRtxCFP13ysEd1bWR",
+    "label": "unlabelled tiny-payload poster (40 bytes, 2 accounts, ~20 payers)",
+    "kind": "unknown_hf",
+    "tx": 106140,
+    "failed": 21398,
+    "fail_share": 0.2016016581872998,
+    "fee_sol": 0.545,
+    "unique_payers": 24,
+    "top_payer": "Upd6aNH1UFRD1NDgBMkfjX15TjQMHmwoPPR8wTAyZ1P",
+    "top_payer_share": 0.10017900885622763,
+    "token_move_share": 0.0,
+    "avg_cu": 386.527981910684
+   },
+   "economics": null,
+   "usd": null,
+   "key": "W1LDCARDa67SPBG7TFpQivHnEZXRtxCFP13ysEd1bWR",
+   "identity": "sol_quote_poster:W1LDCARDa67SPBG7TFpQivHnEZXRtxCFP13ysEd1bWR"
+  },
+  {
+   "detector": "sol_quote_poster",
+   "title": "NA24\u2026HTUV: 101,067 txs from 12 payer(s), 0.1% move a token, 59% failed, 1.4 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "NA247a7YE9S3p9CdKmMyETx8TTwbSdVbVYHHxpnHTUV",
+    "label": null,
+    "kind": null,
+    "tx": 101067,
+    "failed": 59575,
+    "fail_share": 0.5894604569246144,
+    "fee_sol": 1.408,
+    "unique_payers": 12,
+    "top_payer": "7iAFnmyLTYNBrVtrwYGqJAbwja5VxJh4HcS5ani3MFYK",
+    "top_payer_share": 0.2183403089039944,
+    "token_move_share": 0.0005244046028871936,
+    "avg_cu": 101178.40189181434
+   },
+   "economics": null,
+   "usd": null,
+   "key": "NA247a7YE9S3p9CdKmMyETx8TTwbSdVbVYHHxpnHTUV",
+   "identity": "sol_quote_poster:NA247a7YE9S3p9CdKmMyETx8TTwbSdVbVYHHxpnHTUV"
+  },
+  {
+   "detector": "sol_quote_poster",
+   "title": "Quantum: 98,374 txs from 6 payer(s), 0.0% move a token, 0% failed, 0.6 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "QuaNtZsgYRe5Z9Bk4LZ4cTD9tbkVoyCNf1R2BN9bBDv",
+    "label": "Quantum",
+    "kind": "dex",
+    "tx": 98374,
+    "failed": 433,
+    "fail_share": 0.004401569520401732,
+    "fee_sol": 0.619,
+    "unique_payers": 6,
+    "top_payer": "FL8EKUSmRJV4hxKmszcAfikPRkU9a3gKNMo4mynm7Gsm",
+    "top_payer_share": 0.1947364140931547,
+    "token_move_share": 0.0,
+    "avg_cu": 623.0516904873239
+   },
+   "economics": null,
+   "usd": null,
+   "key": "QuaNtZsgYRe5Z9Bk4LZ4cTD9tbkVoyCNf1R2BN9bBDv",
+   "identity": "sol_quote_poster:QuaNtZsgYRe5Z9Bk4LZ4cTD9tbkVoyCNf1R2BN9bBDv"
+  },
+  {
+   "detector": "sol_quote_poster",
+   "title": "unlabelled tiny-payload poster (33 bytes, 2 accounts, 1 payer): 89,936 txs from 1 payer(s), 0.0% move a token, 0% failed, 0.5 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "dijkbkCAKfFTCxQg3u1pg82gVU1jJGHBBRcteD11mBu",
+    "label": "unlabelled tiny-payload poster (33 bytes, 2 accounts, 1 payer)",
+    "kind": "unknown_hf",
+    "tx": 89936,
+    "failed": 0,
+    "fail_share": 0.0,
+    "fee_sol": 0.46,
+    "unique_payers": 1,
+    "top_payer": "FTp1BybZ51NiZKbnZH6MsrV3tUZNauhpQMbBcqYUEr5f",
+    "top_payer_share": 1.0,
+    "token_move_share": 0.0,
+    "avg_cu": 519.0511030065825
+   },
+   "economics": null,
+   "usd": null,
+   "key": "dijkbkCAKfFTCxQg3u1pg82gVU1jJGHBBRcteD11mBu",
+   "identity": "sol_quote_poster:dijkbkCAKfFTCxQg3u1pg82gVU1jJGHBBRcteD11mBu"
+  },
+  {
+   "detector": "sol_quote_poster",
+   "title": "pump.fun sniper program (99% failed buys, 4 payers): 81,780 txs from 4 payer(s), 0.0% move a token, 99% failed, 0.6 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "7JwTi9ambvCTYwZbNQEZA8hzpG3ymPWRZpAxgKPJ94ZG",
+    "label": "pump.fun sniper program (99% failed buys, 4 payers)",
+    "kind": "bot",
+    "tx": 81780,
+    "failed": 80931,
+    "fail_share": 0.9896184886280264,
+    "fee_sol": 0.56,
+    "unique_payers": 4,
+    "top_payer": "4sWPwW2BwGgGX7L4eGe5XCsAe4fLVU8yCjusH1icH6MW",
+    "top_payer_share": 0.2962949376375642,
+    "token_move_share": 1.2227928588897041e-05,
+    "avg_cu": 1391.0868182929812
+   },
+   "economics": null,
+   "usd": null,
+   "key": "7JwTi9ambvCTYwZbNQEZA8hzpG3ymPWRZpAxgKPJ94ZG",
+   "identity": "sol_quote_poster:7JwTi9ambvCTYwZbNQEZA8hzpG3ymPWRZpAxgKPJ94ZG"
+  },
+  {
+   "detector": "sol_quote_poster",
+   "title": "unlabelled bot program (26 accounts, pump.fun Sell/GetFees inner calls, 3 payers): 76,629 txs from 3 payer(s), 0.3% move a token, 22% failed, 0.4 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "Hd7c1kYHqYJ7dD1bLf9C61XC22JgbGp4P1PQ8UNcUH5w",
+    "label": "unlabelled bot program (26 accounts, pump.fun Sell/GetFees inner calls, 3 payers)",
+    "kind": "bot",
+    "tx": 76629,
+    "failed": 16535,
+    "fail_share": 0.21577992665961973,
+    "fee_sol": 0.387,
+    "unique_payers": 3,
+    "top_payer": "CFgkK5ujekE9MA7ruSXqWJtJzj1znX3cvBrCL1xuQ9WH",
+    "top_payer_share": 0.7321901629931227,
+    "token_move_share": 0.003249422542379517,
+    "avg_cu": 19907.442665309478
+   },
+   "economics": null,
+   "usd": null,
+   "key": "Hd7c1kYHqYJ7dD1bLf9C61XC22JgbGp4P1PQ8UNcUH5w",
+   "identity": "sol_quote_poster:Hd7c1kYHqYJ7dD1bLf9C61XC22JgbGp4P1PQ8UNcUH5w"
+  },
+  {
+   "detector": "sol_quote_poster",
+   "title": "6MWV\u2026QEGh: 75,388 txs from 3 payer(s), 0.0% move a token, 0% failed, 0.8 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "6MWVTis8rmmk6Vt9zmAJJbmb3VuLpzoQ1aHH4N6wQEGh",
+    "label": null,
+    "kind": null,
+    "tx": 75388,
+    "failed": 4,
+    "fail_share": 5.305884225606197e-05,
+    "fee_sol": 0.837,
+    "unique_payers": 3,
+    "top_payer": "8TPWakvWw4xQbk7uAYdNjZiDKKHgv9GE5GebzsbtUaHr",
+    "top_payer_share": 0.8334880882899135,
+    "token_move_share": 0.0004244707380484958,
+    "avg_cu": 40949.589802090515
+   },
+   "economics": null,
+   "usd": null,
+   "key": "6MWVTis8rmmk6Vt9zmAJJbmb3VuLpzoQ1aHH4N6wQEGh",
+   "identity": "sol_quote_poster:6MWVTis8rmmk6Vt9zmAJJbmb3VuLpzoQ1aHH4N6wQEGh"
+  },
+  {
+   "detector": "sol_quote_poster",
+   "title": "BisonFi: 70,093 txs from 3 payer(s), 0.0% move a token, 22% failed, 0.5 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "BiSoNHVpsVZW2F7rx2eQ59yQwKxzU5NvBcmKshCSUypi",
+    "label": "BisonFi",
+    "kind": "dex",
+    "tx": 70093,
+    "failed": 15554,
+    "fail_share": 0.221905183113863,
+    "fee_sol": 0.462,
+    "unique_payers": 3,
+    "top_payer": "Gs7aQqWznF4F2hb26kt3NdMnM3RTnNcgpWMc9NLJaj6y",
+    "top_payer_share": 0.5887749133294338,
+    "token_move_share": 0.0,
+    "avg_cu": 461.62385687586493
+   },
+   "economics": null,
+   "usd": null,
+   "key": "BiSoNHVpsVZW2F7rx2eQ59yQwKxzU5NvBcmKshCSUypi",
+   "identity": "sol_quote_poster:BiSoNHVpsVZW2F7rx2eQ59yQwKxzU5NvBcmKshCSUypi"
+  },
+  {
+   "detector": "sol_quote_poster",
+   "title": "3RWL\u2026v3eX: 68,028 txs from 4 payer(s), 0.0% move a token, 100% failed, 0.6 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "3RWLeScYhxvdywAcFWxoVBb88eBDspskcHEX1Q55v3eX",
+    "label": null,
+    "kind": null,
+    "tx": 68028,
+    "failed": 67698,
+    "fail_share": 0.9951490562709473,
+    "fee_sol": 0.618,
+    "unique_payers": 4,
+    "top_payer": "869VFUwhX3gde3t6FdF94gUSdNd7BBVamGndjVBp7gVv",
+    "top_payer_share": 0.2531457635091433,
+    "token_move_share": 0.0,
+    "avg_cu": 1621.7849708943377
+   },
+   "economics": null,
+   "usd": null,
+   "key": "3RWLeScYhxvdywAcFWxoVBb88eBDspskcHEX1Q55v3eX",
+   "identity": "sol_quote_poster:3RWLeScYhxvdywAcFWxoVBb88eBDspskcHEX1Q55v3eX"
+  },
+  {
+   "detector": "sol_quote_poster",
+   "title": "BevF\u202656A3: 62,118 txs from 4 payer(s), 0.0% move a token, 99% failed, 0.7 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "BevFQ2LKT3riywRANkmWWKE5dksoTkpCtn7B1uzp56A3",
+    "label": null,
+    "kind": null,
+    "tx": 62118,
+    "failed": 61793,
+    "fail_share": 0.9947680221513893,
+    "fee_sol": 0.715,
+    "unique_payers": 4,
+    "top_payer": "Fzo9V7Qe8u2RLJ6o8Jhm2SyzNF1LQohnKvCEL4wzQBWK",
+    "top_payer_share": 0.25174667568176695,
+    "token_move_share": 1.6098393380340642e-05,
+    "avg_cu": 1596.5301039956212
+   },
+   "economics": null,
+   "usd": null,
+   "key": "BevFQ2LKT3riywRANkmWWKE5dksoTkpCtn7B1uzp56A3",
+   "identity": "sol_quote_poster:BevFQ2LKT3riywRANkmWWKE5dksoTkpCtn7B1uzp56A3"
+  },
+  {
+   "detector": "sol_quote_poster",
+   "title": "BisonFi Predict: 61,264 txs from 2 payer(s), 0.0% move a token, 9% failed, 0.3 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "2DNbzPochEcyCcWMbL4d9S3u9QqQEj5bbe6cSZFvKsbh",
+    "label": "BisonFi Predict",
+    "kind": "prediction",
+    "tx": 61264,
+    "failed": 5710,
+    "fail_share": 0.09320318621049882,
+    "fee_sol": 0.306,
+    "unique_payers": 2,
+    "top_payer": "7TRGFC2EcrPWf9SXBzNW5qLXXUvUjyyARp6iJ6uJqkKE",
+    "top_payer_share": 0.9962457560720814,
+    "token_move_share": 0.00031013319404544267,
+    "avg_cu": 650.3583997127188
+   },
+   "economics": null,
+   "usd": null,
+   "key": "2DNbzPochEcyCcWMbL4d9S3u9QqQEj5bbe6cSZFvKsbh",
+   "identity": "sol_quote_poster:2DNbzPochEcyCcWMbL4d9S3u9QqQEj5bbe6cSZFvKsbh"
+  },
+  {
+   "detector": "sol_quote_poster",
+   "title": "Archer: 59,588 txs from 3 payer(s), 0.0% move a token, 15% failed, 0.3 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "Archer8kgiavM61GyusMzaaS2ft5sALtNsD1HxkUPMhy",
+    "label": "Archer",
+    "kind": "dex",
+    "tx": 59588,
+    "failed": 8784,
+    "fail_share": 0.14741223065046655,
+    "fee_sol": 0.325,
+    "unique_payers": 3,
+    "top_payer": "GLKCuotKSjPtQhxHmf6q8GUkw6tUZnzs8W5vEbxdaBdK",
+    "top_payer_share": 0.6187151775525274,
+    "token_move_share": 8.390951198227831e-05,
+    "avg_cu": 3187.0103879975836
+   },
+   "economics": null,
+   "usd": null,
+   "key": "Archer8kgiavM61GyusMzaaS2ft5sALtNsD1HxkUPMhy",
+   "identity": "sol_quote_poster:Archer8kgiavM61GyusMzaaS2ft5sALtNsD1HxkUPMhy"
+  },
+  {
+   "detector": "sol_quote_poster",
+   "title": "DDsn\u2026AMEo: 52,953 txs from 3 payer(s), 0.8% move a token, 25% failed, 1.0 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "DDsnwb7dxKSjzTYDFjU8F6rpYNZa1sp7Fmfb2nGDAMEo",
+    "label": null,
+    "kind": null,
+    "tx": 52953,
+    "failed": 13348,
+    "fail_share": 0.2520725926765245,
+    "fee_sol": 1.016,
+    "unique_payers": 3,
+    "top_payer": "A7FMMgue4aZmPLLoutVtbC7gJcyqkHybUieiaDg9aaVE",
+    "top_payer_share": 0.9658942836099937,
+    "token_move_share": 0.008460332747908523,
+    "avg_cu": 112252.8727550847
+   },
+   "economics": null,
+   "usd": null,
+   "key": "DDsnwb7dxKSjzTYDFjU8F6rpYNZa1sp7Fmfb2nGDAMEo",
+   "identity": "sol_quote_poster:DDsnwb7dxKSjzTYDFjU8F6rpYNZa1sp7Fmfb2nGDAMEo"
+  },
+  {
+   "detector": "sol_failure_spam",
+   "title": "9 failure bots: 508,490 failed txs = 26.7% of all failures, 5.0 SOL of fees",
+   "severity": "info",
+   "evidence": {
+    "programs": 9,
+    "tx": 519058,
+    "failed": 508490,
+    "window_failed": 1906581,
+    "fee_sol": 4.99,
+    "fee_usd": 524
+   },
+   "economics": null,
+   "usd": null,
+   "key": "all",
+   "identity": "sol_failure_spam:all"
+  },
+  {
+   "detector": "sol_failure_spam",
+   "title": "pump.fun sniper program (94% failed, 4 payers): 139,654 txs, 94% failed, 4 payer(s), 1.6 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "DhpyNWkdxFh3DRPsBrwRwrK3TYC5t7Q4arnSvf3t84HY",
+    "label": "pump.fun sniper program (94% failed, 4 payers)",
+    "kind": "bot",
+    "tx": 139654,
+    "failed": 130707,
+    "fail_share": 0.9359345238947685,
+    "fee_sol": 1.55,
+    "unique_payers": 4,
+    "top_payer": "2KP9miexioqgNbjPwysggcbi3sKqhH8JsPaDmFxRPURD",
+    "top_payer_share": 0.2503114840964097
+   },
+   "economics": null,
+   "usd": null,
+   "key": "DhpyNWkdxFh3DRPsBrwRwrK3TYC5t7Q4arnSvf3t84HY",
+   "identity": "sol_failure_spam:DhpyNWkdxFh3DRPsBrwRwrK3TYC5t7Q4arnSvf3t84HY"
+  },
+  {
+   "detector": "sol_failure_spam",
+   "title": "pump.fun sniper program (99% failed buys, 4 payers): 81,780 txs, 99% failed, 4 payer(s), 0.6 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "7JwTi9ambvCTYwZbNQEZA8hzpG3ymPWRZpAxgKPJ94ZG",
+    "label": "pump.fun sniper program (99% failed buys, 4 payers)",
+    "kind": "bot",
+    "tx": 81780,
+    "failed": 80931,
+    "fail_share": 0.9896184886280264,
+    "fee_sol": 0.56,
+    "unique_payers": 4,
+    "top_payer": "4sWPwW2BwGgGX7L4eGe5XCsAe4fLVU8yCjusH1icH6MW",
+    "top_payer_share": 0.2962949376375642
+   },
+   "economics": null,
+   "usd": null,
+   "key": "7JwTi9ambvCTYwZbNQEZA8hzpG3ymPWRZpAxgKPJ94ZG",
+   "identity": "sol_failure_spam:7JwTi9ambvCTYwZbNQEZA8hzpG3ymPWRZpAxgKPJ94ZG"
+  },
+  {
+   "detector": "sol_failure_spam",
+   "title": "3RWL\u2026v3eX: 68,028 txs, 100% failed, 4 payer(s), 0.6 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "3RWLeScYhxvdywAcFWxoVBb88eBDspskcHEX1Q55v3eX",
+    "label": null,
+    "kind": null,
+    "tx": 68028,
+    "failed": 67698,
+    "fail_share": 0.9951490562709473,
+    "fee_sol": 0.618,
+    "unique_payers": 4,
+    "top_payer": "869VFUwhX3gde3t6FdF94gUSdNd7BBVamGndjVBp7gVv",
+    "top_payer_share": 0.2531457635091433
+   },
+   "economics": null,
+   "usd": null,
+   "key": "3RWLeScYhxvdywAcFWxoVBb88eBDspskcHEX1Q55v3eX",
+   "identity": "sol_failure_spam:3RWLeScYhxvdywAcFWxoVBb88eBDspskcHEX1Q55v3eX"
+  },
+  {
+   "detector": "sol_failure_spam",
+   "title": "BevF\u202656A3: 62,118 txs, 99% failed, 4 payer(s), 0.7 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "BevFQ2LKT3riywRANkmWWKE5dksoTkpCtn7B1uzp56A3",
+    "label": null,
+    "kind": null,
+    "tx": 62118,
+    "failed": 61793,
+    "fail_share": 0.9947680221513893,
+    "fee_sol": 0.715,
+    "unique_payers": 4,
+    "top_payer": "Fzo9V7Qe8u2RLJ6o8Jhm2SyzNF1LQohnKvCEL4wzQBWK",
+    "top_payer_share": 0.25174667568176695
+   },
+   "economics": null,
+   "usd": null,
+   "key": "BevFQ2LKT3riywRANkmWWKE5dksoTkpCtn7B1uzp56A3",
+   "identity": "sol_failure_spam:BevFQ2LKT3riywRANkmWWKE5dksoTkpCtn7B1uzp56A3"
+  },
+  {
+   "detector": "sol_failure_spam",
+   "title": "Db8h\u2026BEwH: 36,396 txs, 100% failed, 1 payer(s), 0.2 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "Db8hf6HoijsAi6PZdXn4wByhB6LVrn17MPS6XprQBEwH",
+    "label": null,
+    "kind": null,
+    "tx": 36396,
+    "failed": 36374,
+    "fail_share": 0.9993955379712056,
+    "fee_sol": 0.247,
+    "unique_payers": 1,
+    "top_payer": "7ovu7sqYQGcHwUnLfVfwjCx5VGBCiJmBrsrBv2ab1Ltx",
+    "top_payer_share": 1.0
+   },
+   "economics": null,
+   "usd": null,
+   "key": "Db8hf6HoijsAi6PZdXn4wByhB6LVrn17MPS6XprQBEwH",
+   "identity": "sol_failure_spam:Db8hf6HoijsAi6PZdXn4wByhB6LVrn17MPS6XprQBEwH"
+  },
+  {
+   "detector": "sol_failure_spam",
+   "title": "naeb\u20262yCV: 35,784 txs, 100% failed, 3 payer(s), 0.4 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "naebaL84HEJ55PFPrsUZMa4CC8CjmW9YkRDQZiN2yCV",
+    "label": null,
+    "kind": null,
+    "tx": 35784,
+    "failed": 35783,
+    "fail_share": 0.9999720545495193,
+    "fee_sol": 0.406,
+    "unique_payers": 3,
+    "top_payer": "EBLANtX7A7aKnakoB9qbqBqLV8y6z1ts8rw8a2RVrHJs",
+    "top_payer_share": 0.3524200760116253
+   },
+   "economics": null,
+   "usd": null,
+   "key": "naebaL84HEJ55PFPrsUZMa4CC8CjmW9YkRDQZiN2yCV",
+   "identity": "sol_failure_spam:naebaL84HEJ55PFPrsUZMa4CC8CjmW9YkRDQZiN2yCV"
+  },
+  {
+   "detector": "sol_failure_spam",
+   "title": "4jjV\u2026FQtp: 34,951 txs, 100% failed, 1 payer(s), 0.4 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "4jjVJMSUdpjqkpNm5PEqd6xMwB3GysdoG7E3UGh8FQtp",
+    "label": null,
+    "kind": null,
+    "tx": 34951,
+    "failed": 34951,
+    "fail_share": 1.0,
+    "fee_sol": 0.444,
+    "unique_payers": 1,
+    "top_payer": "HM3x6GSBcFgEMcP67eBE1JMQkdyxtT9vbjPrLmJtEnxf",
+    "top_payer_share": 1.0
+   },
+   "economics": null,
+   "usd": null,
+   "key": "4jjVJMSUdpjqkpNm5PEqd6xMwB3GysdoG7E3UGh8FQtp",
+   "identity": "sol_failure_spam:4jjVJMSUdpjqkpNm5PEqd6xMwB3GysdoG7E3UGh8FQtp"
+  },
+  {
+   "detector": "sol_failure_spam",
+   "title": "4VXz\u2026RjWH: 33,861 txs, 100% failed, 1 payer(s), 0.2 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "4VXz7mbrduuykm6XbmpPKrvV2FkFxb3QcQGFevEWRjWH",
+    "label": null,
+    "kind": null,
+    "tx": 33861,
+    "failed": 33861,
+    "fail_share": 1.0,
+    "fee_sol": 0.243,
+    "unique_payers": 1,
+    "top_payer": "Dd2nB2vD1XvDsdKqhtmCuh1q6tzWckkqLq3JubznKanL",
+    "top_payer_share": 1.0
+   },
+   "economics": null,
+   "usd": null,
+   "key": "4VXz7mbrduuykm6XbmpPKrvV2FkFxb3QcQGFevEWRjWH",
+   "identity": "sol_failure_spam:4VXz7mbrduuykm6XbmpPKrvV2FkFxb3QcQGFevEWRjWH"
+  },
+  {
+   "detector": "sol_failure_spam",
+   "title": "9w1g\u2026TNzp: 26,486 txs, 100% failed, 2 payer(s), 0.2 SOL fees",
+   "severity": "info",
+   "evidence": {
+    "program": "9w1gh7mKG8WZN5k4aiMcAtUpQceVrL1tJzfkK9EcTNzp",
+    "label": null,
+    "kind": null,
+    "tx": 26486,
+    "failed": 26392,
+    "fail_share": 0.9964509552216265,
+    "fee_sol": 0.207,
+    "unique_payers": 2,
+    "top_payer": "4993AyyDzL3bFXisqwGzK4oZVjEkdxe8RhBSexSPktnd",
+    "top_payer_share": 0.503586800573888
+   },
+   "economics": null,
+   "usd": null,
+   "key": "9w1gh7mKG8WZN5k4aiMcAtUpQceVrL1tJzfkK9EcTNzp",
+   "identity": "sol_failure_spam:9w1gh7mKG8WZN5k4aiMcAtUpQceVrL1tJzfkK9EcTNzp"
+  },
+  {
+   "detector": "sol_launch_factory",
+   "title": "1,750 token launches by 804 creators; top 3 creators [60, 57, 49]",
+   "severity": "info",
+   "evidence": {
+    "total": 1750,
+    "unique_creators": 804,
+    "by_program": [
+     [
+      "Pump.fun",
+      "6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P",
+      1276
+     ],
+     [
+      "Dynamic Bonding Curve",
+      "dbcij3LWUppWqq96dh6gJWwBifmcGfLSB5D4DuSMaqN",
+      272
+     ],
+     [
+      "Raydium Launchlab",
+      "LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj",
+      146
+     ],
+     [
+      "unlabelled launchpad (new mints + trades, tied to bundler wallet 6pSPqc\u2026)",
+      "6Vo3245eszAb5wuqEMw8mGdbfRUdKbHhDHP5LcaGuTAB",
+      48
+     ],
+     [
+      "T1TA\u2026XvGT",
+      "T1TANpTeScyeqVzzgNViGDNrkQ6qHz9KrSBS4aNXvGT",
+      4
+     ],
+     [
+      "24Uq\u2026pyTi",
+      "24Uqj9JCLxUeoC3hGfh5W3s9FM9uCHDS2SG3LYwBpyTi",
+      4
+     ]
+    ]
+   },
+   "economics": null,
+   "usd": null,
+   "key": "all",
+   "identity": "sol_launch_factory:all"
+  },
+  {
+   "detector": "sol_launch_factory",
+   "title": "Asi5\u20263aQs launched 60 tokens in the hour",
+   "severity": "info",
+   "evidence": {
+    "creator": "Asi5DTGEeiso6k7ya6ndDabEZ7DRCgfTpCBLPH5E3aQs",
+    "launches": 60,
+    "window_launches": 1750,
+    "unique_creators": 804
+   },
+   "economics": null,
+   "usd": null,
+   "key": "Asi5DTGEeiso6k7ya6ndDabEZ7DRCgfTpCBLPH5E3aQs",
+   "identity": "sol_launch_factory:Asi5DTGEeiso6k7ya6ndDabEZ7DRCgfTpCBLPH5E3aQs"
+  },
+  {
+   "detector": "sol_launch_factory",
+   "title": "VygS\u2026Zg4R launched 57 tokens in the hour",
+   "severity": "info",
+   "evidence": {
+    "creator": "VygS4a8U5ZXPak13LrqaTW7vKPEcoTcyfZ3eRLoZg4R",
+    "launches": 57,
+    "window_launches": 1750,
+    "unique_creators": 804
+   },
+   "economics": null,
+   "usd": null,
+   "key": "VygS4a8U5ZXPak13LrqaTW7vKPEcoTcyfZ3eRLoZg4R",
+   "identity": "sol_launch_factory:VygS4a8U5ZXPak13LrqaTW7vKPEcoTcyfZ3eRLoZg4R"
+  },
+  {
+   "detector": "sol_launch_factory",
+   "title": "74fH\u202687Y4 launched 49 tokens in the hour",
+   "severity": "info",
+   "evidence": {
+    "creator": "74fHCK8r4AR8rSbTF8HYqjG7Dbio7utvZWdwAE5H87Y4",
+    "launches": 49,
+    "window_launches": 1750,
+    "unique_creators": 804
+   },
+   "economics": null,
+   "usd": null,
+   "key": "74fHCK8r4AR8rSbTF8HYqjG7Dbio7utvZWdwAE5H87Y4",
+   "identity": "sol_launch_factory:74fHCK8r4AR8rSbTF8HYqjG7Dbio7utvZWdwAE5H87Y4"
+  },
+  {
+   "detector": "sol_launch_factory",
+   "title": "Amjv\u2026praL launched 31 tokens in the hour",
+   "severity": "info",
+   "evidence": {
+    "creator": "AmjvT9vh3m9VNFkqzUqNsJvxxAaQMq9dHKWB8MPepraL",
+    "launches": 31,
+    "window_launches": 1750,
+    "unique_creators": 804
+   },
+   "economics": null,
+   "usd": null,
+   "key": "AmjvT9vh3m9VNFkqzUqNsJvxxAaQMq9dHKWB8MPepraL",
+   "identity": "sol_launch_factory:AmjvT9vh3m9VNFkqzUqNsJvxxAaQMq9dHKWB8MPepraL"
+  },
+  {
+   "detector": "sol_launch_factory",
+   "title": "3ph9\u2026ioVA launched 22 tokens in the hour",
+   "severity": "info",
+   "evidence": {
+    "creator": "3ph9MUgWBFV123nQCtJL62XCPYdpUMtaxcfCpD8QioVA",
+    "launches": 22,
+    "window_launches": 1750,
+    "unique_creators": 804
+   },
+   "economics": null,
+   "usd": null,
+   "key": "3ph9MUgWBFV123nQCtJL62XCPYdpUMtaxcfCpD8QioVA",
+   "identity": "sol_launch_factory:3ph9MUgWBFV123nQCtJL62XCPYdpUMtaxcfCpD8QioVA"
+  },
+  {
+   "detector": "sol_flash_loan_spam",
+   "title": "guof\u2026VNk3: 2,091 failed flash loans on Kamino Lend, no successes",
+   "severity": "info",
+   "evidence": {
+    "venue": "Kamino Lend",
+    "payer": "guofisumfbUkeV169uPKWx1EcRiq7idJe25xBtdVNk3",
+    "failed": 2091,
+    "co_programs": null
+   },
+   "economics": null,
+   "usd": null,
+   "key": "Kamino Lend:guofisumfbUkeV169uPKWx1EcRiq7idJe25xBtdVNk3",
+   "identity": "sol_flash_loan_spam:Kamino Lend:guofisumfbUkeV169uPKWx1EcRiq7idJe25xBtdVNk3"
+  },
+  {
+   "detector": "sol_flash_loan_spam",
+   "title": "Hz7K\u2026r7sz: 178 failed flash loans on Kamino Lend, no successes",
+   "severity": "info",
+   "evidence": {
+    "venue": "Kamino Lend",
+    "payer": "Hz7KY4XrZs7A5XHonoUwBhqarVZJCnm4ByDvQzcDr7sz",
+    "failed": 178,
+    "co_programs": null
+   },
+   "economics": null,
+   "usd": null,
+   "key": "Kamino Lend:Hz7KY4XrZs7A5XHonoUwBhqarVZJCnm4ByDvQzcDr7sz",
+   "identity": "sol_flash_loan_spam:Kamino Lend:Hz7KY4XrZs7A5XHonoUwBhqarVZJCnm4ByDvQzcDr7sz"
+  },
+  {
+   "detector": "sol_liquidation_drought",
+   "title": "0 liquidations on any lending venue; 187 failed attempts (Kamino Lend 184, marginfi v2 3)",
+   "severity": "info",
+   "evidence": {
+    "attempts": {
+     "Kamino Lend": {
+      "ok": 0,
+      "failed": 184,
+      "top_payers": [
+       [
+        "bSoLsXCrtMGAH1NPZ7GGcYsNdzQJ49akjmgsioWSpgW",
+        184
+       ]
+      ]
+     },
+     "marginfi v2": {
+      "ok": 0,
+      "failed": 3,
+      "top_payers": [
+       [
+        "A2KEYYWez3GJ4AxK5kd6ZZhGGBNN368dZdyHD8Ufbdb2",
+        3
+       ]
+      ]
+     }
+    },
+    "events": {
+     "Kamino Lend": {
+      "tx": 4339,
+      "failed": 2573
+     },
+     "marginfi v2": {
+      "tx": 1514,
+      "failed": 223
+     },
+     "Jupiter Lend Earn": {
+      "tx": 570,
+      "failed": 8
+     },
+     "Save (Solend)": {
+      "tx": 49,
+      "failed": 16
+     }
+    }
+   },
+   "economics": null,
+   "usd": null,
+   "key": "all",
+   "identity": "sol_liquidation_drought:all"
+  },
+  {
+   "detector": "sol_dust_poisoning",
+   "title": "6uqx\u2026XSPy: 7,180 dust transfers to 866 recipients",
+   "severity": "info",
+   "evidence": {
+    "sender": "6uqxgxbsVJWLWJfKipEJ5n21Jq51nYba9aVSjnEdXSPy",
+    "label": null,
+    "dust_transfers": 7180,
+    "recipients": 866
+   },
+   "economics": null,
+   "usd": null,
+   "key": "6uqxgxbsVJWLWJfKipEJ5n21Jq51nYba9aVSjnEdXSPy",
+   "identity": "sol_dust_poisoning:6uqxgxbsVJWLWJfKipEJ5n21Jq51nYba9aVSjnEdXSPy"
+  },
+  {
+   "detector": "sol_dust_poisoning",
+   "title": "7Z1X\u20267CeJ: 6,916 dust transfers to 6,658 recipients",
+   "severity": "info",
+   "evidence": {
+    "sender": "7Z1X7kuBnAqMthkUQb7mRs8cvdKpde6QXUjHgAp27CeJ",
+    "label": null,
+    "dust_transfers": 6916,
+    "recipients": 6658
+   },
+   "economics": null,
+   "usd": null,
+   "key": "7Z1X7kuBnAqMthkUQb7mRs8cvdKpde6QXUjHgAp27CeJ",
+   "identity": "sol_dust_poisoning:7Z1X7kuBnAqMthkUQb7mRs8cvdKpde6QXUjHgAp27CeJ"
+  },
+  {
+   "detector": "sol_dust_poisoning",
+   "title": "DRro\u2026GwEc: 2,320 dust transfers to 2,108 recipients",
+   "severity": "info",
+   "evidence": {
+    "sender": "DRrohsjhNZTbNpXWLwqtJLP5SCij3iZbYRtw3VacGwEc",
+    "label": null,
+    "dust_transfers": 2320,
+    "recipients": 2108
+   },
+   "economics": null,
+   "usd": null,
+   "key": "DRrohsjhNZTbNpXWLwqtJLP5SCij3iZbYRtw3VacGwEc",
+   "identity": "sol_dust_poisoning:DRrohsjhNZTbNpXWLwqtJLP5SCij3iZbYRtw3VacGwEc"
+  },
+  {
+   "detector": "sol_dust_poisoning",
+   "title": "AeeT\u2026Jbqj: 1,418 dust transfers to 45 recipients",
+   "severity": "info",
+   "evidence": {
+    "sender": "AeeT8wTGMnQRz2jM5zk13NCq97Ng1Q2XgCnpVgFWJbqj",
+    "label": null,
+    "dust_transfers": 1418,
+    "recipients": 45
+   },
+   "economics": null,
+   "usd": null,
+   "key": "AeeT8wTGMnQRz2jM5zk13NCq97Ng1Q2XgCnpVgFWJbqj",
+   "identity": "sol_dust_poisoning:AeeT8wTGMnQRz2jM5zk13NCq97Ng1Q2XgCnpVgFWJbqj"
+  }
+ ],
+ "sol_usd": 105.0762,
+ "thresholds": {
+  "WASH_MIN_USD": 1000000.0,
+  "WASH_MIN_SHARE": 0.2,
+  "QUOTE_MIN_TX": 50000,
+  "QUOTE_MAX_TOKEN_MOVE": 0.05,
+  "QUOTE_MAX_PAYERS": 200,
+  "SPAM_MIN_TX": 20000,
+  "SPAM_MIN_FAIL": 0.9,
+  "HUB_MIN_SENDERS": 500,
+  "DISTRIBUTOR_MIN_OUT": 1000,
+  "FACTORY_MIN_LAUNCHES": 20,
+  "FLASH_MIN_FAILED": 100,
+  "NAV_MIN_BASIS_BP": 25,
+  "RATE_MIN_GAP_PP": 1.5,
+  "RATE_MIN_SUPPLIED_USD": 1000000.0,
+  "EXCHANGE_MIN_NET_USD": 5000000.0,
+  "DUST_MIN_TRANSFERS": 1000,
+  "LARGE_MIN_USD": 5000000.0
+ }
+}

@@ -1,0 +1,658 @@
+{
+ "generated_utc": "2026-10-09T16:12:17+00:00",
+ "tolerance": 0.25,
+ "passed": 42,
+ "failed": 3,
+ "checks": [
+  {
+   "id": "tx-cross-source:abstract:l2beat",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 140.8k/day (sampled-blocks) vs l2beat 139.2k/day: x1.011"
+  },
+  {
+   "id": "tx-cross-source:arbitrum:growthepie",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 2.1M/day (sampled-blocks) vs growthepie 1.8M/day: x1.172"
+  },
+  {
+   "id": "tx-cross-source:arbitrum:l2beat",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 2.1M/day (sampled-blocks) vs l2beat 1.8M/day: x1.171"
+  },
+  {
+   "id": "tx-cross-source:base:growthepie",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 12.3M/day (sampled-blocks) vs growthepie 11.3M/day: x1.093"
+  },
+  {
+   "id": "tx-cross-source:base:l2beat",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 12.3M/day (sampled-blocks) vs l2beat 11.3M/day: x1.092"
+  },
+  {
+   "id": "tx-cross-source:bitcoin-cash:blockchair-24h",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 15.1k/day (aggregator-24h) vs blockchair-24h 15.2k/day: x0.994"
+  },
+  {
+   "id": "tx-cross-source:blast:l2beat",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 320.3k/day (sampled-blocks) vs l2beat 321.4k/day: x0.997"
+  },
+  {
+   "id": "tx-cross-source:celo:growthepie",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 905.0k/day (sampled-blocks) vs growthepie 896.7k/day: x1.009"
+  },
+  {
+   "id": "tx-cross-source:celo:l2beat",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 905.0k/day (sampled-blocks) vs l2beat 896.7k/day: x1.009"
+  },
+  {
+   "id": "tx-cross-source:dogecoin:blockchair-24h",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 18.9k/day (aggregator-24h) vs blockchair-24h 18.8k/day: x1.005"
+  },
+  {
+   "id": "tx-cross-source:ethereum:growthepie",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 1.9M/day (sampled-blocks) vs growthepie 1.8M/day: x1.017"
+  },
+  {
+   "id": "tx-cross-source:gnosis:l2beat",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 474.0k/day (sampled-blocks) vs l2beat 459.2k/day: x1.032"
+  },
+  {
+   "id": "tx-cross-source:ink:growthepie",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 353.8k/day (sampled-blocks) vs growthepie 333.9k/day: x1.059"
+  },
+  {
+   "id": "tx-cross-source:ink:l2beat",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 353.8k/day (sampled-blocks) vs l2beat 334.0k/day: x1.059"
+  },
+  {
+   "id": "tx-cross-source:katana:l2beat",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 38.7k/day (sampled-blocks) vs l2beat 35.7k/day: x1.085"
+  },
+  {
+   "id": "tx-cross-source:linea:growthepie",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 14.6k/day (sampled-blocks) vs growthepie 17.9k/day: x0.819"
+  },
+  {
+   "id": "tx-cross-source:linea:l2beat",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 14.6k/day (sampled-blocks) vs l2beat 17.9k/day: x0.819"
+  },
+  {
+   "id": "tx-cross-source:mantle:growthepie",
+   "ok": false,
+   "kind": "numeric",
+   "detail": "probe 18.8k/day (sampled-blocks) vs growthepie 23.7k/day: x0.794"
+  },
+  {
+   "id": "tx-cross-source:mantle:l2beat",
+   "ok": false,
+   "kind": "numeric",
+   "detail": "probe 18.8k/day (sampled-blocks) vs l2beat 23.7k/day: x0.794"
+  },
+  {
+   "id": "tx-cross-source:megaeth:growthepie",
+   "ok": false,
+   "kind": "numeric",
+   "detail": "probe 2.0M/day (sampled-blocks) vs growthepie 1.1M/day: x1.786"
+  },
+  {
+   "id": "tx-cross-source:megaeth:l2beat",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 2.0M/day (sampled-blocks) vs l2beat 2.0M/day: x1.005"
+  },
+  {
+   "id": "tx-cross-source:near:nearblocks",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 1.0M/day (sampled-blocks) vs nearblocks 1.0M/day: x1.023"
+  },
+  {
+   "id": "tx-cross-source:optimism:growthepie",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 1.7M/day (sampled-blocks) vs growthepie 1.7M/day: x1.016"
+  },
+  {
+   "id": "tx-cross-source:plume:growthepie",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 206.4k/day (sampled-blocks) vs growthepie 207.1k/day: x0.997"
+  },
+  {
+   "id": "tx-cross-source:polygon:growthepie",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 5.4M/day (sampled-blocks) vs growthepie 5.5M/day: x0.998"
+  },
+  {
+   "id": "tx-cross-source:polygon:l2beat",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 5.4M/day (sampled-blocks) vs l2beat 5.5M/day: x0.998"
+  },
+  {
+   "id": "tx-cross-source:robinhood:growthepie",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 8.1M/day (sampled-blocks) vs growthepie 8.5M/day: x0.952"
+  },
+  {
+   "id": "tx-cross-source:robinhood:l2beat",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 8.1M/day (sampled-blocks) vs l2beat 8.5M/day: x0.952"
+  },
+  {
+   "id": "tx-cross-source:ronin:growthepie",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 389.7k/day (sampled-blocks) vs growthepie 441.6k/day: x0.882"
+  },
+  {
+   "id": "tx-cross-source:scroll:growthepie",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 13.1k/day (sampled-blocks) vs growthepie 13.3k/day: x0.987"
+  },
+  {
+   "id": "tx-cross-source:scroll:l2beat",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 13.1k/day (sampled-blocks) vs l2beat 13.3k/day: x0.987"
+  },
+  {
+   "id": "tx-cross-source:soneium:growthepie",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 287.3k/day (sampled-blocks) vs growthepie 285.1k/day: x1.008"
+  },
+  {
+   "id": "tx-cross-source:soneium:l2beat",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 287.3k/day (sampled-blocks) vs l2beat 285.3k/day: x1.007"
+  },
+  {
+   "id": "tx-cross-source:starknet:growthepie",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 184.4k/day (sampled-blocks) vs growthepie 187.9k/day: x0.981"
+  },
+  {
+   "id": "tx-cross-source:starknet:l2beat",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 184.4k/day (sampled-blocks) vs l2beat 192.7k/day: x0.957"
+  },
+  {
+   "id": "tx-cross-source:tron:tronscan",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 11.4M/day (sampled-blocks) vs tronscan 11.8M/day: x0.972"
+  },
+  {
+   "id": "tx-cross-source:unichain:growthepie",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 702.9k/day (sampled-blocks) vs growthepie 689.0k/day: x1.020"
+  },
+  {
+   "id": "tx-cross-source:unichain:l2beat",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 702.9k/day (sampled-blocks) vs l2beat 689.0k/day: x1.020"
+  },
+  {
+   "id": "tx-cross-source:worldchain:growthepie",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 657.9k/day (sampled-blocks) vs growthepie 642.5k/day: x1.024"
+  },
+  {
+   "id": "tx-cross-source:xlayer:l2beat",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 822.1k/day (sampled-blocks) vs l2beat 845.2k/day: x0.973"
+  },
+  {
+   "id": "tx-cross-source:zcash:blockchair-24h",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 8.1k/day (aggregator-24h) vs blockchair-24h 8.2k/day: x0.993"
+  },
+  {
+   "id": "tx-cross-source:zksync:growthepie",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "probe 16.8k/day (sampled-blocks) vs growthepie 17.1k/day: x0.978"
+  },
+  {
+   "id": "dex-breakdown",
+   "ok": true,
+   "kind": "numeric",
+   "detail": "sum of per-chain 24h $10.5B vs DefiLlama total24h $10.7B (x0.9808)"
+  },
+  {
+   "id": "llama-keys",
+   "ok": true,
+   "kind": "identity",
+   "detail": "0 contested of 263 inferred keys: "
+  },
+  {
+   "id": "registry-ids",
+   "ok": true,
+   "kind": "identity",
+   "detail": "all registry identities resolve"
+  }
+ ],
+ "tx_cross_source": [
+  {
+   "chain": "abstract",
+   "source": "l2beat",
+   "probe_per_day": 140750.5,
+   "probe_se": 4835.885790680184,
+   "reference_per_day": 139238.0,
+   "ratio": 1.0108626955285196,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "arbitrum",
+   "source": "growthepie",
+   "probe_per_day": 2116237.36,
+   "probe_se": 197583.5936234823,
+   "reference_per_day": 1805796.0,
+   "ratio": 1.1719138595943284,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "arbitrum",
+   "source": "l2beat",
+   "probe_per_day": 2116237.36,
+   "probe_se": 197583.5936234823,
+   "reference_per_day": 1806668.0,
+   "ratio": 1.1713482277872858,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "base",
+   "source": "growthepie",
+   "probe_per_day": 12323879.999999998,
+   "probe_se": 1057057.5970577418,
+   "reference_per_day": 11275984.0,
+   "ratio": 1.0929316678704049,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "base",
+   "source": "l2beat",
+   "probe_per_day": 12323879.999999998,
+   "probe_se": 1057057.5970577418,
+   "reference_per_day": 11283166.0,
+   "ratio": 1.0922359912102684,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "bitcoin-cash",
+   "source": "blockchair-24h",
+   "probe_per_day": 15129.0,
+   "probe_se": null,
+   "reference_per_day": 15222,
+   "ratio": 0.9938904217579819,
+   "method": "aggregator-24h"
+  },
+  {
+   "chain": "blast",
+   "source": "l2beat",
+   "probe_per_day": 320328.0,
+   "probe_se": 7299.153940095114,
+   "reference_per_day": 321367.0,
+   "ratio": 0.9967669362442316,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "celo",
+   "source": "growthepie",
+   "probe_per_day": 905040.0,
+   "probe_se": 21218.602628058172,
+   "reference_per_day": 896741.0,
+   "ratio": 1.0092546231297554,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "celo",
+   "source": "l2beat",
+   "probe_per_day": 905040.0,
+   "probe_se": 21218.602628058172,
+   "reference_per_day": 896743.0,
+   "ratio": 1.0092523721958242,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "dogecoin",
+   "source": "blockchair-24h",
+   "probe_per_day": 18933.0,
+   "probe_se": null,
+   "reference_per_day": 18846,
+   "ratio": 1.0046163642152182,
+   "method": "aggregator-24h"
+  },
+  {
+   "chain": "ethereum",
+   "source": "growthepie",
+   "probe_per_day": 1868329.395,
+   "probe_se": 42239.31782848971,
+   "reference_per_day": 1837541.0,
+   "ratio": 1.0167552152577821,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "gnosis",
+   "source": "l2beat",
+   "probe_per_day": 474036.375,
+   "probe_se": 17699.02659397001,
+   "reference_per_day": 459233.0,
+   "ratio": 1.0322349983559544,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "ink",
+   "source": "growthepie",
+   "probe_per_day": 353808.0,
+   "probe_se": 49229.90560655334,
+   "reference_per_day": 333944.0,
+   "ratio": 1.0594830270943632,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "ink",
+   "source": "l2beat",
+   "probe_per_day": 353808.0,
+   "probe_se": 49229.90560655334,
+   "reference_per_day": 333991.0,
+   "ratio": 1.0593339341479262,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "katana",
+   "source": "l2beat",
+   "probe_per_day": 38746.39175257732,
+   "probe_se": 6974.0576091934845,
+   "reference_per_day": 35725.0,
+   "ratio": 1.084573596993067,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "linea",
+   "source": "growthepie",
+   "probe_per_day": 14615.054999999998,
+   "probe_se": 746.292629902799,
+   "reference_per_day": 17854.0,
+   "ratio": 0.8185871513386355,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "linea",
+   "source": "l2beat",
+   "probe_per_day": 14615.054999999998,
+   "probe_se": 746.292629902799,
+   "reference_per_day": 17854.0,
+   "ratio": 0.8185871513386355,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "mantle",
+   "source": "growthepie",
+   "probe_per_day": 18792.0,
+   "probe_se": 2706.975912889663,
+   "reference_per_day": 23658.0,
+   "ratio": 0.7943190464113619,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "mantle",
+   "source": "l2beat",
+   "probe_per_day": 18792.0,
+   "probe_se": 2706.975912889663,
+   "reference_per_day": 23664.0,
+   "ratio": 0.7941176470588235,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "megaeth",
+   "source": "growthepie",
+   "probe_per_day": 1983744.0,
+   "probe_se": 20355.635084645433,
+   "reference_per_day": 1110614.0,
+   "ratio": 1.7861687318906478,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "megaeth",
+   "source": "l2beat",
+   "probe_per_day": 1983744.0,
+   "probe_se": 20355.635084645433,
+   "reference_per_day": 1974638.0,
+   "ratio": 1.0046114781544768,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "near",
+   "source": "nearblocks",
+   "probe_per_day": 1037858.6296296297,
+   "probe_se": 132153.43278292328,
+   "reference_per_day": 1014850.0,
+   "ratio": 1.0226719511549782,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "optimism",
+   "source": "growthepie",
+   "probe_per_day": 1695168.0,
+   "probe_se": 38132.47181910945,
+   "reference_per_day": 1667810.0,
+   "ratio": 1.0164035471666437,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "plume",
+   "source": "growthepie",
+   "probe_per_day": 206374.0,
+   "probe_se": 0.0,
+   "reference_per_day": 207095.0,
+   "ratio": 0.996518505999662,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "polygon",
+   "source": "growthepie",
+   "probe_per_day": 5445706.115,
+   "probe_se": 115272.93219563733,
+   "reference_per_day": 5455472.0,
+   "ratio": 0.9982098918297079,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "polygon",
+   "source": "l2beat",
+   "probe_per_day": 5445706.115,
+   "probe_se": 115272.93219563733,
+   "reference_per_day": 5455616.0,
+   "ratio": 0.9981835442597133,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "robinhood",
+   "source": "growthepie",
+   "probe_per_day": 8061452.083333334,
+   "probe_se": 361662.1926696102,
+   "reference_per_day": 8466403.0,
+   "ratio": 0.9521696620552239,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "robinhood",
+   "source": "l2beat",
+   "probe_per_day": 8061452.083333334,
+   "probe_se": 361662.1926696102,
+   "reference_per_day": 8469238.0,
+   "ratio": 0.951850931964993,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "ronin",
+   "source": "growthepie",
+   "probe_per_day": 389664.0,
+   "probe_se": 8614.560538201102,
+   "reference_per_day": 441623.0,
+   "ratio": 0.8823453488609062,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "scroll",
+   "source": "growthepie",
+   "probe_per_day": 13126.895,
+   "probe_se": 433.916692297348,
+   "reference_per_day": 13295.0,
+   "ratio": 0.987355772846935,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "scroll",
+   "source": "l2beat",
+   "probe_per_day": 13126.895,
+   "probe_se": 433.916692297348,
+   "reference_per_day": 13301.0,
+   "ratio": 0.9869103826779941,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "soneium",
+   "source": "growthepie",
+   "probe_per_day": 287280.0,
+   "probe_se": 11115.052946794733,
+   "reference_per_day": 285139.0,
+   "ratio": 1.0075086186035582,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "soneium",
+   "source": "l2beat",
+   "probe_per_day": 287280.0,
+   "probe_se": 11115.052946794733,
+   "reference_per_day": 285251.0,
+   "ratio": 1.0071130337842813,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "starknet",
+   "source": "growthepie",
+   "probe_per_day": 184362.30000000002,
+   "probe_se": 23177.86238627899,
+   "reference_per_day": 187944.0,
+   "ratio": 0.9809427276209935,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "starknet",
+   "source": "l2beat",
+   "probe_per_day": 184362.30000000002,
+   "probe_se": 23177.86238627899,
+   "reference_per_day": 192713.0,
+   "ratio": 0.9566676871824943,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "tron",
+   "source": "tronscan",
+   "probe_per_day": 11439493.48,
+   "probe_se": 129593.56317105277,
+   "reference_per_day": 11767803.0,
+   "ratio": 0.9721010353419411,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "unichain",
+   "source": "growthepie",
+   "probe_per_day": 702864.0,
+   "probe_se": 15482.58713919005,
+   "reference_per_day": 688973.0,
+   "ratio": 1.020161893136596,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "unichain",
+   "source": "l2beat",
+   "probe_per_day": 702864.0,
+   "probe_se": 15482.58713919005,
+   "reference_per_day": 689029.0,
+   "ratio": 1.0200789807105362,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "worldchain",
+   "source": "growthepie",
+   "probe_per_day": 657936.0,
+   "probe_se": 15142.861395927832,
+   "reference_per_day": 642501.0,
+   "ratio": 1.0240233089131379,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "xlayer",
+   "source": "l2beat",
+   "probe_per_day": 822096.0,
+   "probe_se": 24795.31922110264,
+   "reference_per_day": 845191.0,
+   "ratio": 0.972674815515073,
+   "method": "sampled-blocks"
+  },
+  {
+   "chain": "zcash",
+   "source": "blockchair-24h",
+   "probe_per_day": 8114.0,
+   "probe_se": null,
+   "reference_per_day": 8170,
+   "ratio": 0.9931456548347614,
+   "method": "aggregator-24h"
+  },
+  {
+   "chain": "zksync",
+   "source": "growthepie",
+   "probe_per_day": 16766.235,
+   "probe_se": 781.719815679589,
+   "reference_per_day": 17148.0,
+   "ratio": 0.9777370538838349,
+   "method": "sampled-blocks"
+  }
+ ]
+}

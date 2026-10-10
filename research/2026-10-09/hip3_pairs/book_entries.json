@@ -1,0 +1,49 @@
+[
+ {
+  "capacity_usd": 25000,
+  "capital_days": 1.0,
+  "evidence": {
+   "findings": [
+    "5c1fb4c6475b",
+    "96ad2ebea2f6",
+    "0a75024ba0f4",
+    "4f84152c2186"
+   ],
+   "notes": "detectors/cross_dex_basis in scripts/perp_scan.py; research/2026-09-10/perps_2/insights.md; research/2026-10-09/hip3_pairs/findings.md (retirement: nine pairs held out of sample)",
+   "verify": []
+  },
+  "id": "hip3-cross-builder-funding",
+  "kill_criteria": [
+   "retired: pooled out-of-sample return negative at t -2.99 across nine pairs (hip3_pairs.py, 2026-09-10 to 2026-10-09)",
+   "revisit only if a pair shows funding/costs above 3x out of sample for two consecutive months with over $100k of depth at 25bp on the thinner book"
+  ],
+  "kind": "carry",
+  "legs": [
+   "buy the book that pays longs",
+   "sell the book that pays shorts",
+   "hold; rebalance when the marks diverge"
+  ],
+  "mechanism": "UNITREE: Paragon pays longs 339% while XYZ charges shorts 32%, 307 points net with the marks 21bp apart. NBIS: EntropyIO pays shorts 80% against XYZ\u2019s 5%. The small books are the constraint: Paragon\u2019s UNITREE traded $6k in the hour and was not deep enough to be priced.",
+  "name": "Same underlying on two builder books: collect the funding difference delta-neutral",
+  "quotes": [
+   {
+    "at": "2026-10-09T19:00:00+00:00",
+    "window": "research/2026-10-09/hip3_pairs",
+    "source": "history",
+    "present": true,
+    "go": false,
+    "net_apr": -0.184,
+    "usd": null,
+    "note": "retired: nine same-name builder pairs, rule chosen before 2026-09-10, -18.4% a year out of sample (t -2.99); para/xyz UNITREE +2.53% for the month (t 1.35) stays a watch item"
+   }
+  ],
+  "recheck_hours": 24,
+  "risks": [
+   "two deployer oracles can diverge: the pair is delta-neutral in the underlying, not in the oracles",
+   "the small book has no depth, so the round trip on that leg is unknown until it is priced",
+   "funding on a small book is set by a handful of positions and flips"
+  ],
+  "status": "retired",
+  "thesis": "Retired 2026-10-09. HIP-3 lists one name on several builder books with independent oracles and funding, and the funding differences are real (a median 18-69% a year apart), but held to a rule chosen before 2026-09-10 the nine pairs lost 18.4% a year out of sample (t -2.99): the differences flip faster than two round trips on thin books pay for."
+ }
+]

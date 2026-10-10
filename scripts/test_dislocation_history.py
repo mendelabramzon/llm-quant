@@ -254,5 +254,259 @@ class PrintBound(unittest.TestCase):
         self.assertAlmostEqual(e['option_value_daily_cap_usd'], 3 * e['option_value_usd'])
 
 
+
+# ----------------------------------------------------------------------------------------------------------------------
+# The redemption surface (2026-10-09): every venue's sign convention, the queue waits, and the bid with locked capital
+# ----------------------------------------------------------------------------------------------------------------------
+WSTETH_NAV, WEETH_NAV, RETH_NAV = 1.2459, 1.1054, 1.1735
+
+
+def surface_nav(key, n):
+    return {'wsteth_nav': WSTETH_NAV, 'weeth_nav': WEETH_NAV, 'reth_nav': RETH_NAV, 'sdai_nav': SDAI_NAV,
+            'susde_nav': SUSDE_NAV}.get(key)
+
+
+def data_words(*vals):
+    return '0x' + ''.join(enc_int(v) for v in vals)
+
+
+class SurfaceLegs(unittest.TestCase):
+    LIDO = dh.SURFACE['lido']
+    EF = dh.SURFACE['etherfi']
+    RP = dh.SURFACE['rocketpool']
+
+    def test_v3_amounts_are_the_pools_view(self):
+        # weETH pool: token0 WETH, token1 weETH. A holder sells 100 weETH (into the pool: +) for 110.4 WETH (out: -).
+        meta = {'tokens': [dh.WETH, dh.WEETH], 'decimals': [18, 18], 'fee_bps': 1.0}
+        log = {'topics': [dh.XTOPICS['V3Swap'], '0x' + '00' * 32, '0x' + '00' * 32],
+               'data': data_words(-int(110.4 * 10 ** 18), 100 * 10 ** 18, 0, 0, 0)}
+        legs = dh.legs_v3(log, meta, self.EF['targets'])
+        self.assertEqual(legs[:2], ('sell', dh.WEETH))
+        self.assertAlmostEqual(legs[2], 100.0)
+        self.assertAlmostEqual(legs[4], 110.4)
+        rec = dh.price_swap(self.EF, legs, 1, surface_nav)
+        self.assertAlmostEqual(rec['price'], 1.104)
+        self.assertAlmostEqual(rec['discount_bps'], 1e4 * (WEETH_NAV - 1.104) / WEETH_NAV)
+        # the same amounts read with v4's sign convention would flip the side
+        flipped = dh.legs_v3({**log, 'data': data_words(int(110.4 * 10 ** 18), -100 * 10 ** 18, 0, 0, 0)}, meta, self.EF['targets'])
+        self.assertEqual(flipped[0], 'buy')
+
+    def test_v4_native_eth_is_currency0_and_the_fee_rides_in_the_event(self):
+        meta = {'pool_id': '0x' + '70' * 32, 'tokens': [dh.NATIVE, dh.RETH], 'decimals': [18, 18]}
+        # swapper pays 10 rETH (negative) and receives 11.72 ETH: a sale, 1bp fee (100 hundredths of a bip)
+        log = {'topics': [dh.XTOPICS['V4Swap'], meta['pool_id'], '0x' + '00' * 32],
+               'data': data_words(int(11.72 * 10 ** 18), -10 * 10 ** 18, 0, 0, 0, 100)}
+        legs = dh.legs_v4(log, meta, self.RP['targets'])
+        self.assertEqual(legs[:2], ('sell', dh.RETH))
+        self.assertEqual(legs[5], 1.0)
+        rec = dh.price_swap(self.RP, legs, 1, surface_nav)
+        self.assertAlmostEqual(rec['discount_bps'], 1e4 * (RETH_NAV - 1.172) / RETH_NAV)
+        other = {**log, 'topics': [log['topics'][0], '0x' + '11' * 32, log['topics'][2]]}
+        self.assertIsNone(dh.legs_v4(other, meta, self.RP['targets']))
+
+    def test_fluid_direction_flag_and_mixed_decimals(self):
+        ef_meta = {'tokens': [dh.WEETH, dh.ETH_SENTINEL], 'decimals': [18, 18], 'fee_bps': 0.83}
+        # swap0to1 = false: token1 (ETH) in, token0 (weETH) out -> a purchase of weETH (the 2026-10-09 sample log)
+        buy = dh.legs_fluid({'data': data_words(0, 4 * 10 ** 18, int(3.618 * 10 ** 18), 0)}, ef_meta, self.EF['targets'])
+        self.assertEqual(buy[:2], ('buy', dh.WEETH))
+        self.assertAlmostEqual(buy[4], 4.0)
+        sell = dh.legs_fluid({'data': data_words(1, 10 ** 18, int(1.1 * 10 ** 18), 0)}, ef_meta, self.EF['targets'])
+        self.assertEqual(sell[0], 'sell')
+        usde = dh.SURFACE['usde']
+        meta = {'tokens': [dh.USDE, dh.USDT], 'decimals': [18, 6], 'fee_bps': 1.0}
+        # 15,490.08 USDT in (6 decimals), 15,481.06 USDe out (18 decimals): USDe bought at 1.000583 USDT
+        legs = dh.legs_fluid({'data': data_words(0, 15_490_079_142, 15_481_055_780_094_033_000_000, 0)}, meta, usde['targets'])
+        rec = dh.price_swap(usde, legs, 1, surface_nav)
+        self.assertEqual(rec['side'], 'buy')
+        self.assertAlmostEqual(rec['price'], 15_490.079142 / 15_481.055780094033, places=9)
+        self.assertLess(rec['discount_bps'], 0)        # bought above par
+
+    def test_curve_with_the_native_eth_sentinel_and_par_nav(self):
+        meta = {'coins': [dh.ETH_SENTINEL, dh.STETH], 'decimals': [18, 18], 'fee_bps': 1.0}
+        log = {'data': '0x' + enc_uint(1) + enc_uint(1000 * 10 ** 18) + enc_uint(0) + enc_uint(999 * 10 ** 18)}
+        legs = dh.legs_curve(log, meta, self.LIDO['targets'])
+        rec = dh.price_swap(self.LIDO, legs, 1, surface_nav)
+        self.assertEqual((rec['side'], rec['token']), ('sell', 'stETH'))
+        self.assertAlmostEqual(rec['discount_bps'], 10.0)
+
+    def test_wsteth_is_priced_against_steth_per_token_not_par(self):
+        meta = {'tokens': [dh.WSTETH, dh.WETH], 'decimals': [18, 18], 'fee_bps': 1.0}
+        # sell 100 wstETH for 124.5 WETH: 7.1bp under a NAV of 1.2459, not 2,450bp over par
+        log = {'topics': [dh.XTOPICS['V3Swap'], '0x' + '00' * 32, '0x' + '00' * 32],
+               'data': data_words(100 * 10 ** 18, -int(124.5 * 10 ** 18), 0, 0, 0)}
+        rec = dh.price_swap(self.LIDO, dh.legs_v3(log, meta, self.LIDO['targets']), 1, surface_nav)
+        self.assertAlmostEqual(rec['discount_bps'], 1e4 * (WSTETH_NAV - 1.245) / WSTETH_NAV, places=6)
+        self.assertLess(abs(rec['discount_bps']), 10)
+
+    def test_quote_at_its_own_nav_and_unpriced_quotes(self):
+        su = dh.SURFACE['susde']
+        rec = dh.price_swap(su, ('sell', dh.SUSDE, 1000.0, dh.SDAI, 1054.5, 2.0), 1, surface_nav)
+        self.assertAlmostEqual(rec['price'], 1054.5 * SDAI_NAV / 1000)
+        self.assertIsNone(dh.price_swap(su, ('sell', dh.SUSDE, 1000.0, dh.WETH, 1.0, 2.0), 1, surface_nav))
+
+    def test_orient_needs_exactly_one_target(self):
+        t = {dh.STETH: {}, dh.WSTETH: {}}
+        self.assertIsNone(dh.orient(dh.STETH, 1, dh.WSTETH, 1, t))
+        self.assertIsNone(dh.orient(dh.WETH, 1, dh.USDC, 1, t))
+
+
+class SurfaceWaits(unittest.TestCase):
+    def test_lido_waits_map_requests_into_finalized_ranges(self):
+        day = 86400
+        reqs = {1: 0, 2: 3600, 3: 7200, 4: day, 5: 2 * day}
+        fins = [(1, 3, day // 2), (4, 4, 3 * day)]
+        w = dh.lido_waits(reqs, fins, end_ts=4 * day)
+        self.assertAlmostEqual(w[1][1], 0.5)
+        self.assertAlmostEqual(w[3][1], (day // 2 - 7200) / day)
+        self.assertAlmostEqual(w[4][1], 2.0)
+        self.assertIsNone(w[5][1])                 # still pending: censored
+        self.assertAlmostEqual(w[5][2], 2.0)       # lower bound = end - request
+
+    def test_pointer_waits_inclusive_and_exclusive_counters(self):
+        day = 86400
+        created = [(0, 10), (day, 20), (2 * day, 30), (3 * day, 30)]
+        # inclusive: last finalized id. Ids 10..19 (created by day 1) are all final at day 3 (last finalized 25).
+        final_incl = [(0, 5), (day, 9), (2 * day, 12), (3 * day, 25)]
+        w = dh.pointer_waits(created, final_incl, True)
+        self.assertEqual(w[0][0], day)
+        self.assertAlmostEqual(w[0][1], 2.0)       # median id 14.5 passes at day 3 (25 + 1 > 14.5)
+        # a same-sample finalization is one grid step, not zero
+        same = dh.pointer_waits([(0, 10), (day, 20)], [(0, 5), (day, 30)], True)
+        self.assertAlmostEqual(same[0][1], 1.0)
+        self.assertAlmostEqual(w[1][1], 1.0)       # ids 20..29 (median 24.5) are final at day 3: 25 + 1 > 24.5
+        # exclusive: first unfinalized id; the same numbers mean one id less is final.
+        final_excl = [(0, 5), (day, 9), (2 * day, 15), (3 * day, 25)]
+        w2 = dh.pointer_waits(created, final_excl, False)
+        self.assertAlmostEqual(w2[0][1], 1.0)      # 15 > 14.5 at day 2
+
+    def test_daily_wait_function_takes_the_median_and_carries_forward(self):
+        day = 86400
+        f, med = dh.daily_wait_fn([(10, 1.0, None), (20, 3.0, None), (30, None, 9.0), (3 * day + 5, 2.0, None)], 4.0)
+        self.assertEqual(f(50), 3.0)               # median of 1, 3 and the censored 9
+        self.assertEqual(f(2 * day), 3.0)          # no requests that day: inherit
+        self.assertEqual(f(3 * day + 100), 2.0)
+        g, _ = dh.daily_wait_fn([], 4.0)
+        self.assertEqual(g(0), 4.0)
+
+
+def sells(*rows):
+    return [{'ts': t, 'usd': u, 'discount_bps': d, 'fee_bps': f} for t, u, d, f in rows]
+
+
+class SurfaceBid(unittest.TestCase):
+    ZERO = staticmethod(lambda ts: 0.0)
+
+    def test_edge_pays_two_fees_and_the_wait(self):
+        # 10bp discount, 1bp pool, 2-day queue at 1bp/day of carry: edge = 10 - 2 - 2 = 6bp
+        fills, st = dh.simulate_bid(sells((0, 100_000, 10.0, 1.0)), 1_000_000, 0.0, lambda ts: 2.0, lambda ts: 1.0)
+        self.assertEqual(len(fills), 1)
+        self.assertAlmostEqual(fills[0]['edge_bps'], 6.0)
+        self.assertAlmostEqual(fills[0]['value_usd'], 100_000 * 6 / 1e4 - dh.GAS_PER_FILL_USD)
+        # the same discount on an asset that keeps earning while queued pays no carry
+        fills, _ = dh.simulate_bid(sells((0, 100_000, 10.0, 1.0)), 1_000_000, 0.0, lambda ts: 2.0, lambda ts: 1.0, accrues=True)
+        self.assertAlmostEqual(fills[0]['edge_bps'], 8.0)
+
+    def test_locked_capital_misses_the_next_sell_until_the_queue_pays(self):
+        day = 86400
+        rows = sells((0, 600_000, 20.0, 0.0), (day, 600_000, 20.0, 0.0), (8 * day, 600_000, 20.0, 0.0))
+        fills, st = dh.simulate_bid(rows, 1_000_000, 0.0, lambda ts: 7.0, self.ZERO)
+        self.assertEqual([round(f['usd']) for f in fills], [600_000, 400_000, 600_000])
+        self.assertAlmostEqual(st['missed_capital_usd'], 200_000)
+        # an instant redemption never locks: all three fill in full
+        fills, st = dh.simulate_bid(rows, 1_000_000, 0.0, self.ZERO, self.ZERO)
+        self.assertEqual(sum(f['usd'] for f in fills), 1_800_000)
+
+    def test_hurdle_daily_cap_gas_and_minimum(self):
+        rows = sells((0, 400_000, 6.0, 1.0), (60, 400_000, 6.0, 1.0), (86_400, 4_000, 50.0, 0.0), (86_460, 50_000, 3.0, 1.0))
+        fills, st = dh.simulate_bid(rows, 10_000_000, 2.0, self.ZERO, self.ZERO, daily_cap_usd_at=lambda ts: 600_000)
+        # edge 4bp clears a 2bp hurdle; the day's cap leaves 200k for the second sell; the next day's $4k sale
+        # qualifies but is under the minimum fill; the last sell's 1bp edge fails the hurdle
+        self.assertEqual([round(f['usd']) for f in fills], [400_000, 200_000])
+        self.assertAlmostEqual(st['missed_cap_usd'], 200_000)
+        self.assertEqual(st['qualifying_sells'], 3)
+        none, _ = dh.simulate_bid(sells((0, 20_000, 4.0, 0.0)), 1e6, 0.0, self.ZERO, self.ZERO)
+        self.assertEqual(none, [])                 # $8 of edge does not pay $10 of gas
+
+    def test_a_one_venue_dislocation_is_capped_at_the_market(self):
+        # $10M sold 20bp under NAV on one pool while the other two venues trade at 1bp: an atomic arbitrage, not a
+        # redemption trade. Capped at the median venue less one fee, the edge is 0bp and nothing fills.
+        recs = [{'ts': 3600 * 10, 'usd': 10_000_000, 'discount_bps': 20.0, 'pool': 'v3'},
+                {'ts': 3600 * 10 + 60, 'usd': 2_000_000, 'discount_bps': 1.0, 'pool': 'curve'},
+                {'ts': 3600 * 9, 'usd': 1_000_000, 'discount_bps': 1.0, 'pool': 'fluid'}]
+        mkt = dh.market_discount_fn(recs)
+        self.assertEqual(mkt(3600 * 10 + 5), 1.0)
+        rows = sells((3600 * 10, 10_000_000, 20.0, 1.0))
+        capped, _ = dh.simulate_bid(rows, 30e6, 0.0, self.ZERO, self.ZERO, market_bps_at=mkt)
+        uncapped, _ = dh.simulate_bid(rows, 30e6, 0.0, self.ZERO, self.ZERO)
+        self.assertEqual(capped, [])
+        self.assertAlmostEqual(uncapped[0]['edge_bps'], 18.0)
+        # when every venue is down 28bp (April 2026) the cap is the market, and the fill survives at 27bp
+        recs2 = [dict(r, discount_bps=28.0) for r in recs[1:]] + [dict(recs[0], discount_bps=45.0)]
+        rows2 = sells((3600 * 10, 10_000_000, 45.0, 1.0))
+        f2, _ = dh.simulate_bid(rows2, 30e6, 0.0, self.ZERO, self.ZERO, market_bps_at=dh.market_discount_fn(recs2))
+        self.assertAlmostEqual(f2[0]['edge_bps'], 27.0)
+        # a venue last seen more than six hours ago does not vote
+        self.assertIsNone(dh.market_discount_fn(recs)(3600 * 20))
+
+    def test_daily_values_and_capacity(self):
+        v = dh.daily_values([{'ts': 86400 * 3 + 5, 'value_usd': 7.0}, {'ts': 86400 * 3 + 9, 'value_usd': 1.0}], 2, 4)
+        self.assertEqual(v, [0.0, 8.0, 0.0, 0.0])
+        self.assertEqual(dh.capacity_size({1: 50.0, 3: 95.0, 10: 100.0}), 3)
+        self.assertIsNone(dh.capacity_size({1: 0.0, 3: -5.0}))
+
+
+def addr_topic(a):
+    return '0x' + '00' * 12 + a[2:]
+
+
+class SurfacePayouts(unittest.TestCase):
+    def test_kelp_payout_matched_to_its_request_and_priced_against_nav_at_the_request(self):
+        nav = lambda key, n: {100: 1.08, 900: 1.081}[n] if key == 'rseth_nav' else None
+        w = '0x' + 'ab' * 20
+        q = {'address': dh.KELP_WM, 'blockNumber': hex(100), 'topics': [dh.XTOPICS['KelpQueued'], addr_topic(w), addr_topic(dh.ETH_SENTINEL), '0x' + '00' * 31 + '07'],
+             'data': '0x' + enc_uint(10 ** 18)}
+        f = {'address': dh.KELP_WM, 'blockNumber': hex(900), 'topics': [dh.XTOPICS['KelpFinalized'], addr_topic(w), addr_topic(dh.ETH_SENTINEL)],
+             'data': '0x' + enc_uint(10 ** 18) + enc_uint(int(1.08 * 10 ** 18))}
+        r = dh.redemption_check('kelp', [q, f], [], nav, None)
+        self.assertEqual(r['n'], 1)
+        self.assertAlmostEqual(r['median_bps_vs_nav_at_request'], 0.0, places=6)
+        self.assertAlmostEqual(r['median_bps_vs_nav_at_payout'], 1e4 * (1.08 - 1.081) / 1.081, places=6)
+        # an stETH-queue withdrawal is not an ETH payout and is ignored
+        f2 = dict(f, topics=[f['topics'][0], f['topics'][1], addr_topic(dh.STETH)])
+        self.assertEqual(dh.redemption_check('kelp', [q, f2], [], nav, None)['n'], 0)
+
+    def test_renzo_request_rate_and_lido_one_to_one(self):
+        nav = lambda key, n: 1.087 if key == 'ezeth_nav' else None
+        d = '0x' + enc_uint(0) + enc_uint(int(dh.ETH_SENTINEL, 16)) + enc_uint(int(1.0859 * 10 ** 18)) + enc_uint(10 ** 18) + enc_uint(3) + enc_uint(0) + enc_uint(0)
+        log = {'address': dh.RENZO_WQ, 'blockNumber': hex(5), 'topics': [dh.XTOPICS['RenzoCreated'], '0x' + '00' * 31 + '01'], 'data': d}
+        r = dh.redemption_check('renzo', [log], [], nav, None)
+        self.assertAlmostEqual(r['median_bps_vs_nav_at_request'], 1e4 * (1.0859 - 1.087) / 1.087, places=6)
+        req = {'address': dh.LIDO_WQ, 'blockNumber': hex(1), 'topics': [dh.XTOPICS['LidoRequested'], '0x' + '00' * 31 + '09', addr_topic('0x' + '01' * 20), addr_topic('0x' + '01' * 20)],
+               'data': '0x' + enc_uint(5 * 10 ** 18) + enc_uint(4 * 10 ** 18)}
+        clm = {'address': dh.LIDO_WQ, 'blockNumber': hex(2), 'topics': [dh.XTOPICS['LidoClaimed'], '0x' + '00' * 31 + '09', addr_topic('0x' + '01' * 20), addr_topic('0x' + '01' * 20)],
+               'data': '0x' + enc_uint(5 * 10 ** 18 - 1)}
+        r = dh.redemption_check('lido', [clm], [req], None, None)
+        self.assertEqual(r['n'], 1)
+        self.assertAlmostEqual(r['median_bps_vs_nav_at_request'], 0.0, places=9)
+
+
+class SurfaceRates(unittest.TestCase):
+    def test_apr_from_nav_compounds_over_the_span(self):
+        yr = 365 * 86400
+        self.assertAlmostEqual(dh.apr_from_nav([(0, 1.0), (yr, 1.05)]), 0.05)
+        self.assertAlmostEqual(dh.apr_from_nav([(0, 1.0), (yr // 2, 1.05 ** 0.5)]), 0.05, places=9)
+        self.assertIsNone(dh.apr_from_nav([(0, 1.0)]))
+
+    def test_trailing_rate_reads_the_last_week(self):
+        day = 86400
+        nav = [(i * day, 1.0 * (1.038 ** (i / 365.0)) if i < 20 else 1.038 ** (19 / 365.0) * (1.05 ** ((i - 19) / 365.0))) for i in range(40)]
+        f = dh.trailing_rate_fn(nav, 7.0, 0.01)
+        self.assertAlmostEqual(f(10 * day), 0.038, places=6)
+        self.assertAlmostEqual(f(39 * day), 0.05, places=6)
+
+    def test_max_nav_step(self):
+        self.assertAlmostEqual(dh.max_nav_step_bps([(0, 1.0), (1, 1.0001), (2, 1.0001)]), 1.0)
+
+
 if __name__ == '__main__':
     unittest.main()

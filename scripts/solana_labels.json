@@ -26,7 +26,7 @@
    "unknown_hf",
    "vault"
   ],
-  "updated": "2026-09-07"
+  "updated": "2026-09-10"
  },
  "programs": {
   "LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj": {
@@ -996,6 +996,111 @@
    "label": "bridge relayer/aggregator wallet (receives CCTP v2 inbound from Aptos, forwards)",
    "kind": "bridge",
    "source": "window-derived 2026-09-07 (solana_followups profile over research/2026-09-07/solana_live)"
+  },
+  "4ACfpUFoaSD9bfPdeu6DBt89gB6ENTeHBXCAi87NhDEE": {
+   "label": "Helius Sender tip account",
+   "kind": "mev_tip",
+   "source": "Helius docs https://www.helius.dev/docs/sending-transactions/sender (fetched 2026-09-10; 10 mainnet tip accounts, min 0.001 SOL Sender Max); census of payer->account SOL transfers in research/2026-09-10/solana_live blocks (first 300): >=50 distinct payers each, 86-95% of tipping txs failed, i.e. success-conditional tips"
+  },
+  "D2L6yPZ2FmmmTKPgzaMKdhu6EWZcTpLy1Vhx8uvZe7NZ": {
+   "label": "Helius Sender tip account",
+   "kind": "mev_tip",
+   "source": "Helius docs https://www.helius.dev/docs/sending-transactions/sender (fetched 2026-09-10; 10 mainnet tip accounts, min 0.001 SOL Sender Max); census of payer->account SOL transfers in research/2026-09-10/solana_live blocks (first 300): >=50 distinct payers each, 86-95% of tipping txs failed, i.e. success-conditional tips"
+  },
+  "9bnz4RShgq1hAnLnZbP8kbgBg1kEmcJBYQq3gQbmnSta": {
+   "label": "Helius Sender tip account",
+   "kind": "mev_tip",
+   "source": "Helius docs https://www.helius.dev/docs/sending-transactions/sender (fetched 2026-09-10; 10 mainnet tip accounts, min 0.001 SOL Sender Max); census of payer->account SOL transfers in research/2026-09-10/solana_live blocks (first 300): >=50 distinct payers each, 86-95% of tipping txs failed, i.e. success-conditional tips"
+  },
+  "5VY91ws6B2hMmBFRsXkoAAdsPHBJwRfBht4DXox3xkwn": {
+   "label": "Helius Sender tip account",
+   "kind": "mev_tip",
+   "source": "Helius docs https://www.helius.dev/docs/sending-transactions/sender (fetched 2026-09-10; 10 mainnet tip accounts, min 0.001 SOL Sender Max); census of payer->account SOL transfers in research/2026-09-10/solana_live blocks (first 300): >=50 distinct payers each, 86-95% of tipping txs failed, i.e. success-conditional tips"
+  },
+  "2nyhqdwKcJZR2vcqCyrYsaPVdAnFoJjiksCXJ7hfEYgD": {
+   "label": "Helius Sender tip account",
+   "kind": "mev_tip",
+   "source": "Helius docs https://www.helius.dev/docs/sending-transactions/sender (fetched 2026-09-10; 10 mainnet tip accounts, min 0.001 SOL Sender Max); census of payer->account SOL transfers in research/2026-09-10/solana_live blocks (first 300): >=50 distinct payers each, 86-95% of tipping txs failed, i.e. success-conditional tips"
+  },
+  "2q5pghRs6arqVjRvT5gfgWfWcHWmw1ZuCzphgd5KfWGJ": {
+   "label": "Helius Sender tip account",
+   "kind": "mev_tip",
+   "source": "Helius docs https://www.helius.dev/docs/sending-transactions/sender (fetched 2026-09-10; 10 mainnet tip accounts, min 0.001 SOL Sender Max); census of payer->account SOL transfers in research/2026-09-10/solana_live blocks (first 300): >=50 distinct payers each, 86-95% of tipping txs failed, i.e. success-conditional tips"
+  },
+  "wyvPkWjVZz1M8fHQnMMCDTQDbkManefNNhweYk5WkcF": {
+   "label": "Helius Sender tip account",
+   "kind": "mev_tip",
+   "source": "Helius docs https://www.helius.dev/docs/sending-transactions/sender (fetched 2026-09-10; 10 mainnet tip accounts, min 0.001 SOL Sender Max); census of payer->account SOL transfers in research/2026-09-10/solana_live blocks (first 300): >=50 distinct payers each, 86-95% of tipping txs failed, i.e. success-conditional tips"
+  },
+  "3KCKozbAaF75qEU33jtzozcJ29yJuaLJTy2jFdzUY8bT": {
+   "label": "Helius Sender tip account",
+   "kind": "mev_tip",
+   "source": "Helius docs https://www.helius.dev/docs/sending-transactions/sender (fetched 2026-09-10; 10 mainnet tip accounts, min 0.001 SOL Sender Max); census of payer->account SOL transfers in research/2026-09-10/solana_live blocks (first 300): >=50 distinct payers each, 86-95% of tipping txs failed, i.e. success-conditional tips"
+  },
+  "4vieeGHPYPG2MmyPRcYjdiDmmhN3ww7hsFNap8pVN3Ey": {
+   "label": "Helius Sender tip account",
+   "kind": "mev_tip",
+   "source": "Helius docs https://www.helius.dev/docs/sending-transactions/sender (fetched 2026-09-10; 10 mainnet tip accounts, min 0.001 SOL Sender Max); census of payer->account SOL transfers in research/2026-09-10/solana_live blocks (first 300): >=50 distinct payers each, 86-95% of tipping txs failed, i.e. success-conditional tips"
+  },
+  "4TQLFNWK8AovT1gFvda5jfw2oJeRMKEmw7aH6MGBJ3or": {
+   "label": "Helius Sender tip account",
+   "kind": "mev_tip",
+   "source": "Helius docs https://www.helius.dev/docs/sending-transactions/sender (fetched 2026-09-10; 10 mainnet tip accounts, min 0.001 SOL Sender Max); census of payer->account SOL transfers in research/2026-09-10/solana_live blocks (first 300): >=50 distinct payers each, 86-95% of tipping txs failed, i.e. success-conditional tips"
+  },
+  "astra4uejePWneqNaJKuFFA8oonqCE1sqF6b45kDMZm": {
+   "label": "Astralane tip account",
+   "kind": "mev_tip",
+   "source": "Astralane docs https://astralane.gitbook.io/docs/low-latency/submit-transactions (fetched 2026-09-10; min 10,000 lamports); census of payer->account SOL transfers in research/2026-09-10/solana_live blocks (first 300): >=50 distinct payers each, 86-95% of tipping txs failed, i.e. success-conditional tips"
+  },
+  "astrazznxsGUhWShqgNtAdfrzP2G83DzcWVJDxwV9bF": {
+   "label": "Astralane tip account (inferred: same vanity prefix and behaviour as the documented astra4uej\u2026)",
+   "kind": "mev_tip",
+   "source": "inferred 2026-09-10 from the astra\u2026 vanity prefix and identical tipping pattern; not on the docs page; census of payer->account SOL transfers in research/2026-09-10/solana_live blocks (first 300): >=50 distinct payers each, 86-95% of tipping txs failed, i.e. success-conditional tips"
+  },
+  "astraZW5GLFefxNPAatceHhYjfA1ciq9gvfEg2S47xk": {
+   "label": "Astralane tip account (inferred: same vanity prefix and behaviour as the documented astra4uej\u2026)",
+   "kind": "mev_tip",
+   "source": "inferred 2026-09-10 from the astra\u2026 vanity prefix and identical tipping pattern; not on the docs page; census of payer->account SOL transfers in research/2026-09-10/solana_live blocks (first 300): >=50 distinct payers each, 86-95% of tipping txs failed, i.e. success-conditional tips"
+  },
+  "astrawVNP4xDBKT7rAdxrLYiTSTdqtUr63fSMduivXK": {
+   "label": "Astralane tip account (inferred: same vanity prefix and behaviour as the documented astra4uej\u2026)",
+   "kind": "mev_tip",
+   "source": "inferred 2026-09-10 from the astra\u2026 vanity prefix and identical tipping pattern; not on the docs page; census of payer->account SOL transfers in research/2026-09-10/solana_live blocks (first 300): >=50 distinct payers each, 86-95% of tipping txs failed, i.e. success-conditional tips"
+  },
+  "astra9xWY93QyfG6yM8zwsKsRodscjQ2uU2HKNL5prk": {
+   "label": "Astralane tip account (inferred: same vanity prefix and behaviour as the documented astra4uej\u2026)",
+   "kind": "mev_tip",
+   "source": "inferred 2026-09-10 from the astra\u2026 vanity prefix and identical tipping pattern; not on the docs page; census of payer->account SOL transfers in research/2026-09-10/solana_live blocks (first 300): >=50 distinct payers each, 86-95% of tipping txs failed, i.e. success-conditional tips"
+  },
+  "ste11p5x8tJ53H1NbNQsRBg1YNRd4GcVpxtDw8PBpmb": {
+   "label": "unidentified tip-account family ste11\u2026 (5 accounts, success-conditional tips)",
+   "kind": "mev_tip",
+   "source": "unidentified 2026-09-10; no public documentation found; census of payer->account SOL transfers in research/2026-09-10/solana_live blocks (first 300): >=50 distinct payers each, 86-95% of tipping txs failed, i.e. success-conditional tips"
+  },
+  "ste11p7e2KLYou5bwtt35H7BM6uMdo4pvioGjJXKFcN": {
+   "label": "unidentified tip-account family ste11\u2026 (5 accounts, success-conditional tips)",
+   "kind": "mev_tip",
+   "source": "unidentified 2026-09-10; no public documentation found; census of payer->account SOL transfers in research/2026-09-10/solana_live blocks (first 300): >=50 distinct payers each, 86-95% of tipping txs failed, i.e. success-conditional tips"
+  },
+  "ste11TMV68LMi1BguM4RQujtbNCZvf1sjsASpqgAvSX": {
+   "label": "unidentified tip-account family ste11\u2026 (5 accounts, success-conditional tips)",
+   "kind": "mev_tip",
+   "source": "unidentified 2026-09-10; no public documentation found; census of payer->account SOL transfers in research/2026-09-10/solana_live blocks (first 300): >=50 distinct payers each, 86-95% of tipping txs failed, i.e. success-conditional tips"
+  },
+  "ste11MWPjXCRfQryCshzi86SGhuXjF4Lv6xMXD2AoSt": {
+   "label": "unidentified tip-account family ste11\u2026 (5 accounts, success-conditional tips)",
+   "kind": "mev_tip",
+   "source": "unidentified 2026-09-10; no public documentation found; census of payer->account SOL transfers in research/2026-09-10/solana_live blocks (first 300): >=50 distinct payers each, 86-95% of tipping txs failed, i.e. success-conditional tips"
+  },
+  "ste11JV3MLMM7x7EJUM2sXcJC1H7F4jBLnP9a9PG8PH": {
+   "label": "unidentified tip-account family ste11\u2026 (5 accounts, success-conditional tips)",
+   "kind": "mev_tip",
+   "source": "unidentified 2026-09-10; no public documentation found; census of payer->account SOL transfers in research/2026-09-10/solana_live blocks (first 300): >=50 distinct payers each, 86-95% of tipping txs failed, i.e. success-conditional tips"
+  },
+  "ASTRaoF93eYt73TYvwtsv6fMWHWbGmMUZfVZPo3CRU9C": {
+   "label": "unidentified tip account (ASTR\u2026 prefix; tipped by the B88w\u2026 durable-nonce bot; not the documented Astralane astra\u2026 family)",
+   "kind": "mev_tip",
+   "source": "seen 2026-09-10 as the tip destination of failed B88wQWjJ\u2026 bot txs (tip reverts on failure); no documentation found"
   }
  },
  "mints": {

@@ -1,0 +1,69 @@
+{
+ "tx": {
+  "count": 15184,
+  "se": null,
+  "method": "aggregator-24h",
+  "blocks": 145,
+  "mempool_transactions": 166,
+  "avg_fee_native": 1.627e-05,
+  "note": "Blockchair transactions_24h (its count; coinbase included)"
+ },
+ "transfers": {
+  "assets": [
+   {
+    "asset": "native:BCH",
+    "symbol": "BCH",
+    "class": "native",
+    "transfers": 15184,
+    "transfers_se": 0,
+    "amount": 570393.09862508,
+    "price": 278.9152470489394,
+    "usd": 159091332.01802424,
+    "usd_se": 0.0,
+    "top_block_share": null,
+    "units_seen": 1,
+    "gross_amount": 570393.09862508,
+    "gross_usd": 159091332.01802424,
+    "note": "Blockchair volume_24h: gross outputs over its trailing 24 h (change included)",
+    "price_source": "defillama:coingecko:bitcoin-cash"
+   }
+  ],
+  "unpriced_top": [],
+  "unpriced_assets": 0,
+  "unpriced_transfers": 0,
+  "priced_usd": 159091332.01802424,
+  "usd_by_class": {
+   "native": 159091332.01802424
+  },
+  "gross_priced_usd": 159091332.01802424,
+  "method": "aggregator-24h (blockchair); GROSS outputs, change included"
+ },
+ "window": {
+  "start_ts": 1791539520,
+  "end_ts": 1791625920,
+  "start_utc": "2026-10-09T09:52:00+00:00",
+  "end_utc": "2026-10-10T09:52:00+00:00",
+  "hours": 24.0
+ },
+ "probe_window": {
+  "start_ts": 1791504000,
+  "end_ts": 1791590400,
+  "start_utc": "2026-10-09T00:00:00+00:00",
+  "end_utc": "2026-10-10T00:00:00+00:00",
+  "hours": 24.0
+ },
+ "endpoint": "https://api.blockchair.com/stats",
+ "calls": 1,
+ "notes": [
+  "window is Blockchair's trailing 24 h ending at its best block (2026-10-10 09:52:00 UTC), not the probe window"
+ ],
+ "errors": [],
+ "error_count": 0,
+ "seconds": 0.6,
+ "chain": "bitcoin-cash",
+ "name": "Bitcoin Cash",
+ "family": "utxo",
+ "adapter": "blockchair",
+ "ok": true,
+ "probed_at": "2026-10-10T10:21:14+00:00"
+}

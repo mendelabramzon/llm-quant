@@ -1,0 +1,1717 @@
+{
+ "_comment": "The chains this repo measures directly (scripts/chain_probe.py), across every VM family. Selection: the union of the top chains by DEX volume, stablecoin float, TVL and transaction count in the 2026-10-09 census (scripts/chain_census.py), plus every family the census cannot count transactions for (UTXO, ledgers, Move, Cosmos), so that 'high activity' is measured rather than inferred from DeFi alone. Identities: `ids.defillama` is DefiLlama's display name, `ids.llama_key` its internal chain key (also the coins-API prefix, inferred from single-chain protocols by chain_census.py and checked there), `ids.growthepie` / `ids.l2beat` / `ids.blockchair` the other sources' keys. Endpoints are a first choice only: the EVM adapter falls back to chainlist and accepts an endpoint only after it answers the right chain id and serves eth_getLogs. Census-only chains (no adapter yet) are listed under `census_only` so the gap is visible. `why` is the reason a chain is on the list, not a measurement; the numbers live in the census.",
+ "chains": [
+  {
+   "slug": "ethereum",
+   "name": "Ethereum",
+   "family": "evm",
+   "layer": "L1",
+   "evm_chain_id": 1,
+   "native": {
+    "symbol": "ETH",
+    "coingecko": "ethereum"
+   },
+   "ids": {
+    "defillama": "Ethereum",
+    "llama_key": "ethereum",
+    "growthepie": "ethereum",
+    "blockchair": "ethereum"
+   },
+   "probe": {
+    "adapter": "evm",
+    "infura": "mainnet",
+    "rpc": [
+     "https://ethereum-rpc.publicnode.com",
+     "https://eth.drpc.org"
+    ]
+   },
+   "why": "largest stablecoin float and TVL; settlement layer for every rollup below"
+  },
+  {
+   "slug": "base",
+   "name": "Base",
+   "family": "evm",
+   "layer": "L2",
+   "evm_chain_id": 8453,
+   "native": {
+    "symbol": "ETH",
+    "coingecko": "ethereum"
+   },
+   "ids": {
+    "defillama": "Base",
+    "llama_key": "base",
+    "growthepie": "base",
+    "l2beat": "base"
+   },
+   "probe": {
+    "adapter": "evm",
+    "infura": "base-mainnet",
+    "rpc": [
+     "https://base-rpc.publicnode.com",
+     "https://mainnet.base.org"
+    ]
+   },
+   "why": "highest transaction count of any EVM; top-3 DEX volume"
+  },
+  {
+   "slug": "bsc",
+   "name": "BNB Smart Chain",
+   "family": "evm",
+   "layer": "L1",
+   "evm_chain_id": 56,
+   "native": {
+    "symbol": "BNB",
+    "coingecko": "binancecoin"
+   },
+   "ids": {
+    "defillama": "BSC",
+    "llama_key": "bsc"
+   },
+   "probe": {
+    "adapter": "evm",
+    "infura": "bsc-mainnet",
+    "rpc": [
+     "https://bsc-rpc.publicnode.com",
+     "https://bsc-dataseed.bnbchain.org"
+    ]
+   },
+   "why": "retail memecoin venue; second-largest EVM stablecoin float after Ethereum"
+  },
+  {
+   "slug": "arbitrum",
+   "name": "Arbitrum One",
+   "family": "evm",
+   "layer": "L2",
+   "evm_chain_id": 42161,
+   "native": {
+    "symbol": "ETH",
+    "coingecko": "ethereum"
+   },
+   "ids": {
+    "defillama": "Arbitrum",
+    "llama_key": "arbitrum",
+    "growthepie": "arbitrum",
+    "l2beat": "arbitrum"
+   },
+   "probe": {
+    "adapter": "evm",
+    "infura": "arbitrum-mainnet",
+    "rpc": [
+     "https://arbitrum-one-rpc.publicnode.com",
+     "https://arb1.arbitrum.io/rpc"
+    ],
+    "samples": 400
+   },
+   "why": "deepest rollup DeFi after Base; 0.25 s blocks"
+  },
+  {
+   "slug": "robinhood",
+   "name": "Robinhood Chain",
+   "family": "evm",
+   "layer": "L2",
+   "evm_chain_id": 4663,
+   "native": {
+    "symbol": "ETH",
+    "coingecko": "ethereum"
+   },
+   "ids": {
+    "defillama": "Robinhood Chain",
+    "llama_key": "robinhood",
+    "growthepie": "robinhood",
+    "l2beat": "robinhood"
+   },
+   "probe": {
+    "adapter": "evm",
+    "rpc": [
+     "https://rpc-robinhood.blockmachine.io",
+     "https://robinhood.rpc.blxrbdn.com",
+     "https://rpc.mainnet.chain.robinhood.com"
+    ],
+    "min_interval": 0.15,
+    "samples": 600
+   },
+   "why": "tokenized stocks; second EVM by transactions and DEX volume (see research/2026-09-07/robinhood_10h)"
+  },
+  {
+   "slug": "polygon",
+   "name": "Polygon PoS",
+   "family": "evm",
+   "layer": "L1",
+   "evm_chain_id": 137,
+   "native": {
+    "symbol": "POL",
+    "coingecko": "polygon-ecosystem-token"
+   },
+   "ids": {
+    "defillama": "Polygon",
+    "llama_key": "polygon",
+    "growthepie": "polygon_pos",
+    "l2beat": "polygon-pos"
+   },
+   "probe": {
+    "adapter": "evm",
+    "infura": "polygon-mainnet",
+    "rpc": [
+     "https://polygon-bor-rpc.publicnode.com",
+     "https://polygon.drpc.org"
+    ]
+   },
+   "why": "payments and prediction-market settlement; high transaction count"
+  },
+  {
+   "slug": "avalanche",
+   "name": "Avalanche C-Chain",
+   "family": "evm",
+   "layer": "L1",
+   "evm_chain_id": 43114,
+   "native": {
+    "symbol": "AVAX",
+    "coingecko": "avalanche-2"
+   },
+   "ids": {
+    "defillama": "Avalanche",
+    "llama_key": "avax"
+   },
+   "probe": {
+    "adapter": "evm",
+    "infura": "avalanche-mainnet",
+    "rpc": [
+     "https://avalanche-c-chain-rpc.publicnode.com",
+     "https://api.avax.network/ext/bc/C/rpc"
+    ]
+   },
+   "why": "top-10 DEX volume; highest USDC rate in the 2026-09-10 cross-chain book"
+  },
+  {
+   "slug": "optimism",
+   "name": "OP Mainnet",
+   "family": "evm",
+   "layer": "L2",
+   "evm_chain_id": 10,
+   "native": {
+    "symbol": "ETH",
+    "coingecko": "ethereum"
+   },
+   "ids": {
+    "defillama": "OP Mainnet",
+    "llama_key": "optimism",
+    "growthepie": "optimism",
+    "l2beat": "optimism"
+   },
+   "probe": {
+    "adapter": "evm",
+    "infura": "optimism-mainnet",
+    "rpc": [
+     "https://optimism-rpc.publicnode.com",
+     "https://mainnet.optimism.io"
+    ]
+   },
+   "why": "OP-stack reference chain; high transaction count"
+  },
+  {
+   "slug": "hyperevm",
+   "name": "HyperEVM",
+   "family": "evm",
+   "layer": "L1",
+   "evm_chain_id": 999,
+   "native": {
+    "symbol": "HYPE",
+    "coingecko": "hyperliquid"
+   },
+   "ids": {
+    "defillama": "Hyperliquid L1",
+    "llama_key": "hyperliquid"
+   },
+   "probe": {
+    "adapter": "evm",
+    "rpc": [
+     "https://rpc.hyperliquid.xyz/evm",
+     "https://hyperliquid.drpc.org"
+    ],
+    "min_interval": 0.1
+   },
+   "why": "EVM side of Hyperliquid; stablecoin float second only to Ethereum/Tron/Solana/BSC"
+  },
+  {
+   "slug": "monad",
+   "name": "Monad",
+   "family": "evm",
+   "layer": "L1",
+   "evm_chain_id": 143,
+   "native": {
+    "symbol": "MON",
+    "coingecko": "monad"
+   },
+   "ids": {
+    "defillama": "Monad",
+    "llama_key": "monad"
+   },
+   "probe": {
+    "adapter": "evm",
+    "rpc": [
+     "https://rpc.monad.xyz",
+     "https://monad-mainnet.drpc.org"
+    ],
+    "min_interval": 0.1,
+    "samples": 400
+   },
+   "why": "new high-throughput L1 (mainnet 2025-11); ~$1B TVL within a year"
+  },
+  {
+   "slug": "arc",
+   "name": "Arc",
+   "family": "evm",
+   "layer": "L1",
+   "evm_chain_id": 5042,
+   "native": {
+    "symbol": "USDC",
+    "coingecko": "usd-coin",
+    "decimals": 18
+   },
+   "ids": {
+    "defillama": "Arc",
+    "llama_key": "arc"
+   },
+   "probe": {
+    "adapter": "evm",
+    "rpc": [
+     "https://rpc.mainnet.arc.io",
+     "https://arc-rpc.publicnode.com"
+    ],
+    "min_interval": 0.1
+   },
+   "why": "Circle's stablecoin L1 (USDC as gas); new, half a billion of TVL"
+  },
+  {
+   "slug": "tempo",
+   "name": "Tempo",
+   "family": "evm",
+   "layer": "L1",
+   "evm_chain_id": 4217,
+   "native": {
+    "symbol": "USD",
+    "coingecko": "usd-coin"
+   },
+   "ids": {
+    "defillama": "Tempo",
+    "llama_key": "tempo"
+   },
+   "probe": {
+    "adapter": "evm",
+    "rpc": [
+     "https://rpc.mainnet.tempo.xyz",
+     "https://tempo-mainnet.drpc.org"
+    ],
+    "min_interval": 0.1
+   },
+   "why": "Stripe's payments L1; $0.7B of stablecoins with almost no DEX volume"
+  },
+  {
+   "slug": "plasma",
+   "name": "Plasma",
+   "family": "evm",
+   "layer": "L1",
+   "evm_chain_id": 9745,
+   "native": {
+    "symbol": "XPL",
+    "coingecko": "plasma"
+   },
+   "ids": {
+    "defillama": "Plasma",
+    "llama_key": "plasma"
+   },
+   "probe": {
+    "adapter": "evm",
+    "rpc": [
+     "https://rpc.plasma.to",
+     "https://plasma.drpc.org"
+    ],
+    "min_interval": 0.1
+   },
+   "why": "USDT-native chain; $1.3B stablecoin float"
+  },
+  {
+   "slug": "xlayer",
+   "name": "X Layer",
+   "family": "evm",
+   "layer": "L2",
+   "evm_chain_id": 196,
+   "native": {
+    "symbol": "OKB",
+    "coingecko": "okb"
+   },
+   "ids": {
+    "defillama": "X Layer",
+    "llama_key": "xlayer",
+    "l2beat": "xlayer"
+   },
+   "probe": {
+    "adapter": "evm",
+    "rpc": [
+     "https://rpc.xlayer.tech",
+     "https://xlayerrpc.okx.com",
+     "https://xlayer.drpc.org"
+    ],
+    "min_interval": 0.1
+   },
+   "why": "OKX's L2; $1.6B stablecoin float"
+  },
+  {
+   "slug": "unichain",
+   "name": "Unichain",
+   "family": "evm",
+   "layer": "L2",
+   "evm_chain_id": 130,
+   "native": {
+    "symbol": "ETH",
+    "coingecko": "ethereum"
+   },
+   "ids": {
+    "defillama": "Unichain",
+    "llama_key": "unichain",
+    "growthepie": "unichain",
+    "l2beat": "unichain"
+   },
+   "probe": {
+    "adapter": "evm",
+    "infura": "unichain-mainnet",
+    "rpc": [
+     "https://unichain-rpc.publicnode.com",
+     "https://mainnet.unichain.org"
+    ],
+    "bookkeeping_targets": [
+     "0x3c3a8a41e095c76b03f79f70955fff3b03cf753e",
+     "0xd44f9d1331659f417a3e22c9e29529d498b66a29"
+    ]
+   },
+   "why": "Uniswap's rollup; 1 s blocks, high transaction count"
+  },
+  {
+   "slug": "megaeth",
+   "name": "MegaETH",
+   "family": "evm",
+   "layer": "L2",
+   "evm_chain_id": 4326,
+   "native": {
+    "symbol": "ETH",
+    "coingecko": "ethereum"
+   },
+   "ids": {
+    "defillama": "MegaETH",
+    "llama_key": "megaeth",
+    "growthepie": "megaeth",
+    "l2beat": "megaeth"
+   },
+   "probe": {
+    "adapter": "evm",
+    "rpc": [
+     "https://mainnet.megaeth.com/rpc",
+     "https://megaeth.drpc.org",
+     "https://rpc-megaeth-mainnet.globalstake.io"
+    ],
+    "min_interval": 0.1,
+    "samples": 400,
+    "bookkeeping_targets": [
+     "0x6342000000000000000000000000000000000001",
+     "0x897a33a0af45b3ba097bd6045187d622252e6acd"
+    ]
+   },
+   "why": "new real-time rollup; seventh EVM by transactions in growthepie"
+  },
+  {
+   "slug": "sei",
+   "name": "Sei",
+   "family": "evm",
+   "layer": "L1",
+   "evm_chain_id": 1329,
+   "native": {
+    "symbol": "SEI",
+    "coingecko": "sei-network"
+   },
+   "ids": {
+    "defillama": "Sei",
+    "llama_key": "sei"
+   },
+   "probe": {
+    "adapter": "evm",
+    "infura": "sei-mainnet",
+    "rpc": [
+     "https://evm-rpc.sei-apis.com",
+     "https://sei.drpc.org"
+    ],
+    "min_interval": 0.1
+   },
+   "why": "parallel-EVM L1; $0.3B stables, $12M/day DEX"
+  },
+  {
+   "slug": "sonic",
+   "name": "Sonic",
+   "family": "evm",
+   "layer": "L1",
+   "evm_chain_id": 146,
+   "native": {
+    "symbol": "S",
+    "coingecko": "sonic-3"
+   },
+   "ids": {
+    "defillama": "Sonic",
+    "llama_key": "sonic"
+   },
+   "probe": {
+    "adapter": "evm",
+    "rpc": [
+     "https://rpc.soniclabs.com",
+     "https://sonic.drpc.org"
+    ],
+    "min_interval": 0.1
+   },
+   "why": "fast EVM L1 (ex-Fantom); fee-monetisation incentives"
+  },
+  {
+   "slug": "berachain",
+   "name": "Berachain",
+   "family": "evm",
+   "layer": "L1",
+   "evm_chain_id": 80094,
+   "native": {
+    "symbol": "BERA",
+    "coingecko": "berachain-bera"
+   },
+   "ids": {
+    "defillama": "Berachain",
+    "llama_key": "berachain"
+   },
+   "probe": {
+    "adapter": "evm",
+    "rpc": [
+     "https://rpc.berachain.com",
+     "https://berachain-rpc.publicnode.com"
+    ],
+    "min_interval": 0.1
+   },
+   "why": "proof-of-liquidity L1"
+  },
+  {
+   "slug": "ink",
+   "name": "Ink",
+   "family": "evm",
+   "layer": "L2",
+   "evm_chain_id": 57073,
+   "native": {
+    "symbol": "ETH",
+    "coingecko": "ethereum"
+   },
+   "ids": {
+    "defillama": "Ink",
+    "llama_key": "ink",
+    "growthepie": "ink",
+    "l2beat": "ink"
+   },
+   "probe": {
+    "adapter": "evm",
+    "rpc": [
+     "https://rpc-gel.inkonchain.com",
+     "https://rpc-qnd.inkonchain.com"
+    ],
+    "min_interval": 0.1
+   },
+   "why": "Kraken's OP-stack rollup"
+  },
+  {
+   "slug": "worldchain",
+   "name": "World Chain",
+   "family": "evm",
+   "layer": "L2",
+   "evm_chain_id": 480,
+   "native": {
+    "symbol": "ETH",
+    "coingecko": "ethereum"
+   },
+   "ids": {
+    "defillama": "World Chain",
+    "llama_key": "wc",
+    "growthepie": "worldchain",
+    "l2beat": "worldchain"
+   },
+   "probe": {
+    "adapter": "evm",
+    "rpc": [
+     "https://worldchain-mainnet.g.alchemy.com/public",
+     "https://480.rpc.thirdweb.com"
+    ],
+    "min_interval": 0.1
+   },
+   "why": "World ID app chain; high transaction count from grant claims"
+  },
+  {
+   "slug": "celo",
+   "name": "Celo",
+   "family": "evm",
+   "layer": "L2",
+   "evm_chain_id": 42220,
+   "native": {
+    "symbol": "CELO",
+    "coingecko": "celo"
+   },
+   "ids": {
+    "defillama": "Celo",
+    "llama_key": "celo",
+    "growthepie": "celo",
+    "l2beat": "celo"
+   },
+   "probe": {
+    "adapter": "evm",
+    "infura": "celo-mainnet",
+    "rpc": [
+     "https://forno.celo.org",
+     "https://celo.drpc.org"
+    ],
+    "min_interval": 0.1
+   },
+   "why": "mobile stablecoin payments (MiniPay); ~0.9M tx/day"
+  },
+  {
+   "slug": "linea",
+   "name": "Linea",
+   "family": "evm",
+   "layer": "L2",
+   "evm_chain_id": 59144,
+   "native": {
+    "symbol": "ETH",
+    "coingecko": "ethereum"
+   },
+   "ids": {
+    "defillama": "Linea",
+    "llama_key": "linea",
+    "growthepie": "linea",
+    "l2beat": "linea"
+   },
+   "probe": {
+    "adapter": "evm",
+    "infura": "linea-mainnet",
+    "rpc": [
+     "https://rpc.linea.build"
+    ]
+   },
+   "why": "Consensys zk rollup"
+  },
+  {
+   "slug": "zksync",
+   "name": "ZKsync Era",
+   "family": "evm",
+   "layer": "L2",
+   "evm_chain_id": 324,
+   "native": {
+    "symbol": "ETH",
+    "coingecko": "ethereum"
+   },
+   "ids": {
+    "defillama": "ZKsync Era",
+    "llama_key": "era",
+    "growthepie": "zksync_era",
+    "l2beat": "zksync2"
+   },
+   "probe": {
+    "adapter": "evm",
+    "infura": "zksync-mainnet",
+    "rpc": [
+     "https://mainnet.era.zksync.io"
+    ]
+   },
+   "why": "zk rollup; ZK Stack hub"
+  },
+  {
+   "slug": "scroll",
+   "name": "Scroll",
+   "family": "evm",
+   "layer": "L2",
+   "evm_chain_id": 534352,
+   "native": {
+    "symbol": "ETH",
+    "coingecko": "ethereum"
+   },
+   "ids": {
+    "defillama": "Scroll",
+    "llama_key": "scroll",
+    "growthepie": "scroll",
+    "l2beat": "scroll"
+   },
+   "probe": {
+    "adapter": "evm",
+    "infura": "scroll-mainnet",
+    "rpc": [
+     "https://rpc.scroll.io"
+    ]
+   },
+   "why": "zk rollup; lowest USDC rate in the 2026-09-08 book"
+  },
+  {
+   "slug": "blast",
+   "name": "Blast",
+   "family": "evm",
+   "layer": "L2",
+   "evm_chain_id": 81457,
+   "native": {
+    "symbol": "ETH",
+    "coingecko": "ethereum"
+   },
+   "ids": {
+    "defillama": "Blast",
+    "llama_key": "blast",
+    "l2beat": "blast"
+   },
+   "probe": {
+    "adapter": "evm",
+    "infura": "blast-mainnet",
+    "rpc": [
+     "https://rpc.blast.io"
+    ]
+   },
+   "why": "yield-bearing rollup; activity in decline, kept as a control"
+  },
+  {
+   "slug": "mantle",
+   "name": "Mantle",
+   "family": "evm",
+   "layer": "L2",
+   "evm_chain_id": 5000,
+   "native": {
+    "symbol": "MNT",
+    "coingecko": "mantle"
+   },
+   "ids": {
+    "defillama": "Mantle",
+    "llama_key": "mantle",
+    "growthepie": "mantle",
+    "l2beat": "mantle"
+   },
+   "probe": {
+    "adapter": "evm",
+    "infura": "mantle-mainnet",
+    "rpc": [
+     "https://rpc.mantle.xyz",
+     "https://mantle-rpc.publicnode.com"
+    ],
+    "min_interval": 0.1
+   },
+   "why": "Bybit-aligned rollup; $0.55B stables"
+  },
+  {
+   "slug": "opbnb",
+   "name": "opBNB",
+   "family": "evm",
+   "layer": "L2",
+   "evm_chain_id": 204,
+   "native": {
+    "symbol": "BNB",
+    "coingecko": "binancecoin"
+   },
+   "ids": {
+    "defillama": "opBNB",
+    "llama_key": "op_bnb"
+   },
+   "probe": {
+    "adapter": "evm",
+    "infura": "opbnb-mainnet",
+    "rpc": [
+     "https://opbnb-mainnet-rpc.bnbchain.org",
+     "https://opbnb.drpc.org"
+    ],
+    "min_interval": 0.1
+   },
+   "why": "BNB's rollup; very high transaction count, almost no DeFi — an activity-without-value control"
+  },
+  {
+   "slug": "ronin",
+   "name": "Ronin",
+   "family": "evm",
+   "layer": "L2",
+   "evm_chain_id": 2020,
+   "native": {
+    "symbol": "RON",
+    "coingecko": "ronin"
+   },
+   "ids": {
+    "defillama": "Ronin",
+    "llama_key": "ronin",
+    "growthepie": "ronin",
+    "l2beat": "roninnetwork"
+   },
+   "probe": {
+    "adapter": "evm",
+    "rpc": [
+     "https://api.roninchain.com/rpc",
+     "https://ronin.drpc.org"
+    ],
+    "min_interval": 0.1
+   },
+   "why": "gaming chain; transaction count without DeFi depth"
+  },
+  {
+   "slug": "soneium",
+   "name": "Soneium",
+   "family": "evm",
+   "layer": "L2",
+   "evm_chain_id": 1868,
+   "native": {
+    "symbol": "ETH",
+    "coingecko": "ethereum"
+   },
+   "ids": {
+    "defillama": "Soneium",
+    "llama_key": "soneium",
+    "growthepie": "soneium",
+    "l2beat": "soneium"
+   },
+   "probe": {
+    "adapter": "evm",
+    "rpc": [
+     "https://rpc.soneium.org",
+     "https://soneium.drpc.org"
+    ],
+    "min_interval": 0.1
+   },
+   "why": "Sony's OP-stack rollup"
+  },
+  {
+   "slug": "gnosis",
+   "name": "Gnosis",
+   "family": "evm",
+   "layer": "L1",
+   "evm_chain_id": 100,
+   "native": {
+    "symbol": "XDAI",
+    "coingecko": "xdai"
+   },
+   "ids": {
+    "defillama": "Gnosis",
+    "llama_key": "xdai"
+   },
+   "probe": {
+    "adapter": "evm",
+    "rpc": [
+     "https://rpc.gnosischain.com",
+     "https://gnosis-rpc.publicnode.com"
+    ],
+    "min_interval": 0.1
+   },
+   "why": "card payments (Gnosis Pay), Circles; prediction markets"
+  },
+  {
+   "slug": "cronos",
+   "name": "Cronos",
+   "family": "evm",
+   "layer": "L1",
+   "evm_chain_id": 25,
+   "native": {
+    "symbol": "CRO",
+    "coingecko": "crypto-com-chain"
+   },
+   "ids": {
+    "defillama": "Cronos",
+    "llama_key": "cronos"
+   },
+   "probe": {
+    "adapter": "evm",
+    "rpc": [
+     "https://evm.cronos.org",
+     "https://cronos-evm-rpc.publicnode.com"
+    ],
+    "min_interval": 0.1
+   },
+   "why": "Crypto.com's chain"
+  },
+  {
+   "slug": "kaia",
+   "name": "Kaia",
+   "family": "evm",
+   "layer": "L1",
+   "evm_chain_id": 8217,
+   "native": {
+    "symbol": "KAIA",
+    "coingecko": "kaia"
+   },
+   "ids": {
+    "defillama": "Kaia",
+    "llama_key": "klaytn"
+   },
+   "probe": {
+    "adapter": "evm",
+    "rpc": [
+     "https://public-en.node.kaia.io",
+     "https://kaia.blockpi.network/v1/rpc/public"
+    ],
+    "min_interval": 0.1
+   },
+   "why": "Kakao/LINE chain; consumer stablecoin activity in Asia"
+  },
+  {
+   "slug": "flare",
+   "name": "Flare",
+   "family": "evm",
+   "layer": "L1",
+   "evm_chain_id": 14,
+   "native": {
+    "symbol": "FLR",
+    "coingecko": "flare-networks"
+   },
+   "ids": {
+    "defillama": "Flare",
+    "llama_key": "flare"
+   },
+   "probe": {
+    "adapter": "evm",
+    "rpc": [
+     "https://flare-api.flare.network/ext/C/rpc",
+     "https://flare.drpc.org"
+    ],
+    "min_interval": 0.1,
+    "bookkeeping_targets": [
+     "0x2ca6571daa15ce734bbd0bf27d5c9d16787fc33f"
+    ]
+   },
+   "why": "FAssets (XRP on EVM); $9M/day DEX"
+  },
+  {
+   "slug": "katana",
+   "name": "Katana",
+   "family": "evm",
+   "layer": "L2",
+   "evm_chain_id": 747474,
+   "native": {
+    "symbol": "ETH",
+    "coingecko": "ethereum"
+   },
+   "ids": {
+    "defillama": "Katana",
+    "llama_key": "katana",
+    "l2beat": "katana"
+   },
+   "probe": {
+    "adapter": "evm",
+    "rpc": [
+     "https://rpc.katana.network",
+     "https://katana.drpc.org"
+    ],
+    "min_interval": 0.1
+   },
+   "why": "Polygon/GSR DeFi chain"
+  },
+  {
+   "slug": "abstract",
+   "name": "Abstract",
+   "family": "evm",
+   "layer": "L2",
+   "evm_chain_id": 2741,
+   "native": {
+    "symbol": "ETH",
+    "coingecko": "ethereum"
+   },
+   "ids": {
+    "defillama": "Abstract",
+    "llama_key": "abstract",
+    "l2beat": "abstract"
+   },
+   "probe": {
+    "adapter": "evm",
+    "rpc": [
+     "https://api.mainnet.abs.xyz",
+     "https://abstract.drpc.org"
+    ],
+    "min_interval": 0.1
+   },
+   "why": "consumer/gaming ZK Stack chain"
+  },
+  {
+   "slug": "pulsechain",
+   "name": "PulseChain",
+   "family": "evm",
+   "layer": "L1",
+   "evm_chain_id": 369,
+   "native": {
+    "symbol": "PLS",
+    "coingecko": "pulsechain"
+   },
+   "ids": {
+    "defillama": "PulseChain",
+    "llama_key": "pulse"
+   },
+   "probe": {
+    "adapter": "evm",
+    "rpc": [
+     "https://rpc.pulsechain.com",
+     "https://pulsechain-rpc.publicnode.com"
+    ],
+    "min_interval": 0.1
+   },
+   "why": "Ethereum fork with its own DEX economy"
+  },
+  {
+   "slug": "core",
+   "name": "Core",
+   "family": "evm",
+   "layer": "L1",
+   "evm_chain_id": 1116,
+   "native": {
+    "symbol": "CORE",
+    "coingecko": "coredaoorg"
+   },
+   "ids": {
+    "defillama": "CORE",
+    "llama_key": "core"
+   },
+   "probe": {
+    "adapter": "evm",
+    "rpc": [
+     "https://rpc.coredao.org",
+     "https://core.drpc.org"
+    ],
+    "min_interval": 0.1
+   },
+   "why": "BTC-staking EVM; home of the CORE-vault family this repo studied"
+  },
+  {
+   "slug": "rootstock",
+   "name": "Rootstock",
+   "family": "evm",
+   "layer": "L2",
+   "evm_chain_id": 30,
+   "native": {
+    "symbol": "RBTC",
+    "coingecko": "rootstock"
+   },
+   "ids": {
+    "defillama": "Rootstock",
+    "llama_key": "rsk"
+   },
+   "probe": {
+    "adapter": "evm",
+    "rpc": [
+     "https://public-node.rsk.co",
+     "https://rootstock.drpc.org"
+    ],
+    "min_interval": 0.2
+   },
+   "why": "merge-mined Bitcoin sidechain"
+  },
+  {
+   "slug": "plume",
+   "name": "Plume",
+   "family": "evm",
+   "layer": "L2",
+   "evm_chain_id": 98866,
+   "native": {
+    "symbol": "PLUME",
+    "coingecko": "plume"
+   },
+   "ids": {
+    "defillama": "Plume Mainnet",
+    "llama_key": "plume_mainnet",
+    "growthepie": "plume",
+    "l2beat": "plumenetwork"
+   },
+   "probe": {
+    "adapter": "evm",
+    "rpc": [
+     "https://rpc.plume.org",
+     "https://plume.drpc.org"
+    ],
+    "min_interval": 0.1
+   },
+   "why": "RWA chain"
+  },
+  {
+   "slug": "xdc",
+   "name": "XDC Network",
+   "family": "evm",
+   "layer": "L1",
+   "evm_chain_id": 50,
+   "native": {
+    "symbol": "XDC",
+    "coingecko": "xdce-crowd-sale"
+   },
+   "ids": {
+    "defillama": "XDC",
+    "llama_key": "xdc"
+   },
+   "probe": {
+    "adapter": "evm",
+    "rpc": [
+     "https://rpc.xdcrpc.com",
+     "https://erpc.xinfin.network"
+    ],
+    "min_interval": 0.2,
+    "bookkeeping_targets": [
+     "0x0000000000000000000000000000000000000089"
+    ]
+   },
+   "why": "trade-finance chain; $55M stables"
+  },
+  {
+   "slug": "tron",
+   "name": "Tron",
+   "family": "tron",
+   "layer": "L1",
+   "evm_chain_id": 728126428,
+   "native": {
+    "symbol": "TRX",
+    "coingecko": "tron",
+    "decimals": 6
+   },
+   "ids": {
+    "defillama": "Tron",
+    "llama_key": "tron",
+    "tronscan": true
+   },
+   "probe": {
+    "adapter": "tron",
+    "rpc": [
+     "https://api.trongrid.io/jsonrpc"
+    ],
+    "rpc_only": true,
+    "min_interval": 0.12,
+    "workers": 2,
+    "batch": 1,
+    "skip_names": true
+   },
+   "why": "second-largest stablecoin float ($94B USDT); the retail dollar rail"
+  },
+  {
+   "slug": "solana",
+   "name": "Solana",
+   "family": "solana",
+   "layer": "L1",
+   "native": {
+    "symbol": "SOL",
+    "coingecko": "solana",
+    "decimals": 9
+   },
+   "ids": {
+    "defillama": "Solana",
+    "llama_key": "solana"
+   },
+   "probe": {
+    "adapter": "solana",
+    "samples": 120
+   },
+   "why": "largest DEX volume of any chain; highest raw transaction rate"
+  },
+  {
+   "slug": "sui",
+   "name": "Sui",
+   "family": "sui",
+   "layer": "L1",
+   "native": {
+    "symbol": "SUI",
+    "coingecko": "sui",
+    "decimals": 9
+   },
+   "ids": {
+    "defillama": "Sui",
+    "llama_key": "sui"
+   },
+   "probe": {
+    "adapter": "sui",
+    "graphql": "https://graphql.mainnet.sui.io/graphql"
+   },
+   "why": "Move L1; cumulative transaction counter in every checkpoint"
+  },
+  {
+   "slug": "aptos",
+   "name": "Aptos",
+   "family": "aptos",
+   "layer": "L1",
+   "native": {
+    "symbol": "APT",
+    "coingecko": "aptos",
+    "decimals": 8
+   },
+   "ids": {
+    "defillama": "Aptos",
+    "llama_key": "aptos"
+   },
+   "probe": {
+    "adapter": "aptos",
+    "rest": "https://api.mainnet.aptoslabs.com/v1"
+   },
+   "why": "Move L1; $1B stablecoins"
+  },
+  {
+   "slug": "near",
+   "name": "NEAR",
+   "family": "near",
+   "layer": "L1",
+   "native": {
+    "symbol": "NEAR",
+    "coingecko": "near",
+    "decimals": 24
+   },
+   "ids": {
+    "defillama": "Near",
+    "llama_key": "near"
+   },
+   "probe": {
+    "adapter": "near",
+    "rpc": [
+     "https://rpc.mainnet.fastnear.com",
+     "https://free.rpc.fastnear.com",
+     "https://near.drpc.org",
+     "https://archival-rpc.mainnet.fastnear.com"
+    ],
+    "nearblocks": "https://api.nearblocks.io/v1",
+    "samples": 60
+   },
+   "why": "NEAR Intents settlement; top-10 DEX volume"
+  },
+  {
+   "slug": "ton",
+   "name": "TON",
+   "family": "ton",
+   "layer": "L1",
+   "native": {
+    "symbol": "TON",
+    "coingecko": "the-open-network",
+    "decimals": 9
+   },
+   "ids": {
+    "defillama": "TON",
+    "llama_key": "ton"
+   },
+   "probe": {
+    "adapter": "ton",
+    "toncenter": "https://toncenter.com/api/v3",
+    "min_interval": 1.1,
+    "samples": 120
+   },
+   "why": "Telegram chain; USDT payments, $0.7B stables"
+  },
+  {
+   "slug": "starknet",
+   "name": "Starknet",
+   "family": "starknet",
+   "layer": "L2",
+   "native": {
+    "symbol": "STRK",
+    "coingecko": "starknet",
+    "decimals": 18
+   },
+   "ids": {
+    "defillama": "Starknet",
+    "llama_key": "starknet",
+    "growthepie": "starknet",
+    "l2beat": "starknet"
+   },
+   "probe": {
+    "adapter": "starknet",
+    "infura": "starknet-mainnet",
+    "rpc": [
+     "https://starknet-rpc.publicnode.com",
+     "https://api.zan.top/public/starknet-mainnet"
+    ]
+   },
+   "why": "Cairo rollup; $34M/day DEX"
+  },
+  {
+   "slug": "xrpl",
+   "name": "XRP Ledger",
+   "family": "xrpl",
+   "layer": "L1",
+   "native": {
+    "symbol": "XRP",
+    "coingecko": "ripple",
+    "decimals": 6
+   },
+   "ids": {
+    "defillama": "XRPL",
+    "llama_key": "ripple",
+    "blockchair": "ripple"
+   },
+   "probe": {
+    "adapter": "xrpl",
+    "rpc": [
+     "https://xrplcluster.com/",
+     "https://s1.ripple.com:51234/",
+     "https://s2.ripple.com:51234/"
+    ],
+    "workers": 8
+   },
+   "why": "payments ledger with a native order book; RLUSD; $1.2B stables"
+  },
+  {
+   "slug": "stellar",
+   "name": "Stellar",
+   "family": "stellar",
+   "layer": "L1",
+   "native": {
+    "symbol": "XLM",
+    "coingecko": "stellar",
+    "decimals": 7
+   },
+   "ids": {
+    "defillama": "Stellar",
+    "llama_key": "stellar",
+    "blockchair": "stellar"
+   },
+   "probe": {
+    "adapter": "stellar",
+    "horizon": "https://horizon.stellar.org",
+    "workers": 6
+   },
+   "why": "payments ledger; ~5M tx/day, $0.9B stables"
+  },
+  {
+   "slug": "hedera",
+   "name": "Hedera",
+   "family": "hedera",
+   "layer": "L1",
+   "native": {
+    "symbol": "HBAR",
+    "coingecko": "hedera-hashgraph",
+    "decimals": 8
+   },
+   "ids": {
+    "defillama": "Hedera",
+    "llama_key": "hedera"
+   },
+   "probe": {
+    "adapter": "hedera",
+    "mirror": "https://mainnet-public.mirrornode.hedera.com/api/v1"
+   },
+   "why": "high transaction count dominated by consensus-service messages"
+  },
+  {
+   "slug": "cardano",
+   "name": "Cardano",
+   "family": "cardano",
+   "layer": "L1",
+   "native": {
+    "symbol": "ADA",
+    "coingecko": "cardano",
+    "decimals": 6
+   },
+   "ids": {
+    "defillama": "Cardano",
+    "llama_key": "cardano",
+    "blockchair": "cardano"
+   },
+   "probe": {
+    "adapter": "cardano",
+    "koios": "https://api.koios.rest/api/v1"
+   },
+   "why": "eUTXO L1"
+  },
+  {
+   "slug": "algorand",
+   "name": "Algorand",
+   "family": "algorand",
+   "layer": "L1",
+   "native": {
+    "symbol": "ALGO",
+    "coingecko": "algorand",
+    "decimals": 6
+   },
+   "ids": {
+    "defillama": "Algorand",
+    "llama_key": "algorand"
+   },
+   "probe": {
+    "adapter": "algorand",
+    "algod": "https://mainnet-api.algonode.cloud",
+    "indexer": "https://mainnet-idx.algonode.cloud"
+   },
+   "why": "account L1 with native assets (ASAs)"
+  },
+  {
+   "slug": "tezos",
+   "name": "Tezos",
+   "family": "tezos",
+   "layer": "L1",
+   "native": {
+    "symbol": "XTZ",
+    "coingecko": "tezos",
+    "decimals": 6
+   },
+   "ids": {
+    "defillama": "Tezos",
+    "llama_key": "tezos"
+   },
+   "probe": {
+    "adapter": "tezos",
+    "tzkt": "https://api.tzkt.io/v1"
+   },
+   "why": "exact transaction counts per window from the TzKT indexer; Etherlink's L1"
+  },
+  {
+   "slug": "bitcoin",
+   "name": "Bitcoin",
+   "family": "utxo",
+   "layer": "L1",
+   "native": {
+    "symbol": "BTC",
+    "coingecko": "bitcoin",
+    "decimals": 8
+   },
+   "ids": {
+    "defillama": "Bitcoin",
+    "llama_key": "bitcoin",
+    "blockchair": "bitcoin"
+   },
+   "probe": {
+    "adapter": "utxo",
+    "mempool": "https://mempool.space/api"
+   },
+   "why": "largest asset; every block read, so the count is exact"
+  },
+  {
+   "slug": "litecoin",
+   "name": "Litecoin",
+   "family": "utxo",
+   "layer": "L1",
+   "native": {
+    "symbol": "LTC",
+    "coingecko": "litecoin",
+    "decimals": 8
+   },
+   "ids": {
+    "defillama": "Litecoin",
+    "blockchair": "litecoin"
+   },
+   "probe": {
+    "adapter": "utxo",
+    "mempool": "https://litecoinspace.org/api"
+   },
+   "why": "payments UTXO chain"
+  },
+  {
+   "slug": "dogecoin",
+   "name": "Dogecoin",
+   "family": "utxo",
+   "layer": "L1",
+   "native": {
+    "symbol": "DOGE",
+    "coingecko": "dogecoin",
+    "decimals": 8
+   },
+   "ids": {
+    "defillama": "Doge",
+    "blockchair": "dogecoin"
+   },
+   "probe": {
+    "adapter": "blockchair",
+    "blockchair": "dogecoin"
+   },
+   "why": "UTXO chain; trailing-24h counts from Blockchair only"
+  },
+  {
+   "slug": "bitcoin-cash",
+   "name": "Bitcoin Cash",
+   "family": "utxo",
+   "layer": "L1",
+   "native": {
+    "symbol": "BCH",
+    "coingecko": "bitcoin-cash",
+    "decimals": 8
+   },
+   "ids": {
+    "blockchair": "bitcoin-cash",
+    "defillama": "Bitcoincash"
+   },
+   "probe": {
+    "adapter": "blockchair",
+    "blockchair": "bitcoin-cash"
+   },
+   "why": "UTXO chain; trailing-24h counts from Blockchair only"
+  },
+  {
+   "slug": "zcash",
+   "name": "Zcash",
+   "family": "utxo",
+   "layer": "L1",
+   "native": {
+    "symbol": "ZEC",
+    "coingecko": "zcash",
+    "decimals": 8
+   },
+   "ids": {
+    "defillama": "Zcash",
+    "blockchair": "zcash"
+   },
+   "probe": {
+    "adapter": "blockchair",
+    "blockchair": "zcash"
+   },
+   "why": "shielded UTXO chain; transparent-side counts only"
+  },
+  {
+   "slug": "osmosis",
+   "name": "Osmosis",
+   "family": "cosmos",
+   "layer": "L1",
+   "native": {
+    "symbol": "OSMO",
+    "coingecko": "osmosis",
+    "decimals": 6
+   },
+   "ids": {
+    "defillama": "Osmosis",
+    "llama_key": "osmosis"
+   },
+   "probe": {
+    "adapter": "cosmos",
+    "rpc": [
+     "https://osmosis-rpc.publicnode.com"
+    ],
+    "denoms": {
+     "uosmo": {
+      "symbol": "OSMO",
+      "decimals": 6,
+      "coingecko": "osmosis"
+     }
+    },
+    "samples": 300
+   },
+   "why": "the Cosmos DEX hub"
+  },
+  {
+   "slug": "injective",
+   "name": "Injective",
+   "family": "cosmos",
+   "layer": "L1",
+   "native": {
+    "symbol": "INJ",
+    "coingecko": "injective-protocol",
+    "decimals": 18
+   },
+   "ids": {
+    "defillama": "Injective",
+    "llama_key": "injective"
+   },
+   "probe": {
+    "adapter": "cosmos",
+    "rpc": [
+     "https://injective-rpc.publicnode.com"
+    ],
+    "denoms": {
+     "inj": {
+      "symbol": "INJ",
+      "decimals": 18,
+      "coingecko": "injective-protocol"
+     }
+    }
+   },
+   "why": "order-book chain; $10M/day DEX"
+  },
+  {
+   "slug": "cosmoshub",
+   "name": "Cosmos Hub",
+   "family": "cosmos",
+   "layer": "L1",
+   "native": {
+    "symbol": "ATOM",
+    "coingecko": "cosmos",
+    "decimals": 6
+   },
+   "ids": {
+    "defillama": "CosmosHub",
+    "llama_key": "cosmos"
+   },
+   "probe": {
+    "adapter": "cosmos",
+    "rpc": [
+     "https://cosmos-rpc.publicnode.com"
+    ],
+    "denoms": {
+     "uatom": {
+      "symbol": "ATOM",
+      "decimals": 6,
+      "coingecko": "cosmos"
+     }
+    }
+   },
+   "why": "IBC hub"
+  },
+  {
+   "slug": "dydx",
+   "name": "dYdX Chain",
+   "family": "cosmos",
+   "layer": "appchain",
+   "native": {
+    "symbol": "DYDX",
+    "coingecko": "dydx-chain",
+    "decimals": 18
+   },
+   "ids": {
+    "defillama": "dYdX",
+    "llama_key": "dydx"
+   },
+   "probe": {
+    "adapter": "cosmos",
+    "rpc": [
+     "https://dydx-rpc.publicnode.com"
+    ],
+    "denoms": {
+     "adydx": {
+      "symbol": "DYDX",
+      "decimals": 18,
+      "coingecko": "dydx-chain"
+     }
+    }
+   },
+   "why": "perp exchange appchain; order flow is the transaction count"
+  },
+  {
+   "slug": "celestia",
+   "name": "Celestia",
+   "family": "cosmos",
+   "layer": "L1",
+   "native": {
+    "symbol": "TIA",
+    "coingecko": "celestia",
+    "decimals": 6
+   },
+   "ids": {
+    "defillama": "Celestia",
+    "llama_key": "celestia"
+   },
+   "probe": {
+    "adapter": "cosmos",
+    "rpc": [
+     "https://rpc.celestia.pops.one",
+     "https://celestia.rpc.kjnodes.com"
+    ],
+    "denoms": {
+     "utia": {
+      "symbol": "TIA",
+      "decimals": 6,
+      "coingecko": "celestia"
+     }
+    }
+   },
+   "why": "data-availability chain; blob demand from rollups"
+  },
+  {
+   "slug": "noble",
+   "name": "Noble",
+   "family": "cosmos",
+   "layer": "appchain",
+   "native": {
+    "symbol": "USDC",
+    "coingecko": "usd-coin",
+    "decimals": 6
+   },
+   "ids": {
+    "defillama": "Noble",
+    "llama_key": "noble"
+   },
+   "probe": {
+    "adapter": "cosmos",
+    "rpc": [
+     "https://rpc.noble.xyz",
+     "https://noble-rpc.polkachu.com"
+    ],
+    "denoms": {
+     "uusdc": {
+      "symbol": "USDC",
+      "decimals": 6,
+      "coingecko": "usd-coin"
+     }
+    }
+   },
+   "why": "native USDC issuer for IBC"
+  },
+  {
+   "slug": "thorchain",
+   "name": "THORChain",
+   "family": "cosmos",
+   "layer": "appchain",
+   "native": {
+    "symbol": "RUNE",
+    "coingecko": "thorchain",
+    "decimals": 8
+   },
+   "ids": {
+    "defillama": "THORChain",
+    "llama_key": "thorchain"
+   },
+   "probe": {
+    "adapter": "cosmos",
+    "rpc": [
+     "https://rpc.cosmos.directory/thorchain"
+    ],
+    "denoms": {
+     "rune": {
+      "symbol": "RUNE",
+      "decimals": 8,
+      "coingecko": "thorchain"
+     }
+    }
+   },
+   "why": "native cross-chain swaps (BTC/ETH); $44M/day"
+  },
+  {
+   "slug": "hyperliquid",
+   "name": "Hyperliquid (HyperCore)",
+   "family": "hyperliquid",
+   "layer": "appchain",
+   "native": {
+    "symbol": "HYPE",
+    "coingecko": "hyperliquid",
+    "decimals": 8
+   },
+   "ids": {
+    "defillama": "Hyperliquid L1",
+    "llama_key": "hyperliquid"
+   },
+   "probe": {
+    "adapter": "hyperliquid",
+    "info": "https://api.hyperliquid.xyz/info"
+   },
+   "why": "the perp venue; traded (not transferred) volume per asset, every HIP-3 dex included"
+  }
+ ],
+ "census_only": [
+  {
+   "name": "Bittensor",
+   "defillama": "Bittensor",
+   "why": "Substrate; $0.5B TVL — needs a Substrate adapter"
+  },
+  {
+   "name": "Polkadot",
+   "why": "Asset Hub stablecoins — needs a Substrate adapter"
+  },
+  {
+   "name": "Kaspa",
+   "why": "10 blocks/s UTXO DAG — needs a Kaspa adapter (api.kaspa.org)"
+  },
+  {
+   "name": "Stacks",
+   "defillama": "Stacks",
+   "why": "Bitcoin L2 — Hiro API adapter not written"
+  },
+  {
+   "name": "Canton",
+   "defillama": "Canton",
+   "why": "permissioned settlement network; no public node"
+  },
+  {
+   "name": "Provenance",
+   "defillama": "Provenance",
+   "why": "Cosmos-SDK RWA chain; no public RPC in the registry yet"
+  },
+  {
+   "name": "Vaulta",
+   "defillama": "Vaulta",
+   "why": "ex-EOS; Antelope adapter not written"
+  },
+  {
+   "name": "MultiversX",
+   "defillama": "MultiversX",
+   "why": "sharded L1; adapter not written"
+  },
+  {
+   "name": "ICP",
+   "defillama": "ICP",
+   "why": "Internet Computer; adapter not written"
+  }
+ ]
+}

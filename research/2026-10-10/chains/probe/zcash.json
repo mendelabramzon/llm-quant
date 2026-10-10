@@ -1,0 +1,69 @@
+{
+ "tx": {
+  "count": 6470,
+  "se": null,
+  "method": "aggregator-24h",
+  "blocks": 1153,
+  "mempool_transactions": 1,
+  "avg_fee_native": 4.47678055,
+  "note": "Blockchair transactions_24h (its count; coinbase included)"
+ },
+ "transfers": {
+  "assets": [
+   {
+    "asset": "native:ZEC",
+    "symbol": "ZEC",
+    "class": "native",
+    "transfers": 6470,
+    "transfers_se": 0,
+    "amount": 1082707.92439401,
+    "price": 1221.8375496525873,
+    "usd": 1322893197.331016,
+    "usd_se": 0.0,
+    "top_block_share": null,
+    "units_seen": 1,
+    "gross_amount": 1082707.92439401,
+    "gross_usd": 1322893197.331016,
+    "note": "Blockchair volume_24h: gross outputs over its trailing 24 h (change included)",
+    "price_source": "defillama:coingecko:zcash"
+   }
+  ],
+  "unpriced_top": [],
+  "unpriced_assets": 0,
+  "unpriced_transfers": 0,
+  "priced_usd": 1322893197.331016,
+  "usd_by_class": {
+   "native": 1322893197.331016
+  },
+  "gross_priced_usd": 1322893197.331016,
+  "method": "aggregator-24h (blockchair); GROSS outputs, change included"
+ },
+ "window": {
+  "start_ts": 1791541859,
+  "end_ts": 1791628259,
+  "start_utc": "2026-10-09T10:30:59+00:00",
+  "end_utc": "2026-10-10T10:30:59+00:00",
+  "hours": 24.0
+ },
+ "probe_window": {
+  "start_ts": 1791504000,
+  "end_ts": 1791590400,
+  "start_utc": "2026-10-09T00:00:00+00:00",
+  "end_utc": "2026-10-10T00:00:00+00:00",
+  "hours": 24.0
+ },
+ "endpoint": "https://api.blockchair.com/stats",
+ "calls": 1,
+ "notes": [
+  "window is Blockchair's trailing 24 h ending at its best block (2026-10-10 10:30:59 UTC), not the probe window"
+ ],
+ "errors": [],
+ "error_count": 0,
+ "seconds": 0.9,
+ "chain": "zcash",
+ "name": "Zcash",
+ "family": "utxo",
+ "adapter": "blockchair",
+ "ok": true,
+ "probed_at": "2026-10-10T10:32:42+00:00"
+}

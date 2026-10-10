@@ -1,22 +1,25 @@
 {
   "api": {
-    "errors": 4,
-    "requests": 333,
-    "throttled": 4
+    "errors": 73,
+    "requests": 1087,
+    "throttled": 73
   },
   "candle_interval": "1h",
-  "candle_rows": 492055,
-  "collected_at": "2026-09-10T13:56:05+00:00",
-  "failures": {},
-  "finished_at": "2026-09-10T13:57:52+00:00",
-  "funding_rows": 492008,
+  "candle_rows": 720850,
+  "collected_at": "2026-10-09T21:14:16+00:00",
+  "failures": {
+    "STRK": "retry limit: HTTP 429",
+    "TAO": "retry limit: HTTP 429"
+  },
+  "finished_at": "2026-10-09T21:25:54+00:00",
+  "funding_rows": 721226,
   "info_url": "https://api.hyperliquid.xyz/info",
-  "markets": 316,
-  "markets_this_run": 316,
-  "seconds": 106.9,
+  "markets": 336,
+  "markets_this_run": 336,
+  "seconds": 698.3,
   "since_ms": 1782864000000,
   "since_utc": "2026-07-01T00:00:00+00:00",
-  "until_ms": 1789045200000,
-  "until_utc": "2026-09-10T13:00:00+00:00",
+  "until_ms": 1791579600000,
+  "until_utc": "2026-10-09T21:00:00+00:00",
   "venue": "hyperliquid"
 }

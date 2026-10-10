@@ -1,0 +1,161 @@
+{
+  "all_ok": true,
+  "checks": [
+    {
+      "analysis": 537,
+      "check": "assets in the snapshot",
+      "id": "assets",
+      "note": "",
+      "ok": true,
+      "recomputed": 537,
+      "tolerance": 0.0
+    },
+    {
+      "analysis": 15427275230.068266,
+      "check": "total open interest (USD)",
+      "id": "oi-usd",
+      "note": "",
+      "ok": true,
+      "recomputed": 15427275230.068281,
+      "tolerance": 1e-09
+    },
+    {
+      "analysis": 6239050903.185373,
+      "check": "total 24h notional volume (USD)",
+      "id": "day-vlm",
+      "note": "",
+      "ok": true,
+      "recomputed": 6239050903.185371,
+      "tolerance": 1e-09
+    },
+    {
+      "analysis": 117482644.063774,
+      "check": "notional traded in the window (USD)",
+      "id": "hour-vlm",
+      "note": "",
+      "ok": true,
+      "recomputed": 117482644.06377418,
+      "tolerance": 1e-09
+    },
+    {
+      "analysis": 127697,
+      "check": "trades in the window",
+      "id": "hour-trades",
+      "note": "",
+      "ok": true,
+      "recomputed": 127697,
+      "tolerance": 0.0
+    }
+  ],
+  "coverage": {
+    "assets": 537,
+    "collection_failures": {
+      "MELANIA": "fail:retry limit: HTTP 429",
+      "NIL": "fail:retry limit: HTTP 429",
+      "para:MELI": "fail:retry limit: HTTP 429",
+      "para:SMCI": "fail:retry limit: HTTP 429",
+      "para:UNITREE": "fail:retry limit: HTTP 429"
+    },
+    "with_book": 140,
+    "with_candles": 331,
+    "with_funding_history": 140
+  },
+  "failures": [],
+  "generated": "2026-10-09T21:49:29+00:00",
+  "identities": [
+    {
+      "check": "the venue\u2019s premium is within two percent of the instantaneous impact-mid basis",
+      "checked": 336,
+      "examples": [],
+      "failed": 0,
+      "id": "premium-bounded",
+      "ok": true,
+      "worst": 0.0
+    },
+    {
+      "check": "the reported basis equals the recomputed one",
+      "checked": 537,
+      "examples": [],
+      "failed": 0,
+      "id": "mark-vs-oracle-bps",
+      "ok": true,
+      "worst": 0.0
+    },
+    {
+      "check": "the annualised funding equals the hourly rate times 8760",
+      "checked": 537,
+      "examples": [],
+      "failed": 0,
+      "id": "funding-apr",
+      "ok": true,
+      "worst": 0.0
+    },
+    {
+      "check": "open interest in USD equals size times mark",
+      "checked": 336,
+      "examples": [],
+      "failed": 0,
+      "id": "oi-usd",
+      "ok": true,
+      "worst": 0.0
+    },
+    {
+      "check": "cap utilisation equals open interest over the cap",
+      "checked": 267,
+      "examples": [],
+      "failed": 0,
+      "id": "cap-use",
+      "ok": true,
+      "worst": 0.0
+    },
+    {
+      "check": "the best ask is not below the best bid",
+      "checked": 140,
+      "examples": [],
+      "failed": 0,
+      "id": "spread-nonneg",
+      "ok": true,
+      "worst": 0.0
+    },
+    {
+      "check": "the round-trip cost never falls as the order grows",
+      "checked": 140,
+      "examples": [],
+      "failed": 0,
+      "id": "cost-monotone",
+      "ok": true,
+      "worst": 0.0
+    }
+  ],
+  "premium_to_funding_transfer": {
+    "by_dex": {
+      "core": {
+        "markets": 54,
+        "median": -0.1109979372038364,
+        "p10": -0.3219258894409918,
+        "p90": 0.3865500677042444
+      },
+      "io": {
+        "markets": 8,
+        "median": 0.10059105586740419,
+        "p10": 0.026340402896880694,
+        "p90": 0.18937525059423013
+      },
+      "para": {
+        "markets": 26,
+        "median": 0.18282967228242925,
+        "p10": -0.0941301829843692,
+        "p90": 0.5217419132338927
+      },
+      "xyz": {
+        "markets": 84,
+        "median": 0.19784787559891392,
+        "p10": -0.05701627236616334,
+        "p90": 0.5289892993572896
+      }
+    },
+    "what": "hourly funding divided by one eighth of the venue\u2019s own reported premium, over markets with |premium| above 2 basis points",
+    "why": "a ratio near 1 means the funding rate is charging the whole premium and the gap should close; a ratio near 0 means the venue is not charging for its own premium, and a wide gap has nothing pulling it shut"
+  },
+  "window": "/Users/iv/dev/llm-quant/research/2026-10-09/perps_daily"
+}

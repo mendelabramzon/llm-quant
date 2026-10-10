@@ -8,7 +8,7 @@ would do, one step at a time (the venue's per-IP limiter throttles concurrent co
 day to a log the next session can read before anything else.
 
     uv run python scripts/perp_daily.py run                 # today's pass, under research/<UTC date>/perps_daily
-    uv run python scripts/perp_daily.py run --minutes 4     # shorter reference sampling
+    uv run python scripts/perp_daily.py run --minutes 20    # reference sampling; under 16 the delayed quotes cannot be aligned
     uv run python scripts/perp_daily.py plan                # print the steps without running them
 
 Install as a daily job with launchd (macOS): copy `scripts/launchd/com.llm-quant.perp-daily.plist` to
@@ -141,11 +141,11 @@ def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest='cmd', required=True)
     r = sub.add_parser('run'); r.set_defaults(fn=cmd_run)
-    r.add_argument('--minutes', type=float, default=6)
+    r.add_argument('--minutes', type=float, default=20, help='reference sampling; delayed quotes (10-15 min) only align with Hyperliquid snapshots taken that long before, so keep this above 16')
     r.add_argument('--history', default=None)
     r.add_argument('--force', action='store_true')
     q = sub.add_parser('plan'); q.set_defaults(fn=cmd_plan)
-    q.add_argument('--minutes', type=float, default=6)
+    q.add_argument('--minutes', type=float, default=20)
     a = p.parse_args()
     raise SystemExit(a.fn(a))
 

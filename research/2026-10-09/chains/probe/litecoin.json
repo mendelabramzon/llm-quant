@@ -1,0 +1,85 @@
+{
+ "tx": {
+  "count": 156731,
+  "se": 0.0,
+  "raw_count": 157795,
+  "system_count": 1064,
+  "method": "exact-blocks",
+  "blocks": 532,
+  "sampled": 532,
+  "tps": 1.8140162037037038,
+  "note": "every block whose header time falls in the window; coinbase and MWEB HogEx excluded from the count",
+  "cross_check": {
+   "source": "blockchair",
+   "transactions_24h": 164394,
+   "volume_24h_native": 34385311.3062131,
+   "best_block_time": "2026-10-09 15:14:43",
+   "window_hours": 24.0,
+   "raw_count_over_blockchair": 0.9598586323101816,
+   "gross_over_blockchair_volume": 0.9760661842753859
+  }
+ },
+ "transfers": {
+  "assets": [
+   {
+    "asset": "native:LTC",
+    "symbol": "LTC",
+    "class": "native",
+    "transfers": 156731,
+    "transfers_se": 0,
+    "amount": 33562339.60177671,
+    "price": 63.227640264726226,
+    "usd": 2122067534.7837129,
+    "usd_se": 0.0,
+    "top_block_share": 0.019066250536135292,
+    "units_seen": 529,
+    "gross_amount": 33562339.60177671,
+    "gross_usd": 2122067534.7837129,
+    "note": "gross output value: change returned to senders is included; coinbase and MWEB HogEx removed",
+    "price_source": "defillama:coingecko:litecoin"
+   }
+  ],
+  "unpriced_top": [],
+  "unpriced_assets": 0,
+  "unpriced_transfers": 0,
+  "priced_usd": 2122067534.7837129,
+  "usd_by_class": {
+   "native": 2122067534.7837129
+  },
+  "gross_priced_usd": 2122067534.7837129,
+  "method": "exact-blocks; GROSS outputs (change included; block summaries give no net figure)"
+ },
+ "fees": {
+  "native": 8.07002538,
+  "usd": 510.2486616538506,
+  "per_tx_native": 5.1489656672898154e-05
+ },
+ "window": {
+  "start_ts": 1791417600,
+  "end_ts": 1791504000,
+  "start_utc": "2026-10-08T00:00:00+00:00",
+  "end_utc": "2026-10-09T00:00:00+00:00",
+  "hours": 24.0
+ },
+ "blocks": {
+  "first": 3191370,
+  "last": 3191901,
+  "tip": 3192221,
+  "pages": 61,
+  "mean_interval_s": 162.5084745762712
+ },
+ "endpoint": "https://litecoinspace.org/api",
+ "calls": 595,
+ "notes": [
+  "MWEB HogEx found and removed in 532 of 532 blocks"
+ ],
+ "errors": [],
+ "error_count": 0,
+ "seconds": 94.1,
+ "chain": "litecoin",
+ "name": "Litecoin",
+ "family": "utxo",
+ "adapter": "utxo",
+ "ok": true,
+ "probed_at": "2026-10-09T15:21:26+00:00"
+}

@@ -1,0 +1,113 @@
+{
+ "utc": "2026-10-09T21:49:31+00:00",
+ "window": "research/2026-10-09/perps_daily",
+ "roll_premium": [
+  {
+   "coin": "xyz:BRENTOIL",
+   "lead": 0.078,
+   "spread_pct": 3.43,
+   "observed_premium": -0.00226,
+   "funding_apr": 3.106,
+   "net_apr": 0.138,
+   "go": true,
+   "capacity_usd": 1147946.2514
+  },
+  {
+   "coin": "xyz:NATGAS",
+   "lead": 0.058,
+   "spread_pct": -9.19,
+   "observed_premium": 0.00546,
+   "funding_apr": 7.71,
+   "net_apr": 0.2,
+   "go": false,
+   "capacity_usd": 30185.64075
+  }
+ ],
+ "funding_carry_high": [
+  "xyz:BRENTOIL"
+ ],
+ "refs": {
+  "live_comparisons": 15,
+  "live_oracle_over_100bp": 3,
+  "live_oracle_within_25bp": 11,
+  "referenced": 133,
+  "rejected": 0,
+  "stale_reference": 118,
+  "unreferenced": 25
+ },
+ "verify_ok": true,
+ "steps": [
+  {
+   "step": "history append",
+   "returncode": 0,
+   "seconds": 698.4
+  },
+  {
+   "step": "window",
+   "returncode": 0,
+   "seconds": 191.0
+  },
+  {
+   "step": "references",
+   "returncode": 0,
+   "seconds": 1222.8
+  },
+  {
+   "step": "analyze",
+   "returncode": 0,
+   "seconds": 0.1
+  },
+  {
+   "step": "tape from reference snapshots",
+   "returncode": 0,
+   "seconds": 0.1
+  },
+  {
+   "step": "compare",
+   "returncode": 0,
+   "seconds": 0.2
+  },
+  {
+   "step": "curve",
+   "returncode": 0,
+   "seconds": 0.0
+  },
+  {
+   "step": "detect",
+   "returncode": 0,
+   "seconds": 0.0
+  },
+  {
+   "step": "verify",
+   "returncode": 0,
+   "seconds": 0.1
+  },
+  {
+   "step": "render",
+   "returncode": 0,
+   "seconds": 0.0
+  },
+  {
+   "step": "ingest",
+   "returncode": 0,
+   "seconds": 0.0
+  },
+  {
+   "step": "refresh book",
+   "returncode": 0,
+   "seconds": 0.0
+  },
+  {
+   "step": "history analyze",
+   "returncode": 0,
+   "seconds": 2.0
+  },
+  {
+   "step": "history render",
+   "returncode": 0,
+   "seconds": 0.1
+  }
+ ],
+ "seconds": 2114.8,
+ "prior_window": "research/2026-09-10/perps_daily"
+}

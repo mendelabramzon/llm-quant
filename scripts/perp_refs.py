@@ -64,18 +64,31 @@ NO_REF = {'ANTH', 'OAI', 'UNITREE', 'ZHIPU', 'MINIMAX', 'GIGADEV', 'SHEIN', 'CXM
 # Exchanges whose cash session is not the US one; a quote outside it is a stale close, not a live reference.
 LOCAL_SESSIONS_UTC = {'KRX': (0, 6.5), 'TSE': (0, 6), 'LSE': (8, 16.5)}
 US_CASH_TYPES = {'stock', 'dr', 'fund'}
-# Named contract months, front first. The scanner does not serve the 2!/3! continuous symbols, and a named month is
-# unambiguous about what rolls when.
-CURVES = {
-    'BRENTOIL': ['ICEEUR:BRNX2026', 'ICEEUR:BRNZ2026', 'ICEEUR:BRNF2027'],
-    'CL': ['NYMEX:CLV2026', 'NYMEX:CLX2026', 'NYMEX:CLZ2026'],
-    'NATGAS': ['NYMEX:NGV2026', 'NYMEX:NGX2026', 'NYMEX:NGZ2026'],
-    'GOLD': ['TVC:GOLD', 'COMEX:GC1!'],      # spot against the front future: the oracle follows spot
-}
-# Exchange expiry rules, stated for the roll test; these are the rules as published, not verified against a calendar.
-FRONT_EXPIRY = {'BRENTOIL': ('ICEEUR:BRNX2026', '2026-09-30', 'ICE Brent: last business day of the second month before delivery'),
-                'CL': ('NYMEX:CLV2026', '2026-09-22', 'NYMEX WTI: three business days before the 25th of the month before delivery'),
-                'NATGAS': ('NYMEX:NGV2026', '2026-09-28', 'NYMEX Henry Hub: three business days before the first day of the delivery month')}
+# Named contract months, front first, from the exchange calendar at import time. They were a literal list until
+# 2026-10-09, which went stale at the first expiry (ICE Brent Nov-26 on 2026-09-30): the daily pass would have kept
+# placing the oracle against a dead contract. The scanner does not serve the 2!/3! continuous symbols, and a named
+# month is unambiguous about what rolls when.
+_RULE_TEXT = {'brent': 'ICE Brent: last business day of the second month before delivery',
+              'wti': 'NYMEX WTI: three business days before the 25th of the month before delivery',
+              'ng': 'NYMEX Henry Hub: three business days before the first day of the delivery month'}
+
+
+def energy_curves(when=None):
+    """({market: [front, second, third] TradingView tickers}, {market: (front, expiry date, rule)}) at `when`."""
+    import roll_carry as RC
+    when = when or dt.datetime.now(dt.timezone.utc)
+    spec = {'BRENTOIL': ('brent', 'ICEEUR:BRN'), 'CL': ('wti', 'NYMEX:CL'), 'NATGAS': ('ng', 'NYMEX:NG')}
+    curves, expiries = {}, {}
+    for sym, (rule, prefix) in spec.items():
+        (y1, m1), (y2, m2) = RC.front_second(rule, when)
+        y3, m3 = RC.shift_month(y2, m2, 1)
+        curves[sym] = ['%s%s%d' % (prefix, RC.MONTH_CODES[m - 1], y) for y, m in ((y1, m1), (y2, m2), (y3, m3))]
+        expiries[sym] = (curves[sym][0], RC.expiry(rule, y1, m1).isoformat(), _RULE_TEXT[rule])
+    curves['GOLD'] = ['TVC:GOLD', 'COMEX:GC1!']      # spot against the front future: the oracle follows spot
+    return curves, expiries
+
+
+CURVES, FRONT_EXPIRY = energy_curves()
 DELAY_S = {'streaming': 0, 'delayed_streaming_600': 600, 'delayed_streaming_900': 900, 'delayed_streaming_1200': 1200}
 
 

@@ -1,0 +1,364 @@
+{
+ "tx": {
+  "count": 63595.43,
+  "se": 6513.567741168735,
+  "raw_count": 63595.43,
+  "system_count": 0.0,
+  "method": "sampled-blocks",
+  "system_per_block": 0.0,
+  "bookkeeping": null,
+  "count_ex_bookkeeping": null,
+  "bookkeeping_targets": null,
+  "blocks": 153242,
+  "sampled": 200,
+  "per_block": 0.415,
+  "tps": 0.7360582175925926,
+  "note": "user transactions: OP-stack L1-attributes deposits and Arbitrum internal txs excluded"
+ },
+ "gas": {
+  "gas_per_second": 110218.72320069445,
+  "base_fee_median_gwei": 0.6
+ },
+ "transfers": {
+  "assets": [
+   {
+    "asset": "0x20c000000000000000000000b9537d11c60e8b50",
+    "symbol": "USDC.e",
+    "class": "usd_stable",
+    "transfers": 90413,
+    "transfers_se": 16446,
+    "amount": 51579395.26449361,
+    "price": 0.9997138417351936,
+    "usd": 51564635.394244954,
+    "usd_se": 20370383.56289069,
+    "top_block_share": 0.32912120891199953,
+    "units_seen": 34,
+    "gross_amount": 625276265.7062808,
+    "gross_usd": 625097337.7350618
+   },
+   {
+    "asset": "0x20c0000000000000000000000000000000000000",
+    "symbol": "pathUSD",
+    "class": "usd_stable",
+    "transfers": 89647,
+    "transfers_se": 19145,
+    "amount": 1774205.2582483997,
+    "price": 0.9990867783628194,
+    "usd": 1772585.0156177678,
+    "usd_se": 1200036.4074624204,
+    "top_block_share": 0.5182333661277037,
+    "units_seen": 37,
+    "gross_amount": 8920181.870097062,
+    "gross_usd": 8912035.767005702
+   },
+   {
+    "asset": "0x9a044ae05e5e6290dcf56afd69548565e957a626",
+    "symbol": "senpathUSD",
+    "class": "other",
+    "transfers": 8428,
+    "transfers_se": 2973,
+    "amount": 501572.41551544337,
+    "price": 1.9980969794598364,
+    "usd": 1002190.3284217814,
+    "usd_se": 922515.4626988249,
+    "top_block_share": 0.9167491846244245,
+    "units_seen": 9,
+    "gross_amount": 501572.41551544337,
+    "gross_usd": 1002190.3284217814
+   },
+   {
+    "asset": "0x20c00000000000000000000014f22ca97301eb73",
+    "symbol": "USDT0",
+    "class": "usd_stable",
+    "transfers": 1532,
+    "transfers_se": 1535,
+    "amount": 67468.35644134,
+    "price": 0.9990668045786243,
+    "usd": 67405.3952800212,
+    "usd_se": 67530.43232049809,
+    "top_block_share": 1.0,
+    "units_seen": 1,
+    "gross_amount": 67468.35644134,
+    "gross_usd": 67405.3952800212
+   },
+   {
+    "asset": "0x20c0000000000000000000006a37da5c996874be",
+    "symbol": "OUSD",
+    "class": "usd_stable",
+    "transfers": 13026,
+    "transfers_se": 3761,
+    "amount": 4261.45084467,
+    "price": 0.9998883865049585,
+    "usd": 4260.975209247279,
+    "usd_se": 3287.061975657495,
+    "top_block_share": 0.7156415624139768,
+    "units_seen": 13,
+    "gross_amount": 12783.063768790002,
+    "gross_usd": 12781.637006365429
+   },
+   {
+    "asset": "native:USD",
+    "symbol": "USD",
+    "class": "native",
+    "transfers": null,
+    "transfers_se": null,
+    "amount": 0.0,
+    "price": 0.9997050037994787,
+    "usd": 0.0,
+    "usd_se": 0.0,
+    "top_block_share": null,
+    "units_seen": 0,
+    "note": "top-level transaction value only; internal transfers need traces"
+   }
+  ],
+  "unpriced_top": [
+   {
+    "asset": "0x20c0000000000000000000006fd9a167923ba194",
+    "symbol": "DLUSD",
+    "class": "other",
+    "transfers": 14558,
+    "transfers_se": 5149,
+    "amount": 121209102.40011975,
+    "price": null,
+    "usd": null,
+    "usd_se": null,
+    "top_block_share": 0.8091914178689081,
+    "units_seen": 12,
+    "gross_amount": 124791454.25733358,
+    "gross_usd": null
+   },
+   {
+    "asset": "0x20c00000000000000000000089caf7c622ae4b0f",
+    "symbol": "RD",
+    "class": "other",
+    "transfers": 6130,
+    "transfers_se": 3761,
+    "amount": 1705443.8412137998,
+    "price": null,
+    "usd": null,
+    "usd_se": null,
+    "top_block_share": 0.5391276908570656,
+    "units_seen": 3,
+    "gross_amount": 4944867.3488552,
+    "gross_usd": null
+   },
+   {
+    "asset": "0x20c000000000000000000000a4fd6202f154a670",
+    "symbol": "senpathUSDE",
+    "class": "other",
+    "transfers": 3065,
+    "transfers_se": 2171,
+    "amount": 469251.3395958099,
+    "price": null,
+    "usd": null,
+    "usd_se": null,
+    "top_block_share": 0.9797527026035477,
+    "units_seen": 2,
+    "gross_amount": 938502.6791916199,
+    "gross_usd": null
+   },
+   {
+    "asset": "0x20c000000000000000000000f37de3740adec032",
+    "symbol": "MACH",
+    "class": "other",
+    "transfers": 1532,
+    "transfers_se": 1535,
+    "amount": 1.5324200000000001,
+    "price": null,
+    "usd": null,
+    "usd_se": null,
+    "top_block_share": 1.0,
+    "units_seen": 1,
+    "gross_amount": 3.0648400000000002,
+    "gross_usd": null
+   },
+   {
+    "asset": "0x83a1491f3e7f8daab8f787a631334b9ca7a87023",
+    "symbol": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000 ",
+    "class": "other",
+    "transfers": 1532,
+    "transfers_se": 1086,
+    "amount": 59394.65627062658,
+    "price": null,
+    "usd": null,
+    "usd_se": null,
+    "top_block_share": 0.9800220426401663,
+    "units_seen": 2,
+    "gross_amount": 59394.65627062658,
+    "gross_usd": null
+   },
+   {
+    "asset": "0x20c000000000000000000000baac91f6ca72f768",
+    "symbol": "senpathUSDE",
+    "class": "other",
+    "transfers": 1532,
+    "transfers_se": 1086,
+    "amount": 102.71504776000002,
+    "price": null,
+    "usd": null,
+    "usd_se": null,
+    "top_block_share": 0.5009622844184519,
+    "units_seen": 2,
+    "gross_amount": 102.71504776000002,
+    "gross_usd": null
+   },
+   {
+    "asset": "0x20c0000000000000000000003158081efd85bfc2",
+    "symbol": "USDB",
+    "class": "usd_stable",
+    "transfers": 766,
+    "transfers_se": 768,
+    "amount": 1593486.9369999997,
+    "price": null,
+    "usd": null,
+    "usd_se": null,
+    "top_block_share": 1.0,
+    "units_seen": 1,
+    "gross_amount": 1593486.9369999997,
+    "gross_usd": null
+   }
+  ],
+  "unpriced_assets": 7,
+  "unpriced_transfers": 29115,
+  "priced_usd": 54411077.108773775,
+  "usd_by_class": {
+   "usd_stable": 53408886.78035198,
+   "other": 1002190.3284217814,
+   "native": 0.0
+  },
+  "gross_priced_usd": 635091750.8627757,
+  "method": "sampled-blocks; value = net per transaction (each account's positive net change), gross beside it",
+  "top_targets_by_value": [
+   {
+    "to": "create",
+    "usd": 53568860.54455781,
+    "share": 0.9845212297023217
+   },
+   {
+    "to": "0x0000000071727de22e5e9d8baf0edac6f37da032",
+    "usd": 766289.9572630753,
+    "share": 0.014083344752230812
+   },
+   {
+    "to": "0x20c00000000000000000000014f22ca97301eb73",
+    "usd": 67405.3952800212,
+    "share": 0.0012388175140380024
+   },
+   {
+    "to": "0xccc88a9d1b4ed6b0eaba998850414b24f1c315be",
+    "usd": 8518.459633760594,
+    "share": 0.00015655745275417444
+   },
+   {
+    "to": "0x19810813f2e46cf01e7c543f6d8c3ecc8ea2001e",
+    "usd": 1.3388774805059585,
+    "share": 2.4606707892023416e-08
+   },
+   {
+    "to": "0x20c000000000000000000000b9537d11c60e8b50",
+    "usd": 1.2608097118133583,
+    "share": 2.31719307686716e-08
+   },
+   {
+    "to": "0xca3bb975e0014d608c11444876faca7c4c576b19",
+    "usd": 0.07042694580134258,
+    "share": 1.2943494145604083e-09
+   },
+   {
+    "to": "0xba4740768e54b03f119af70f2c1694c46b12620f",
+    "usd": 0.05741327103370319,
+    "share": 1.055176153174246e-09
+   },
+   {
+    "to": "0x76f8dd9c07209eaf2d22f5a6e0beaba9d4a4db90",
+    "usd": 0.012255851882814762,
+    "share": 2.252455296614319e-10
+   },
+   {
+    "to": "0x24a0424f5f9adaeae8a2376f0df12a110e660300",
+    "usd": 0.012255851882814762,
+    "share": 2.252455296614319e-10
+   }
+  ],
+  "top_targets_by_txs": [
+   {
+    "to": "create",
+    "txs": 52102.28,
+    "share": 0.8192771084337349
+   },
+   {
+    "to": "0x0000000071727de22e5e9d8baf0edac6f37da032",
+    "txs": 2298.63,
+    "share": 0.03614457831325301
+   },
+   {
+    "to": "0xca3bb975e0014d608c11444876faca7c4c576b19",
+    "txs": 2298.63,
+    "share": 0.03614457831325301
+   },
+   {
+    "to": "0xccc88a9d1b4ed6b0eaba998850414b24f1c315be",
+    "txs": 1532.42,
+    "share": 0.024096385542168676
+   },
+   {
+    "to": "0x20c000000000000000000000b9537d11c60e8b50",
+    "txs": 1532.42,
+    "share": 0.024096385542168676
+   },
+   {
+    "to": "0x76f8dd9c07209eaf2d22f5a6e0beaba9d4a4db90",
+    "txs": 766.21,
+    "share": 0.012048192771084338
+   },
+   {
+    "to": "0x20c00000000000000000000014f22ca97301eb73",
+    "txs": 766.21,
+    "share": 0.012048192771084338
+   },
+   {
+    "to": "0xba4740768e54b03f119af70f2c1694c46b12620f",
+    "txs": 766.21,
+    "share": 0.012048192771084338
+   },
+   {
+    "to": "0x24a0424f5f9adaeae8a2376f0df12a110e660300",
+    "txs": 766.21,
+    "share": 0.012048192771084338
+   },
+   {
+    "to": "0x19810813f2e46cf01e7c543f6d8c3ecc8ea2001e",
+    "txs": 766.21,
+    "share": 0.012048192771084338
+   }
+  ],
+  "transfer_logs_per_block": 1.515,
+  "logs_missing_blocks": 0
+ },
+ "window": {
+  "start_ts": 1791504000,
+  "end_ts": 1791590400,
+  "start_utc": "2026-10-09T00:00:00+00:00",
+  "end_utc": "2026-10-10T00:00:00+00:00",
+  "hours": 24.0
+ },
+ "blocks": {
+  "first": 43255691,
+  "last": 43408932,
+  "head": 43474809
+ },
+ "endpoint": "https://rpc.mainnet.tempo.xyz",
+ "calls": 447,
+ "notes": [
+  "lb.routeme.sh rejected: HTTP 429 {\"jsonrpc\":\"2.0\",\"id\":0,\"error\":{\"code\":-32029,\"message\":\"public rate limit exceeded \u2014 sign up for free at http"
+ ],
+ "errors": [],
+ "error_count": 0,
+ "seconds": 65.2,
+ "chain": "tempo",
+ "name": "Tempo",
+ "family": "evm",
+ "adapter": "evm",
+ "ok": true,
+ "probed_at": "2026-10-10T10:32:20+00:00"
+}

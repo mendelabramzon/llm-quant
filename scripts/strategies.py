@@ -25,6 +25,8 @@ says about the loop, because most of the book is in that state.
     uv run --with pycryptodome python scripts/strategies.py refresh --out <window>  re-quote from that window's ledger
     uv run --with pycryptodome python scripts/strategies.py propose --out <window>  candidates the book does not hold
     uv run --with pycryptodome python scripts/strategies.py show <id>
+    uv run python scripts/strategies.py add --file research/<date>/<study>/book_entries.json [--replace] [--dry-run]
+    uv run python scripts/strategies.py quote <id> --window <study dir> --net-apr 0.12 --usd 50000 --note '...'
 """
 import argparse
 import datetime as dt
@@ -39,7 +41,9 @@ BOOK = ROOT / 'research' / 'strategies.jsonl'
 
 # A quote older than this is not a price, it is a memory. Chosen per kind: a lending rate moves hourly, a pool's fee
 # yield daily, a redemption discount only when the queue changes.
-STALE_HOURS = {'spread': 24, 'carry': 72, 'liquidity': 72, 'redemption': 168, 'harvest': 72}
+STALE_HOURS = {'spread': 24, 'carry': 72, 'liquidity': 72, 'redemption': 168, 'harvest': 72,
+               # a scheduled-event trade (unlock shorts) is re-priced per event batch, not per window
+               'event': 336}
 STATUSES = ['proposed', 'fork-proven', 'monitored', 'retired']
 
 
@@ -243,8 +247,13 @@ def scorecard(args):
         lp = last_priced(s) or {}
         src = q if q.get('net_apr') is not None else lp
         apr, cap = src.get('net_apr'), (s.get('capacity_usd') or 0)
+        # A detector or history quote that carries its own dollars a year priced them at the size it measured that
+        # day; the entry's capacity_usd is a standing estimate that can be a month old (Morpho's cheap USDT market went
+        # from $6.35M withdrawable to $1.4M between quotes). The quote's own number wins when it has one.
+        usd_q = src.get('usd') if apr is not None else None
         rows.append({'id': s['id'], 'status': s['status'], 'kind': s.get('kind'), 'net_apr': apr, 'capacity_usd': cap,
-                     'usd_per_year': (apr * cap) if apr is not None else None, 'go': src.get('go'),
+                     'usd_per_year': usd_q if usd_q is not None else ((apr * cap) if apr is not None else None),
+                     'usd_source': 'quote' if usd_q is not None else 'apr x capacity', 'go': src.get('go'),
                      'present': q.get('present'), 'stale': is_stale(s), 'benchmark': bool(s.get('benchmark')),
                      'source': src.get('source')})
     def total(pred):
@@ -256,6 +265,12 @@ def scorecard(args):
          'usd_per_year_go_and_current': total(current),
          'usd_per_year_declined_stale_or_absent': total(edge) - total(current),
          'strategies_go_and_current': sum(1 for r in rows if current(r))}
+    cur = sorted([r for r in rows if current(r)], key=lambda r: -(r['usd_per_year'] or 0))
+    if cur and T['usd_per_year_go_and_current']:
+        # A total dominated by one row is that row's clock, not the book's; say which and how much.
+        T['largest_go_row'] = cur[0]['id']
+        T['largest_go_row_share'] = (cur[0]['usd_per_year'] or 0) / T['usd_per_year_go_and_current']
+        T['usd_per_year_go_and_current_excluding_largest'] = T['usd_per_year_go_and_current'] - (cur[0]['usd_per_year'] or 0)
     # Persistence: economics-bearing findings observed at least twice, whose latest rate kept at least half of the first.
     L = F.load_ledger()
     series = {}
@@ -299,6 +314,96 @@ def scorecard(args):
     (ROOT / 'research' / 'scorecard.json').write_text(json.dumps({'generated': now().isoformat(), 'rows': rows, 'totals': T, 'oos': oos}, indent=1) + '\n')
 
 
+REQUIRED = ('id', 'name', 'kind', 'status', 'thesis', 'mechanism', 'legs', 'capacity_usd', 'kill_criteria', 'risks',
+            'evidence')
+
+
+def validate(s):
+    """Problems with a proposed book entry, as sentences; empty when it can enter the book.
+
+    A history study proposes entries as data (`book_entries.json`), so the book's shape is checked at the door rather
+    than discovered by `scorecard` later: a strategy without a kill criterion or a capacity is a number, not a claim.
+    """
+    errs = ['missing %s' % k for k in REQUIRED if k not in s]
+    if s.get('kind') not in STALE_HOURS:
+        errs.append('kind %r is not one of %s' % (s.get('kind'), sorted(STALE_HOURS)))
+    if s.get('status') not in STATUSES:
+        errs.append('status %r is not one of %s' % (s.get('status'), STATUSES))
+    if not s.get('kill_criteria'):
+        errs.append('no kill criteria')
+    if not isinstance(s.get('legs'), list) or not s.get('legs'):
+        errs.append('legs must be a non-empty list')
+    if not isinstance(s.get('capacity_usd'), (int, float)) or s.get('capacity_usd', -1) < 0:
+        errs.append('capacity_usd must be a non-negative number')
+    for q in s.get('quotes') or []:
+        if parse_utc(q.get('at')) is None:
+            errs.append('a quote has no parseable `at`')
+        if q.get('net_apr') is not None and not isinstance(q['net_apr'], (int, float)):
+            errs.append('a quote net_apr is not a number')
+    return errs
+
+
+def add(args):
+    """Enter strategies from a study's `book_entries.json` (a list, or {'entries': [...]}).
+
+    An id already in the book is left alone unless `--replace`, which takes the new text and capacity but keeps the old
+    quote series and appends the new quotes, so a re-priced strategy shows its history rather than a fresh start.
+    """
+    data = json.loads(Path(args.file).read_text())
+    entries = data.get('entries') if isinstance(data, dict) else data
+    book = load()
+    added, replaced, skipped, rejected = [], [], [], []
+    for s in entries or []:
+        errs = validate(s)
+        if errs:
+            rejected.append({'id': s.get('id'), 'errors': errs})
+            continue
+        s.setdefault('quotes', [])
+        s.setdefault('recheck_hours', 24)
+        s.setdefault('capital_days', 365)
+        if s['id'] in book and not args.replace:
+            skipped.append(s['id'])
+            continue
+        if s['id'] in book:
+            old = book[s['id']].get('quotes') or []
+            keys = {(q.get('at'), q.get('window')) for q in old}
+            s['quotes'] = sorted(old + [q for q in s['quotes'] if (q.get('at'), q.get('window')) not in keys],
+                                 key=lambda x: (x.get('at') or '', x.get('window') or ''))
+            replaced.append(s['id'])
+        else:
+            added.append(s['id'])
+        book[s['id']] = s
+    if not args.dry_run:
+        save(book)
+    print(json.dumps({'file': str(args.file), 'added': added, 'replaced': replaced, 'already_present': skipped,
+                      'rejected': rejected, 'dry_run': bool(args.dry_run), 'book_size': len(book)}, indent=1))
+    if rejected:
+        raise SystemExit(1)
+
+
+def quote(args):
+    """Append one quote to a strategy from a history or a hand study, stamped with its source and window."""
+    book = load()
+    s = book.get(args.id)
+    if not s:
+        raise SystemExit('no such strategy: %s' % args.id)
+    q = {'at': args.at or now().isoformat(), 'window': args.window, 'source': args.source, 'present': not args.absent,
+         'net_apr': args.net_apr, 'usd': args.usd, 'note': args.note}
+    if args.go is not None:
+        q['go'] = args.go == 'yes'
+    s['quotes'] = sorted([x for x in s.get('quotes', []) if x.get('window') != args.window or x.get('at') != q['at']]
+                         + [q], key=lambda x: (x.get('at') or '', x.get('window') or ''))
+    if args.capacity_usd is not None:
+        s['capacity_usd'] = args.capacity_usd
+    if args.status:
+        if args.status not in STATUSES:
+            raise SystemExit('status must be one of %s' % STATUSES)
+        s['status'] = args.status
+    save(book)
+    print(json.dumps({'id': s['id'], 'quote': q, 'capacity_usd': s.get('capacity_usd'), 'status': s['status']},
+                     indent=1))
+
+
 def show(args):
     b = load()
     s = b.get(args.id) or next((x for x in b.values() if args.id in x['id']), None)
@@ -315,8 +420,17 @@ def main():
     c = sub.add_parser('book'); c.add_argument('--all', action='store_true')
     d = sub.add_parser('show'); d.add_argument('id')
     e = sub.add_parser('scorecard')
+    f = sub.add_parser('add'); f.add_argument('--file', required=True)
+    f.add_argument('--replace', action='store_true'); f.add_argument('--dry-run', action='store_true')
+    g = sub.add_parser('quote'); g.add_argument('id'); g.add_argument('--window', required=True)
+    g.add_argument('--source', default='history'); g.add_argument('--net-apr', type=float, default=None)
+    g.add_argument('--usd', type=float, default=None); g.add_argument('--note', default='')
+    g.add_argument('--go', choices=['yes', 'no'], default=None); g.add_argument('--absent', action='store_true')
+    g.add_argument('--capacity-usd', type=float, default=None); g.add_argument('--status', default=None)
+    g.add_argument('--at', default=None)
     args = p.parse_args()
-    {'refresh': refresh, 'propose': propose, 'book': book_cmd, 'show': show, 'scorecard': scorecard}[args.cmd](args)
+    {'refresh': refresh, 'propose': propose, 'book': book_cmd, 'show': show, 'scorecard': scorecard,
+     'add': add, 'quote': quote}[args.cmd](args)
 
 
 if __name__ == '__main__':

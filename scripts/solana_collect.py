@@ -27,7 +27,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from solana_rpc import Client, RpcError  # noqa: E402
 
 VOTE = 'Vote111111111111111111111111111111111111111'
-BLOCK_PARAMS = {'commitment': 'finalized', 'encoding': 'json', 'transactionDetails': 'full', 'rewards': False, 'maxSupportedTransactionVersion': 0}
+BLOCK_PARAMS = {'commitment': 'finalized', 'encoding': 'json', 'transactionDetails': 'full', 'rewards': False, 'maxSupportedTransactionVersion': 1}
 KEEP_LOG_PREFIX = ('Program data:', 'Program log:', 'Program return:')
 
 

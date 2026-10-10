@@ -1,0 +1,48 @@
+[
+ {
+  "capacity_usd": 13490217,
+  "capital_days": 365,
+  "evidence": {
+   "findings": [],
+   "notes": "research/2026-10-09/equity_offhours (tables.md, analysis.json); scripts/equity_offhours.py carry family, chosen carry|trail_8pct|vol>=2M of 6 carry variants and 120 in the study; funding persistence from listing: trailing-30 vs next-21 rank correlation 0.38, positive at 8 of 8 rebalances",
+   "verify": []
+  },
+  "id": "hip3-equity-funding-carry",
+  "kill_criteria": [
+   "basket trailing-30-session funding below 6.1% a year, where it no longer covers the savings rate on 1.5x capital plus costs",
+   "the selection rule's out-of-sample excess over the savings rate negative over a trailing quarter",
+   "trade.xyz changes the funding multiplier, interest leg or clamp (funding_formula_reproduced_share below 95%)",
+   "any basket name with funding negative on more than half of a month's days"
+  ],
+  "kind": "carry",
+  "legs": [
+   "short each basket perp on Hyperliquid at 2x (margin 50% of notional)",
+   "buy the same notional of the stock at a broker, fully paid",
+   "re-select monthly: names with open interest >= $5M whose trailing 30-session funding >= 8% a year",
+   "collect hourly funding; on removal unwind both legs inside the US session"
+  ],
+  "mechanism": "Hyperliquid builder funding is mult x (P + clamp(I - P, +-0.03%)) / 8 an hour; on trade.xyz mult is 0.5 and I is 0.01% per 8 h, so longs pay at least 5.5% a year whenever the premium sits inside the dead zone and half the premium beyond it. Retail demand for leveraged 24/7 single-stock exposure keeps the premium above the zone on a persistent set of names (rank correlation of first-half and second-half funding across 57 names: 0.29). Shorting the perp needs a cash-equity leg to hedge, i.e. a broker account and capital on two venues, which is what keeps the arbitrage thin.",
+  "name": "Short HIP-3 equity perps that pay high funding, long the same stocks at a broker",
+  "quotes": [
+   {
+    "at": "2026-10-09T20:55:52Z",
+    "net_apr": 0.05032378583966704,
+    "note": "rule carry|trail_8pct|vol>=2M chosen on 2025-10-14 to 2026-04-13, tested out of sample 2026-04-14 to 2026-10-08: excess over the 3.8% savings rate 3.35% a year on capital (5.03% on notional), Newey-West t 4.06, Sharpe 4.7. Hourly-marks rerun (rule carry|top10|vol>=2M chosen 2026-03-16 to 2026-06-26): 1.63% out of sample, t 1.32, Sharpe 2.1; all 6 of its variants are Benjamini-Hochberg survivors. Basket xyz:ARM, xyz:AVGO, xyz:BABA, xyz:BE, xyz:COIN, xyz:CRCL, xyz:HOOD, xyz:LLY, xyz:MSTR, xyz:RKLB",
+    "present": true,
+    "source": "history",
+    "usd": 678878.7966259478,
+    "window": "research/2026-10-09/equity_offhours"
+   }
+  ],
+  "recheck_hours": 168,
+  "risks": [
+   "the funding is a crowded-trade signal: shorts arriving compress the premium toward the dead zone, where funding is 5.5% a year and the excess over the savings rate is gone at 1.5x capital",
+   "off-hours squeezes hit the perp short while the stock leg cannot trade: margin must survive a weekend move with no hedge adjustment (2x leverage assumed)",
+   "the oracle is the deployer's; a methodology change, outage or delisting settles the perp at the deployer's price",
+   "capacity is a planning size (5% of each name's open interest), not a measured elasticity",
+   "two venues: the stock leg needs a broker; the funding accrues on Hyperliquid"
+  ],
+  "status": "proposed",
+  "thesis": "On trade.xyz's single-stock perps the longs pay the shorts every hour, and on the names that paid most over the last month they kept paying the next month: 10.9% a year of funding on the out-of-sample basket, 11.2% after the basis and dividends. Short the perp, own the stock, and the open's gap cancels between the legs; what is left is the funding."
+ }
+]

@@ -1,0 +1,99 @@
+{
+ "tx": {
+  "count": 209416.0,
+  "se": 0.0,
+  "raw_count": 418832.0,
+  "system_count": 209416.0,
+  "method": "sampled-blocks",
+  "system_per_block": 1.0,
+  "bookkeeping": null,
+  "count_ex_bookkeeping": null,
+  "bookkeeping_targets": null,
+  "blocks": 209416,
+  "sampled": 200,
+  "per_block": 1.0,
+  "tps": 2.4237962962962962,
+  "note": "user transactions: OP-stack L1-attributes deposits and Arbitrum internal txs excluded"
+ },
+ "gas": {
+  "gas_per_second": 54819.340164814814,
+  "base_fee_median_gwei": 1000.0
+ },
+ "transfers": {
+  "assets": [
+   {
+    "asset": "native:PLUME",
+    "symbol": "PLUME",
+    "class": "native",
+    "transfers": null,
+    "transfers_se": null,
+    "amount": 397.89520081991674,
+    "price": 0.01918530902351305,
+    "usd": 7.6337423867028855,
+    "usd_se": 7.649243335424057,
+    "top_block_share": 1.0,
+    "units_seen": 1,
+    "note": "top-level transaction value only; internal transfers need traces"
+   }
+  ],
+  "unpriced_top": [],
+  "unpriced_assets": 0,
+  "unpriced_transfers": 0,
+  "priced_usd": 7.6337423867028855,
+  "usd_by_class": {
+   "native": 7.6337423867028855
+  },
+  "method": "sampled-blocks; value = net per transaction (each account's positive net change), gross beside it",
+  "top_targets_by_value": [],
+  "top_targets_by_txs": [
+   {
+    "to": "0xee96619e247f69cf5ee49df56ce44a10514074ba",
+    "txs": 205227.68,
+    "share": 0.98
+   },
+   {
+    "to": "0xbdba16ee8600a5af27eec88e00abed7eb09413ab",
+    "txs": 2094.16,
+    "share": 0.01
+   },
+   {
+    "to": "0xccd47b363b81e94321518d0393accb0846f4d4c6",
+    "txs": 1047.08,
+    "share": 0.005
+   },
+   {
+    "to": "0x26d47e8595069d9f7d4eda378b2e9f20505c4d7c",
+    "txs": 1047.08,
+    "share": 0.005
+   }
+  ],
+  "transfer_logs_per_block": 0.0,
+  "logs_missing_blocks": 0
+ },
+ "window": {
+  "start_ts": 1791504000,
+  "end_ts": 1791590400,
+  "start_utc": "2026-10-09T00:00:00+00:00",
+  "end_utc": "2026-10-10T00:00:00+00:00",
+  "hours": 24.0
+ },
+ "blocks": {
+  "first": 98242248,
+  "last": 98451663,
+  "head": 98544293
+ },
+ "endpoint": "https://rpc.plume.org",
+ "calls": 433,
+ "notes": [
+  "plume.drpc.org rejected: HTTP 400 {\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"the method eth_blockNumber does not exist/is not available\",\"code\":"
+ ],
+ "errors": [],
+ "error_count": 0,
+ "seconds": 50.6,
+ "chain": "plume",
+ "name": "Plume",
+ "family": "evm",
+ "adapter": "evm",
+ "ok": true,
+ "probed_at": "2026-10-10T10:28:52+00:00"
+}

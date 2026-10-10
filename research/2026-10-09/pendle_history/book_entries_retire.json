@@ -1,0 +1,49 @@
+[
+ {
+  "capacity_usd": 250000,
+  "capital_days": 80,
+  "evidence": {
+   "findings": [
+    "0c2d954ed516"
+   ],
+   "notes": "research/2026-09-06/opportunities/findings.md; detectors/fixed_vs_floating.py re-prices any Pendle market that traded in the window, and classifies term premium against credit spread before quoting either; research/2026-10-09/pendle_history/findings.md (re-quote and the matured Sky PTs)",
+   "verify": []
+  },
+  "id": "pt-susds-fixed-vs-ssr",
+  "kill_criteria": [
+   "Sky ssr above the PT implied APY",
+   "PT-sUSDS pool depth below $1M",
+   "implied minus floating below 50bps, which no longer pays for the lock-up",
+   "fixed_vs_floating classifies it as a credit spread rather than a term premium, meaning the floating comparator is no longer the same underlying"
+  ],
+  "kind": "carry",
+  "legs": [
+   "buy PT-sUSDS on Pendle in clips",
+   "hold to maturity",
+   "redeem PT \u2192 sUSDS \u2192 USDS"
+  ],
+  "mechanism": "Pendle principal tokens redeem 1:1 at maturity. PT-sUSDS-26NOV2026 implies 4.97% against a Sky savings rate of 3.60% on the identical underlying. The buyer is paid to accept that Sky governance cannot raise the rate inside the window.",
+  "name": "PT-sUSDS fixed rate against the Sky savings rate",
+  "quotes": [
+   {
+    "at": "2026-10-09T20:50:03+00:00",
+    "window": "research/2026-10-09/pendle_history",
+    "source": "history",
+    "present": true,
+    "go": false,
+    "net_apr": 0.0043,
+    "usd": 1073,
+    "note": "retired: fills at 4.23% at $250k against a 3.80% savings rate (43bp, under the 50bp kill line); matured Sky PTs lost 2.18%/yr to the DSR"
+   }
+  ],
+  "recheck_hours": 72,
+  "risks": [
+   "Pendle contract risk stacked on USDS risk",
+   "the $3.5M pool means a $1M order eats a real part of the 137bps in impact",
+   "exit before maturity is a sale back into the same pool",
+   "the market must trade in the window to be re-priced at all: PT-sUSDS did not trade in the 2026-09-07 21:27\u201323:27 window, so the strategy has no fresh quote rather than a stale one"
+  ],
+  "status": "retired",
+  "thesis": "Retired 2026-10-09 on its own kill criterion. PT-sUSDS-26NOV2026 quotes 5.01% against an on-chain savings rate of 3.80%, but at the $250k that maximises dollars through its $4.8M pool it fills at 4.23%: 43bp, under the 50bp line, $1,073 a year. The two matured Sky PTs that held $1M (sDAI, March and September 2024) lost 2.18% a year to the DSR held to expiry, because governance raised the DSR inside the term."
+ }
+]

@@ -1,0 +1,1710 @@
+{
+ "io:ANTH": {
+  "description": null,
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": null,
+  "type": null
+ },
+ "io:DRAM": {
+  "description": null,
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": true,
+  "ticker": null,
+  "type": null
+ },
+ "io:EWY": {
+  "description": "iShares MSCI South Korea ETF",
+  "ref": {
+   "assetclass": "etf",
+   "kind": "etf",
+   "symbol": "EWY"
+  },
+  "rejected": false,
+  "resolved_this_run": true,
+  "ticker": "AMEX:EWY",
+  "type": "fund"
+ },
+ "io:GPRO": {
+  "description": null,
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": null,
+  "type": null
+ },
+ "io:IONQ": {
+  "description": "IonQ, Inc.",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "IONQ"
+  },
+  "rejected": false,
+  "resolved_this_run": true,
+  "ticker": "NYSE:IONQ",
+  "type": "stock"
+ },
+ "io:NBIS": {
+  "description": "Nebius Group N.V. Class A",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "NBIS"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:NBIS",
+  "type": "stock"
+ },
+ "io:OAI": {
+  "description": null,
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": null,
+  "type": null
+ },
+ "io:SNDK": {
+  "description": "Sandisk Corporation",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "SNDK"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:SNDK",
+  "type": "stock"
+ },
+ "io:TCNT": {
+  "description": null,
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": true,
+  "ticker": null,
+  "type": null
+ },
+ "mkts:BVIV": {
+  "description": null,
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": true,
+  "ticker": null,
+  "type": null
+ },
+ "mkts:SMALL2000": {
+  "description": "iShares Russell 2000 ETF",
+  "ref": {
+   "assetclass": "etf",
+   "kind": "etf",
+   "symbol": "IWM"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "AMEX:IWM",
+  "type": "fund"
+ },
+ "mkts:US500": {
+  "description": "State Street SPDR S&P 500 ETF",
+  "ref": {
+   "assetclass": "etf",
+   "kind": "etf",
+   "symbol": "SPY"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "AMEX:SPY",
+  "type": "fund"
+ },
+ "mkts:USBOND": {
+  "description": "iShares 20+ Year Treasury Bond ETF",
+  "ref": {
+   "assetclass": "etf",
+   "kind": "etf",
+   "symbol": "TLT"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:TLT",
+  "type": "fund"
+ },
+ "mkts:USTECH": {
+  "description": "Invesco QQQ Trust Series I",
+  "ref": {
+   "assetclass": "etf",
+   "kind": "etf",
+   "symbol": "QQQ"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:QQQ",
+  "type": "fund"
+ },
+ "para:10Y": {
+  "description": "United States 10 Year Government Bonds Yield",
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "TVC:US10Y",
+  "type": "bond"
+ },
+ "para:2Y": {
+  "description": null,
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": true,
+  "ticker": null,
+  "type": null
+ },
+ "para:30Y": {
+  "description": null,
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": true,
+  "ticker": null,
+  "type": null
+ },
+ "para:AAOI": {
+  "description": "Applied Optoelectronics, Inc.",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "AAOI"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:AAOI",
+  "type": "stock"
+ },
+ "para:ANSEM": {
+  "description": null,
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": null,
+  "type": null
+ },
+ "para:AVGO": {
+  "description": "Broadcom Inc.",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "AVGO"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:AVGO",
+  "type": "stock"
+ },
+ "para:BTCD": {
+  "description": "Market Cap BTC Dominance, %",
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "CRYPTOCAP:BTC.D",
+  "type": "index"
+ },
+ "para:CIEN": {
+  "description": "Ciena Corporation",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "CIEN"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NYSE:CIEN",
+  "type": "stock"
+ },
+ "para:CIFR": {
+  "description": "Cipher Digital Inc.",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "CIFR"
+  },
+  "rejected": false,
+  "resolved_this_run": true,
+  "ticker": "NASDAQ:CIFR",
+  "type": "stock"
+ },
+ "para:COHR": {
+  "description": "Coherent Corp.",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "COHR"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NYSE:COHR",
+  "type": "stock"
+ },
+ "para:CRDO": {
+  "description": "Credo Technology Group Holding Ltd.",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "CRDO"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:CRDO",
+  "type": "stock"
+ },
+ "para:CRWD": {
+  "description": "CrowdStrike Holdings, Inc. Class A",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "CRWD"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:CRWD",
+  "type": "stock"
+ },
+ "para:GLW": {
+  "description": "Corning Inc",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "GLW"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NYSE:GLW",
+  "type": "stock"
+ },
+ "para:IGV": {
+  "description": null,
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": null,
+  "type": null
+ },
+ "para:IREN": {
+  "description": "IREN Limited",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "IREN"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:IREN",
+  "type": "stock"
+ },
+ "para:LRCX": {
+  "description": "Lam Research Corporation",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "LRCX"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:LRCX",
+  "type": "stock"
+ },
+ "para:MELI": {
+  "description": "MercadoLibre, Inc.",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "MELI"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:MELI",
+  "type": "stock"
+ },
+ "para:NET": {
+  "description": "Cloudflare Inc Class A",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "NET"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NYSE:NET",
+  "type": "stock"
+ },
+ "para:OTHERS": {
+  "description": "Crypto Total Market Cap Excluding Top 10, $",
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "CRYPTOCAP:OTHERS",
+  "type": "index"
+ },
+ "para:RDDT": {
+  "description": "Reddit, Inc. Class A",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "RDDT"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NYSE:RDDT",
+  "type": "stock"
+ },
+ "para:SMCI": {
+  "description": "Super Micro Computer, Inc.",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "SMCI"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:SMCI",
+  "type": "stock"
+ },
+ "para:SMH": {
+  "description": "VanEck Semiconductor ETF",
+  "ref": {
+   "assetclass": "etf",
+   "kind": "etf",
+   "symbol": "SMH"
+  },
+  "rejected": false,
+  "resolved_this_run": true,
+  "ticker": "NASDAQ:SMH",
+  "type": "fund"
+ },
+ "para:SOFI": {
+  "description": "SoFi Technologies Inc",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "SOFI"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:SOFI",
+  "type": "stock"
+ },
+ "para:STX": {
+  "description": "Seagate Technology Holdings PLC",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "STX"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:STX",
+  "type": "stock"
+ },
+ "para:TER": {
+  "description": "Teradyne, Inc.",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "TER"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:TER",
+  "type": "stock"
+ },
+ "para:TOTAL2": {
+  "description": "Crypto Total Market Cap Excluding BTC, $",
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "CRYPTOCAP:TOTAL2",
+  "type": "index"
+ },
+ "para:TREAD": {
+  "description": null,
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": true,
+  "ticker": null,
+  "type": null
+ },
+ "para:TTWO": {
+  "description": "Take-Two Interactive Software, Inc.",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "TTWO"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:TTWO",
+  "type": "stock"
+ },
+ "para:UNITREE": {
+  "description": null,
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": null,
+  "type": null
+ },
+ "para:VST": {
+  "description": "Vistra Corp.",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "VST"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NYSE:VST",
+  "type": "stock"
+ },
+ "xyz:AAOI": {
+  "description": "Applied Optoelectronics, Inc.",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "AAOI"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:AAOI",
+  "type": "stock"
+ },
+ "xyz:AAPL": {
+  "description": "Apple Inc.",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "AAPL"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:AAPL",
+  "type": "stock"
+ },
+ "xyz:AMAT": {
+  "description": "Applied Materials, Inc.",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "AMAT"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:AMAT",
+  "type": "stock"
+ },
+ "xyz:AMD": {
+  "description": "Advanced Micro Devices, Inc.",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "AMD"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:AMD",
+  "type": "stock"
+ },
+ "xyz:AMZN": {
+  "description": "Amazon.com, Inc.",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "AMZN"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:AMZN",
+  "type": "stock"
+ },
+ "xyz:ARM": {
+  "description": "ARM Holdings PLC Sponsored ADR",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "ARM"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:ARM",
+  "type": "dr"
+ },
+ "xyz:ASML": {
+  "description": "ASML Holding NV Sponsored ADR",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "ASML"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:ASML",
+  "type": "dr"
+ },
+ "xyz:AVGO": {
+  "description": "Broadcom Inc.",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "AVGO"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:AVGO",
+  "type": "stock"
+ },
+ "xyz:BABA": {
+  "description": "Alibaba Group Holding Limited Sponsored ADR",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "BABA"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NYSE:BABA",
+  "type": "dr"
+ },
+ "xyz:BB": {
+  "description": "BlackBerry Limited",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "BB"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NYSE:BB",
+  "type": "stock"
+ },
+ "xyz:BE": {
+  "description": "Bloom Energy Corporation Class A",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "BE"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NYSE:BE",
+  "type": "stock"
+ },
+ "xyz:BIRD": {
+  "description": "Smartbird, Inc. Class A",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "BIRD"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:BIRD",
+  "type": "stock"
+ },
+ "xyz:BMNR": {
+  "description": "BitMine Immersion Technologies Inc",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "BMNR"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NYSE:BMNR",
+  "type": "stock"
+ },
+ "xyz:BOT": {
+  "description": "RoboStrategy, Inc.",
+  "ref": {
+   "assetclass": "etf",
+   "kind": "etf",
+   "symbol": "BOT"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:BOT",
+  "type": "fund"
+ },
+ "xyz:BRENTOIL": {
+  "description": "Brent Crude Futures",
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "ICEEUR:BRN1!",
+  "type": "futures"
+ },
+ "xyz:BX": {
+  "description": "Blackstone Inc.",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "BX"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NYSE:BX",
+  "type": "stock"
+ },
+ "xyz:CBRS": {
+  "description": "Cerebras Systems, Inc. Class A",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "CBRS"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:CBRS",
+  "type": "stock"
+ },
+ "xyz:CL": {
+  "description": "Crude Oil Futures",
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NYMEX:CL1!",
+  "type": "futures"
+ },
+ "xyz:COIN": {
+  "description": "Coinbase Global, Inc. Class A",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "COIN"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:COIN",
+  "type": "stock"
+ },
+ "xyz:COPPER": {
+  "description": "Copper Futures",
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "COMEX:HG1!",
+  "type": "futures"
+ },
+ "xyz:COST": {
+  "description": "Costco Wholesale Corporation",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "COST"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:COST",
+  "type": "stock"
+ },
+ "xyz:CRCL": {
+  "description": "Circle Internet Group, Inc. Class A",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "CRCL"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NYSE:CRCL",
+  "type": "stock"
+ },
+ "xyz:CRWD": {
+  "description": "CrowdStrike Holdings, Inc. Class A",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "CRWD"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:CRWD",
+  "type": "stock"
+ },
+ "xyz:CRWV": {
+  "description": "CoreWeave, Inc. Class A",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "CRWV"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:CRWV",
+  "type": "stock"
+ },
+ "xyz:CVX": {
+  "description": "Chevron Corporation",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "CVX"
+  },
+  "rejected": false,
+  "resolved_this_run": true,
+  "ticker": "NYSE:CVX",
+  "type": "stock"
+ },
+ "xyz:CXMT": {
+  "description": null,
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": null,
+  "type": null
+ },
+ "xyz:DELL": {
+  "description": "Dell Technologies, Inc. Class C",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "DELL"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NYSE:DELL",
+  "type": "stock"
+ },
+ "xyz:DKNG": {
+  "description": "DraftKings, Inc. Class A",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "DKNG"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:DKNG",
+  "type": "stock"
+ },
+ "xyz:DRAM": {
+  "description": null,
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": null,
+  "type": null
+ },
+ "xyz:EBAY": {
+  "description": "eBay Inc.",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "EBAY"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:EBAY",
+  "type": "stock"
+ },
+ "xyz:EUR": {
+  "description": "EURO / U.S. DOLLAR",
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "FX_IDC:EURUSD",
+  "type": "forex"
+ },
+ "xyz:EWJ": {
+  "description": "iShares MSCI Japan ETF",
+  "ref": {
+   "assetclass": "etf",
+   "kind": "etf",
+   "symbol": "EWJ"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "AMEX:EWJ",
+  "type": "fund"
+ },
+ "xyz:EWT": {
+  "description": "iShares MSCI Taiwan ETF",
+  "ref": {
+   "assetclass": "etf",
+   "kind": "etf",
+   "symbol": "EWT"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "AMEX:EWT",
+  "type": "fund"
+ },
+ "xyz:EWY": {
+  "description": "iShares MSCI South Korea ETF",
+  "ref": {
+   "assetclass": "etf",
+   "kind": "etf",
+   "symbol": "EWY"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "AMEX:EWY",
+  "type": "fund"
+ },
+ "xyz:EWZ": {
+  "description": "iShares MSCI Brazil ETF",
+  "ref": {
+   "assetclass": "etf",
+   "kind": "etf",
+   "symbol": "EWZ"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "AMEX:EWZ",
+  "type": "fund"
+ },
+ "xyz:GBP": {
+  "description": "BRITISH POUND / U.S. DOLLAR",
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "FX_IDC:GBPUSD",
+  "type": "forex"
+ },
+ "xyz:GEV": {
+  "description": "GE Vernova Inc.",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "GEV"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NYSE:GEV",
+  "type": "stock"
+ },
+ "xyz:GIGADEV": {
+  "description": null,
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": null,
+  "type": null
+ },
+ "xyz:GLW": {
+  "description": "Corning Inc",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "GLW"
+  },
+  "rejected": false,
+  "resolved_this_run": true,
+  "ticker": "NYSE:GLW",
+  "type": "stock"
+ },
+ "xyz:GME": {
+  "description": "GameStop Corp. Class A",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "GME"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NYSE:GME",
+  "type": "stock"
+ },
+ "xyz:GOLD": {
+  "description": "GOLD (US$/OZ)",
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "TVC:GOLD",
+  "type": "commodity"
+ },
+ "xyz:GOOGL": {
+  "description": "Alphabet Inc. Class A",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "GOOGL"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:GOOGL",
+  "type": "stock"
+ },
+ "xyz:HIMS": {
+  "description": "Hims & Hers Health, Inc. Class A",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "HIMS"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NYSE:HIMS",
+  "type": "stock"
+ },
+ "xyz:HO": {
+  "description": null,
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": true,
+  "ticker": null,
+  "type": null
+ },
+ "xyz:HOOD": {
+  "description": "Robinhood Markets, Inc. Class A",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "HOOD"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:HOOD",
+  "type": "stock"
+ },
+ "xyz:HYUNDAI": {
+  "description": "Hyundai Motor Company",
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "KRX:005380",
+  "type": "stock"
+ },
+ "xyz:IBM": {
+  "description": "International Business Machines Corporation",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "IBM"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NYSE:IBM",
+  "type": "stock"
+ },
+ "xyz:INTC": {
+  "description": "Intel Corporation",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "INTC"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:INTC",
+  "type": "stock"
+ },
+ "xyz:IREN": {
+  "description": "IREN Limited",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "IREN"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:IREN",
+  "type": "stock"
+ },
+ "xyz:JP225": {
+  "description": "Japan 225 Index",
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "TVC:NI225",
+  "type": "index"
+ },
+ "xyz:JPY": {
+  "description": "U.S. DOLLAR / JAPANESE YEN",
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "FX_IDC:USDJPY",
+  "type": "forex"
+ },
+ "xyz:KIOXIA": {
+  "description": "Kioxia Holdings Corporation",
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "TSE:285A",
+  "type": "stock"
+ },
+ "xyz:KORU": {
+  "description": "Direxion Daily MSCI South Korea Bull 3X ETF",
+  "ref": {
+   "assetclass": "etf",
+   "kind": "etf",
+   "symbol": "KORU"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "AMEX:KORU",
+  "type": "fund"
+ },
+ "xyz:KR200": {
+  "description": "KOSPI 200 Index",
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "KRX:KOSPI200",
+  "type": "index"
+ },
+ "xyz:KSTR": {
+  "description": "KraneShares China Technology & Semiconductor STAR 50 Index ETF",
+  "ref": {
+   "assetclass": "etf",
+   "kind": "etf",
+   "symbol": "KSTR"
+  },
+  "rejected": false,
+  "resolved_this_run": true,
+  "ticker": "AMEX:KSTR",
+  "type": "fund"
+ },
+ "xyz:LITE": {
+  "description": "Lumentum Holdings, Inc.",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "LITE"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:LITE",
+  "type": "stock"
+ },
+ "xyz:LLY": {
+  "description": "Eli Lilly and Company",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "LLY"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NYSE:LLY",
+  "type": "stock"
+ },
+ "xyz:LRCX": {
+  "description": "Lam Research Corporation",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "LRCX"
+  },
+  "rejected": false,
+  "resolved_this_run": true,
+  "ticker": "NASDAQ:LRCX",
+  "type": "stock"
+ },
+ "xyz:LYTE": {
+  "description": null,
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": null,
+  "type": null
+ },
+ "xyz:MAGS": {
+  "description": null,
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": null,
+  "type": null
+ },
+ "xyz:META": {
+  "description": "Meta Platforms Inc Class A",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "META"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:META",
+  "type": "stock"
+ },
+ "xyz:MINIMAX": {
+  "description": null,
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": null,
+  "type": null
+ },
+ "xyz:MRNA": {
+  "description": "Moderna, Inc.",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "MRNA"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:MRNA",
+  "type": "stock"
+ },
+ "xyz:MRVL": {
+  "description": "Marvell Technology, Inc.",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "MRVL"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:MRVL",
+  "type": "stock"
+ },
+ "xyz:MSFT": {
+  "description": "Microsoft Corporation",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "MSFT"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:MSFT",
+  "type": "stock"
+ },
+ "xyz:MSTR": {
+  "description": "Strategy Inc Class A",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "MSTR"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:MSTR",
+  "type": "stock"
+ },
+ "xyz:MU": {
+  "description": "Micron Technology, Inc.",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "MU"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:MU",
+  "type": "stock"
+ },
+ "xyz:NATGAS": {
+  "description": "Henry Hub Natural Gas Futures",
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NYMEX:NG1!",
+  "type": "futures"
+ },
+ "xyz:NBIS": {
+  "description": "Nebius Group N.V. Class A",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "NBIS"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:NBIS",
+  "type": "stock"
+ },
+ "xyz:NCLD": {
+  "description": "Roundhill Neocloud ETF",
+  "ref": {
+   "assetclass": "etf",
+   "kind": "etf",
+   "symbol": "NCLD"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:NCLD",
+  "type": "fund"
+ },
+ "xyz:NET": {
+  "description": "Cloudflare Inc Class A",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "NET"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NYSE:NET",
+  "type": "stock"
+ },
+ "xyz:NFLX": {
+  "description": "Netflix, Inc.",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "NFLX"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:NFLX",
+  "type": "stock"
+ },
+ "xyz:NOK": {
+  "description": "Nokia Oyj Sponsored ADR",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "NOK"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NYSE:NOK",
+  "type": "dr"
+ },
+ "xyz:NOW": {
+  "description": "ServiceNow, Inc.",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "NOW"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NYSE:NOW",
+  "type": "stock"
+ },
+ "xyz:NVDA": {
+  "description": "NVIDIA Corporation",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "NVDA"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:NVDA",
+  "type": "stock"
+ },
+ "xyz:ORCL": {
+  "description": "Oracle Corporation",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "ORCL"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NYSE:ORCL",
+  "type": "stock"
+ },
+ "xyz:OURA": {
+  "description": null,
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": true,
+  "ticker": null,
+  "type": null
+ },
+ "xyz:PALLADIUM": {
+  "description": "Palladium Futures",
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NYMEX:PA1!",
+  "type": "futures"
+ },
+ "xyz:PLATINUM": {
+  "description": "Platinum Futures",
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NYMEX:PL1!",
+  "type": "futures"
+ },
+ "xyz:PLTR": {
+  "description": "Palantir Technologies Inc. Class A",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "PLTR"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:PLTR",
+  "type": "stock"
+ },
+ "xyz:PURRDAT": {
+  "description": null,
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": null,
+  "type": null
+ },
+ "xyz:QCOM": {
+  "description": "QUALCOMM Incorporated",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "QCOM"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:QCOM",
+  "type": "stock"
+ },
+ "xyz:QNT": {
+  "description": "Quantinuum Inc. Class A",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "QNT"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:QNT",
+  "type": "stock"
+ },
+ "xyz:RDDT": {
+  "description": "Reddit, Inc. Class A",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "RDDT"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NYSE:RDDT",
+  "type": "stock"
+ },
+ "xyz:RIVN": {
+  "description": "Rivian Automotive, Inc. Class A",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "RIVN"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:RIVN",
+  "type": "stock"
+ },
+ "xyz:RKLB": {
+  "description": "Rocket Lab Corporation",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "RKLB"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:RKLB",
+  "type": "stock"
+ },
+ "xyz:SHAZ": {
+  "description": "SharonAI Holdings, Inc. Class A",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "SHAZ"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:SHAZ",
+  "type": "stock"
+ },
+ "xyz:SHEIN": {
+  "description": null,
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": null,
+  "type": null
+ },
+ "xyz:SILVER": {
+  "description": "SILVER (US$/OZ)",
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "TVC:SILVER",
+  "type": "commodity"
+ },
+ "xyz:SKHX": {
+  "description": "SK hynix Inc.",
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "KRX:000660",
+  "type": "stock"
+ },
+ "xyz:SKHY": {
+  "description": "SK hynix Inc. Sponsored ADR",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "SKHY"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:SKHY",
+  "type": "dr"
+ },
+ "xyz:SMH": {
+  "description": "VanEck Semiconductor ETF",
+  "ref": {
+   "assetclass": "etf",
+   "kind": "etf",
+   "symbol": "SMH"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:SMH",
+  "type": "fund"
+ },
+ "xyz:SMSN": {
+  "description": "Samsung Electronics Co., Ltd.",
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "KRX:005930",
+  "type": "stock"
+ },
+ "xyz:SNDK": {
+  "description": "Sandisk Corporation",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "SNDK"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:SNDK",
+  "type": "stock"
+ },
+ "xyz:SNXX": {
+  "description": null,
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": true,
+  "ticker": null,
+  "type": null
+ },
+ "xyz:SOFTBANK": {
+  "description": "SoftBank Group Corp.",
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "TSE:9984",
+  "type": "stock"
+ },
+ "xyz:SOXL": {
+  "description": "Direxion Daily Semiconductor Bull 3X ETF",
+  "ref": {
+   "assetclass": "etf",
+   "kind": "etf",
+   "symbol": "SOXL"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "AMEX:SOXL",
+  "type": "fund"
+ },
+ "xyz:SP500": {
+  "description": "S&P 500",
+  "ref": {
+   "assetclass": "etf",
+   "kind": "index",
+   "symbol": "SPY"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "SP:SPX",
+  "type": "index"
+ },
+ "xyz:SPCX": {
+  "description": "Space Exploration Technologies Corp",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "SPCX"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:SPCX",
+  "type": "stock"
+ },
+ "xyz:STRC": {
+  "description": "Strategy Inc 11.5% Perp Stretch PFD Registered Shs Series A",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "STRC"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:STRC",
+  "type": "stock"
+ },
+ "xyz:TLT": {
+  "description": "iShares 20+ Year Treasury Bond ETF",
+  "ref": {
+   "assetclass": "etf",
+   "kind": "etf",
+   "symbol": "TLT"
+  },
+  "rejected": false,
+  "resolved_this_run": true,
+  "ticker": "NASDAQ:TLT",
+  "type": "fund"
+ },
+ "xyz:TSLA": {
+  "description": "Tesla, Inc.",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "TSLA"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:TSLA",
+  "type": "stock"
+ },
+ "xyz:TSM": {
+  "description": "Taiwan Semiconductor Manufacturing Co., Ltd. Sponsored ADR",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "TSM"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NYSE:TSM",
+  "type": "dr"
+ },
+ "xyz:TWST": {
+  "description": "Twist Bioscience Corp.",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "TWST"
+  },
+  "rejected": false,
+  "resolved_this_run": true,
+  "ticker": "NASDAQ:TWST",
+  "type": "stock"
+ },
+ "xyz:UMC": {
+  "description": "United Microelectronics Corp. Sponsored ADR",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "UMC"
+  },
+  "rejected": false,
+  "resolved_this_run": true,
+  "ticker": "NYSE:UMC",
+  "type": "dr"
+ },
+ "xyz:UNITREE": {
+  "description": null,
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": null,
+  "type": null
+ },
+ "xyz:URNM": {
+  "description": "Sprott Uranium Miners ETF",
+  "ref": {
+   "assetclass": "etf",
+   "kind": "etf",
+   "symbol": "URNM"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "AMEX:URNM",
+  "type": "fund"
+ },
+ "xyz:USAR": {
+  "description": "USA Rare Earth, Inc. Class A",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "USAR"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:USAR",
+  "type": "stock"
+ },
+ "xyz:WDC": {
+  "description": "Western Digital Corporation",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "WDC"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:WDC",
+  "type": "stock"
+ },
+ "xyz:XBI": {
+  "description": "State Street SPDR S&P Biotech ETF",
+  "ref": {
+   "assetclass": "etf",
+   "kind": "etf",
+   "symbol": "XBI"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "AMEX:XBI",
+  "type": "fund"
+ },
+ "xyz:XLE": {
+  "description": "State Street Energy Select Sector SPDR ETF",
+  "ref": {
+   "assetclass": "etf",
+   "kind": "etf",
+   "symbol": "XLE"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "AMEX:XLE",
+  "type": "fund"
+ },
+ "xyz:XYZ100": {
+  "description": "NASDAQ 100 Index",
+  "ref": {
+   "assetclass": "etf",
+   "kind": "index",
+   "symbol": "QQQ"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:NDX",
+  "type": "index"
+ },
+ "xyz:ZHIPU": {
+  "description": null,
+  "ref": null,
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": null,
+  "type": null
+ },
+ "xyz:ZM": {
+  "description": "Zoom Communications, Inc. Class A",
+  "ref": {
+   "assetclass": "stocks",
+   "kind": "stock",
+   "symbol": "ZM"
+  },
+  "rejected": false,
+  "resolved_this_run": false,
+  "ticker": "NASDAQ:ZM",
+  "type": "stock"
+ }
+}

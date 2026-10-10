@@ -1,0 +1,237 @@
+{
+ "analyze": {
+  "at": "2026-10-09T20:55:52Z",
+  "hourly_candles_from": "2026-03-15 (Hyperliquid serves the latest 5,000 bars of an interval)",
+  "premarket_source": "raw/yahoo (1h bars with pre/post, 60 days, 8 symbols)",
+  "settings": {
+   "book_snapshots": {
+    "in_session": "research/2026-09-10/perps_daily/books",
+    "pre_open": "research/2026-09-10/perps_2/books"
+   },
+   "clip_usd": 10000.0,
+   "fee_case": "schedule",
+   "first_session": "2026-03-17",
+   "last_session": "2026-10-08",
+   "markets": 110,
+   "min_pre_trades": 20,
+   "name_sessions": 8802,
+   "own_snaps": [
+    "research/2026-10-09/equity_offhours/raw/books/books_1791577079.json.gz"
+   ],
+   "sessions": 143,
+   "stores": [
+    "research/2026-09-10/perps_history",
+    "research/2026-10-09/perps_hip3",
+    "research/2026-10-09/perps_history"
+   ],
+   "tradable_name_sessions": 7001
+  },
+  "stores": {
+   "research/2026-09-10/perps_history": {
+    "collected_at": "2026-09-10T13:56:05+00:00",
+    "failed_markets": [],
+    "finished_at": "2026-09-10T13:57:52+00:00",
+    "markets": 316,
+    "since_utc": "2026-07-01T00:00:00+00:00",
+    "until_utc": "2026-09-10T13:00:00+00:00"
+   },
+   "research/2026-10-09/perps_hip3": {
+    "collected_at": "2026-10-09T19:48:47+00:00",
+    "failed_markets": [
+     "para:ANSEM",
+     "xyz:KR200",
+     "xyz:MRNA",
+     "xyz:MSFT",
+     "xyz:STRC",
+     "xyz:TWST",
+     "xyz:ZM"
+    ],
+    "finished_at": "2026-10-09T20:03:28+00:00",
+    "markets": 158,
+    "since_utc": "2026-07-01T00:00:00+00:00",
+    "until_utc": "2026-10-09T19:00:00+00:00"
+   },
+   "research/2026-10-09/perps_history": {
+    "collected_at": "2026-10-09T19:46:10+00:00",
+    "failed_markets": [
+     "ADA",
+     "APE",
+     "BANANA",
+     "BCH",
+     "BLUR",
+     "CAKE",
+     "GAS",
+     "GMT",
+     "INJ",
+     "NXPC",
+     "ORDI",
+     "PENDLE",
+     "PEOPLE",
+     "RUNE",
+     "SUPER",
+     "TRB",
+     "TRX",
+     "WLD",
+     "XRP",
+     "kSHIB",
+     "xyz:RIVN"
+    ],
+    "finished_at": "2026-10-09T20:51:32+00:00",
+    "markets": 336,
+    "since_utc": "2025-10-01T00:00:00+00:00",
+    "until_utc": "2026-10-09T19:00:00+00:00"
+   }
+  }
+ },
+ "candles_4h": {
+  "api": {
+   "errors": 0,
+   "requests": 26,
+   "throttled": 0
+  },
+  "at": "2026-10-09T20:52:26Z",
+  "markets": [
+   {
+    "bars": 1935,
+    "coin": "xyz:AAPL",
+    "first": "2025-11-21T12:00:00Z"
+   },
+   {
+    "bars": 1857,
+    "coin": "xyz:AMD",
+    "first": "2025-12-04T12:00:00Z"
+   },
+   {
+    "bars": 1952,
+    "coin": "xyz:AMZN",
+    "first": "2025-11-18T16:00:00Z"
+   },
+   {
+    "bars": 1605,
+    "coin": "xyz:BABA",
+    "first": "2026-01-15T12:00:00Z"
+   },
+   {
+    "bars": 1910,
+    "coin": "xyz:COIN",
+    "first": "2025-11-25T16:00:00Z"
+   },
+   {
+    "bars": 1791,
+    "coin": "xyz:CRCL",
+    "first": "2025-12-15T12:00:00Z"
+   },
+   {
+    "bars": 1533,
+    "coin": "xyz:CRWV",
+    "first": "2026-01-27T12:00:00Z"
+   },
+   {
+    "bars": 1329,
+    "coin": "xyz:EWJ",
+    "first": "2026-03-02T12:00:00Z"
+   },
+   {
+    "bars": 1329,
+    "coin": "xyz:EWY",
+    "first": "2026-03-02T12:00:00Z"
+   },
+   {
+    "bars": 1952,
+    "coin": "xyz:GOOGL",
+    "first": "2025-11-18T16:00:00Z"
+   },
+   {
+    "bars": 1905,
+    "coin": "xyz:HOOD",
+    "first": "2025-11-26T12:00:00Z"
+   },
+   {
+    "bars": 1863,
+    "coin": "xyz:INTC",
+    "first": "2025-12-03T12:00:00Z"
+   },
+   {
+    "bars": 1941,
+    "coin": "xyz:META",
+    "first": "2025-11-20T12:00:00Z"
+   },
+   {
+    "bars": 1947,
+    "coin": "xyz:MSFT",
+    "first": "2025-11-19T12:00:00Z"
+   },
+   {
+    "bars": 1869,
+    "coin": "xyz:MSTR",
+    "first": "2025-12-02T12:00:00Z"
+   },
+   {
+    "bars": 1766,
+    "coin": "xyz:MU",
+    "first": "2025-12-19T16:00:00Z"
+   },
+   {
+    "bars": 1833,
+    "coin": "xyz:NFLX",
+    "first": "2025-12-08T12:00:00Z"
+   },
+   {
+    "bars": 1987,
+    "coin": "xyz:NVDA",
+    "first": "2025-11-12T20:00:00Z"
+   },
+   {
+    "bars": 1851,
+    "coin": "xyz:ORCL",
+    "first": "2025-12-05T12:00:00Z"
+   },
+   {
+    "bars": 1977,
+    "coin": "xyz:PLTR",
+    "first": "2025-11-14T12:00:00Z"
+   },
+   {
+    "bars": 1623,
+    "coin": "xyz:SNDK",
+    "first": "2026-01-12T12:00:00Z"
+   },
+   {
+    "bars": 1983,
+    "coin": "xyz:TSLA",
+    "first": "2025-11-13T12:00:00Z"
+   },
+   {
+    "bars": 1491,
+    "coin": "xyz:TSM",
+    "first": "2026-02-03T12:00:00Z"
+   },
+   {
+    "bars": 1521,
+    "coin": "xyz:URNM",
+    "first": "2026-01-29T12:00:00Z"
+   },
+   {
+    "bars": 1538,
+    "coin": "xyz:USAR",
+    "first": "2026-01-26T16:00:00Z"
+   },
+   {
+    "bars": 2169,
+    "coin": "xyz:XYZ100",
+    "first": "2025-10-13T12:00:00Z"
+   }
+  ]
+ },
+ "collect": {
+  "at": "2026-10-09T20:12:06Z",
+  "dividend_source": "api.nasdaq.com/api/quote/{sym}/dividends (stocks only; ETFs return none)",
+  "errors": [],
+  "fetched": 96,
+  "ref_map": "research/2026-09-10/perps_daily/refs/map.json",
+  "reference_source": "api.nasdaq.com/api/quote/{sym}/historical (daily official open/close)",
+  "since": "2025-09-01",
+  "symbols": 96,
+  "until": "2026-10-10"
+ }
+}
