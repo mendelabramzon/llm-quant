@@ -1,0 +1,150 @@
+{
+ "chain": "ethereum",
+ "chain_id": 1,
+ "code": "scripts/dislocation_history.py (etherfi --step collect/finality/analyze; collect/nav/analyze --assets oeth,lbtc,tbtc,lbtc_cb,lbtc_cb_pay,etherfi_ev,etherfi_ev_aw; report; segwit_address/decode_lombard_redeem/match_btc_payout for the LBTC bitcoin check, whose mempool.space driver was a scratch script with inputs and outputs saved in raw/lbtc_payout); tests scripts/test_dislocation_history.py (56 tests, pass with and without pycryptodome)",
+ "endpoints": {
+  "archive_state": "https://eth.drpc.org (publicnode answered 403, merkle 429, 1rpc 522 on 2026-10-10)",
+  "bitcoin": "mempool.space/api/address/<addr>/txs (raw/lbtc_payout)",
+  "logs_headers": "Infura mainnet JSON-RPC (local keys rotated, never written)",
+  "pools": "api.geckoterminal.com (raw/gecko), api.fluid.instadapp.io/v2/1/dexes (Fluid fees and token order)",
+  "prices": "coins.llama.fi chart (eth_usd.json, btc_usd.json under raw/new_assets)",
+  "traces": "https://eth.drpc.org debug_traceTransaction (raw/claim_traces.json: four claims, one per WithdrawRequestNFT era)",
+  "verified_source": "Etherscan V2 getsourcecode (raw/sources: WithdrawRequestNFT x5 implementations, EtherFiRedemptionManager x5, EtherFiAdmin)"
+ },
+ "file_hashes": {
+  "analysis.json": "35a0e84aa2687cdd8dff471d17a472a93530b599ddf514ea75f2400cbe1e861e",
+  "book_entries.json": "214e802b5c5afc633a48559670df7a6a0745544880944483d254116050d06a63",
+  "candidates.json": "005267d2d4ceee58d099992e019891337e5420b2619e7afc8da3ac1fedd3f877",
+  "etherfi_finality.json": "e37c3eeca9d6295293915e13e25afc08003d57fd4063a6d49699e5ada77d6f1f",
+  "etherfi_headers.json": "91225062a51ca859ce0543f05c67247cc6749d1a799c425c0c4a9a4878f0a048",
+  "etherfi_manifest.json": "d5996a9f945c4a4e3eb7697a11d1ecf8d5828aa7ab6bbe35318ecf87e994314e",
+  "etherfi_payouts.json": "b1dc41e8f5755c7d45d9934b58fae66fa912dc45ab60a936ac4b069404b49d4b",
+  "etherfi_requests.jsonl.gz": "2fd1a4ad40dc28854bc0b648d5cf6f57b0176dfb171e706a5c52332d1a759ecc",
+  "tables.md": "87df91d1f475677c0da5521f90d997337e76474ed44721f87a1ead2a4dea95fb"
+ },
+ "findings_md": "writing findings.md was refused by the harness (subagent report-file guard); its full text is in the worker's final message to the coordinator",
+ "rpc_credits_estimated": {
+  "etherfi_collect (ef_admin, ef_lp)": 290270,
+  "etherfi_collect (ef_redeem, ef_upgrades)": 291035,
+  "etherfi_collect (ef_wrnft and part of ef_lp)": 150865,
+  "new_assets collect (x_curve; stopped at the 300k ceiling during x_v3)": 298965,
+  "new_assets collect (x_queues)": 138210,
+  "new_assets collect (x_v3, x_v4, x_fluid)": 249900
+ },
+ "study": "queue_bids_ext (2026-10-10)",
+ "sub_manifests": {
+  "raw/claim_traces.json": "43765b622729747beafac71efcadb3ed883a333215513885c2b9eca05dda62d4",
+  "raw/etherfi_long/analysis.json": "2fec2a85b4a2be959a8833728e76581a5921f2969887683671bd75da339cf453",
+  "raw/etherfi_long/etherfi_payouts.json": "b1dc41e8f5755c7d45d9934b58fae66fa912dc45ab60a936ac4b069404b49d4b",
+  "raw/etherfi_long/manifest.json": "7a650f13ea90a88c86378f9b01f8ebeb683a10c5b0a0632154da13f5e13331b4",
+  "raw/lbtc_payout/btc_payout_sample.json": "ce75555f09a5d900ef9393dc61a066e92ad854abfd3405095d7022052ae280d7",
+  "raw/lbtc_payout/paid_vs_rate_at_payout.json": "8e9e5eb3473ee7817def90ee5615cbe46ec637c8d5029b3f0d772623ad84e394",
+  "raw/lbtc_payout/redeem_requests.json": "dddb13571b38328dff2b654518b738af2c240c550ba32c3d4b9ecb005e3bccae",
+  "raw/lbtc_payout/unstake_requests_2025_sample.json": "1adab46107efbee12082732f861841ee88ed74ec40b3fe4786b11a66a674f09e",
+  "raw/new_assets/analysis.json": "7046f5ca792b33fb7fc1461e26fd683de369894a1978be84abca311c8f1f6967",
+  "raw/new_assets/manifest.json": "02b5515c463eff930d1f0d38ce7a08facfb4ce374f30e9c3eb6f8722e89fefc0",
+  "raw/new_assets/pools.json": "8fc201b6ef89bc19d4b2cc3cdba3e672d43d4e1351a207f209d78a97749bd4f5",
+  "raw/new_assets/state.json": "b1862a5e26316e04156eef42db3e24f3a49c65909f3bf6bef0e59e9cd6643047"
+ },
+ "subagent": "redemption mechanics of OETH, osETH, frxETH, LBTC, tBTC, mETH, pufETH, swETH, ETHx researched by a subagent from verified source and eth_call at block 26,161,812; its facts are cited in candidates.json and findings.md",
+ "windows": {
+  "etherfi_payout_check": {
+   "complete": {
+    "ef_admin": true,
+    "ef_lp": true,
+    "ef_redeem": true,
+    "ef_upgrades": true,
+    "ef_wrnft": true
+   },
+   "first_block": 20834913,
+   "last_block": 26161639,
+   "last_block_utc": "2026-10-10T11:09:11Z",
+   "raw_files": {
+    "ef_admin": 533,
+    "ef_lp": 533,
+    "ef_redeem": 535,
+    "ef_upgrades": 533,
+    "ef_wrnft": 533
+   },
+   "streams": {
+    "ef_admin": {
+     "address": [
+      "0x0ef8fa4760db8f5cd4d993f3e3416f30f942d705"
+     ],
+     "topics": [
+      [
+       "0x997abd9d07db6cb25b8542e4fe05ddc887fc249d15d5ec7e3089ff385012bd2f"
+      ]
+     ]
+    },
+    "ef_lp": {
+     "address": [
+      "0x308861a430be4cce5502d0a12724771fc6daf216"
+     ],
+     "topics": [
+      [
+       "0x11c6bf55864ff83827df712625d7a80e5583eef0264921025e7cd22003a21511"
+      ]
+     ]
+    },
+    "ef_redeem": {
+     "address": null,
+     "topics": [
+      [
+       "0xc733e5de6c9a33d3ad4494396148842e6b8788ce5161d4d96ff548de6019fc60",
+       "0x484c40561359f3e3b8be9101897f8680aa82fbe1df9fd9038e0dbc6284032646"
+      ]
+     ]
+    },
+    "ef_upgrades": {
+     "address": [
+      "0x0ef8fa4760db8f5cd4d993f3e3416f30f942d705",
+      "0x308861a430be4cce5502d0a12724771fc6daf216",
+      "0x35fa164735182de50811e8e2e824cfb9b6118ac2",
+      "0x7d5706f6ef3f89b3951e23e557cdfbc3239d4e2c",
+      "0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee",
+      "0xdadef1ffbfeaab4f68a9fd181395f68b4e4e7ae0"
+     ],
+     "topics": [
+      [
+       "0xbc7cd75a20ee27fd9adebab32041f755214dbc6bffa90cc0225b39da2e5c2d3b"
+      ]
+     ]
+    },
+    "ef_wrnft": {
+     "address": [
+      "0x7d5706f6ef3f89b3951e23e557cdfbc3239d4e2c"
+     ],
+     "topics": null
+    }
+   }
+  },
+  "new_assets": {
+   "complete": {
+    "x_curve": true,
+    "x_fluid": true,
+    "x_queues": true,
+    "x_v3": true,
+    "x_v4": true
+   },
+   "dir": "raw/new_assets",
+   "first_block": 20834913,
+   "headers_seeded_from": "research/2026-10-09/redemption_history/raw/long/headers.json",
+   "last_block": 26157137,
+   "raw_files": {
+    "x_curve": 533,
+    "x_fluid": 533,
+    "x_queues": 533,
+    "x_v3": 533,
+    "x_v4": 533
+   },
+   "state_seeded_from": "research/2026-10-09/redemption_history/raw/long/state.json (wsteth_nav, susds_nav); lbtc_nav read here from block 22,950,000"
+  },
+  "weeth_requote": {
+   "dir": "raw/etherfi_long",
+   "first_block": 20834913,
+   "last_block": 26157137,
+   "note": "APFS clones (cp -c) of research/2026-10-09/redemption_history/raw/long: manifest, headers, state, pools, eth_usd and the x_* raw streams, unchanged; etherfi_payouts.json copied in for the event-measured waits and the Rebase-event NAV"
+  }
+ }
+}

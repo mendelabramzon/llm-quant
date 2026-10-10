@@ -44,6 +44,50 @@ to 12,056 addresses in one campaign — token-transfer address poisoning at a sc
 cannot see, and which the hand analysis of the same window missed.
 
 
+2026-10-10 — alpha that does not race. Asked for strategies that need neither latency nor a position in the block,
+this session wrote the candidates down by where a non-racing edge comes from
+([brainstorm](research/2026-10-10/alpha_brainstorm.md): a constraint someone pays to escape, slow public information,
+calendar flows, term structure, segmented capital, risk premia sold on purpose; the working test is that entering an
+hour late keeps most of the edge), and sent six of them to history under the same protocol as the session before:
+
+* **Survivors.** Holding HYPE as Hyperliquid portfolio-margin collateral against a short HYPE perp beat the savings rate
+  by +4.30% a year out of sample (t 5.68), because the same coin's funding pays 9.6% on Hyperliquid and 4.5% on Binance
+  ([note](research/2026-10-10/term_carry/findings.md)). ether.fi's queue paid every request exactly, with no fee, in a
+  median 0.79 days over two years, so the weETH bid stands and re-quotes up; Lombard's LBTC is the one new claim that
+  clears the same bar, $111k a year at $10M, given a Coinbase account for the return leg
+  ([note](research/2026-10-10/queue_bids_ext/findings.md)).
+* **Corrections.** Binance's 217 TradFi perps hedge the HIP-3 equity carry's off-hours risk but not its economics (68.5%
+  of their funding settlements are exactly zero), and the carry's excess sits in thin names: $54–73k a year at measured
+  depth, not $330k ([note](research/2026-10-10/tradfi_perps/findings.md)).
+* **No-go.** New listings decay against seasoned alts but the pre-registered rule failed and squeezes size the trade;
+  delisting notices do not pay at $10k ([note](research/2026-10-10/listing_lifecycle/findings.md)). Chain and protocol
+  fundamentals stopped predicting returns after 2023, and the chain-activity detectors, replayed over five years,
+  predict nothing tradable ([note](research/2026-10-10/fundamentals_factor/findings.md)). Governance proposals labelled
+  by an LLM against a frozen rubric drifted +7.2% before mid-2024 and nothing since
+  ([note](research/2026-10-10/governance_events/findings.md)).
+* **The unlock pre-short is in a forward test.** 20 cliffs were registered before their entries; the daily perps pass now
+  registers new ones, scores closed ones from the venue's own history and refreshes the schedule weekly.
+
+| module | what it does |
+|---|---|
+| `scripts/unlock_study.py forward register\|score` | the pre-registered forward ledger (`research/unlocks_forward.jsonl`): register before entry, score after the window, placebo a fortnight either side, the book's kill and promote rules |
+| `scripts/term_carry.py` | dated basis (Binance, Deribit, CME), spot plus short perp per venue with explicit capital, sUSDe from its NAV, Boros implied against realised, DVOL against realised; `snapshot` keeps Boros's term structure daily |
+| `scripts/tradfi_perps.py` | Binance TradFi perps matched to HIP-3 by name and price, both funding formulas, the two-perp and broker carries, off-hours basis risk, energy roll schedules on both venues |
+| `scripts/listing_lifecycle.py` | Hyperliquid's listing calendar from the first traded bar, the post-listing short against a seasoned-alt basket, Binance delisting notices parsed from its announcement catalogue |
+| `scripts/fundamentals_factor.py` | DefiLlama chain and protocol fundamentals as weekly cross-sectional books, and a point-in-time replay of the chain-activity detectors |
+| `scripts/governance_events.py` | Snapshot proposals screened, exported to LLM labellers, frozen with a hash before any price, then an event study with placebos |
+| `scripts/dislocation_history.py etherfi`, `--assets oeth,lbtc,tbtc` | ether.fi's queue read per request (payouts, fees, finalization), LBTC's bitcoin payouts matched on Bitcoin |
+
+```sh
+uv run python scripts/unlock_study.py forward register --out research/2026-10-09/unlocks   # before an entry passes
+uv run python scripts/unlock_study.py forward score    --out research/2026-10-09/unlocks   # any time after a window closes
+uv run python scripts/term_carry.py collect|analyze|render|snapshot --out research/2026-10-10/term_carry
+uv run python scripts/tradfi_perps.py collect|hl-topup|stocks|match|books|analyze|render --out research/2026-10-10/tradfi_perps
+uv run python scripts/listing_lifecycle.py collect|analyze|render --out research/2026-10-10/listing_lifecycle
+uv run python scripts/fundamentals_factor.py collect|analyze|render --out research/2026-10-10/fundamentals_factor
+uv run python scripts/governance_events.py collect|screen|label-export|label-freeze|analyze|render --out research/2026-10-10/governance_events
+```
+
 2026-10-09, second session — strategies tested on history rather than windows. Every line in the book had been priced
 from a window (an hour of funding, five hours of a rate gap), which can measure a rate but not whether it pays. This
 session collected history — a year of Hyperliquid funding, futures by contract month, every Pendle market, 446k

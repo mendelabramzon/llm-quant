@@ -1,0 +1,78 @@
+{
+ "analysis_generated": "2026-10-10T18:30:22+00:00",
+ "collect_manifest": {
+  "coins": {
+   "fetched": 2,
+   "keys": 651
+  },
+  "last_run": {
+   "at": "2026-10-10T18:23:04+00:00",
+   "bytes": 140066,
+   "errors": [],
+   "n_errors": 0,
+   "parts": [
+    "coins",
+    "shares"
+   ],
+   "requests": 20,
+   "seconds": 13.6
+  },
+  "shares": {
+   "fetched": 3,
+   "keys": 840
+  },
+  "universe": {
+   "first": "20221013234043",
+   "last": "20261010",
+   "pools_any_tvl": 8254,
+   "pools_kept": 5080,
+   "snapshots": 136
+  },
+  "wayback": {
+   "capture_days_in_cdx": 462,
+   "first": "2022-10-13",
+   "have": 135,
+   "picked": 135,
+   "rule": "closest capture within 7 days of the 1st, 8th, 15th and 22nd of each month"
+  }
+ },
+ "counts": {
+  "chains_with_launch": 102,
+  "charts_loaded": 2623,
+  "charts_missing": 2457,
+  "charts_missing_with_tvl_1m_at_a_capture": 1152,
+  "coins_priced": 1000,
+  "hack_matches": 94,
+  "held_pools_any_variant": 501,
+  "protocol_tvl_series": 325,
+  "universe_pools": 5080,
+  "universe_pools_max_tvl_1m": 3775,
+  "wayback_capture_days_in_cdx": 462,
+  "wayback_captures_used": 135
+ },
+ "endpoints": {
+  "chain": "public Ethereum archive RPC (scripts/drpc.py): Aave v3 / Spark getReserveData, Comet getUtilization + getSupplyRate",
+  "coins": "https://coins.llama.fi/chart/{chain:address}?start&span=500&period=1d (500 points per request)",
+  "llama": "https://api.llama.fi /hacks, /protocols, /protocol/{slug} (TVL history), /v2/historicalChainTvl/{chain}",
+  "stablecoins": "https://stablecoins.llama.fi /stablecoins, /stablecoinprices",
+  "wayback": "http://web.archive.org/cdx/search/cdx?url=yields.llama.fi/pools + /web/{ts}id_/https://yields.llama.fi/pools (captures closest to the 1st/8th/15th/22nd of each month)",
+  "yields": "https://yields.llama.fi /pools (2026-10-10 snapshot), /chart/{pool} (daily), /distinctID (401,835 pool ids, no metadata); /poolsOld and /lsdRates answer HTTP 402 (paid)"
+ },
+ "gaps": [
+  "charts not fetched (API throttling): 2457 universe pools, of which 1152 had TVL >= $1M at some capture; they were last in the queue (lowest yield seen at a capture), see survivorship.missing_chart_check",
+  "DefiLlama floors vault yields at zero (3 negative apyBase records in the charts): vault-level bad debt is invisible unless it shows as a matched hack, a deposit-token depeg or a TVL collapse",
+  "pricePerShare exists only from 2026-02 (151 pools); not used",
+  "rewards with no priced token are valued at the in-sample median 8-day price ratio (impute_ratio)",
+  "reward vesting/lock-ups (e.g. Radiant dLP, Venus XVS vesting) are not modelled; DefiLlama face value is used",
+  "lending TVL on DefiLlama is supply net of borrows, so the dilution T/(T+X) is conservative there",
+  "part (b), hedged LP, was not run"
+ ],
+ "generated": "2026-10-10T18:30:44+00:00",
+ "precommit": {
+  "code_sha256_at_freeze": "4cff9ee5aeefa830b307330f9f053f6c8b557f03adc429c8752e789b630963b8",
+  "file": "precommit.json",
+  "written": "2026-10-10T17:17:16+00:00"
+ },
+ "rate_policy": "one process per host family; DefiLlama request starts >= 0.4 s apart (0.7 s for the parallel coins/protocol runs); yields.llama.fi answered HTTP 429 to roughly two requests in three from 15:45 UTC (shared IP), so charts arrived at ~0.3 a second and were fetched in priority order",
+ "script": "scripts/incentive_yields.py"
+}

@@ -508,5 +508,181 @@ class SurfaceRates(unittest.TestCase):
         self.assertAlmostEqual(dh.max_nav_step_bps([(0, 1.0), (1, 1.0001), (2, 1.0001)]), 1.0)
 
 
+
+# ----------------------------------------------------------------------------------------------------------------------
+# The ether.fi payout check (2026-10-10): both event versions, finalization from the admin's counter, the step NAV
+# ----------------------------------------------------------------------------------------------------------------------
+def ef_log(topic, rid, words, block=100, li=0):
+    return {'address': dh.ETHERFI_WRNFT, 'blockNumber': hex(block), 'logIndex': hex(li), 'transactionHash': '0x' + '%064x' % (block * 1000 + li),
+            'topics': [topic, '0x' + '%064x' % rid], 'data': '0x' + ''.join(enc_uint(w) for w in words)}
+
+
+OWNER = int('ab' * 20, 16)
+
+
+class EtherFiPayouts(unittest.TestCase):
+    def test_pure_keccak_matches_known_hashes(self):
+        self.assertEqual(dh._keccak256_pure(b''), 'c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470')
+        self.assertEqual('0x' + dh._keccak256_pure(b'Transfer(address,address,uint256)'),
+                         '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef')
+        # 200 bytes spans two 136-byte blocks: the absorb loop must carry state across blocks
+        self.assertEqual(len(dh._keccak256_pure(b'x' * 200)), 64)
+        self.assertEqual(dh.EFTOPICS['Claimed'], '0x31712d805743a128cf0ab8cdf453da51797d2e6f674bd1e5d77d92e1518e4921')
+        self.assertEqual(dh.EFTOPICS['Created'], '0xe8c5062a529781e00d69c769270eb1f1ae6feb921aa80d238bb7b4b919b1ab22')
+
+    def test_both_event_versions_decode_to_the_same_payout(self):
+        E = 10 ** 18
+        logs = [
+            # 2024 version: request with a 0.001 ETH fee; the claim emits paid + fee and the fee
+            ef_log(dh.EFTOPICS['CreatedFee'], 7, [2 * E, int(1.8 * E), OWNER, E // 1000], block=100),
+            ef_log(dh.EFTOPICS['ClaimedFee'], 7, [2 * E, int(1.79 * E), OWNER, E // 1000], block=300),
+            # 2026 version: four fields, the claim emits the payout and the request's full shares
+            ef_log(dh.EFTOPICS['Created'], 8, [3 * E, int(2.7 * E), OWNER], block=110),
+            ef_log(dh.EFTOPICS['Claimed'], 8, [3 * E, int(2.7 * E), OWNER], block=310),
+            ef_log(dh.EFTOPICS['Invalidated'], 9, [], block=120),
+            {'address': dh.ETHERFI_WRNFT, 'blockNumber': hex(130), 'logIndex': '0x0', 'transactionHash': '0x1', 'data': '0x',
+             'topics': [dh.EFTOPICS['Transfer'], '0x' + '%064x' % OWNER, '0x' + '%064x' % (OWNER + 1), '0x' + '%064x' % 8]},
+            {'address': dh.ETHERFI_WRNFT, 'blockNumber': hex(131), 'logIndex': '0x0', 'transactionHash': '0x2', 'data': '0x',
+             'topics': [dh.EFTOPICS['Transfer'], '0x' + '00' * 32, '0x' + '%064x' % OWNER, '0x' + '%064x' % 9]},
+        ]
+        req, clm, flags, transfers, unknown = dh.decode_etherfi_wrnft(logs)
+        self.assertAlmostEqual(req[7]['fee'], 0.001)
+        self.assertEqual(req[8]['fee'], 0.0)
+        self.assertAlmostEqual(clm[7]['paid'], 1.999)          # amount - fee, not the emitted amount
+        self.assertAlmostEqual(clm[8]['paid'], 3.0)
+        self.assertEqual(req[7]['owner'], '0x' + 'ab' * 20)
+        self.assertEqual(flags['invalidated'], [9])
+        self.assertEqual(transfers, 1)                          # a mint is not a transfer between holders
+        self.assertEqual(unknown, {})
+
+    def test_finalization_is_the_first_admin_execution_covering_the_id_after_the_request(self):
+        pts = [(100, 1000, 5), (200, 2000, 9), (300, 3000, 9), (400, 4000, 15)]
+        reqs = {4: 50, 6: 150, 9: 190, 10: 250, 16: 410, 3: 120}
+        f = dh.finalization_times(pts, reqs)
+        self.assertEqual(f[4], (100, 1000))
+        self.assertEqual(f[6], (200, 2000))
+        self.assertEqual(f[9], (200, 2000))
+        self.assertEqual(f[10], (400, 4000))
+        self.assertNotIn(16, f)                                 # never covered: pending at the end
+        self.assertEqual(f[3], (200, 2000))                     # covered already, but only executions after the request count
+
+    def test_payout_records_price_against_request_and_payout_nav(self):
+        reqs = {1: {'block': 100, 'amount': 1.1, 'share': 1.0, 'owner': 'a', 'fee': 0.0, 'version': 4},
+                2: {'block': 100, 'amount': 2.2, 'share': 2.0, 'owner': 'a', 'fee': 0.0022, 'version': 5}}
+        clm = {1: {'block': 400, 'paid': 1.1, 'fee': 0.0, 'owner': 'a'}, 2: {'block': 400, 'paid': 2.1978, 'fee': 0.0022, 'owner': 'b'}}
+        steps = ([50, 300], [1.1, 1.1011])
+        nav = lambda n: dh.step_at(steps[0], steps[1], n)
+        recs = dh.etherfi_payout_records(reqs, clm, {1: (200, 86400 * 2), 2: (200, 86400 * 2)}, nav, None, lambda n: n * 0 + 86400 if n == 100 else 86400 * 5)
+        r1, r2 = recs
+        self.assertAlmostEqual(r1['rate_vs_rebase_nav_bps'], 0.0)
+        self.assertAlmostEqual(r1['payout_vs_request_bps'], 0.0)
+        self.assertAlmostEqual(r1['payout_vs_nav_at_payout_bps'], 1e4 * (1.1 / 1.1011 - 1))   # the yield the queue does not pay
+        self.assertAlmostEqual(r1['wait_days'], 1.0)
+        self.assertAlmostEqual(r2['fee_bps'], 10.0)
+        self.assertAlmostEqual(r2['payout_vs_request_bps'], -10.0, places=6)
+        self.assertTrue(r2['owner_changed'])
+
+    def test_step_nav_is_flat_between_rebases_not_a_line(self):
+        xs, ys = [100, 200], [1.0, 1.0001]
+        self.assertEqual(dh.step_at(xs, ys, 150), 1.0)
+        self.assertAlmostEqual(dh.interp(xs, ys, 150), 1.00005)  # the daily line puts half a step where none happened
+        self.assertEqual(dh.step_at(xs, ys, 200), 1.0001)
+        self.assertIsNone(dh.step_at(xs, ys, 99))
+
+    def test_redeemed_fourth_word_changed_meaning_at_the_2026_upgrade(self):
+        E = 10 ** 18
+        # pre-2026-07: (amount 100, treasury 0.003, TO RECEIVER 99.7) -> a 30bp fee, not a 9,970bp one
+        old = {'address': dh.ETHERFI_RM, 'blockNumber': hex(1), 'topics': [dh.EFTOPICS['Redeemed4'], '0x' + '00' * 32],
+               'data': '0x' + enc_uint(100 * E) + enc_uint(3 * E // 1000) + enc_uint(int(99.7 * E))}
+        x = dh.decode_redeemed(old)
+        self.assertAlmostEqual(x['fee_bps'], 30.0, places=6)
+        self.assertEqual(x['token'], 'ETH')
+        # 2026-07 on: (amount 100, treasury 0.01, stakers 0.09, stETH) -> a 10bp fee
+        new = {'address': dh.ETHERFI_RM, 'blockNumber': hex(2), 'topics': [dh.EFTOPICS['Redeemed'], '0x' + '00' * 32],
+               'data': '0x' + enc_uint(100 * E) + enc_uint(E // 100) + enc_uint(9 * E // 100) + enc_uint(int(dh.STETH, 16))}
+        y = dh.decode_redeemed(new)
+        self.assertAlmostEqual(y['fee_bps'], 10.0, places=6)
+        self.assertEqual(y['token'], 'stETH')
+        self.assertAlmostEqual(y['to_receiver'], 99.9, places=6)
+
+    def test_regime_table_splits_hours_at_the_cuts(self):
+        recs = [{'ts': 3600 * h, 'usd': 1e5, 'discount_bps': d, 'side': 'sell', 'nav': 1.0} for h, d in
+                [(0, 30.0), (1, 25.0), (2, 4.0), (10, 12.0), (11, 9.0), (12, 3.0)]]
+        rows = dh.regime_table(recs, [('before', 0), ('after', 3600 * 10)])
+        self.assertEqual([r['hours'] for r in rows], [3, 3])
+        self.assertAlmostEqual(rows[0]['share_at_least_20bp'], 2 / 3)
+        self.assertAlmostEqual(rows[1]['share_at_least_20bp'], 0.0)
+        self.assertAlmostEqual(rows[1]['share_at_least_10bp'], 1 / 3)
+
+    def test_weighted_median(self):
+        self.assertEqual(dh._weighted_median([(1.0, 1.0), (5.0, 10.0), (2.0, 1.0)]), 5.0)
+        self.assertIsNone(dh._weighted_median([]))
+
+
+class NewAssets(unittest.TestCase):
+    def test_oeth_cumulative_queue_waits(self):
+        day = 86400
+        reqs = [(0, 10, 1, 100), (day, 20, 1, 250), (2 * day, 30, 1, 400), (2 * day + 5, 30, 3, 401)]
+        claim = [(0, 10, 2, 120),               # funded in the same block, after the request: the 600s delay binds
+                 (3 * day, 40, 0, 300),         # covers the second request two days later
+                 (4 * day, 50, 0, 400)]         # covers the third; the fourth (401) is never covered
+        w = dh.cumulative_waits(reqs, claim, end_ts=5 * day, min_delay_s=600)
+        self.assertAlmostEqual(w[0][1], 600 / day)
+        self.assertAlmostEqual(w[1][1], 2.0)
+        self.assertAlmostEqual(w[2][1], 2.0)
+        self.assertIsNone(w[3][1])
+        self.assertAlmostEqual(w[3][2], (5 * day - 2 * day - 5) / day)
+        # a funding event logged BEFORE the request in the same block does not count for it
+        w2 = dh.cumulative_waits([(0, 10, 5, 100)], [(0, 10, 2, 120), (day, 11, 0, 130)], end_ts=2 * day)
+        self.assertAlmostEqual(w2[0][1], 1.0)
+
+    def test_btc_wrapper_priced_in_btc_with_eight_decimals_both_sides(self):
+        lb = dh.SURFACE['lbtc']
+        meta = {'tokens': [dh.WBTC, dh.LBTC], 'decimals': [8, 8], 'fee_bps': 1.0}
+        # Fluid swap0to1 = false: token1 (LBTC) in, token0 (WBTC) out -> a sale of 2 LBTC for 2.0080 WBTC
+        legs = dh.legs_fluid({'data': data_words(0, 2 * 10 ** 8, 200_800_000, 0)}, meta, lb['targets'])
+        self.assertEqual(legs[:2], ('sell', dh.LBTC))
+        nav = lambda key, n: 1.0048 if key == 'lbtc_nav' else None
+        rec = dh.price_swap(dict(lb, targets={dh.LBTC: {'symbol': 'LBTC', 'nav': 'lbtc_nav'}}), legs, 1, nav)
+        self.assertAlmostEqual(rec['price'], 1.004)
+        self.assertAlmostEqual(rec['discount_bps'], 1e4 * (1.0048 - 1.004) / 1.0048)   # 8bp under NAV, though 40bp over par
+        tb = dh.SURFACE['tbtc']
+        # tBTC has 18 decimals against WBTC's 8: a v3 sale of 1 tBTC for 0.9990 WBTC is 10bp under par, not 1e10x off
+        m3 = {'tokens': [dh.TBTC, dh.WBTC], 'decimals': [18, 8], 'fee_bps': 1.0}
+        log = {'topics': [dh.XTOPICS['V3Swap'], '0x' + '00' * 32, '0x' + '00' * 32], 'data': data_words(10 ** 18, -99_900_000, 0, 0, 0)}
+        r3 = dh.price_swap(tb, dh.legs_v3(log, m3, tb['targets']), 1, nav)
+        self.assertAlmostEqual(r3['discount_bps'], 10.0, places=6)
+
+    def test_inverted_state_spec(self):
+        self.assertTrue(dh.STATE['lbtc_nav']['invert'])
+        self.assertGreater(dh.STATE['lbtc_nav']['first_block'], 0)
+
+
+class LbtcPayouts(unittest.TestCase):
+    def test_bech32_and_bech32m_addresses_from_scripts(self):
+        # BIP-173 and BIP-350 test vectors
+        self.assertEqual(dh.segwit_address('0014751e76e8199196d454941c45d1b3a323f1433bd6'), 'bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4')
+        self.assertEqual(dh.segwit_address('5120' + '79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798'),
+                         'bc1p0xlxvlhemja6c4dqv22uapctqupfhlxm9h8z3k2e72q4k9hcz7vqzk5jj0')
+        self.assertIsNone(dh.segwit_address('76a914' + '00' * 20 + '88ac'))      # P2PKH is not segwit
+
+    def test_redeem_payload_decoding(self):
+        script = '0014' + 'ab' * 20
+        inner = 'aa3db85f' + dh.BITCOIN_LCHAIN + enc_uint(int(dh.LBTC, 16)) + enc_uint(int('11' * 20, 16)) + enc_uint(0xa0) + enc_uint(24_880_800) \
+            + enc_uint(len(script) // 2) + script + '00' * 10
+        outer = enc_uint(0x20) + enc_uint(len(inner) // 2) + inner
+        log = {'topics': [dh.LBTC_TOPICS['MessageSent'], '0x' + '00' * 32], 'data': '0x' + outer, 'blockNumber': hex(7), 'transactionHash': '0x1'}
+        r = dh.decode_lombard_redeem(log)
+        self.assertEqual((r['amount_sats'], r['script'], r['to_bitcoin']), (24_880_800, script, True))
+        old = {'topics': [dh.LBTC_TOPICS['UnstakeRequest'], '0x' + '00' * 32], 'blockNumber': hex(8), 'transactionHash': '0x2',
+               'data': '0x' + enc_uint(0x40) + enc_uint(6_029_500) + enc_uint(len(script) // 2) + script + '00' * 10}
+        self.assertEqual(dh.decode_lombard_redeem(old)['amount_sats'], 6_029_500)
+
+    def test_payout_match_takes_the_rate_or_par_and_skips_unrelated_payments(self):
+        pays = [(50, 39_243, 'dust'), (100, 25_006_458, 'payout'), (90, 24_880_800, 'before the request')]
+        self.assertEqual(dh.match_btc_payout(95, 24_880_800, 1.00505, pays)[2], 'payout')
+        self.assertEqual(dh.match_btc_payout(10, 6_029_500, 1.0, [(20, 6_029_500, 'par')])[2], 'par')
+        self.assertIsNone(dh.match_btc_payout(10, 6_029_500, 1.0, [(20, 3_000_000, 'half')]))
+
 if __name__ == '__main__':
     unittest.main()

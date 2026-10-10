@@ -1,0 +1,64 @@
+{
+ "generated": "2026-10-10T17:19:03Z",
+ "analysis_generated": "2026-10-10T17:19:02Z",
+ "precommit_sha256": "af4ad9046f243696e00a9d82a0e4309d11bf8fdd129d0475b0542155607d5742",
+ "endpoints": {
+  "stats": "GET https://stats-data.hyperliquid.xyz/Mainnet/vaults (all vaults, closed included; summary + coarse pnls)",
+  "details": "POST https://api.hyperliquid.xyz/info {\"type\":\"vaultDetails\",\"vaultAddress\":...} (portfolio histories, leaderFraction, leaderCommission, followers (top 100 only), allowDeposits, isClosed)",
+  "prices": "https://api.binance.com/api/v3/klines BTCUSDT/ETHUSDT 1d; https://api.hyperliquid.xyz/info candleSnapshot HYPE 1d"
+ },
+ "fetch_plan": {
+  "rule": "core: tvl >= 10000 or max |coarse allTime pnl| >= 1000 or HLP family; sample: 10% of the rest, seed 20261010",
+  "n_stats": 9477,
+  "n_core": 3214,
+  "n_rest": 6263,
+  "n_sample": 626
+ },
+ "collect": {
+  "stats": {
+   "file": "raw/vaults_stats.json.gz",
+   "fetched_at": "2026-10-10T15:07:43Z"
+  },
+  "prices": {
+   "files": [
+    "binance_BTCUSDT_1d.json.gz",
+    "binance_ETHUSDT_1d.json.gz",
+    "hl_HYPE_1d.json.gz"
+   ],
+   "fetched_at": "2026-10-10T15:07:47Z"
+  },
+  "seconds_last_run": 7775.8,
+  "details": {
+   "planned": 3840,
+   "fetched_this_run": 3840,
+   "failures_this_run": 0,
+   "on_disk": 3840,
+   "finished_at": "2026-10-10T17:17:27Z",
+   "http": {
+    "requests": 3842,
+    "errors": 2,
+    "throttled": 0
+   }
+  }
+ },
+ "counts": {
+  "stats_vaults": 9477,
+  "details_on_disk": 3840,
+  "core": 3214,
+  "sample": 626
+ },
+ "files": {
+  "raw/vaults_stats.json.gz": "stats file",
+  "raw/details/<vault>.json.gz": "vaultDetails responses",
+  "raw/prices/": "BTC/ETH (Binance) and HYPE (Hyperliquid) daily closes",
+  "precommit.json": "variant list and rules, hashed before forward returns were computed",
+  "analysis.json": "every number",
+  "tables.md": "rendered tables"
+ },
+ "api_gaps": [
+  "no history of leaderFraction, follower count or allowDeposits: only today's values, so they cannot be signals and the deposit gate at t is assumed open while the vault was open",
+  "followers list is capped at 100 entries (largest first), so follower counts above 100 are unknown",
+  "allTime grid is 24 h / 168 h / 336 h by the vault's age today, so month-end values are the last grid point <= t and holding windows start at the first point >= t (<= 14 days later)",
+  "the profit share is charged on withdrawal by the protocol; the simulator charges it on the follower's cost basis, which is the documented rule, but the exact on-chain crystallisation was not observed"
+ ]
+}

@@ -85,5 +85,49 @@ class Placebo(unittest.TestCase):
         self.assertEqual(U.by_day([(D + 5, 1.0), (D + 9, 3.0), (3 * D, 5.0)]), [2.0, 5.0])
 
 
+def row(coin, unlock_ms):
+    return {'coin': coin, 'unlock_utc': U.utc_iso(unlock_ms), 'enter_short_utc': U.utc_iso(unlock_ms - 3 * D),
+            'size_of_unlocked': 0.02}
+
+
+class Forward(unittest.TestCase):
+    def test_registration_needs_a_future_entry_and_is_never_repeated(self):
+        now_s = (T0 + 10 * D) / 1000
+        rows = [row('A', T0 + 12 * D), row('B', T0 + 14 * D), row('C', T0 + 20 * D)]   # A's entry was day 9
+        new, late = U.registrable(rows, [row('B', T0 + 14 * D + 3 * H)], now_s)         # B already, hours apart
+        self.assertEqual([r['coin'] for r in new], ['C'])
+        self.assertEqual([r['coin'] for r in late], ['A'])
+
+    def test_bid_depth_counts_only_bids_near_the_mid(self):
+        book = {'levels': [[{'px': '99.9', 'sz': '10'}, {'px': '99.0', 'sz': '100'}],
+                           [{'px': '100.1', 'sz': '5'}]]}
+        self.assertAlmostEqual(U.bid_depth(book, bps=25), 999.0)
+        self.assertIsNone(U.bid_depth({'levels': [[], []]}))
+
+    def test_score_waits_for_each_window_and_skips_placebos_near_other_cliffs(self):
+        n = 40 * 24
+        coin = s_from([10.0 * math.exp(-0.001 * i) for i in range(n)])
+        btc = s_from([50_000.0] * n)
+        r = row('A', T0 + 20 * D + 30 * 60 * 1000)
+        T = U.iso_ms(r['unlock_utc'])
+        early = U.score_event(r, coin, btc, 30.0, [], now_ms=T - D)
+        self.assertIsNone(early['trade'])
+        self.assertEqual(len(early['placebo']), 1)                       # only the -15d window has closed
+        late = U.score_event(r, coin, btc, 30.0, [T + 16 * D], now_ms=T0 + n * H)
+        self.assertGreater(late['trade']['pnl'], 0)                      # the coin fell into the unlock
+        self.assertEqual([p['shift_days'] for p in late['placebo']], [-15])   # +15d is a day from another cliff
+
+    def test_verdict_follows_the_book_criteria(self):
+        def s(T, pnl, placebo):
+            return {'T': T, 'trade': {'pnl': pnl, 'abnormal': -pnl, 'funding_short_received': 0.0,
+                                      'funding_btc_long_paid': 0.0, 'cost': 0.0}, 'placebo': [{'pnl': placebo}]}
+        few = U.forward_summary([s(T0 + i * D, 0.02, 0.0) for i in range(5)])
+        self.assertTrue(few['verdict'].startswith('accumulating'))
+        bad = U.forward_summary([s(T0 + i * D, -0.01 + 0.001 * (i % 3), 0.0) for i in range(30)])
+        self.assertTrue(bad['verdict'].startswith('kill'))
+        good = U.forward_summary([s(T0 + i * D, 0.02 + 0.002 * (i % 3), 0.0) for i in range(30)])
+        self.assertTrue(good['verdict'].startswith('promote'))
+
+
 if __name__ == '__main__':
     unittest.main()

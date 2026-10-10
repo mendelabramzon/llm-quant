@@ -470,16 +470,14 @@ def pct(x, d=2):
     return '—' if x is None else '%+.*f%%' % (d, 100 * x)
 
 
-def cmd_upcoming(args):
-    """The forward test's calendar: seller cliffs in the next `--days` on matched perps, at least `--min-size` of the
-    supply unlocked so far, with the entry time the pre-unlock rule implies (T - 3 days) and the coin's book."""
-    out = Path(args.out)
+def upcoming_rows(out, days, min_size, rt_window, now_s):
+    """Seller cliffs in the next `days` on matched perps, at least `min_size` of the supply unlocked so far, with the
+    entry time the pre-unlock rule implies (T - 3 days) and the coin's book from `rt_window`."""
     man = json.loads((out / 'manifest.json').read_text())
-    now_s = time.time()
-    rts = coin_round_trips(args.rt_window)
+    rts = coin_round_trips(rt_window)
     depth = {}
-    if args.rt_window and Path(args.rt_window).exists():
-        W = json.loads(Path(args.rt_window).read_text())
+    if rt_window and Path(rt_window).exists():
+        W = json.loads(Path(rt_window).read_text())
         depth = {r['coin']: (r.get('book') or {}).get('bid_depth_25bp_usd') for r in W.get('assets', [])}
     rows = []
     for coin, m in sorted(man['matched'].items()):
@@ -490,17 +488,25 @@ def cmd_upcoming(args):
             continue
         pf = json.loads(fn.read_text())
         for e in cliff_events(pf):
-            if not (now_s < e['ts'] <= now_s + args.days * 86400):
+            if not (now_s < e['ts'] <= now_s + days * 86400):
                 continue
             unlocked = unlocked_on(pf.get('documentedData'), int(now_s))
             size = (e['tokens'] / unlocked) if unlocked else None
-            if size is None or size < args.min_size:
+            if size is None or size < min_size:
                 continue
             rows.append({'coin': coin, 'unlock_utc': utc_iso(e['ts'] * 1000),
                          'enter_short_utc': utc_iso((e['ts'] - 3 * 86400) * 1000), 'tokens': e['tokens'],
                          'size_of_unlocked': size, 'categories': e['categories'],
                          'round_trip_bps_100k': rts.get(coin), 'bid_depth_25bp_usd': depth.get(coin)})
     rows.sort(key=lambda r: r['unlock_utc'])
+    return rows
+
+
+def cmd_upcoming(args):
+    """The forward test's calendar: seller cliffs in the next `--days` on matched perps, at least `--min-size` of the
+    supply unlocked so far, with the entry time the pre-unlock rule implies (T - 3 days) and the coin's book."""
+    out = Path(args.out)
+    rows = upcoming_rows(out, args.days, args.min_size, args.rt_window, time.time())
     write_json(out / 'upcoming.json', {'generated': dt.datetime.now(UTC).isoformat(), 'days': args.days,
                                        'min_size': args.min_size, 'rule': 'short the perp and buy BTC at T-3d, close both at T',
                                        'rows': rows})
@@ -509,6 +515,190 @@ def cmd_upcoming(args):
             r['coin'], r['unlock_utc'][:16], r['enter_short_utc'][:16], 100 * r['size_of_unlocked'],
             '+'.join(r['categories']), r['round_trip_bps_100k'] and '%.0fbp' % r['round_trip_bps_100k'],
             r['bid_depth_25bp_usd'] and '$%.0fk' % (r['bid_depth_25bp_usd'] / 1e3)))
+    return 0
+
+
+# ------------------------------------------------------------------------------------------------ forward test
+
+# The rule the book's `unlock-preshort` entry was proposed on, frozen. A registered row is never edited: a later
+# schedule download may move an unlock by hours, and the first registration stands, because the point of a forward
+# test is that nothing about an event is decided after its entry time.
+FORWARD_RULE = {'id': 'unlock-preshort', 'window_days': [-3, 0], 'min_size': 0.01,
+                'categories': sorted(SELLER_CATEGORIES), 'venue': 'Hyperliquid core perps',
+                'hedge': 'long the BTC perp, same notional', 'placebo_shift_days': [-15, 15],
+                'kill': 'after 30 scored events, mean excess over the placebo not positive',
+                'promote': 'after 30 scored events, excess positive and event-day t of the P&L above 2'}
+FORWARD_MIN_EVENTS = 30
+FORWARD_LEDGER = ROOT / 'research' / 'unlocks_forward.jsonl'
+
+
+def iso_ms(s):
+    return int(dt.datetime.fromisoformat(s).timestamp() * 1000)
+
+
+def read_ledger(path):
+    p = Path(path)
+    if not p.exists():
+        return []
+    return [json.loads(line) for line in p.read_text().splitlines() if line.strip()]
+
+
+def ledger_key(row):
+    return row['coin'], row['unlock_utc'][:10]
+
+
+def registrable(rows, ledger, now_s):
+    """(new, late): rows whose entry is still ahead and are not yet registered for that coin and unlock day, and rows
+    whose entry has already passed. A row registered after its entry would carry the price it is betting on."""
+    have = {ledger_key(r) for r in ledger}
+    new, late = [], []
+    for r in rows:
+        if ledger_key(r) in have:
+            continue
+        (new if iso_ms(r['enter_short_utc']) / 1000 > now_s else late).append(r)
+    return new, late
+
+
+def bid_depth(book, bps=25):
+    """USD of bids within `bps` of the mid in a Hyperliquid l2Book reply (None for an empty side)."""
+    bids, asks = book['levels'][0], book['levels'][1]
+    if not bids or not asks:
+        return None
+    mid = (float(bids[0]['px']) + float(asks[0]['px'])) / 2
+    floor = mid * (1 - bps / 1e4)
+    return sum(float(lv['px']) * float(lv['sz']) for lv in bids if float(lv['px']) >= floor)
+
+
+def api_series(api, coin, t0, t1):
+    """The (keys, closes, funding) triple `series` reads from the store, fetched from the venue: hourly closes keyed by
+    bar end, hourly funding keyed by its hour. candleSnapshot serves the last 5,000 bars, so an event must be scored
+    within about 200 days of its unlock."""
+    import perp_rpc as R
+    closes = {int(c['t']) + HOUR_MS: float(c['c']) for c in (R.candles(api, coin, '1h', t0, t1) or [])}
+    fund, start = {}, t0
+    while True:
+        rows = R.funding_history(api, coin, start, t1) or []
+        for r in rows:
+            fund[int((int(r['time']) + HOUR_MS // 2) // HOUR_MS * HOUR_MS)] = float(r['fundingRate'])
+        if len(rows) < 500:
+            break
+        start = int(rows[-1]['time']) + 1
+    return sorted(closes), closes, fund
+
+
+def score_event(row, coin_s, btc_s, rt_bps, other_T, now_ms):
+    """The frozen rule on one registered event, and its placebo windows a fortnight either side (skipped within a week
+    of another scheduled cliff of the same coin, and until the window has closed)."""
+    T = iso_ms(row['unlock_utc'])
+    a, b = FORWARD_RULE['window_days']
+    res = {'coin': row['coin'], 'unlock_utc': row['unlock_utc'], 'T': T, 'trade': None, 'placebo': [],
+           'pending': []}
+    if now_ms >= T + HOUR_MS:
+        res['trade'] = window_trade(coin_s, btc_s, T, a, b, rt_bps=rt_bps)
+        if res['trade'] is None:
+            res['pending'].append('trade: price missing')
+    else:
+        res['pending'].append('trade: unlock not yet passed')
+    for shift in FORWARD_RULE['placebo_shift_days']:
+        Tp = T + shift * DAY_MS
+        if any(abs(Tp - t) < 7 * DAY_MS for t in other_T):
+            continue
+        if now_ms < Tp + HOUR_MS:
+            res['pending'].append('placebo %+d: not yet passed' % shift)
+            continue
+        tr = window_trade(coin_s, btc_s, Tp, a, b, rt_bps=rt_bps)
+        if tr:
+            res['placebo'].append(dict(tr, shift_days=shift))
+    return res
+
+
+def forward_summary(scored):
+    """Mean P&L, the placebo's mean, their difference and its Welch t, the event-day t of the P&L, and the verdict the
+    book's kill criteria imply once 30 events have been scored."""
+    trades = [(s['T'], s['trade']['pnl']) for s in scored if s.get('trade')]
+    pnl = [v for _, v in trades]
+    plac = [p['pnl'] for s in scored for p in s['placebo']]
+    m, mp = (statistics.fmean(pnl) if pnl else None), (statistics.fmean(plac) if plac else None)
+    excess = (m - mp) if (m is not None and mp is not None) else None
+    t_day = tstat(by_day(trades))
+    if len(pnl) < FORWARD_MIN_EVENTS:
+        verdict = 'accumulating (%d of %d events scored)' % (len(pnl), FORWARD_MIN_EVENTS)
+    elif excess is None or excess <= 0:
+        verdict = 'kill: mean excess over the placebo is not positive'
+    elif t_day is not None and t_day > 2:
+        verdict = 'promote: excess positive and event-day t above 2'
+    else:
+        verdict = 'hold: excess positive, event-day t not above 2'
+    return {'events_scored': len(pnl), 'mean_pnl': m, 'placebo_n': len(plac), 'placebo_mean': mp, 'excess': excess,
+            'excess_t': welch_t(pnl, plac), 't_by_day': t_day,
+            'hit': (sum(1 for v in pnl if v > 0) / len(pnl)) if pnl else None,
+            'components': components([s['trade'] for s in scored if s.get('trade')]), 'verdict': verdict}
+
+
+def cmd_forward(args):
+    out, ledger_path = Path(args.out), Path(args.ledger)
+    ledger = read_ledger(ledger_path)
+    now_s = time.time()
+    import perp_rpc as R
+    api = R.Info(interval=0.4)
+    if args.action == 'register':
+        rows = upcoming_rows(out, args.days, FORWARD_RULE['min_size'], args.rt_window, now_s)
+        new, late = registrable(rows, ledger, now_s)
+        man = json.loads((out / 'manifest.json').read_text())
+        stamp = dt.datetime.fromtimestamp(now_s, UTC).isoformat()
+        with ledger_path.open('a') as f:
+            for r in new:
+                try:
+                    depth = bid_depth(R.l2_book(api, r['coin']))
+                except R.APIError as e:
+                    depth = None
+                    print('book %s: %s' % (r['coin'], e))
+                row = dict(r, registered_at=stamp, rule=FORWARD_RULE['id'], bid_depth_25bp_usd_at_registration=depth,
+                           schedule_from=str(out), schedule_collected=man.get('collected_at'))
+                f.write(json.dumps(row, sort_keys=True) + '\n')
+                print('registered %-8s unlock %s  enter %s  size %5.2f%%  bids within 25bp %s' % (
+                    r['coin'], r['unlock_utc'][:16], r['enter_short_utc'][:16], 100 * r['size_of_unlocked'],
+                    '—' if depth is None else '$%.0fk' % (depth / 1e3)))
+        for r in late:
+            print('too late  %-8s entry %s has passed' % (r['coin'], r['enter_short_utc'][:16]))
+        print('%d registered, %d too late, %d in the ledger' % (len(new), len(late), len(ledger) + len(new)))
+        return 0
+    # score
+    rts = coin_round_trips(args.rt_window)
+    man = json.loads((out / 'manifest.json').read_text())
+    now_ms = int(now_s * 1000)
+    due = [r for r in ledger if iso_ms(r['unlock_utc']) - 15 * DAY_MS <= now_ms]
+    if not due:
+        print('nothing to score yet: %d registered, first unlock %s' % (
+            len(ledger), min((r['unlock_utc'] for r in ledger), default='—')))
+        return 0
+    t0 = min(iso_ms(r['unlock_utc']) for r in due) - 20 * DAY_MS
+    t1 = min(now_ms, max(iso_ms(r['unlock_utc']) for r in due) + 16 * DAY_MS)
+    btc = api_series(api, 'BTC', t0, t1)
+    scored = []
+    for r in due:
+        T = iso_ms(r['unlock_utc'])
+        slug = (man['matched'].get(r['coin']) or {}).get('slug')
+        other = [r2_T for r2_T in (iso_ms(x['unlock_utc']) for x in ledger if x['coin'] == r['coin']) if r2_T != T]
+        fn = out / 'raw' / 'emissions' / ('%s.json' % slug) if slug else None
+        if fn and fn.exists():
+            other += [e['ts'] * 1000 for e in cliff_events(json.loads(fn.read_text())) if abs(e['ts'] * 1000 - T) > DAY_MS]
+        coin_s = api_series(api, r['coin'], T - 20 * DAY_MS, min(now_ms, T + 16 * DAY_MS))
+        scored.append(score_event(r, coin_s, btc, rts.get(r['coin'], args.rt_bps), other, now_ms))
+    S = forward_summary(scored)
+    res = {'generated': dt.datetime.fromtimestamp(now_s, UTC).isoformat(), 'rule': FORWARD_RULE,
+           'ledger': str(ledger_path), 'registered': len(ledger), 'summary': S,
+           'events': [{k: v for k, v in s.items() if k != 'T'} for s in scored]}
+    write_json(ledger_path.with_suffix('.json'), res)
+    for s in scored:
+        tr = s['trade']
+        print('%-8s %s  trade %s  placebo %s  %s' % (
+            s['coin'], s['unlock_utc'][:16], pct(tr and tr['pnl']),
+            ' '.join(pct(p['pnl']) for p in s['placebo']) or '—', '; '.join(s['pending'])))
+    print('scored %d: mean %s, placebo %s, excess %s (t %s), event-day t %s -> %s' % (
+        S['events_scored'], pct(S['mean_pnl']), pct(S['placebo_mean']), pct(S['excess']),
+        '—' if S['excess_t'] is None else '%.2f' % S['excess_t'],
+        '—' if S['t_by_day'] is None else '%.2f' % S['t_by_day'], S['verdict']))
     return 0
 
 
@@ -573,6 +763,14 @@ def main():
     u.add_argument('--rt-window', default='research/2026-09-10/perps_2/analysis.json')
     r = sub.add_parser('render'); r.set_defaults(fn=cmd_render)
     r.add_argument('--out', required=True)
+    f = sub.add_parser('forward', help='register upcoming events before their entry; score them after their unlock')
+    f.set_defaults(fn=cmd_forward)
+    f.add_argument('action', choices=['register', 'score'])
+    f.add_argument('--out', required=True, help='the study directory whose schedule (collect) is used')
+    f.add_argument('--ledger', default=str(FORWARD_LEDGER))
+    f.add_argument('--days', type=int, default=45)
+    f.add_argument('--rt-window', default='research/2026-09-10/perps_2/analysis.json')
+    f.add_argument('--rt-bps', type=float, default=35.0)
     args = p.parse_args()
     raise SystemExit(args.fn(args))
 

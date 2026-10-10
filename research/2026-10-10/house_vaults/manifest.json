@@ -1,0 +1,1193 @@
+{
+ "study": "house_vaults",
+ "generated_at": "2026-10-10T17:50:47.139917+00:00",
+ "script": "scripts/house_vaults.py (collect / analyze / render)",
+ "sources": {
+  "hyperliquid": "POST https://api.hyperliquid.xyz/info vaultDetails (HLP parent + 7 children), userNonFundingLedgerUpdates (HLP, last 7 days, addresses stripped); >= 1.5 s a call",
+  "binance": "https://fapi.binance.com/fapi/v1/klines (1h) and /fapi/v1/fundingRate for BTC/ETH/SOL/HYPE USDT perps",
+  "jupiter": "https://perps-api.jup.ag/v1/jlp-info (snapshot); JLP mint 27G8MtK7VtTcCHkpASjSDdkWWYfoqT6ggEuKidVJidD4 verified against getTokenSupply",
+  "defillama": "coins.llama.fi/chart/solana:<JLP mint> (daily price), api.llama.fi/summary/fees (supply-side revenue), api.llama.fi/protocol/jupiter-perpetual-exchange (TVL), yields.llama.fi/pools and /chart/<pool>",
+  "coingecko": "api.coingecko.com coins/jupiter-perpetuals-liquidity-provider-token/market_chart?days=365 (check path)",
+  "gmx": "GraphQL https://gmx.squids.live/gmx-synthetics-arbitrum:prod/api/graphql: prices (type gm/glv, daily snapshots), aprSnapshots, pnlAprSnapshots, cumulativePoolValues, marketInfos; https://arbitrum-api.gmxinfra.io/markets/info and /glvs/info",
+  "gains": "Infura Arbitrum archive eth_call at the last block before each 00:00 UTC: shareToAssetsPrice, totalAssets, totalSupply, accPnlPerToken, accRewardsPerToken, collateralizationP, currentEpoch, withdrawEpochsTimelock (gUSDC 0xd3443ee1e91aF28e5FB858Fbd0D72A63bA8046E0)",
+  "lighter": "https://mainnet.zklighter.elliot.ai/api/v1/account?by=index&value=281474976710654 (pool_info.daily_returns) and /pnl?resolution=1d (cumulative P&L and flows)",
+  "dydx": "https://indexer.dydx.trade/v4/vault/v1/megavault/historicalPnl (day, hour), /vault/v1/vaults/historicalPnl, /megavault/positions"
+ },
+ "ranges": {
+  "HLP": {
+   "choose": [
+    "2023-05-10",
+    "2024-12-18"
+   ],
+   "test": [
+    "2024-12-18",
+    "2026-10-10"
+   ],
+   "periods": 98,
+   "median_period_days": 13.99688918
+  },
+  "JLP": {
+   "choose": [
+    "2024-01-22",
+    "2025-06-27"
+   ],
+   "test": [
+    "2025-06-27",
+    "2026-10-09"
+   ],
+   "periods": 934,
+   "median_period_days": 1.0
+  },
+  "LLP": {
+   "choose": [
+    "2025-03-19",
+    "2025-12-29"
+   ],
+   "test": [
+    "2025-12-29",
+    "2026-10-10"
+   ],
+   "periods": 570,
+   "median_period_days": 1.0
+  },
+  "GM_ETH-USDC": {
+   "choose": [
+    "2023-09-03",
+    "2025-03-22"
+   ],
+   "test": [
+    "2025-03-22",
+    "2026-10-10"
+   ],
+   "periods": 1133,
+   "median_period_days": 1.0
+  },
+  "GM_BTC-USDC": {
+   "choose": [
+    "2023-09-03",
+    "2025-03-22"
+   ],
+   "test": [
+    "2025-03-22",
+    "2026-10-10"
+   ],
+   "periods": 1133,
+   "median_period_days": 1.0
+  },
+  "GM_SOL-USDC": {
+   "choose": [
+    "2023-09-03",
+    "2025-03-22"
+   ],
+   "test": [
+    "2025-03-22",
+    "2026-10-10"
+   ],
+   "periods": 1133,
+   "median_period_days": 1.0
+  },
+  "GM_ETH-ETH": {
+   "choose": [
+    "2024-06-11",
+    "2025-08-11"
+   ],
+   "test": [
+    "2025-08-11",
+    "2026-10-10"
+   ],
+   "periods": 851,
+   "median_period_days": 1.0
+  },
+  "GM_BTC-BTC": {
+   "choose": [
+    "2024-06-11",
+    "2025-08-11"
+   ],
+   "test": [
+    "2025-08-11",
+    "2026-10-10"
+   ],
+   "periods": 851,
+   "median_period_days": 1.0
+  },
+  "GLV_ETH-USDC": {
+   "choose": [
+    "2024-11-03",
+    "2025-10-22"
+   ],
+   "test": [
+    "2025-10-22",
+    "2026-10-10"
+   ],
+   "periods": 706,
+   "median_period_days": 1.0
+  },
+  "GLV_BTC-USDC": {
+   "choose": [
+    "2024-11-10",
+    "2025-10-26"
+   ],
+   "test": [
+    "2025-10-26",
+    "2026-10-10"
+   ],
+   "periods": 699,
+   "median_period_days": 1.0
+  },
+  "gUSDC_arbitrum": {
+   "choose": [
+    "2024-03-19",
+    "2025-06-30"
+   ],
+   "test": [
+    "2025-06-30",
+    "2026-10-10"
+   ],
+   "periods": 935,
+   "median_period_days": 1.0
+  }
+ },
+ "gaps": [
+  "HLP: no daily history in the public API; allTime is a 7-14 day grid (100 points), month a ~10 h grid for 30 days",
+  "dYdX MegaVault: indexer serves 90 days (daily) and 7 days (hourly) only",
+  "JLP: DefiLlama prices carry 2 decimals until mid-2025 (rounding noise in the choose half); no composition history",
+  "GMX: squid collectedFeesInfos has no 1d period (fees from aprSnapshots instead); GM deposit caps not collected",
+  "Gains: only Arbitrum gUSDC read on chain (Base/Polygon gUSDC and gETH are smaller: $0.6M, $0.25M, $0.55M TVL)",
+  "Lighter: publicPools 403; account and pnl endpoints used",
+  "Ostium, Avantis, Aster, edgeX, Drift: no working public history endpoint (see analysis.json skipped)",
+  "Extended: current summary only; Paradex: no protocol house vault in the public list"
+ ],
+ "collect_parts": {
+  "dydx": {
+   "part": "dydx",
+   "ok": true,
+   "result": {
+    "files": [
+     "megavault_pnl_day_2026-10-10.json",
+     "megavault_pnl_hour_2026-10-10.json",
+     "megavault_positions_2026-10-10.json",
+     "vaults_pnl_day_2026-10-10.json.gz"
+    ]
+   },
+   "finished": "2026-10-10T17:23:39.939991+00:00",
+   "seconds": 0.0,
+   "http_requests": 0,
+   "http_errors": 0,
+   "http_throttled": 0
+  },
+  "first_run": {
+   "hlp": {
+    "ok": false,
+    "result": {
+     "error": "unsupported operand type(s) for %: 'PosixPath' and 'str'"
+    },
+    "finished": "2026-10-10T15:14:17.434967+00:00",
+    "seconds": 0.0,
+    "http_requests": 0,
+    "http_errors": 0,
+    "http_throttled": 0
+   },
+   "binance": {
+    "ok": true,
+    "result": {
+     "BTCUSDT": {
+      "klines_1h": 30208,
+      "funding": 3776,
+      "first": "2023-05-01",
+      "last": "2026-10-10"
+     },
+     "ETHUSDT": {
+      "klines_1h": 30208,
+      "funding": 3776,
+      "first": "2023-05-01",
+      "last": "2026-10-10"
+     },
+     "SOLUSDT": {
+      "klines_1h": 30208,
+      "funding": 3776,
+      "first": "2023-05-01",
+      "last": "2026-10-10"
+     },
+     "HYPEUSDT": {
+      "klines_1h": 11958,
+      "funding": 2988,
+      "first": "2025-05-30",
+      "last": "2026-10-10"
+     }
+    },
+    "finished": "2026-10-10T15:15:14.933109+00:00",
+    "seconds": 57.5,
+    "http_requests": 86,
+    "http_errors": 0,
+    "http_throttled": 0
+   },
+   "jlp": {
+    "ok": true,
+    "result": {
+     "files": [
+      "coingecko_365d_2026-10-10.json",
+      "jlp_info_2026-10-10.json",
+      "llama_chart_1700000000.json",
+      "llama_chart_1743200000.json",
+      "llama_chart_1786400000.json"
+     ]
+    },
+    "finished": "2026-10-10T15:31:28.555592+00:00",
+    "seconds": 973.6,
+    "http_requests": 3,
+    "http_errors": 0,
+    "http_throttled": 0
+   },
+   "llama": {
+    "ok": true,
+    "result": {
+     "fees_jupiter-perpetual-exchange_dailyFees.json": true,
+     "fees_jupiter-perpetual-exchange_dailySupplySideRevenue.json": true,
+     "fees_gmx-v2-perps_dailyFees.json": true,
+     "fees_gmx-v2-perps_dailySupplySideRevenue.json": true,
+     "fees_gains-network_dailyFees.json": true,
+     "fees_gains-network_dailySupplySideRevenue.json": true,
+     "protocol_jupiter-perpetual-exchange.json.gz": true,
+     "yield_chart_gains_usdc_arbitrum.json": true,
+     "yield_chart_gmx_eth_usdc.json": true
+    },
+    "finished": "2026-10-10T15:31:39.752122+00:00",
+    "seconds": 11.2,
+    "http_requests": 7,
+    "http_errors": 0,
+    "http_throttled": 0
+   },
+   "gmx": {
+    "ok": true,
+    "result": {
+     "GM_ETH-USDC": {
+      "prices": 1194,
+      "fees1d": 0,
+      "poolvalue": 1111
+     },
+     "GM_BTC-USDC": {
+      "prices": 1194,
+      "fees1d": 0,
+      "poolvalue": 1111
+     },
+     "GM_SOL-USDC": {
+      "prices": 1194,
+      "fees1d": 0,
+      "poolvalue": 1111
+     },
+     "GM_ETH-ETH": {
+      "prices": 912,
+      "fees1d": 0,
+      "poolvalue": 912
+     },
+     "GM_BTC-BTC": {
+      "prices": 912,
+      "fees1d": 0,
+      "poolvalue": 912
+     },
+     "GLV_ETH-USDC": {
+      "prices": 767,
+      "fees1d": 0,
+      "poolvalue": 767
+     },
+     "GLV_BTC-USDC": {
+      "prices": 760,
+      "fees1d": 0,
+      "poolvalue": 760
+     }
+    },
+    "finished": "2026-10-10T16:03:42.720084+00:00",
+    "seconds": 1923.0,
+    "http_requests": 81,
+    "http_errors": 1,
+    "http_throttled": 0
+   },
+   "dydx": {
+    "ok": true,
+    "result": {
+     "files": [
+      "megavault_pnl_day_2026-10-10.json",
+      "megavault_pnl_hour_2026-10-10.json",
+      "megavault_positions_2026-10-10.json",
+      "vaults_pnl_day_2026-10-10.json.gz"
+     ]
+    },
+    "finished": "2026-10-10T16:03:49.710871+00:00",
+    "seconds": 7.0,
+    "http_requests": 4,
+    "http_errors": 0,
+    "http_throttled": 0
+   },
+   "probes": {
+    "ok": true,
+    "result": [
+     {
+      "venue": "Lighter LLP",
+      "what": "public pool info",
+      "url": "https://mainnet.zklighter.elliot.ai/api/v1/publicPools?filter=all&limit=10&index=0",
+      "at": "2026-10-10T16:03:49.711978+00:00",
+      "ok": false,
+      "error": "HTTP 403"
+     },
+     {
+      "venue": "Lighter LLP",
+      "what": "system config",
+      "url": "https://mainnet.zklighter.elliot.ai/api/v1/systemConfig",
+      "at": "2026-10-10T16:03:49.994884+00:00",
+      "ok": true,
+      "bytes": 476,
+      "head": "{\"code\": 200, \"liquidity_pool_index\": 281474976710654, \"staking_pool_index\": 281474976624800, \"funding_fee_rebate_account_index\": 713888, \"market_maker_incentive_account_index\": 723106, \"fee_collector_account_index\": 281474976496476, \"liquidity_pool_cooldown_period\": 300000, \"staking_pool_lockup_per"
+     },
+     {
+      "venue": "Paradex vaults",
+      "what": "vault list",
+      "url": "https://api.prod.paradex.trade/v1/vaults",
+      "at": "2026-10-10T16:03:50.682674+00:00",
+      "ok": true,
+      "bytes": 1119182,
+      "head": "{\"results\": [{\"address\": \"0x7c8d46ccf97d7a296becbe655723c9c0beb7b8c519c9b4aab8a03af5f5ff2cb\", \"name\": \"liga888\", \"description\": \"\", \"curator_name\": \"\", \"strategy_description\": \"\", \"owner_account\": \"0x128a12d434adcbbfdc76b7ffc1e339eea4381c247c84e9a3af5d94dc8e8af9\", \"operator_account\": \"0x71e71885cbbe"
+     },
+     {
+      "venue": "Paradex vaults",
+      "what": "vault summary",
+      "url": "https://api.prod.paradex.trade/v1/vaults/summary",
+      "at": "2026-10-10T16:03:52.400023+00:00",
+      "ok": true,
+      "bytes": 1067232,
+      "head": "{\"results\": [{\"address\": \"0x7c8d46ccf97d7a296becbe655723c9c0beb7b8c519c9b4aab8a03af5f5ff2cb\", \"owner_equity\": \"0\", \"vtoken_supply\": \"0\", \"vtoken_price\": \"\", \"tvl\": \"0\", \"net_deposits\": \"0\", \"total_roi\": \"0\", \"roi_24h\": \"0\", \"roi_7d\": \"0\", \"roi_30d\": \"0\", \"last_month_return\": \"0\", \"total_pnl\": \"0\", \""
+     },
+     {
+      "venue": "Extended vault",
+      "what": "vault info",
+      "url": "https://api.starknet.extended.exchange/api/v1/vault/public/summary",
+      "at": "2026-10-10T16:03:53.935217+00:00",
+      "ok": true,
+      "bytes": 286,
+      "head": "{\"status\": \"OK\", \"data\": {\"equity\": \"64426618.620123\", \"walletBalance\": \"64426618.620123\", \"last30dApr\": \"0.0936\", \"lastMonthApr\": \"0.0936\", \"exposure\": \"0\", \"numberOfDepositors\": 14723, \"ageDays\": 549, \"profitShare\": \"0\", \"aprBreakdown\": {\"baseApr\": \"0.0326\", \"maxExtraApr\": \"0.061\"}}}"
+     },
+     {
+      "venue": "edgeX vault",
+      "what": "pool list",
+      "url": "https://pro.edgex.exchange/api/v1/public/meta/getMetaData",
+      "at": "2026-10-10T16:03:55.191378+00:00",
+      "ok": false,
+      "error": "https://pro.edgex.exchange/api/v1/public/meta/getMetaData failed: HTTP 503"
+     },
+     {
+      "venue": "Drift insurance fund",
+      "what": "IF stats",
+      "url": "https://data.api.drift.trade/stats/insuranceFund",
+      "at": "2026-10-10T16:04:05.301984+00:00",
+      "ok": false,
+      "error": "https://data.api.drift.trade/stats/insuranceFund failed: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+     },
+     {
+      "venue": "Aster ALP",
+      "what": "ALP info",
+      "url": "https://www.asterdex.com/bapi/futures/v1/public/future/alp/info",
+      "at": "2026-10-10T16:04:14.570678+00:00",
+      "ok": false,
+      "error": "HTTP 404"
+     },
+     {
+      "venue": "Avantis vaults",
+      "what": "vault stats",
+      "url": "https://api.avantisfi.com/v1/vault/stats",
+      "at": "2026-10-10T16:04:15.149482+00:00",
+      "ok": false,
+      "error": "HTTP 404"
+     },
+     {
+      "venue": "Ostium OLP",
+      "what": "vault info",
+      "url": "https://metadata-backend.ostium.io/vault/stats",
+      "at": "2026-10-10T16:04:15.885390+00:00",
+      "ok": false,
+      "error": "HTTP 404"
+     }
+    ],
+    "finished": "2026-10-10T16:04:17.292387+00:00",
+    "seconds": 27.6,
+    "http_requests": 12,
+    "http_errors": 8,
+    "http_throttled": 0
+   }
+  },
+  "gains_run": {
+   "hlp": {
+    "ok": false,
+    "result": {
+     "error": "unsupported operand type(s) for %: 'PosixPath' and 'str'"
+    },
+    "finished": "2026-10-10T15:14:17.434967+00:00",
+    "seconds": 0.0,
+    "http_requests": 0,
+    "http_errors": 0,
+    "http_throttled": 0
+   },
+   "binance": {
+    "ok": true,
+    "result": {
+     "BTCUSDT": {
+      "klines_1h": 30208,
+      "funding": 3776,
+      "first": "2023-05-01",
+      "last": "2026-10-10"
+     },
+     "ETHUSDT": {
+      "klines_1h": 30208,
+      "funding": 3776,
+      "first": "2023-05-01",
+      "last": "2026-10-10"
+     },
+     "SOLUSDT": {
+      "klines_1h": 30208,
+      "funding": 3776,
+      "first": "2023-05-01",
+      "last": "2026-10-10"
+     },
+     "HYPEUSDT": {
+      "klines_1h": 11958,
+      "funding": 2988,
+      "first": "2025-05-30",
+      "last": "2026-10-10"
+     }
+    },
+    "finished": "2026-10-10T15:15:14.933109+00:00",
+    "seconds": 57.5,
+    "http_requests": 86,
+    "http_errors": 0,
+    "http_throttled": 0
+   },
+   "jlp": {
+    "ok": true,
+    "result": {
+     "files": [
+      "coingecko_365d_2026-10-10.json",
+      "jlp_info_2026-10-10.json",
+      "llama_chart_1700000000.json",
+      "llama_chart_1743200000.json",
+      "llama_chart_1786400000.json"
+     ]
+    },
+    "finished": "2026-10-10T15:31:28.555592+00:00",
+    "seconds": 973.6,
+    "http_requests": 3,
+    "http_errors": 0,
+    "http_throttled": 0
+   },
+   "llama": {
+    "ok": true,
+    "result": {
+     "fees_jupiter-perpetual-exchange_dailyFees.json": true,
+     "fees_jupiter-perpetual-exchange_dailySupplySideRevenue.json": true,
+     "fees_gmx-v2-perps_dailyFees.json": true,
+     "fees_gmx-v2-perps_dailySupplySideRevenue.json": true,
+     "fees_gains-network_dailyFees.json": true,
+     "fees_gains-network_dailySupplySideRevenue.json": true,
+     "protocol_jupiter-perpetual-exchange.json.gz": true,
+     "yield_chart_gains_usdc_arbitrum.json": true,
+     "yield_chart_gmx_eth_usdc.json": true
+    },
+    "finished": "2026-10-10T15:31:39.752122+00:00",
+    "seconds": 11.2,
+    "http_requests": 7,
+    "http_errors": 0,
+    "http_throttled": 0
+   },
+   "gains": {
+    "ok": true,
+    "result": {
+     "gUSDC_arbitrum": {
+      "days": 1136
+     },
+     "rpc": {
+      "requests": 3913,
+      "errors": 7
+     }
+    },
+    "finished": "2026-10-10T17:50:23.346738+00:00",
+    "seconds": 8311.9,
+    "http_requests": 0,
+    "http_errors": 0,
+    "http_throttled": 0
+   }
+  },
+  "gmx": {
+   "part": "gmx",
+   "ok": true,
+   "result": {
+    "GM_ETH-USDC": {
+     "prices": 1194,
+     "fees1d": 0,
+     "poolvalue": 1111
+    },
+    "GM_BTC-USDC": {
+     "prices": 1194,
+     "fees1d": 0,
+     "poolvalue": 1111
+    },
+    "GM_SOL-USDC": {
+     "prices": 1194,
+     "fees1d": 0,
+     "poolvalue": 1111
+    },
+    "GM_ETH-ETH": {
+     "prices": 912,
+     "fees1d": 0,
+     "poolvalue": 912
+    },
+    "GM_BTC-BTC": {
+     "prices": 912,
+     "fees1d": 0,
+     "poolvalue": 912
+    },
+    "GLV_ETH-USDC": {
+     "prices": 767,
+     "fees1d": 0,
+     "poolvalue": 767
+    },
+    "GLV_BTC-USDC": {
+     "prices": 760,
+     "fees1d": 0,
+     "poolvalue": 760
+    }
+   },
+   "finished": "2026-10-10T17:23:39.939770+00:00",
+   "seconds": 0.0,
+   "http_requests": 0,
+   "http_errors": 0,
+   "http_throttled": 0
+  },
+  "hlp": {
+   "part": "hlp",
+   "ok": true,
+   "result": {
+    "snapshot_dir": "research/2026-10-10/house_vaults/raw/hlp/2026-10-10",
+    "children": 7
+   },
+   "finished": "2026-10-10T17:23:39.933554+00:00",
+   "seconds": 0.0,
+   "http_requests": 0,
+   "http_errors": 0,
+   "http_throttled": 0
+  },
+  "lighter": {
+   "part": "lighter",
+   "ok": true,
+   "result": {
+    "files": [
+     "llp_account_2026-10-10.json.gz",
+     "llp_pnl_1d_2026-10-10.json.gz",
+     "system_config.json"
+    ]
+   },
+   "finished": "2026-10-10T17:23:39.940161+00:00",
+   "seconds": 0.0,
+   "http_requests": 0,
+   "http_errors": 0,
+   "http_throttled": 0
+  },
+  "llama": {
+   "part": "llama",
+   "ok": true,
+   "result": {
+    "fees_jupiter-perpetual-exchange_dailyFees.json": true,
+    "fees_jupiter-perpetual-exchange_dailySupplySideRevenue.json": true,
+    "fees_gmx-v2-perps_dailyFees.json": true,
+    "fees_gmx-v2-perps_dailySupplySideRevenue.json": true,
+    "fees_gains-network_dailyFees.json": true,
+    "fees_gains-network_dailySupplySideRevenue.json": true,
+    "protocol_jupiter-perpetual-exchange.json.gz": true,
+    "yield_chart_gains_usdc_arbitrum.json": true,
+    "yield_chart_gmx_eth_usdc.json": true
+   },
+   "finished": "2026-10-10T17:23:39.933908+00:00",
+   "seconds": 0.0,
+   "http_requests": 0,
+   "http_errors": 0,
+   "http_throttled": 0
+  },
+  "probes": {
+   "part": "probes",
+   "ok": true,
+   "result": [
+    {
+     "venue": "Lighter LLP",
+     "what": "public pool info",
+     "url": "https://mainnet.zklighter.elliot.ai/api/v1/publicPools?filter=all&limit=10&index=0",
+     "at": "2026-10-10T16:03:49.711978+00:00",
+     "ok": false,
+     "error": "HTTP 403"
+    },
+    {
+     "venue": "Lighter LLP",
+     "what": "system config",
+     "url": "https://mainnet.zklighter.elliot.ai/api/v1/systemConfig",
+     "at": "2026-10-10T16:03:49.994884+00:00",
+     "ok": true,
+     "bytes": 476,
+     "head": "{\"code\": 200, \"liquidity_pool_index\": 281474976710654, \"staking_pool_index\": 281474976624800, \"funding_fee_rebate_account_index\": 713888, \"market_maker_incentive_account_index\": 723106, \"fee_collector_account_index\": 281474976496476, \"liquidity_pool_cooldown_period\": 300000, \"staking_pool_lockup_per"
+    },
+    {
+     "venue": "Paradex vaults",
+     "what": "vault list",
+     "url": "https://api.prod.paradex.trade/v1/vaults",
+     "at": "2026-10-10T16:03:50.682674+00:00",
+     "ok": true,
+     "bytes": 1119182,
+     "head": "{\"results\": [{\"address\": \"0x7c8d46ccf97d7a296becbe655723c9c0beb7b8c519c9b4aab8a03af5f5ff2cb\", \"name\": \"liga888\", \"description\": \"\", \"curator_name\": \"\", \"strategy_description\": \"\", \"owner_account\": \"0x128a12d434adcbbfdc76b7ffc1e339eea4381c247c84e9a3af5d94dc8e8af9\", \"operator_account\": \"0x71e71885cbbe"
+    },
+    {
+     "venue": "Paradex vaults",
+     "what": "vault summary",
+     "url": "https://api.prod.paradex.trade/v1/vaults/summary",
+     "at": "2026-10-10T16:03:52.400023+00:00",
+     "ok": true,
+     "bytes": 1067232,
+     "head": "{\"results\": [{\"address\": \"0x7c8d46ccf97d7a296becbe655723c9c0beb7b8c519c9b4aab8a03af5f5ff2cb\", \"owner_equity\": \"0\", \"vtoken_supply\": \"0\", \"vtoken_price\": \"\", \"tvl\": \"0\", \"net_deposits\": \"0\", \"total_roi\": \"0\", \"roi_24h\": \"0\", \"roi_7d\": \"0\", \"roi_30d\": \"0\", \"last_month_return\": \"0\", \"total_pnl\": \"0\", \""
+    },
+    {
+     "venue": "Extended vault",
+     "what": "vault info",
+     "url": "https://api.starknet.extended.exchange/api/v1/vault/public/summary",
+     "at": "2026-10-10T16:03:53.935217+00:00",
+     "ok": true,
+     "bytes": 286,
+     "head": "{\"status\": \"OK\", \"data\": {\"equity\": \"64426618.620123\", \"walletBalance\": \"64426618.620123\", \"last30dApr\": \"0.0936\", \"lastMonthApr\": \"0.0936\", \"exposure\": \"0\", \"numberOfDepositors\": 14723, \"ageDays\": 549, \"profitShare\": \"0\", \"aprBreakdown\": {\"baseApr\": \"0.0326\", \"maxExtraApr\": \"0.061\"}}}"
+    },
+    {
+     "venue": "edgeX vault",
+     "what": "pool list",
+     "url": "https://pro.edgex.exchange/api/v1/public/meta/getMetaData",
+     "at": "2026-10-10T16:03:55.191378+00:00",
+     "ok": false,
+     "error": "https://pro.edgex.exchange/api/v1/public/meta/getMetaData failed: HTTP 503"
+    },
+    {
+     "venue": "Drift insurance fund",
+     "what": "IF stats",
+     "url": "https://data.api.drift.trade/stats/insuranceFund",
+     "at": "2026-10-10T16:04:05.301984+00:00",
+     "ok": false,
+     "error": "https://data.api.drift.trade/stats/insuranceFund failed: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+    },
+    {
+     "venue": "Aster ALP",
+     "what": "ALP info",
+     "url": "https://www.asterdex.com/bapi/futures/v1/public/future/alp/info",
+     "at": "2026-10-10T16:04:14.570678+00:00",
+     "ok": false,
+     "error": "HTTP 404"
+    },
+    {
+     "venue": "Avantis vaults",
+     "what": "vault stats",
+     "url": "https://api.avantisfi.com/v1/vault/stats",
+     "at": "2026-10-10T16:04:15.149482+00:00",
+     "ok": false,
+     "error": "HTTP 404"
+    },
+    {
+     "venue": "Ostium OLP",
+     "what": "vault info",
+     "url": "https://metadata-backend.ostium.io/vault/stats",
+     "at": "2026-10-10T16:04:15.885390+00:00",
+     "ok": false,
+     "error": "HTTP 404"
+    }
+   ],
+   "finished": "2026-10-10T17:23:39.940369+00:00",
+   "seconds": 0.0,
+   "http_requests": 0,
+   "http_errors": 0,
+   "http_throttled": 0
+  }
+ },
+ "files": [
+  {
+   "path": "raw/binance/funding_BTCUSDT.json.gz",
+   "bytes": 24711,
+   "rows": 3776
+  },
+  {
+   "path": "raw/binance/funding_ETHUSDT.json.gz",
+   "bytes": 24967,
+   "rows": 3776
+  },
+  {
+   "path": "raw/binance/funding_HYPEUSDT.json.gz",
+   "bytes": 17220,
+   "rows": 2988
+  },
+  {
+   "path": "raw/binance/funding_SOLUSDT.json.gz",
+   "bytes": 25512,
+   "rows": 3776
+  },
+  {
+   "path": "raw/binance/klines1h_BTCUSDT.json.gz",
+   "bytes": 735674,
+   "rows": 30208
+  },
+  {
+   "path": "raw/binance/klines1h_ETHUSDT.json.gz",
+   "bytes": 731992,
+   "rows": 30208
+  },
+  {
+   "path": "raw/binance/klines1h_HYPEUSDT.json.gz",
+   "bytes": 266916,
+   "rows": 11958
+  },
+  {
+   "path": "raw/binance/klines1h_SOLUSDT.json.gz",
+   "bytes": 637389,
+   "rows": 30208
+  },
+  {
+   "path": "raw/dydx/megavault_pnl_day_2026-10-10.json",
+   "bytes": 16306,
+   "rows": 81
+  },
+  {
+   "path": "raw/dydx/megavault_pnl_hour_2026-10-10.json",
+   "bytes": 33846,
+   "rows": 168
+  },
+  {
+   "path": "raw/dydx/megavault_positions_2026-10-10.json",
+   "bytes": 43627
+  },
+  {
+   "path": "raw/dydx/vaults_pnl_day_2026-10-10.json.gz",
+   "bytes": 208015,
+   "rows": 268
+  },
+  {
+   "path": "raw/gains/blocks_arbitrum.json",
+   "bytes": 104275
+  },
+  {
+   "path": "raw/gains/gUSDC_arbitrum.json",
+   "bytes": 905410,
+   "rows": 1136
+  },
+  {
+   "path": "raw/gmx/apr_GLV_BTC-USDC.json.gz",
+   "bytes": 43882,
+   "rows": 760
+  },
+  {
+   "path": "raw/gmx/apr_GLV_ETH-USDC.json.gz",
+   "bytes": 44222,
+   "rows": 767
+  },
+  {
+   "path": "raw/gmx/apr_GM_BTC-BTC.json.gz",
+   "bytes": 51678,
+   "rows": 912
+  },
+  {
+   "path": "raw/gmx/apr_GM_BTC-USDC.json.gz",
+   "bytes": 63569,
+   "rows": 1109
+  },
+  {
+   "path": "raw/gmx/apr_GM_ETH-ETH.json.gz",
+   "bytes": 51874,
+   "rows": 912
+  },
+  {
+   "path": "raw/gmx/apr_GM_ETH-USDC.json.gz",
+   "bytes": 63897,
+   "rows": 1111
+  },
+  {
+   "path": "raw/gmx/apr_GM_SOL-USDC.json.gz",
+   "bytes": 64008,
+   "rows": 1110
+  },
+  {
+   "path": "raw/gmx/fees1d_GLV_BTC-USDC.json.gz",
+   "bytes": 60,
+   "rows": 0
+  },
+  {
+   "path": "raw/gmx/fees1d_GLV_ETH-USDC.json.gz",
+   "bytes": 60,
+   "rows": 0
+  },
+  {
+   "path": "raw/gmx/fees1d_GM_BTC-BTC.json.gz",
+   "bytes": 58,
+   "rows": 0
+  },
+  {
+   "path": "raw/gmx/fees1d_GM_BTC-USDC.json.gz",
+   "bytes": 59,
+   "rows": 0
+  },
+  {
+   "path": "raw/gmx/fees1d_GM_ETH-ETH.json.gz",
+   "bytes": 58,
+   "rows": 0
+  },
+  {
+   "path": "raw/gmx/fees1d_GM_ETH-USDC.json.gz",
+   "bytes": 59,
+   "rows": 0
+  },
+  {
+   "path": "raw/gmx/fees1d_GM_SOL-USDC.json.gz",
+   "bytes": 59,
+   "rows": 0
+  },
+  {
+   "path": "raw/gmx/glvs_info_2026-10-10.json.gz",
+   "bytes": 8854
+  },
+  {
+   "path": "raw/gmx/markets_info_2026-10-10.json.gz",
+   "bytes": 30040
+  },
+  {
+   "path": "raw/gmx/poolvalue_GLV_BTC-USDC.json.gz",
+   "bytes": 19662,
+   "rows": 760
+  },
+  {
+   "path": "raw/gmx/poolvalue_GLV_ETH-USDC.json.gz",
+   "bytes": 20081,
+   "rows": 767
+  },
+  {
+   "path": "raw/gmx/poolvalue_GM_BTC-BTC.json.gz",
+   "bytes": 23821,
+   "rows": 912
+  },
+  {
+   "path": "raw/gmx/poolvalue_GM_BTC-USDC.json.gz",
+   "bytes": 29009,
+   "rows": 1111
+  },
+  {
+   "path": "raw/gmx/poolvalue_GM_ETH-ETH.json.gz",
+   "bytes": 23842,
+   "rows": 912
+  },
+  {
+   "path": "raw/gmx/poolvalue_GM_ETH-USDC.json.gz",
+   "bytes": 29074,
+   "rows": 1111
+  },
+  {
+   "path": "raw/gmx/poolvalue_GM_SOL-USDC.json.gz",
+   "bytes": 28273,
+   "rows": 1111
+  },
+  {
+   "path": "raw/gmx/prices_GLV_BTC-USDC.json.gz",
+   "bytes": 29345,
+   "rows": 760
+  },
+  {
+   "path": "raw/gmx/prices_GLV_ETH-USDC.json.gz",
+   "bytes": 29625,
+   "rows": 767
+  },
+  {
+   "path": "raw/gmx/prices_GM_BTC-BTC.json.gz",
+   "bytes": 25927,
+   "rows": 912
+  },
+  {
+   "path": "raw/gmx/prices_GM_BTC-USDC.json.gz",
+   "bytes": 37551,
+   "rows": 1194
+  },
+  {
+   "path": "raw/gmx/prices_GM_ETH-ETH.json.gz",
+   "bytes": 26024,
+   "rows": 912
+  },
+  {
+   "path": "raw/gmx/prices_GM_ETH-USDC.json.gz",
+   "bytes": 37812,
+   "rows": 1194
+  },
+  {
+   "path": "raw/gmx/prices_GM_SOL-USDC.json.gz",
+   "bytes": 42531,
+   "rows": 1194
+  },
+  {
+   "path": "raw/gmx/squid_marketinfos_2026-10-10.json",
+   "bytes": 5170
+  },
+  {
+   "path": "raw/hlp/2026-10-10/ledger_7d.json.gz",
+   "bytes": 94782,
+   "rows": 1726
+  },
+  {
+   "path": "raw/hlp/2026-10-10/vault_0x010461c14e146ac35fe42271bdc1134ee31c703a.json.gz",
+   "bytes": 7534,
+   "rows": {
+    "day": 13,
+    "week": 65,
+    "month": 47,
+    "allTime": 106,
+    "perpDay": 13,
+    "perpWeek": 65,
+    "perpMonth": 47,
+    "perpAllTime": 73
+   }
+  },
+  {
+   "path": "raw/hlp/2026-10-10/vault_0x2e3d94f0562703b25c83308a05046ddaf9a8dd14.json.gz",
+   "bytes": 4768,
+   "rows": {
+    "day": 13,
+    "week": 61,
+    "month": 45,
+    "allTime": 95,
+    "perpDay": 13,
+    "perpWeek": 61,
+    "perpMonth": 45,
+    "perpAllTime": 72
+   }
+  },
+  {
+   "path": "raw/hlp/2026-10-10/vault_0x2ed5c4484ea3ff8b57d5f2fb152a40d9f2b68308.json.gz",
+   "bytes": 2089,
+   "rows": {
+    "day": 13,
+    "week": 61,
+    "month": 44,
+    "allTime": 53,
+    "perpDay": 13,
+    "perpWeek": 61,
+    "perpMonth": 44,
+    "perpAllTime": 53
+   }
+  },
+  {
+   "path": "raw/hlp/2026-10-10/vault_0x31ca8395cf837de08b24da3f660e77761dfb974b.json.gz",
+   "bytes": 7220,
+   "rows": {
+    "day": 13,
+    "week": 61,
+    "month": 45,
+    "allTime": 105,
+    "perpDay": 13,
+    "perpWeek": 61,
+    "perpMonth": 45,
+    "perpAllTime": 72
+   }
+  },
+  {
+   "path": "raw/hlp/2026-10-10/vault_0x469f690213c467c39a23efacfd2816896009d7d8.json.gz",
+   "bytes": 5168,
+   "rows": {
+    "day": 13,
+    "week": 61,
+    "month": 45,
+    "allTime": 50,
+    "perpDay": 13,
+    "perpWeek": 61,
+    "perpMonth": 45,
+    "perpAllTime": 50
+   }
+  },
+  {
+   "path": "raw/hlp/2026-10-10/vault_0x5e177e5e39c0f4e421f5865a6d8beed8d921cb70.json.gz",
+   "bytes": 2454,
+   "rows": {
+    "day": 13,
+    "week": 62,
+    "month": 45,
+    "allTime": 53,
+    "perpDay": 13,
+    "perpWeek": 62,
+    "perpMonth": 45,
+    "perpAllTime": 53
+   }
+  },
+  {
+   "path": "raw/hlp/2026-10-10/vault_0xb0a55f13d22f66e6d495ac98113841b2326e9540.json.gz",
+   "bytes": 2634,
+   "rows": {
+    "day": 13,
+    "week": 63,
+    "month": 46,
+    "allTime": 80,
+    "perpDay": 13,
+    "perpWeek": 63,
+    "perpMonth": 46,
+    "perpAllTime": 80
+   }
+  },
+  {
+   "path": "raw/hlp/2026-10-10/vault_0xdfc24b077bc1425ad1dea75bcb6f8158e10df303.json.gz",
+   "bytes": 13703,
+   "rows": {
+    "day": 49,
+    "week": 67,
+    "month": 48,
+    "allTime": 100,
+    "perpDay": 49,
+    "perpWeek": 67,
+    "perpMonth": 48,
+    "perpAllTime": 78
+   }
+  },
+  {
+   "path": "raw/jlp/coingecko_365d_2026-10-10.json",
+   "bytes": 53076,
+   "rows": 366
+  },
+  {
+   "path": "raw/jlp/jlp_info_2026-10-10.json",
+   "bytes": 5029
+  },
+  {
+   "path": "raw/jlp/llama_chart_1700000000.json",
+   "bytes": 19168,
+   "rows": 489
+  },
+  {
+   "path": "raw/jlp/llama_chart_1743200000.json",
+   "bytes": 23402,
+   "rows": 499
+  },
+  {
+   "path": "raw/jlp/llama_chart_1786400000.json",
+   "bytes": 4744,
+   "rows": 61
+  },
+  {
+   "path": "raw/lighter/llp_account_2026-10-10.json.gz",
+   "bytes": 28718
+  },
+  {
+   "path": "raw/lighter/llp_pnl_1d_2026-10-10.json.gz",
+   "bytes": 39752,
+   "rows": 632
+  },
+  {
+   "path": "raw/lighter/system_config.json",
+   "bytes": 490
+  },
+  {
+   "path": "raw/llama/fees_gains-network_dailyFees.json",
+   "bytes": 339836,
+   "rows": 1531
+  },
+  {
+   "path": "raw/llama/fees_gains-network_dailySupplySideRevenue.json",
+   "bytes": 336092,
+   "rows": 1531
+  },
+  {
+   "path": "raw/llama/fees_gmx-v2-perps_dailyFees.json",
+   "bytes": 215242,
+   "rows": 1176
+  },
+  {
+   "path": "raw/llama/fees_gmx-v2-perps_dailySupplySideRevenue.json",
+   "bytes": 212871,
+   "rows": 1166
+  },
+  {
+   "path": "raw/llama/fees_jupiter-perpetual-exchange_dailyFees.json",
+   "bytes": 98331,
+   "rows": 1103
+  },
+  {
+   "path": "raw/llama/fees_jupiter-perpetual-exchange_dailySupplySideRevenue.json",
+   "bytes": 98027,
+   "rows": 1103
+  },
+  {
+   "path": "raw/llama/pools.json.gz",
+   "bytes": 2360632
+  },
+  {
+   "path": "raw/llama/protocol_jupiter-perpetual-exchange.json.gz",
+   "bytes": 22172,
+   "rows": 987
+  },
+  {
+   "path": "raw/llama/yield_chart_gains_usdc_arbitrum.json",
+   "bytes": 174994,
+   "rows": 857
+  },
+  {
+   "path": "raw/llama/yield_chart_gmx_eth_usdc.json",
+   "bytes": 223155,
+   "rows": 1085
+  },
+  {
+   "path": "raw/manifest_dydx.json",
+   "bytes": 356
+  },
+  {
+   "path": "raw/manifest_first_run.json",
+   "bytes": 7063
+  },
+  {
+   "path": "raw/manifest_gains_run.json",
+   "bytes": 2240
+  },
+  {
+   "path": "raw/manifest_gmx.json",
+   "bytes": 727
+  },
+  {
+   "path": "raw/manifest_hlp.json",
+   "bytes": 265
+  },
+  {
+   "path": "raw/manifest_lighter.json",
+   "bytes": 294
+  },
+  {
+   "path": "raw/manifest_llama.json",
+   "bytes": 654
+  },
+  {
+   "path": "raw/manifest_probes.json",
+   "bytes": 3885
+  },
+  {
+   "path": "raw/probes/lighter_pools_meta.json",
+   "bytes": 30
+  },
+  {
+   "path": "raw/probes/paradex_0x5f43c92d_price_1h.json",
+   "bytes": 2212
+  },
+  {
+   "path": "raw/probes/paradex_0x5f43c92d_price_8h.json",
+   "bytes": 2206
+  },
+  {
+   "path": "raw/probes/paradex_0x5f43c92d_price_alltime.json",
+   "bytes": 2178
+  },
+  {
+   "path": "raw/probes/paradex_top5.json",
+   "bytes": 7497
+  },
+  {
+   "path": "raw/probes/probes.json",
+   "bytes": 3625,
+   "rows": 10
+  },
+  {
+   "path": "raw/probes/probes_round2.json",
+   "bytes": 487
+  }
+ ]
+}

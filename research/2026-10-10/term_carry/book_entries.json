@@ -1,0 +1,96 @@
+[
+ {
+  "id": "hl-hype-spot-perp-carry",
+  "name": "Hold HYPE spot as Hyperliquid portfolio-margin collateral and short the HYPE perp: collect Hyperliquid's funding",
+  "kind": "carry",
+  "status": "proposed",
+  "thesis": "Hyperliquid charges perp longs the 0.01%/8h interest leg (10.95% a year) whenever the premium is small, and the arbitrage capital that would push it down is segmented on one venue, so HYPE funding on Hyperliquid ran 9.1% a year in 2026 (Binance's HYPE perp: 4.5%). Long spot / short perp on Hyperliquid, with the spot as the short's collateral, collects it on capital equal to the notional. Rule chosen on 2024-12-06..2025-11-06 (always on), tested once on 2025-11-07..2026-10-09: +4.30% a year over the 3.80% savings rate on capital after fees, the basis, rebalancing and the borrow cost of the short's margin (Newey-West t 5.68, block-bootstrap 95% interval +2.85% to +5.66%, best four weeks 27% of the total). Both halves of the test held: +4.79% (t 3.52) before 2026-04-01 and +3.93% (t 4.45) after. Last 90 days +4.16%. The same trade on Binance made +0.45% (t 0.48): the edge is the venue's funding level, not HYPE.",
+  "mechanism": "Funding = premium + clamp(interest - premium, +/-0.05%/8h): with the premium near zero, longs pay the interest leg. On the CEXs, arbitrageurs short the perp until the premium is negative enough to pull funding to 3-6%; on Hyperliquid that capital is thinner because margin, collateral and custody all sit on one venue. Portfolio margin (docs read 2026-10-10: HYPE LTV 0.65, user cap 1M HYPE, global 25M; spot plus short perp 'collateralized by the spot balance') removes the second block of capital that made the funding_arb study's two-venue version a cost-of-capital trade.",
+  "legs": [
+   "buy HYPE spot on Hyperliquid (@107) over one to two weeks with limit orders, or bring HYPE to HyperCore from another venue; enable portfolio margin (account value $10k-$25M)",
+   "short the same quantity of the HYPE perp on Hyperliquid; its margin (about 10% of notional) is borrowed against the spot at the stablecoin borrow rate (5% APY below 80% utilisation)",
+   "rebalance both legs when HYPE has moved 25% since the last rebalance (repay the borrow by selling spot and buying back short); otherwise hold, always on"
+  ],
+  "capacity_usd": 5000000,
+  "capital_days": 365,
+  "kill_criteria": [
+   "trailing-30-day Hyperliquid HYPE funding below 6% a year (the savings rate + 2pp after the ~0.55% margin-borrow cost)",
+   "realised excess over the savings rate on capital negative over a trailing 90 days (term_carry.py analyze, carry block hl:HYPE collateral const)",
+   "Hyperliquid funding for HYPE within 2pp of Binance's HYPE funding over 30 days (the venue premium is gone)",
+   "portfolio-margin terms change: HYPE LTV below 0.5, user cap below 100k HYPE, or stablecoin borrow APY above 10% for a week",
+   "any auto-deleveraging of the short leg, a Hyperliquid halt or an exploit: close both legs and retire"
+  ],
+  "risks": [
+   "venue concentration with wrong-way risk: both legs and the collateral sit on Hyperliquid and HYPE is the venue's own token, so a Hyperliquid failure is a correlated loss on the spot and a possibly unrecoverable profit on the short",
+   "auto-deleveraging can close the profitable short in a crash and leave the spot unhedged (Hyperliquid ADL'd profitable positions on 2025-10-10)",
+   "selection: HYPE was flagged by the funding_arb study on 2026-04..10, which overlaps this test; the test's earlier part, 2025-11-07..2026-03-31, is independent of that and made +4.79% (t 3.52)",
+   "portfolio margin is new and its caps, LTVs and borrow curve can change; without it the trade needs separate USDC margin (3x: +2.69% a year out of sample, t 4.85)",
+   "the excess has compressed: in sample (Dec 2024 - Nov 2025) +25% a year, out of sample +4.3%; monthly excess was below +1% in 2026-03/04/05",
+   "the HL spot book binds size (about $1.1M within 25bp each side on 2026-10-10); a held position cannot be exited fast without paying through it"
+  ],
+  "evidence": {
+   "notes": "research/2026-10-10/term_carry/findings.md section (b); analysis.json carry.blocks name hl:HYPE (capital collateral/cash3x/cash5x, bench const/hist), funding_facts, capacity_estimates.hype; scripts/term_carry.py (collect --parts hl, analyze, render)",
+   "findings": [],
+   "verify": []
+  },
+  "quotes": [
+   {
+    "at": "2026-10-10T12:00:00+00:00",
+    "window": "research/2026-10-10/term_carry",
+    "source": "history",
+    "present": true,
+    "go": true,
+    "net_apr": 0.040,
+    "usd": 200000,
+    "note": "excess over the 3.80% savings rate on capital (spot as portfolio-margin collateral, borrow cost of the short's margin included): +4.30% a year out of sample 2025-11-07..2026-10-09 (t 5.68), +4.03% over the last 365 days, +4.16% over the last 90; quoted at the trailing year's 4.0% on $5M (about four times the HL spot book within 25bp, built over ~2 weeks; 0.3% of the $1.68B perp OI) = $200k a year. Trailing-30-day HL HYPE funding 9.1%."
+   }
+  ],
+  "recheck_hours": 72
+ },
+ {
+  "id": "dated-basis-cash-and-carry",
+  "name": "Buy BTC/ETH and sell the Deribit or Binance quarterly when the locked basis beats the savings rate by 2pp; hold to expiry",
+  "kind": "carry",
+  "status": "proposed",
+  "thesis": "A dated future sold against spot locks its basis to expiry; with the spot as the short's collateral (Deribit coin margin, Binance portfolio margin) the capital is the spot. Chosen on the first half of each venue's history and tested once on the rest, the rule beat the savings rate on capital per year of calendar time on every venue: Binance BTC +5.37% (2023-12..2026-10, 4 trades, mean locked excess 7.1%), Binance ETH +4.89%, Deribit BTC +3.47% (2022-10..2026-10), Deribit ETH +2.36%. But it is a regime trade: the locked excess was +6% to +8% in 2024 and negative on average in 2026 (front quarterlies 2.2-3.2% annualised); 42-43% of all days since 2019 offered >= 2pp, none in 2026. Today the best locked excess after a round trip is +0.90% (Deribit BTC March 2027), +0.76% on Binance: below the trigger. Entered as a standby with go = no.",
+  "mechanism": "Leveraged longs pay for dated exposure the same way they pay perp funding; the basis rises with demand for leverage (2021, 2024) and collapses in drawdowns (2022, 2026). The trade is speed-independent: entries are daily and the yield is fixed at entry.",
+  "legs": [
+   "each day at 00:00 UTC (Binance) or 08:00 UTC (Deribit), if idle: compute the locked yield to expiry of the front and next quarterly after a full round trip; enter when it beats the savings rate by 2pp on the capital",
+   "buy spot BTC/ETH (Binance spot, or deliver coin to Deribit as margin) and sell the same notional of the quarterly",
+   "hold to expiry; at expiry roll into the next quarterly the same day if it still clears the hurdle (the spot is kept), else sell the spot into the settlement"
+  ],
+  "capacity_usd": 35000000,
+  "capital_days": 120,
+  "kill_criteria": [
+   "the rule is flat (no position) unless the locked excess over the savings rate after a full round trip is at least 2pp on the capital",
+   "a completed trade whose realised P&L at expiry differs from its locked yield by more than 0.5% of notional (settlement or execution error)",
+   "combined Deribit and Binance quarterly open interest below $200M (capacity under $10M at 5%)",
+   "retire if a full calendar year passes with the trigger met on fewer than 10 days"
+  ],
+  "risks": [
+   "regime: the out-of-sample excess is concentrated in 2024 (Binance BTC rule +10.9% in 2024, +3.5% in 2025, +1.0% in 2026)",
+   "custody and venue: the spot sits on Deribit or Binance as margin for the duration",
+   "Binance quarterlies are USDT-margined against a USDT index (their basis ran 1.1pp a year above Deribit's on the same expiries)",
+   "without portfolio margin the short needs separate margin (3x cash: Binance BTC +3.30% a year out of sample instead of +5.37%)",
+   "CME was measured only from Yahoo's last two years: its front-month basis gave +1.09% a year over the savings rate on 1.4x capital with T-bill margin"
+  ],
+  "evidence": {
+   "notes": "research/2026-10-10/term_carry/findings.md section (a); analysis.json basis.<venue:asset> (protocol, chosen_test, locked_by_year, chosen_by_year_ann_excess, locked_now) and capacity_estimates.dated_*; scripts/term_carry.py",
+   "findings": [],
+   "verify": []
+  },
+  "quotes": [
+   {
+    "at": "2026-10-10T12:00:00+00:00",
+    "window": "research/2026-10-10/term_carry",
+    "source": "history",
+    "present": false,
+    "go": false,
+    "net_apr": 0.009,
+    "usd": 0,
+    "note": "dormant: the best locked excess today is +0.90% a year (Deribit BTC 26MAR27, 167 days, 5.34% annualised gross), below the 2pp trigger, so the rule holds nothing. When it triggers, capacity is ~$35M (5% of $703M Deribit + Binance quarterly OI on 2026-10-10; CME not measured) at >= 2% over the savings rate, >= $0.7M a year; through 2019-2026 the trigger was met on 42-43% of days."
+   }
+  ],
+  "recheck_hours": 168
+ }
+]

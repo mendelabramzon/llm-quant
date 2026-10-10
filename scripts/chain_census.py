@@ -220,7 +220,7 @@ def cmd_fetch(args):
             res['dex_meta'] = {k: d.get(k) for k in ('total24h', 'total48hto24h', 'total7d', 'total14dto7d', 'total30d', 'total60dto30d', 'change_1d', 'change_7d', 'change_7dover7d', 'change_30dover30d')}
         s = F.get('stables:' + name, STABLES + '/stablecoincharts/%s' % q)
         if s:
-            res['stables'] = [[int(x['date']), ((x.get('totalCirculatingUSD') or {}).get('peggedUSD') or 0)] for x in s if isinstance(x, dict)]
+            res['stables'] = stable_points(s)
         t = F.get('tvl:' + name, LLAMA + '/v2/historicalChainTvl/%s' % q)
         if t:
             res['tvl'] = [[int(x['date']), x.get('tvl') or 0] for x in t if isinstance(x, dict)]
@@ -231,7 +231,8 @@ def cmd_fetch(args):
         cut = time.time() - HISTORY_DAYS * 86400
         for k in ('dex', 'stables', 'tvl', 'fees'):
             if k in res:
-                res[k] = [[int(a), float(b or 0)] for a, b in res[k] if int(a) >= cut]
+                # None stays None: complete_days drops it, so a gap is a gap rather than a zero day
+                res[k] = [[int(a), None if b is None else float(b)] for a, b in res[k] if int(a) >= cut]
         return name, res
 
     H = {}
@@ -283,6 +284,13 @@ def cmd_fetch(args):
 
 
 # ---------------------------------------------------------------------------------------------- build
+
+def stable_points(rows):
+    """DefiLlama's per-chain stablecoin history as [[ts, usd or None]]. A day it could not compute is written as
+    `totalCirculatingUSD: {}`; read as zero, every gap's recovery looks like stablecoins arriving (the history had
+    Linea at $0 on 2026-08-28, Zilliqa with 108 missing days, Secret with 794). Missing stays missing."""
+    return [[int(x['date']), (x.get('totalCirculatingUSD') or {}).get('peggedUSD')] for x in rows if isinstance(x, dict)]
+
 
 def complete_days(series, today):
     """[[ts|date, v], ...] -> {YYYY-MM-DD: v} for days strictly before `today` (a partial day is never a reading)."""

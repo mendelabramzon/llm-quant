@@ -1,0 +1,4010 @@
+{
+ "at": "2026-10-10T17:52:47Z",
+ "http": {
+  "calls": 0,
+  "errors": 0,
+  "throttled": 0
+ },
+ "not_covered": {
+  "milkTIA": "Osmosis (MilkyWay), 21 days",
+  "stATOM": "Osmosis (Stride), 21 days",
+  "stTIA": "Osmosis (Stride), 21 days",
+  "vDOT/DOT pair": "Bifrost DEX (not indexed); Hydration quotes vDOT against H2O only"
+ },
+ "rows": [
+  {
+   "gt_status": null,
+   "instant": "Sanctum router / Infinity, fee",
+   "key": "jitosol",
+   "native": "SOL",
+   "network": "solana",
+   "pools": [
+    {
+     "created": "2026-04-17T18:01:20Z",
+     "dex": "manifest",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "JitoSOL / SOL",
+     "pool": "7ecvmhGKVcK4SgxeGQJG6yVwVAhbQxLrBuaMoUmpRZ6i",
+     "reserve_usd": 0.0,
+     "vol24_usd": 1346564.21309436
+    },
+    {
+     "created": "2023-07-05T14:33:05Z",
+     "dex": "orca",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "JitoSOL / SOL",
+     "pool": "Hp53XEtt4S8SvPCXarsLSdGfZBuUr5mMmZmX2DRNXQKp",
+     "reserve_usd": 6291927.09,
+     "vol24_usd": 314916.100526338
+    },
+    {
+     "created": "2024-02-08T02:04:35Z",
+     "dex": "raydium-clmm",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "JitoSOL / SOL 0.01%",
+     "pool": "2uoKbPEidR7KAMYtY4x7xdkHXWqYib5k4CutJauSL3Mc",
+     "reserve_usd": 1801083.7678,
+     "vol24_usd": 145894.038619947
+    },
+    {
+     "created": "2024-03-19T03:11:43Z",
+     "dex": "meteora",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "JitoSOL / SOL",
+     "pool": "BoeMUkCLHchTD31HdXsbDExuZZfcUppSLpYtV3LZTH6U",
+     "reserve_usd": 1363476.5236,
+     "vol24_usd": 114466.601116454
+    },
+    {
+     "created": "2024-03-20T03:23:17Z",
+     "dex": "meteora",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "JitoSOL / SOL",
+     "pool": "ERgpKaq59Nnfm9YRVAAhnq16cZhHxGcDoDWCzXbhiaNw",
+     "reserve_usd": 2779342.1868,
+     "vol24_usd": 13651.4119237727
+    },
+    {
+     "created": "2026-03-09T21:17:02Z",
+     "dex": "raydium",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "JitoSOL / SOL",
+     "pool": "6LndfqzFGmozELoAuabbr84f8noNwVrMrpZrbxwXrtf8",
+     "reserve_usd": 15985.4557,
+     "vol24_usd": 1368.675702292
+    },
+    {
+     "created": "2024-03-20T03:23:17Z",
+     "dex": "meteora",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "JitoSOL / SOL",
+     "pool": "9K1R4DVYZjSH3JiegPfpWndp7RNjFzbtReQPHERoZar8",
+     "reserve_usd": 97248.9756,
+     "vol24_usd": 662.3022851653
+    }
+   ],
+   "queue_days": 2.5,
+   "queue_src": "one epoch, ~2-3 days (docs)",
+   "reserve_native_pairs_usd": 12349063.999499999,
+   "symbol": "JitoSOL",
+   "token": "J1toso1uCk3RLmjorhTtrVwY9HJ7X8V9yYac6Y7kGCPn",
+   "vol24_native_pairs_usd": 1937523.343268329
+  },
+  {
+   "gt_status": null,
+   "instant": "none: instantUnstake facet not deployed (calls revert SelectorNotFound, read)",
+   "key": "khype",
+   "native": "HYPE",
+   "network": "hyperevm",
+   "pools": [
+    {
+     "created": "2025-11-25T02:37:04Z",
+     "dex": "nest",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "kHYPE / WHYPE 0.01%",
+     "pool": "0xa83d60b1a9ca6dd1d0d2d9275c700114f2f3a8d6",
+     "reserve_usd": 5455230.5951,
+     "vol24_usd": 668259.447000818
+    },
+    {
+     "created": "2025-12-01T02:20:02Z",
+     "dex": "ramses-v3-hyperevm",
+     "fee_pct": 0.008,
+     "lst_side": "base",
+     "name": "kHYPE / WHYPE 0.008%",
+     "pool": "0x705d5dda03d170384eb43eb1aa692a6fc548306f",
+     "reserve_usd": 155615.8831,
+     "vol24_usd": 445487.884411963
+    },
+    {
+     "created": "2025-12-04T09:03:27Z",
+     "dex": "hybra-finance-v4",
+     "fee_pct": 0.012,
+     "lst_side": "base",
+     "name": "kHYPE / WHYPE 0.012%",
+     "pool": "0x955dadf7bd49c941b6c5f9c19ee845c656cff85d",
+     "reserve_usd": 36353.662,
+     "vol24_usd": 214637.845566316
+    },
+    {
+     "created": "2025-08-05T22:03:57Z",
+     "dex": "project-x",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "kHYPE / WHYPE 0.01%",
+     "pool": "0xbe352daf66af94ccf2012a154a67daef95facb91",
+     "reserve_usd": 1481886.4007,
+     "vol24_usd": 134220.796531898
+    },
+    {
+     "created": "2025-08-26T09:49:25Z",
+     "dex": "kittenswap-algebra",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "kHYPE / WHYPE 0.05%",
+     "pool": "0x7a37621a2a490214f03e6ce7199aeca9b7c565cc",
+     "reserve_usd": 22582.0615,
+     "vol24_usd": 11023.9134664616
+    },
+    {
+     "created": "2025-07-14T18:56:00Z",
+     "dex": "hyperswap-v3",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "kHYPE / WHYPE 0.01%",
+     "pool": "0x5cbe810071de393de35e574fb2830e16da794bab",
+     "reserve_usd": 70967.5677,
+     "vol24_usd": 1391.3036066768
+    },
+    {
+     "created": "2025-09-12T08:21:02Z",
+     "dex": "ultrasolid-v3",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "kHYPE / WHYPE 0.01%",
+     "pool": "0x6297d78cf834de4aa2b82377e35c0951f49396f5",
+     "reserve_usd": 9868.4677,
+     "vol24_usd": 67.7166805999
+    },
+    {
+     "created": "2025-07-17T13:54:00Z",
+     "dex": "hybra-finance-v3",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "kHYPE / WHYPE 0.01%",
+     "pool": "0x7ca42c636f68717f0d84e5c9f0991bb7858060da",
+     "reserve_usd": 12837.8485,
+     "vol24_usd": 28.7130300009
+    },
+    {
+     "created": "2025-07-15T17:15:00Z",
+     "dex": "hybra-finance-v3",
+     "fee_pct": 0.02,
+     "lst_side": "base",
+     "name": "kHYPE / WHYPE 0.02%",
+     "pool": "0xf37befa5de220e52fb06b02087f5ba650377d0ad",
+     "reserve_usd": 24401.3528,
+     "vol24_usd": 17.1863937541
+    },
+    {
+     "created": "2025-09-02T05:42:00Z",
+     "dex": "upheaval-finance",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "kHYPE / WHYPE 0.01%",
+     "pool": "0x7c50b6b9b5a7cd72d2956669df8bbab4fd0d4022",
+     "reserve_usd": 51227.4611,
+     "vol24_usd": 11.0798426168
+    }
+   ],
+   "queue_days": 7.0,
+   "queue_src": "StakingManager.withdrawalDelay() = 604,800 s (read)",
+   "reserve_native_pairs_usd": 7320971.3001999995,
+   "symbol": "kHYPE",
+   "token": "0xfd739d4e423301ce9385c1fb8850539d657c296d",
+   "vol24_native_pairs_usd": 1475145.886531105
+  },
+  {
+   "gt_status": null,
+   "instant": "Sanctum",
+   "key": "jupsol",
+   "native": "SOL",
+   "network": "solana",
+   "pools": [
+    {
+     "created": "2026-04-17T18:09:39Z",
+     "dex": "manifest",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "JupSOL / SOL",
+     "pool": "8iC3HzYGW6ji6chaxRvNoBeG3uLgQZUPNL5R7RmM8uQv",
+     "reserve_usd": 0.0,
+     "vol24_usd": 419311.342052287
+    },
+    {
+     "created": "2024-04-20T20:46:00Z",
+     "dex": "orca",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "JupSOL / SOL",
+     "pool": "DtYKbQELgMZ3ihFUrCcCs9gy4djcUuhwgR7UpxVpP2Tg",
+     "reserve_usd": 139124.1088,
+     "vol24_usd": 18124.0983660115
+    },
+    {
+     "created": "2024-04-10T13:46:01Z",
+     "dex": "meteora",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "JupSOL / SOL",
+     "pool": "bNcdL9Hy85c9qb4hRavAUFtJUiyRPh3u96jerFqZQq6",
+     "reserve_usd": 61182.891,
+     "vol24_usd": 2791.3135670397
+    },
+    {
+     "created": "2024-04-17T11:12:00Z",
+     "dex": "meteora",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "JupSOL / SOL",
+     "pool": "Hk6d7tTpmFJYJC6CPTm2xxMzAha9rHBufYcbmEV5sQ4w",
+     "reserve_usd": 4293.8105,
+     "vol24_usd": 0.1702501362
+    }
+   ],
+   "queue_days": 2.5,
+   "queue_src": "one epoch (docs)",
+   "reserve_native_pairs_usd": 204600.81029999998,
+   "symbol": "JupSOL",
+   "token": "jupSoLaHXQiZZTSfEWMTRRgpnyFm8f6sZdosWBjx93v",
+   "vol24_native_pairs_usd": 440226.92423547443
+  },
+  {
+   "gt_status": null,
+   "instant": "Sanctum",
+   "key": "bsol",
+   "native": "SOL",
+   "network": "solana",
+   "pools": [
+    {
+     "created": "2026-04-17T18:01:56Z",
+     "dex": "manifest",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "bSOL / SOL",
+     "pool": "7SanaZyHJVdcr56szAJb1Vezsi491bqs4sU8bLLef1YG",
+     "reserve_usd": 0.0,
+     "vol24_usd": 241243.056017717
+    },
+    {
+     "created": "2023-07-05T14:33:05Z",
+     "dex": "orca",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "bSOL / SOL",
+     "pool": "8phK65jxmTPEN158xLgSr4oZvssw9SyTErpNZj3g7px4",
+     "reserve_usd": 646624.5425,
+     "vol24_usd": 51426.3966461774
+    },
+    {
+     "created": "2024-03-20T03:23:17Z",
+     "dex": "meteora",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "bSOL / SOL",
+     "pool": "DvWpLaNUPqoCGn4foM6hekAPKqMtADJJbJWhwuMiT6vK",
+     "reserve_usd": 458979.9591,
+     "vol24_usd": 13144.4455806514
+    }
+   ],
+   "queue_days": 2.5,
+   "queue_src": "one epoch (docs)",
+   "reserve_native_pairs_usd": 1105604.5016,
+   "symbol": "bSOL",
+   "token": "bSo13r4TkiE4KumL71LsHTPpL2euBYLFx6h9HP3piy1",
+   "vol24_native_pairs_usd": 305813.8982445458
+  },
+  {
+   "gt_status": null,
+   "instant": "Marinade pool, Sanctum",
+   "key": "msol",
+   "native": "SOL",
+   "network": "solana",
+   "pools": [
+    {
+     "created": "2026-04-17T18:01:22Z",
+     "dex": "manifest",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "mSOL / SOL",
+     "pool": "AxSHFMAZbY3gEcKzzmweFZHxCAxCFtZruRDdS1WouLDL",
+     "reserve_usd": 0.0,
+     "vol24_usd": 144869.015582592
+    },
+    {
+     "created": "2024-02-08T02:04:35Z",
+     "dex": "raydium-clmm",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "mSOL / SOL 0.01%",
+     "pool": "8EzbUfvcRT1Q6RL462ekGkgqbxsPmwC5FMLQZhSPMjJ3",
+     "reserve_usd": 891675.1899,
+     "vol24_usd": 28121.7490088111
+    },
+    {
+     "created": "2024-03-20T03:23:17Z",
+     "dex": "meteora",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "mSOL / SOL",
+     "pool": "HcjZvfeSNJbNkfLD4eEcRBr96AD3w1GpmMppaeRZf7ur",
+     "reserve_usd": 1850615.3656,
+     "vol24_usd": 13569.1791948256
+    },
+    {
+     "created": "2024-03-19T03:11:43Z",
+     "dex": "meteora",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "mSOL / SOL",
+     "pool": "2dBPJGLgNDZnzA32452zV2u6vensbo28dveBvecDg6X1",
+     "reserve_usd": 10105.3163,
+     "vol24_usd": 69.1849577871
+    },
+    {
+     "created": "2023-07-05T14:53:00Z",
+     "dex": "orca",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "mSOL / SOL",
+     "pool": "HQcY5n2zP6rW74fyFEhWeBd3LnJpBcZechkvJpmdb8cx",
+     "reserve_usd": 214308.6715,
+     "vol24_usd": 40.1376021849
+    },
+    {
+     "created": "2022-04-28T09:49:03Z",
+     "dex": "raydium",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "mSOL / SOL",
+     "pool": "EGyhb2uLAsRUbRx9dNFBjMVYnFaASWMvD6RE1aEf2LxL",
+     "reserve_usd": 124920.5373,
+     "vol24_usd": 4.359297918
+    }
+   ],
+   "queue_days": 2.5,
+   "queue_src": "one epoch (docs)",
+   "reserve_native_pairs_usd": 3091625.0806,
+   "symbol": "mSOL",
+   "token": "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So",
+   "vol24_native_pairs_usd": 186673.6256441187
+  },
+  {
+   "gt_status": null,
+   "instant": "Tonstakers instant when the pool has liquidity",
+   "key": "tston",
+   "native": "TON",
+   "network": "ton",
+   "pools": [
+    {
+     "created": "2025-04-16T16:03:21Z",
+     "dex": "stonfi-v2",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "tsTON / TON",
+     "pool": "EQBjiBVhFLQVCMS8mKMA3gS823m9Xeu9aXiZUYD4TP8GDvui",
+     "reserve_usd": 169171.2543,
+     "vol24_usd": 164604.071988157
+    },
+    {
+     "created": "2025-12-10T05:24:51Z",
+     "dex": "swap-coffee",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "tsTON / TON",
+     "pool": "EQBCZIYL3RlQ5MbOihKmDCZF2BHkmeyQTpkbWCJw_137ekrs",
+     "reserve_usd": 13682.936,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2023-11-20T03:07:19Z",
+     "dex": "stonfi",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "tsTON / TON",
+     "pool": "EQC_OxV6MQ6csZXNk2Zu6jMrsGRI6m4YRzL2McKaPCYmNk6l",
+     "reserve_usd": 9240.3545,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-12-18T04:31:50Z",
+     "dex": "swap-coffee",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "tsTON / TON",
+     "pool": "EQAVfuJ-1Jmc8nvCwhytJ0zMr5IgPRhbjP7v5yRRMrBYxpFG",
+     "reserve_usd": 771.2387,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2024-01-26T07:03:05Z",
+     "dex": "dedust",
+     "fee_pct": 0.25,
+     "lst_side": "base",
+     "name": "tsTON / TON 0.25%",
+     "pool": "EQDsPeOuu66e7tWagXO6Tn8VFZMEV0ClQb7zOB6SEW_VKN3k",
+     "reserve_usd": 25.0106,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2024-12-23T13:53:11Z",
+     "dex": "stonfi-v2",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "tsTON / TON",
+     "pool": "EQA-7agJNS_Yydl6POLLVp6xKfcErZNejY6crN0JHAo7xiCw",
+     "reserve_usd": 7.6547,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2026-09-01T11:17:10Z",
+     "dex": "dedust-v2",
+     "fee_pct": 10.0,
+     "lst_side": "base",
+     "name": "tsTON / TON 10%",
+     "pool": "EQDB3FQyGZ0KYAX_OKema7oEXkmTdNKExK36xJjaa2tkiwhV",
+     "reserve_usd": 3.0983,
+     "vol24_usd": 0.0
+    }
+   ],
+   "queue_days": 1.5,
+   "queue_src": "end of the validation round, ~18-36 h (docs)",
+   "reserve_native_pairs_usd": 192901.5471,
+   "symbol": "tsTON",
+   "token": "EQC98_qAmNEptUtPc7W6xdHh_ZHrBUFpw5Ft_IzNU20QAJav",
+   "vol24_native_pairs_usd": 164604.071988157
+  },
+  {
+   "gt_status": null,
+   "instant": "instantWithdraw is whitelist-only (instantWhitelistOff() = false, read)",
+   "key": "slisbnb",
+   "native": "BNB",
+   "network": "bsc",
+   "pools": [
+    {
+     "created": "2023-07-24T15:42:13Z",
+     "dex": "pancakeswap-v3-bsc",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "SnBNB / WBNB 0.05%",
+     "pool": "0x9474e972f49605315763c296b122cbb998b615cf",
+     "reserve_usd": 4000723.6702,
+     "vol24_usd": 146620.550902686
+    },
+    {
+     "created": "2024-02-10T04:48:44Z",
+     "dex": "pancakeswap-v3-bsc",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "SnBNB / WBNB 0.01%",
+     "pool": "0xe1b404aaf60eec5c8a1fede7dcdc0eab9c69662f",
+     "reserve_usd": 61180.2243,
+     "vol24_usd": 3347.1098433869
+    },
+    {
+     "created": "2023-08-13T19:04:11Z",
+     "dex": "uniswap-bsc",
+     "fee_pct": 1.0,
+     "lst_side": "base",
+     "name": "SnBNB / WBNB 1%",
+     "pool": "0x4fa74f7346a8dde3f02e03abcb527a71829a0ab4",
+     "reserve_usd": 1340.7861,
+     "vol24_usd": 25.137697595
+    },
+    {
+     "created": "2025-07-01T08:13:50Z",
+     "dex": "thena-v3",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "SnBNB / WBNB 0.01%",
+     "pool": "0x7265d6576f273965d60875cfa841be191ea90c3a",
+     "reserve_usd": 3098.2554,
+     "vol24_usd": 9.9890232293
+    },
+    {
+     "created": "2023-08-29T07:36:21Z",
+     "dex": "thena-fusion",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "SnBNB / WBNB 0.01%",
+     "pool": "0xa07bbf09b48e8d219774ac9b92622f5260a9c9f4",
+     "reserve_usd": 6312.5396,
+     "vol24_usd": 5.7827552004
+    },
+    {
+     "created": "2023-08-20T22:09:26Z",
+     "dex": "pancakeswap-v3-bsc",
+     "fee_pct": 0.25,
+     "lst_side": "base",
+     "name": "SnBNB / WBNB 0.25%",
+     "pool": "0x38a6d2bd9936d6b19e70fa695b8cf639a4e5c50a",
+     "reserve_usd": 43.5296,
+     "vol24_usd": 0.1617145239
+    },
+    {
+     "created": "2023-08-28T23:11:04Z",
+     "dex": "pancakeswap_v2",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "SnBNB / WBNB",
+     "pool": "0xda83f6b25b5b9e2b042fab04067e0fadfa106135",
+     "reserve_usd": 24.4666,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2023-09-06T15:06:35Z",
+     "dex": "thena",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "SnBNB / WBNB",
+     "pool": "0x2351d89b26a1cea6dcf88ff1ad15c9d9babbb02e",
+     "reserve_usd": 24.008,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2026-07-19T04:03:58Z",
+     "dex": "thena-v3",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "SnBNB / WBNB 0.01%",
+     "pool": "0xeaa92cabe99ee3293d065bba47ae20dba98011bf",
+     "reserve_usd": 2.6873,
+     "vol24_usd": 0.0
+    }
+   ],
+   "queue_days": 8.0,
+   "queue_src": "StakeHub.unbondPeriod() = 604,800 s (read) + the bot batch (docs: 7-8 days)",
+   "reserve_native_pairs_usd": 4072750.1671,
+   "symbol": "slisBNB",
+   "token": "0xb0b84d294e0c75a6abe60171b70edeb2efd14a1b",
+   "vol24_native_pairs_usd": 150008.7319366215
+  },
+  {
+   "gt_status": null,
+   "instant": "itself",
+   "key": "inf",
+   "native": "SOL",
+   "network": "solana",
+   "pools": [
+    {
+     "created": "2024-03-19T03:11:43Z",
+     "dex": "meteora",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "INF / SOL",
+     "pool": "8iibPkw7zbNHMPcihHeBgcL7rDnHteZb2NfvTy8bNm7d",
+     "reserve_usd": 228503.7881,
+     "vol24_usd": 121282.713449968
+    },
+    {
+     "created": "2026-04-17T18:44:08Z",
+     "dex": "manifest",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "INF / SOL",
+     "pool": "GNZEf3uE87tacXe13xKzEUi5ZiZu4avifwQa3vz5ZyPs",
+     "reserve_usd": 0.0,
+     "vol24_usd": 5272.5664064748
+    },
+    {
+     "created": "2024-03-20T03:23:17Z",
+     "dex": "meteora",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "INF / SOL",
+     "pool": "HmrnpceB2FVmbJBVmHtTvj4aVNPC8CnHxRsA25pYvkFy",
+     "reserve_usd": 101159.2096,
+     "vol24_usd": 17.8973519934
+    },
+    {
+     "created": "2023-07-05T14:40:02Z",
+     "dex": "orca",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "INF / SOL",
+     "pool": "DxD41srN8Xk9QfYjdNXF9tTnP6qQxeF2bZF8s1eN62Pe",
+     "reserve_usd": 1030.1869,
+     "vol24_usd": 0.3391026163
+    },
+    {
+     "created": "2024-08-06T05:14:00Z",
+     "dex": "orca",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "INF / SOL",
+     "pool": "2q6UMko5kTnv866W9MTeAFau94pLpsdeNjDdSYSgZUXr",
+     "reserve_usd": 6185.877,
+     "vol24_usd": 0.01013386144
+    }
+   ],
+   "queue_days": 0.0,
+   "queue_src": "Infinity pool redeems to SOL (docs)",
+   "reserve_native_pairs_usd": 336879.0616,
+   "symbol": "INF",
+   "token": "5oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm",
+   "vol24_native_pairs_usd": 126573.52644491394
+  },
+  {
+   "gt_status": null,
+   "instant": "",
+   "key": "lhype",
+   "native": "HYPE",
+   "network": "hyperevm",
+   "pools": [
+    {
+     "created": "2025-07-03T03:30:35Z",
+     "dex": "hybra-finance-v3",
+     "fee_pct": 0.02,
+     "lst_side": "base",
+     "name": "LHYPE / WHYPE 0.02%",
+     "pool": "0xb7e650f67425e6f0dc14aee1d11e5a365ddd94b0",
+     "reserve_usd": 22591.7655,
+     "vol24_usd": 28364.0461489686
+    },
+    {
+     "created": "2025-03-10T18:44:00Z",
+     "dex": "hyperswap-v3",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "LHYPE / WHYPE 0.01%",
+     "pool": "0x7db294f26c753ce4fa54a1577aef7f837ea91fdc",
+     "reserve_usd": 78783.7958,
+     "vol24_usd": 20994.1897944147
+    },
+    {
+     "created": "2025-03-04T08:35:18Z",
+     "dex": "kittenswap",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "LHYPE / WHYPE",
+     "pool": "0x3c1f6d843af17d0d87c6924b633cb500047b67bf",
+     "reserve_usd": 145682.7533,
+     "vol24_usd": 6419.0936533433
+    },
+    {
+     "created": "2025-08-05T22:12:57Z",
+     "dex": "project-x",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "LHYPE / WHYPE 0.01%",
+     "pool": "0xd727866efc12da4b80ab3c3f9aef90eb80026364",
+     "reserve_usd": 13004.5487,
+     "vol24_usd": 5295.205205818
+    },
+    {
+     "created": "2025-12-02T09:56:00Z",
+     "dex": "nest",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "LHYPE / WHYPE 0.01%",
+     "pool": "0xdfa3bd13024111b84b2d8a3ead6b0f4a18192afb",
+     "reserve_usd": 8218.6439,
+     "vol24_usd": 3911.3515283596
+    },
+    {
+     "created": "2025-04-02T06:16:59Z",
+     "dex": "laminar",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "LHYPE / WHYPE 0.05%",
+     "pool": "0x5a4ba0d54bc872ccb187cacfb6d03663d24b528f",
+     "reserve_usd": 18023.6347,
+     "vol24_usd": 3028.9867650825
+    },
+    {
+     "created": "2025-06-16T09:34:17Z",
+     "dex": "gliquid",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "LHYPE / WHYPE 0.05%",
+     "pool": "0x7cf8049d24377df8a8eb40ca38d510aa2c8e706d",
+     "reserve_usd": 3643.739,
+     "vol24_usd": 318.7843898286
+    },
+    {
+     "created": "2025-06-19T04:03:41Z",
+     "dex": "hybra-finance",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "LHYPE / WHYPE",
+     "pool": "0xf637a5acd9f54505974e1f0aaaee80042b5a301a",
+     "reserve_usd": 1611.523,
+     "vol24_usd": 67.7539599652
+    },
+    {
+     "created": "2025-05-26T06:12:49Z",
+     "dex": "kittenswap-v3",
+     "fee_pct": 0.004,
+     "lst_side": "base",
+     "name": "LHYPE / WHYPE 0.004%",
+     "pool": "0x11f6ad647c331bcf927ea9df6bd0f777e0e25fec",
+     "reserve_usd": 92458.804,
+     "vol24_usd": 49.5842507345
+    },
+    {
+     "created": "2025-03-03T19:36:00Z",
+     "dex": "hyperswap-v3",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "LHYPE / WHYPE 0.05%",
+     "pool": "0xc4ac837a9a5554ab78df93d6bdeaf959b8d772f8",
+     "reserve_usd": 1136.89,
+     "vol24_usd": 40.2615980931
+    },
+    {
+     "created": "2025-12-01T04:13:24Z",
+     "dex": "ramses-v3-hyperevm",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "LHYPE / WHYPE 0.01%",
+     "pool": "0x7925c75fa0df5398c185097ce3852e3a6d386977",
+     "reserve_usd": 13.7282,
+     "vol24_usd": 26.8559485938
+    },
+    {
+     "created": "2025-08-26T10:02:26Z",
+     "dex": "kittenswap-algebra",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "LHYPE / WHYPE 0.05%",
+     "pool": "0xc22dd71c59e6d798c6d4aabc52b202fd731b07cc",
+     "reserve_usd": 296.0292,
+     "vol24_usd": 14.4334766966
+    },
+    {
+     "created": "2025-03-03T16:09:00Z",
+     "dex": "hyperswap-v3",
+     "fee_pct": 0.3,
+     "lst_side": "base",
+     "name": "LHYPE / WHYPE 0.3%",
+     "pool": "0x406b5a931dc6a763e30fb38bde6c2aab74445ea4",
+     "reserve_usd": 18832.8906,
+     "vol24_usd": 13.9515400624
+    },
+    {
+     "created": "2025-02-28T22:36:00Z",
+     "dex": "hyperswap-v3",
+     "fee_pct": 1.0,
+     "lst_side": "base",
+     "name": "LHYPE / WHYPE 1%",
+     "pool": "0xfb41a9702570e7bb986b8e6181c91d4303fcb2ce",
+     "reserve_usd": 1587.5956,
+     "vol24_usd": 10.4473605026
+    },
+    {
+     "created": "2025-08-06T14:37:46Z",
+     "dex": "project-x",
+     "fee_pct": 0.3,
+     "lst_side": "base",
+     "name": "LHYPE / WHYPE 0.3%",
+     "pool": "0x1ca7c344502cf138e8a638cc3f29548afaa265c0",
+     "reserve_usd": 620.4528,
+     "vol24_usd": 9.9506356774
+    },
+    {
+     "created": "2025-02-28T22:34:00Z",
+     "dex": "hyperswap-v2",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "LHYPE / WHYPE",
+     "pool": "0x2d0f3da389e6beba9d7db3c5985ee294a6cb367e",
+     "reserve_usd": 2032.5775,
+     "vol24_usd": 0.6621250864
+    },
+    {
+     "created": "2025-05-02T02:46:00Z",
+     "dex": "laminar",
+     "fee_pct": 1.0,
+     "lst_side": "base",
+     "name": "LHYPE / WHYPE 1%",
+     "pool": "0x1bc6826f8dcb004a14b2eb852a1310529ddb2bd6",
+     "reserve_usd": 4354.3229,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-08-08T09:19:55Z",
+     "dex": "hyperbrick",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "LHYPE / WHYPE",
+     "pool": "0x16bfb92621dbe76f84bdfe2c51dfda360da84886",
+     "reserve_usd": 291.6941,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-04-22T21:43:00Z",
+     "dex": "laminar",
+     "fee_pct": 0.3,
+     "lst_side": "base",
+     "name": "LHYPE / WHYPE 0.3%",
+     "pool": "0xdaa8a66380fb35b35cb7bc1dbc1925abfdd0ae45",
+     "reserve_usd": 170.0099280823,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2026-01-06T14:05:05Z",
+     "dex": "hybra-finance-v4",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "LHYPE / WHYPE",
+     "pool": "0xf24cfbb85826ed41db917eafea2db89481c41eed",
+     "reserve_usd": 16.9488,
+     "vol24_usd": 0.0
+    }
+   ],
+   "queue_days": null,
+   "queue_src": "looped vault, not a plain LST",
+   "reserve_native_pairs_usd": 413372.3475280823,
+   "symbol": "LHYPE",
+   "token": "0x5748ae796ae46a4f1348a1693de4b50560485562",
+   "vol24_native_pairs_usd": 68565.5583812273
+  },
+  {
+   "gt_status": null,
+   "instant": "Sanctum",
+   "key": "hsol",
+   "native": "SOL",
+   "network": "solana",
+   "pools": [
+    {
+     "created": "2026-04-17T19:07:53Z",
+     "dex": "manifest",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "hSOL / SOL",
+     "pool": "A9TgQR1ES72jP3ZNxFiQkVt9X5RRpeHy8iW8ZjDbZ3ne",
+     "reserve_usd": 0.0,
+     "vol24_usd": 38659.1974522116
+    },
+    {
+     "created": "2026-09-10T17:26:57Z",
+     "dex": "raydium-clmm",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "hSOL / SOL",
+     "pool": "51V5bAPGaz3vj4SiJeoLGNzAQNxGr4Vps8gSBKmSZx71",
+     "reserve_usd": 13304.5663,
+     "vol24_usd": 28107.4598977611
+    },
+    {
+     "created": "2026-05-05T19:30:07Z",
+     "dex": "meteora-damm-v2",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "hSOL / SOL",
+     "pool": "C8BUgLyzT1ayVVbho1cjXRu5Dyrxd7SRZdrWjXUSQHzh",
+     "reserve_usd": 377.8971,
+     "vol24_usd": 659.4760129648
+    },
+    {
+     "created": "2024-05-10T04:14:00Z",
+     "dex": "orca",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "hSOL / SOL",
+     "pool": "HKJkxnTSFhXqebK8T3JcF74Lnfjb6ByZrxampKBmoHvu",
+     "reserve_usd": 17496.1801,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2026-04-29T03:50:07Z",
+     "dex": "orca",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "hSOL / SOL",
+     "pool": "GMXoLsJTZ7N6FjF16Pb9arxR3Xhponsui67cWqszuRTq",
+     "reserve_usd": 3843.9405,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-02-10T08:38:52Z",
+     "dex": "raydium-clmm",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "hSOL / SOL",
+     "pool": "B7fg1nPEV9ieqYi14zMBzPqZW7UkugateQ1whzEnGad4",
+     "reserve_usd": 8100.6101,
+     "vol24_usd": 0.0
+    }
+   ],
+   "queue_days": 2.5,
+   "queue_src": "one epoch (docs)",
+   "reserve_native_pairs_usd": 43123.1941,
+   "symbol": "hSOL",
+   "token": "he1iusmfkpAdwvxLNGV8Y1iSbj4rUy6yMhEA3fotn9A",
+   "vol24_native_pairs_usd": 67426.1333629375
+  },
+  {
+   "gt_status": null,
+   "instant": "",
+   "key": "aprmon",
+   "native": "MON",
+   "network": "monad",
+   "pools": [
+    {
+     "created": "2025-12-02T05:00:43Z",
+     "dex": "capricorn-monad",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "aprMON / WMON 0.01%",
+     "pool": "0xbab2296c6a98c4e8584051dee817a98ab4069388",
+     "reserve_usd": 36892.8144,
+     "vol24_usd": 54180.1992144937
+    },
+    {
+     "created": "2025-11-26T06:29:21Z",
+     "dex": "atlantis-monad",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "aprMON / WMON 0.05%",
+     "pool": "0xbeafc7dbdb82c272c9301d246327821bf3996b9e",
+     "reserve_usd": 1347.612,
+     "vol24_usd": 8785.079646976
+    },
+    {
+     "created": "2025-11-24T12:53:16Z",
+     "dex": "pancakeswap-v3-monad",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "aprMON / WMON 0.01%",
+     "pool": "0x40c4fd3390956fbe99a70b4c5c80efd9c22c9ac6",
+     "reserve_usd": 814.97,
+     "vol24_usd": 427.9093140704
+    },
+    {
+     "created": "2025-12-02T04:51:49Z",
+     "dex": "capricorn-monad",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "aprMON / WMON 0.05%",
+     "pool": "0x690fd406ca740b5afa3f37aa9b34ba6c9d72e995",
+     "reserve_usd": 33.2636,
+     "vol24_usd": 4.0619829774
+    },
+    {
+     "created": "2026-04-22T01:04:09Z",
+     "dex": "traderjoe-v2-2-monad",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "aprMON / WMON",
+     "pool": "0x969cce22970bea137e00d869aa6f30f52c0856d7",
+     "reserve_usd": 16.2019,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2026-04-15T20:53:27Z",
+     "dex": "uniswap-v4-monad",
+     "fee_pct": 0.05,
+     "lst_side": "quote",
+     "name": "MON / aprMON 0.05%",
+     "pool": "0x8d8bea4b3489edaa56c081dbf4cc9f0cf6d80eeb29cc4df6ad956b0dc1d245e2",
+     "reserve_usd": 5.1346,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-12-08T18:34:42Z",
+     "dex": "octoswap-cl",
+     "fee_pct": 0.005,
+     "lst_side": "base",
+     "name": "aprMON / WMON 0.005%",
+     "pool": "0x67f5539bc73a24752ead29153e653fd679914410",
+     "reserve_usd": 2.8738619872,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-12-09T13:02:44Z",
+     "dex": "octoswap-classic",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "aprMON / WMON",
+     "pool": "0xb4357ad1cf688450e74acddfe90b4d50a043f2cb",
+     "reserve_usd": 1.5580617008,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2026-04-22T12:06:44Z",
+     "dex": "pancakeswap-v2-monad",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "aprMON / WMON",
+     "pool": "0x3a08295576689b38314ea81d6628048ec86c0ecd",
+     "reserve_usd": 5.290134424e-17,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-12-08T18:32:27Z",
+     "dex": "octoswap-cl",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "aprMON / WMON 0.01%",
+     "pool": "0x3afc86b9b9897bb882dbbfdfcdbab15216bbb613",
+     "reserve_usd": 0.0686071759,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-26T07:50:08Z",
+     "dex": "madness-finance",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "aprMON / WMON",
+     "pool": "0x4cd683fed2be2e447e79834429b25e9b068266de",
+     "reserve_usd": 0.05334608968,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2026-09-02T23:14:39Z",
+     "dex": "uniswap-v4-monad",
+     "fee_pct": 0.008,
+     "lst_side": "quote",
+     "name": "MON / aprMON 0.008%",
+     "pool": "0x3327765a5afc25d33665dfdd9a9db91d5275627bc7fbfcfcc203e1d7bbb40db7",
+     "reserve_usd": 0.0254,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2026-04-13T18:34:32Z",
+     "dex": "bean-monad",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "aprMON / WMON",
+     "pool": "0x32ca2f90af17d2ae7f391e56b378bdf1e12ed0c6",
+     "reserve_usd": 0.0149,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-24T16:10:43Z",
+     "dex": "pancakeswap-v3-monad",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "aprMON / WMON 0.05%",
+     "pool": "0x185485c7d05983d31668023e8529c50655f43738",
+     "reserve_usd": 3.8283201e-08,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-24T16:43:44Z",
+     "dex": "pancakeswap-v3-monad",
+     "fee_pct": 0.25,
+     "lst_side": "base",
+     "name": "aprMON / WMON 0.25%",
+     "pool": "0x803af0684212f251e4c9c36edd1f5c8c8a436c3a",
+     "reserve_usd": 2.001736e-08,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-12-01T12:32:24Z",
+     "dex": "pinot",
+     "fee_pct": 1.0,
+     "lst_side": "base",
+     "name": "aprMON / WMON 1%",
+     "pool": "0x3ca5675c0dfeef3f7efe16deb530a754aa0a4b0b",
+     "reserve_usd": 1.347878789e-19,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2026-01-31T18:28:14Z",
+     "dex": "uniswap-v4-monad",
+     "fee_pct": 0.01,
+     "lst_side": "quote",
+     "name": "MON / aprMON 0.01%",
+     "pool": "0xeaeefb44b0471aa02d71dc1ded994c15b28af70f043b3382d83e309cf1926941",
+     "reserve_usd": 0.0,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2026-02-15T00:17:38Z",
+     "dex": "uniswap-v4-monad",
+     "fee_pct": 5.0,
+     "lst_side": "quote",
+     "name": "MON / aprMON 5%",
+     "pool": "0x2d05fe5ab74e6a171dbff329729312f1ea1be1fbda67eca2ac5291573e2cc1d1",
+     "reserve_usd": 0.0,
+     "vol24_usd": 0.0
+    }
+   ],
+   "queue_days": 1.0,
+   "queue_src": "withdrawalDelay() = 1 (epochs, read); Monad unbonding (docs)",
+   "reserve_native_pairs_usd": 39114.59067701188,
+   "symbol": "aprMON",
+   "token": "0x0c65a0bc65a5d819235b71f554d210d3f80e0852",
+   "vol24_native_pairs_usd": 63397.250158517505
+  },
+  {
+   "gt_status": null,
+   "instant": "",
+   "key": "sts",
+   "native": "S",
+   "network": "sonic",
+   "pools": [
+    {
+     "created": "2025-01-06T07:12:53Z",
+     "dex": "swapx-algebra",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "stS / wS 0.01%",
+     "pool": "0xd760791b29e7894fb827a94ca433254bb5afb653",
+     "reserve_usd": 27854.1539,
+     "vol24_usd": 13650.9893884122
+    },
+    {
+     "created": "2025-01-03T02:17:43Z",
+     "dex": "shadow-exchange",
+     "fee_pct": 0.008,
+     "lst_side": "base",
+     "name": "stS / wS 0.008%",
+     "pool": "0xde861c8fc9ab78fe00490c5a38813d26e2d09c95",
+     "reserve_usd": 21105.4956,
+     "vol24_usd": 13098.0472918533
+    },
+    {
+     "created": "2025-11-05T06:34:22Z",
+     "dex": "beets-v3-sonic",
+     "fee_pct": 0.015,
+     "lst_side": "quote",
+     "name": "wS / stS 0.015%",
+     "pool": "0x75b000584a7d86fb3ef5e15ba26f4c52b41be0e9",
+     "reserve_usd": 440106.9216,
+     "vol24_usd": 6398.6642727881
+    },
+    {
+     "created": "2025-07-08T14:45:15Z",
+     "dex": "beets-sonic",
+     "fee_pct": 0.015,
+     "lst_side": "quote",
+     "name": "wS / stS 0.015%",
+     "pool": "0x34b883e1d8d8b7750fb2311202564c5396dc8a9f",
+     "reserve_usd": 4141.2976,
+     "vol24_usd": 368.2696517054
+    },
+    {
+     "created": "2025-06-10T16:01:54Z",
+     "dex": "beets-sonic",
+     "fee_pct": 0.008,
+     "lst_side": "quote",
+     "name": "wS / stS 0.008%",
+     "pool": "0xdf361ec281ef7225df2ea7921b8f413e2473e8d6",
+     "reserve_usd": 110.6488,
+     "vol24_usd": 335.6082660228
+    },
+    {
+     "created": "2025-01-02T11:29:43Z",
+     "dex": "silverswap",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "stS / wS 0.01%",
+     "pool": "0x66def9ad68accb63d4c96dc13cb7a7f9d5e03ae5",
+     "reserve_usd": 179.3716,
+     "vol24_usd": 51.4142792731
+    },
+    {
+     "created": "2024-12-19T14:59:27Z",
+     "dex": "equalizer-sonic",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "stS / wS",
+     "pool": "0xb75c9073ea00abda9ff420b5ae46fee248993380",
+     "reserve_usd": 2787.5542,
+     "vol24_usd": 27.0571206375
+    },
+    {
+     "created": "2024-12-19T22:48:19Z",
+     "dex": "solidly-v3-sonic",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "stS / wS 0.01%",
+     "pool": "0x25a317bde2f9d0bf5f1c0d3c432d99f476d6ae5a",
+     "reserve_usd": 147.0197,
+     "vol24_usd": 21.1395501605
+    },
+    {
+     "created": "2025-06-17T13:44:37Z",
+     "dex": "atlantis",
+     "fee_pct": 0.05,
+     "lst_side": "quote",
+     "name": "wS / stS 0.05%",
+     "pool": "0xc66d124a42d64c6f9a3ef3e8e192ae893082aff5",
+     "reserve_usd": 877.5572,
+     "vol24_usd": 5.8476035511
+    },
+    {
+     "created": "2025-02-27T09:47:55Z",
+     "dex": "defive",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "stS / wS",
+     "pool": "0x702cbe8b71a4237cae9348dcef92f4ad23911866",
+     "reserve_usd": 7921.6298,
+     "vol24_usd": 0.2482869502
+    }
+   ],
+   "queue_days": 14.0,
+   "queue_src": "withdrawDelay() (read)",
+   "reserve_native_pairs_usd": 505231.65,
+   "symbol": "stS",
+   "token": "0xe5da20f15420ad15de0fa650600afc998bbe3955",
+   "vol24_native_pairs_usd": 33957.2857113542
+  },
+  {
+   "gt_status": null,
+   "instant": "Haedal instant, fee",
+   "key": "hasui",
+   "native": "SUI",
+   "network": "sui-network",
+   "pools": [
+    {
+     "created": "1970-01-01T00:00:00Z",
+     "dex": "cetus",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "haSUI / SUI 0.01%",
+     "pool": "0x871d8a227114f375170f149f7e9d45be822dd003eba225e83c05ac80828596bc",
+     "reserve_usd": 3955854.0638,
+     "vol24_usd": 30323.2715080321
+    },
+    {
+     "created": "2025-07-31T02:21:08Z",
+     "dex": "momentum",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "haSUI / SUI",
+     "pool": "0xd970616a91e67a2aea8347bc6444ee6cab11657718ff0c4b833d4f5de12efad0",
+     "reserve_usd": 30806.9196,
+     "vol24_usd": 36.0282414848
+    },
+    {
+     "created": "1970-01-01T00:00:00Z",
+     "dex": "bluefin",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "haSUI / SUI 0.01%",
+     "pool": "0xa63347f0a3d79e36c629866d72d148403907088cca219d80bdd5461d79d34d46",
+     "reserve_usd": 1902.9651,
+     "vol24_usd": 23.4277984705
+    },
+    {
+     "created": "2024-10-03T09:25:47Z",
+     "dex": "turbos-finance",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "haSUI / SUI",
+     "pool": "0x022db7c3d497c194a5457b9307530a39b8379b09f836d64fd24f93fbe20fa626",
+     "reserve_usd": 36482.0969,
+     "vol24_usd": 9.469831779
+    },
+    {
+     "created": "2024-05-13T08:13:12Z",
+     "dex": "flowx-clmm",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "haSUI / SUI",
+     "pool": "0x577dc265c459422e89c797216744a8b40209acbe15d14cdead58cc00b5798eeb",
+     "reserve_usd": 40.0007,
+     "vol24_usd": 3.3681281917
+    },
+    {
+     "created": "2025-02-12T07:51:13Z",
+     "dex": "magma-finance",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "haSUI / SUI",
+     "pool": "0x8faa061cbec3a3208255f1c4d00f97fc6e542807d259d931d3af4a02ccdbe3fe",
+     "reserve_usd": 1333.0029,
+     "vol24_usd": 0.0040377176
+    },
+    {
+     "created": "2023-11-22T04:55:32Z",
+     "dex": "flow-x",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "haSUI / SUI",
+     "pool": "0xe400560498fdec3bdf75a75d993efbe5e675d532b19648cf7a49ad46f78e5f9f",
+     "reserve_usd": 7991.422,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-10-29T06:27:27Z",
+     "dex": "ferra-dlmm",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "haSUI / SUI",
+     "pool": "0x95422b8ca78ad33f73c3b794db41e4cbda6de2681bdf4fa508de33d000c21ce4",
+     "reserve_usd": 2726.0842,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-05-27T20:16:11Z",
+     "dex": "turbos-finance",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "haSUI / SUI",
+     "pool": "0x65bda296be58251b6d7f73d4bac80c5c3324950f7a1577fc03dea6b07ad4ca25",
+     "reserve_usd": 1499.6634,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2024-03-17T15:34:10Z",
+     "dex": "cetus",
+     "fee_pct": 0.25,
+     "lst_side": "base",
+     "name": "haSUI / SUI 0.25%",
+     "pool": "0x3a0b871a93c1214ec069acace9f7c7df436aae91e59b4754dbcf238d4e91d388",
+     "reserve_usd": 93.4862,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-10-07T07:11:15Z",
+     "dex": "ferra-dlmm",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "haSUI / SUI",
+     "pool": "0xfadf273a0e02dce74d2e8a66245e4662fb9442c2c102ca0c5b5ed4c9801e1c54",
+     "reserve_usd": 41.9952,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2024-05-13T08:14:43Z",
+     "dex": "flowx-clmm",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "haSUI / SUI",
+     "pool": "0xaa5c02fc23b9f666f53fc5ccc288392f21886d0a3ca107457c5e4fe519722f37",
+     "reserve_usd": 107.0441,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-01-24T07:44:02Z",
+     "dex": "cetus",
+     "fee_pct": 0.1,
+     "lst_side": "base",
+     "name": "haSUI / SUI 0.1%",
+     "pool": "0x354942f46805c68f17231686944012a9de90b77b247e9182bfe0a23856923cc9",
+     "reserve_usd": 60.1491,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2024-10-04T04:14:03Z",
+     "dex": "turbos-finance",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "haSUI / SUI",
+     "pool": "0x9f9ae1ad291c2611383db04a048de2f32da5f0a5e27def241307c192a0a5b2d3",
+     "reserve_usd": 18.9594,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-03-03T06:21:57Z",
+     "dex": "magma-finance",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "haSUI / SUI",
+     "pool": "0xacb1fbb8901da8a6d148f148a8d951cacaa596cc0d1e6530df78a99bac9871a7",
+     "reserve_usd": 20.3286,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2024-06-14T13:21:21Z",
+     "dex": "cetus",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "haSUI / SUI 0.05%",
+     "pool": "0xda2311875f3085217a5ef632ba336abfbd2a97f20528bdec3f1d799527c5d407",
+     "reserve_usd": 54.1246,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-04-22T04:45:33Z",
+     "dex": "flowx-clmm",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "haSUI / SUI",
+     "pool": "0x400a1ab0b383ab778960fda4c56bf5026f6647cb01d13692a5e98728e982360f",
+     "reserve_usd": 10.7334,
+     "vol24_usd": 0.0
+    }
+   ],
+   "queue_days": 1.0,
+   "queue_src": "one epoch (docs)",
+   "reserve_native_pairs_usd": 4039043.0392,
+   "symbol": "haSUI",
+   "token": "0xbde4ba4c2e274a60ce15c1cfff9e5c42e41654ac8b6d906a57efa4bd3c29f47d::hasui::HASUI",
+   "vol24_native_pairs_usd": 30395.5695456757
+  },
+  {
+   "gt_status": null,
+   "instant": "",
+   "key": "shmon",
+   "native": "MON",
+   "network": "monad",
+   "pools": [
+    {
+     "created": "2025-11-26T08:57:25Z",
+     "dex": "curve-monad",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "shMON / WMON / sMON / gMON",
+     "pool": "0x74d80ee400d3026fdd2520265cc98300710b25d4",
+     "reserve_usd": 748668.8464,
+     "vol24_usd": 16700.2237126267
+    },
+    {
+     "created": "2025-11-24T17:18:47Z",
+     "dex": "uniswap-v4-monad",
+     "fee_pct": 0.01,
+     "lst_side": "quote",
+     "name": "MON / shMON 0.01%",
+     "pool": "0x0a2eb246aac042fed4eeaf8bce78df3568cbe21701c969812702633085b8f771",
+     "reserve_usd": 27824.6404,
+     "vol24_usd": 5608.997788095
+    },
+    {
+     "created": "2025-11-24T14:52:45Z",
+     "dex": "uniswap-v3-monad",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "shMON / WMON 0.01%",
+     "pool": "0x1f86a9f2441cac9b942cfb5445530cdbb28717ed",
+     "reserve_usd": 158857.0621,
+     "vol24_usd": 601.2221829401
+    },
+    {
+     "created": "2025-12-19T15:52:38Z",
+     "dex": "capricorn-monad",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "shMON / WMON 0.01%",
+     "pool": "0x5a52ccb6f7ed3a1e813364012c973795c8bd1d7e",
+     "reserve_usd": 2433.4104,
+     "vol24_usd": 0.4733473596
+    },
+    {
+     "created": "2025-11-26T06:30:49Z",
+     "dex": "atlantis-monad",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "shMON / WMON 0.05%",
+     "pool": "0xb15be61634850e6715dbc36ac959c4cc75621c5f",
+     "reserve_usd": 114.9556,
+     "vol24_usd": 0.005368866421
+    },
+    {
+     "created": "2025-12-26T16:16:57Z",
+     "dex": "uniswap-v4-monad",
+     "fee_pct": 0.05,
+     "lst_side": "quote",
+     "name": "MON / shMON 0.05%",
+     "pool": "0x950682d623dd2e492c252891544a4755dd65988587520714ea1faaa10a670a0c",
+     "reserve_usd": 0.1042,
+     "vol24_usd": 2.329570173e-05
+    },
+    {
+     "created": "2025-11-27T19:01:03Z",
+     "dex": "traderjoe-v2-2-monad",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "shMON / WMON",
+     "pool": "0xd55d2524616712ae7a8f683bc92f143cbae4abd3",
+     "reserve_usd": 266.9369,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2026-04-02T19:56:26Z",
+     "dex": "bean-monad",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "shMON / WMON",
+     "pool": "0xc87484b9b777724fc44b33d696a2839265418ed9",
+     "reserve_usd": 179.7706,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-24T08:10:34Z",
+     "dex": "madness-finance",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "shMON / WMON",
+     "pool": "0xcd7a88b15ce3d693f4883bf58490125e32cb3416",
+     "reserve_usd": 136.0224025932,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-27T19:37:40Z",
+     "dex": "uniswap-v4-monad",
+     "fee_pct": 0.075,
+     "lst_side": "quote",
+     "name": "MON / shMON 0.075%",
+     "pool": "0x33a60b08ce8d8a5f45d123e67410885d6e6b133909e27dfbe4a5cf297d19808b",
+     "reserve_usd": 25.7377,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-25T10:56:52Z",
+     "dex": "aethonswap",
+     "fee_pct": 0.3,
+     "lst_side": "base",
+     "name": "shMON / WMON 0.3%",
+     "pool": "0xf7da47d6cf2e2c75cee4bccd5b1d60dff1f65c9a",
+     "reserve_usd": 29.213,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-24T15:58:12Z",
+     "dex": "pancakeswap-v3-monad",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "shMON / WMON 0.01%",
+     "pool": "0x66553f37ea7fdc092193dcefaa7a32f94b1be4d0",
+     "reserve_usd": 6.6458,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-28T13:03:04Z",
+     "dex": "zkswap-finance-v3-monad",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "shMON / WMON 0.01%",
+     "pool": "0x455b819ae060e4bfcd3ddd55ecdeb3d4051e3937",
+     "reserve_usd": 8.7058,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-26T15:10:26Z",
+     "dex": "swyrl-cl",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "shMON / WMON 0.01%",
+     "pool": "0x55c8c7ee16baba8772574734c9a2538294ac19af",
+     "reserve_usd": 7.6241404729,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-24T14:52:29Z",
+     "dex": "uniswap-v3-monad",
+     "fee_pct": 0.3,
+     "lst_side": "base",
+     "name": "shMON / WMON 0.3%",
+     "pool": "0xc27eebd865051020f9bdeb12398790f356a7b684",
+     "reserve_usd": 5.8484,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2026-04-03T22:26:01Z",
+     "dex": "bean-monad",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "shMON / WMON",
+     "pool": "0x65c753b73126865b5f0a31994b2d2ebc88418720",
+     "reserve_usd": 3.5824,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-26T06:43:21Z",
+     "dex": "pinot",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "shMON / WMON 0.01%",
+     "pool": "0x2a23a66fdb67ddf5f978c81cd2fa7921ff95a7b1",
+     "reserve_usd": 1.3911376134,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-24T14:44:56Z",
+     "dex": "uniswap-v4-monad",
+     "fee_pct": 0.3,
+     "lst_side": "quote",
+     "name": "MON / shMON 0.3%",
+     "pool": "0x7fcaf7cf80716a22be9a97dd515f936f588b34f09ee6316e92f7c6a37dd086a8",
+     "reserve_usd": 1.4989,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-26T14:16:24Z",
+     "dex": "octoswap-classic",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "shMON / WMON",
+     "pool": "0x3f8f69ad520ad3258aae0381b91c2ee2aec9c9d7",
+     "reserve_usd": 1.5698687178,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-27T18:48:49Z",
+     "dex": "octoswap-cl",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "shMON / WMON 0.01%",
+     "pool": "0x1514a51240befb1a3e5f51288cf78b798b52b15b",
+     "reserve_usd": 0.0513,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-12-18T15:14:24Z",
+     "dex": "uniswap-v2-monad",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "shMON / WMON",
+     "pool": "0x0a78c5cb7792fb4340fe6b206539ec2bfdbfa265",
+     "reserve_usd": 0.004420878172,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-28T13:01:08Z",
+     "dex": "zkswap-finance-v2-monad",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "shMON / WMON",
+     "pool": "0xedf268d44617ead5065f72f307a136e85b1703e6",
+     "reserve_usd": 0.0025,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-12-19T14:31:08Z",
+     "dex": "monday-trade",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "shMON / WMON 0.01%",
+     "pool": "0x1db3640c3ecc1fc78338a4ac647c5e584056e015",
+     "reserve_usd": 3.196582077e-05,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-27T04:10:33Z",
+     "dex": "pancakeswap-v2-monad",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "shMON / WMON",
+     "pool": "0x4cce930a80afd3b4768ae0a1d1c3142445ff71fe",
+     "reserve_usd": 1.053471237e-16,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-25T09:19:29Z",
+     "dex": "uniswap-v3-monad",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "shMON / WMON 0.05%",
+     "pool": "0x5b0bc2a2d2a562648c721abd3e24c02af1a9ea94",
+     "reserve_usd": 8.218103153e-19,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-12-03T11:18:30Z",
+     "dex": "pinot",
+     "fee_pct": 0.3,
+     "lst_side": "base",
+     "name": "shMON / WMON 0.3%",
+     "pool": "0x4fd4b721c06261520619eb923906ce3d6094e92b",
+     "reserve_usd": 3.202177953e-19,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-23T10:53:56Z",
+     "dex": "kuru",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "shMON / MON",
+     "pool": "0xcc46a703345a18c4ef4be20a447dc8613f0aebc4",
+     "reserve_usd": 0.0,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-23T10:43:56Z",
+     "dex": "kuru",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "shMON / MON",
+     "pool": "0x4c0993a81b78f9ee547bd51f19b6998d3c760f15",
+     "reserve_usd": 0.0,
+     "vol24_usd": 0.0
+    }
+   ],
+   "queue_days": null,
+   "queue_src": "docs (FastLane)",
+   "reserve_native_pairs_usd": 938573.6244022413,
+   "symbol": "shMON",
+   "token": "0x1b68626dca36c7fe922fd2d55e4f631d962de19c",
+   "vol24_native_pairs_usd": 22910.92242318352
+  },
+  {
+   "gt_status": null,
+   "instant": "",
+   "key": "savax",
+   "native": "AVAX",
+   "network": "avax",
+   "pools": [
+    {
+     "created": "2024-07-30T08:21:55Z",
+     "dex": "traderjoe-v2-2-avalanche",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "sAVAX / WAVAX",
+     "pool": "0x883ea72c2a46f7acb3820855344c43666c6cc5c0",
+     "reserve_usd": 120120.1594,
+     "vol24_usd": 19813.7278546866
+    },
+    {
+     "created": "2025-10-16T20:24:58Z",
+     "dex": "pharaoh-exchange-v3",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "sAVAX / WAVAX 0.01%",
+     "pool": "0x65b9016c376604fe0af38c1e336ffcec0f8ecbbd",
+     "reserve_usd": 82994.8412,
+     "vol24_usd": 329.4379096189
+    },
+    {
+     "created": "2025-07-18T11:34:50Z",
+     "dex": "blackhole-v3",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "sAVAX / WAVAX 0.05%",
+     "pool": "0xee2ceda742bfb2ef566ab57642d47aba1909b653",
+     "reserve_usd": 3289.2908,
+     "vol24_usd": 141.959379777
+    },
+    {
+     "created": "2023-11-15T03:27:53Z",
+     "dex": "uniswap-v3-avalanche",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "sAVAX / WAVAX 0.05%",
+     "pool": "0xcea3c61705b68fefd8da1048ca69db1344180fcb",
+     "reserve_usd": 49.3988,
+     "vol24_usd": 22.4302536777
+    },
+    {
+     "created": "2022-01-30T03:42:02Z",
+     "dex": "traderjoe",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "sAVAX / WAVAX",
+     "pool": "0x4b946c91c2b1a7d7c40fb3c130cdfbaf8389094d",
+     "reserve_usd": 280402.9119,
+     "vol24_usd": 0.1466206211
+    },
+    {
+     "created": "2022-01-30T03:42:02Z",
+     "dex": "pangolin",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "sAVAX / WAVAX",
+     "pool": "0x4e9a38f05c38106c1cf5c145df24959ec50ff70d",
+     "reserve_usd": 13985.31,
+     "vol24_usd": 0.1362265343
+    },
+    {
+     "created": "2024-06-27T05:24:09Z",
+     "dex": "pharaoh-exchange",
+     "fee_pct": 0.025,
+     "lst_side": "base",
+     "name": "sAVAX / WAVAX 0.025%",
+     "pool": "0xf40e23204b2e1cc94930e15576b9ce47b4ad0f19",
+     "reserve_usd": 650521.8041,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2022-09-07T00:22:53Z",
+     "dex": "kyberswap_elastic_avalanche",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "sAVAX / WAVAX 0.01%",
+     "pool": "0x897a83cf016f33fb061e756e4ca89baa9f17990a",
+     "reserve_usd": 56193.6142,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2026-07-20T06:47:06Z",
+     "dex": "traderjoe-v2-2-avalanche",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "sAVAX / WAVAX",
+     "pool": "0xadd3fbf60aeab37cbae696c348368af973ee9b6e",
+     "reserve_usd": 3813.6555,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2022-11-15T04:33:25Z",
+     "dex": "kyberswap_classic_avalanche",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "sAVAX / WAVAX",
+     "pool": "0xc6bc80490a3d022ac888b26a5ae4f1fad89506bd",
+     "reserve_usd": 5594.7064,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2023-01-19T04:02:22Z",
+     "dex": "traderjoe-v2-avalanche",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "sAVAX / WAVAX",
+     "pool": "0xa7687be7174721178cfd7aa1ae590209649fc0b8",
+     "reserve_usd": 17723.469,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2026-06-26T08:51:05Z",
+     "dex": "pharaoh-dlmm",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "sAVAX / WAVAX",
+     "pool": "0x29657b1bd2276de7a40b519cba38f5ce3a053090",
+     "reserve_usd": 1928.0891,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2023-04-20T08:03:44Z",
+     "dex": "traderjoe-v2-1-avalanche",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "sAVAX / WAVAX",
+     "pool": "0x42c701d4e359178412d014506cfac43a67e57d6d",
+     "reserve_usd": 3540.18,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2026-09-23T07:57:14Z",
+     "dex": "curve_avalanche",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "sAVAX / WAVAX",
+     "pool": "0x6a1c781b7b280e3c8bf04fdfb86c112c9ac70a89",
+     "reserve_usd": 0.0,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-06-10T23:20:52Z",
+     "dex": "pangolin-v3",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "sAVAX / WAVAX 0.01%",
+     "pool": "0xbb060a721ff17008fd8c24efdf5b8886767bbbb5",
+     "reserve_usd": 307.4715518259,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2022-02-23T18:11:39Z",
+     "dex": "lydia_finance",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "sAVAX / WAVAX",
+     "pool": "0x4849e22c53e60421fcee656867e91b5e2fd60bf8",
+     "reserve_usd": 179.4112,
+     "vol24_usd": 0.0
+    }
+   ],
+   "queue_days": 15.0,
+   "queue_src": "cooldownPeriod() (read)",
+   "reserve_native_pairs_usd": 1240644.313151826,
+   "symbol": "sAVAX",
+   "token": "0x2b2c81e08f1af8835a78bb2a90ae924ace0ea4be",
+   "vol24_native_pairs_usd": 20307.8382449156
+  },
+  {
+   "gt_status": null,
+   "instant": "Aftermath instant, fee",
+   "key": "afsui",
+   "native": "SUI",
+   "network": "sui-network",
+   "pools": [
+    {
+     "created": "1970-01-01T00:00:00Z",
+     "dex": "cetus",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "AFSUI / SUI 0.01%",
+     "pool": "0xa528b26eae41bcfca488a9feaa3dca614b2a1d9b9b5c78c256918ced051d4c50",
+     "reserve_usd": 39189.4315,
+     "vol24_usd": 10367.4828770173
+    },
+    {
+     "created": "2024-10-03T13:09:54Z",
+     "dex": "turbos-finance",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "AFSUI / SUI",
+     "pool": "0xea75ce260cf3706f36564c1a432eadd1a45ba8fca62dc91401360b3d587fc4fc",
+     "reserve_usd": 7822.4262,
+     "vol24_usd": 0.8560850402
+    },
+    {
+     "created": "2023-11-22T13:19:12Z",
+     "dex": "kriya-dex",
+     "fee_pct": 0.067,
+     "lst_side": "base",
+     "name": "AFSUI / SUI 0.067%",
+     "pool": "0xc0d598bcad669ac1a9b0af255de259c46092b495cdd6c26f2cb38bb23d8b4357",
+     "reserve_usd": 10395.9922,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2023-11-11T21:26:54Z",
+     "dex": "flow-x",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "AFSUI / SUI",
+     "pool": "0x20563ba211f55530bd4f414a301c13b1a810e3f26468ecb75ff514e42d9233a4",
+     "reserve_usd": 4378.3826,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-03-13T11:20:47Z",
+     "dex": "magma-finance",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "AFSUI / SUI",
+     "pool": "0x6c16269802a7b9f411a94140d6d066b056757e24c880323f20b7e6f451ea9364",
+     "reserve_usd": 635.6406,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2024-03-21T18:03:31Z",
+     "dex": "kriya-dex",
+     "fee_pct": 0.067,
+     "lst_side": "base",
+     "name": "AFSUI / SUI 0.067%",
+     "pool": "0x2483c1719d3e176f3626a87c3907df8bf00b5ff2b149ad13f2b0391ba2d87bb9",
+     "reserve_usd": 141.3652,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2024-10-16T16:36:30Z",
+     "dex": "turbos-finance",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "AFSUI / SUI",
+     "pool": "0x1a94bcf01028c4e47547815fa1142421db4327c9a8c8fa9658095d71b27e1d82",
+     "reserve_usd": 96.1767,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2024-11-23T08:39:01Z",
+     "dex": "turbos-finance",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "AFSUI / SUI",
+     "pool": "0x65681cd452539590fabab74b963b1532e9b6729f94c05273e72ac6d47d1a7819",
+     "reserve_usd": 19.7808,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2024-04-02T12:44:49Z",
+     "dex": "kriya-dex",
+     "fee_pct": 0.067,
+     "lst_side": "base",
+     "name": "AFSUI / SUI 0.067%",
+     "pool": "0xa5dfeff2863be37c9ca4553e91bd6be9517357d33bc2ebd9ffdfc36718a0f72d",
+     "reserve_usd": 3.4732,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-05-15T11:11:05Z",
+     "dex": "steamm",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "AFSUI / SUI",
+     "pool": "0xbb346842d3cda589a3a97b9b25fa875dfe97e97d1ff0116032d24d2c81609d4e",
+     "reserve_usd": 1.8918,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2024-11-17T13:10:08Z",
+     "dex": "bluemove",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "AFSUI / SUI",
+     "pool": "0x23ccbf365faef5e10c3eec32c99bd74ffcbd8a472537b41ebc430c3e41093453",
+     "reserve_usd": 10.2618,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-05-04T22:25:44Z",
+     "dex": "steamm",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "AFSUI / SUI",
+     "pool": "0x36d519204fee3b25b4cb13ec49ac81cb702969283a757fe6f3b9a35c17802608",
+     "reserve_usd": 0.0203,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-05-04T23:04:24Z",
+     "dex": "steamm",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "AFSUI / SUI",
+     "pool": "0x134bfa2dbddb036491141e32437f6f62ee825910149ce861450a81129e8583fe",
+     "reserve_usd": 0.0008,
+     "vol24_usd": 0.0
+    }
+   ],
+   "queue_days": 1.0,
+   "queue_src": "one epoch (docs)",
+   "reserve_native_pairs_usd": 62694.8437,
+   "symbol": "afSUI",
+   "token": "0xf325ce1300e8dac124071d3152c5c5ee6174914f8bc2161e88329cf579246efc::afsui::AFSUI",
+   "vol24_native_pairs_usd": 10368.3389620575
+  },
+  {
+   "gt_status": null,
+   "instant": "Meta Pool liquidity, fee",
+   "key": "stnear",
+   "native": "NEAR",
+   "network": "near",
+   "pools": [
+    {
+     "created": "2023-04-23T14:34:56Z",
+     "dex": "rhea-finance",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "STNEAR / wNEAR",
+     "pool": "refv1-3514",
+     "reserve_usd": 6327215.1202,
+     "vol24_usd": 8727.9179219365
+    },
+    {
+     "created": "2023-04-23T14:34:56Z",
+     "dex": "rhea-finance",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "STNEAR / wNEAR",
+     "pool": "refv1-535",
+     "reserve_usd": 213484.3885,
+     "vol24_usd": 826.0841046
+    },
+    {
+     "created": "2026-03-10T15:58:32Z",
+     "dex": "near-intents",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "STNEAR / wNEAR",
+     "pool": "nep141:meta-pool.near___nep141:wrap.near",
+     "reserve_usd": 85207483.9168,
+     "vol24_usd": 0.0
+    }
+   ],
+   "queue_days": 2.5,
+   "queue_src": "4 epochs (docs)",
+   "reserve_native_pairs_usd": 91748183.4255,
+   "symbol": "stNEAR",
+   "token": "meta-pool.near",
+   "vol24_native_pairs_usd": 9554.0020265365
+  },
+  {
+   "gt_status": null,
+   "instant": "Valantis STEX AMM",
+   "key": "sthype",
+   "native": "HYPE",
+   "network": "hyperevm",
+   "pools": [
+    {
+     "created": "2025-02-19T12:06:26Z",
+     "dex": "hyperswap-v3",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "stHYPE / WHYPE 0.01%",
+     "pool": "0x8d64d8273a3d50e44cc0e6f43d927f78754edefb",
+     "reserve_usd": 207728.6036,
+     "vol24_usd": 6180.0498816018
+    },
+    {
+     "created": "2025-02-19T12:13:59Z",
+     "dex": "hyperswap-v3",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "stHYPE / WHYPE 0.05%",
+     "pool": "0xe963f30a0dda55e17d048b4ec4fb3ebba80c6f2b",
+     "reserve_usd": 16147.1968,
+     "vol24_usd": 0.999819964
+    },
+    {
+     "created": "2025-02-19T14:25:16Z",
+     "dex": "hyperswap-v3",
+     "fee_pct": 0.3,
+     "lst_side": "base",
+     "name": "stHYPE / WHYPE 0.3%",
+     "pool": "0xe3a8c2c535693c2a76bde2ac4422cd85298722fb",
+     "reserve_usd": 27794.6023,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-08-05T13:15:25Z",
+     "dex": "hyperbrick",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "stHYPE / WHYPE",
+     "pool": "0xb35063b6b42d1a8bff560288b79deed74ebc280b",
+     "reserve_usd": 6243.0646,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-02-19T12:14:36Z",
+     "dex": "hyperswap-v2",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "stHYPE / WHYPE",
+     "pool": "0xac7aefd408e78897dc75f6a594fc17f7a5d8d064",
+     "reserve_usd": 4042.0453,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-02-19T20:19:54Z",
+     "dex": "hyperswap-v3",
+     "fee_pct": 1.0,
+     "lst_side": "base",
+     "name": "stHYPE / WHYPE 1%",
+     "pool": "0xa0a3ad6ed38354c02b892ddfc79c4a93729ee9b3",
+     "reserve_usd": 311.4642256338,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-05-28T06:23:45Z",
+     "dex": "curve-hyperevm",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "stHYPE / WHYPE",
+     "pool": "0xbabe778ef6ace022f62e8faee312d80e3c1d1e13",
+     "reserve_usd": 140.6298,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-07-11T12:42:00Z",
+     "dex": "gliquid",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "stHYPE / WHYPE 0.05%",
+     "pool": "0x5cefff50e99d5249ee765ea0b1010e7699da2cc7",
+     "reserve_usd": 86.6388,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-07-30T04:53:55Z",
+     "dex": "hyperbrick",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "stHYPE / WHYPE",
+     "pool": "0x1e081476d05129d53a3ee42f4104b8a06e4f89a7",
+     "reserve_usd": 11.654,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-07-11T21:12:46Z",
+     "dex": "hypercat",
+     "fee_pct": 0.009,
+     "lst_side": "base",
+     "name": "stHYPE / WHYPE 0.009%",
+     "pool": "0x19935d2dd3d811b086e6f2188240c0bd57b1fb09",
+     "reserve_usd": 10.1101,
+     "vol24_usd": 0.0
+    }
+   ],
+   "queue_days": 7.0,
+   "queue_src": "docs (Valantis/Thunderhead overseer)",
+   "reserve_native_pairs_usd": 262516.0095256338,
+   "symbol": "stHYPE",
+   "token": "0xffaa4a3d97fe9107cef8a3f48c069f577ff76cc1",
+   "vol24_native_pairs_usd": 6181.0497015658
+  },
+  {
+   "gt_status": null,
+   "instant": "LiNEAR pool, fee",
+   "key": "linear",
+   "native": "NEAR",
+   "network": "near",
+   "pools": [
+    {
+     "created": "2023-04-23T14:34:56Z",
+     "dex": "rhea-finance",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "LINEAR / wNEAR",
+     "pool": "refv1-3515",
+     "reserve_usd": 5153976.1954,
+     "vol24_usd": 5854.0701469492
+    },
+    {
+     "created": "2023-04-23T14:34:56Z",
+     "dex": "rhea-finance",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "LINEAR / wNEAR",
+     "pool": "refv1-3088",
+     "reserve_usd": 17681.0574,
+     "vol24_usd": 1.7510379841
+    }
+   ],
+   "queue_days": 2.5,
+   "queue_src": "4 epochs, ~52-65 h (docs)",
+   "reserve_native_pairs_usd": 5171657.2528,
+   "symbol": "LiNEAR",
+   "token": "linear-protocol.near",
+   "vol24_native_pairs_usd": 5855.821184933299
+  },
+  {
+   "gt_status": null,
+   "instant": "",
+   "key": "wsthype",
+   "native": "HYPE",
+   "network": "hyperevm",
+   "pools": [
+    {
+     "created": "2025-08-05T22:07:20Z",
+     "dex": "project-x",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "wstHYPE / WHYPE 0.01%",
+     "pool": "0xff0a1d682e614b8f913751ac97fe2086a40c476a",
+     "reserve_usd": 10982.2067,
+     "vol24_usd": 5738.9818324948
+    },
+    {
+     "created": "2025-12-03T16:21:00Z",
+     "dex": "nest",
+     "fee_pct": 0.005,
+     "lst_side": "base",
+     "name": "wstHYPE / WHYPE 0.005%",
+     "pool": "0x728c8e4e89472b96bd2b830438e0cb458f141db9",
+     "reserve_usd": 48198.959,
+     "vol24_usd": 45.355895578
+    },
+    {
+     "created": "2025-03-04T08:25:37Z",
+     "dex": "kittenswap",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "wstHYPE / WHYPE",
+     "pool": "0x7f5d1f93232702a951759a47a27de08d35e9bbe8",
+     "reserve_usd": 11083.7417,
+     "vol24_usd": 5.0270580118
+    },
+    {
+     "created": "2025-04-02T07:38:57Z",
+     "dex": "laminar",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "wstHYPE / WHYPE 0.05%",
+     "pool": "0x0a69a514cd9d7c8427fb819c55afb9939da20b80",
+     "reserve_usd": 69414.3447,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-05-26T06:28:52Z",
+     "dex": "kittenswap-v3",
+     "fee_pct": 0.02,
+     "lst_side": "base",
+     "name": "wstHYPE / WHYPE 0.02%",
+     "pool": "0x1819be9c9f049826f70d9d1b78b358801e5a91f2",
+     "reserve_usd": 28727.0622,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-05-02T02:52:00Z",
+     "dex": "laminar",
+     "fee_pct": 1.0,
+     "lst_side": "base",
+     "name": "wstHYPE / WHYPE 1%",
+     "pool": "0x2989c9b547f31e594e99ad82907432b075f5db5c",
+     "reserve_usd": 8702.9336,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-02-19T14:26:05Z",
+     "dex": "hyperswap-v3",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "wstHYPE / WHYPE 0.01%",
+     "pool": "0x7066ddf85a4a624418af9da57e3f7baeefa8e792",
+     "reserve_usd": 2676.0196,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-02-19T12:26:56Z",
+     "dex": "hyperswap-v3",
+     "fee_pct": 0.3,
+     "lst_side": "base",
+     "name": "wstHYPE / WHYPE 0.3%",
+     "pool": "0xf423f9b95e3dcc18cf27acf913539cecf3bc266c",
+     "reserve_usd": 441.0227,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-02-19T14:18:19Z",
+     "dex": "hyperswap-v2",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "wstHYPE / WHYPE",
+     "pool": "0xce241873b4aca8eff06f24ed42335766daabb399",
+     "reserve_usd": 440.7731,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-03-04T11:11:38Z",
+     "dex": "kittenswap",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "wstHYPE / WHYPE",
+     "pool": "0xce6be3f8b0281a1d7cccb140485ff51d4d6b212b",
+     "reserve_usd": 260.5541,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-02-19T12:18:24Z",
+     "dex": "hyperswap-v3",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "wstHYPE / WHYPE 0.05%",
+     "pool": "0x30040495ba537ed96a986252c0d7bb8a04e9291a",
+     "reserve_usd": 77.2995,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-09-12T09:40:02Z",
+     "dex": "ultrasolid-v3",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "wstHYPE / WHYPE 0.01%",
+     "pool": "0xf59da17bdb0b1e8ec3947d936020e55b931bfc58",
+     "reserve_usd": 69.3118124652,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-07-11T07:51:00Z",
+     "dex": "hybra-finance-v3",
+     "fee_pct": 0.02,
+     "lst_side": "base",
+     "name": "wstHYPE / WHYPE 0.02%",
+     "pool": "0x8b1dab47dbb756d0a6e5bcaa0170b0db2c5ef19b",
+     "reserve_usd": 47.6397,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-08-10T14:37:06Z",
+     "dex": "project-x",
+     "fee_pct": 0.3,
+     "lst_side": "base",
+     "name": "wstHYPE / WHYPE 0.3%",
+     "pool": "0xc775d438af9df4150f049c36f599fbb0250067ab",
+     "reserve_usd": 16.2919,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-09-14T22:48:00Z",
+     "dex": "upheaval-finance",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "wstHYPE / WHYPE 0.01%",
+     "pool": "0x783df59ebf78c1bea82b691913caf06ed116e28e",
+     "reserve_usd": 9.9893314105,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-08-06T15:23:16Z",
+     "dex": "project-x",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "wstHYPE / WHYPE 0.05%",
+     "pool": "0xf4a1a745f56e2bf4f0694372f77d19d7d7703e4e",
+     "reserve_usd": 0.4352661056,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-07-31T18:53:13Z",
+     "dex": "hypercat",
+     "fee_pct": 0.015,
+     "lst_side": "base",
+     "name": "wstHYPE / WHYPE 0.015%",
+     "pool": "0xc88f81f2d0650b68300853af7603ddf3c3b54afd",
+     "reserve_usd": 2.5271,
+     "vol24_usd": 0.0
+    }
+   ],
+   "queue_days": 7.0,
+   "queue_src": "docs",
+   "reserve_native_pairs_usd": 181151.1120099813,
+   "symbol": "wstHYPE",
+   "token": "0x94e8396e0869c9f2200760af0621afd240e1cf38",
+   "vol24_native_pairs_usd": 5789.3647860846
+  },
+  {
+   "gt_status": null,
+   "instant": "Volo instant, fee",
+   "key": "vsui",
+   "native": "SUI",
+   "network": "sui-network",
+   "pools": [
+    {
+     "created": "1970-01-01T00:00:00Z",
+     "dex": "cetus",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "vSUI / SUI 0.01%",
+     "pool": "0x6c545e78638c8c1db7a48b282bb8ca79da107993fcb185f75cedc1f5adb2f535",
+     "reserve_usd": 99082.4929,
+     "vol24_usd": 4274.2480522283
+    },
+    {
+     "created": "2025-07-31T02:21:08Z",
+     "dex": "momentum",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "vSUI / SUI",
+     "pool": "0xd146a1aada49c9adc1e96ce5708c06171c7e784e63eb8455693ada96ad83c6cc",
+     "reserve_usd": 6655.2687,
+     "vol24_usd": 84.6286679635
+    },
+    {
+     "created": "2025-01-21T09:15:01Z",
+     "dex": "bluefin",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "vSUI / SUI 0.01%",
+     "pool": "0xbce4869d39b5247bbd25653a0b8f2143ed08ae963f1e9634abd3ef6b8f487a9e",
+     "reserve_usd": 4002.3976,
+     "vol24_usd": 7.4469125076
+    },
+    {
+     "created": "2023-11-21T14:35:00Z",
+     "dex": "kriya-dex",
+     "fee_pct": 0.003,
+     "lst_side": "base",
+     "name": "vSUI / SUI 0.003%",
+     "pool": "0xf385dee283495bb70500f5f8491047cd5a2ef1b7ff5f410e6dfe8a3c3ba58716",
+     "reserve_usd": 90105.3366,
+     "vol24_usd": 2.9710474785
+    },
+    {
+     "created": "2024-10-03T09:16:40Z",
+     "dex": "turbos-finance",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "vSUI / SUI",
+     "pool": "0x74915fb0491fe1ed6ebe6f89111073a72f6d026e040822d65e5de66064ffea9c",
+     "reserve_usd": 72511.5957,
+     "vol24_usd": 0.1654191297
+    },
+    {
+     "created": "2025-03-01T06:46:01Z",
+     "dex": "magma-finance",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "vSUI / SUI",
+     "pool": "0xfa54f1de53af9135aea64d31e8e4b543fc0b073a6c218f520f5b015d28951a0a",
+     "reserve_usd": 6183.3283,
+     "vol24_usd": 0.1238246728
+    },
+    {
+     "created": "2025-10-22T02:41:46Z",
+     "dex": "ferra-dlmm",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "vSUI / SUI",
+     "pool": "0xa10aa449f2d80d259dc2de559a8004c41a2fe1bd5c2072f0b733943aa9c1b98a",
+     "reserve_usd": 117611.1978,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2024-10-06T10:12:27Z",
+     "dex": "turbos-finance",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "vSUI / SUI",
+     "pool": "0x5b85da6a4fc44c27d398390e2bab4ef83c400b9430363d33133b7fc77deeef33",
+     "reserve_usd": 1623.9473,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-10-07T07:14:12Z",
+     "dex": "ferra-dlmm",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "vSUI / SUI",
+     "pool": "0x22b298588add87ee01cfb7943f703a1c875957002eb44efd357d48aa63cedaef",
+     "reserve_usd": 176.0758,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-12-09T07:21:54Z",
+     "dex": "magma-finance",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "vSUI / SUI",
+     "pool": "0xe776b2342657b2d3d32179bdf31c93c8a52dcdacfccc84529a059fef695a2b4f",
+     "reserve_usd": 95.7984,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-03-08T13:30:00Z",
+     "dex": "cetus",
+     "fee_pct": 0.1,
+     "lst_side": "base",
+     "name": "vSUI / SUI 0.1%",
+     "pool": "0x48ab2d1ad1d1750d74279d7f31e25618ecb112092a5c4d29a2cb474ea455fe8a",
+     "reserve_usd": 28.9186,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2024-06-20T09:04:32Z",
+     "dex": "flowx-clmm",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "vSUI / SUI",
+     "pool": "0x5e424e744980ce5b22a4b912e19872c080321685a8cff8e6606e78b14542c14e",
+     "reserve_usd": 44.4264,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-05-06T10:51:50Z",
+     "dex": "steamm",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "vSUI / SUI",
+     "pool": "0xd7263e552ef0499a591b64a8a37f6c13df3e55170fe56c28557799ffbc3d5eb4",
+     "reserve_usd": 22.2048,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-10-29T04:01:46Z",
+     "dex": "ferra-dlmm",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "vSUI / SUI",
+     "pool": "0x7191ded7fef48fb6595fca021798ff19f9408d576d82d6d7168233fcf12dee88",
+     "reserve_usd": 14.7706,
+     "vol24_usd": 0.0
+    }
+   ],
+   "queue_days": 1.0,
+   "queue_src": "one epoch (docs)",
+   "reserve_native_pairs_usd": 398157.7595,
+   "symbol": "vSUI",
+   "token": "0x549e8b69270defbfafd4f94e17ec44cdbdd99820b33bda2278dea3b9a32d3f55::cert::CERT",
+   "vol24_native_pairs_usd": 4369.5839239804
+  },
+  {
+   "gt_status": null,
+   "instant": "instant withdrawal with a fee when liquidity allows (docs)",
+   "key": "behype",
+   "native": "HYPE",
+   "network": "hyperevm",
+   "pools": [
+    {
+     "created": "2026-04-21T19:08:43Z",
+     "dex": "curve-hyperevm",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "beHYPE / WHYPE",
+     "pool": "0x2786cd87444bcef6362b1b683a923c13b30d692c",
+     "reserve_usd": 18652.9871,
+     "vol24_usd": 2081.460948828
+    },
+    {
+     "created": "2025-09-10T04:43:00Z",
+     "dex": "project-x",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "beHYPE / WHYPE 0.01%",
+     "pool": "0x6801b1dbb4320c59af532ba4e34b2365d4a638be",
+     "reserve_usd": 10323.0034,
+     "vol24_usd": 2079.8629822906
+    },
+    {
+     "created": "2025-09-08T11:35:00Z",
+     "dex": "hyperswap-v3",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "beHYPE / WHYPE 0.01%",
+     "pool": "0x787afaedea38a8daa239e3478bf4fd01fa650b03",
+     "reserve_usd": 112.33,
+     "vol24_usd": 1.6838767546
+    },
+    {
+     "created": "2025-09-09T20:20:00Z",
+     "dex": "project-x",
+     "fee_pct": 0.3,
+     "lst_side": "base",
+     "name": "beHYPE / WHYPE 0.3%",
+     "pool": "0xf777ead084b0f37080b55c0105b501567c91d369",
+     "reserve_usd": 876.5885,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-09-17T09:44:00Z",
+     "dex": "hybra-finance-v3",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "beHYPE / WHYPE 0.01%",
+     "pool": "0x2e603f13b32c5dcc46e91a2368599227641a1a10",
+     "reserve_usd": 150.1405,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-09-12T08:32:27Z",
+     "dex": "ultrasolid-v3",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "beHYPE / WHYPE 0.01%",
+     "pool": "0xa56165be49c51e293a2d50bd59502d60a9a07586",
+     "reserve_usd": 11.8271,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-09-09T22:13:00Z",
+     "dex": "project-x",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "beHYPE / WHYPE 0.05%",
+     "pool": "0x6da2333e37e2d079cbd6a3f32ece5002adbc8f75",
+     "reserve_usd": 0.003250639429,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-09-29T04:29:00Z",
+     "dex": "upheaval-finance",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "beHYPE / WHYPE 0.01%",
+     "pool": "0x1b9c4f579debfb430129ac8fb4a99752fbf686c7",
+     "reserve_usd": 5.836895069e-05,
+     "vol24_usd": 0.0
+    }
+   ],
+   "queue_days": 7.0,
+   "queue_src": "docs (ether.fi)",
+   "reserve_native_pairs_usd": 30126.879909008378,
+   "symbol": "beHYPE",
+   "token": "0xd8fc8f0b03eba61f64d08b0bef69d80916e5dda9",
+   "vol24_native_pairs_usd": 4163.007807873199
+  },
+  {
+   "gt_status": null,
+   "instant": "",
+   "key": "smon",
+   "native": "MON",
+   "network": "monad",
+   "pools": [
+    {
+     "created": "2025-11-25T20:42:41Z",
+     "dex": "uniswap-v3-monad",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "sMON / WMON 0.01%",
+     "pool": "0x36a81ebd73b86b485a14911ea16f3d7c96cc00b0",
+     "reserve_usd": 5721.2946,
+     "vol24_usd": 3881.5127711202
+    },
+    {
+     "created": "2025-11-24T11:58:46Z",
+     "dex": "pancakeswap-v3-monad",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "sMON / WMON 0.01%",
+     "pool": "0xf75dbf48192317a27bb4690c4b333535c227f0a4",
+     "reserve_usd": 1674.631,
+     "vol24_usd": 46.6002809993
+    },
+    {
+     "created": "2025-12-19T15:49:04Z",
+     "dex": "capricorn-monad",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "sMON / WMON 0.01%",
+     "pool": "0x3a62cebddc88b9cccf61fd44128c2231e057573c",
+     "reserve_usd": 2748.2108,
+     "vol24_usd": 8.4498671905
+    },
+    {
+     "created": "2025-11-26T14:29:29Z",
+     "dex": "atlantis-monad",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "sMON / WMON 0.05%",
+     "pool": "0x65a75457681f8956c50bb7c7bdf783a39e8629a5",
+     "reserve_usd": 210.6004,
+     "vol24_usd": 1.0185902869
+    },
+    {
+     "created": "2025-11-26T01:36:24Z",
+     "dex": "octoswap-cl",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "sMON / WMON 0.01%",
+     "pool": "0x29e4e1b2156cd79f124d4046b648b58f8916ed3e",
+     "reserve_usd": 3.4548,
+     "vol24_usd": 0.006383300699
+    },
+    {
+     "created": "2025-11-25T04:09:31Z",
+     "dex": "uniswap-v4-monad",
+     "fee_pct": 0.05,
+     "lst_side": "quote",
+     "name": "MON / sMON 0.05%",
+     "pool": "0x870cdfafbc22eb0b913c346645a141d3f627844841c19a8a153597a27deb22f9",
+     "reserve_usd": 1.9099,
+     "vol24_usd": 0.005977548
+    },
+    {
+     "created": "2026-04-02T15:11:46Z",
+     "dex": "bean-monad",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "sMON / WMON",
+     "pool": "0x1ba71abfe3e2458f39970c6e3fcd98ff53482827",
+     "reserve_usd": 2252.4936,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-27T09:11:40Z",
+     "dex": "uniswap-v4-monad",
+     "fee_pct": 0.01,
+     "lst_side": "quote",
+     "name": "MON / sMON 0.01%",
+     "pool": "0x0037cf2908dcc67f31069300c6f6389451abb128b5100b90135df0ff87b9005a",
+     "reserve_usd": 160.3284,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-24T15:34:53Z",
+     "dex": "traderjoe-v2-2-monad",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "sMON / WMON",
+     "pool": "0x7be4d4f7be99f2411d168d0801e47b36413095e4",
+     "reserve_usd": 137.1296,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-25T07:18:11Z",
+     "dex": "madness-finance",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "sMON / WMON",
+     "pool": "0x4d0e37056d9c4ea716681114aa6e0cc67bd35d5c",
+     "reserve_usd": 76.3028975171,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-24T16:05:16Z",
+     "dex": "aethonswap",
+     "fee_pct": 0.1,
+     "lst_side": "base",
+     "name": "sMON / WMON 0.1%",
+     "pool": "0x59f759b6f3a9882eb1361fe2d84d87ef979acf21",
+     "reserve_usd": 80.3231,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-25T19:16:42Z",
+     "dex": "pancakeswap-v3-monad",
+     "fee_pct": 1.0,
+     "lst_side": "base",
+     "name": "sMON / WMON 1%",
+     "pool": "0x618e3fa4a3e78f76b25647305c1691e01b3aed59",
+     "reserve_usd": 12.5279239298,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-12-19T02:07:09Z",
+     "dex": "uniswap-v4-monad",
+     "fee_pct": null,
+     "lst_side": "quote",
+     "name": "MON / sMON",
+     "pool": "0x646bb8261810ee36bef5a793634a1ae67493df231e0d3eadab28d150cc0346f8",
+     "reserve_usd": 4.3872,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-26T06:06:15Z",
+     "dex": "monday-trade",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "sMON / WMON 0.05%",
+     "pool": "0x8630da65071ce804f413d88b5ff08f3eddf82637",
+     "reserve_usd": 4.6595807794,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-26T03:57:00Z",
+     "dex": "octoswap-cl",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "sMON / WMON 0.05%",
+     "pool": "0x19f8f3e6c6761e345a16b8fa7c8aadad961ceec1",
+     "reserve_usd": 2.3332,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-25T22:07:32Z",
+     "dex": "uniswap-v3-monad",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "sMON / WMON 0.05%",
+     "pool": "0xb4e09755c3257cd0f6ad772128f6330e7cb42767",
+     "reserve_usd": 0.03167749375,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-26T04:05:23Z",
+     "dex": "octoswap-classic",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "sMON / WMON",
+     "pool": "0xfc39704d578a0b57cbb32bb405d307d063d23a99",
+     "reserve_usd": 0.003342273031,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2026-01-25T22:56:43Z",
+     "dex": "pancakeswap-v3-monad",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "sMON / WMON 0.05%",
+     "pool": "0x2d77ed0fc9d919e71a7832df5c1ef1161482292c",
+     "reserve_usd": 1.5109396e-05,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-30T06:42:10Z",
+     "dex": "uniswap-v3-monad",
+     "fee_pct": 1.0,
+     "lst_side": "base",
+     "name": "sMON / WMON 1%",
+     "pool": "0xa9fdd52cf745e58bae24ed4ee9bd77e78cac054b",
+     "reserve_usd": 3.05012128e-19,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-18T09:07:12Z",
+     "dex": "kuru",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "sMON / MON",
+     "pool": "0xac758746cc4c54751623a84dc085b9b39b661b73",
+     "reserve_usd": 0.0,
+     "vol24_usd": 0.0
+    }
+   ],
+   "queue_days": null,
+   "queue_src": "docs (Kintsu)",
+   "reserve_native_pairs_usd": 13090.622037102477,
+   "symbol": "sMON",
+   "token": "0xa3227c5969757783154c60bf0bc1944180ed81b9",
+   "vol24_native_pairs_usd": 3937.593870445599
+  },
+  {
+   "gt_status": null,
+   "instant": "",
+   "key": "amapt",
+   "native": "APT",
+   "network": "aptos",
+   "pools": [
+    {
+     "created": "2025-02-14T10:47:18Z",
+     "dex": "hyperion",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "amAPT / APT",
+     "pool": "0xce131db3fb4f52c4a1526e2cf1d8a5383a6c5c0beaa610c277856a8721a9b5a3",
+     "reserve_usd": 355867.0095,
+     "vol24_usd": 1913.4265933938
+    },
+    {
+     "created": "2025-03-19T17:34:22Z",
+     "dex": "thalaswap-v2",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "amAPT / APT",
+     "pool": "0x3323479546a006841966f163e78aa7668d2876abd62136da2bc97d23348cc28b",
+     "reserve_usd": 0.0043,
+     "vol24_usd": 0.0
+    }
+   ],
+   "queue_days": 30.0,
+   "queue_src": "Aptos lockup cycle, up to 30 days (docs)",
+   "reserve_native_pairs_usd": 355867.01379999996,
+   "symbol": "amAPT",
+   "token": "0xa259be733b6a759909f92815927fa213904df6540519568692caf0b068fe8e62",
+   "vol24_native_pairs_usd": 1913.4265933938
+  },
+  {
+   "gt_status": null,
+   "instant": "",
+   "key": "mhype",
+   "native": "HYPE",
+   "network": "hyperevm",
+   "pools": [
+    {
+     "created": "2025-08-05T23:22:35Z",
+     "dex": "project-x",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "mHYPE / WHYPE 0.01%",
+     "pool": "0xfe28783d790e3480e5c15f014733e7e9ba82280e",
+     "reserve_usd": 1712.9307,
+     "vol24_usd": 1087.3084021267
+    },
+    {
+     "created": "2025-04-14T05:53:00Z",
+     "dex": "hyperswap-v3",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "mHYPE / WHYPE 0.01%",
+     "pool": "0x531024ed7d5aa784f06fc57797c6badc056d5e7f",
+     "reserve_usd": 5818.5558,
+     "vol24_usd": 373.2795662384
+    },
+    {
+     "created": "2025-03-26T10:24:00Z",
+     "dex": "kittenswap",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "mHYPE / WHYPE",
+     "pool": "0xb44a07a32ea7b18642e93fd73d27d7021ca4d653",
+     "reserve_usd": 2114.146,
+     "vol24_usd": 344.242976763
+    },
+    {
+     "created": "2025-05-26T06:57:05Z",
+     "dex": "kittenswap-v3",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "mHYPE / WHYPE",
+     "pool": "0x4f2d9fd6a15cd82b3c81190efc12659091b35138",
+     "reserve_usd": 14034.3246,
+     "vol24_usd": 74.8249915788
+    },
+    {
+     "created": "2025-08-26T09:53:04Z",
+     "dex": "kittenswap-algebra",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "mHYPE / WHYPE 0.05%",
+     "pool": "0xf199547fcd8c90e4106a0b4d73c785ecb84d8a24",
+     "reserve_usd": 354.4449,
+     "vol24_usd": 10.836653937
+    },
+    {
+     "created": "2025-03-28T10:33:00Z",
+     "dex": "hyperswap-v3",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "mHYPE / WHYPE 0.05%",
+     "pool": "0x417802441e044073ec0a52e7eb6cccba67ac1721",
+     "reserve_usd": 521.8338,
+     "vol24_usd": 0.8016129692
+    },
+    {
+     "created": "2025-10-09T06:00:00Z",
+     "dex": "upheaval-finance",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "mHYPE / WHYPE 0.05%",
+     "pool": "0x1d7ba0ebd82578e66a6ae4c3ba29281a6d710d0e",
+     "reserve_usd": 1.7042,
+     "vol24_usd": 0.2284923531
+    },
+    {
+     "created": "2025-05-30T15:00:22Z",
+     "dex": "kittenswap-v3",
+     "fee_pct": 0.25,
+     "lst_side": "base",
+     "name": "mHYPE / WHYPE 0.25%",
+     "pool": "0x929e646195a4999fff36ab5e566a979c43d92579",
+     "reserve_usd": 162.674,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-04-15T09:08:00Z",
+     "dex": "hyperswap-v3",
+     "fee_pct": 0.3,
+     "lst_side": "base",
+     "name": "mHYPE / WHYPE 0.3%",
+     "pool": "0x8e0c676549a141b6cbd0a91dfc9016bac1c2af47",
+     "reserve_usd": 106.3656,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-09-16T10:58:00Z",
+     "dex": "upheaval-finance",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "mHYPE / WHYPE 0.01%",
+     "pool": "0x3607f8e520625f98f9d6f12194106f399ecf0dd4",
+     "reserve_usd": 47.0262,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-06-19T04:00:37Z",
+     "dex": "kittenswap-v3",
+     "fee_pct": 0.75,
+     "lst_side": "base",
+     "name": "mHYPE / WHYPE 0.75%",
+     "pool": "0x54d81cf68d76bfeeb7d14542cdaec4703ebffac5",
+     "reserve_usd": 8.0777,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-07-18T12:27:53Z",
+     "dex": "hypercat",
+     "fee_pct": 0.009,
+     "lst_side": "base",
+     "name": "mHYPE / WHYPE 0.009%",
+     "pool": "0xdd9d6def0e4dff3252884868a64512dce531d7a6",
+     "reserve_usd": 2.5863,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-06-19T04:15:47Z",
+     "dex": "hybra-finance",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "mHYPE / WHYPE",
+     "pool": "0xd78c53bb5b5a50b4ff053795d06fa3124cbcb903",
+     "reserve_usd": 7.3744,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-08-25T07:57:00Z",
+     "dex": "project-x",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "mHYPE / WHYPE 0.05%",
+     "pool": "0x0f74ffafe6de022419deef2a2967a9a24961b4fc",
+     "reserve_usd": 3.2869568276,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-08-25T08:02:00Z",
+     "dex": "project-x",
+     "fee_pct": 0.3,
+     "lst_side": "base",
+     "name": "mHYPE / WHYPE 0.3%",
+     "pool": "0xbb876d8cace3d17905c239eb30aae4d183a00770",
+     "reserve_usd": 3.3198704637,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-08-25T08:06:00Z",
+     "dex": "project-x",
+     "fee_pct": 1.0,
+     "lst_side": "base",
+     "name": "mHYPE / WHYPE 1%",
+     "pool": "0xa27c5d56c2a0464a15e4f1bf6290d7ecb8ff512d",
+     "reserve_usd": 2.1409546852,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-10-09T06:04:00Z",
+     "dex": "upheaval-finance",
+     "fee_pct": 0.25,
+     "lst_side": "base",
+     "name": "mHYPE / WHYPE 0.25%",
+     "pool": "0xdfc986ebe27c7944132503699b0f0e1ab6396f94",
+     "reserve_usd": 1.3437423822,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-10-09T06:07:00Z",
+     "dex": "upheaval-finance",
+     "fee_pct": 1.0,
+     "lst_side": "base",
+     "name": "mHYPE / WHYPE 1%",
+     "pool": "0x5dec908258d7aead90dd6414d075254a3b3bafca",
+     "reserve_usd": 0.420838257,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-04-15T09:12:00Z",
+     "dex": "hyperswap-v3",
+     "fee_pct": 1.0,
+     "lst_side": "base",
+     "name": "mHYPE / WHYPE 1%",
+     "pool": "0xd3b19b670da38987a8e5f61f2a88c3f0b3bb107e",
+     "reserve_usd": 0.4317419813,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-07-03T06:09:26Z",
+     "dex": "hybra-finance-v3",
+     "fee_pct": 0.02,
+     "lst_side": "base",
+     "name": "mHYPE / WHYPE 0.02%",
+     "pool": "0xc5165acc9dc25570bcad46ae00d70aa543de7d8f",
+     "reserve_usd": 0.5692692287,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-04-03T02:18:00Z",
+     "dex": "hyperswap-v2",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "mHYPE / WHYPE",
+     "pool": "0x88cdc924f194e573e508b64551532980273b3fdc",
+     "reserve_usd": 0.1521448882,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-09-17T09:23:00Z",
+     "dex": "ultrasolid-v3",
+     "fee_pct": 0.3,
+     "lst_side": "base",
+     "name": "mHYPE / WHYPE 0.3%",
+     "pool": "0xe3b5893e00de94a85c361d940146a3c74b3b827b",
+     "reserve_usd": 0.06110572394,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-09-17T09:42:00Z",
+     "dex": "ultrasolid-v3",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "mHYPE / WHYPE 0.01%",
+     "pool": "0xf098f97958a8a822d3726ad157145b9790f57cf4",
+     "reserve_usd": 0.06748518135,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-09-18T17:01:52Z",
+     "dex": "funnel",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "mHYPE / WHYPE 0.01%",
+     "pool": "0xcb4318b1417348dde7f8587ca83ab367c42a0ed9",
+     "reserve_usd": 0.0003935314426,
+     "vol24_usd": 0.0
+    }
+   ],
+   "queue_days": 7.0,
+   "queue_src": "docs",
+   "reserve_native_pairs_usd": 24903.83870315063,
+   "symbol": "mHYPE",
+   "token": "0xdabb040c428436d41cecd0fb06bcfdbaad3a9aa8",
+   "vol24_native_pairs_usd": 1891.5226959662
+  },
+  {
+   "gt_status": null,
+   "instant": "",
+   "key": "ibera",
+   "native": "BERA",
+   "network": "berachain",
+   "pools": [
+    {
+     "created": "2025-02-09T21:42:54Z",
+     "dex": "kodiak-v3",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "iBERA / WBERA 0.05%",
+     "pool": "0xfcb24b3b7e87e3810b150d25d5964c566d9a2b6f",
+     "reserve_usd": 18049.6278,
+     "vol24_usd": 1471.4714353538
+    },
+    {
+     "created": "2025-02-06T15:20:55Z",
+     "dex": "bex",
+     "fee_pct": 0.3,
+     "lst_side": "base",
+     "name": "iBERA / WBERA 0.3%",
+     "pool": "0x4d0ac0ea757f0bb338457c7a135c41fc732ca67d",
+     "reserve_usd": 52.4826,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-02-06T23:41:00Z",
+     "dex": "kodiak-v3",
+     "fee_pct": 0.3,
+     "lst_side": "base",
+     "name": "iBERA / WBERA 0.3%",
+     "pool": "0x8dd1c3e5fb96ca0e45fe3c3cc521ad44e12f3e47",
+     "reserve_usd": 27.9929,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-02-28T04:30:48Z",
+     "dex": "bulla",
+     "fee_pct": 0.045,
+     "lst_side": "base",
+     "name": "iBERA / WBERA 0.045%",
+     "pool": "0x436e6ff77f43b774d5ef65785fe96e20f23c9cda",
+     "reserve_usd": 19.6022,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-02-06T17:06:01Z",
+     "dex": "kodiak-v3",
+     "fee_pct": 2.0,
+     "lst_side": "base",
+     "name": "iBERA / WBERA 2%",
+     "pool": "0x79a26cb73304456990c8649d9269d51f092502f3",
+     "reserve_usd": 1.5148094534,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-02-14T04:17:00Z",
+     "dex": "kodiak-v3",
+     "fee_pct": 1.0,
+     "lst_side": "base",
+     "name": "iBERA / WBERA 1%",
+     "pool": "0x3a5516d5e9d338702ad51b4df97861b854013dc2",
+     "reserve_usd": 1.9888,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-02-21T13:32:27Z",
+     "dex": "bex",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "iBERA / WBERA / WBERA-iBERA-STABLE 0.05%",
+     "pool": "0xf178c6c5275baa1ac9624f8955c5bf0b5bbe0a63",
+     "reserve_usd": 8.4311,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-10-16T06:54:13Z",
+     "dex": "winnieswap",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "iBERA / WBERA 0.05%",
+     "pool": "0x75467b29395477487dee06f46f0aa9c4eb12aa2c",
+     "reserve_usd": 1.0213,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-02-21T21:10:26Z",
+     "dex": "bex",
+     "fee_pct": 0.3,
+     "lst_side": "base",
+     "name": "iBERA / WBERA / WBERA-iBERA-STABLE 0.3%",
+     "pool": "0xf815673fd54b48a6767acd2791bd6885d94f3d50",
+     "reserve_usd": 0.3374,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-02-06T17:50:02Z",
+     "dex": "kodiak-v2",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "iBERA / WBERA",
+     "pool": "0xa682faa4d30db0ec4eceed01b3f3b1d85dc3480f",
+     "reserve_usd": 0.0344,
+     "vol24_usd": 0.0
+    }
+   ],
+   "queue_days": null,
+   "queue_src": "docs (Infrared)",
+   "reserve_native_pairs_usd": 18163.0333094534,
+   "symbol": "iBERA",
+   "token": "0x9b6761bf2397bb5a6624a856cc84a3a14dcd3fe5",
+   "vol24_native_pairs_usd": 1471.4714353538
+  },
+  {
+   "gt_status": null,
+   "instant": "Sanctum",
+   "key": "bnsol",
+   "native": "SOL",
+   "network": "solana",
+   "pools": [
+    {
+     "created": "2026-04-17T18:52:33Z",
+     "dex": "manifest",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "BNSOL / SOL",
+     "pool": "82mrWowKgGae33QUUtW8dEbrQE9SzvggxcRLZEiuamnK",
+     "reserve_usd": 0.0,
+     "vol24_usd": 744.2314210158
+    },
+    {
+     "created": "2024-09-10T03:18:00Z",
+     "dex": "meteora",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "BNSOL / SOL",
+     "pool": "Bd4tUYCopb4d9WLUM1KekvPcNvwSNwh55QDYdtsKgGrH",
+     "reserve_usd": 676.5941,
+     "vol24_usd": 198.291519983
+    },
+    {
+     "created": "2024-09-10T07:58:00Z",
+     "dex": "orca",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "BNSOL / SOL",
+     "pool": "HyuM5oSoNcAeh5zPTkq2R5TnfaALChwqRH9ZabJ775Jn",
+     "reserve_usd": 37.0817,
+     "vol24_usd": 0.01294615687
+    },
+    {
+     "created": "2025-07-03T10:03:39Z",
+     "dex": "pancakeswap-v3-solana",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "BNSOL / SOL",
+     "pool": "Cva1HNXyyd1CjKrxDaAY9UkJfo5DTAzvRRfzqzXgvGSP",
+     "reserve_usd": 4.5777,
+     "vol24_usd": 0.004325599387
+    },
+    {
+     "created": "2024-09-12T08:16:00Z",
+     "dex": "raydium-clmm",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "BNSOL / SOL",
+     "pool": "3sc3TLte9wWF3MAT2tdGcx3QMThMzxi4uJyqcdVKBivP",
+     "reserve_usd": 621123.2699,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2024-12-03T18:11:42Z",
+     "dex": "meteora",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "BNSOL / SOL",
+     "pool": "G67CQLnwYAgLbpmTkCJnj81s7uPBUJuochq6G7fwD7SP",
+     "reserve_usd": 206809.1644,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2024-09-12T10:06:02Z",
+     "dex": "meteora",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "BNSOL / SOL",
+     "pool": "6Ai9X8jHwV9wueFDRWuCg4r7Ps19b2qfYgchEcqBcKwL",
+     "reserve_usd": 566.9522,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2024-09-12T17:48:01Z",
+     "dex": "meteora",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "BNSOL / SOL",
+     "pool": "A5uhFf7edK55uThZK23iDrSB97T3hueovsyFG9gFvZon",
+     "reserve_usd": 670.3454,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2024-09-12T04:05:01Z",
+     "dex": "raydium-clmm",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "BNSOL / SOL",
+     "pool": "95rnKG4CGPPA9gK4fMeHijGR3VU8Uz5dYvnTbVreKsL8",
+     "reserve_usd": 162.736,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2024-12-10T16:26:00Z",
+     "dex": "meteora",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "BNSOL / SOL",
+     "pool": "EkNzyKMKzAvuC7NqC82tNsYxuLe3qB1ams1FPSZuFLSC",
+     "reserve_usd": 308.9991,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2024-09-12T16:11:01Z",
+     "dex": "meteora",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "BNSOL / SOL",
+     "pool": "MWfvMM7jXUN2XgafGyYJUmKdhnTjVpe919ngfBQrJxC",
+     "reserve_usd": 14.4787,
+     "vol24_usd": 0.0
+    }
+   ],
+   "queue_days": 2.5,
+   "queue_src": "one epoch (docs)",
+   "reserve_native_pairs_usd": 830374.1991999999,
+   "symbol": "BNSOL",
+   "token": "BNso1VUJnh4zcfpZa6986Ea66P6TCp59hvtNJ8b1X85",
+   "vol24_native_pairs_usd": 942.540212755057
+  },
+  {
+   "gt_status": null,
+   "instant": "ARM",
+   "key": "os",
+   "native": "S",
+   "network": "sonic",
+   "pools": [
+    {
+     "created": "2025-01-17T13:46:02Z",
+     "dex": "swapx-algebra",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "OS / wS 0.01%",
+     "pool": "0xa76beaf111bad5dd866fa4835d66b9aa2eb1fdec",
+     "reserve_usd": 7427.6219,
+     "vol24_usd": 361.7755762383
+    },
+    {
+     "created": "2025-02-18T10:57:39Z",
+     "dex": "swapx-v2",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "OS / wS",
+     "pool": "0xcfe67b6c7b65c8d038e666b3241a161888b7f2b0",
+     "reserve_usd": 18311.1832,
+     "vol24_usd": 292.7032668948
+    },
+    {
+     "created": "2025-02-07T14:49:15Z",
+     "dex": "metropolis-dlmm-sonic",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "OS / wS",
+     "pool": "0x3987a13d675c66570bc28c955685a9bca2dcf26e",
+     "reserve_usd": 2338.1946,
+     "vol24_usd": 187.035820082
+    },
+    {
+     "created": "2025-03-11T13:12:44Z",
+     "dex": "shadow-exchange",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "OS / wS 0.01%",
+     "pool": "0x0c9a698ed5422eae47ce0b4096496b1fa7771d7d",
+     "reserve_usd": 22.3325,
+     "vol24_usd": 1.082996604
+    },
+    {
+     "created": "2025-01-17T01:25:28Z",
+     "dex": "equalizer-sonic",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "OS / wS",
+     "pool": "0x99ff9d3e8b26fea85a7a103d9e576efdc38fb530",
+     "reserve_usd": 23.7169,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-09-30T06:28:33Z",
+     "dex": "beets-v3-sonic",
+     "fee_pct": 0.02,
+     "lst_side": "base",
+     "name": "OS / wS / Anon / stS 0.02%",
+     "pool": "0xbb633e5d4b06f01bb048aba6f750db4ed9e5f7f4",
+     "reserve_usd": 46.8046,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-06-12T15:04:01Z",
+     "dex": "atlantis",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "OS / wS 0.05%",
+     "pool": "0xf11ab71141989a5acfb27dad4d9889ee251e7b51",
+     "reserve_usd": 29.2852,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-06-17T10:21:01Z",
+     "dex": "metropolis-dlmm-sonic",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "OS / wS",
+     "pool": "0x9b2b57571ce30ff466aa069e2ec2bec495dc0355",
+     "reserve_usd": 11.6181,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-02-26T22:23:53Z",
+     "dex": "beets-sonic",
+     "fee_pct": 0.1,
+     "lst_side": "base",
+     "name": "OS / wS / stS / EGGS 0.1%",
+     "pool": "0x65eeae6b5cf7b436f39e5ec79c8444ca0be396b2",
+     "reserve_usd": 0.844,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-06-17T07:20:24Z",
+     "dex": "atlantis",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "OS / wS 0.05%",
+     "pool": "0x9776a3f05e9b3aff2b2f15a4edf5e1ff53e50ae7",
+     "reserve_usd": 0.451,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-03-15T14:47:15Z",
+     "dex": "curve-sonic",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "OS / wS",
+     "pool": "0x7180f41a71f13fac52d2cfb17911f5810c8b0bb9",
+     "reserve_usd": 0.3079977577,
+     "vol24_usd": 0.0
+    }
+   ],
+   "queue_days": 1.0,
+   "queue_src": "docs (Origin vault, ARM)",
+   "reserve_native_pairs_usd": 28212.3599977577,
+   "symbol": "OS",
+   "token": "0xb1e25689d55734fd3fffc939c4c3eb52dff8a794",
+   "vol24_native_pairs_usd": 842.5976598190999
+  },
+  {
+   "gt_status": null,
+   "instant": "",
+   "key": "asbnb",
+   "native": "BNB",
+   "network": "bsc",
+   "pools": [
+    {
+     "created": "2025-04-01T15:13:27Z",
+     "dex": "pancakeswap-v3-bsc",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "asBNB / WBNB 0.05%",
+     "pool": "0xfea53d45d42ece16ad1ec76d93e7e80237c64a55",
+     "reserve_usd": 18467.4994,
+     "vol24_usd": 249.5190426788
+    },
+    {
+     "created": "2025-04-16T18:02:38Z",
+     "dex": "pancakeswap-v3-bsc",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "asBNB / WBNB 0.01%",
+     "pool": "0xf95120eff5d77622d6c5dbdbf876b3865b96fd92",
+     "reserve_usd": 3987.6097,
+     "vol24_usd": 143.0812619833
+    },
+    {
+     "created": "2025-01-12T23:45:15Z",
+     "dex": "pancakeswap-v3-bsc",
+     "fee_pct": 1.0,
+     "lst_side": "base",
+     "name": "asBNB / WBNB 1%",
+     "pool": "0x6b5c8ef98f6e55e3a68c04acd0fdc29fd8b1b9d5",
+     "reserve_usd": 3531.2858,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-04-01T14:47:48Z",
+     "dex": "pancakeswap-v3-bsc",
+     "fee_pct": 0.25,
+     "lst_side": "base",
+     "name": "asBNB / WBNB 0.25%",
+     "pool": "0x53512f6ac587700fb55cbd185dbd45a3ea0b6514",
+     "reserve_usd": 0.05219553149,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-09-25T12:43:07Z",
+     "dex": "uniswap-bsc",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "asBNB / WBNB 0.05%",
+     "pool": "0x367c49c38256ae9399c1ba5fa98b6a37a1aa45f5",
+     "reserve_usd": 7.368871802e-05,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-09-25T23:09:17Z",
+     "dex": "uniswap-bsc",
+     "fee_pct": 0.3,
+     "lst_side": "base",
+     "name": "asBNB / WBNB 0.3%",
+     "pool": "0x4c46997eed4bdbd6a8b23a6305758eae483d1d03",
+     "reserve_usd": 3.240754056e-14,
+     "vol24_usd": 0.0
+    }
+   ],
+   "queue_days": 8.0,
+   "queue_src": "docs (Astherus, on slisBNB)",
+   "reserve_native_pairs_usd": 25986.44716922021,
+   "symbol": "asBNB",
+   "token": "0x77734e70b6e88b4d82fe632a168edf6e700912b6",
+   "vol24_native_pairs_usd": 392.60030466210003
+  },
+  {
+   "gt_status": null,
+   "instant": "",
+   "key": "bnbx",
+   "native": "BNB",
+   "network": "bsc",
+   "pools": [
+    {
+     "created": "2023-04-20T17:49:43Z",
+     "dex": "thena-fusion",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "BNBx / WBNB 0.01%",
+     "pool": "0xf2a4e4261fcdfbb891bcf703640fbe713c6cd0fe",
+     "reserve_usd": 40940.7064,
+     "vol24_usd": 33.7645788545
+    },
+    {
+     "created": "2022-10-02T07:31:54Z",
+     "dex": "ellipsis_finance",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "BNBx / WBNB",
+     "pool": "0xfd4afeac39da03a05f61844095a75c4fb7d766da",
+     "reserve_usd": 1955887.8046,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-07-01T19:20:10Z",
+     "dex": "thena-v3",
+     "fee_pct": 0.46,
+     "lst_side": "base",
+     "name": "BNBx / WBNB 0.46%",
+     "pool": "0x368416031518556f9dc0996c4b8abb36c8b4c35e",
+     "reserve_usd": 83670.8905705602,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2022-08-15T16:55:44Z",
+     "dex": "apeswap_bsc",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "BNBx / WBNB",
+     "pool": "0xb88f211ec9ecfc2931ae1de53ea28da76b9ed37a",
+     "reserve_usd": 38776.9349,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2022-10-25T13:21:22Z",
+     "dex": "impossible_finance_v3",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "BNBx / WBNB",
+     "pool": "0x8e2aa36fdbc14abd94f71c891f11d27c5a88066e",
+     "reserve_usd": 22150.9346,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2023-01-27T05:43:14Z",
+     "dex": "thena",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "BNBx / WBNB",
+     "pool": "0x6c83e45fe3be4a9c12bb28cb5ba4cd210455fb55",
+     "reserve_usd": 14496.3051,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2023-02-21T13:20:53Z",
+     "dex": "thena",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "BNBx / WBNB",
+     "pool": "0xa046644831b70afdbfdaab0bcf15a72d6c15d0eb",
+     "reserve_usd": 10422.4676,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-11-14T03:40:38Z",
+     "dex": "pancakeswap-v3-bsc",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "BNBx / WBNB 0.05%",
+     "pool": "0x77b27c351b13dc6a8a16cc1d2e9d5e7f9873702e",
+     "reserve_usd": 5351.4815,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2023-05-22T13:09:36Z",
+     "dex": "mdex_bsc",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "BNBx / WBNB",
+     "pool": "0x53a62f84fe97a8a3ee00d81b2ff484c57665dfed",
+     "reserve_usd": 2528.7908488937,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2023-04-25T12:21:46Z",
+     "dex": "traderjoe-v2-1-bsc",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "BNBx / WBNB",
+     "pool": "0xf37001f901a5a5f5a03896febb12f52b58228542",
+     "reserve_usd": 2380.9278,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2023-07-27T10:31:49Z",
+     "dex": "usdfi",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "BNBx / WBNB",
+     "pool": "0xb684268e27781bf3a5e8d5e9210353a2f51a229f",
+     "reserve_usd": 1847.6928,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2023-03-03T15:06:44Z",
+     "dex": "pancakeswap_stableswap",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "BNBx / WBNB",
+     "pool": "0x9c138be1d76ee4c5162e0fe9d4eea5542a23d1bd",
+     "reserve_usd": 1948.232548972,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2022-10-27T21:45:44Z",
+     "dex": "cone_exchange",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "BNBx / WBNB",
+     "pool": "0xe483f60682a11da3455dfa7912a6eac6176f5797",
+     "reserve_usd": 909.0165,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2023-06-15T03:48:55Z",
+     "dex": "magicfox",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "BNBx / WBNB",
+     "pool": "0xa6df8aead9726007cfc09bc31e277de36ed92b1f",
+     "reserve_usd": 36.095,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2022-11-07T01:08:02Z",
+     "dex": "cone_exchange",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "BNBx / WBNB",
+     "pool": "0x9d703a6d4873d74093f3bf956f4e953052208235",
+     "reserve_usd": 17.9152,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2022-08-05T03:56:38Z",
+     "dex": "pancakeswap_v2",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "BNBx / WBNB",
+     "pool": "0xa42ea801df482fd44845106137ee08c6179d1de0",
+     "reserve_usd": 15.5071376644,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2023-03-16T09:36:36Z",
+     "dex": "uniswap-bsc",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "BNBx / WBNB 0.05%",
+     "pool": "0xfcad5b773a7d9b195a0a018b12eb20d168eaf0a5",
+     "reserve_usd": 2.8424715245,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-08-07T14:27:04Z",
+     "dex": "thena-v3",
+     "fee_pct": 0.291,
+     "lst_side": "base",
+     "name": "BNBx / WBNB 0.291%",
+     "pool": "0x716c1271ef1149847ecf9a6e9322f437cb1de4eb",
+     "reserve_usd": 2.4820453776,
+     "vol24_usd": 0.0
+    }
+   ],
+   "queue_days": 8.0,
+   "queue_src": "docs (Stader: 7-15 days)",
+   "reserve_native_pairs_usd": 2181387.027622992,
+   "symbol": "BNBx",
+   "token": "0x1bdd3cf7f79cfb8edbb955f20ad99211551ba275",
+   "vol24_native_pairs_usd": 33.7645788545
+  },
+  {
+   "gt_status": null,
+   "instant": "",
+   "key": "thapt",
+   "native": "APT",
+   "network": "aptos",
+   "pools": [
+    {
+     "created": "2023-11-16T01:29:43Z",
+     "dex": "thalaswap-v1",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "thAPT / APT",
+     "pool": "0xfaf4e633ae9eb31366c9ca24214231760926576c7b625313b3688b5e900731f6::staking::ThalaAPT-0x1::aptos_coin::AptosCoin",
+     "reserve_usd": 467161.0986,
+     "vol24_usd": 14.6273630092
+    }
+   ],
+   "queue_days": 30.0,
+   "queue_src": "Aptos lockup cycle (docs)",
+   "reserve_native_pairs_usd": 467161.0986,
+   "symbol": "thAPT",
+   "token": "0xfaf4e633ae9eb31366c9ca24214231760926576c7b625313b3688b5e900731f6::staking::ThalaAPT",
+   "vol24_native_pairs_usd": 14.6273630092
+  },
+  {
+   "gt_status": null,
+   "instant": "the vault itself",
+   "key": "ggavax",
+   "native": "AVAX",
+   "network": "avax",
+   "pools": [
+    {
+     "created": "2025-09-24T12:53:53Z",
+     "dex": "blackhole-v3",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "ggAVAX / WAVAX 0.05%",
+     "pool": "0x1b4d11ab4658744714d1a6d6633247efbd816be5",
+     "reserve_usd": 1907.1515,
+     "vol24_usd": 1.1979436575
+    },
+    {
+     "created": "2025-11-06T01:13:46Z",
+     "dex": "pharaoh-exchange-v3",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "ggAVAX / WAVAX 0.01%",
+     "pool": "0x9d167ec384530964cabb89db4b14d4f2ac5e6b3b",
+     "reserve_usd": 2024.2491,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2024-07-02T22:02:07Z",
+     "dex": "pharaoh-exchange",
+     "fee_pct": 0.025,
+     "lst_side": "base",
+     "name": "ggAVAX / WAVAX 0.025%",
+     "pool": "0x365ac0c19b8171151a10ea1af308c476df18b127",
+     "reserve_usd": 483.4055,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2024-07-30T07:06:48Z",
+     "dex": "traderjoe-v2-2-avalanche",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "ggAVAX / WAVAX",
+     "pool": "0x70898caa8ea8e9b2ba2e68708e2b761404dd07d6",
+     "reserve_usd": 204.988,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2023-06-15T20:43:40Z",
+     "dex": "traderjoe-v2-1-avalanche",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "ggAVAX / WAVAX",
+     "pool": "0x29b9bd5fae84216f6b0d5bab085606ac7e97722b",
+     "reserve_usd": 1306.1312,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2023-12-23T20:07:26Z",
+     "dex": "canary-exchange",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "ggAVAX / WAVAX",
+     "pool": "0x90868403a7b7cf3d118639121a3498fe7d3e7659",
+     "reserve_usd": 2.7859621293,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2024-03-29T15:52:35Z",
+     "dex": "traderjoe-v2-1-avalanche",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "ggAVAX / WAVAX",
+     "pool": "0xe436e99299bbe8c38590e7a19fd571bbe151f606",
+     "reserve_usd": 1.3627,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2023-08-22T17:31:37Z",
+     "dex": "balancer-v2-avalanche",
+     "fee_pct": 0.04,
+     "lst_side": "base",
+     "name": "ggAVAX / WAVAX / ggAVAX-WAVAX-BPT 0.04%",
+     "pool": "0xc13546b97b9b1b15372368dc06529d7191081f5b",
+     "reserve_usd": 1.112,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2024-01-22T03:02:20Z",
+     "dex": "uniswap-v3-avalanche",
+     "fee_pct": 0.05,
+     "lst_side": "base",
+     "name": "ggAVAX / WAVAX 0.05%",
+     "pool": "0xcec63fa2b71744e1cdd48f71e34acedd46b496aa",
+     "reserve_usd": 0.8845502385,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2024-10-10T15:28:28Z",
+     "dex": "traderjoe-v2-2-avalanche",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "ggAVAX / WAVAX",
+     "pool": "0xc0eb6bdd00d563d13871408e25fb3321bdfa4651",
+     "reserve_usd": 0.3335,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2024-02-05T09:53:30Z",
+     "dex": "uniswap-v3-avalanche",
+     "fee_pct": 0.01,
+     "lst_side": "base",
+     "name": "ggAVAX / WAVAX 0.01%",
+     "pool": "0x58bbfde51e80c243290bdcfdd4f9323b1f408dc7",
+     "reserve_usd": 0.246102506,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2024-04-24T12:31:39Z",
+     "dex": "pharaoh-exchange",
+     "fee_pct": 0.3,
+     "lst_side": "base",
+     "name": "ggAVAX / WAVAX 0.3%",
+     "pool": "0x61f61058b845f77377a11a9addcb18ac295feb75",
+     "reserve_usd": 0.03523228665,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2024-02-13T10:44:21Z",
+     "dex": "uniswap-v3-avalanche",
+     "fee_pct": 0.3,
+     "lst_side": "base",
+     "name": "ggAVAX / WAVAX 0.3%",
+     "pool": "0x3f90a211f5dbcbc9f1a2122c5036f8b16b8b4c7d",
+     "reserve_usd": 0.01544591662,
+     "vol24_usd": 0.0
+    },
+    {
+     "created": "2025-08-09T18:55:31Z",
+     "dex": "traderjoe",
+     "fee_pct": null,
+     "lst_side": "base",
+     "name": "ggAVAX / WAVAX",
+     "pool": "0xfa9216da426688db200a4594c683a1bf33593dd6",
+     "reserve_usd": 0.0002956461153,
+     "vol24_usd": 0.0
+    }
+   ],
+   "queue_days": 0.0,
+   "queue_src": "ERC-4626 redeem from the liquidity buffer (docs)",
+   "reserve_native_pairs_usd": 5932.701088723185,
+   "symbol": "ggAVAX",
+   "token": "0xa25eaf2906fa1a3a13edac9b9657108af7b703e3",
+   "vol24_native_pairs_usd": 1.1979436575
+  },
+  {
+   "gt_status": null,
+   "instant": "",
+   "key": "vdot",
+   "native": "DOT",
+   "network": "hydration",
+   "pools": [],
+   "queue_days": 28.0,
+   "queue_src": "Polkadot unbonding 28 days (docs)",
+   "reserve_native_pairs_usd": 0,
+   "symbol": "vDOT",
+   "token": "15",
+   "vol24_native_pairs_usd": 0
+  }
+ ]
+}

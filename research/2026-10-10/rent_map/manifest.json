@@ -1,0 +1,429 @@
+{
+ "analyze": {
+  "generated": "2026-10-10T17:22:27Z",
+  "map_rows": 13,
+  "script": "scripts/rent_map.py"
+ },
+ "collect": {
+  "binance": {
+   "candidates": 170,
+   "days": 92,
+   "endpoints": [
+    "/fapi/v1/exchangeInfo",
+    "/fapi/v1/ticker/24hr",
+    "/fapi/v1/premiumIndex",
+    "/fapi/v1/fundingInfo",
+    "/futures/data/openInterestHist?period=1d&limit=30",
+    "/fapi/v1/fundingRate?startTime&limit=1000"
+   ],
+   "finished_utc": "2026-10-10T17:09:01Z",
+   "net": {
+    "failures": {
+     "overview:derivatives": "HTTP 402 Upgrade to the paid API plan at https://defillama.com/subscription",
+     "summary:aster-perps:dailyRevenue": "HTTP 400 Fees for aster-perps not found, please visit /overview/fees to see available protocols",
+     "summary:aster-perps:dailySupplySideRevenue": "HTTP 400 Fees for aster-perps not found, please visit /overview/fees to see available protocols",
+     "summary:inverse-finance-firm:dailySupplySideRevenue": "HTTP 400 Fees for inverse-finance-firm not found, please visit /overview/fees to see available protocols",
+     "summary:velodrome-slipstream:dailyBribesRevenue": "HTTP 400 Fees for velodrome-slipstream not found, please visit /overview/fees to see available protocols",
+     "yields:poolsBorrow": "HTTP 402 Upgrade to the paid API plan at https://defillama.com/subscription"
+    },
+    "n_failures": 6,
+    "requests_by_host": {
+     "api.binance.com": 7,
+     "api.bybit.com": 31,
+     "api.hyperliquid.xyz": 13,
+     "api.llama.fi": 133,
+     "api.merkl.xyz": 9,
+     "api.v3.aave.com": 2,
+     "blue-api.morpho.org": 1,
+     "fapi.binance.com": 274,
+     "stablecoins.llama.fi": 1,
+     "www.okx.com": 32,
+     "yields.llama.fi": 2
+    },
+    "seconds": 419.3,
+    "transport_errors": 0
+   },
+   "top_by_oi": 100
+  },
+  "bybit": {
+   "endpoints": [
+    "/v5/market/tickers?category=linear",
+    "/v5/market/funding/history"
+   ],
+   "finished_utc": "2026-10-10T17:05:25Z",
+   "net": {
+    "failures": {
+     "overview:derivatives": "HTTP 402 Upgrade to the paid API plan at https://defillama.com/subscription",
+     "summary:aster-perps:dailyRevenue": "HTTP 400 Fees for aster-perps not found, please visit /overview/fees to see available protocols",
+     "summary:aster-perps:dailySupplySideRevenue": "HTTP 400 Fees for aster-perps not found, please visit /overview/fees to see available protocols",
+     "summary:inverse-finance-firm:dailySupplySideRevenue": "HTTP 400 Fees for inverse-finance-firm not found, please visit /overview/fees to see available protocols",
+     "summary:velodrome-slipstream:dailyBribesRevenue": "HTTP 400 Fees for velodrome-slipstream not found, please visit /overview/fees to see available protocols",
+     "yields:poolsBorrow": "HTTP 402 Upgrade to the paid API plan at https://defillama.com/subscription"
+    },
+    "n_failures": 6,
+    "requests_by_host": {
+     "api.binance.com": 7,
+     "api.bybit.com": 31,
+     "api.hyperliquid.xyz": 13,
+     "api.llama.fi": 133,
+     "api.merkl.xyz": 9,
+     "api.v3.aave.com": 2,
+     "blue-api.morpho.org": 1,
+     "stablecoins.llama.fi": 1,
+     "yields.llama.fi": 2
+    },
+    "seconds": 203.0,
+    "transport_errors": 0
+   },
+   "symbols": 864,
+   "top": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "SOLUSDT",
+    "XRPUSDT",
+    "HYPEUSDT",
+    "NEARUSDT",
+    "ZECUSDT",
+    "XAUTUSDT",
+    "DOGEUSDT",
+    "XAUUSDT",
+    "BNBUSDT",
+    "BTCPERP",
+    "SUIUSDT",
+    "ENAUSDT",
+    "WLDUSDT",
+    "AVAXUSDT",
+    "LTCUSDT",
+    "ONDOUSDT",
+    "ADAUSDT",
+    "LINKUSDT",
+    "UNIUSDT",
+    "AAVEUSDT",
+    "PUMPFUNUSDT",
+    "TRXUSDT",
+    "1000PEPEUSDT",
+    "ASTERUSDT",
+    "XAGUSDT",
+    "TAOUSDT",
+    "SOXLUSDT",
+    "SPCXUSDT"
+   ]
+  },
+  "hl": {
+   "dexes": [
+    "",
+    "xyz",
+    "flx",
+    "vntl",
+    "hyna",
+    "km",
+    "abcd",
+    "cash",
+    "para",
+    "mkts",
+    "io"
+   ],
+   "endpoint": "https://api.hyperliquid.xyz/info {metaAndAssetCtxs, perpDexs, vaultDetails}",
+   "finished_utc": "2026-10-10T17:04:11Z",
+   "net": {
+    "failures": {
+     "overview:derivatives": "HTTP 402 Upgrade to the paid API plan at https://defillama.com/subscription",
+     "summary:aster-perps:dailyRevenue": "HTTP 400 Fees for aster-perps not found, please visit /overview/fees to see available protocols",
+     "summary:aster-perps:dailySupplySideRevenue": "HTTP 400 Fees for aster-perps not found, please visit /overview/fees to see available protocols",
+     "summary:inverse-finance-firm:dailySupplySideRevenue": "HTTP 400 Fees for inverse-finance-firm not found, please visit /overview/fees to see available protocols",
+     "summary:velodrome-slipstream:dailyBribesRevenue": "HTTP 400 Fees for velodrome-slipstream not found, please visit /overview/fees to see available protocols",
+     "yields:poolsBorrow": "HTTP 402 Upgrade to the paid API plan at https://defillama.com/subscription"
+    },
+    "n_failures": 6,
+    "requests_by_host": {
+     "api.hyperliquid.xyz": 13,
+     "api.llama.fi": 133,
+     "stablecoins.llama.fi": 1,
+     "yields.llama.fi": 2
+    },
+    "seconds": 129.1,
+    "transport_errors": 0
+   },
+   "stamp": 1791651827
+  },
+  "klines": {
+   "endpoint": "https://api.binance.com/api/v3/klines?interval=1d&limit=120",
+   "finished_utc": "2026-10-10T17:04:23Z",
+   "net": {
+    "failures": {
+     "overview:derivatives": "HTTP 402 Upgrade to the paid API plan at https://defillama.com/subscription",
+     "summary:aster-perps:dailyRevenue": "HTTP 400 Fees for aster-perps not found, please visit /overview/fees to see available protocols",
+     "summary:aster-perps:dailySupplySideRevenue": "HTTP 400 Fees for aster-perps not found, please visit /overview/fees to see available protocols",
+     "summary:inverse-finance-firm:dailySupplySideRevenue": "HTTP 400 Fees for inverse-finance-firm not found, please visit /overview/fees to see available protocols",
+     "summary:velodrome-slipstream:dailyBribesRevenue": "HTTP 400 Fees for velodrome-slipstream not found, please visit /overview/fees to see available protocols",
+     "yields:poolsBorrow": "HTTP 402 Upgrade to the paid API plan at https://defillama.com/subscription"
+    },
+    "n_failures": 6,
+    "requests_by_host": {
+     "api.binance.com": 7,
+     "api.hyperliquid.xyz": 13,
+     "api.llama.fi": 133,
+     "api.merkl.xyz": 9,
+     "api.v3.aave.com": 2,
+     "blue-api.morpho.org": 1,
+     "stablecoins.llama.fi": 1,
+     "yields.llama.fi": 2
+    },
+    "seconds": 141.3,
+    "transport_errors": 0
+   },
+   "symbols": [
+    "ETHUSDT",
+    "BTCUSDT",
+    "SOLUSDT",
+    "BNBUSDT",
+    "ETHBTC",
+    "HYPEUSDT",
+    "AVAXUSDT"
+   ]
+  },
+  "lending": {
+   "aave_chain_ids": [
+    1,
+    42161,
+    43114,
+    8453,
+    56,
+    42220,
+    100,
+    59144,
+    1088,
+    10,
+    137,
+    534352,
+    1868,
+    146,
+    324,
+    9745,
+    57073,
+    5000,
+    4326,
+    196,
+    143
+   ],
+   "endpoints": [
+    "https://api.v3.aave.com/graphql markets(chainIds) reserves borrowInfo/supplyInfo",
+    "https://blue-api.morpho.org/graphql markets orderBy BorrowAssetsUsd"
+   ],
+   "finished_utc": "2026-10-10T17:04:13Z",
+   "morpho_pages": 1,
+   "net": {
+    "failures": {
+     "overview:derivatives": "HTTP 402 Upgrade to the paid API plan at https://defillama.com/subscription",
+     "summary:aster-perps:dailyRevenue": "HTTP 400 Fees for aster-perps not found, please visit /overview/fees to see available protocols",
+     "summary:aster-perps:dailySupplySideRevenue": "HTTP 400 Fees for aster-perps not found, please visit /overview/fees to see available protocols",
+     "summary:inverse-finance-firm:dailySupplySideRevenue": "HTTP 400 Fees for inverse-finance-firm not found, please visit /overview/fees to see available protocols",
+     "summary:velodrome-slipstream:dailyBribesRevenue": "HTTP 400 Fees for velodrome-slipstream not found, please visit /overview/fees to see available protocols",
+     "yields:poolsBorrow": "HTTP 402 Upgrade to the paid API plan at https://defillama.com/subscription"
+    },
+    "n_failures": 6,
+    "requests_by_host": {
+     "api.hyperliquid.xyz": 13,
+     "api.llama.fi": 133,
+     "api.v3.aave.com": 2,
+     "blue-api.morpho.org": 1,
+     "stablecoins.llama.fi": 1,
+     "yields.llama.fi": 2
+    },
+    "seconds": 131.0,
+    "transport_errors": 0
+   }
+  },
+  "llama": {
+   "endpoints": {
+    "overview": "https://api.llama.fi/overview/fees?dataType={dailyFees|dailyRevenue|dailySupplySideRevenue|dailyHoldersRevenue|dailyBribesRevenue}",
+    "protocols": "https://api.llama.fi/protocols",
+    "stablecoins": "https://stablecoins.llama.fi/stablecoins",
+    "summary": "https://api.llama.fi/summary/fees/{slug}?dataType={dailyFees|dailyRevenue|dailySupplySideRevenue}",
+    "volumes": "https://api.llama.fi/overview/{dexs,derivatives,open-interest}"
+   },
+   "finished_utc": "2026-10-10T17:03:45Z",
+   "net": {
+    "failures": {
+     "overview:derivatives": "HTTP 402 Upgrade to the paid API plan at https://defillama.com/subscription",
+     "summary:aster-perps:dailyRevenue": "HTTP 400 Fees for aster-perps not found, please visit /overview/fees to see available protocols",
+     "summary:aster-perps:dailySupplySideRevenue": "HTTP 400 Fees for aster-perps not found, please visit /overview/fees to see available protocols",
+     "summary:inverse-finance-firm:dailySupplySideRevenue": "HTTP 400 Fees for inverse-finance-firm not found, please visit /overview/fees to see available protocols",
+     "summary:velodrome-slipstream:dailyBribesRevenue": "HTTP 400 Fees for velodrome-slipstream not found, please visit /overview/fees to see available protocols"
+    },
+    "n_failures": 5,
+    "requests_by_host": {
+     "api.llama.fi": 133,
+     "stablecoins.llama.fi": 1
+    },
+    "seconds": 103.0,
+    "transport_errors": 0
+   },
+   "summaries": 40
+  },
+  "merkl": {
+   "endpoint": "https://api.merkl.xyz/v4/opportunities?status=LIVE&items=100&page=k",
+   "finished_utc": "2026-10-10T17:04:18Z",
+   "net": {
+    "failures": {
+     "overview:derivatives": "HTTP 402 Upgrade to the paid API plan at https://defillama.com/subscription",
+     "summary:aster-perps:dailyRevenue": "HTTP 400 Fees for aster-perps not found, please visit /overview/fees to see available protocols",
+     "summary:aster-perps:dailySupplySideRevenue": "HTTP 400 Fees for aster-perps not found, please visit /overview/fees to see available protocols",
+     "summary:inverse-finance-firm:dailySupplySideRevenue": "HTTP 400 Fees for inverse-finance-firm not found, please visit /overview/fees to see available protocols",
+     "summary:velodrome-slipstream:dailyBribesRevenue": "HTTP 400 Fees for velodrome-slipstream not found, please visit /overview/fees to see available protocols",
+     "yields:poolsBorrow": "HTTP 402 Upgrade to the paid API plan at https://defillama.com/subscription"
+    },
+    "n_failures": 6,
+    "requests_by_host": {
+     "api.hyperliquid.xyz": 13,
+     "api.llama.fi": 133,
+     "api.merkl.xyz": 9,
+     "api.v3.aave.com": 2,
+     "blue-api.morpho.org": 1,
+     "stablecoins.llama.fi": 1,
+     "yields.llama.fi": 2
+    },
+    "seconds": 135.9,
+    "transport_errors": 0
+   },
+   "pages": 9
+  },
+  "okx": {
+   "endpoints": [
+    "/api/v5/public/open-interest?instType=SWAP",
+    "/api/v5/market/tickers?instType=SWAP",
+    "/api/v5/public/funding-rate-history?limit=100"
+   ],
+   "finished_utc": "2026-10-10T17:05:36Z",
+   "net": {
+    "failures": {
+     "overview:derivatives": "HTTP 402 Upgrade to the paid API plan at https://defillama.com/subscription",
+     "summary:aster-perps:dailyRevenue": "HTTP 400 Fees for aster-perps not found, please visit /overview/fees to see available protocols",
+     "summary:aster-perps:dailySupplySideRevenue": "HTTP 400 Fees for aster-perps not found, please visit /overview/fees to see available protocols",
+     "summary:inverse-finance-firm:dailySupplySideRevenue": "HTTP 400 Fees for inverse-finance-firm not found, please visit /overview/fees to see available protocols",
+     "summary:velodrome-slipstream:dailyBribesRevenue": "HTTP 400 Fees for velodrome-slipstream not found, please visit /overview/fees to see available protocols",
+     "yields:poolsBorrow": "HTTP 402 Upgrade to the paid API plan at https://defillama.com/subscription"
+    },
+    "n_failures": 6,
+    "requests_by_host": {
+     "api.binance.com": 7,
+     "api.bybit.com": 31,
+     "api.hyperliquid.xyz": 13,
+     "api.llama.fi": 133,
+     "api.merkl.xyz": 9,
+     "api.v3.aave.com": 2,
+     "blue-api.morpho.org": 1,
+     "stablecoins.llama.fi": 1,
+     "www.okx.com": 32,
+     "yields.llama.fi": 2
+    },
+    "seconds": 214.4,
+    "transport_errors": 0
+   },
+   "swaps": 500,
+   "top": [
+    "BTC-USDT-SWAP",
+    "ETH-USDT-SWAP",
+    "BTC-USD-SWAP",
+    "SOL-USDT-SWAP",
+    "ETH-USD-SWAP",
+    "XAU-USDT-SWAP",
+    "ZEC-USDT-SWAP",
+    "HYPE-USDT-SWAP",
+    "DOGE-USDT-SWAP",
+    "XRP-USDT-SWAP",
+    "SNDK-USDT-SWAP",
+    "NEAR-USDT-SWAP",
+    "BNB-USDT-SWAP",
+    "SPCX-USDT-SWAP",
+    "SKHYNIX-USDT-SWAP",
+    "UNI-USDT-SWAP",
+    "SUI-USDT-SWAP",
+    "WLD-USDT-SWAP",
+    "XAG-USDT-SWAP",
+    "PUMP-USDT-SWAP",
+    "OKB-USDT-SWAP",
+    "SOL-USD-SWAP",
+    "CRCL-USDT-SWAP",
+    "ADA-USDT-SWAP",
+    "MU-USDT-SWAP",
+    "SKHY-USDT-SWAP",
+    "CL-USDT-SWAP",
+    "LTC-USDT-SWAP",
+    "SOXL-USDT-SWAP",
+    "LINK-USDT-SWAP"
+   ]
+  },
+  "pendle": {
+   "chains": {
+    "1": 47,
+    "143": 8,
+    "196": 2,
+    "42161": 4,
+    "4663": 7,
+    "56": 5,
+    "8453": 4,
+    "9745": 3,
+    "999": 5
+   },
+   "finished_utc": "2026-10-10T17:05:08Z",
+   "source": "eth_call totalSupply()/decimals() on each active YT; market list from research/2026-10-09/pendle_history/raw/lists (2026-10-10 00:02 UTC)"
+  },
+  "yields": {
+   "finished_utc": "2026-10-10T17:03:46Z",
+   "net": {
+    "failures": {
+     "overview:derivatives": "HTTP 402 Upgrade to the paid API plan at https://defillama.com/subscription",
+     "summary:aster-perps:dailyRevenue": "HTTP 400 Fees for aster-perps not found, please visit /overview/fees to see available protocols",
+     "summary:aster-perps:dailySupplySideRevenue": "HTTP 400 Fees for aster-perps not found, please visit /overview/fees to see available protocols",
+     "summary:inverse-finance-firm:dailySupplySideRevenue": "HTTP 400 Fees for inverse-finance-firm not found, please visit /overview/fees to see available protocols",
+     "summary:velodrome-slipstream:dailyBribesRevenue": "HTTP 400 Fees for velodrome-slipstream not found, please visit /overview/fees to see available protocols",
+     "yields:poolsBorrow": "HTTP 402 Upgrade to the paid API plan at https://defillama.com/subscription"
+    },
+    "n_failures": 6,
+    "requests_by_host": {
+     "api.llama.fi": 133,
+     "stablecoins.llama.fi": 1,
+     "yields.llama.fi": 2
+    },
+    "seconds": 104.3,
+    "transport_errors": 0
+   },
+   "pools": 16648,
+   "poolsBorrow": "paid (402)"
+  }
+ },
+ "outputs": [
+  "analysis.json",
+  "tables.md",
+  "manifest.json"
+ ],
+ "raw": [
+  "raw/binance/exchangeInfo.json.gz",
+  "raw/binance/funding/1000PEPEUSDT.json.gz",
+  "raw/binance/funding/1000SHIBUSDT.json.gz",
+  "raw/binance/funding/AAPLUSDT.json.gz",
+  "raw/binance/funding/AAVEUSDT.json.gz",
+  "raw/binance/funding/ADAUSDT.json.gz",
+  "raw/binance/funding/AEROUSDT.json.gz",
+  "raw/binance/funding/AMDUSDT.json.gz",
+  "raw/binance/funding/APTUSDT.json.gz",
+  "raw/binance/funding/ARBUSDT.json.gz",
+  "raw/binance/funding/ASTERUSDT.json.gz",
+  "raw/binance/funding/ATOMUSDT.json.gz",
+  "raw/binance/funding/AVAXUSDT.json.gz",
+  "raw/binance/funding/BCHUSDT.json.gz",
+  "raw/binance/funding/BNBUSDC.json.gz",
+  "raw/binance/funding/BNBUSDT.json.gz",
+  "raw/binance/funding/BTCUSDC.json.gz",
+  "raw/binance/funding/BTCUSDT.json.gz",
+  "raw/binance/funding/BTWUSDT.json.gz",
+  "raw/binance/funding/BZUSDT.json.gz",
+  "..."
+ ],
+ "raw_files": 515,
+ "render": {
+  "generated": "2026-10-10T17:22:29Z",
+  "tables": "tables.md"
+ }
+}

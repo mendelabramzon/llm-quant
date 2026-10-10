@@ -1,0 +1,136 @@
+{
+ "bn_PAXGUSDT": {
+  "funding": 3373,
+  "klines": 13496
+ },
+ "bn_XAGUSDT": {
+  "funding": 1657,
+  "klines": 6632
+ },
+ "bn_XAUTUSDT": {
+  "funding": 1188,
+  "klines": 4756
+ },
+ "bn_XAUUSDT": {
+  "funding": 1820,
+  "klines": 7282
+ },
+ "bn_http": {
+  "errors": 0,
+  "requests": 210,
+  "throttled": 0
+ },
+ "bn_http_funding": {
+  "errors": 0,
+  "requests": 11,
+  "throttled": 0
+ },
+ "bn_spot_PAXGUSDT": 41849,
+ "bn_spot_XAUTUSDT": 4756,
+ "books_20261010T1757": {
+  "bitfinex_spot:XAUT:USD": 200,
+  "bitfinex_spot:XAUT:UST": 200,
+  "bn_perp:PAXGUSDT": 5,
+  "bn_perp:XAGUSDT": 5,
+  "bn_perp:XAUTUSDT": 5,
+  "bn_perp:XAUUSDT": 5,
+  "bn_spot:PAXGUSDC": 3,
+  "bn_spot:PAXGUSDT": 3,
+  "bn_spot:XAUTUSDC": 3,
+  "bn_spot:XAUTUSDT": 3,
+  "by_perp:PAXGUSDT": 5,
+  "by_perp:XAGUSDT": 5,
+  "by_perp:XAUTUSDT": 5,
+  "by_perp:XAUUSDT": 5,
+  "by_spot:XAUTUSDT": 5,
+  "coinbase_spot:PAXG-USD": 6,
+  "hl:PAXG": 3,
+  "hl:xyz:GOLD": 3,
+  "hl:xyz:SILVER": 3,
+  "hl_coarse:PAXG": 4,
+  "hl_coarse:xyz:GOLD": 4,
+  "hl_coarse:xyz:SILVER": 4,
+  "hl_spot:@182": 3,
+  "hl_spot:@209": 3,
+  "hl_spot:@715": 3,
+  "hl_spot_meta:@182": 3,
+  "hl_spot_meta:@209": 3,
+  "hl_spot_meta:@715": 3,
+  "kraken_spot:PAXGUSD": 2,
+  "okx:PAXG-USDT": 3,
+  "okx:XAG-USDT-SWAP": 3,
+  "okx:XAU-USDT-SWAP": 3,
+  "okx:XAUT-USDT": 3
+ },
+ "books_http": {
+  "errors": 0,
+  "requests": 21,
+  "throttled": 0
+ },
+ "by_PAXGUSDT": {
+  "funding": 6653,
+  "kline": 40090
+ },
+ "by_XAGUSDT": {
+  "funding": 1294,
+  "kline": 5176
+ },
+ "by_XAUTUSDT": {
+  "funding": 3332,
+  "kline": 13327
+ },
+ "by_XAUUSDT": {
+  "funding": 1294,
+  "kline": 5176
+ },
+ "by_http": {
+  "errors": 0,
+  "requests": 360,
+  "throttled": 0
+ },
+ "by_spot_XAUTUSDT": 13136,
+ "coinbase_paxg_1h": 7525,
+ "done_bn": "2026-10-10T17:45:07+00:00",
+ "done_books": "2026-10-10T17:57:12+00:00",
+ "done_by": "2026-10-10T17:49:20+00:00",
+ "done_hl": "2026-10-10T17:46 (from collect_hl.log)",
+ "done_okx": "2026-10-10T17:54:57+00:00",
+ "done_tokens": "2026-10-10T17:55:27+00:00",
+ "done_yahoo": "2026-10-10T17:55:12+00:00",
+ "hl_note": "the hl part ran in a parallel process and its log entries were overwritten by the other process (fixed in cmd_collect: merge on write); per-file row counts are in manifest.json files",
+ "okx_XAG-USDT-SWAP": {
+  "funding": 311,
+  "index": 6200
+ },
+ "okx_XAU-USDT-SWAP": {
+  "funding": 311,
+  "index": 8265
+ },
+ "okx_http": {
+  "errors": 0,
+  "requests": 892,
+  "throttled": 0
+ },
+ "okx_spot_PAXG-USDT": 8651,
+ "okx_spot_XAUT-USDT": 24400,
+ "tokens_http": {
+  "coinbase": {
+   "errors": 0,
+   "requests": 26,
+   "throttled": 0
+  },
+  "gt": {
+   "errors": 0,
+   "requests": 2,
+   "throttled": 0
+  }
+ },
+ "yahoo_GC=F_1d": 1957,
+ "yahoo_GC=F_1h": 13767,
+ "yahoo_PAXG-USD_1d": 2572,
+ "yahoo_PAXG-USD_1h": 17325,
+ "yahoo_SI=F_1d": 1956,
+ "yahoo_SI=F_1h": 13766,
+ "yahoo_XAUT-USD_1d": 2438,
+ "yahoo_XAUT-USD_1h": 17133
+}

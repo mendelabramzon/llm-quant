@@ -1,0 +1,235 @@
+{
+ "snapshot_utc": "2026-10-10",
+ "source": "api.geckoterminal.com/api/v2/networks/eth/tokens/<token>/pools?page=1 (raw/gecko/pools_<token>.json); top Ethereum pools by 24h volume (raw/gecko/top_pools_page*.json)",
+ "method": "24h volume of pools pairing the token with its redemption unit or a priced quote (ETH/WETH/stETH/wstETH/rETH/weETH for ETH tokens, WBTC/cbBTC for BTC wrappers); mechanics verified in Etherscan-verified source and eth_call at block 26,161,812 unless the row says docs",
+ "not_ranked": {
+  "stETH, wstETH, weETH, rsETH, ezETH, rETH": "already in the book or priced by the 2026-10-09 study",
+  "WBTC, cbBTC, cirBTC, kBTC, SolvBTC": "custodial wrappers redeemable only by merchants or account holders (permissioned)"
+ },
+ "rows": [
+  {
+   "token": "LBTC",
+   "vol24h_usd_vs_unit": 12078338,
+   "vol24h_usd_all_pools": 12078338,
+   "reserve_usd_vs_unit": 15773354,
+   "top_pool": {
+    "vol24h_usd": 5271666,
+    "name": "LBTC / cbBTC 0.02%",
+    "dex": "uniswap-v4-ethereum",
+    "address": "0x90512722b19945c7ec2746e34f45c301a5dadc830bb669056fa5fd5ad943e06e"
+   },
+   "redemption": "redeemForBtc to a bitcoin script (redeem before 2025-11-20); flat 10,000-sat fee; NAV 1/oracle ratio, 1.00485 BTC on 2026-10-09",
+   "access": "permissionless redemption to any bitcoin script; BTC paid off chain by Lombard, at LBTC x getRate (48 of 55 sampled payouts matched on Bitcoin); the bid's return leg (BTC -> cbBTC 1:1) needs a Coinbase account",
+   "queue": "measured on Bitcoin for a sample: request to payout median 5.4 days (2026-09, 20 payouts) and 6.0 days (2025, 28 payouts), max 10.2; Lombard docs say 7-9 days; the simulation uses 9",
+   "verdict": "PROPOSED (lombard-lbtc-queue-bid): cbBTC pools only, $10M, $111,136 a year out of sample (CI $65,117 to $165,420); all five pools give $109,761 at $10M but mix in WBTC's basis"
+  },
+  {
+   "token": "OETH",
+   "vol24h_usd_vs_unit": 1093591,
+   "vol24h_usd_all_pools": 2032458,
+   "reserve_usd_vs_unit": 53163443,
+   "top_pool": {
+    "vol24h_usd": 873406,
+    "name": "OETH / WETH",
+    "dex": "curve",
+    "address": "0xcc7d5785ad5755b6164e21495e07adb0ff11c2a8"
+   },
+   "redemption": "OETH vault requestWithdrawal -> claimWithdrawal, WETH 1:1, no fee",
+   "access": "permissionless; only the requester can claim",
+   "queue": "hours: measured from WithdrawalRequested/WithdrawalClaimable",
+   "verdict": "too small: $6,141 a year out of sample at $3M (CI $1,861 to $11,344); the queue pays in minutes (median 20 minutes, p90 4.9 days) and the issuer's ARM bids too; payouts exact (693 claims)"
+  },
+  {
+   "token": "tBTC",
+   "vol24h_usd_vs_unit": 550836,
+   "vol24h_usd_all_pools": 933680,
+   "reserve_usd_vs_unit": 21859630,
+   "top_pool": {
+    "vol24h_usd": 271753,
+    "name": "tBTC / cbBTC 0.01%",
+    "dex": "uniswap-v4-ethereum",
+    "address": "0x5459f9d1f649b9f1353a50fd0c8d796b4feb11926bec295cb0614a135febdf9a"
+   },
+   "redemption": "TBTCVault.unmintAndRedeem -> Bridge redemption; 0.2% treasury fee + bitcoin tx fee (<= 100,000 sats)",
+   "access": "permissionless; BTC paid on Bitcoin",
+   "queue": "median 4.9h request to completion proof (1,000 requests, 2025-09/11)",
+   "verdict": "not proposed: $58,834 a year out of sample at $30M but the interval starts at $1,840, October 2025's crash carries it and the trailing 90 days run at $1,787; 21bp fee; WBTC quotes carry their own basis"
+  },
+  {
+   "token": "swETH",
+   "vol24h_usd_vs_unit": 185564,
+   "vol24h_usd_all_pools": 185568,
+   "reserve_usd_vs_unit": 227166,
+   "top_pool": {
+    "vol24h_usd": 185561,
+    "name": "swETH / WETH 0.05%",
+    "dex": "uniswap_v3",
+    "address": "0x30ea22c879628514f1494d4bbfef79d21a6b49a2"
+   },
+   "redemption": "swEXIT createWithdrawRequest (max 500 swETH) -> finalizeWithdrawal; pays amount x min(rate at request, processed rate)",
+   "access": "permissionless",
+   "queue": "not measured; 47 requests unprocessed at the 2026-10-10 read",
+   "verdict": "too thin: one Uniswap v3 5bp pool with $0.16M reserve carries the volume"
+  },
+  {
+   "token": "osETH",
+   "vol24h_usd_vs_unit": 157181,
+   "vol24h_usd_all_pools": 157187,
+   "reserve_usd_vs_unit": 31197311,
+   "top_pool": {
+    "vol24h_usd": 78674,
+    "name": "osETH / rETH",
+    "dex": "curve",
+    "address": "0xe080027bd47353b5d1639772b4a75e9ed3658a0d"
+   },
+   "redemption": "EthOsTokenRedeemer enterExitQueue -> claimExitedAssets at NAV when processed (accrues while queued)",
+   "access": "permissioned until 2026-09-03 (redeemer was a Safe); open since",
+   "queue": "~11h median since 2026-09-16; 29.23 osETH unprocessed since 2026-09-30; funding needs a privileged positions manager",
+   "verdict": "permissioned for 23 of the 24 months; too new to price, watch"
+  },
+  {
+   "token": "frxETH",
+   "vol24h_usd_vs_unit": 123316,
+   "vol24h_usd_all_pools": 223047,
+   "reserve_usd_vs_unit": 28431961,
+   "top_pool": {
+    "vol24h_usd": 89963,
+    "name": "frxETH / WETH",
+    "dex": "curve",
+    "address": "0x9c3b46c0ceb5b9e304fcd6d88fc50f7dd24b31bc"
+   },
+   "redemption": "FraxEtherRedemptionQueue v1: enterRedemptionQueue -> burnRedemptionTicketNft after a fixed maturity; fee 0 since 2023-11",
+   "access": "permissionless",
+   "queue": "fixed maturity 30 days now (7 to 60 days since 2023); claims can revert while the contract is underfunded (1,167 ETH vs 1,300 ETH owed)",
+   "verdict": "too small: $0.12M a day against a 30-day lock worth ~22bp of staking carry"
+  },
+  {
+   "token": "cbETH",
+   "vol24h_usd_vs_unit": 68026,
+   "vol24h_usd_all_pools": 68026,
+   "reserve_usd_vs_unit": 2360476,
+   "top_pool": {
+    "vol24h_usd": 33496,
+    "name": "cbETH / WETH 0.01%",
+    "dex": "uniswap_v3",
+    "address": "0x177622e79acece98c39f6e12fa78ac7fc8a8bf62"
+   },
+   "redemption": "Coinbase unwrap",
+   "access": "permissioned (Coinbase account)",
+   "queue": "-",
+   "verdict": "permissioned"
+  },
+  {
+   "token": "sfrxETH",
+   "vol24h_usd_vs_unit": 50706,
+   "vol24h_usd_all_pools": 50706,
+   "reserve_usd_vs_unit": 330510,
+   "top_pool": {
+    "vol24h_usd": 50706,
+    "name": "wstETH / rETH / sfrxETH",
+    "dex": "curve",
+    "address": "0x2570f1bd5d2735314fc102eb12fc1afe9e6e7193"
+   },
+   "redemption": "ERC-4626 to frxETH, then the frxETH queue",
+   "access": "permissionless",
+   "queue": "as frxETH",
+   "verdict": "too small ($0.05M a day, through a three-coin pool)"
+  },
+  {
+   "token": "mETH",
+   "vol24h_usd_vs_unit": 27970,
+   "vol24h_usd_all_pools": 27970,
+   "reserve_usd_vs_unit": 1694288,
+   "top_pool": {
+    "vol24h_usd": 27970,
+    "name": "mETH / WETH 0.05%",
+    "dex": "uniswap_v3",
+    "address": "0x04708077eca6bb527a5bbbd6358ffb043a9c1c14"
+   },
+   "redemption": "Mantle Staking unstakeRequest -> claimUnstakeRequest; ETH fixed at request; no fee",
+   "access": "permissionless",
+   "queue": "~12-20h (3,600-block finality + oracle + funding)",
+   "verdict": "too small on Ethereum ($0.03M a day; mETH liquidity lives on Mantle)"
+  },
+  {
+   "token": "pufETH",
+   "vol24h_usd_vs_unit": 25614,
+   "vol24h_usd_all_pools": 25614,
+   "reserve_usd_vs_unit": 5511061,
+   "top_pool": {
+    "vol24h_usd": 18608,
+    "name": "pufETH / wstETH",
+    "dex": "curve",
+    "address": "0xeeda34a377dd0ca676b9511ee1324974fa8d980d"
+   },
+   "redemption": "PufferVault ERC-4626 redeem/withdraw, instant, 1% exit fee, capped by vault ETH (287 ETH)",
+   "access": "permissionless",
+   "queue": "instant",
+   "verdict": "too small ($0.03M a day); the 1% instant exit caps the discount"
+  },
+  {
+   "token": "ETHx",
+   "vol24h_usd_vs_unit": 4430,
+   "vol24h_usd_all_pools": 4430,
+   "reserve_usd_vs_unit": 626632,
+   "top_pool": {
+    "vol24h_usd": 3423,
+    "name": "ETHx / ETH",
+    "dex": "curve",
+    "address": "0x59ab5a5b5d617e478a2479b0cad80da7e2831492"
+   },
+   "redemption": "Stader UserWithdrawalManager requestWithdraw -> finalize -> claim",
+   "access": "permissionless",
+   "queue": "~7-10 days (not verified)",
+   "verdict": "dead ($4k a day)"
+  },
+  {
+   "token": "rswETH",
+   "vol24h_usd_vs_unit": 3618,
+   "vol24h_usd_all_pools": 3618,
+   "reserve_usd_vs_unit": 118173,
+   "top_pool": {
+    "vol24h_usd": 2655,
+    "name": "weETH / rswETH",
+    "dex": "curve",
+    "address": "0x278cfb6f06b1efc09d34fc7127d6060c61d629db"
+   },
+   "redemption": "Swell restaking withdrawal",
+   "access": "permissionless",
+   "queue": "-",
+   "verdict": "dead ($4k a day)"
+  },
+  {
+   "token": "cmETH",
+   "vol24h_usd_vs_unit": 678,
+   "vol24h_usd_all_pools": 678,
+   "reserve_usd_vs_unit": 37859,
+   "top_pool": {
+    "vol24h_usd": 678,
+    "name": "cmETH / ETH 0.01%",
+    "dex": "uniswap-v4-ethereum",
+    "address": "0x8e8c21e33336fb681a4c83bf90e5070f72eacc7ec230cfb62362997d47b649b7"
+   },
+   "redemption": "Mantle restaking wrapper",
+   "access": "-",
+   "queue": "-",
+   "verdict": "dead (<$1k a day)"
+  },
+  {
+   "token": "ankrETH",
+   "vol24h_usd_vs_unit": 0,
+   "vol24h_usd_all_pools": 0,
+   "reserve_usd_vs_unit": 968571,
+   "top_pool": {
+    "vol24h_usd": 0,
+    "name": "vETH2 / WETH / aETHc / CRETH2",
+    "dex": "curve",
+    "address": "0x16bea2e63adade5984298d53a4d4d9c09e278192"
+   },
+   "redemption": "Ankr unstake",
+   "access": "-",
+   "queue": "-",
+   "verdict": "dead ($0 a day)"
+  }
+ ]
+}

@@ -1,0 +1,739 @@
+{
+ "analysis_seconds": 2.2,
+ "api_gaps": [
+  "Spot XAU/USD history: Yahoo XAUUSD=X is gone (404) and Pyth Benchmarks history returns 401/404 without a key; Binance's XAU index (spot feeds dxFeed/Kaiko/Massive/Pyth plus xyz:GOLD) is the spot reference, GC=F the futures",
+  "stooq.com serves a JavaScript proof-of-work page to scripts; not used",
+  "OKX serves 3 months of funding history (from 2026-06-29) and XAU index candles from 2025-10-31 only",
+  "Hyperliquid does not serve oracle history; its oracle is implied as close / (1 + hourly average premium)",
+  "Hyperliquid PAXG funding history starts 2025-04-06 although daily candles start 2025-03-27",
+  "HIP-3 hyna/mkts/vntl gold and silver markets (all delisted) return no funding or candles",
+  "Binance TradFi perps (XAUUSDT) inside portfolio margin: not confirmed from public data; collateral rates are for the PM account (PAXG and XAUT 0.80)",
+  "Bitfinex XAUT books are thin; Kraken/Coinbase PAXG books are USD-quoted (no stablecoin conversion applied)",
+  "Tether Gold's official terms page renders by script; XAUT redemption terms are from third-party listings",
+  "Book depth is one Saturday snapshot (2026-10-10); weekday books for the XAU perps were not read"
+ ],
+ "collect_log": {
+  "bn_PAXGUSDT": {
+   "funding": 3373,
+   "klines": 13496
+  },
+  "bn_XAGUSDT": {
+   "funding": 1657,
+   "klines": 6632
+  },
+  "bn_XAUTUSDT": {
+   "funding": 1188,
+   "klines": 4756
+  },
+  "bn_XAUUSDT": {
+   "funding": 1820,
+   "klines": 7282
+  },
+  "bn_http": {
+   "errors": 0,
+   "requests": 210,
+   "throttled": 0
+  },
+  "bn_http_funding": {
+   "errors": 0,
+   "requests": 11,
+   "throttled": 0
+  },
+  "bn_spot_PAXGUSDT": 41849,
+  "bn_spot_XAUTUSDT": 4756,
+  "books_20261010T1757": {
+   "bitfinex_spot:XAUT:USD": 200,
+   "bitfinex_spot:XAUT:UST": 200,
+   "bn_perp:PAXGUSDT": 5,
+   "bn_perp:XAGUSDT": 5,
+   "bn_perp:XAUTUSDT": 5,
+   "bn_perp:XAUUSDT": 5,
+   "bn_spot:PAXGUSDC": 3,
+   "bn_spot:PAXGUSDT": 3,
+   "bn_spot:XAUTUSDC": 3,
+   "bn_spot:XAUTUSDT": 3,
+   "by_perp:PAXGUSDT": 5,
+   "by_perp:XAGUSDT": 5,
+   "by_perp:XAUTUSDT": 5,
+   "by_perp:XAUUSDT": 5,
+   "by_spot:XAUTUSDT": 5,
+   "coinbase_spot:PAXG-USD": 6,
+   "hl:PAXG": 3,
+   "hl:xyz:GOLD": 3,
+   "hl:xyz:SILVER": 3,
+   "hl_coarse:PAXG": 4,
+   "hl_coarse:xyz:GOLD": 4,
+   "hl_coarse:xyz:SILVER": 4,
+   "hl_spot:@182": 3,
+   "hl_spot:@209": 3,
+   "hl_spot:@715": 3,
+   "hl_spot_meta:@182": 3,
+   "hl_spot_meta:@209": 3,
+   "hl_spot_meta:@715": 3,
+   "kraken_spot:PAXGUSD": 2,
+   "okx:PAXG-USDT": 3,
+   "okx:XAG-USDT-SWAP": 3,
+   "okx:XAU-USDT-SWAP": 3,
+   "okx:XAUT-USDT": 3
+  },
+  "books_http": {
+   "errors": 0,
+   "requests": 21,
+   "throttled": 0
+  },
+  "by_PAXGUSDT": {
+   "funding": 6653,
+   "kline": 40090
+  },
+  "by_XAGUSDT": {
+   "funding": 1294,
+   "kline": 5176
+  },
+  "by_XAUTUSDT": {
+   "funding": 3332,
+   "kline": 13327
+  },
+  "by_XAUUSDT": {
+   "funding": 1294,
+   "kline": 5176
+  },
+  "by_http": {
+   "errors": 0,
+   "requests": 360,
+   "throttled": 0
+  },
+  "by_spot_XAUTUSDT": 13136,
+  "coinbase_paxg_1h": 7525,
+  "done_bn": "2026-10-10T17:45:07+00:00",
+  "done_books": "2026-10-10T17:57:12+00:00",
+  "done_by": "2026-10-10T17:49:20+00:00",
+  "done_hl": "2026-10-10T17:46 (from collect_hl.log)",
+  "done_okx": "2026-10-10T17:54:57+00:00",
+  "done_tokens": "2026-10-10T17:55:27+00:00",
+  "done_yahoo": "2026-10-10T17:55:12+00:00",
+  "hl_note": "the hl part ran in a parallel process and its log entries were overwritten by the other process (fixed in cmd_collect: merge on write); per-file row counts are in manifest.json files",
+  "okx_XAG-USDT-SWAP": {
+   "funding": 311,
+   "index": 6200
+  },
+  "okx_XAU-USDT-SWAP": {
+   "funding": 311,
+   "index": 8265
+  },
+  "okx_http": {
+   "errors": 0,
+   "requests": 892,
+   "throttled": 0
+  },
+  "okx_spot_PAXG-USDT": 8651,
+  "okx_spot_XAUT-USDT": 24400,
+  "tokens_http": {
+   "coinbase": {
+    "errors": 0,
+    "requests": 26,
+    "throttled": 0
+   },
+   "gt": {
+    "errors": 0,
+    "requests": 2,
+    "throttled": 0
+   }
+  },
+  "yahoo_GC=F_1d": 1957,
+  "yahoo_GC=F_1h": 13767,
+  "yahoo_PAXG-USD_1d": 2572,
+  "yahoo_PAXG-USD_1h": 17325,
+  "yahoo_SI=F_1d": 1956,
+  "yahoo_SI=F_1h": 13766,
+  "yahoo_XAUT-USD_1d": 2438,
+  "yahoo_XAUT-USD_1h": 17133
+ },
+ "commands": [
+  "python3 scripts/gold_carry.py collect --out research/2026-10-10/gold_carry --parts bn,by,okx,yahoo,tokens",
+  "python3 scripts/gold_carry.py collect --out research/2026-10-10/gold_carry --parts hl",
+  "python3 scripts/gold_carry.py collect --out research/2026-10-10/gold_carry --parts books",
+  "python3 scripts/gold_carry.py analyze --out research/2026-10-10/gold_carry",
+  "python3 scripts/gold_carry.py render --out research/2026-10-10/gold_carry"
+ ],
+ "endpoints": {
+  "binance_futures": "https://fapi.binance.com (/fapi/v1/fundingRate, klines, premiumIndexKlines, indexPriceKlines, markPriceKlines, constituents, depth, openInterest)",
+  "binance_pm_collateral": "https://www.binance.com/bapi/margin/v1/public/margin/portfolio/collateral-rate",
+  "binance_spot": "https://api.binance.com (/api/v3/klines, depth)",
+  "bitfinex": "https://api-pub.bitfinex.com/v2/book/tXAUT:USD|UST",
+  "bybit": "https://api.bybit.com (/v5/market/funding/history, kline, mark/index/premium-index-price-kline, index-price-components, orderbook, spot-margin-trade/collateral)",
+  "coinbase": "https://api.exchange.coinbase.com/products/PAXG-USD (candles, book)",
+  "ethereum_rpc": "publicnode (totalSupply)",
+  "geckoterminal": "https://api.geckoterminal.com/api/v2/networks/eth/tokens/{PAXG,XAUT}/pools",
+  "hyperliquid": "https://api.hyperliquid.xyz/info (fundingHistory, candleSnapshot, l2Book, metaAndAssetCtxs, spotMetaAndAssetCtxs, perpDexs, meta) at >= 1.5 s a call",
+  "kraken": "https://api.kraken.com/0/public/Depth?pair=PAXGUSD",
+  "okx": "https://www.okx.com (/api/v5/public/funding-rate-history, market/history-candles, history-index-candles, history-mark-price-candles, index-components, books, discount-rate-interest-free-quota)",
+  "yahoo": "https://query1.finance.yahoo.com/v8/finance/chart/ (GC=F, SI=F, PAXG-USD, XAUT-USD)"
+ },
+ "files": {
+  "bn/funding_PAXGUSDT.json.gz": {
+   "bytes": 40988,
+   "first": "2025-03-27T12:00:00+00:00",
+   "last": "2026-10-10T16:00:00+00:00",
+   "rows": 3373
+  },
+  "bn/funding_XAGUSDT.json.gz": {
+   "bytes": 18518,
+   "first": "2026-01-07T12:00:00+00:00",
+   "last": "2026-10-10T16:00:00+00:00",
+   "rows": 1657
+  },
+  "bn/funding_XAUTUSDT.json.gz": {
+   "bytes": 15280,
+   "first": "2026-03-26T16:00:00+00:00",
+   "last": "2026-10-10T16:00:00+00:00",
+   "rows": 1188
+  },
+  "bn/funding_XAUUSDT.json.gz": {
+   "bytes": 21863,
+   "first": "2025-12-11T08:00:00+00:00",
+   "last": "2026-10-10T16:00:00+00:00",
+   "rows": 1820
+  },
+  "bn/index_PAXGUSDT.json.gz": {
+   "bytes": 385320,
+   "first": "2025-03-27T10:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 13496
+  },
+  "bn/index_XAGUSDT.json.gz": {
+   "bytes": 133067,
+   "first": "2026-01-07T10:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 6632
+  },
+  "bn/index_XAUTUSDT.json.gz": {
+   "bytes": 136700,
+   "first": "2026-03-26T14:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 4756
+  },
+  "bn/index_XAUUSDT.json.gz": {
+   "bytes": 161003,
+   "first": "2025-12-11T08:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 7282
+  },
+  "bn/klines_PAXGUSDT.json.gz": {
+   "bytes": 309159,
+   "first": "2025-03-27T10:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 13496
+  },
+  "bn/klines_XAGUSDT.json.gz": {
+   "bytes": 131064,
+   "first": "2026-01-07T10:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 6632
+  },
+  "bn/klines_XAUTUSDT.json.gz": {
+   "bytes": 108294,
+   "first": "2026-03-26T14:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 4756
+  },
+  "bn/klines_XAUUSDT.json.gz": {
+   "bytes": 171677,
+   "first": "2025-12-11T08:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 7282
+  },
+  "bn/mark_PAXGUSDT.json.gz": {
+   "bytes": 305002,
+   "first": "2025-03-27T10:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 13496
+  },
+  "bn/mark_XAGUSDT.json.gz": {
+   "bytes": 133836,
+   "first": "2026-01-07T10:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 6632
+  },
+  "bn/mark_XAUTUSDT.json.gz": {
+   "bytes": 106053,
+   "first": "2026-03-26T14:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 4756
+  },
+  "bn/mark_XAUUSDT.json.gz": {
+   "bytes": 166901,
+   "first": "2025-12-11T08:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 7282
+  },
+  "bn/meta.json.gz": {
+   "bytes": 6324
+  },
+  "bn/premium_PAXGUSDT.json.gz": {
+   "bytes": 233412,
+   "first": "2025-03-27T10:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 13496
+  },
+  "bn/premium_XAGUSDT.json.gz": {
+   "bytes": 113666,
+   "first": "2026-01-07T10:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 6632
+  },
+  "bn/premium_XAUTUSDT.json.gz": {
+   "bytes": 80171,
+   "first": "2026-03-26T14:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 4756
+  },
+  "bn/premium_XAUUSDT.json.gz": {
+   "bytes": 128818,
+   "first": "2025-12-11T08:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 7282
+  },
+  "bn/spot_PAXGUSDT.json.gz": {
+   "bytes": 730454,
+   "first": "2022-01-01T00:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 41849
+  },
+  "bn/spot_XAUTUSDT.json.gz": {
+   "bytes": 109575,
+   "first": "2026-03-26T14:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 4756
+  },
+  "books/books_20261010T1757.json.gz": {
+   "bytes": 189304
+  },
+  "by/funding_PAXGUSDT.json.gz": {
+   "bytes": 32146,
+   "first": "2022-03-15T16:00:00+00:00",
+   "last": "2026-10-10T16:00:00+00:00",
+   "rows": 6653
+  },
+  "by/funding_XAGUSDT.json.gz": {
+   "bytes": 6513,
+   "first": "2026-03-09T04:00:00+00:00",
+   "last": "2026-10-10T16:00:00+00:00",
+   "rows": 1294
+  },
+  "by/funding_XAUTUSDT.json.gz": {
+   "bytes": 17618,
+   "first": "2025-04-03T12:00:00+00:00",
+   "last": "2026-10-10T16:00:00+00:00",
+   "rows": 3332
+  },
+  "by/funding_XAUUSDT.json.gz": {
+   "bytes": 6582,
+   "first": "2026-03-09T04:00:00+00:00",
+   "last": "2026-10-10T16:00:00+00:00",
+   "rows": 1294
+  },
+  "by/index_PAXGUSDT.json.gz": {
+   "bytes": 397367,
+   "first": "2022-03-15T08:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 40090
+  },
+  "by/index_XAGUSDT.json.gz": {
+   "bytes": 54253,
+   "first": "2026-03-09T02:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 5176
+  },
+  "by/index_XAUTUSDT.json.gz": {
+   "bytes": 194001,
+   "first": "2025-04-03T11:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 13327
+  },
+  "by/index_XAUUSDT.json.gz": {
+   "bytes": 77172,
+   "first": "2026-03-09T02:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 5176
+  },
+  "by/kline_PAXGUSDT.json.gz": {
+   "bytes": 631698,
+   "first": "2022-03-15T08:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 40090
+  },
+  "by/kline_XAGUSDT.json.gz": {
+   "bytes": 96752,
+   "first": "2026-03-09T02:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 5176
+  },
+  "by/kline_XAUTUSDT.json.gz": {
+   "bytes": 275719,
+   "first": "2025-04-03T11:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 13327
+  },
+  "by/kline_XAUUSDT.json.gz": {
+   "bytes": 118234,
+   "first": "2026-03-09T02:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 5176
+  },
+  "by/mark_PAXGUSDT.json.gz": {
+   "bytes": 389354,
+   "first": "2022-03-15T08:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 40090
+  },
+  "by/mark_XAGUSDT.json.gz": {
+   "bytes": 54800,
+   "first": "2026-03-09T02:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 5176
+  },
+  "by/mark_XAUTUSDT.json.gz": {
+   "bytes": 187499,
+   "first": "2025-04-03T11:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 13327
+  },
+  "by/mark_XAUUSDT.json.gz": {
+   "bytes": 77063,
+   "first": "2026-03-09T02:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 5176
+  },
+  "by/meta.json.gz": {
+   "bytes": 2455
+  },
+  "by/premium_PAXGUSDT.json.gz": {
+   "bytes": 428568,
+   "first": "2022-03-15T08:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 40090
+  },
+  "by/premium_XAGUSDT.json.gz": {
+   "bytes": 67150,
+   "first": "2026-03-09T02:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 5176
+  },
+  "by/premium_XAUTUSDT.json.gz": {
+   "bytes": 186264,
+   "first": "2025-04-03T11:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 13327
+  },
+  "by/premium_XAUUSDT.json.gz": {
+   "bytes": 73807,
+   "first": "2026-03-09T02:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 5176
+  },
+  "by/spot_XAUTUSDT.json.gz": {
+   "bytes": 270434,
+   "first": "2025-04-11T10:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 13136
+  },
+  "hl/c1d_PAXG.json.gz": {
+   "bytes": 17789,
+   "first": "2025-03-27T00:00:00+00:00",
+   "last": "2026-10-10T00:00:00+00:00",
+   "rows": 563
+  },
+  "hl/c1d_cash__GOLD.json.gz": {
+   "bytes": 4928,
+   "first": "2026-02-05T00:00:00+00:00",
+   "last": "2026-07-01T00:00:00+00:00",
+   "rows": 147
+  },
+  "hl/c1d_cash__SILVER.json.gz": {
+   "bytes": 5080,
+   "first": "2026-02-06T00:00:00+00:00",
+   "last": "2026-06-30T00:00:00+00:00",
+   "rows": 145
+  },
+  "hl/c1d_flx__GOLD.json.gz": {
+   "bytes": 6011,
+   "first": "2025-12-12T00:00:00+00:00",
+   "last": "2026-06-19T00:00:00+00:00",
+   "rows": 190
+  },
+  "hl/c1d_flx__SILVER.json.gz": {
+   "bytes": 6225,
+   "first": "2025-12-17T00:00:00+00:00",
+   "last": "2026-06-18T00:00:00+00:00",
+   "rows": 184
+  },
+  "hl/c1d_km__GOLD.json.gz": {
+   "bytes": 4593,
+   "first": "2026-01-28T00:00:00+00:00",
+   "last": "2026-06-16T00:00:00+00:00",
+   "rows": 140
+  },
+  "hl/c1d_km__SILVER.json.gz": {
+   "bytes": 4881,
+   "first": "2026-01-28T00:00:00+00:00",
+   "last": "2026-06-16T00:00:00+00:00",
+   "rows": 140
+  },
+  "hl/c1d_xyz__GOLD.json.gz": {
+   "bytes": 9902,
+   "first": "2025-12-22T00:00:00+00:00",
+   "last": "2026-10-10T00:00:00+00:00",
+   "rows": 293
+  },
+  "hl/c1d_xyz__SILVER.json.gz": {
+   "bytes": 10420,
+   "first": "2025-12-26T00:00:00+00:00",
+   "last": "2026-10-10T00:00:00+00:00",
+   "rows": 289
+  },
+  "hl/c1h_PAXG.json.gz": {
+   "bytes": 126757,
+   "first": "2026-03-16T09:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 5001
+  },
+  "hl/c1h_cash__GOLD.json.gz": {
+   "bytes": 63141,
+   "first": "2026-03-16T09:00:00+00:00",
+   "last": "2026-07-01T12:00:00+00:00",
+   "rows": 2572
+  },
+  "hl/c1h_cash__SILVER.json.gz": {
+   "bytes": 70119,
+   "first": "2026-03-16T09:00:00+00:00",
+   "last": "2026-06-30T19:00:00+00:00",
+   "rows": 2555
+  },
+  "hl/c1h_flx__GOLD.json.gz": {
+   "bytes": 40865,
+   "first": "2026-03-16T09:00:00+00:00",
+   "last": "2026-06-19T14:00:00+00:00",
+   "rows": 2286
+  },
+  "hl/c1h_flx__SILVER.json.gz": {
+   "bytes": 54011,
+   "first": "2026-03-16T09:00:00+00:00",
+   "last": "2026-06-18T19:00:00+00:00",
+   "rows": 2267
+  },
+  "hl/c1h_km__GOLD.json.gz": {
+   "bytes": 49702,
+   "first": "2026-03-16T09:00:00+00:00",
+   "last": "2026-06-16T11:00:00+00:00",
+   "rows": 2211
+  },
+  "hl/c1h_km__SILVER.json.gz": {
+   "bytes": 58654,
+   "first": "2026-03-16T09:00:00+00:00",
+   "last": "2026-06-16T10:00:00+00:00",
+   "rows": 2210
+  },
+  "hl/c1h_xyz__GOLD.json.gz": {
+   "bytes": 135711,
+   "first": "2026-03-16T10:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 5000
+  },
+  "hl/c1h_xyz__SILVER.json.gz": {
+   "bytes": 141079,
+   "first": "2026-03-16T09:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 5001
+  },
+  "hl/funding_PAXG.json.gz": {
+   "bytes": 158764,
+   "first": "2025-04-06T16:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 13250
+  },
+  "hl/funding_cash__GOLD.json.gz": {
+   "bytes": 57427,
+   "first": "2026-02-05T18:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 5928
+  },
+  "hl/funding_cash__SILVER.json.gz": {
+   "bytes": 56931,
+   "first": "2026-02-06T16:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 5906
+  },
+  "hl/funding_flx__GOLD.json.gz": {
+   "bytes": 66404,
+   "first": "2025-12-12T15:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 7251
+  },
+  "hl/funding_flx__SILVER.json.gz": {
+   "bytes": 66608,
+   "first": "2025-12-17T15:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 7131
+  },
+  "hl/funding_km__GOLD.json.gz": {
+   "bytes": 57547,
+   "first": "2026-01-28T12:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 6126
+  },
+  "hl/funding_km__SILVER.json.gz": {
+   "bytes": 59725,
+   "first": "2026-01-28T12:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 6126
+  },
+  "hl/funding_xyz__GOLD.json.gz": {
+   "bytes": 89730,
+   "first": "2025-12-22T15:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 7011
+  },
+  "hl/funding_xyz__SILVER.json.gz": {
+   "bytes": 90550,
+   "first": "2025-12-26T01:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 6929
+  },
+  "hl/meta.json.gz": {
+   "bytes": 1256
+  },
+  "okx/candles_XAG-USDT-SWAP.json.gz": {
+   "bytes": 112925,
+   "first": "2026-01-28T12:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 6126
+  },
+  "okx/candles_XAU-USDT-SWAP.json.gz": {
+   "bytes": 264179,
+   "first": "2025-04-09T10:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 13184
+  },
+  "okx/funding_XAG-USDT-SWAP.json.gz": {
+   "bytes": 2869,
+   "first": "2026-06-29T08:00:00+00:00",
+   "last": "2026-10-10T16:00:00+00:00",
+   "rows": 311
+  },
+  "okx/funding_XAU-USDT-SWAP.json.gz": {
+   "bytes": 2575,
+   "first": "2026-06-29T08:00:00+00:00",
+   "last": "2026-10-10T16:00:00+00:00",
+   "rows": 311
+  },
+  "okx/index_XAG-USDT-SWAP.json.gz": {
+   "bytes": 66160,
+   "first": "2026-01-25T10:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 6200
+  },
+  "okx/index_XAU-USDT-SWAP.json.gz": {
+   "bytes": 119509,
+   "first": "2025-10-31T09:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 8265
+  },
+  "okx/mark_XAG-USDT-SWAP.json.gz": {
+   "bytes": 66194,
+   "first": "2026-01-28T11:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 6127
+  },
+  "okx/mark_XAU-USDT-SWAP.json.gz": {
+   "bytes": 163234,
+   "first": "2025-04-09T10:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 13184
+  },
+  "okx/meta.json.gz": {
+   "bytes": 2956
+  },
+  "okx/spot_PAXG-USDT.json.gz": {
+   "bytes": 179616,
+   "first": "2025-10-15T07:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 8651
+  },
+  "okx/spot_XAUT-USDT.json.gz": {
+   "bytes": 484084,
+   "first": "2023-12-29T02:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 24400
+  },
+  "tokens/coinbase_PAXG-USD_1h.json.gz": {
+   "bytes": 149733,
+   "first": "2025-12-01T00:00:00+00:00",
+   "last": "2026-10-10T17:00:00+00:00",
+   "rows": 7525
+  },
+  "tokens/onchain_pools.json.gz": {
+   "bytes": 9016
+  },
+  "yahoo/GC_F_1d.json.gz": {
+   "bytes": 39056,
+   "first": "2019-01-02T05:00:00+00:00",
+   "last": "2026-10-09T04:00:00+00:00",
+   "rows": 1957
+  },
+  "yahoo/GC_F_1h.json.gz": {
+   "bytes": 235717,
+   "first": "2024-05-17T04:00:00+00:00",
+   "last": "2026-10-09T20:00:00+00:00",
+   "rows": 13767
+  },
+  "yahoo/PAXG-USD_1d.json.gz": {
+   "bytes": 77302,
+   "first": "2019-09-26T00:00:00+00:00",
+   "last": "2026-10-10T00:00:00+00:00",
+   "rows": 2572
+  },
+  "yahoo/PAXG-USD_1h.json.gz": {
+   "bytes": 377151,
+   "first": "2024-10-11T00:00:00+00:00",
+   "last": "2026-10-10T17:54:43+00:00",
+   "rows": 17325
+  },
+  "yahoo/SI_F_1d.json.gz": {
+   "bytes": 37116,
+   "first": "2019-01-02T05:00:00+00:00",
+   "last": "2026-10-09T04:00:00+00:00",
+   "rows": 1956
+  },
+  "yahoo/SI_F_1h.json.gz": {
+   "bytes": 234299,
+   "first": "2024-05-17T04:00:00+00:00",
+   "last": "2026-10-09T20:00:00+00:00",
+   "rows": 13766
+  },
+  "yahoo/XAUT-USD_1d.json.gz": {
+   "bytes": 72166,
+   "first": "2020-02-07T00:00:00+00:00",
+   "last": "2026-10-10T00:00:00+00:00",
+   "rows": 2438
+  },
+  "yahoo/XAUT-USD_1h.json.gz": {
+   "bytes": 388800,
+   "first": "2024-10-11T00:00:00+00:00",
+   "last": "2026-10-10T17:54:02+00:00",
+   "rows": 17133
+  }
+ },
+ "generated": "2026-10-10T18:08:04+00:00",
+ "issuer_pages": {
+  "PAXG": [
+   "https://support.paxos.com/articles/2899561282-PAX-Gold-Fees (read 2026-10-10)",
+   "https://www.paxos.com/pax-gold (read 2026-10-10)"
+  ],
+  "XAUT": [
+   "https://app.rwa.xyz/assets/tether-gold (search result, 2026-10-10)",
+   "https://gold.tether.to/ (no text served)"
+  ]
+ },
+ "script": "scripts/gold_carry.py",
+ "study": "gold_carry"
+}

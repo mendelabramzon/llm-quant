@@ -1,0 +1,1611 @@
+{
+ "analysis": {
+  "cutoff": "2024-07-01T00:00:00+00:00",
+  "finished_at": "2026-10-10T12:30:22+00:00",
+  "started_at": "2026-10-10T12:30:18+00:00"
+ },
+ "books": {
+  "at": "2026-10-10T11:52:50+00:00",
+  "http": {
+   "errors": 0,
+   "requests": 149,
+   "throttled": 0
+  },
+  "tokens": 74
+ },
+ "decision_rule": {
+  "at": "2026-10-10T11:55:07+00:00",
+  "cluster": "ISO week of publication",
+  "primary_size_usd": 25000,
+  "rule": "A book row is proposed only if the variant chosen on events before the cutoff (highest in-sample excess-over-placebo Welch t among tradable variants with >= 15 in-sample events) shows out of sample: excess over placebo > 0 with Welch t >= 2, event-week t of the P&L >= 2, mean P&L after funding and costs at $25k a leg above the SSR for the days held, and survives BH at q=0.10 across the tradable variants out of sample. go=yes needs all four; otherwise no entry (a positive but weaker result is reported as a watch item, not a row).",
+  "selection_metric": "in-sample excess-over-placebo Welch t",
+  "sensitivity_size_usd": 100000,
+  "variants": "7 trade windows x 3 sides x 2 outcome filters; passed-filter variants entered before the vote ends are look-ahead and excluded from selection (30 tradable)"
+ },
+ "label_export": {
+  "at": "2026-10-10T11:48:24+00:00",
+  "batch_sizes": [
+   48,
+   125,
+   125,
+   57,
+   77,
+   98,
+   125,
+   125,
+   123,
+   113,
+   101,
+   103,
+   97,
+   125,
+   125,
+   125,
+   99,
+   125,
+   16,
+   125,
+   110,
+   124,
+   104,
+   111,
+   16
+  ],
+  "batches": 25,
+  "candidates": 2522,
+  "chars_shown": 1500,
+  "spot_check": 252,
+  "spot_seed": 20261011
+ },
+ "labeling": {
+  "agents": 24,
+  "batches": 25,
+  "criteria_sha256": "84f21efedc827814f084db2ba52036da7fde1161036429b12456e9fff094f650",
+  "finished_at": "2026-10-10T12:26:00+00:00",
+  "outputs": "label_batches/out_*.jsonl (25), spot_out_a/b.jsonl; every file validated by label-check",
+  "passes": "one fresh LLM agent per batch (general-purpose subagent, same model), prompt label_batches/LABELER_PROMPT.md + criteria.md; two further fresh agents label the shuffled 10% spot sample blind",
+  "per_pass_minutes": "8-22 (in parallel; the shared concurrency cap held 14-20 at a time)",
+  "prices_downloaded_before_labels": "klines and funding cached 11:36-11:52 UTC; only bar times and volumes were read before the freeze (priceability scope); no return was computed",
+  "spot_passes": 2,
+  "started_at": "2026-10-10T11:48:36+00:00",
+  "subagent_tokens": 4849259
+ },
+ "labels_frozen": {
+  "at": "2026-10-10T12:26:08+00:00",
+  "counts": {
+   "NEUTRAL": 2175,
+   "VALUE_DOWN": 169,
+   "VALUE_UP": 178
+  },
+  "criteria_sha256": "84f21efedc827814f084db2ba52036da7fde1161036429b12456e9fff094f650",
+  "cutoff": "2024-07-01T00:00:00+00:00",
+  "cutoff_rule": "first day of the month holding the median created date of VALUE_UP/VALUE_DOWN labels, fixed at the freeze, before any price path",
+  "n": 2522,
+  "sha256": "d71f689d4b2213d4454cd20b8797d332f197b1b649ceb1eb2af65bb7fd8c3b09"
+ },
+ "post_hoc": {
+  "first_analyze_at": "2026-10-10T12:26:20+00:00",
+  "note": "Added after the first analyze run had been read, as description only (no selection, no new trade variants): conditional splits by half (conditional.*.in/out), by_year, ar_bh (BH over the label x window abnormal-return cells). The pre-registered test (chosen variant, its out-of-sample result, BH over 30 trade variants) is unchanged by them."
+ },
+ "prices": {
+  "at": "2026-10-10T11:48:01+00:00",
+  "download_note": "first downloaded 2026-10-10 11:36:47-11:47 UTC by two processes (forward and --reverse), about 1,250 kline and 670 funding requests, no failures or throttles logged (prices.log, prices_rev.log); the http counters above are from the final all-cached re-run that rewrote this block with traded-bar spans (prices_final.log)",
+  "failed": {},
+  "http": {
+   "funding": {
+    "errors": 0,
+    "requests": 0,
+    "throttled": 0
+   },
+   "klines": {
+    "errors": 0,
+    "requests": 1,
+    "throttled": 0
+   }
+  },
+  "seconds": 1.3,
+  "since": "2020-09-01",
+  "source": "https://fapi.binance.com /fapi/v1/klines (4h) and /fapi/v1/fundingRate",
+  "tokens": {
+   "1INCH": {
+    "bars": 12691,
+    "first_bar": "2020-12-25T08:00:00+00:00",
+    "funding": 6345,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "1INCHUSDT",
+    "zero_volume_bars": 0
+   },
+   "AAVE": {
+    "bars": 13112,
+    "first_bar": "2020-10-16T04:00:00+00:00",
+    "funding": 6556,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "AAVEUSDT",
+    "zero_volume_bars": 0
+   },
+   "ACX": {
+    "bars": 4038,
+    "first_bar": "2024-12-06T12:00:00+00:00",
+    "funding": 3652,
+    "last_bar": "2026-08-07T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "SETTLING",
+    "symbol": "ACXUSDT",
+    "zero_volume_bars": 384
+   },
+   "AEVO": {
+    "bars": 5646,
+    "first_bar": "2024-03-13T12:00:00+00:00",
+    "funding": 5644,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "AEVOUSDT",
+    "zero_volume_bars": 0
+   },
+   "AGLD": {
+    "bars": 7017,
+    "first_bar": "2023-07-29T00:00:00+00:00",
+    "funding": 3510,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "AGLDUSDT",
+    "zero_volume_bars": 0
+   },
+   "ALPACA": {
+    "bars": 4675,
+    "first_bar": "2024-08-22T08:00:00+00:00",
+    "funding": 2801,
+    "last_bar": "2025-04-30T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "SETTLING",
+    "symbol": "ALPACAUSDT",
+    "zero_volume_bars": 3168
+   },
+   "AMB": {
+    "bars": 7740,
+    "first_bar": "2023-03-30T12:00:00+00:00",
+    "funding": 4285,
+    "last_bar": "2025-02-21T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "SETTLING",
+    "symbol": "AMBUSDT",
+    "zero_volume_bars": 3576
+   },
+   "APE": {
+    "bars": 10008,
+    "first_bar": "2022-03-17T12:00:00+00:00",
+    "funding": 5004,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "APEUSDT",
+    "zero_volume_bars": 0
+   },
+   "ARB": {
+    "bars": 7782,
+    "first_bar": "2023-03-23T12:00:00+00:00",
+    "funding": 3892,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "ARBUSDT",
+    "zero_volume_bars": 0
+   },
+   "AWE": {
+    "bars": 3043,
+    "first_bar": "2025-05-21T08:00:00+00:00",
+    "funding": 3042,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "AWEUSDT",
+    "zero_volume_bars": 0
+   },
+   "BADGER": {
+    "bars": 6396,
+    "first_bar": "2023-11-09T12:00:00+00:00",
+    "funding": 3528,
+    "last_bar": "2025-04-14T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "SETTLING",
+    "symbol": "BADGERUSDT",
+    "zero_volume_bars": 3264
+   },
+   "BAL": {
+    "bars": 13382,
+    "first_bar": "2020-09-01T04:00:00+00:00",
+    "funding": 5257,
+    "last_bar": "2025-04-14T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "SETTLING",
+    "symbol": "BALUSDT",
+    "zero_volume_bars": 3264
+   },
+   "BIO": {
+    "bars": 3870,
+    "first_bar": "2025-01-03T12:00:00+00:00",
+    "funding": 4680,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "BIOUSDT",
+    "zero_volume_bars": 0
+   },
+   "BNT": {
+    "bars": 6942,
+    "first_bar": "2023-08-10T12:00:00+00:00",
+    "funding": 3836,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "BNTUSDT",
+    "zero_volume_bars": 0
+   },
+   "BOND": {
+    "bars": 6546,
+    "first_bar": "2023-10-15T12:00:00+00:00",
+    "funding": 3677,
+    "last_bar": "2024-12-16T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "SETTLING",
+    "symbol": "BONDUSDT",
+    "zero_volume_bars": 3978
+   },
+   "BSW": {
+    "bars": 4592,
+    "first_bar": "2024-09-05T04:00:00+00:00",
+    "funding": 2251,
+    "last_bar": "2025-09-15T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "SETTLING",
+    "symbol": "BSWUSDT",
+    "zero_volume_bars": 2340
+   },
+   "BTC": {
+    "bars": 13383,
+    "first_bar": "2020-09-01T00:00:00+00:00",
+    "funding": 6692,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "BTCUSDT",
+    "zero_volume_bars": 0
+   },
+   "CAKE": {
+    "bars": 6438,
+    "first_bar": "2023-11-02T12:00:00+00:00",
+    "funding": 6436,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "CAKEUSDT",
+    "zero_volume_bars": 0
+   },
+   "CGPT": {
+    "bars": 3953,
+    "first_bar": "2024-12-20T16:00:00+00:00",
+    "funding": 3951,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "CGPTUSDT",
+    "zero_volume_bars": 0
+   },
+   "COMP": {
+    "bars": 13383,
+    "first_bar": "2020-09-01T00:00:00+00:00",
+    "funding": 6692,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "COMPUSDT",
+    "zero_volume_bars": 0
+   },
+   "COW": {
+    "bars": 4218,
+    "first_bar": "2024-11-06T12:00:00+00:00",
+    "funding": 4216,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "COWUSDT",
+    "zero_volume_bars": 0
+   },
+   "CRV": {
+    "bars": 13382,
+    "first_bar": "2020-09-01T04:00:00+00:00",
+    "funding": 6691,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "CRVUSDT",
+    "zero_volume_bars": 0
+   },
+   "CTSI": {
+    "bars": 10863,
+    "first_bar": "2021-10-26T00:00:00+00:00",
+    "funding": 5431,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "CTSIUSDT",
+    "zero_volume_bars": 0
+   },
+   "CVX": {
+    "bars": 2665,
+    "first_bar": "2025-07-23T08:00:00+00:00",
+    "funding": 5668,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "CVXUSDT",
+    "zero_volume_bars": 0
+   },
+   "DEXE": {
+    "bars": 3931,
+    "first_bar": "2024-12-24T08:00:00+00:00",
+    "funding": 4234,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "DEXEUSDT",
+    "zero_volume_bars": 0
+   },
+   "DIA": {
+    "bars": 4428,
+    "first_bar": "2024-10-02T12:00:00+00:00",
+    "funding": 4426,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "DIAUSDT",
+    "zero_volume_bars": 0
+   },
+   "DYDX": {
+    "bars": 11139,
+    "first_bar": "2021-09-10T00:00:00+00:00",
+    "funding": 5571,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "DYDXUSDT",
+    "zero_volume_bars": 0
+   },
+   "EDU": {
+    "bars": 7554,
+    "first_bar": "2023-04-30T12:00:00+00:00",
+    "funding": 3783,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "EDUUSDT",
+    "zero_volume_bars": 0
+   },
+   "ENA": {
+    "bars": 5526,
+    "first_bar": "2024-04-02T12:00:00+00:00",
+    "funding": 5524,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "ENAUSDT",
+    "zero_volume_bars": 0
+   },
+   "ENS": {
+    "bars": 10653,
+    "first_bar": "2021-11-30T00:00:00+00:00",
+    "funding": 5328,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "ENSUSDT",
+    "zero_volume_bars": 0
+   },
+   "ETHFI": {
+    "bars": 5616,
+    "first_bar": "2024-03-18T12:00:00+00:00",
+    "funding": 5614,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "ETHFIUSDT",
+    "zero_volume_bars": 0
+   },
+   "EUL": {
+    "bars": 2172,
+    "first_bar": "2025-10-13T12:00:00+00:00",
+    "funding": 2171,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "EULUSDT",
+    "zero_volume_bars": 0
+   },
+   "FLOKI": {
+    "bars": 7517,
+    "first_bar": "2023-05-06T16:00:00+00:00",
+    "funding": 3759,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1000,
+    "status": "TRADING",
+    "symbol": "1000FLOKIUSDT",
+    "zero_volume_bars": 0
+   },
+   "FORTH": {
+    "bars": 3301,
+    "first_bar": "2025-04-08T08:00:00+00:00",
+    "funding": 2101,
+    "last_bar": "2026-03-24T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "SETTLING",
+    "symbol": "FORTHUSDT",
+    "zero_volume_bars": 1200
+   },
+   "FXS": {
+    "bars": 8157,
+    "first_bar": "2023-01-20T00:00:00+00:00",
+    "funding": 3247,
+    "last_bar": "2026-01-06T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "SETTLING",
+    "symbol": "FXSUSDT",
+    "zero_volume_bars": 1662
+   },
+   "G": {
+    "bars": 4716,
+    "first_bar": "2024-08-15T12:00:00+00:00",
+    "funding": 4840,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "GUSDT",
+    "zero_volume_bars": 0
+   },
+   "GHST": {
+    "bars": 4482,
+    "first_bar": "2024-09-23T12:00:00+00:00",
+    "funding": 3005,
+    "last_bar": "2026-02-06T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "SETTLING",
+    "symbol": "GHSTUSDT",
+    "zero_volume_bars": 1476
+   },
+   "GLMR": {
+    "bars": 6663,
+    "first_bar": "2023-09-26T00:00:00+00:00",
+    "funding": 1899,
+    "last_bar": "2024-05-15T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "SETTLING",
+    "symbol": "GLMRUSDT",
+    "zero_volume_bars": 5268
+   },
+   "GMX": {
+    "bars": 7986,
+    "first_bar": "2023-02-17T12:00:00+00:00",
+    "funding": 3994,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "GMXUSDT",
+    "zero_volume_bars": 0
+   },
+   "GRT": {
+    "bars": 12728,
+    "first_bar": "2020-12-19T04:00:00+00:00",
+    "funding": 6364,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "GRTUSDT",
+    "zero_volume_bars": 0
+   },
+   "GTC": {
+    "bars": 11685,
+    "first_bar": "2021-06-11T00:00:00+00:00",
+    "funding": 5842,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "GTCUSDT",
+    "zero_volume_bars": 0
+   },
+   "HFT": {
+    "bars": 7698,
+    "first_bar": "2023-04-06T12:00:00+00:00",
+    "funding": 3667,
+    "last_bar": "2026-08-07T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "SETTLING",
+    "symbol": "HFTUSDT",
+    "zero_volume_bars": 384
+   },
+   "ID": {
+    "bars": 7782,
+    "first_bar": "2023-03-23T12:00:00+00:00",
+    "funding": 4364,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "IDUSDT",
+    "zero_volume_bars": 0
+   },
+   "ILV": {
+    "bars": 6389,
+    "first_bar": "2023-11-10T16:00:00+00:00",
+    "funding": 6388,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "ILVUSDT",
+    "zero_volume_bars": 0
+   },
+   "IMX": {
+    "bars": 10215,
+    "first_bar": "2022-02-11T00:00:00+00:00",
+    "funding": 8388,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "IMXUSDT",
+    "zero_volume_bars": 0
+   },
+   "IOTX": {
+    "bars": 11313,
+    "first_bar": "2021-08-12T00:00:00+00:00",
+    "funding": 5658,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "IOTXUSDT",
+    "zero_volume_bars": 0
+   },
+   "JOE": {
+    "bars": 7746,
+    "first_bar": "2023-03-29T12:00:00+00:00",
+    "funding": 3876,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "JOEUSDT",
+    "zero_volume_bars": 0
+   },
+   "LDO": {
+    "bars": 8874,
+    "first_bar": "2022-09-22T12:00:00+00:00",
+    "funding": 4438,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "LDOUSDT",
+    "zero_volume_bars": 0
+   },
+   "LISTA": {
+    "bars": 5052,
+    "first_bar": "2024-06-20T12:00:00+00:00",
+    "funding": 5050,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "LISTAUSDT",
+    "zero_volume_bars": 0
+   },
+   "LRC": {
+    "bars": 13094,
+    "first_bar": "2020-10-19T04:00:00+00:00",
+    "funding": 6662,
+    "last_bar": "2026-03-24T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "SETTLING",
+    "symbol": "LRCUSDT",
+    "zero_volume_bars": 1200
+   },
+   "MAGIC": {
+    "bars": 8127,
+    "first_bar": "2023-01-25T00:00:00+00:00",
+    "funding": 5677,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "MAGICUSDT",
+    "zero_volume_bars": 0
+   },
+   "MANA": {
+    "bars": 12212,
+    "first_bar": "2021-03-15T04:00:00+00:00",
+    "funding": 6106,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "MANAUSDT",
+    "zero_volume_bars": 0
+   },
+   "MASK": {
+    "bars": 11223,
+    "first_bar": "2021-08-27T00:00:00+00:00",
+    "funding": 7834,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "MASKUSDT",
+    "zero_volume_bars": 0
+   },
+   "MAV": {
+    "bars": 7194,
+    "first_bar": "2023-06-29T12:00:00+00:00",
+    "funding": 3600,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "MAVUSDT",
+    "zero_volume_bars": 0
+   },
+   "METIS": {
+    "bars": 5653,
+    "first_bar": "2024-03-12T08:00:00+00:00",
+    "funding": 5654,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "METISUSDT",
+    "zero_volume_bars": 0
+   },
+   "MORPHO": {
+    "bars": 4092,
+    "first_bar": "2024-11-27T12:00:00+00:00",
+    "funding": 4090,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "MORPHOUSDT",
+    "zero_volume_bars": 0
+   },
+   "OCEAN": {
+    "bars": 13004,
+    "first_bar": "2020-11-03T04:00:00+00:00",
+    "funding": 5070,
+    "last_bar": "2024-06-25T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "SETTLING",
+    "symbol": "OCEANUSDT",
+    "zero_volume_bars": 5022
+   },
+   "OGN": {
+    "bars": 12110,
+    "first_bar": "2021-04-01T04:00:00+00:00",
+    "funding": 6736,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "OGNUSDT",
+    "zero_volume_bars": 0
+   },
+   "OM": {
+    "bars": 5820,
+    "first_bar": "2024-02-13T12:00:00+00:00",
+    "funding": 4623,
+    "last_bar": "2026-02-23T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "SETTLING",
+    "symbol": "OMUSDT",
+    "zero_volume_bars": 1374
+   },
+   "ONE": {
+    "bars": 12194,
+    "first_bar": "2021-03-18T04:00:00+00:00",
+    "funding": 6381,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "ONEUSDT",
+    "zero_volume_bars": 0
+   },
+   "OP": {
+    "bars": 9552,
+    "first_bar": "2022-06-01T12:00:00+00:00",
+    "funding": 4777,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "OPUSDT",
+    "zero_volume_bars": 0
+   },
+   "PEOPLE": {
+    "bars": 10508,
+    "first_bar": "2021-12-24T04:00:00+00:00",
+    "funding": 5256,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "PEOPLEUSDT",
+    "zero_volume_bars": 0
+   },
+   "PERP": {
+    "bars": 7884,
+    "first_bar": "2023-03-06T12:00:00+00:00",
+    "funding": 5295,
+    "last_bar": "2025-11-21T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "SETTLING",
+    "symbol": "PERPUSDT",
+    "zero_volume_bars": 1938
+   },
+   "PROM": {
+    "bars": 3798,
+    "first_bar": "2025-01-15T12:00:00+00:00",
+    "funding": 3855,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "PROMUSDT",
+    "zero_volume_bars": 0
+   },
+   "QUICK": {
+    "bars": 4586,
+    "first_bar": "2024-09-06T04:00:00+00:00",
+    "funding": 2689,
+    "last_bar": "2025-11-28T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "SETTLING",
+    "symbol": "QUICKUSDT",
+    "zero_volume_bars": 1896
+   },
+   "RAD": {
+    "bars": 7494,
+    "first_bar": "2023-05-10T12:00:00+00:00",
+    "funding": 2328,
+    "last_bar": "2024-05-14T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "SETTLING",
+    "symbol": "RADUSDT",
+    "zero_volume_bars": 5274
+   },
+   "RARE": {
+    "bars": 4716,
+    "first_bar": "2024-08-15T12:00:00+00:00",
+    "funding": 4714,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "RAREUSDT",
+    "zero_volume_bars": 0
+   },
+   "RDNT": {
+    "bars": 7704,
+    "first_bar": "2023-04-05T12:00:00+00:00",
+    "funding": 3311,
+    "last_bar": "2026-03-24T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "SETTLING",
+    "symbol": "RDNTUSDT",
+    "zero_volume_bars": 1200
+   },
+   "REZ": {
+    "bars": 5358,
+    "first_bar": "2024-04-30T12:00:00+00:00",
+    "funding": 5356,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "REZUSDT",
+    "zero_volume_bars": 0
+   },
+   "RPL": {
+    "bars": 4566,
+    "first_bar": "2024-09-09T12:00:00+00:00",
+    "funding": 4667,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "RPLUSDT",
+    "zero_volume_bars": 0
+   },
+   "SAFE": {
+    "bars": 4290,
+    "first_bar": "2024-10-25T12:00:00+00:00",
+    "funding": 4288,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "SAFEUSDT",
+    "zero_volume_bars": 0
+   },
+   "SAND": {
+    "bars": 12506,
+    "first_bar": "2021-01-25T04:00:00+00:00",
+    "funding": 6253,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "SANDUSDT",
+    "zero_volume_bars": 0
+   },
+   "SKL": {
+    "bars": 12794,
+    "first_bar": "2020-12-08T04:00:00+00:00",
+    "funding": 7541,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "SKLUSDT",
+    "zero_volume_bars": 0
+   },
+   "SNX": {
+    "bars": 13383,
+    "first_bar": "2020-09-01T00:00:00+00:00",
+    "funding": 6692,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "SNXUSDT",
+    "zero_volume_bars": 0
+   },
+   "SPELL": {
+    "bars": 8970,
+    "first_bar": "2022-09-06T12:00:00+00:00",
+    "funding": 4485,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "SPELLUSDT",
+    "zero_volume_bars": 0
+   },
+   "SPK": {
+    "bars": 2881,
+    "first_bar": "2025-06-17T08:00:00+00:00",
+    "funding": 2879,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "SPKUSDT",
+    "zero_volume_bars": 0
+   },
+   "SSV": {
+    "bars": 7944,
+    "first_bar": "2023-02-24T12:00:00+00:00",
+    "funding": 3976,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "SSVUSDT",
+    "zero_volume_bars": 0
+   },
+   "STG": {
+    "bars": 9042,
+    "first_bar": "2022-08-25T12:00:00+00:00",
+    "funding": 4864,
+    "last_bar": "2026-09-24T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "SETTLING",
+    "symbol": "STGUSDT",
+    "zero_volume_bars": 96
+   },
+   "STRK": {
+    "bars": 5777,
+    "first_bar": "2024-02-20T16:00:00+00:00",
+    "funding": 5776,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "STRKUSDT",
+    "zero_volume_bars": 0
+   },
+   "SUSHI": {
+    "bars": 13364,
+    "first_bar": "2020-09-04T04:00:00+00:00",
+    "funding": 6682,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "SUSHIUSDT",
+    "zero_volume_bars": 0
+   },
+   "SYN": {
+    "bars": 4710,
+    "first_bar": "2024-08-16T12:00:00+00:00",
+    "funding": 4708,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "SYNUSDT",
+    "zero_volume_bars": 0
+   },
+   "T": {
+    "bars": 8082,
+    "first_bar": "2023-02-01T12:00:00+00:00",
+    "funding": 6108,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "TUSDT",
+    "zero_volume_bars": 0
+   },
+   "TREE": {
+    "bars": 2628,
+    "first_bar": "2025-07-29T12:00:00+00:00",
+    "funding": 2686,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "TREEUSDT",
+    "zero_volume_bars": 0
+   },
+   "TRU": {
+    "bars": 7878,
+    "first_bar": "2023-03-07T12:00:00+00:00",
+    "funding": 3426,
+    "last_bar": "2026-04-21T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "SETTLING",
+    "symbol": "TRUUSDT",
+    "zero_volume_bars": 1032
+   },
+   "TURBO": {
+    "bars": 5178,
+    "first_bar": "2024-05-30T12:00:00+00:00",
+    "funding": 5176,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "TURBOUSDT",
+    "zero_volume_bars": 0
+   },
+   "TWT": {
+    "bars": 6432,
+    "first_bar": "2023-11-03T12:00:00+00:00",
+    "funding": 6431,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "TWTUSDT",
+    "zero_volume_bars": 0
+   },
+   "UMA": {
+    "bars": 7494,
+    "first_bar": "2023-05-10T12:00:00+00:00",
+    "funding": 6733,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "UMAUSDT",
+    "zero_volume_bars": 0
+   },
+   "UNI": {
+    "bars": 13280,
+    "first_bar": "2020-09-18T04:00:00+00:00",
+    "funding": 6643,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "UNIUSDT",
+    "zero_volume_bars": 0
+   },
+   "W": {
+    "bars": 5520,
+    "first_bar": "2024-04-03T12:00:00+00:00",
+    "funding": 5518,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "WUSDT",
+    "zero_volume_bars": 0
+   },
+   "WCT": {
+    "bars": 3259,
+    "first_bar": "2025-04-15T08:00:00+00:00",
+    "funding": 4124,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "WCTUSDT",
+    "zero_volume_bars": 0
+   },
+   "WLFI": {
+    "bars": 2479,
+    "first_bar": "2025-08-23T08:00:00+00:00",
+    "funding": 2477,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "WLFIUSDT",
+    "zero_volume_bars": 0
+   },
+   "XCN": {
+    "bars": 3282,
+    "first_bar": "2025-04-11T12:00:00+00:00",
+    "funding": 1343,
+    "last_bar": "2025-11-21T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "SETTLING",
+    "symbol": "XCNUSDT",
+    "zero_volume_bars": 1938
+   },
+   "XVS": {
+    "bars": 7659,
+    "first_bar": "2023-04-13T00:00:00+00:00",
+    "funding": 3832,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "XVSUSDT",
+    "zero_volume_bars": 0
+   },
+   "YFI": {
+    "bars": 13383,
+    "first_bar": "2020-09-01T00:00:00+00:00",
+    "funding": 6692,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "YFIUSDT",
+    "zero_volume_bars": 0
+   },
+   "YGG": {
+    "bars": 6975,
+    "first_bar": "2023-08-05T00:00:00+00:00",
+    "funding": 6779,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "YGGUSDT",
+    "zero_volume_bars": 0
+   },
+   "ZRX": {
+    "bars": 13383,
+    "first_bar": "2020-09-01T00:00:00+00:00",
+    "funding": 7675,
+    "last_bar": "2026-10-10T08:00:00+00:00",
+    "multiplier": 1,
+    "status": "TRADING",
+    "symbol": "ZRXUSDT",
+    "zero_volume_bars": 0
+   }
+  }
+ },
+ "screen": {
+  "at": "2026-10-10T11:48:05+00:00",
+  "control_seed": 20261010,
+  "controls": 200,
+  "dropped": {
+   "few_votes": 534,
+   "flagged": 406,
+   "not_closed": 0,
+   "open_space_author": 3144,
+   "outside_dates": 231,
+   "unpriceable": 5211
+  },
+  "kept_closed_in_dates": 10183,
+  "keyword_hits": 2322,
+  "keyword_misses": 7861,
+  "keywords_any": [
+   "fee[ -]?switch",
+   "fee[ -]shar",
+   "revenue[ -]shar",
+   "profit[ -]shar",
+   "buy[ -]?backs?\\b",
+   "repurchas",
+   "\\bburn(s|ed|ing)?\\b",
+   "dividend",
+   "staking rewards?",
+   "\\bemissions?\\b",
+   "\\binflation",
+   "tokenomics",
+   "protocol fees?",
+   "fee tier",
+   "\\brebates?\\b",
+   "token sale",
+   "sell(ing)? .{0,40}tokens",
+   "\\botc\\b",
+   "grant program",
+   "value accrual",
+   "real yield",
+   "max(imum)? supply",
+   "\\bmint(ing)? (new )?tokens",
+   "treasury diversification",
+   "diversif\\w* .{0,40}treasury",
+   "treasury .{0,40}diversif"
+  ],
+  "keywords_title": [
+   "treasury",
+   "\\bgrants?\\b",
+   "incentive",
+   "revenue",
+   "distribution",
+   "\\brewards?\\b",
+   "\\bfees?\\b",
+   "\\bstaking\\b",
+   "\\bsupply\\b",
+   "allocation",
+   "liquidity mining",
+   "\\bvesting\\b",
+   "\\bunlock"
+  ],
+  "min_votes": 3,
+  "open_space_authors": {
+   "cakevote.eth": [
+    "0x038a72a0b85C91eF45e7c20E19fa856AE4491d13",
+    "0x34f29e3BD8961395853a35Cb6280222D5a3D10A0",
+    "0x4a7b8400AE131feffC42E5Bf39401A094Ed497CA",
+    "0x6eaf1b33b8672c5dc40aB8f4bA3A0111723126c7",
+    "0x842B508681eE336E74600974B4623B709477d29D",
+    "0x960143f7E4943F9a3E57CcEc48210ddDF1793b4e",
+    "0xa3D2124E4023ea5c74dC749012E0B46E42bDD648",
+    "0xa7551aBe0A066555cb5d859849426fB55543Ca25"
+   ]
+  },
+  "open_spaces": {
+   "cakevote.eth": {
+    "min_median_votes": 300,
+    "min_proposals": 5
+   }
+  },
+  "per_token_hits_controls": {
+   "1INCH": [
+    45,
+    3
+   ],
+   "AAVE": [
+    268,
+    19
+   ],
+   "ACX": [
+    12,
+    0
+   ],
+   "AEVO": [
+    2,
+    0
+   ],
+   "AGLD": [
+    2,
+    0
+   ],
+   "AMB": [
+    3,
+    1
+   ],
+   "APE": [
+    72,
+    5
+   ],
+   "ARB": [
+    83,
+    9
+   ],
+   "BADGER": [
+    6,
+    0
+   ],
+   "BAL": [
+    241,
+    19
+   ],
+   "BIO": [
+    5,
+    0
+   ],
+   "BNT": [
+    34,
+    0
+   ],
+   "CAKE": [
+    28,
+    0
+   ],
+   "CGPT": [
+    3,
+    0
+   ],
+   "COMP": [
+    5,
+    0
+   ],
+   "COW": [
+    16,
+    0
+   ],
+   "CRV": [
+    6,
+    4
+   ],
+   "CTSI": [
+    12,
+    0
+   ],
+   "CVX": [
+    31,
+    10
+   ],
+   "DIA": [
+    5,
+    0
+   ],
+   "DYDX": [
+    22,
+    1
+   ],
+   "EDU": [
+    7,
+    0
+   ],
+   "ENA": [
+    1,
+    1
+   ],
+   "ENS": [
+    3,
+    2
+   ],
+   "ETHFI": [
+    15,
+    0
+   ],
+   "FLOKI": [
+    10,
+    0
+   ],
+   "FORTH": [
+    5,
+    0
+   ],
+   "FXS": [
+    46,
+    0
+   ],
+   "G": [
+    5,
+    0
+   ],
+   "GHST": [
+    15,
+    1
+   ],
+   "GLMR": [
+    2,
+    0
+   ],
+   "GMX": [
+    27,
+    3
+   ],
+   "GRT": [
+    2,
+    0
+   ],
+   "GTC": [
+    52,
+    5
+   ],
+   "HFT": [
+    10,
+    0
+   ],
+   "ID": [
+    18,
+    0
+   ],
+   "IMX": [
+    2,
+    0
+   ],
+   "IOTX": [
+    7,
+    0
+   ],
+   "JOE": [
+    9,
+    0
+   ],
+   "LDO": [
+    49,
+    6
+   ],
+   "LISTA": [
+    12,
+    0
+   ],
+   "LRC": [
+    11,
+    0
+   ],
+   "MAGIC": [
+    19,
+    0
+   ],
+   "MANA": [
+    309,
+    72
+   ],
+   "MASK": [
+    3,
+    0
+   ],
+   "METIS": [
+    46,
+    1
+   ],
+   "MORPHO": [
+    37,
+    0
+   ],
+   "OCEAN": [
+    4,
+    2
+   ],
+   "OGN": [
+    52,
+    2
+   ],
+   "OM": [
+    3,
+    0
+   ],
+   "ONE": [
+    8,
+    0
+   ],
+   "OP": [
+    4,
+    2
+   ],
+   "PEOPLE": [
+    2,
+    2
+   ],
+   "PERP": [
+    1,
+    0
+   ],
+   "QUICK": [
+    5,
+    0
+   ],
+   "RAD": [
+    2,
+    0
+   ],
+   "RARE": [
+    5,
+    0
+   ],
+   "RDNT": [
+    21,
+    0
+   ],
+   "REZ": [
+    9,
+    0
+   ],
+   "RPL": [
+    7,
+    0
+   ],
+   "SAFE": [
+    4,
+    0
+   ],
+   "SAND": [
+    9,
+    0
+   ],
+   "SKL": [
+    3,
+    0
+   ],
+   "SNX": [
+    155,
+    18
+   ],
+   "SPELL": [
+    22,
+    2
+   ],
+   "SPK": [
+    16,
+    1
+   ],
+   "SSV": [
+    20,
+    1
+   ],
+   "STG": [
+    46,
+    3
+   ],
+   "STRK": [
+    2,
+    0
+   ],
+   "SUSHI": [
+    34,
+    1
+   ],
+   "SYN": [
+    4,
+    0
+   ],
+   "T": [
+    33,
+    1
+   ],
+   "TREE": [
+    7,
+    0
+   ],
+   "TRU": [
+    4,
+    0
+   ],
+   "UMA": [
+    8,
+    0
+   ],
+   "UNI": [
+    68,
+    1
+   ],
+   "W": [
+    1,
+    0
+   ],
+   "WCT": [
+    2,
+    0
+   ],
+   "WLFI": [
+    5,
+    0
+   ],
+   "XCN": [
+    8,
+    0
+   ],
+   "XVS": [
+    39,
+    2
+   ],
+   "YFI": [
+    70,
+    0
+   ],
+   "ZRX": [
+    16,
+    0
+   ]
+  },
+  "proposals_loaded": 19709,
+  "routine_excluded": 463,
+  "routine_title": "\\bgauges?\\b|syrup pool|\\bfarms?\\b|\\bonboard|\\bwhitelist|risk param|parameter|\\b(supply|borrow) caps?\\b|\\b(add|enable|create|deploy|launch|kill|remove|disable|deprecate|list|offboard)\\b.{0,60}\\b(pools?|markets?|vaults?|pairs?|collateral|strateg(y|ies)|assets?|reserves?|chains?|networks?)\\b",
+  "since": "2021-01-01",
+  "until": "2026-10-01",
+  "value_title": "emission|inflation|\\bburn|buy ?back|fee switch|revenue|tokenomics|treasury|token sale|\\bsell|unlock|vesting|staking reward|dividend|distribut|supply\\b(?! cap)|\\bmint"
+ },
+ "snapshot": {
+  "body_chars_kept": 4000,
+  "collected_at": "2026-10-10T11:34:40+00:00",
+  "endpoint": "https://hub.snapshot.org/graphql",
+  "failures": {},
+  "http": {
+   "errors": 0,
+   "requests": 262,
+   "throttled": 0
+  },
+  "per_space": {
+   "0xgov.eth": 27,
+   "1inch.eth": 108,
+   "aavedao.eth": 986,
+   "aavegotchi.eth": 627,
+   "abracadabrabymerlinthemagician.eth": 98,
+   "acrossprotocol.eth": 90,
+   "agld-dao.eth": 8,
+   "airdaofoundation.eth": 18,
+   "alpacafinance.eth": 48,
+   "ampleforthorg.eth": 53,
+   "apecoin.eth": 327,
+   "arbitrumfoundation.eth": 419,
+   "badgerdao.eth": 120,
+   "balancer.eth": 1079,
+   "bancornetwork.eth": 563,
+   "barnbridge.eth": 32,
+   "bioxyz.eth": 32,
+   "biswap-org.eth": 24,
+   "cakevote.eth": 3740,
+   "cartesi.eth": 15,
+   "celernetwork.eth": 18,
+   "chaingov.eth": 72,
+   "chaingptai.eth": 38,
+   "citizenshouse.eth": 28,
+   "comp-vote.eth": 39,
+   "cow.eth": 90,
+   "curve.eth": 203,
+   "cvx.eth": 2219,
+   "dao.spaceid.eth": 21,
+   "dexe.network": 7,
+   "diadao.eth": 104,
+   "dydxgov.eth": 63,
+   "ens.eth": 98,
+   "ethenagovernance.eth": 8,
+   "etherfi-dao.eth": 15,
+   "eulerdao.eth": 63,
+   "floki-inu.eth": 22,
+   "frax.eth": 521,
+   "g-dao.eth": 49,
+   "gitcoindao.eth": 185,
+   "gmx.eth": 76,
+   "gov.radworks.eth": 32,
+   "graphprotocol.eth": 4,
+   "harmony-mainnet.eth": 20,
+   "hashflowdao.eth": 30,
+   "ilv.eth": 19,
+   "immutablex.eth": 6,
+   "iotex.eth": 17,
+   "joegovernance.eth": 27,
+   "lido-snapshot.eth": 423,
+   "listavote.eth": 24,
+   "loopringdao.eth": 14,
+   "mainnet.ssvnetwork.eth": 126,
+   "mantra-dao.eth": 44,
+   "masknetwork.eth": 14,
+   "mavxyz.eth": 7,
+   "metislayer2.eth": 294,
+   "moonbeam-foundation.eth": 12,
+   "morpho.eth": 140,
+   "officialoceandao.eth": 151,
+   "opcollective.eth": 93,
+   "opencampusdao.eth": 16,
+   "origingov.eth": 142,
+   "people-dao.eth": 53,
+   "promdao.eth": 34,
+   "quickvote.eth": 79,
+   "radiantcapital.eth": 57,
+   "rbn.eth": 38,
+   "renzogovernance.eth": 13,
+   "rocketpool-dao.eth": 65,
+   "safe.eth": 56,
+   "sandboxdao.eth": 39,
+   "skale.eth": 6,
+   "snapshot.dcl.eth": 2850,
+   "snapshot.movedao.eth": 47,
+   "snxgov.eth": 971,
+   "sparkfi.eth": 102,
+   "starknet.eth": 26,
+   "stgdao.eth": 155,
+   "stp.eth": 15,
+   "superraredao.eth": 36,
+   "sushigov.eth": 233,
+   "synapseprotocol.eth": 49,
+   "threshold.eth": 119,
+   "treasuregaming.eth": 47,
+   "treehousefi.eth": 14,
+   "truefigov.eth": 78,
+   "trustwallet": 19,
+   "uma.eth": 21,
+   "uniswapgovernance.eth": 199,
+   "venus-xvs.eth": 189,
+   "veyfi.eth": 80,
+   "vote-perp.eth": 40,
+   "vote.turbocouncil.eth": 8,
+   "walletconnect.eth": 4,
+   "worldlibertyfinancial.com": 8,
+   "wormholegovernance.eth": 2,
+   "ybaby.eth": 13,
+   "yieldguild.eth": 1
+  },
+  "proposals": 19774,
+  "seconds": 291.8,
+  "spaces": 99
+ },
+ "verdict": {
+  "at": "2026-10-10T12:31:09+00:00",
+  "book_entry": null,
+  "go": false,
+  "summary": "pre-registered variant (end+1h>end+7d, both sides, passed votes) +4.42%/trade in sample (excess t 2.76) and -0.94% out of sample (excess +0.43%, t 0.36); no trade variant survives BH in or out of sample; VALUE_UP abnormal return vs basket created..end+7d +7.24% (t wk 3.37) before 2024-07-01 and +0.07% (t 0.33) after"
+ }
+}

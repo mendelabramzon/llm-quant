@@ -1,0 +1,49 @@
+[
+ {
+  "id": "bluechip-incentive-rotation",
+  "name": "Rotate dollars among blue-chip pooled money markets by trailing base + reward yield; collect the protocols' incentive budgets",
+  "kind": "carry",
+  "status": "watch",
+  "thesis": "Protocols pay fixed reward budgets to rent deposits, and attention decides who collects them. On blue-chip lending venues (DefiLlama category Lending, protocol TVL >= $1B, >= 1 year of history, all judged with data before each decision) a weekly-decided rotation into the five pools with the highest trailing-7-day base + reward yield, held four weeks, chosen on 2022-10..2024-06 (+0.76% a year over the savings rate actually paid, t 1.37), made +2.76% a year out of sample 2024-07..2026-10 (t 3.05, 95% interval +1.24% to +4.64%; both halves positive; +2.62% when every return is checked against share prices). All of it is reward: ignoring rewards gives -0.04%. But the result is not robust: 6 of the 18 pre-committed sibling variants lost 5.4-6.6% a year out of sample (family mean -0.16%) because they bought the Re7 USDC Morpho vault during its 100%-utilisation yield spike on 2025-11-10, four days before a 98% write-down; the chosen variant avoided it only by the timing of its slot turnover. Restricted (post hoc) to pooled money markets without curated vaults, every rewarded variant earned +0.8% to +1.3% a year out of sample (chosen parameters +1.06%, t 3.24): small, consistent, and below the bar for a go.",
+  "mechanism": "Fixed incentive budgets (Aave's GHO savings rate, Morpho/Merkl campaigns, issuer-paid rewards such as AUSD on Morpho) are diluted by whoever deposits; a weekly reader of DefiLlama's trailing rates collects part of them. The yield is accrual, so entry a day late keeps ~92% (a week late ~57%). The tail is the opposite side of the same signal: a curated vault whose borrowers stop repaying shows a utilisation-driven yield spike just before its bad debt is realised.",
+  "legs": [
+   "each Monday 00:00 UTC (rebalance every 4 weeks): from DefiLlama yields, take single-exposure dollar pools of the blue-chip rule (category Lending, protocol TVL >= $1B, a year of history) without the curated-vault platforms (Morpho vaults, Euler v2) - in the backtest Aave v3 36% of held days, Fluid 20%, Kamino 13%, Spark 11%, Venus core 9%, JustLend 9% - with TVL >= $1M, data fresh within 3 days, no matched hack in 30 days, deposit token >= $0.985",
+   "rank by trailing-7-day apyBase + apyReward; hold the top 5 in equal $200k slices (at $1M); keep a held pool while it ranks in the top 10",
+   "claim rewards weekly and sell them the next day; bridge with CCTP/Across when the chain changes"
+  ],
+  "capacity_usd": 1000000,
+  "capital_days": 365,
+  "kill_criteria": [
+   "forward ledger: trailing-13-week realised excess over the savings rate below 0",
+   "displayed reward APR of the five picks below 1pp for four consecutive weeks (the budgets have ended)",
+   "any held pool's share or receipt price more than 1% below the yield it claimed over a hold, or a matched hack at a held venue: exit the venue; two in a quarter: retire",
+   "no entry into a pool whose TVL fell below half of the prior week's maximum, or whose trailing-7 yield exceeds twice its trailing-30 (the run/spike guard; diagnostic only, it moved rather than removed the tail in the backtest)",
+   "sum of the picks' capacity (deposit at which the marginal yield falls to SSR + 1pp) below $2M"
+  ],
+  "risks": [
+   "tail: one write-down of a held slice (-98.6% of $200k in November 2025 for the variants that bought Re7 USDC) costs more than two years of the reward edge",
+   "concentration: the five best pools made 70% of the out-of-sample excess (Aave v3 sGHO alone 33%); campaigns end without notice",
+   "post hoc: the pooled-only universe was defined after seeing the Re7 event; only a forward test can price it",
+   "costs and size: +1.89% at $100k (Ethereum gas), +1.01% at $5M, +0.19% at $10M (dilution, swaps, bridges)",
+   "the in-sample period earned nothing: in 2023-24 Maker's 5-8% savings rate, itself a subsidy, beat every lending market"
+  ],
+  "evidence": {
+   "notes": "research/2026-10-10/incentive_yields: analysis.json choose_then_test.bluechip, chosen_detail.bluechip (capital_curve_oos, delay_1d/7d, reward_none, audited_split_1m, losses_1m, oos_concentration), audited.choose_then_test.bluechip, bluechip_family_oos, diagnostic_bluechip_pooled_only, diagnostic_run_spike_guard; tables.md sections 1-4; scripts/incentive_yields.py (collect / analyze / render)",
+   "findings": [],
+   "verify": []
+  },
+  "quotes": [
+   {
+    "at": "2026-10-10T18:30:00+00:00",
+    "window": "research/2026-10-10/incentive_yields",
+    "source": "history",
+    "present": true,
+    "go": false,
+    "net_apr": 0.0106,
+    "usd": 0,
+    "note": "watch: pre-registered choice (blue-chip, k7 h1.0 H4) +2.76% a year over the savings rate out of sample (t 3.05) at $1M = ~$27.6k a year, but the 18-variant family averaged -0.16% because of one curated-vault write-down; quoted at the post-hoc pooled-money-market version, +1.06% (t 3.24), ~$10.6k a year at $1M, as a forward test only."
+   }
+  ],
+  "recheck_hours": 168
+ }
+]

@@ -1,0 +1,102 @@
+[
+ {
+  "id": "etherfi-weeth-queue-bid",
+  "name": "Buy weETH below ether.fi's NAV and redeem it through the withdrawal queue",
+  "kind": "redemption",
+  "status": "proposed",
+  "thesis": "weETH trades below the eETH it unwraps to, by 10bp or more in 18% of trading hours over two years, and ether.fi's queue, now checked request by request, pays exactly the eETH requested, charges no fee, and finalized half of all requests within 0.79 days (90th percentile 6.5, longest 17.6). A $10M bid that buys behind sellers when the whole market shows the discount and queues every fill made $194,238 a year out of sample on the second year of the two-year window (95% interval $134,517 to $260,084).",
+  "mechanism": "weETH unwraps to eETH at getRate() and ether.fi's WithdrawRequestNFT pays eETH out as ETH. The payout check (dislocation_history etherfi): 42,756 claims from 2024-09-26 to 2026-10-10 paid 4.77M ETH, every request of 0.01 eETH or more exactly its amountOfEEth (0.0bp at the 1st and 99th percentile; four claims traced on chain, one per implementation); the fee field was zero on all 42,784 requests; one request (750.5 eETH) was invalidated and is unpaid. amountOfEEth/shareOfEEth equals the LiquidityPool's Rebase-event share rate at the request block to 0.002bp (p99), and getRate() equals that rate at all 310 admin blocks checked, so the discount priced against getRate is the discount the queue pays; the daily line the 2026-10-09 study interpolated was within 0.3bp at the 1st and 99th percentile. Finalization happens only in EtherFiAdmin's report executions (740 daily counter samples, 0 mismatches), so each request's wait is measured to the block: 0.79 days at the median request (1.69 weighted by amount, because busy days are slow days), with months of 10.0 (August 2025) and 9.7 days (April 2026). The instant route did not cap the discount: 30bp into ETH since 2025-03-26 and 10bp into stETH since 2025-11-12 (fee-free for a few large holders, who redeemed 366k of the 400k eETH sent to stETH), and hours at 30bp or more ran 7.5% and 3.0% of trading hours in those two regimes, with the deepest hour (94.6bp) in April 2026. Re-run with the measured waits and the Rebase-event NAV, the bid keeps a median 3.7bp per fill across 2,044 out-of-sample fills at $10M.",
+  "legs": [
+   "buy weETH on Fluid weETH/ETH, Curve weETH/WETH or Uniswap v3 behind a seller when the median venue's discount less one pool fee clears the hurdle (1bp chosen in sample) and the queue's carry",
+   "fund each fill with WETH borrowed against wstETH collateral (Aave e-mode, 1.96% on 2026-10-09) so waiting capital keeps earning staking; repay when the queue pays",
+   "unwrap to eETH and request withdrawal on ether.fi's WithdrawRequestNFT (amount fixed at the request; no fee in two years)",
+   "wait for EtherFiAdmin to finalize: median 0.79 days per request over two years, 90th percentile 6.5, longest 17.6; 10.0 days at the median in August 2025",
+   "claim ETH (since 2026-07 any account can settle a finalized request; the ETH goes to the NFT owner)"
+  ],
+  "capacity_usd": 10000000,
+  "capital_days": 0.8,
+  "kill_criteria": [
+   "trailing 90-day value of the simulated bid under $10,000 a year at $10M (it was $58,190 at 2026-10-09)",
+   "ether.fi queue median above 10 days for a month (it reached 10.0 in August 2025 and 9.7 in April 2026)",
+   "any claim on a request of 0.01 eETH or more paying less than its amountOfEEth, or any request carrying a fee (dislocation_history etherfi --step analyze)",
+   "a negative rebase before finalization: since 2026-07 the claim pays min(amountOfEEth, shares x the finalization rate)",
+   "ether.fi's public instant redemption fee into stETH cut below 5bp (10bp at the 2026-10-10 read), which hands the discount to the atomic route"
+  ],
+  "risks": [
+   "competing queue bidders, the instant route and fee-free large redeemers take the same discounts; the simulation lets the bid take every qualifying sale its capital allows, so the value is a ceiling for one participant",
+   "the guardian can invalidate an unfinalized request (one 750.5 eETH request in two years, still unpaid) and a blacklister can block claims and NFT transfers",
+   "queue length rises in stress (10.0 days at the median in August 2025, 9.7 in April 2026), raising carry exactly when discounts are widest",
+   "per-fill edge is small (median 3.7bp at $10M): the result moved from $169,784 to $217,390 across three wait models, all inside each other's intervals",
+   "the three ETH queue bids (Lido, ether.fi, Kelp) dislocate together and share the same collateral: in a stress they are one book, so their dollars a year are not additive",
+   "the borrow collateral is stETH-family and is marked down in exactly the stress the bid buys into: keep the loan-to-value low"
+  ],
+  "evidence": {
+   "notes": "research/2026-10-10/queue_bids_ext/findings.md; analysis.json; tables.md; etherfi_payouts.json; raw/etherfi_long/analysis.json; scripts/dislocation_history.py etherfi and --assets etherfi_ev",
+   "findings": [],
+   "verify": []
+  },
+  "quotes": [
+   {
+    "at": "2026-10-09T20:06:47+00:00",
+    "go": true,
+    "net_apr": 0.0194,
+    "present": true,
+    "source": "history",
+    "usd": 194238,
+    "window": "research/2026-10-10/queue_bids_ext",
+    "note": "payout check passed (42,756 claims exact, no fees); two-year window re-run with waits measured per request and the Rebase-event NAV: hurdle 1bp chosen 2024-09-26..2025-10-03, scored 2025-10-03..2026-10-09: $194,238 a year at $10M (95% interval $134,517 to $260,084), 2,044 fills, median edge 3.7bp; trailing 90 days $58,190; $30M: $431,076 (interval $291,336 to $586,626); the 2026-10-09 daily-counter method gives $169,784 and amount-weighted waits $217,390"
+   }
+  ],
+  "recheck_hours": 168
+ },
+ {
+  "id": "lombard-lbtc-queue-bid",
+  "name": "Buy LBTC below its redemption value with cbBTC and redeem it for bitcoin through Lombard",
+  "kind": "redemption",
+  "status": "proposed",
+  "thesis": "LBTC trades persistently below the bitcoin Lombard pays for it: against cbBTC by 14.7bp at the hourly median and by 10bp or more in 77% of trading hours, because the redemption pays native bitcoin after about six days. A $10M bid on the cbBTC pools that redeems every fill made $111,136 a year out of sample (95% interval $65,117 to $165,420) and $189,369 annualised over the trailing 90 days.",
+  "mechanism": "Anyone can redeem LBTC to any bitcoin script (redeem() before 2025-11-20, redeemForBtc since; a flat 10,000-sat fee). Since August 2025 LBTC carries an exchange rate: getRate(), the inverse of StakedLBTCOracle.ratio(), was 1.00485 BTC on 2026-10-09, and it moves both ways (-10.6bp on 2026-09-22). Lombard pays LBTC x the rate in force on the payout day: 48 of 55 sampled redemptions were matched to bitcoin transactions, and the 20 matched since 2025-11 paid within 0 to +3bp of that day's rate (2.3bp above the rate at the request at the median, -6.2 to +9.8bp); in 2025, before the rate, they paid one for one. The payout came a median 5.4 to 6.0 days after the request, 10.2 at the longest. The bid prices against getRate, values cbBTC at one bitcoin (a Coinbase account converts the redeemed bitcoin into cbBTC one for one), waits 9 days (Lombard documents 7 to 9), charges two pool fees and 0.5% a year of BTC carry while queued, and caps each fill at the median cbBTC venue. Priced instead at the rate six days after each trade with a six-day wait, it makes $121,970 a year. What binds is the LBTC sold below NAV, not capital: $10M earns $111,136 and $30M $115,702.",
+  "legs": [
+   "buy LBTC with cbBTC on Fluid LBTC/cbBTC (or the Uniswap v4 2bp and v3 1bp LBTC/cbBTC pools) behind a seller when the median cbBTC venue's discount less one fee clears the hurdle",
+   "redeemForBtc on LBTC to a bitcoin deposit address at Coinbase (flat 10,000-sat fee)",
+   "wait for Lombard's bitcoin payout: median 5.4 to 6.0 days in a 48-payout sample, longest 10.2; 7 to 9 days per Lombard",
+   "convert the bitcoin to cbBTC one for one at Coinbase and withdraw it to Ethereum for the next fill"
+  ],
+  "capacity_usd": 10000000,
+  "capital_days": 9.0,
+  "kill_criteria": [
+   "trailing 90-day value of the simulated bid under $10,000 a year at $10M (it was $189,369 at 2026-10-09)",
+   "a payout more than 2bp below LBTC x getRate on its payout day, or a request unpaid after 14 days (re-run the bitcoin payout sample, raw/lbtc_payout)",
+   "hourly volume-weighted LBTC discount to cbBTC below 5bp at the median over 30 days (14.7bp over the window)",
+   "Coinbase charging for the bitcoin-to-cbBTC conversion or suspending it, or Lombard disabling redemptions (isRedeemsEnabled false) for more than a week"
+  ],
+  "risks": [
+   "the return leg needs a Coinbase account (cbBTC one for one); without it the bitcoin must be bridged or sold, which costs more than the 13.5bp median edge",
+   "the payout applies the rate on the payout day, which moved -10.6bp on 2026-09-22: the bid carries about a week of rate risk per fill (it averaged +0.11bp a day since 2025-08)",
+   "Lombard is a custodial consortium staking through Babylon: a custody or slashing loss, or a redemption pause, lands on LBTC queued for about a week",
+   "the payout happens off Ethereum: it was checked on a sample (48 of 55 matched), not on every redemption, and the wait is not observable on Ethereum",
+   "WBTC-quoted pools show a smaller discount (6 to 8bp): cbBTC traded about 10bp above WBTC on 2026-10-10, so a bidder funded in WBTC captures less (all five pools: $109,761 at $10M)",
+   "BTC-denominated: the dollar value moves with BTC unless hedged",
+   "competing bidders are not modelled; the value is a ceiling for one participant",
+   "Lombard upgraded LBTC twice in the window (2025-11-20, 2026-04-24); redemption paths and fees can change"
+  ],
+  "evidence": {
+   "notes": "research/2026-10-10/queue_bids_ext/findings.md; analysis.json; tables.md; raw/new_assets/analysis.json; raw/lbtc_payout/btc_payout_sample.json; scripts/dislocation_history.py --assets lbtc_cb",
+   "findings": [],
+   "verify": []
+  },
+  "quotes": [
+   {
+    "at": "2026-10-09T20:06:47+00:00",
+    "go": true,
+    "net_apr": 0.0111,
+    "present": true,
+    "source": "history",
+    "usd": 111136,
+    "window": "research/2026-10-10/queue_bids_ext",
+    "note": "cbBTC pools only, two-year window (LBTC pools from late 2024): hurdle (0bp) chosen 2024-09-26..2025-10-03, scored 2025-10-03..2026-10-09: $111,136 a year at $10M (95% interval $65,117 to $165,420), 1,134 out-of-sample fills, median edge 13.5bp; trailing 90 days $189,369; priced at the rate six days later with a six-day wait $121,970; all five pools $109,761; conditional on a Coinbase account for the bitcoin-to-cbBTC leg"
+   }
+  ],
+  "recheck_hours": 168
+ }
+]

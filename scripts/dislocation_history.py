@@ -48,13 +48,50 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from Crypto.Hash import keccak as _keccak  # noqa: E402
+try:
+    from Crypto.Hash import keccak as _keccak  # noqa: E402
+except ImportError:                             # plain `python3 -m unittest` without pycryptodome: pure keccak below
+    _keccak = None
 
 import drpc  # noqa: E402
 from live_rpc import RPC, RPCError, hx, word, sword, topic_addr, enc_uint, enc_addr  # noqa: E402
 
+_KECCAK_RC = [0x0000000000000001, 0x0000000000008082, 0x800000000000808A, 0x8000000080008000, 0x000000000000808B,
+              0x0000000080000001, 0x8000000080008081, 0x8000000000008009, 0x000000000000008A, 0x0000000000000088,
+              0x0000000080008009, 0x000000008000000A, 0x000000008000808B, 0x800000000000008B, 0x8000000000008089,
+              0x8000000000008003, 0x8000000000008002, 0x8000000000000080, 0x000000000000800A, 0x800000008000000A,
+              0x8000000080008081, 0x8000000000008080, 0x0000000080000001, 0x8000000080008008]
+_KECCAK_ROT = [[0, 36, 3, 41, 18], [1, 44, 10, 45, 2], [62, 6, 43, 15, 61], [28, 55, 25, 21, 56], [27, 20, 39, 8, 14]]
+
+
+def _keccak256_pure(data):
+    """Keccak-256 (Ethereum's, not SHA3-256) in pure Python, for event topics and selectors when pycryptodome is absent."""
+    M = (1 << 64) - 1
+    rot = lambda v, n: ((v << n) | (v >> (64 - n))) & M if n else v
+    rate = 136
+    msg = bytearray(data) + b'\x01'
+    msg += b'\x00' * (-len(msg) % rate)
+    msg[-1] |= 0x80
+    A = [[0] * 5 for _ in range(5)]
+    for off in range(0, len(msg), rate):
+        for i in range(rate // 8):
+            A[i % 5][i // 5] ^= int.from_bytes(msg[off + 8 * i: off + 8 * i + 8], 'little')
+        for rc in _KECCAK_RC:
+            C = [A[x][0] ^ A[x][1] ^ A[x][2] ^ A[x][3] ^ A[x][4] for x in range(5)]
+            D = [C[(x - 1) % 5] ^ rot(C[(x + 1) % 5], 1) for x in range(5)]
+            A = [[A[x][y] ^ D[x] for y in range(5)] for x in range(5)]
+            B = [[0] * 5 for _ in range(5)]
+            for x in range(5):
+                for y in range(5):
+                    B[y][(2 * x + 3 * y) % 5] = rot(A[x][y], _KECCAK_ROT[x][y])
+            A = [[B[x][y] ^ ((~B[(x + 1) % 5][y]) & B[(x + 2) % 5][y]) for y in range(5)] for x in range(5)]
+            A[0][0] ^= rc
+    return b''.join(A[i % 5][i // 5].to_bytes(8, 'little') for i in range(4)).hex()
+
 
 def keccak(s):
+    if _keccak is None:
+        return '0x' + _keccak256_pure(s.encode())
     return '0x' + _keccak.new(digest_bits=256, data=s.encode()).hexdigest()
 
 
@@ -404,7 +441,10 @@ def collect_stream(rpc, out, stream, first, last, batch_size, log):
     fetched = 0
     while pending:
         chunk = [pending.popleft() for _ in range(min(batch_size, len(pending)))]
-        calls = [('eth_getLogs', [{'fromBlock': hex(a), 'toBlock': hex(b), 'address': stream['address'], 'topics': stream['topics']}])
+        # A stream without an address (every emitter of a topic) or without topics (every event of an address) leaves
+        # the member out of the filter rather than sending null.
+        flt = {k: stream[k] for k in ('address', 'topics') if stream.get(k) is not None}
+        calls = [('eth_getLogs', [{'fromBlock': hex(a), 'toBlock': hex(b), **flt}])
                  for a, b in chunk]
         try:
             res = rpc.batch(calls, allow_errors=True)
@@ -1082,6 +1122,10 @@ XTOPICS = {
     'KelpFinalized': keccak('AssetWithdrawalFinalized(address,address,uint256,uint256)'),
     'RenzoCreated': keccak('WithdrawRequestCreated(uint256,address,address,uint256,uint256,uint256,bool,uint256)'),
     'LidoClaimed': keccak('WithdrawalClaimed(uint256,address,address,uint256)'),
+    # OETH vault queue (2026-10-10): request (amount, cumulative queued), funding (cumulative claimable), claim
+    'OethRequested': keccak('WithdrawalRequested(address,uint256,uint256,uint256)'),
+    'OethClaimable': keccak('WithdrawalClaimable(uint256,uint256)'),
+    'OethClaimed': keccak('WithdrawalClaimed(address,uint256,uint256)'),
 }
 
 # Archive reads on the daily header grid. `scale` turns the returned word into a number; `every` thins a slow parameter.
@@ -1103,6 +1147,10 @@ STATE = {
     'susds_nav': {'to': SUSDS, 'data': SEL_CONVERT + enc_uint(10 ** 18), 'scale': 1e18},
     'susde_nav': {'to': SUSDE, 'data': SEL_CONVERT + enc_uint(10 ** 18), 'scale': 1e18},
     'sdai_nav': {'to': SDAI, 'data': SEL_CONVERT + enc_uint(10 ** 18), 'scale': 1e18},
+    # LBTC accrues value since 2025-08: StakedLBTCOracle.ratio() is LBTC per BTC, so BTC per LBTC is its inverse. The
+    # oracle answers from block ~22.95M at 1.0; earlier blocks are not read and the analysis clamps to that 1.0.
+    'lbtc_nav': {'to': '0x1de9fcfedf3e51266c188ee422fba1c7860da0ef', 'data': sel('ratio()'), 'scale': 1e18, 'invert': True,
+                 'first_block': 22_950_000},
 }
 
 # The assets. Pools were chosen from GeckoTerminal's top pools by 24h volume on 2026-10-09 (`pools_discovered.json`),
@@ -1220,6 +1268,86 @@ SURFACE = {
                        'exit_cap_usd_per_day': CAPACITY_CAP_USD,
                        'note': 'USDe is fixed at the cooldown; the exit sells USDe, so discounts are netted of its hourly basis'}},
 }
+# The ether.fi re-quote (2026-10-10): the same pools and bid, with the queue wait measured request by request from the
+# WithdrawRequestNFT and EtherFiAdmin events (`etherfi --step analyze` writes it), and weETH's NAV as the step function
+# the LiquidityPool's Rebase events define, instead of daily counters and a line between daily getRate() samples.
+# `pools_of` borrows another asset's pool metadata; `STEP_NAVS` names NAV series read from a file rather than STATE.
+STEP_NAVS = {'weeth_nav_step': 'etherfi_payouts.json'}
+SURFACE['etherfi_ev'] = {
+    **SURFACE['etherfi'], 'label': 'weETH (ether.fi), queue and NAV from events', 'pools_of': 'etherfi',
+    'targets': {WEETH: {'symbol': 'weETH', 'nav': 'weeth_nav_step'}},
+    'redemption': {**SURFACE['etherfi']['redemption'], 'wait': 'events', 'waits_file': 'etherfi_payouts.json',
+                   'note': 'wait = request to the EtherFiAdmin execution that finalized it, per request; payout checked in etherfi_payouts.json'}}
+
+# The queue-bid extension (2026-10-10): the next most liquid claims on Ethereum by GeckoTerminal's 24h volume on
+# 2026-10-10 (raw/gecko in research/2026-10-10/queue_bids_ext): Origin's OETH, and the two BTC wrappers whose issuers
+# redeem for anyone, LBTC (Lombard) and tBTC (Threshold). BTC wrappers are priced in BTC with WBTC and cbBTC taken at par;
+# their redemption pays native bitcoin, so the bid's capital comes back on another chain (see each `note`).
+OETH = '0x856c4efb76c1d1ae02e20ceb03a2a6a08b0b8dc3'
+OETH_VAULT = '0x39254033945aa2e4809cc2977e7087bee48bd7ab'
+LBTC = '0x8236a87084f8b84306f72007f36f2618a5634494'
+TBTC = '0x18084fba666a33d37592fa2633fd49a74dd93a88'
+WBTC = '0x2260fac5e5542a773aa44fbcfedf7c193bc2c599'
+CBBTC = '0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf'
+BTC_QUOTES = {WBTC: None, CBBTC: None}
+SYMBOLS.update({OETH: 'OETH', LBTC: 'LBTC', TBTC: 'tBTC', WBTC: 'WBTC', CBBTC: 'cbBTC'})
+SURFACE['oeth'] = {
+    'label': 'OETH (Origin)', 'unit': 'ETH',
+    'targets': {OETH: {'symbol': 'OETH', 'nav': None}}, 'quotes': ETH_QUOTES,
+    'pools': [{'name': 'curve-oeth-weth', 'venue': 'curve', 'address': '0xcc7d5785ad5755b6164e21495e07adb0ff11c2a8'},
+              {'name': 'curve-oeth-eth', 'venue': 'curve', 'address': '0x94b17476a93b3262d87b9a326965d1e91f9c13e7'}],
+    'redemption': {'path': 'OETH vault (0x3925...7ab) requestWithdrawal, wait until cumulative claimable covers the request and 600s, claimWithdrawal for WETH 1:1',
+                   'wait': 'oeth', 'vault': OETH_VAULT, 'fee_bps': 0.0, 'accrues': False, 'permissioned': False,
+                   'competitor': 'the OETH ARM (0x6bac...3cc7) bought OETH at par from 2024-08-15 to 2025-12-17 and bids 0.9975 since; it redeems through the same queue',
+                   'note': 'no queue fee in the window (verified source); only the requester can claim'}}
+SURFACE['lbtc'] = {
+    'label': 'LBTC (Lombard)', 'unit': 'BTC',
+    'targets': {LBTC: {'symbol': 'LBTC', 'nav': 'lbtc_nav'}}, 'quotes': BTC_QUOTES,
+    'pools': [{'name': 'v4-lbtc-cbbtc-2bp', 'venue': 'uniswap_v4', 'pool_id': '0x90512722b19945c7ec2746e34f45c301a5dadc830bb669056fa5fd5ad943e06e',
+               'tokens': [LBTC, CBBTC]},
+              {'name': 'fluid-wbtc-lbtc', 'venue': 'fluid', 'address': '0xe0cc64ab3712e2087e1d4aab6f3a14f120449e5f',
+               'tokens': [WBTC, LBTC], 'decimals': [8, 8], 'fee_bps': 1.0, 'fee_source': 'Fluid API configs.fee=100'},
+              {'name': 'v3-lbtc-wbtc-1bp', 'venue': 'uniswap_v3', 'address': '0x0b599ebf4e05af48b56d38e2dde520570c366460'},
+              {'name': 'v3-lbtc-cbbtc-1bp', 'venue': 'uniswap_v3', 'address': '0xbb0e3525d6d5e1a7ecc627a82a44019b48cf84b3'},
+              {'name': 'fluid-lbtc-cbbtc', 'venue': 'fluid', 'address': '0xc8f989e9b7ece1b4d092ae4db7faf1294146bda4',
+               'tokens': [LBTC, CBBTC], 'decimals': [8, 8], 'fee_bps': 1.0, 'fee_source': 'Fluid API configs.fee=100'}],
+    'redemption': {'path': 'LBTC redeemForBtc (redeem before 2025-11-20) to a bitcoin scriptPubkey; BTC paid off chain by Lombard',
+                   'wait': 'constant', 'days': 9.0, 'fee_bps': 0.0, 'accrues': False, 'permissioned': False,
+                   'note': 'fee is a flat 10,000 sats (under 0.01bp at $1M); the 9-day wait is from Lombard docs (Babylon unbonding), '
+                           'not measured: the payout happens on Bitcoin. Whether the BTC paid applies getRate() was NOT verified'}}
+SURFACE['tbtc'] = {
+    'label': 'tBTC (Threshold)', 'unit': 'BTC',
+    'targets': {TBTC: {'symbol': 'tBTC', 'nav': None}}, 'quotes': BTC_QUOTES,
+    'pools': [{'name': 'v4-tbtc-cbbtc-1bp', 'venue': 'uniswap_v4', 'pool_id': '0x5459f9d1f649b9f1353a50fd0c8d796b4feb11926bec295cb0614a135febdf9a',
+               'tokens': [TBTC, CBBTC]},
+              {'name': 'v3-tbtc-wbtc-1bp', 'venue': 'uniswap_v3', 'address': '0x73a38006d23517a1d383c88929b2014f8835b38b'},
+              {'name': 'curve-tbtc-wbtc', 'venue': 'curve', 'address': '0xb7ecb2aa52aa64a717180e030241bc75cd946726'}],
+    'redemption': {'path': 'TBTCVault.unmintAndRedeem -> Bridge RedemptionRequested; a wallet pays BTC on Bitcoin',
+                   'wait': 'constant', 'days': 0.2, 'fee_bps': 21.0, 'accrues': False, 'permissioned': False,
+                   'note': 'treasury fee 0.2% (divisor 500 since 2024-02-21) plus the bitcoin transaction fee (at most 100,000 sats, ~0.8bp '
+                           'on 12 BTC); request to completion proof median 4.9h over 1,000 requests (2025-09/11), so 0.2 days'}}
+
+SURFACE['etherfi_ev_aw'] = {
+    **SURFACE['etherfi_ev'], 'label': 'weETH (ether.fi), events, amount-weighted daily wait',
+    'redemption': {**SURFACE['etherfi_ev']['redemption'], 'waits_key': 'waits_aw',
+                   'note': 'each day\'s wait is the amount-weighted median of that day\'s requests: a large bid waits like a large request'}}
+
+# LBTC priced only where the other side is cbBTC: a Coinbase account wraps the redeemed bitcoin into cbBTC one for one,
+# so cbBTC is the unit a bid that cycles through Coinbase actually holds, and WBTC's own basis (cbBTC traded ~10bp over
+# WBTC on 2026-10-10) stays out of the discount.
+SURFACE['lbtc_cb'] = {**SURFACE['lbtc'], 'label': 'LBTC (Lombard), cbBTC pools only', 'pools_of': 'lbtc', 'quotes': {CBBTC: None},
+                      'pool_filter': ['v4-lbtc-cbbtc-2bp', 'v3-lbtc-cbbtc-1bp', 'fluid-lbtc-cbbtc']}
+
+# LBTC's payout applies getRate() at the PAYOUT, not at the request (2026-09-17 payouts paid 1.0050504 per LBTC, that
+# day's rate, on requests made at 1.00477 to 1.00490), and the rate moves both ways (-10.6bp on 2026-09-22). So the
+# bid is priced again against the rate six days after each trade (the median payout delay in the bitcoin sample), with a
+# six-day wait: `SHIFTED_NAVS` maps a NAV key to (base STATE key, days later).
+SHIFTED_NAVS = {'lbtc_nav_payout6': ('lbtc_nav', 6.0)}
+SURFACE['lbtc_cb_pay'] = {**SURFACE['lbtc_cb'], 'label': 'LBTC (Lombard), cbBTC pools, paid at the rate six days later',
+                          'targets': {LBTC: {'symbol': 'LBTC', 'nav': 'lbtc_nav_payout6'}},
+                          'redemption': {**SURFACE['lbtc']['redemption'], 'days': 6.0,
+                                         'note': 'payout at getRate six days after the trade (bitcoin sample: median 5.4 to 6.0 days)'}}
+
 # ezETH and the rest of the long tail (cbETH ~$2k/day, pufETH ~$16k/day, eETH none) are kept or dropped by volume.
 SKIPPED = {
     'cbETH': 'Curve and Uniswap v3 pools trade ~$2.4k a day together, and unwrapping is a Coinbase account action',
@@ -1237,6 +1365,7 @@ FEE_LEGS = 2.0                    # the seller's fee is inside their price; buyi
 CAPACITY_SHARE = 0.9              # capacity: the smallest tested size that earns this share of the best size's value
 ETH_STAKING_FALLBACK = 0.026
 SSR_FALLBACK = 0.038              # sUSDS.ssr() read 2026-10-09 (coordinator); the history uses the sUSDS NAV itself
+BTC_CARRY_APR = 0.005             # what BTC capital earns idle (Aave WBTC/cbBTC supply was 0.1-1% in 2025-26): an assumption
 
 
 # ---------------------------------------------------------------------------------------------------------------- legs
@@ -1378,6 +1507,31 @@ def pointer_waits(samples_created, samples_final, final_inclusive, floor_days=1.
             out.append((ts_grid[i], None, (ts_grid[-1] - ts_grid[i]) / 86400.0))
         else:
             out.append((ts_grid[i], max(floor_days, (ts_grid[hit] - ts_grid[i]) / 86400.0), None))
+    return out
+
+
+OETH_CLAIM_DELAY_S = 600   # OETH vault withdrawalClaimDelay(): 600s since 2025-02-11, a 10-minute constant before
+
+
+def cumulative_waits(requests, claimable, end_ts, min_delay_s=0):
+    """A queue that pays in order of a cumulative amount (OETH): each request records the cumulative `queued` after
+    it, funding events record the cumulative `claimable`. A request can be claimed at the first funding event (same
+    block or later, after the request's own log) whose cumulative covers its `queued`, and not before `min_delay_s`.
+    requests/claimable: [(ts, block, log_index, cumulative)]. Returns [(request ts, wait days or None, lower bound)]."""
+    cl = sorted(claimable, key=lambda x: (x[1], x[2]))
+    out = []
+    for ts, b, li, q in sorted(requests, key=lambda x: (x[1], x[2])):
+        hit = None
+        for cts, cb, cli, c in cl:            # funding events are few; a linear scan from the request on is enough
+            if (cb, cli) < (b, li):
+                continue
+            if c >= q:
+                hit = cts
+                break
+        if hit is None:
+            out.append((ts, None, (end_ts - ts) / 86400.0))
+        else:
+            out.append((ts, max(hit - ts, min_delay_s) / 86400.0, None))
     return out
 
 
@@ -1622,6 +1776,9 @@ def surface_streams(keys, metas):
     if 'etherfi' in keys:
         qa.append(ETHERFI_RM)
         qt.append(XTOPICS['EtherFiRedeemed'])
+    if 'oeth' in keys:
+        qa.append(OETH_VAULT)
+        qt += [XTOPICS['OethRequested'], XTOPICS['OethClaimable'], XTOPICS['OethClaimed']]
     if qa:
         streams.append({'name': 'x_queues', 'address': sorted(set(qa)), 'topics': [sorted(set(qt))]})
     ra, rt = [], []
@@ -1729,7 +1886,7 @@ def cmd_surface_nav(args):
     need = set()
     for k in keys:
         a = SURFACE[k]
-        need |= {t['nav'] for t in a['targets'].values() if t['nav']}
+        need |= {SHIFTED_NAVS.get(t['nav'], (t['nav'],))[0] for t in a['targets'].values() if t['nav'] and t['nav'] not in STEP_NAVS}
         need |= {q for q in a['quotes'].values() if q}
         r = a['redemption']
         need |= {r[x] for x in ('created', 'finalized', 'key', 'daily_cap_state') if r.get(x)}
@@ -1742,7 +1899,7 @@ def cmd_surface_nav(args):
         spec = STATE[key]
         have = {s['block'] for s in state['samples'][key]}
         every = spec.get('every', 1)
-        pts = [n for i, n in enumerate(grid) if (i % every == 0 or n == grid[-1])]
+        pts = [n for i, n in enumerate(grid) if (i % every == 0 or n == grid[-1]) and n >= spec.get('first_block', 0)]
         for n in pts:
             if n not in have:
                 tasks.put((key, n))
@@ -1769,8 +1926,10 @@ def cmd_surface_nav(args):
                 time.sleep(2 * (attempt + 1))
             with lock:
                 if r:
-                    state['samples'][key].append({'block': n, 'ts': headers[str(n)]['ts'], 'value': int(r[:66], 16) / spec['scale'],
-                                                  'endpoint': used})
+                    v = int(r[:66], 16) / spec['scale']
+                    if spec.get('invert'):
+                        v = 1.0 / v if v else None
+                    state['samples'][key].append({'block': n, 'ts': headers[str(n)]['ts'], 'value': v, 'endpoint': used})
                 else:
                     state['errors'].extend([dict(e, key=key) for e in errs[-2:]])
                 done[0] += 1
@@ -1794,23 +1953,34 @@ def cmd_surface_nav(args):
     state['coverage'] = {k: {'samples': len(v), 'first': v[0]['value'] if v else None, 'last': v[-1]['value'] if v else None}
                          for k, v in sorted(state['samples'].items())}
     write_json(out / 'state.json', state)
-    # ETH/USD by day, for dollar notionals of the ETH-denominated assets.
+    # ETH/USD by day, for dollar notionals of the ETH-denominated assets (and BTC/USD when a BTC wrapper is selected).
     first_ts, last_ts = headers[str(grid[0])]['ts'], headers[str(grid[-1])]['ts']
-    # DefiLlama's chart endpoint refuses long spans (a 744-day request answered 400), so it is read in 300-day pages.
+    days = {}
+    for unit, coin, fname in (('ETH', 'coingecko:ethereum', 'eth_usd.json'), ('BTC', 'coingecko:bitcoin', 'btc_usd.json')):
+        if unit == 'BTC' and not any(SURFACE[k]['unit'] == 'BTC' for k in keys):
+            continue
+        prices, urls = llama_daily(coin, first_ts, last_ts)
+        write_json(out / fname, {'source': urls, 'fetched': utc(), 'prices': prices})
+        days[fname] = len(prices)
+    print(json.dumps({'state': state['coverage'], 'price_days': days}, indent=1))
+
+
+def llama_daily(coin, first_ts, last_ts):
+    """Daily DefiLlama prices for `coin` across [first_ts, last_ts]. The chart endpoint refuses long spans (a 744-day
+    request answered 400), so it is read in 300-day pages."""
+    import urllib.request
     prices, urls, start = {}, [], first_ts - 86400
     while start <= last_ts + 86400:
         span = min(300, int((last_ts + 2 * 86400 - start) / 86400) + 1)
-        url = 'https://coins.llama.fi/chart/coingecko:ethereum?start=%d&span=%d&period=1d' % (start, span)
+        url = 'https://coins.llama.fi/chart/%s?start=%d&span=%d&period=1d' % (coin, start, span)
         req = urllib.request.Request(url, headers={'User-Agent': 'llm-quant research'})
         with urllib.request.urlopen(req, timeout=60) as r:
             d = json.loads(r.read())
-        for pnt in d['coins']['coingecko:ethereum']['prices']:
+        for pnt in d['coins'][coin]['prices']:
             prices[pnt['timestamp']] = pnt
         urls.append(url)
         start += span * 86400
-    prices = [prices[t] for t in sorted(prices)]
-    write_json(out / 'eth_usd.json', {'source': urls, 'fetched': utc(), 'prices': prices})
-    print(json.dumps({'state': state['coverage'], 'eth_usd_days': len(prices)}, indent=1))
+    return [prices[t] for t in sorted(prices)], urls
 
 
 # --------------------------------------------------------------------------------------------- surface: analyze
@@ -1919,6 +2089,22 @@ def wait_model(k, out, state, queue_logs, ts_at, end_ts):
                 fins.append((int(l['topics'][1], 16), int(l['topics'][2], 16), ts_at(hx(l['blockNumber']))))
         w = lido_waits(reqs, fins, end_ts)
         pts = list(w.values())
+    elif kind == 'oeth':
+        reqs, claimable = [], []
+        for l in queue_logs:
+            if l['address'].lower() != r['vault']:
+                continue
+            t0 = l['topics'][0]
+            if t0 == XTOPICS['OethRequested']:
+                reqs.append((ts_at(hx(l['blockNumber'])), hx(l['blockNumber']), hx(l['logIndex']), word(l['data'], 1)))
+            elif t0 == XTOPICS['OethClaimable']:
+                claimable.append((ts_at(hx(l['blockNumber'])), hx(l['blockNumber']), hx(l['logIndex']), word(l['data'], 0)))
+        pts = cumulative_waits(reqs, claimable, end_ts, OETH_CLAIM_DELAY_S)
+    elif kind == 'events':
+        # [(request ts, wait days or None, lower bound)] measured request by request (etherfi --step analyze)
+        pts = [tuple(x) for x in (read_json(out / r['waits_file']) or {}).get(r.get('waits_key', 'waits'), [])]
+        if not pts:
+            raise SystemExit('%s: %s has no waits; run the etherfi payout check first' % (k, r['waits_file']))
     elif kind == 'pointer':
         sc = [(s['ts'], s['value']) for s in state['samples'].get(r['created'], [])]
         sf = [(s['ts'], s['value']) for s in state['samples'].get(r['finalized'], [])]
@@ -1994,6 +2180,16 @@ def redemption_check(k, redeem_logs, queue_logs, nav_at, ts_at):
             n = hx(l['blockNumber'])
             nav = nav_at('ezeth_nav', n)
             diffs.append(1e4 * (redeem / locked - nav) / nav)
+    elif k == 'oeth':
+        req = {}
+        for l in queue_logs:
+            if l['address'].lower() == OETH_VAULT and l['topics'][0] == XTOPICS['OethRequested']:
+                req[int(l['topics'][2], 16)] = word(l['data'], 0)
+        for l in queue_logs:
+            if l['address'].lower() == OETH_VAULT and l['topics'][0] == XTOPICS['OethClaimed']:
+                rid = int(l['topics'][2], 16)
+                if req.get(rid):
+                    diffs.append(1e4 * (word(l['data'], 0) / req[rid] - 1.0))
     elif k == 'lido':
         req = {}
         for l in queue_logs:
@@ -2091,8 +2287,19 @@ def cmd_surface_analyze(args):
         return int(round(interp(hb, hts, n)))
 
     grids = {key: ([s['block'] for s in v], [s['value'] for s in v]) for key, v in state['samples'].items() if v}
+    steps = {}
+    for key, fname in STEP_NAVS.items():
+        f = read_json(out / fname) or {}
+        if f.get('nav_steps'):
+            steps[key] = ([b for b, _ in f['nav_steps']], [v for _, v in f['nav_steps']])
 
     def nav_at(key, n):
+        if key in steps:
+            return step_at(steps[key][0], steps[key][1], n)
+        if key in SHIFTED_NAVS:                 # a NAV read later than the trade: what a payout at that later rate pays
+            base, days = SHIFTED_NAVS[key]
+            g = grids.get(base)
+            return interp(g[0], g[1], n + int(days * BLOCKS_PER_DAY)) if g else None
         g = grids.get(key)
         return interp(g[0], g[1], n) if g else None
 
@@ -2100,6 +2307,13 @@ def cmd_surface_analyze(args):
 
     def eth_usd(ts):
         return interp(ex, ey, ts)
+    btcp = read_json(out / 'btc_usd.json') or {}
+    bx, by_ = [p['timestamp'] for p in btcp.get('prices', [])], [p['price'] for p in btcp.get('prices', [])]
+
+    def btc_usd(ts):
+        if not bx:
+            raise SystemExit('a BTC asset needs btc_usd.json: run nav with it selected')
+        return interp(bx, by_, ts)
 
     # Benchmarks, both measured: Lido's staking rate from wstETH's NAV, and the Sky savings rate from sUSDS's NAV.
     lido_series = [(s['ts'], s['value']) for s in state['samples'].get('wsteth_nav', [])]
@@ -2112,6 +2326,8 @@ def cmd_surface_analyze(args):
     def carry_fn(unit):
         if unit == 'ETH':
             return lambda ts: staking_apr / 365.0 * 1e4
+        if unit == 'BTC':
+            return lambda ts: BTC_CARRY_APR / 365.0 * 1e4
         return lambda ts: (ssr_fn(ts) or SSR_FALLBACK) / 365.0 * 1e4
 
     queue_logs = list(load_stream(out, 'x_queues'))
@@ -2125,8 +2341,10 @@ def cmd_surface_analyze(args):
         a = SURFACE[k]
         r = a['redemption']
         t_start = time.monotonic()
-        unit_usd_at = eth_usd if a['unit'] == 'ETH' else (lambda ts: 1.0)
-        metas_k = metas.get(k) or []
+        unit_usd_at = {'ETH': eth_usd, 'BTC': btc_usd}.get(a['unit'], lambda ts: 1.0)
+        metas_k = metas.get(k) or metas.get(a.get('pools_of')) or []
+        if a.get('pool_filter'):
+            metas_k = [m for m in metas_k if m['name'] in a['pool_filter']]
         if a.get('legacy_raw') and not metas_k:
             lp = read_json(out / a['legacy_raw'] / 'pools.json') or []
             metas_k = [dict(m, tokens=[SUSDE, USDT], fee_bps=None) if m['venue'] == 'uniswap_v4' else dict(m, fee_bps=fee_from_legacy(m))
@@ -2155,6 +2373,11 @@ def cmd_surface_analyze(args):
         kept = [s for s in swaps if not s['excluded_print']]
         excluded = [s for s in swaps if s['excluded_print']]
         sells = [s for s in kept if s['side'] == 'sell']
+        # Every priced swap, so later reports (regimes, venue mix) need not rebuild the NAV machinery.
+        with gzip.open(out / ('swaps_%s.jsonl.gz' % k), 'wt') as f:
+            for s in kept:
+                f.write(json.dumps({x: s.get(x) for x in ('ts', 'block', 'tx', 'pool', 'side', 'token', 'amount', 'usd', 'price',
+                                                           'nav', 'discount_bps', 'fee_bps')}) + '\n')
         wait_fn, wait_summary = wait_model(k, out, state, queue_logs, ts_at, last_ts)
         carry = carry_fn(a['unit'])
         cap_fn = None
@@ -2413,6 +2636,811 @@ def cmd_surface_render(args):
     print('wrote', out / 'tables.md')
 
 
+# ======================================================================================================================
+# The ether.fi payout check (2026-10-10): what the WithdrawRequestNFT queue actually paid, and when
+# ======================================================================================================================
+# The 2026-10-09 study priced weETH against `getRate()` and assumed the queue pays that rate at the request, with no fee,
+# in about two days measured from two counters read once a day. This section checks all three against the queue's own
+# events over the two-year window:
+#
+#   * WithdrawRequestNFT (proxy 0x7d57...4c2e) emits `WithdrawRequestCreated` and `WithdrawRequestClaimed`. Until an
+#     upgrade in 2025 both carried a fifth field, `fee` (wei), and the claim's second word was the eETH shares burnt at the
+#     claim; the 2026 implementation drops the fee and emits the request's full `shareOfEEth`. Both versions are decoded.
+#   * the amount a request fixes is `amountOfEEth`; eETH is one ETH, so `amountOfEEth / shareOfEEth` is the share rate
+#     (weETH's `getRate()`) at the request block, exactly. The claim pays min(amountOfEEth, shares at the finalization
+#     rate) less any fee: a request never earns while queued, and a negative rebase before finalization would cut it.
+#   * finalization emits nothing on the NFT. It happens inside EtherFiAdmin's report execution (`AdminOperationsExecuted`),
+#     so `lastFinalizedRequestId()` is read at every block where the admin executed, which times each request's
+#     finalization to the block. The LiquidityPool's `Rebase(totalPooledEther, totalShares)` in the same transactions is
+#     the share rate after each rebase: weETH's NAV is a step function, and these events are its steps.
+#   * the instant route: EtherFiRedemptionManager's `Redeemed(receiver, amount, feeToTreasury, feeToStakers, token)`
+#     prices every instant redemption's fee; any contract emitting that event is collected, so a predecessor manager at
+#     another address is found by the same pass.
+ETHERFI_ADMIN = '0x0ef8fa4760db8f5cd4d993f3e3416f30f942d705'
+ETHERFI_LP = '0x308861a430be4cce5502d0a12724771fc6daf216'
+EETH = '0x35fa164735182de50811e8e2e824cfb9b6118ac2'
+EFTOPICS = {
+    'Created': keccak('WithdrawRequestCreated(uint32,uint256,uint256,address)'),
+    'CreatedFee': keccak('WithdrawRequestCreated(uint32,uint256,uint256,address,uint256)'),
+    'Claimed': keccak('WithdrawRequestClaimed(uint32,uint256,uint256,address)'),
+    'ClaimedFee': keccak('WithdrawRequestClaimed(uint32,uint256,uint256,address,uint256)'),
+    'Invalidated': keccak('WithdrawRequestInvalidated(uint32)'),
+    'Validated': keccak('WithdrawRequestValidated(uint32)'),
+    'Seized': keccak('WithdrawRequestSeized(uint32)'),
+    'Transfer': keccak('Transfer(address,address,uint256)'),
+    'AdminExecuted': keccak('AdminOperationsExecuted(address,bytes32)'),
+    'Rebase': keccak('Rebase(uint256,uint256)'),
+    'Redeemed': keccak('Redeemed(address,uint256,uint256,uint256,address)'),
+    'Redeemed4': keccak('Redeemed(address,uint256,uint256,uint256)'),
+    'Upgraded': keccak('Upgraded(address)'),
+}
+ETHERFI_FIRST_BLOCK = 20_834_913    # the two-year window's first block (2024-09-26)
+ETHERFI_STREAMS = [
+    {'name': 'ef_wrnft', 'address': [ETHERFI_WRNFT], 'topics': None},
+    {'name': 'ef_admin', 'address': [ETHERFI_ADMIN], 'topics': [[EFTOPICS['AdminExecuted']]]},
+    {'name': 'ef_lp', 'address': [ETHERFI_LP], 'topics': [[EFTOPICS['Rebase']]]},
+    {'name': 'ef_redeem', 'address': None, 'topics': [[EFTOPICS['Redeemed'], EFTOPICS['Redeemed4']]]},
+    {'name': 'ef_upgrades', 'address': sorted({ETHERFI_WRNFT, ETHERFI_RM, ETHERFI_LP, WEETH, EETH, ETHERFI_ADMIN}),
+     'topics': [[EFTOPICS['Upgraded']]]},
+]
+
+
+def cmd_etherfi(args):
+    """`etherfi --step collect|finality|analyze`: the payout check, in its own directory."""
+    {'collect': etherfi_collect, 'finality': etherfi_finality, 'analyze': etherfi_analyze}[args.step](args)
+
+
+def etherfi_collect(args):
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    rpc = RPC(log_path=out / 'rpc_errors.jsonl', max_credits=args.max_credits)
+    log_f = (out / 'etherfi_collect.log').open('a')
+
+    def log(obj):
+        line = json.dumps(obj, default=str)
+        print(line, flush=True)
+        log_f.write(line + '\n')
+        log_f.flush()
+
+    man = read_json(out / 'etherfi_manifest.json', {}) or {}
+    if man.get('first_block') and not args.reset:
+        first, last = man['first_block'], man['last_block']
+    else:
+        head = rpc.call('eth_getBlockByNumber', [hex(args.last_block) if args.last_block else 'finalized', False])
+        first, last = args.first_block or ETHERFI_FIRST_BLOCK, hx(head['number'])
+        man = {'chain': 'ethereum', 'chain_id': 1, 'first_block': first, 'last_block': last, 'end_tag': 'finalized',
+               'last_block_utc': utc(hx(head['timestamp'])), 'collect_started': utc(), 'raw_files': {}}
+    log({'first_block': first, 'last_block': last})
+    grid = list(range(first, last, BLOCKS_PER_DAY)) + [last]
+    headers = read_json(out / 'etherfi_headers.json', {}) or {}
+    if args.seed_headers:
+        for k, v in (read_json(args.seed_headers, {}) or {}).items():
+            headers.setdefault(k, v)
+    todo = [n for n in grid if str(n) not in headers]
+    for i in range(0, len(todo), 10):
+        chunk = todo[i:i + 10]
+        res = rpc.batch([('eth_getBlockByNumber', [hex(n), False]) for n in chunk])
+        for n, b in zip(chunk, res):
+            if not b or hx(b['number']) != n:
+                raise RPCError('header %d missing' % n)
+            headers[str(n)] = {'ts': hx(b['timestamp']), 'hash': b['hash']}
+    write_json(out / 'etherfi_headers.json', {k: headers[k] for k in sorted(headers, key=int) if first <= int(k) <= last})
+    man.setdefault('streams', {})
+    try:
+        for s in ETHERFI_STREAMS:
+            if args.only and s['name'] not in args.only.split(','):
+                continue
+            man['streams'][s['name']] = {'address': s['address'], 'topics': s['topics'],
+                                         **collect_stream(rpc, out, s, first, last, args.batch, log)}
+    finally:
+        man['rpc'] = rpc.stats()
+        man['collect_finished'] = utc()
+        man['complete'] = {s['name']: not gaps(load_done(out / 'raw' / s['name']), first, last) for s in ETHERFI_STREAMS}
+        for s in ETHERFI_STREAMS:
+            d = out / 'raw' / s['name']
+            man['raw_files'][s['name']] = {p.name: sha256(p) for p in sorted(d.glob('*.json.gz'))}
+        man['topics'] = EFTOPICS
+        write_json(out / 'etherfi_manifest.json', man)
+        log({'complete': man['complete'], **man['rpc']})
+
+
+def etherfi_finality(args):
+    """Archive reads of `lastFinalizedRequestId()` at every block where EtherFiAdmin executed a report, and of weETH's
+    `getRate()` at every tenth of them (to check the Rebase events against the NAV function the study uses)."""
+    import threading
+    import queue as _queue
+    out = Path(args.out)
+    blocks = sorted({hx(l['blockNumber']) for l in load_stream(out, 'ef_admin')})
+    if not blocks:
+        raise SystemExit('run --step collect first (no EtherFiAdmin logs)')
+    fin = read_json(out / 'etherfi_finality.json', {'samples': {}, 'errors': []})
+    fin['samples'].setdefault('last_finalized', [])
+    fin['samples'].setdefault('weeth_rate', [])
+    have = {k: {x['block'] for x in v} for k, v in fin['samples'].items()}
+    tasks = _queue.Queue()
+    specs = {'last_finalized': (ETHERFI_WRNFT, sel('lastFinalizedRequestId()'), 1),
+             'weeth_rate': (WEETH, sel('getRate()'), 1e18)}
+    for i, n in enumerate(blocks):
+        if n not in have['last_finalized']:
+            tasks.put(('last_finalized', n))
+        if i % 10 == 0 and n not in have['weeth_rate']:
+            tasks.put(('weeth_rate', n))
+    total = tasks.qsize()
+    endpoints = args.endpoints.split(',') if args.endpoints else ['https://eth.drpc.org', 'https://ethereum-rpc.publicnode.com']
+    lock = threading.Lock()
+    done = [0]
+    t0 = time.monotonic()
+
+    def worker(ep):
+        others = [e for e in endpoints if e != ep]
+        while True:
+            try:
+                key, n = tasks.get_nowait()
+            except _queue.Empty:
+                return
+            to, data, scale = specs[key]
+            errs = []
+            r, used = None, None
+            for attempt in range(3):
+                r, used = archive_call(to, data, n, [ep] + others, errs)
+                if r:
+                    break
+                time.sleep(2 * (attempt + 1))
+            with lock:
+                if r:
+                    fin['samples'][key].append({'block': n, 'value': int(r[:66], 16) / scale, 'endpoint': used})
+                else:
+                    fin['errors'].extend([dict(e, key=key) for e in errs[-2:]])
+                done[0] += 1
+                if done[0] % 200 == 0 or done[0] == total:
+                    for v in fin['samples'].values():
+                        v.sort(key=lambda x: x['block'])
+                    write_json(out / 'etherfi_finality.json', fin)
+                    print(json.dumps({'read': done[0], 'of': total, 'errors': len(fin['errors']), 'elapsed_s': round(time.monotonic() - t0)}), flush=True)
+            time.sleep(0.12)
+
+    th = [threading.Thread(target=worker, args=(ep,)) for ep in endpoints]
+    for t in th:
+        t.start()
+    for t in th:
+        t.join()
+    for v in fin['samples'].values():
+        v.sort(key=lambda x: x['block'])
+    fin['method'] = ('lastFinalizedRequestId() on WithdrawRequestNFT at every block holding an EtherFiAdmin '
+                     'AdminOperationsExecuted log (finalization happens only inside those executions), weETH getRate() at '
+                     'every tenth; public archive endpoints, one call at a time per endpoint')
+    fin['admin_blocks'] = len(blocks)
+    write_json(out / 'etherfi_finality.json', fin)
+    print(json.dumps({k: len(v) for k, v in fin['samples'].items()}))
+
+
+def step_at(xs, ys, x):
+    """The last value at or before `x` on a sorted grid (a step function), or None before the first point. weETH's NAV
+    moves only when the LiquidityPool rebases, so between rebases it is flat, not a line between daily samples."""
+    j = _bisect_right(xs, x) - 1
+    return ys[j] if j >= 0 else None
+
+
+def decode_etherfi_wrnft(logs):
+    """WithdrawRequestNFT logs -> (requests, claims, flags, transfers). Both event versions decode to the same fields.
+
+    requests[id] = {block, li, tx, amount (eETH, = ETH), share, owner, fee (ETH), version}; claims[id] = {block, tx,
+    amount (ETH the owner received), share_field, owner, fee, version}. In the five-field version the claim's amount was
+    `paid + fee` and its fee field carried the request's fee (2024 implementation) or zero (2025 ones, which deduct the
+    fee before emitting); `paid = amount - fee` is right for both. The four-field version (2026) emits the payout.
+    flags: {'invalidated': [id], 'validated': [id], 'seized': [id]}; transfers: NFT moves between two non-zero holders."""
+    requests, claims = {}, {}
+    flags = {'invalidated': [], 'validated': [], 'seized': []}
+    transfers, unknown = 0, collections.Counter()
+    for l in logs:
+        t = l['topics']
+        t0 = t[0]
+        n = hx(l['blockNumber'])
+        d = l['data']
+        if t0 in (EFTOPICS['Created'], EFTOPICS['CreatedFee']):
+            fee = word(d, 3) / 1e18 if t0 == EFTOPICS['CreatedFee'] else 0.0
+            requests[int(t[1], 16)] = {'block': n, 'li': hx(l['logIndex']), 'tx': l['transactionHash'], 'amount': word(d, 0) / 1e18,
+                                       'share': word(d, 1) / 1e18, 'owner': '0x' + d[2 + 64 * 2 + 24: 2 + 64 * 3], 'fee': fee,
+                                       'version': 5 if t0 == EFTOPICS['CreatedFee'] else 4}
+        elif t0 in (EFTOPICS['Claimed'], EFTOPICS['ClaimedFee']):
+            fee = word(d, 3) / 1e18 if t0 == EFTOPICS['ClaimedFee'] else 0.0
+            amount = word(d, 0) / 1e18
+            claims[int(t[1], 16)] = {'block': n, 'tx': l['transactionHash'], 'amount': amount, 'paid': amount - fee,
+                                     'share_field': word(d, 1) / 1e18, 'owner': '0x' + d[2 + 64 * 2 + 24: 2 + 64 * 3],
+                                     'fee': fee, 'version': 5 if t0 == EFTOPICS['ClaimedFee'] else 4}
+        elif t0 == EFTOPICS['Invalidated']:
+            flags['invalidated'].append(int(t[1], 16))
+        elif t0 == EFTOPICS['Validated']:
+            flags['validated'].append(int(t[1], 16))
+        elif t0 == EFTOPICS['Seized']:
+            flags['seized'].append(int(t[1], 16))
+        elif t0 == EFTOPICS['Transfer'] and len(t) == 4:
+            if int(t[1], 16) and int(t[2], 16):
+                transfers += 1
+        else:
+            unknown[t0] += 1
+    return requests, claims, flags, transfers, dict(unknown)
+
+
+def finalization_times(points, requests):
+    """points: [(block, ts, last_finalized_id)] at the blocks where finalization can happen, sorted by block;
+    requests: {id: request block}. Returns {id: (block, ts)} of the first point at or after the request whose counter
+    covers the id; ids never covered are absent. The counter is monotone, so one pass over ids in order suffices."""
+    pts = sorted(points)
+    out = {}
+    j = 0
+    for rid in sorted(requests):
+        while j < len(pts) and pts[j][2] < rid:
+            j += 1
+        if j == len(pts):
+            break
+        k = j
+        while k < len(pts) and pts[k][0] < requests[rid]:      # a request finalized only by a later execution
+            k += 1
+        if k < len(pts):
+            out[rid] = (pts[k][0], pts[k][1])
+    return out
+
+
+def decode_redeemed(log):
+    """One EtherFiRedemptionManager `Redeemed` log -> {block, amount, to_receiver, fee_treasury, fee, fee_bps, token}.
+
+    The event's declared fields are (receiver, redemptionAmount, feeAmountToTreasury, feeAmountToStakers[, token]), but
+    every implementation before the 2026-07-14 upgrade emitted the amount sent to the RECEIVER as the fourth word
+    (`emit Redeemed(receiver, ethAmount, eEthFeeAmountToTreasury, eEthAmountToReceiver, ...)` in the verified sources of
+    0xe6f4..., 0xe3f3... and 0x6bd1...). Read literally, those events show a 99.7% "fee". A fee is never half the
+    amount, so a fourth word above half of it is the receiver's amount and the fee is what the receiver did not get."""
+    d = log['data']
+    amt = word(d, 0)
+    if not amt:
+        return None
+    w1, w2 = word(d, 1), word(d, 2)
+    five = log['topics'][0] == EFTOPICS['Redeemed']
+    tok = ('0x' + d[2 + 64 * 3 + 24: 2 + 64 * 4]) if five else ETH_SENTINEL
+    if w2 > amt // 2:
+        to_recv, fee, semantics = w2, amt - w2, 'fourth word = amount to receiver (pre-2026-07)'
+    else:
+        to_recv, fee, semantics = amt - w1 - w2, w1 + w2, 'fourth word = fee to stakers (2026-07 on)'
+    return {'address': log['address'].lower(), 'block': hx(log['blockNumber']), 'amount': amt / 1e18, 'to_receiver': to_recv / 1e18,
+            'receiver': '0x' + log['topics'][1][-40:] if len(log['topics']) > 1 else None,
+            'fee_treasury': w1 / 1e18, 'fee': fee / 1e18, 'fee_bps': 1e4 * fee / amt, 'token': SYMBOLS.get(tok, tok),
+            'semantics': semantics}
+
+
+def etherfi_payout_records(requests, claims, fin_at, nav_step_at, nav_daily_at, ts_at):
+    """One record per request: the payout against what was requested, the NAV at the request and at the payout, the fee,
+    and the request -> finalization -> claim times. `nav_step_at(block)` is the Rebase-event share rate, `nav_daily_at`
+    the study's interpolated daily getRate; `fin_at` maps id -> (block, ts)."""
+    recs = []
+    for rid, r in sorted(requests.items()):
+        if not r['share'] or not r['amount']:
+            continue
+        rate_req = r['amount'] / r['share']
+        step = nav_step_at(r['block'])
+        daily = nav_daily_at(r['block']) if nav_daily_at else None
+        rec = {'id': rid, 'block': r['block'], 'ts': ts_at(r['block']), 'amount': r['amount'], 'share': r['share'],
+               'owner': r['owner'], 'fee': r['fee'], 'fee_bps': 1e4 * r['fee'] / r['amount'], 'version': r['version'],
+               'rate_at_request': rate_req,
+               'rate_vs_rebase_nav_bps': 1e4 * (rate_req / step - 1) if step else None,
+               'rate_vs_daily_nav_bps': 1e4 * (rate_req / daily - 1) if daily else None}
+        f = fin_at.get(rid)
+        if f:
+            rec['finalized_block'], rec['finalized_ts'] = f
+            rec['wait_days'] = (f[1] - rec['ts']) / 86400.0
+            rate_fin = nav_step_at(f[0])
+            # what a holder who claims at once gives up: the shares' value at finalization against the amount fixed
+            rec['request_vs_nav_at_finalization_bps'] = 1e4 * (r['amount'] / (r['share'] * rate_fin) - 1) if rate_fin else None
+        c = claims.get(rid)
+        if c:
+            rate_claim = nav_step_at(c['block'])
+            rec.update({'claim_block': c['block'], 'claim_ts': ts_at(c['block']), 'paid': c['paid'], 'claim_fee': c['fee'],
+                        'payout_vs_request_bps': 1e4 * (c['paid'] / r['amount'] - 1),
+                        'payout_vs_nav_at_payout_bps': 1e4 * (c['paid'] / (r['share'] * rate_claim) - 1) if rate_claim else None,
+                        'claim_owner': c['owner'], 'owner_changed': c['owner'] != r['owner']})
+            if f:
+                rec['claim_after_final_days'] = (rec['claim_ts'] - f[1]) / 86400.0
+        recs.append(rec)
+    return recs
+
+
+def _dist(xs):
+    xs = [x for x in xs if x is not None]
+    if not xs:
+        return {'n': 0}
+    return {'n': len(xs), 'min': min(xs), 'p01': pct(xs, .01), 'p10': pct(xs, .10), 'p50': pct(xs, .5), 'p90': pct(xs, .9),
+            'p99': pct(xs, .99), 'max': max(xs), 'mean': sum(xs) / len(xs)}
+
+
+def etherfi_analyze(args):
+    out = Path(args.out)
+    man = read_json(out / 'etherfi_manifest.json')
+    headers = read_json(out / 'etherfi_headers.json')
+    fin = read_json(out / 'etherfi_finality.json')
+    if not (man and headers and fin):
+        raise SystemExit('run --step collect and --step finality first')
+    hb = sorted(int(k) for k in headers)
+    hts = [headers[str(n)]['ts'] for n in hb]
+
+    def ts_at(n):
+        return int(round(interp(hb, hts, n)))
+
+    first, last = man['first_block'], man['last_block']
+    # weETH NAV steps from the LiquidityPool's own Rebase events.
+    reb = sorted((hx(l['blockNumber']), hx(l['logIndex']), word(l['data'], 0) / word(l['data'], 1))
+                 for l in load_stream(out, 'ef_lp') if word(l['data'], 1))
+    sx, sy = [b for b, _, _ in reb], [v for _, _, v in reb]
+
+    def nav_step_at(n):
+        return step_at(sx, sy, n)
+    daily = None
+    if args.state:
+        st = read_json(args.state) or {}
+        ds = st.get('samples', {}).get('weeth_nav') or []
+        if ds:
+            dx, dy = [x['block'] for x in ds], [x['value'] for x in ds]
+            daily = lambda n: interp(dx, dy, n)
+    requests, claims, flags, transfers, unknown = decode_etherfi_wrnft(load_stream(out, 'ef_wrnft'))
+    pts = [(x['block'], ts_at(x['block']), int(x['value'])) for x in fin['samples']['last_finalized']]
+    fin_at = finalization_times(pts, {rid: r['block'] for rid, r in requests.items()})
+    recs = etherfi_payout_records(requests, claims, fin_at, nav_step_at, daily, ts_at)
+    end_ts = ts_at(last)
+    requests_amount = collections.defaultdict(float)
+    for r in recs:
+        requests_amount[r['ts']] += r['amount']
+    # The counter cross-check: each daily sample of lastFinalizedRequestId must equal the value after the latest admin
+    # execution at or before it, or finalization also happens somewhere this study does not read.
+    xcheck = None
+    if args.state:
+        st = read_json(args.state) or {}
+        ds = st.get('samples', {}).get('etherfi_last_finalized') or []
+        pb = [p[0] for p in sorted(pts)]
+        pv = [p[2] for p in sorted(pts)]
+        mism = []
+        for x in ds:
+            if x['block'] < pb[0] or x['block'] > pb[-1]:
+                continue
+            v = step_at(pb, pv, x['block'])
+            if v is not None and int(x['value']) != v:
+                mism.append({'block': x['block'], 'daily': int(x['value']), 'from_admin_reads': v})
+        xcheck = {'daily_samples_compared': sum(1 for x in ds if pb[0] <= x['block'] <= pb[-1]), 'mismatches': len(mism), 'examples': mism[:10]}
+    # The rate check: getRate() read at admin blocks against the Rebase step there.
+    rate_check = [1e4 * (x['value'] / nav_step_at(x['block']) - 1) for x in fin['samples']['weeth_rate'] if nav_step_at(x['block'])]
+    in_win = [r for r in recs if first <= r['block'] <= last]
+    claimed = [r for r in in_win if 'paid' in r]
+    final = [r for r in in_win if 'wait_days' in r]
+    months = sorted({utc(r['ts'])[:7] for r in in_win})
+    by_month = {}
+    for m in months:
+        xs = [r for r in in_win if utc(r['ts'])[:7] == m]
+        w = [r['wait_days'] for r in xs if 'wait_days' in r]
+        by_month[m] = {'requests': len(xs), 'eeth': sum(r['amount'] for r in xs),
+                       'wait_days_median': statistics.median(w) if w else None, 'wait_days_p90': pct(w, .9) if w else None,
+                       'wait_days_max': max(w) if w else None,
+                       'pending_or_unfinalized': sum(1 for r in xs if 'wait_days' not in r),
+                       'fee_requests': sum(1 for r in xs if r['fee'] > 0), 'fee_eth': sum(r['fee'] for r in xs),
+                       'payout_vs_request_bps_median': statistics.median([r['payout_vs_request_bps'] for r in xs if 'paid' in r]) if any('paid' in r for r in xs) else None,
+                       'payout_vs_nav_at_payout_bps_median': statistics.median([r['payout_vs_nav_at_payout_bps'] for r in xs if r.get('payout_vs_nav_at_payout_bps') is not None]) if any(r.get('payout_vs_nav_at_payout_bps') is not None for r in xs) else None}
+    gap = [r['payout_vs_request_bps'] for r in claimed]
+    short = [r for r in claimed if r['payout_vs_request_bps'] < -0.01]
+    fees = [r for r in in_win if r['fee'] > 0]
+    # amount-weighted views: what a bid's dollars experience, not a request count
+    amt_short = sum(r['amount'] - r['paid'] for r in claimed if r['paid'] < r['amount'])
+    unfinalized = [r for r in in_win if 'wait_days' not in r]
+    finalized_unclaimed = [r for r in in_win if 'wait_days' in r and 'paid' not in r]
+    inval = set(flags['invalidated'])
+    # Instant redemptions through ether.fi's RedemptionManager, priced fee by fee. The topic-only pass also catches other
+    # protocols' `Redeemed(address,uint256,uint256,uint256)`; they are counted and left out.
+    redeems, other_emitters = [], collections.Counter()
+    for l in load_stream(out, 'ef_redeem'):
+        if l['address'].lower() != ETHERFI_RM:
+            other_emitters[l['address'].lower()] += 1
+            continue
+        x = decode_redeemed(l)
+        if x:
+            x['ts'] = ts_at(x['block'])
+            redeems.append(x)
+    zero_fee = [x for x in redeems if x['fee_bps'] < 0.5]
+    red_by = collections.defaultdict(list)
+    for x in redeems:
+        red_by[(x['address'], utc(x['ts'])[:7], x['token'])].append(x)
+    red_month = {'%s %s %s' % k: {'count': len(v), 'eeth': sum(x['amount'] for x in v), 'fee_bps_median': statistics.median([x['fee_bps'] for x in v]),
+                                  'fee_bps_min': min(x['fee_bps'] for x in v), 'fee_bps_max': max(x['fee_bps'] for x in v)}
+                 for k, v in sorted(red_by.items(), key=lambda kv: (kv[0][1], kv[0][0], kv[0][2]))}
+    # fee schedule changes: runs of the median fee by emitter and token, day by day
+    sched = []
+    by_at = collections.defaultdict(list)
+    for x in redeems:
+        by_at[(x['address'], x['token'])].append(x)
+    for (a, tok), xs in sorted(by_at.items()):
+        xs.sort(key=lambda x: x['block'])
+        cur = None
+        for x in xs:
+            f = round(x['fee_bps'])
+            if f != cur:
+                sched.append({'address': a, 'token': tok, 'from_utc': utc(x['ts']), 'fee_bps': f, 'block': x['block']})
+                cur = f
+    upgrades = [{'address': l['address'].lower(), 'block': hx(l['blockNumber']), 'utc': utc(ts_at(hx(l['blockNumber']))),
+                 'implementation': '0x' + l['topics'][1][-40:]} for l in load_stream(out, 'ef_upgrades')]
+    waits = [(r['ts'], r.get('wait_days'), None if 'wait_days' in r else (end_ts - r['ts']) / 86400.0) for r in recs]
+    # The same waits weighted by amount, one point per UTC day: a large bid joins the queue like a large request, and
+    # large requests waited longer (they need validator exits, not the pool's buffer).
+    by_day = collections.defaultdict(list)
+    for t, w, lb in waits:
+        by_day[t // 86400].append((w if w is not None else lb, requests_amount.get(t, 0.0)))
+    waits_aw = [(d * 86400 + 43200, _weighted_median([(w, max(a, 1e-9)) for w, a in xs]), None) for d, xs in sorted(by_day.items())]
+    ver_counts = collections.Counter((r['version'], 'claimed' if 'paid' in r else 'open') for r in in_win)
+    summary = {
+        'generated': utc(), 'first_block': first, 'last_block': last, 'first_utc': utc(ts_at(first)), 'last_utc': utc(end_ts),
+        'requests_in_window': len(in_win), 'requests_total_decoded': len(requests), 'claims_decoded': len(claims),
+        'event_versions': {'%s %s' % k: v for k, v in sorted(ver_counts.items())}, 'unknown_topics': unknown,
+        'distinct_requesters': len({r['owner'] for r in in_win}), 'nft_transfers_between_holders': transfers,
+        'claims_paid_to_a_different_owner': sum(1 for r in claimed if r.get('owner_changed')),
+        'eeth_requested': sum(r['amount'] for r in in_win), 'eeth_claimed': sum(r['paid'] for r in claimed),
+        'payout_vs_request_bps': _dist(gap),
+        'payout_vs_request': {'exact_share': sum(1 for x in gap if abs(x) < 0.01) / len(gap) if gap else None,
+                              'short_by_more_than_0_01bp': len(short), 'short_eth': amt_short,
+                              'shortest': sorted([{k: r[k] for k in ('id', 'amount', 'paid', 'fee', 'payout_vs_request_bps', 'block', 'claim_block')} for r in short],
+                                                 key=lambda x: x['payout_vs_request_bps'])[:10]},
+        'payout_vs_nav_at_payout_bps': _dist([r['payout_vs_nav_at_payout_bps'] for r in claimed]),
+        'request_vs_nav_at_finalization_bps': _dist([r.get('request_vs_nav_at_finalization_bps') for r in final if r['amount'] >= 0.01]),
+        'dust_requests_under_0_01_eth': sum(1 for r in in_win if r['amount'] < 0.01),
+        'payout_vs_request_bps_excluding_dust': _dist([r['payout_vs_request_bps'] for r in claimed if r['amount'] >= 0.01]),
+        'rate_at_request_vs_rebase_nav_bps': _dist([r['rate_vs_rebase_nav_bps'] for r in in_win if r['amount'] >= 0.01]),
+        'rate_at_request_vs_daily_interpolated_nav_bps': _dist([r['rate_vs_daily_nav_bps'] for r in in_win if r['amount'] >= 0.01]),
+        'getrate_vs_rebase_nav_bps_at_admin_blocks': _dist(rate_check),
+        'fees': {'requests_with_fee': len(fees), 'fee_eth': sum(r['fee'] for r in fees), 'fee_bps': _dist([r['fee_bps'] for r in fees]),
+                 'last_fee_request_utc': utc(max(r['ts'] for r in fees)) if fees else None,
+                 'eeth_of_fee_requests': sum(r['amount'] for r in fees)},
+        'wait_days_request_to_finalization': _dist([r['wait_days'] for r in final]),
+        'wait_days_amount_weighted_median': _weighted_median([(r['wait_days'], r['amount']) for r in final]),
+        'claim_after_finalization_days': _dist([r['claim_after_final_days'] for r in claimed if 'claim_after_final_days' in r]),
+        'request_to_claim_days': _dist([(r['claim_ts'] - r['ts']) / 86400.0 for r in claimed]),
+        'unfinalized_at_end': {'count': len(unfinalized), 'eeth': sum(r['amount'] for r in unfinalized),
+                               'oldest_utc': utc(min(r['ts'] for r in unfinalized)) if unfinalized else None,
+                               'invalidated': sum(1 for r in unfinalized if r['id'] in inval)},
+        'finalized_unclaimed_at_end': {'count': len(finalized_unclaimed), 'eeth': sum(r['amount'] for r in finalized_unclaimed)},
+        'invalidated': sorted(inval), 'validated': sorted(set(flags['validated'])), 'seized': sorted(set(flags['seized'])),
+        'invalidated_detail': [{k: r.get(k) for k in ('id', 'amount', 'owner', 'ts', 'paid', 'wait_days')} for r in in_win if r['id'] in inval][:40],
+        'by_month': by_month,
+        'counter_cross_check': xcheck,
+        'rebase_events': len(reb), 'admin_execution_blocks': fin.get('admin_blocks'),
+        'instant_redemptions': {'events': len(redeems), 'emitters': sorted({x['address'] for x in redeems}),
+                                'other_protocols_emitting_the_topic': dict(other_emitters.most_common(12)),
+                                'eeth_by_token': {t: sum(x['amount'] for x in redeems if x['token'] == t) for t in sorted({x['token'] for x in redeems})},
+                                'first_utc': utc(min(x['ts'] for x in redeems)) if redeems else None,
+                                'by_month': red_month, 'fee_schedule': sched,
+                                'fee_bps_all': _dist([x['fee_bps'] for x in redeems]),
+                                'zero_fee': {'count': len(zero_fee), 'eeth': sum(x['amount'] for x in zero_fee),
+                                             'by_token': dict(collections.Counter(x['token'] for x in zero_fee)),
+                                             'by_month': {m: {'count': sum(1 for x in zero_fee if utc(x['ts'])[:7] == m),
+                                                              'eeth': sum(x['amount'] for x in zero_fee if utc(x['ts'])[:7] == m)}
+                                                          for m in sorted({utc(x['ts'])[:7] for x in zero_fee})},
+                                             'receivers': len({x['receiver'] for x in zero_fee}),
+                                             'largest_receivers_eeth': sorted(collections.Counter({r: sum(x['amount'] for x in zero_fee if x['receiver'] == r)
+                                                                                                   for r in {x['receiver'] for x in zero_fee}}).values(), reverse=True)[:3]}},
+        'upgrades': upgrades,
+    }
+    write_json(out / 'etherfi_payouts.json', {'summary': summary, 'waits': waits, 'waits_aw': waits_aw,
+                                              'nav_steps': [[b, v] for b, _, v in reb]})
+    with gzip.open(out / 'etherfi_requests.jsonl.gz', 'wt') as f:
+        for r in recs:
+            f.write(json.dumps(r) + '\n')
+    print(json.dumps({k: summary[k] for k in ('requests_in_window', 'event_versions', 'payout_vs_request_bps', 'payout_vs_nav_at_payout_bps',
+                                              'rate_at_request_vs_rebase_nav_bps', 'rate_at_request_vs_daily_interpolated_nav_bps',
+                                              'wait_days_request_to_finalization', 'fees', 'unfinalized_at_end', 'counter_cross_check')}, indent=1, default=str))
+
+
+def _weighted_median(pairs):
+    xs = sorted((v, w) for v, w in pairs if v is not None and w)
+    tot = sum(w for _, w in xs)
+    if not tot:
+        return None
+    acc = 0.0
+    for v, w in xs:
+        acc += w
+        if acc >= tot / 2:
+            return v
+    return xs[-1][0]
+
+
+# ------------------------------------------------------------------------------- LBTC payouts matched on Bitcoin
+# LBTC is redeemed on Ethereum and paid on Bitcoin, so its payout check reads both chains: the redeem request (LBTC's
+# `UnstakeRequest` before 2025-11-20; since then the Lombard Mailbox `MessageSent` whose inner payload, selector
+# 0xaa3db85f, carries (destination chain, token, sender, script, amount)), the script turned into a bech32 address, and
+# the first payment to it after the request (mempool.space) taken as the payout when it is within 1% of the amount
+# times the rate (or times one).
+LOMBARD_MAILBOX = '0x964677f337d6528d659b1892d0045b8b27183fc0'
+LOMBARD_ROUTER = '0x9ece5fb1ab62d9075c4ec814b321e24d8ea021ac'
+LBTC_TOPICS = {'MessageSent': keccak('MessageSent(bytes32,address,bytes32,bytes)'),
+               'UnstakeRequest': keccak('UnstakeRequest(address,bytes,uint256)')}
+BITCOIN_LCHAIN = 'ff0000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f'
+_BECH32 = 'qpzry9x8gf2tvdw0s3jn54khce6mua7l'
+
+
+def segwit_address(script_hex, hrp='bc'):
+    """A segwit output script (v0 P2WPKH/P2WSH, v1 P2TR) as its bech32 / bech32m address; None for other scripts."""
+    b = bytes.fromhex(script_hex)
+    if len(b) < 4 or b[1] != len(b) - 2 or not (b[0] == 0 or 0x51 <= b[0] <= 0x60):
+        return None
+    ver = 0 if b[0] == 0 else b[0] - 0x50
+    acc = bits = 0
+    data = [ver]
+    for v in b[2:]:
+        acc, bits = (acc << 8) | v, bits + 8
+        while bits >= 5:
+            bits -= 5
+            data.append((acc >> bits) & 31)
+    if bits:
+        data.append((acc << (5 - bits)) & 31)
+
+    def polymod(values):
+        chk = 1
+        for v in values:
+            top = chk >> 25
+            chk = (chk & 0x1ffffff) << 5 ^ v
+            for i, g in enumerate((0x3b6a57b2, 0x26508e6d, 0x1ea119fa, 0x3d4233dd, 0x2a1462b3)):
+                chk ^= g if (top >> i) & 1 else 0
+        return chk
+    hx_ = [ord(c) >> 5 for c in hrp] + [0] + [ord(c) & 31 for c in hrp]
+    pm = polymod(hx_ + data + [0] * 6) ^ (1 if ver == 0 else 0x2bc830a3)
+    return hrp + '1' + ''.join(_BECH32[d] for d in data + [(pm >> 5 * (5 - i)) & 31 for i in range(6)])
+
+
+def decode_lombard_redeem(log):
+    """A Mailbox MessageSent (router-sent redeem) or an LBTC UnstakeRequest -> {block, tx, amount_sats, script,
+    to_bitcoin, event}, or None. Amounts are LBTC (8 decimals) after Lombard's redeem fee."""
+    t0, d = log['topics'][0], log['data'][2:]
+    if t0 == LBTC_TOPICS['UnstakeRequest']:
+        off, amt = int(d[0:64], 16), int(d[64:128], 16)
+        ln = int(d[2 * off: 2 * off + 64], 16)
+        return {'block': hx(log['blockNumber']), 'tx': log['transactionHash'], 'amount_sats': amt, 'event': 'UnstakeRequest',
+                'script': d[2 * off + 64: 2 * off + 64 + 2 * ln], 'to_bitcoin': True}
+    if t0 == LBTC_TOPICS['MessageSent']:
+        i = d.find('aa3db85f')
+        if i < 0 or i % 2:              # the selector must start on a byte boundary
+            return None
+        body = d[i + 8:]
+        w = [body[k:k + 64] for k in range(0, 64 * 5, 64)]
+        off = int(w[3], 16)
+        ln = int(body[2 * off: 2 * off + 64], 16)
+        return {'block': hx(log['blockNumber']), 'tx': log['transactionHash'], 'amount_sats': int(w[4], 16), 'event': 'MessageSent',
+                'script': body[2 * off + 64: 2 * off + 64 + 2 * ln], 'to_bitcoin': w[0] == BITCOIN_LCHAIN, 'token': '0x' + w[1][-40:]}
+    return None
+
+
+def match_btc_payout(request_ts, amount_sats, rate, payments, tol=0.01):
+    """payments: [(block_time, sats, txid)] received by the request's address. The first payment after the request
+    within `tol` of amount x rate, or of amount x 1 (LBTC before its rate), is the payout; None when none is."""
+    for bt, v, tid in sorted(payments):
+        if bt < request_ts:
+            continue
+        if abs(v / (amount_sats * rate) - 1) < tol or abs(v / amount_sats - 1) < tol:
+            return bt, v, tid
+    return None
+
+
+# ------------------------------------------------------------------------------------------- the extension's report
+def regime_table(records, cuts, thresholds=(5.0, 10.0, 20.0, 30.0)):
+    """Hourly volume-weighted discount distribution in each regime between consecutive `cuts` [(label, start_ts)],
+    the last running to the end: does an instant redemption route cap the market discount after it opens?"""
+    hrs = hourly_series(records)
+    cuts = sorted(cuts, key=lambda c: c[1])
+    out = []
+    for i, (label, t0) in enumerate(cuts):
+        t1 = cuts[i + 1][1] if i + 1 < len(cuts) else float('inf')
+        vw = [h['vw_discount_bps'] for h in hrs if t0 <= h['hour'] < t1 and h['vw_discount_bps'] is not None]
+        row = {'regime': label, 'from_utc': utc(t0), 'hours': len(vw), **({k: v for k, v in distribution(vw).items()} if vw else {})}
+        for th in thresholds:
+            row['share_at_least_%gbp' % th] = (sum(1 for x in vw if x >= th) / len(vw)) if vw else None
+        out.append(row)
+    return out
+
+
+def _sim_rows(asset):
+    """The simulation grid of one asset in analysis.json as flat rows, smallest size first."""
+    rows = []
+    for size, g in sorted((asset or {}).get('simulation', {}).items(), key=lambda kv: float(kv[0])):
+        rows.append({'size_usd': float(size), 'hurdle': g['chosen_hurdle'], 'in_sample_usd_per_year': g['in_sample_usd_per_year'],
+                     'oos_usd_per_year': g['out_of_sample_usd_per_year'], 'oos_ci95': g['oos_ci95_usd_per_year'],
+                     'trailing_90d_usd_per_year': g.get('trailing_90d_usd_per_year'), 'fills': g['fills'], 'fills_oos': g['fills_oos'],
+                     'median_edge_bps': g['median_edge_bps'], 'missed_capital_usd': g['stats']['missed_capital_usd']})
+    return rows
+
+
+def cmd_report(args):
+    """The queue-bid extension's own analysis.json and tables.md: the ether.fi payout check, the weETH re-quote, the
+    instant route's effect, and the new assets' simulations, read from the files the other steps wrote under --out."""
+    out = Path(args.out)
+    ef = read_json(out / 'etherfi_payouts.json') or {}
+    es = ef.get('summary') or {}
+    lw_dir = out / 'raw' / 'etherfi_long'
+    lw = read_json(lw_dir / 'analysis.json') or {}
+    na = read_json(out / 'raw' / 'new_assets' / 'analysis.json') or {}
+    A = {'generated': utc(), 'etherfi_payout_check': es, 'weeth_requote': {}, 'instant_route': {}, 'new_assets': {},
+         'candidates': read_json(out / 'candidates.json') or {}}
+    for k in ('etherfi', 'etherfi_ev'):
+        x = (lw.get('assets') or {}).get(k)
+        if x:
+            A['weeth_requote'][k] = {'label': x['label'], 'capacity_usd': x['capacity_usd'], 'binding': x['binding_constraint'],
+                                     'oos_usd_per_year_at_capacity': x['oos_usd_per_year_at_capacity'],
+                                     'wait': {kk: vv for kk, vv in x['wait'].items() if kk != 'by_month_median_days'},
+                                     'wait_by_month_median_days': x['wait'].get('by_month_median_days'),
+                                     'nav_max_daily_step_bps': x['nav_max_daily_step_bps'], 'grid': _sim_rows(x),
+                                     'window': [lw.get('first_utc'), lw.get('last_utc')], 'split_utc': lw.get('split_utc')}
+    # Did the instant route cap the market discount? Hourly weETH discounts by regime, cut where the route opened or
+    # changed (from the RedemptionManager's own fee schedule).
+    sw = lw_dir / 'swaps_etherfi_ev.jsonl.gz'
+    if not sw.exists():
+        sw = lw_dir / 'swaps_etherfi.jsonl.gz'
+    if sw.exists() and es.get('instant_redemptions'):
+        with gzip.open(sw, 'rt') as f:
+            recs = [json.loads(l) for l in f]
+        sched = es['instant_redemptions'].get('fee_schedule') or []
+        bym = es['instant_redemptions'].get('by_month') or {}
+        firsts = {}
+        for x in sched:
+            firsts.setdefault(x['token'], x)
+        cuts = [('no instant route', min(r['ts'] for r in recs))]
+        for tok, x in sorted(firsts.items(), key=lambda kv: kv[1]['from_utc']):
+            t = int(dt.datetime.fromisoformat(x['from_utc'].replace('Z', '+00:00')).timestamp())
+            # the public fee is the fee most redemptions of that output paid (a few large holders redeemed fee-free)
+            fees = sorted(v['fee_bps_max'] for k, v in bym.items() if k.endswith(' ' + tok))
+            pub = fees[len(fees) // 2] if fees else x['fee_bps']
+            cuts.append(('instant into %s opens (%.0fbp public)' % (tok, pub), t))
+        A['instant_route'] = {'regimes': regime_table(recs, cuts), 'swaps_file': str(sw.relative_to(out))}
+    for k, x in (na.get('assets') or {}).items():
+        A['new_assets'][k] = {'label': x['label'], 'unit': x['unit'], 'swaps_priced': x['swaps_priced'], 'volume_usd': x['volume_usd'],
+                              'sell_volume_usd': x['sell_volume_usd'], 'hourly_vw_discount_bps': x['hourly_vw_discount_bps'],
+                              'sell_discount_bps': x['sell_discount_bps'], 'by_pool': x['by_pool'],
+                              'wait': {kk: vv for kk, vv in x['wait'].items() if kk != 'by_month_median_days'},
+                              'capacity_usd': x['capacity_usd'], 'binding': x['binding_constraint'],
+                              'oos_usd_per_year_at_capacity': x['oos_usd_per_year_at_capacity'], 'oos_ci95_at_capacity': x['oos_ci95_at_capacity'],
+                              'trailing_90d_usd_per_year_at_capacity': x['trailing_90d_usd_per_year_at_capacity'],
+                              'grid': _sim_rows(x), 'excluded_prints': x['excluded_prints']['count'],
+                              'redemption': x['redemption'], 'redemption_check': x.get('redemption_check')}
+    # LBTC pays bitcoin off Ethereum: the payout check is a sample of redemptions matched to bitcoin transactions
+    # (mempool.space), written by the study under raw/lbtc_payout.
+    bs = read_json(out / 'raw' / 'lbtc_payout' / 'btc_payout_sample.json') or []
+    if bs:
+        A['lbtc_payout_check'] = {}
+        for ev in sorted({x['event'] for x in bs}):
+            xs = [x for x in bs if x['event'] == ev]
+            ok = [x for x in xs if x['matched']]
+            A['lbtc_payout_check'][ev] = {
+                'sampled': len(xs), 'matched': len(ok), 'first_request_utc': min(x['request_utc'] for x in xs), 'last_request_utc': max(x['request_utc'] for x in xs),
+                'wait_days': _dist([x['wait_days'] for x in ok]), 'paid_vs_rate_at_request_bps': _dist([x['paid_vs_rate_at_request_bps'] for x in ok]),
+                'paid_per_lbtc': _dist([x['paid_per_lbtc'] for x in ok]),
+                'method': 'redeem requests decoded from Ethereum (LBTC UnstakeRequest before 2025-11-20, Lombard Mailbox MessageSent since), '
+                          'scriptPubkey turned into a bech32 address, first incoming bitcoin payment after the request within 1% of the amount '
+                          'times getRate (or times 1) taken as the payout; addresses that also received other payments can mismatch'}
+    pr = read_json(out / 'raw' / 'lbtc_payout' / 'paid_vs_rate_at_payout.json')
+    if pr and A.get('lbtc_payout_check'):
+        A['lbtc_payout_check']['paid_vs_rate_on_payout_day_bps'] = {k: v for k, v in pr.items() if k != 'rows'}
+    if na:
+        A['new_assets_window'] = {'first_utc': na.get('first_utc'), 'last_utc': na.get('last_utc'), 'split_utc': na.get('split_utc'),
+                                  'benchmarks': na.get('benchmarks'), 'variants_tried_by_asset': na.get('variants_tried_by_asset')}
+    write_json(out / 'analysis.json', A)
+    (out / 'tables.md').write_text('\n'.join(render_report(A)) + '\n')
+    print('wrote', out / 'analysis.json', out / 'tables.md')
+
+
+def render_report(A):
+    es = A.get('etherfi_payout_check') or {}
+    L = ['# Queue bids, extended: tables', '', 'Generated %s by `dislocation_history.py report`; every number is in analysis.json.' % A['generated'], '']
+    if es:
+        g, n = es['payout_vs_request_bps'], es['payout_vs_nav_at_payout_bps']
+        w = es['wait_days_request_to_finalization']
+        L += ['## A. ether.fi payout check (WithdrawRequestNFT, %s to %s)' % (es['first_utc'][:10], es['last_utc'][:10]), '',
+              '| measure | n | min | p1 | p10 | p50 | p90 | p99 | max |', '|---|---:|---:|---:|---:|---:|---:|---:|---:|']
+        for name, d in (('payout vs eETH requested (bp)', g), ('payout vs eETH requested, requests of 0.01 eETH or more (bp)', es.get('payout_vs_request_bps_excluding_dust') or {}),
+                        ('eETH requested vs share value at finalization (bp): the yield a prompt claimer forgoes', es.get('request_vs_nav_at_finalization_bps') or {}),
+                        ('payout vs share value at the claim (bp): includes owners who waited to claim', n),
+                        ('request rate vs Rebase-event NAV (bp)', es['rate_at_request_vs_rebase_nav_bps']),
+                        ('request rate vs daily interpolated getRate (bp)', es['rate_at_request_vs_daily_interpolated_nav_bps']),
+                        ('getRate vs Rebase-event NAV at admin blocks (bp)', es['getrate_vs_rebase_nav_bps_at_admin_blocks']),
+                        ('request to finalization (days)', w), ('finalization to claim (days)', es['claim_after_finalization_days']),
+                        ('request to claim (days)', es['request_to_claim_days'])):
+            if d.get('n'):
+                L.append('| %s | %d | %s | %s | %s | %s | %s | %s | %s |' % (name, d['n'], *['%.3f' % d[k] for k in ('min', 'p01', 'p10', 'p50', 'p90', 'p99', 'max')]))
+        pv = es['payout_vs_request']
+        L += ['', 'Requests in window %d (%s eETH) from %d addresses; claims decoded %d; event versions %s. Exact payouts %s; short by more than 0.01bp: %d (%.6f ETH in all). '
+              'Fees: %d requests carried one (%.6f ETH). Invalidated %s; seized %s. Unfinalized at the end %d (%.2f eETH); finalized but unclaimed %d (%.2f eETH). '
+              'NFTs moved between holders %d times; %d claims paid an owner other than the requester. Amount-weighted median wait %.2f days.' % (
+                  es['requests_in_window'], format(round(es['eeth_requested']), ','), es['distinct_requesters'], es['claims_decoded'], json.dumps(es['event_versions']),
+                  fmt_pct(pv['exact_share']), pv['short_by_more_than_0_01bp'], pv['short_eth'], es['fees']['requests_with_fee'], es['fees']['fee_eth'],
+                  es['invalidated'], es['seized'], es['unfinalized_at_end']['count'], es['unfinalized_at_end']['eeth'],
+                  es['finalized_unclaimed_at_end']['count'], es['finalized_unclaimed_at_end']['eeth'], es['nft_transfers_between_holders'],
+                  es['claims_paid_to_a_different_owner'], es['wait_days_amount_weighted_median'] or 0), '']
+        if es.get('counter_cross_check'):
+            c = es['counter_cross_check']
+            L += ['Counter cross-check: %d daily samples of lastFinalizedRequestId (the 2026-10-09 study) compared with the value after the latest admin execution: %d mismatches.' % (
+                c['daily_samples_compared'], c['mismatches']), '']
+        L += ['| month | requests | eETH | wait p50 (days) | p90 | max | unfinalized | payout vs request p50 (bp) | vs NAV at payout p50 (bp) |', '|---|---:|---:|---:|---:|---:|---:|---:|---:|']
+        for m, x in es['by_month'].items():
+            L.append('| %s | %d | %s | %s | %s | %s | %d | %s | %s |' % (m, x['requests'], format(round(x['eeth']), ','), fmt_bps(x['wait_days_median']), fmt_bps(x['wait_days_p90']),
+                                                                    fmt_bps(x['wait_days_max']), x['pending_or_unfinalized'], fmt_bps(x['payout_vs_request_bps_median']),
+                                                                    fmt_bps(x['payout_vs_nav_at_payout_bps_median'])))
+        ir = es.get('instant_redemptions') or {}
+        L += ['', '### Instant redemptions (EtherFiRedemptionManager)', '', 'Events %d, first %s; eETH by output %s.' % (
+            ir.get('events', 0), ir.get('first_utc'), json.dumps({k: round(v) for k, v in (ir.get('eeth_by_token') or {}).items()})), '',
+              '| from (UTC) | output | fee bp |', '|---|---|---:|'] + ['| %s | %s | %d |' % (x['from_utc'][:16], x['token'], x['fee_bps']) for x in ir.get('fee_schedule', [])]
+        L += ['', '| month, output | redemptions | eETH | fee bp p50 | min | max |', '|---|---:|---:|---:|---:|---:|']
+        for k, x in (ir.get('by_month') or {}).items():
+            L.append('| %s | %d | %s | %.1f | %.1f | %.1f |' % (k.split(' ', 1)[1], x['count'], format(round(x['eeth']), ','), x['fee_bps_median'], x['fee_bps_min'], x['fee_bps_max']))
+        L += ['', 'Implementation upgrades in the window: ' + '; '.join('%s %s -> %s' % (u['utc'][:10], SYMBOLS.get(u['address'], u['address'][:10]), u['implementation'][:10]) for u in es.get('upgrades', [])), '']
+    rq = A.get('weeth_requote') or {}
+    if rq:
+        L += ['## B. The weETH bid re-quoted (two-year window, hurdle chosen on the first year)', '']
+        for k, x in rq.items():
+            L += ['### %s' % x['label'], '', 'Wait: %s. Capacity %s (%s). NAV max daily step %s.' % (
+                json.dumps({kk: (round(vv, 3) if isinstance(vv, float) else vv) for kk, vv in x['wait'].items()}), fmt_usd(x['capacity_usd']), x['binding'],
+                json.dumps({kk: round(vv, 2) for kk, vv in x['nav_max_daily_step_bps'].items() if vv is not None})), '',
+                  '| size | hurdle | in-sample $/yr | OOS $/yr | 95% CI | trailing 90d $/yr | fills (OOS) | median edge bp | missed for capital |',
+                  '|---:|---|---:|---:|---|---:|---:|---:|---:|']
+            for r in x['grid']:
+                ci = r['oos_ci95'] or [None, None]
+                L.append('| %s | %s | %s | %s | %s to %s | %s | %d (%d) | %s | %s |' % (fmt_usd(r['size_usd']), r['hurdle'], fmt_usd(r['in_sample_usd_per_year']), fmt_usd(r['oos_usd_per_year']),
+                                                                               fmt_usd(ci[0]), fmt_usd(ci[1]), fmt_usd(r['trailing_90d_usd_per_year']), r['fills'], r['fills_oos'],
+                                                                               fmt_bps(r['median_edge_bps']), fmt_usd(r['missed_capital_usd'])))
+            L.append('')
+    ir = A.get('instant_route') or {}
+    if ir.get('regimes'):
+        L += ['## C. Did the instant route cap the weETH discount? Hourly VW discount by regime', '',
+              '| regime | from | hours | p50 | p90 | p99 | max | >= 5bp | >= 10bp | >= 20bp | >= 30bp |', '|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|']
+        for r in ir['regimes']:
+            L.append('| %s | %s | %d | %s | %s | %s | %s | %s | %s | %s | %s |' % (r['regime'], r['from_utc'][:10], r['hours'], fmt_bps(r.get('p50')), fmt_bps(r.get('p90')),
+                                                                          fmt_bps(r.get('p99')), fmt_bps(r.get('max')), fmt_pct(r.get('share_at_least_5bp')),
+                                                                          fmt_pct(r.get('share_at_least_10bp')), fmt_pct(r.get('share_at_least_20bp')), fmt_pct(r.get('share_at_least_30bp'))))
+        L.append('')
+    na = A.get('new_assets') or {}
+    if na:
+        w = A.get('new_assets_window') or {}
+        L += ['## D. New assets (%s to %s, split %s)' % ((w.get('first_utc') or '')[:10], (w.get('last_utc') or '')[:10], (w.get('split_utc') or '')[:10]), '']
+        for k, x in na.items():
+            h, sd = x['hourly_vw_discount_bps'], x['sell_discount_bps']
+            L += ['### %s' % x['label'], '', 'Unit %s. Swaps %d, volume %s, sold %s; excluded prints %d. Hourly VW discount p50/p90/p99 %s/%s/%s bp; sells p50/p90/p99 %s/%s/%s bp. Wait %s. Capacity %s (%s); OOS %s a year (CI %s), trailing 90 days %s.' % (
+                x['unit'], x['swaps_priced'], fmt_usd(x['volume_usd']), fmt_usd(x['sell_volume_usd']), x['excluded_prints'], fmt_bps(h.get('p50')), fmt_bps(h.get('p90')), fmt_bps(h.get('p99')),
+                fmt_bps(sd.get('p50')), fmt_bps(sd.get('p90')), fmt_bps(sd.get('p99')), json.dumps({kk: (round(vv, 2) if isinstance(vv, float) else vv) for kk, vv in x['wait'].items()}),
+                fmt_usd(x['capacity_usd']), x['binding'], fmt_usd(x['oos_usd_per_year_at_capacity']), ' to '.join(fmt_usd(c) for c in (x['oos_ci95_at_capacity'] or [None, None])),
+                fmt_usd(x['trailing_90d_usd_per_year_at_capacity'])), '',
+                  '| pool | swaps | volume | sell volume | VW discount bp | median sell bp | fee bp |', '|---|---:|---:|---:|---:|---:|---:|']
+            for name, p in x['by_pool'].items():
+                L.append('| %s | %d | %s | %s | %s | %s | %s |' % (name, p['swaps'], fmt_usd(p['volume_usd']), fmt_usd(p['sell_volume_usd']), fmt_bps(p['vw_discount_bps']),
+                                                               fmt_bps(p['median_sell_discount_bps']), '-' if p['fee_bps'] is None else '%.2f' % p['fee_bps']))
+            L += ['', '| size | hurdle | in-sample $/yr | OOS $/yr | 95% CI | trailing 90d $/yr | fills (OOS) | median edge bp |', '|---:|---|---:|---:|---|---:|---:|---:|']
+            for r in x['grid']:
+                ci = r['oos_ci95'] or [None, None]
+                L.append('| %s | %s | %s | %s | %s to %s | %s | %d (%d) | %s |' % (fmt_usd(r['size_usd']), r['hurdle'], fmt_usd(r['in_sample_usd_per_year']), fmt_usd(r['oos_usd_per_year']),
+                                                                         fmt_usd(ci[0]), fmt_usd(ci[1]), fmt_usd(r['trailing_90d_usd_per_year']), r['fills'], r['fills_oos'], fmt_bps(r['median_edge_bps'])))
+            L.append('')
+    lp = A.get('lbtc_payout_check') or {}
+    if lp:
+        L += ['## D2. LBTC payouts matched on Bitcoin (sample)', '', '| request event | sampled | matched | requests from | to | wait p50 (days) | wait max | paid vs getRate at request p50 (bp) | min | max | BTC paid per LBTC p50 |',
+              '|---|---:|---:|---|---|---:|---:|---:|---:|---:|---:|']
+        for ev, x in lp.items():
+            if 'wait_days' not in x:
+                continue
+            w, g, pp = x['wait_days'], x['paid_vs_rate_at_request_bps'], x['paid_per_lbtc']
+            L.append('| %s | %d | %d | %s | %s | %s | %s | %s | %s | %s | %s |' % (ev, x['sampled'], x['matched'], x['first_request_utc'][:10], x['last_request_utc'][:10],
+                                                                       fmt_bps(w.get('p50')), fmt_bps(w.get('max')), fmt_bps(g.get('p50')), fmt_bps(g.get('min')), fmt_bps(g.get('max')),
+                                                                       '-' if pp.get('p50') is None else '%.6f' % pp['p50']))
+        pd = lp.get('paid_vs_rate_on_payout_day_bps')
+        if pd:
+            v = pd['vs_last_daily_sample_bps']
+            L += ['', 'Paid per LBTC against getRate on the payout day (last daily sample before the payout), %d payouts since 2025-11: median %.2fbp, %.2f to %.2fbp. The payout applies the rate at payout, not at the request.' % (
+                v['n'], v['median'], v['min'], v['max'])]
+        L.append('')
+    c = A.get('candidates') or {}
+    if c.get('rows'):
+        L += ['## E. Candidates ranked by DEX liquidity and redemption access (GeckoTerminal 24h, %s)' % c.get('snapshot_utc', ''), '',
+              '| rank | token | 24h volume vs unit | reserve vs unit | redemption | access | queue | verdict |', '|---:|---|---:|---:|---|---|---|---|']
+        for i, r in enumerate(c['rows'], 1):
+            L.append('| %d | %s | %s | %s | %s | %s | %s | %s |' % (i, r['token'], fmt_usd(r.get('vol24h_usd_vs_unit')), fmt_usd(r.get('reserve_usd_vs_unit')), r.get('redemption', ''),
+                                                             r.get('access', ''), r.get('queue', ''), r.get('verdict', '')))
+        L.append('')
+    return L
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest='cmd', required=True)
@@ -2438,7 +3466,25 @@ def main():
     d.add_argument('--out', required=True)
     d.add_argument('--force-findings', action='store_true')
     d.add_argument('--assets', help='the redemption surface (see collect)')
+    e = sub.add_parser('etherfi', help='the ether.fi payout check: --step collect, finality, analyze')
+    e.add_argument('--out', required=True)
+    e.add_argument('--step', required=True, choices=['collect', 'finality', 'analyze'])
+    e.add_argument('--batch', type=int, default=4)
+    e.add_argument('--max-credits', type=int, default=1_500_000)
+    e.add_argument('--reset', action='store_true')
+    e.add_argument('--first-block', type=int, default=ETHERFI_FIRST_BLOCK)
+    e.add_argument('--last-block', type=int, help='collect: pin the last block (parallel collectors must agree on it)')
+    e.add_argument('--only', help='collect: comma list of stream names')
+    e.add_argument('--seed-headers', help='collect: a headers.json on the same daily grid to reuse')
+    e.add_argument('--endpoints', help='finality: comma-separated archive endpoints')
+    e.add_argument('--state', help='analyze: a surface state.json with daily weeth_nav and etherfi counters to cross-check')
+    r = sub.add_parser('report', help="the queue-bid extension's analysis.json from the files the other steps wrote")
+    r.add_argument('--out', required=True)
     args = p.parse_args()
+    if args.cmd == 'etherfi':
+        return cmd_etherfi(args)
+    if args.cmd == 'report':
+        return cmd_report(args)
     if getattr(args, 'assets', None):
         {'collect': cmd_surface_collect, 'nav': cmd_surface_nav, 'analyze': cmd_surface_analyze, 'render': cmd_surface_render}[args.cmd](args)
     else:

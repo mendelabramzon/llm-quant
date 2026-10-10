@@ -152,6 +152,16 @@ def test_complete_days_drops_today_and_converts():
     assert CC.complete_days([['2026-10-08', 5], ['2026-10-09', 6]], '2026-10-09') == {'2026-10-08': 5.0}
 
 
+def test_a_missing_stablecoin_reading_is_a_gap_not_a_zero():
+    ts = int(dt.datetime(2026, 8, 27, tzinfo=dt.timezone.utc).timestamp())
+    rows = [{'date': ts, 'totalCirculatingUSD': {'peggedUSD': 5e8}},
+            {'date': ts + 86400, 'totalCirculatingUSD': {}},                 # DefiLlama's missing day (Linea, 08-28)
+            {'date': ts + 2 * 86400, 'totalCirculatingUSD': {'peggedUSD': 5.1e8}}]
+    pts = CC.stable_points(rows)
+    assert pts[1] == [ts + 86400, None]
+    assert CC.complete_days(pts, '2026-10-09') == {'2026-08-27': 5e8, '2026-08-29': 5.1e8}
+
+
 def test_tiers():
     assert CC.tier_of({'dex_7d_avg': 2e8}) == 'deep'
     assert CC.tier_of({'dex_7d_avg': 2e7, 'stables': 2e9}) == 'deep'

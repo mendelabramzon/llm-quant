@@ -1,0 +1,102 @@
+{
+ "analysis_seconds": 20.0,
+ "books": "research/2026-10-10/tradfi_perps/raw/books/books_20261010T1146.json.gz",
+ "code": {
+  "scripts/backtest.py": "1612c262fb3d0e97",
+  "scripts/equity_offhours.py": "01014870d43add49",
+  "scripts/funding_arb.py": "70539092f2c803f3",
+  "scripts/roll_carry.py": "f2735c2cef8343fc",
+  "scripts/tradfi_perps.py": "9955ce97a7c13448"
+ },
+ "collect": {
+  "failures": [],
+  "generated": "2026-10-10T11:38:43Z",
+  "http": {
+   "errors": 8,
+   "requests": 2424,
+   "throttled": 0
+  },
+  "http_funding": {
+   "errors": 0,
+   "requests": 212,
+   "throttled": 0
+  },
+  "rows": {
+   "funding_rows": 77820,
+   "index_rows": 541003,
+   "klines_rows": 548963,
+   "premium_rows": 548963
+  },
+  "seconds": 782.1,
+  "symbols": 217
+ },
+ "counts": {
+  "binance_symbols": 216,
+  "carry_families": 6,
+  "carry_variants_per_family": 6,
+  "grid_pairs": 118,
+  "pairs": 123,
+  "variants_grid": 108
+ },
+ "generated": "2026-10-10T11:55:14Z",
+ "hl_topup": {
+  "api": {
+   "errors": 19,
+   "requests": 265,
+   "throttled": 19
+  },
+  "at": "2026-10-10T11:42:37Z",
+  "count": 123,
+  "failures": []
+ },
+ "sources": {
+  "binance": {
+   "calls": [
+    "/fapi/v1/exchangeInfo",
+    "/fapi/v1/fundingInfo",
+    "/fapi/v1/premiumIndex",
+    "/fapi/v1/ticker/24hr",
+    "/fapi/v1/fundingRate (paged)",
+    "/fapi/v1/klines 1h",
+    "/fapi/v1/premiumIndexKlines 1h",
+    "/fapi/v1/indexPriceKlines 1h",
+    "/fapi/v1/constituents",
+    "/fapi/v1/openInterest",
+    "/futures/data/openInterestHist 1d",
+    "/fapi/v1/depth 500"
+   ],
+   "endpoint": "https://fapi.binance.com"
+  },
+  "equity_offhours": "research/2026-10-09/equity_offhours (Nasdaq refs, book costs)",
+  "hyperliquid": {
+   "books": "l2Book (fine and nSigFigs 4), metaAndAssetCtxs per dex",
+   "stores": [
+    "research/2026-09-10/perps_history",
+    "research/2026-10-09/perps_hip3",
+    "research/2026-10-09/perps_history"
+   ],
+   "topup": "raw/hl_topup (fundingHistory, candleSnapshot 1h from 2026-10-09)"
+  },
+  "roll_carry": "research/2026-10-09/roll_carry/raw/yahoo (contract-month futures, 60m)",
+  "yahoo": "v8 chart 1d with dividends and splits (UA Mozilla/5.0)"
+ },
+ "yahoo": {
+  "api": null,
+  "at": "2026-10-10T11:34:52Z",
+  "count": 175,
+  "failures": [
+   {
+    "error": "RuntimeError('BBX: HTTP 404')",
+    "symbol": "BBX"
+   },
+   {
+    "error": "RuntimeError('QNTX: HTTP 404')",
+    "symbol": "QNTX"
+   },
+   {
+    "error": "RuntimeError('USDEX: HTTP 404')",
+    "symbol": "USDEX"
+   }
+  ]
+ }
+}

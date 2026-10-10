@@ -1,0 +1,272 @@
+{
+ "analysis_generated": "2026-10-10T11:52:02+00:00",
+ "counts": {
+  "basis_days": {
+   "binance:BTC": 2076,
+   "binance:ETH": 2075,
+   "cme:BTC": 499,
+   "cme:ETH": 495,
+   "deribit:BTC": 2511,
+   "deribit:ETH": 2474
+  },
+  "boros_market_days_scored": 7080,
+  "boros_markets": 225,
+  "carry_blocks": 42,
+  "carry_variants_tried": 196,
+  "vrp_days": {
+   "BTC": 1996,
+   "ETH": 1996
+  }
+ },
+ "endpoints": {
+  "binance_fapi": "https://fapi.binance.com /fapi/v1/continuousKlines (CURRENT_QUARTER, NEXT_QUARTER, PERPETUAL; 1d), /fapi/v1/indexPriceKlines, /fapi/v1/fundingRate, /fapi/v1/premiumIndexKlines, /fapi/v1/klines, /fapi/v1/depth, /fapi/v1/openInterest, /fapi/v1/ticker/24hr",
+  "binance_spot": "https://api.binance.com /api/v3/klines (1h, realised volatility), /api/v3/depth",
+  "boros": "https://api-boros.pendle.finance/apis /v1/markets (all, matured included), /v1/indicators (u, mr; 1d), /v1/markets/ohlcv, /v1/markets/order-book, /v1/funding-rate/all-funding-rate-symbols, /v1/assets; docs at /apis/docs",
+  "deribit": "https://www.deribit.com/api/v2/public/get_tradingview_chart_data (1D bars run 08:00-08:00 UTC; expired contracts are served by name), get_delivery_prices (08:00 index, 100 a page), get_index_chart_data, get_volatility_index_data (DVOL), get_book_summary_by_currency, get_order_book",
+  "ethereum_archive": "public endpoints in scripts/drpc.py: sUSDe convertToAssets(1e18), Pot.dsr(), wstETH.stEthPerToken() at estimated blocks (block timestamps read back)",
+  "hyperliquid": "https://api.hyperliquid.xyz/info fundingHistory (2023-05-12..2025-10-01, interval 5 s), candleSnapshot (HYPE 1d), l2Book (incl. nSigFigs 4), metaAndAssetCtxs",
+  "yahoo": "https://query1.finance.yahoo.com/v8/finance/chart/BTC=F, ETH=F, BTC-USD, ETH-USD (1h, range 730d; UA Mozilla/5.0)"
+ },
+ "failures": {
+  "binance": null,
+  "books": null,
+  "boros": null,
+  "chain": [],
+  "deribit": null,
+  "hl": null,
+  "yahoo": null
+ },
+ "generated": "2026-10-10T11:52:07+00:00",
+ "nav_points": {
+  "dsr_points": 308,
+  "susde_points": 495,
+  "susds_points": 741,
+  "wsteth_points": 988
+ },
+ "parts": {
+  "binance": {
+   "binance": {
+    "files": {
+     "cont_BTCUSDT_CURRENT_QUARTER_1d.json.gz": 2076,
+     "cont_BTCUSDT_NEXT_QUARTER_1d.json.gz": 1729,
+     "cont_BTCUSDT_PERPETUAL_1d.json.gz": 2590,
+     "cont_ETHUSDT_CURRENT_QUARTER_1d.json.gz": 2075,
+     "cont_ETHUSDT_NEXT_QUARTER_1d.json.gz": 1729,
+     "cont_ETHUSDT_PERPETUAL_1d.json.gz": 2510,
+     "funding_BTCUSDT.json.gz": 7762,
+     "funding_ETHUSDT.json.gz": 7528,
+     "funding_HYPEUSDT.json.gz": 2987,
+     "funding_SOLUSDT.json.gz": 6729,
+     "index_BTCUSDT_1d.json.gz": 2484,
+     "index_ETHUSDT_1d.json.gz": 2484,
+     "perp_BTCUSDT_1d.json.gz": 2590,
+     "perp_ETHUSDT_1d.json.gz": 2510,
+     "perp_HYPEUSDT_1d.json.gz": 499,
+     "perp_SOLUSDT_1d.json.gz": 2218,
+     "premium_BTCUSDT_1d.json.gz": 2483,
+     "premium_ETHUSDT_1d.json.gz": 2483,
+     "premium_HYPEUSDT_1d.json.gz": 499,
+     "premium_SOLUSDT_1d.json.gz": 2218,
+     "spot1h_BTCUSDT.json.gz": 50590,
+     "spot1h_ETHUSDT.json.gz": 50590
+    },
+    "finished": "2026-10-10T11:32:40+00:00",
+    "http": {
+     "errors": 0,
+     "requests": 170,
+     "throttled": 0
+    }
+   },
+   "part": "binance",
+   "seconds": 184.2,
+   "started": "2026-10-10T11:29:36+00:00"
+  },
+  "books": {
+   "books": {
+    "binance_symbols": [
+     "BTCUSDT",
+     "BTCUSDT_261225",
+     "BTCUSDT_270326",
+     "ETHUSDT",
+     "ETHUSDT_261225",
+     "ETHUSDT_270326",
+     "HYPEUSDT",
+     "SOLUSDT",
+     "spot:BTCUSDT",
+     "spot:ETHUSDT",
+     "spot:SOLUSDT"
+    ],
+    "boros_live_markets": 33,
+    "deribit": {
+     "BTC": 12,
+     "ETH": 12
+    },
+    "finished": "2026-10-10T11:41:49+00:00",
+    "hl_books": [
+     "@107",
+     "@142",
+     "@151",
+     "@156",
+     "BTC",
+     "ETH",
+     "HYPE",
+     "SOL"
+    ]
+   },
+   "part": "books",
+   "seconds": 65.0,
+   "started": "2026-10-10T11:40:44+00:00"
+  },
+  "boros": {
+   "boros": {
+    "failed": [],
+    "finished": "2026-10-10T11:40:44+00:00",
+    "indicator_files": 225,
+    "markets": 225,
+    "underlying": {
+     "streams": 82
+    }
+   },
+   "part": "boros",
+   "seconds": 445.9,
+   "started": "2026-10-10T11:33:18+00:00"
+  },
+  "chain": {
+   "chain": {
+    "error_examples": [],
+    "errors": 0,
+    "finished": "2026-10-10T11:52:02+00:00",
+    "grid": 486,
+    "samples": 486
+   },
+   "part": "chain",
+   "seconds": 0.4,
+   "started": "2026-10-10T11:52:01+00:00"
+  },
+  "deribit": {
+   "deribit": {
+    "finished": "2026-10-10T11:52:02+00:00",
+    "instruments": {
+     "BTC-24JUN22": 366,
+     "BTC-24SEP21": 275,
+     "BTC-24SEP27": 17,
+     "BTC-25DEC20": 247,
+     "BTC-25DEC26": 289,
+     "BTC-25JUN21": 275,
+     "BTC-25JUN27": 107,
+     "BTC-25MAR22": 342,
+     "BTC-25SEP20": 209,
+     "BTC-25SEP26": 366,
+     "BTC-26DEC25": 366,
+     "BTC-26JUN20": 191,
+     "BTC-26JUN26": 366,
+     "BTC-26MAR21": 276,
+     "BTC-26MAR27": 198,
+     "BTC-26SEP25": 366,
+     "BTC-27DEC19": 188,
+     "BTC-27DEC24": 366,
+     "BTC-27JUN25": 366,
+     "BTC-27MAR20": 191,
+     "BTC-27MAR26": 366,
+     "BTC-27SEP19": 187,
+     "BTC-27SEP24": 366,
+     "BTC-28JUN19": 191,
+     "BTC-28JUN24": 373,
+     "BTC-28MAR25": 366,
+     "BTC-29DEC23": 366,
+     "BTC-29MAR19": 185,
+     "BTC-29MAR24": 366,
+     "BTC-29SEP23": 366,
+     "BTC-30DEC22": 366,
+     "BTC-30JUN23": 373,
+     "BTC-30SEP22": 373,
+     "BTC-31DEC21": 282,
+     "BTC-31MAR23": 373,
+     "ETH-24JUN22": 366,
+     "ETH-24SEP21": 275,
+     "ETH-24SEP27": 17,
+     "ETH-25DEC20": 247,
+     "ETH-25DEC26": 289,
+     "ETH-25JUN21": 275,
+     "ETH-25JUN27": 107,
+     "ETH-25MAR22": 342,
+     "ETH-25SEP20": 191,
+     "ETH-25SEP26": 366,
+     "ETH-26DEC25": 366,
+     "ETH-26JUN20": 191,
+     "ETH-26JUN26": 366,
+     "ETH-26MAR21": 276,
+     "ETH-26MAR27": 198,
+     "ETH-26SEP25": 366,
+     "ETH-27DEC19": 188,
+     "ETH-27DEC24": 366,
+     "ETH-27JUN25": 366,
+     "ETH-27MAR20": 191,
+     "ETH-27MAR26": 366,
+     "ETH-27SEP19": 187,
+     "ETH-27SEP24": 366,
+     "ETH-28JUN19": 104,
+     "ETH-28JUN24": 366,
+     "ETH-28MAR25": 366,
+     "ETH-29DEC23": 366,
+     "ETH-29MAR19": 13,
+     "ETH-29MAR24": 366,
+     "ETH-29SEP23": 366,
+     "ETH-30DEC22": 366,
+     "ETH-30JUN23": 373,
+     "ETH-30SEP22": 373,
+     "ETH-31DEC21": 282,
+     "ETH-31MAR23": 373,
+     "delivery_btc_usd.json.gz": 2634,
+     "delivery_eth_usd.json.gz": 2474,
+     "dvol_BTC.json.gz": 2027,
+     "dvol_ETH.json.gz": 2027,
+     "index_btc_usd.json.gz": 14601,
+     "index_eth_usd.json.gz": 11072
+    },
+    "missing": []
+   },
+   "part": "deribit",
+   "seconds": 0.0,
+   "started": "2026-10-10T11:52:02+00:00"
+  },
+  "hl": {
+   "hl": {
+    "api": {
+     "errors": 14,
+     "requests": 152,
+     "throttled": 14
+    },
+    "finished": "2026-10-10T11:42:12+00:00",
+    "rows": {
+     "BTC": 20383,
+     "ETH": 20383,
+     "HYPE": 7191,
+     "SOL": 20383
+    }
+   },
+   "part": "hl",
+   "seconds": 755.6,
+   "started": "2026-10-10T11:29:36+00:00"
+  },
+  "yahoo": {
+   "part": "yahoo",
+   "seconds": 11.5,
+   "started": "2026-10-10T11:33:07+00:00",
+   "yahoo": {
+    "files": {
+     "BTC-USD_1h.json.gz": 17509,
+     "BTC_F_1h.json.gz": 17406,
+     "ETH-USD_1h.json.gz": 17509,
+     "ETH_F_1h.json.gz": 17406
+    },
+    "finished": "2026-10-10T11:33:18+00:00"
+   }
+  }
+ },
+ "reused_from_disk": {
+  "hl_funding_since_2025_10_01": "/Users/iv/dev/llm-quant/research/2026-10-09/perps_history/funding",
+  "navs_daily_since_2024_09_26": "/Users/iv/dev/llm-quant/research/2026-10-09/redemption_history/raw/long/state.json"
+ },
+ "study": "term_carry"
+}

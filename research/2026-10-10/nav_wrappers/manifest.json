@@ -1,0 +1,162 @@
+{
+ "study": "nav_wrappers",
+ "date": "2026-10-10",
+ "generated": "2026-10-10T18:31:42+00:00",
+ "script": "scripts/nav_wrappers.py (collect / analyze / render)",
+ "tests": "scripts/test_nav_wrappers.py (18 tests)",
+ "commands": [
+  "python3 scripts/nav_wrappers.py collect --parts yahoo,sec,binance,coingecko,strategytracker,strategy",
+  "python3 scripts/nav_wrappers.py collect --parts cgprices",
+  "python3 scripts/nav_wrappers.py collect --parts yahoo1h --symbols <29 tickers, see raw/collect_manifest.json>",
+  "python3 scripts/nav_wrappers.py analyze",
+  "python3 scripts/nav_wrappers.py render",
+  "uv run --with pytest --with pycryptodome python -m pytest scripts/test_nav_wrappers.py -q"
+ ],
+ "data_sources": {
+  "yahoo": "query1.finance.yahoo.com v8 chart, daily from 2015 for 23 trusts, 41 DATs, FX and references; 60-minute bars (last 728 days) for 29 tickers; UA Mozilla/5.0. Yahoo scales GBTC/ETHE closes before the 2024 Mini Trust spin-offs by ~0.9: undone (curated.json yahoo_unadjust).",
+  "sec": "data.sec.gov XBRL company facts and submissions (filing index) for 64 CIKs and efts.sec.gov full-text index, UA \"llm-quant research\" (no e-mail). GAP: www.sec.gov (filing documents, company_tickers) refused this UA (\"Undeclared Automated Tool\"), so filing texts were not read; their content is cited from press releases and news, and dates from the EDGAR index.",
+  "binance": "api.binance.com spot 1h klines and fapi.binance.com funding for 33 coins from 2019 (perp 1h for HYPE; 1000BONK scaled). TON spot and perp stop on 2026-06-30 / 2026-06-23 (CoinGecko daily price used after; no hedge leg).",
+  "coingecko": "public API: treasury lists per coin, entity list and records, 365-day holdings charts (the public API refuses longer), TON daily prices; paced at >= 8 s.",
+  "strategytracker": "data.strategytracker.com public dataset version 20261010T171907Z: daily BTC balance and share counts for 20 BTC treasuries with statement links; preferred-series histories (from 2026-03 for MSTR); Metaplanet debt summary. Its MSTR mNAV ignores debt and preferred (debt 0, cash 0).",
+  "strategy": "api.strategy.com/btc/mstrKpiData (live: price, market cap, EV, debt, preferred; fetched 2026-10-10 17:22 UTC).",
+  "web": "event dates and figures from press releases and news (URLs below), each EDGAR-dated where the company files (analysis.json dats.events[].edgar)."
+ },
+ "raw_files": {
+  "raw/binance": {
+   "files": 66,
+   "bytes": 23743960
+  },
+  "raw/coingecko": {
+   "files": 91,
+   "bytes": 57608
+  },
+  "raw": {
+   "files": 2,
+   "bytes": 608431
+  },
+  "raw/sec": {
+   "files": 108,
+   "bytes": 3618787
+  },
+  "raw/strategy": {
+   "files": 1,
+   "bytes": 582
+  },
+  "raw/yahoo": {
+   "files": 81,
+   "bytes": 2491516
+  },
+  "raw/yahoo_1h": {
+   "files": 29,
+   "bytes": 1032508
+  }
+ },
+ "collect_runs": {
+  "cgprices": {
+   "at": "2026-10-10T18:16:13+00:00",
+   "seconds": 8.3
+  },
+  "coingecko": {
+   "at": "2026-10-10T17:54:08+00:00",
+   "seconds": 2077.1
+  },
+  "yahoo1h": {
+   "at": "2026-10-10T18:17:54+00:00",
+   "seconds": 40.8
+  }
+ },
+ "curated": "research/2026-10-10/nav_wrappers/curated.json (trust events, Mini Trust distributions, Yahoo un-adjustment, DAT events, capital overrides, stale-dashboard checks) and universe.json",
+ "cited_urls": [
+  "EDGAR submissions CIK 1761325",
+  "EDGAR submissions CIK 2025000",
+  "EDGAR submissions CIK 2029297",
+  "data.sec.gov companyfacts CIK 1050446",
+  "https://api.strategy.com/btc/mstrKpiData",
+  "https://ca.investing.com/news/stock-market-news/delaware-supreme-court-upholds-atg-capital-board-nominees-93CH-4872490",
+  "https://cointelegraph.com/news/ether-top-corporate-treasury-sharplink-authorizes-1-5b-stock-buyback",
+  "https://cointelegraph.com/news/ton-strategy-stock-buybacks-share-falls",
+  "https://crypto.news/hyperliquid-strategies-plans-30m-buyback-to-boost-hype-linked-stock/",
+  "https://crypto.news/sequans-ends-bitcoin-strategy-after-selling-its-remaining-btc/",
+  "https://cryptobriefing.com/eth-sale-ethzilla-balance/",
+  "https://data.strategytracker.com/latest.json",
+  "https://finance.yahoo.com/news/forward-industries-authorizes-1-billion-180016711.html",
+  "https://investor.wedbush.com/wedbush/article/gnwcq-2024-7-8-grayscale-investments-announces-record-date-and-ex-distribution-date-for-grayscale-ethereum-trust-ticker-ethe-shareholders",
+  "https://investor.wedbush.com/wedbush/article/gnwcq-2025-9-19-grayscale-coindesk-crypto-5-etf-ticker-gdlc-begins-trading-on-nyse-arca",
+  "https://investors.sharplink.com/sharplink-share-buyback-eth-treasury-stockholder-value/",
+  "https://ir.upexi.com/news-events/press-releases/detail/141/upexi-announces-50-million-share-repurchase-program",
+  "https://news.bloomberglaw.com/esg/cracking-open-the-dats-hedge-fund-wins-empery-proxy-fight-case",
+  "https://policyrisk.com/federal-register/2025-02497",
+  "https://seekingalpha.com/pr/19791329-grayscale-investments-announces-record-date-and-distribution-date-for-grayscale-bitcoin-trust",
+  "https://theblock.co/news/regulation/2026-08-25-grayscale-debuts-zcash-etf-412654",
+  "https://theblock.co/post/371157/sec-approves-new-exchange-listing-standards-fast-tracking-crypto-etf-listings",
+  "https://theblock.co/post/407900/empery-digital-offloads-1400-bitcoins-help-fund-ai-pivot-pay-debt",
+  "https://www.businesswire.com/news/home/20241114954477/en",
+  "https://www.coindesk.com/business/2025/10/27/ether-treasury-firm-ethzilla-sold-usd40m-eth-to-fund-share-buyback-amid-discount-to-nav",
+  "https://www.coindesk.com/business/2025/11/20/ether-treasury-firm-fg-nexus-unloads-nearly-11k-eth-to-fund-share-buyback",
+  "https://www.coindesk.com/markets/2025/09/09/ether-treasury-company-sharplink-gaming-buys-back-usd15m-in-undervalued-shares",
+  "https://www.coindesk.com/markets/2025/09/13/ton-strategy-starts-share-buyback-treasury-staking-after-shares-plunge-40",
+  "https://www.coindesk.com/markets/2025/10/28/metaplanet-initiates-13-share-buyback-program-with-usd500m-credit-facility",
+  "https://www.coindesk.com/markets/2025/11/04/bitcoin-treasury-bubble-comes-full-circle-as-sequans-unloads-btc-to-cut-debt",
+  "https://www.coindesk.com/markets/2026/04/09/tom-lee-s-bitmine-lists-on-nyse-expands-usd4-billion-buyback-as-eth-bet-deepens",
+  "https://www.cryptotimes.io/2025/09/10/grayscale-to-convert-bch-trust-into-etf-and-list-on-nyse-arca/",
+  "https://www.etf.com/sections/news/osprey-plans-bitcoin-etf-conversion-after-bitwise-bid-fails",
+  "https://www.everycrsreport.com/reports/IF12573.html",
+  "https://www.globenewswire.com/news-release/2024/11/04/2974196/0/en/Grayscale-Digital-Large-Cap-Fund-Ticker-GDLC-Application-to-Uplist-as-Exchange-Traded-Product-Now-Published-in-Federal-Register.html",
+  "https://www.globenewswire.com/news-release/2025/09/22/3153854/0/en/CEA-Industries-Board-Authorizes-250-Million-Stock-Buyback-Program.html",
+  "https://www.globenewswire.com/news-release/2025/12/02/3197932/0/en/Grayscale-Chainlink-Trust-ETF-Ticker-GLNK-Launches-on-NYSE-Arca-as-New-Spot-ETP.html",
+  "https://www.globenewswire.com/news-release/2026/01/21/3222681/0/en/FG-Nexus-Provides-Update-on-Common-and-Preferred-Share-Buyback-Programs-and-ETH-Holdings.html",
+  "https://www.globenewswire.com/news-release/2026/05/06/3288819/0/en/Upexi-Provides-Periodic-Update-to-its-Share-Repurchase-Program.html",
+  "https://www.globenewswire.com/news-release/2026/06/24/3316558/0/en/yzi-labs-and-cea-industries-reach-cooperation-agreement-to-strengthen-bnc-governance.html",
+  "https://www.govinfo.gov/content/pkg/FR-2023-10-27/html/2023-23703.htm",
+  "https://www.govinfo.gov/content/pkg/FR-2025-02-12/html/2025-02497.htm",
+  "https://www.investing.com/news/company-news/forward-industries-to-repurchase-62m-shares-for-274m-93CH-4570467",
+  "https://www.kucoin.com/blog/grayscale-litecoin-etf-ltcn-nyse-arca",
+  "https://www.nasdaq.com/articles/grayscale-files-to-convert-flagship-bitcoin-trust-into-etf-2021-10-19",
+  "https://www.nasdaq.com/press-release/strive-announces-completion-semler-scientific-acquisition-2026-01-16",
+  "https://www.nasdaq.com/press-release/zcash-etf-ticker-zcsh-built-grayscale-begins-trading-nyse-arca-expanding-investor",
+  "https://www.ropesgray.com/en/insights/alerts/2023/09/court-grants-victory-to-grayscale",
+  "https://www.sec.gov/Archives/edgar/data/0001829794/000092189526002480/defc14a13914005_09042026.htm",
+  "https://www.sec.gov/Archives/edgar/data/1588489/000119312521301639/d216598dex991.htm",
+  "https://www.sec.gov/Archives/edgar/data/1723788/000121390025119440/ea0268832-8k_bitwise10.htm",
+  "https://www.sec.gov/Archives/edgar/data/1725210/000095017023051182/ethe-ex99_1.htm",
+  "https://www.sec.gov/Archives/edgar/data/1725210/000095017024084772/ethe-ex99_1.htm",
+  "https://www.sec.gov/Archives/edgar/data/1767057/000149315226014439/form10-k.htm",
+  "https://www.sec.gov/Archives/edgar/data/1896677/000119312526104406/424b3_gsol_10-k_12312025.htm",
+  "https://www.sec.gov/Archives/edgar/data/1920406/000114036125044540/ny20056505x4_424b3.htm",
+  "https://www.sec.gov/Archives/edgar/data/2015034/000095017024120123/btc-20240930.htm",
+  "https://www.sec.gov/rule-release/34-100224",
+  "https://www.stocktitan.net/news/TONX/ton-strategy-company-advances-share-repurchase-zd7phqo41t1r.html",
+  "https://www.theblock.co/post/154924/sec-rejects-grayscales-bid-to-convert-gbtc-to-a-bitcoin-etf",
+  "https://www.theblock.co/post/306812/spot-ethereum-etfs-begin-trading-today-heres-what-you-need-to-know",
+  "https://www.theblock.co/post/313340/bitwise-bitcoin-etf-to-acquire-the-assets-from-osprey-bitcoin-trust",
+  "https://www.theblock.co/post/329374/nyse-arca-files-to-list-and-trade-grayscales-spot-solana-etf",
+  "https://www.theblock.co/post/370107/grayscale-submits-litany-of-sec-filings-for-bitcoin-cash-hedera-and-litecoin-etf-proposals",
+  "https://www.theblock.co/post/376412/ethereum-treasury-firm-ethzilla-sells-of-40-million-eth-as-part-of-250-million-stock-repurchase-plan",
+  "https://www.theblock.co/post/379721/ethereum-treasury-fg-nexus-sells-10000-eth-fund-share-buybacks",
+  "https://www.theblock.co/post/380559/grayscale-files-with-the-sec-to-launch-first-ever-zcash-etf",
+  "https://www.theblock.co/post/380978/chainlink-first-etf-grayscales-glnk-set-begin-trading",
+  "https://www.theblock.co/post/381910/bitwises-first-ever-crypto-investment-product-gets-uplisted-to-the-nyse-arca",
+  "https://www.theblock.co/post/396865/tom-lees-bitmine-uplists-nyse-eth-4-billion-buyback-authorization",
+  "https://www.theglobeandmail.com/investing/markets/stocks/GSOL/pressreleases/35755296/grayscale-solana-trust-etf-ticker-gsol-launches-on-nyse-arca-with-staking/"
+ ],
+ "protocol": {
+  "trusts": "entry variants chosen on GBTC/ETHE (filed 2021, 2023), tested once on 2024-26 conversions; daily rules (8 variants x 2 hedges) chosen on 2019-09..2024-12, tested 2025-01..2026-10 through backtest.choose_then_test",
+  "dats": "weekly signals from 2025-11; 18 variants (x in 0.5..1.0, k in 20/40/65 days) per signal/hedge, chosen on signal weeks before 2026-04-01 by NW t, tested on the rest; robustness without names whose holdings fail the 10-Q check; event windows chosen on events before 2026-01-01"
+ },
+ "verification": {
+  "trusts": "coin per share (10-Q/10-K XBRL) x Binance at 16:00 New York vs the sponsor NAV per share: median abs error 0.03-0.44% over 4-27 quarter-ends per trust (tables.md A1)",
+  "mstr": "BTC 848,000 / 847,999 / 846,000 (10-Q 2026-06-30) / 844,504 (fair value / price); preferred $14.15B (StrategyTracker) / $13.95B (KPI) / $14.44B (XBRL, 2026-06-30); debt $6.714B / $6.710B; shares 422.07M / 421.98M",
+  "dat_holdings": "10-Q crypto fair value / coin price vs dashboard holdings for 24 DATs; mismatches recorded in curated.json stale_dashboard_checks"
+ },
+ "gaps": [
+  "www.sec.gov filing documents refused the required UA; no filing text was read directly",
+  "non-reporting OTC trusts (MANA, FILG, GLIV, GBAT, STCK, DEFG, OBNB, OBNK; GSNR has no XBRL): no coin per share; Grayscale/Osprey sites refuse automated access (429/403)",
+  "basket trusts (GDLC, BITW, DEFG): quarter-end NAV only, no daily NAV and no event returns; GDLC shows -15.6% at 2025-12-31 while listed (unexplained)",
+  "DAT holdings before 2025-10 only from XBRL; CoinGecko history capped at 365 days; DefiLlama treasury API is paid; bitcointreasuries history behind login",
+  "Metaplanet debt/preferred history unreliable (dashboard); excluded from the panel; live values from the dashboard summary",
+  "no look-through series for CEPO (SPAC), SQNS (20-F), H100, ETHM, ALTS, AVX, ZONE, USDE, MPU",
+  "XXI has no instant share count in XBRL; live share count from CoinGecko",
+  "borrow cost / availability for shorting premium DATs or trusts not measured (only long-discount trades tested)",
+  "hourly late-entry measured only as the first-hour share of event-day moves (Yahoo 60m bars, 20 events)"
+ ]
+}

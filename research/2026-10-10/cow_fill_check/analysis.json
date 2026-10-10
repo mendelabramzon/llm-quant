@@ -1,0 +1,176 @@
+{
+ "by_class": {
+  "limit": {
+   "age_hours": {
+    "n": 802,
+    "p10": 0.004196064823203617,
+    "p50": 0.015866468018955655,
+    "p90": 1.7188446217642879
+   },
+   "by_symbol_eth": {
+    "rsETH": 33.936500992991384,
+    "stETH": 26025.975825021163,
+    "weETH": 8075.411127293021,
+    "wstETH": 11641.476641441088
+   },
+   "discount_bps": {
+    "n": 802,
+    "p10": 10.34721306101083,
+    "p50": 28.113795796116946,
+    "p90": 77.91196568457548
+   },
+   "eth": 45776.800094748265,
+   "owners": 83,
+   "rested_1h_plus": {
+    "discount_bps": {
+     "n": 91,
+     "p10": 18.96396845992743,
+     "p50": 31.193074201579797,
+     "p90": 87.23731181334738
+    },
+    "eth": 6023.010846953127,
+    "fill_minus_market_bps": {
+     "n": 86,
+     "p10": -2.330733737961559,
+     "p50": 3.219916782537787,
+     "p90": 7.753335146379882
+    },
+    "limit_discount_bps": {
+     "n": 91,
+     "p10": 18.963968459926317,
+     "p50": 30.00000000000003,
+     "p90": 87.23235527359208
+    },
+    "trades": 91
+   },
+   "trades": 802
+  }
+ },
+ "episode_blocks": [
+  24917313,
+  25054113
+ ],
+ "generated": "2026-10-10T17:01:36Z",
+ "largest_rested_fills_at_20bp_plus": [
+  {
+   "age_hours": 19.332710279160075,
+   "block": 25051914,
+   "class": "limit",
+   "discount_bps": 27.59245687109835,
+   "eth": 793.6330549770101,
+   "limit_discount_bps": 25.241195630123503,
+   "market_bps": 31.132308114057626,
+   "sym": "weETH",
+   "tx": "0xd105ae8c744f4e1b316c76eb82ef6382c8544cb5f8950d32c08bd28937a90670"
+  },
+  {
+   "age_hours": 1.3067558852831522,
+   "block": 24926319,
+   "class": "limit",
+   "discount_bps": 79.53208646533594,
+   "eth": 384.99999999999994,
+   "limit_discount_bps": 75.00000000000173,
+   "market_bps": 81.72831308868072,
+   "sym": "stETH",
+   "tx": "0xebb5a3f72723e21f6565a51e4ae177f59b1070794054f64354b0ce203268958a"
+  },
+  {
+   "age_hours": 11.491944871279928,
+   "block": 24926333,
+   "class": "limit",
+   "discount_bps": 87.23731181334738,
+   "eth": 300.0,
+   "limit_discount_bps": 87.23235527359208,
+   "market_bps": 81.72831308868072,
+   "sym": "stETH",
+   "tx": "0x44c76378176e1ad547c0b8ce47214df443386c75840d78e4ccba0032e8aed915"
+  },
+  {
+   "age_hours": 11.048639541864395,
+   "block": 24926321,
+   "class": "limit",
+   "discount_bps": 82.58853486354579,
+   "eth": 299.99999999999983,
+   "limit_discount_bps": 82.3167708023409,
+   "market_bps": 81.72831308868072,
+   "sym": "stETH",
+   "tx": "0x2a09266fb5f087674e7d99121a17dacbaebdff4633528e92b81b58515d831b4e"
+  },
+  {
+   "age_hours": 1.750495040151808,
+   "block": 24926333,
+   "class": "limit",
+   "discount_bps": 84.7802050023716,
+   "eth": 253.33979745064397,
+   "limit_discount_bps": 82.31677080233979,
+   "market_bps": 81.72831308868072,
+   "sym": "stETH",
+   "tx": "0x44c76378176e1ad547c0b8ce47214df443386c75840d78e4ccba0032e8aed915"
+  },
+  {
+   "age_hours": 2.6520381195015377,
+   "block": 24925741,
+   "class": "limit",
+   "discount_bps": 75.01968054629882,
+   "eth": 233.80070336370517,
+   "limit_discount_bps": 74.44168734491274,
+   "market_bps": 67.0941741023806,
+   "sym": "stETH",
+   "tx": "0xca7054caa997fbff8d28f53bd08ec44a9e22324bf00027432475ce50953e9934"
+  },
+  {
+   "age_hours": 19.496687867045402,
+   "block": 25045393,
+   "class": "limit",
+   "discount_bps": 25.74979017504475,
+   "eth": 217.5572338302137,
+   "limit_discount_bps": 25.058701021037912,
+   "market_bps": 28.858963088704744,
+   "sym": "weETH",
+   "tx": "0x3ed17278cea6c5588f8bb5431c1abf021942171eba87f5f7819f5be61867f2f4"
+  },
+  {
+   "age_hours": 11.135304415358437,
+   "block": 24926350,
+   "class": "limit",
+   "discount_bps": 86.25458526073105,
+   "eth": 200.01496499194013,
+   "limit_discount_bps": 86.24962823436167,
+   "market_bps": 81.72831308868072,
+   "sym": "stETH",
+   "tx": "0xc5ad21671441710991b8db09cb3de0f504185c44df7b8b996a8fb5986be2c34a"
+  },
+  {
+   "age_hours": 11.08464224908087,
+   "block": 24926333,
+   "class": "limit",
+   "discount_bps": 85.76319388798548,
+   "eth": 200.01496499193973,
+   "limit_discount_bps": 84.28358948934122,
+   "market_bps": 81.72831308868072,
+   "sym": "stETH",
+   "tx": "0x44c76378176e1ad547c0b8ce47214df443386c75840d78e4ccba0032e8aed915"
+  },
+  {
+   "age_hours": 1.7839070771800147,
+   "block": 24926343,
+   "class": "limit",
+   "discount_bps": 82.89242709411005,
+   "eth": 184.15996736962052,
+   "limit_discount_bps": 82.31677080233979,
+   "market_bps": 81.72831308868072,
+   "sym": "stETH",
+   "tx": "0x4c430edc953bd25326226f933c0dc02194de7c678d026162dcd72e77d51c3b40"
+  }
+ ],
+ "lst_buys_with_eth": 802,
+ "lst_sells_for_eth": 648,
+ "sells_discount_bps": {
+  "n": 648,
+  "p10": 12.89762444491116,
+  "p50": 26.31794426056877,
+  "p90": 80.31983757624818
+ },
+ "sells_eth": 22118.15026757992,
+ "settlement_trades_in_episode": 51464
+}

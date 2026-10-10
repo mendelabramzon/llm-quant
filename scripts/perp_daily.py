@@ -33,11 +33,48 @@ def utc_now():
     return dt.datetime.now(dt.timezone.utc)
 
 
+UNLOCK_STUDY = ROOT / 'research' / '2026-10-09' / 'unlocks'   # the schedule the forward test started from
+BOROS_DIR = ROOT / 'research' / '2026-10-10' / 'term_carry'      # boros_snapshots.jsonl accumulates here
+UNLOCK_SCHEDULE_MAX_AGE_DAYS = 7
+
+
+def latest_unlock_schedule():
+    """(directory, collected_at) of the newest `unlock_study.py collect` output: the study's own, or a refresh."""
+    best = None
+    for p in [UNLOCK_STUDY] + sorted((ROOT / 'research').glob('*/unlock_schedule')):
+        try:
+            at = dt.datetime.fromisoformat(json.loads((p / 'manifest.json').read_text())['collected_at'])
+        except (OSError, KeyError, ValueError):
+            continue
+        if best is None or at > best[1]:
+            best = (p, at)
+    return best
+
+
+def unlock_steps(py, day, history):
+    """The unlock pre-short's forward test: refresh DefiLlama's schedules once a week (new cliffs, moved dates), register
+    every event whose entry is still ahead, and score the ones whose windows have closed. Registration is what cannot
+    be done later, so it runs daily; scoring reads the venue's own history and could wait months."""
+    S, latest = [], latest_unlock_schedule()
+    if latest is None or utc_now() - latest[1] > dt.timedelta(days=UNLOCK_SCHEDULE_MAX_AGE_DAYS):
+        sched = ROOT / 'research' / day / 'unlock_schedule'
+        S.append(('unlock schedule', py + ['scripts/unlock_study.py', 'collect', '--out', str(sched), '--hl', str(history)]))
+    else:
+        sched = latest[0]
+    S.append(('unlock forward register', py + ['scripts/unlock_study.py', 'forward', 'register', '--out', str(sched)]))
+    S.append(('unlock forward score', py + ['scripts/unlock_study.py', 'forward', 'score', '--out', str(sched)]))
+    return S
+
+
 def steps(out, history, minutes, prior_window):
     py = [sys.executable]
     S = []
     S.append(('history append', py + ['scripts/perp_history.py', 'collect', '--out', str(history), '--since', '2026-07-01',
                                       '--workers', '2', '--interval', '0.15']))
+    S += unlock_steps(py, out.parent.name, history)
+    # Boros's implied funding term structure has no history API worth trusting hourly, so it is kept at the source:
+    # one row per live market per day, the overlay the HYPE carry would lock its rate with (term_carry study).
+    S.append(('boros snapshot', py + ['scripts/term_carry.py', 'snapshot', '--out', str(BOROS_DIR)]))
     S.append(('window', py + ['scripts/perp_collect.py', 'window', '--out', str(out), '--hours', '1', '--workers', '3',
                               '--interval', '0.12']))
     S.append(('references', py + ['scripts/perp_refs.py', 'snap', '--out', str(out), '--minutes', str(minutes), '--every', '60']))
@@ -91,6 +128,11 @@ def summarise(out, history):
         row['verify_ok'] = V['all_ok']
     except Exception as e:  # noqa: BLE001
         row['verify_error'] = str(e)[:120]
+    try:
+        U = json.loads((ROOT / 'research' / 'unlocks_forward.json').read_text())
+        row['unlock_forward'] = U['summary']['verdict']
+    except Exception:  # noqa: BLE001 — nothing scored yet
+        pass
     return row
 
 

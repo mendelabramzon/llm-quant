@@ -5,6 +5,61 @@ the LLM reads evidence, proposes mechanisms, and writes the infrastructure; dete
 reusable detectors and tests; the human steers. The metric we optimise is **time-to-verified-insight**: how fast a raw
 signal becomes a true, capacity-aware, reproducible claim and then a reusable detector — not classification coverage.
 
+## Session log — 2026-10-10 (alpha that does not race: a brainstorm, six history tests, a forward ledger)
+
+Asked to "continue what is left and brainstorm alpha strategies that don't require latency or a position in the block".
+The brainstorm is [alpha_brainstorm.md](research/2026-10-10/alpha_brainstorm.md): about 35 candidates in six families by
+where a non-racing edge comes from (a constraint someone pays to escape, slow public information, calendar flows, term
+structure, segmented capital, risk premia sold on purpose), each marked against what this repo has already killed and
+why. Its operational test for "no latency": entering an hour late keeps most of the edge.
+
+**What was left, done.** The unlock pre-short's forward test runs: `unlock_study.py forward register|score` froze 20
+cliffs before their entries (SEI first, 10-10 14:23 UTC; median bid depth $20k at registration) in
+`research/unlocks_forward.jsonl`, and scores each from Hyperliquid's own history after its window (identical to the
+study's store on six past events); `perp_daily.py` now registers, scores and refreshes DefiLlama's schedule weekly, and
+keeps Boros's term structure daily. The ether.fi payout check, the delisting event study and Binance's TradFi perps
+against HIP-3 are three of the six studies below. Still open: `roll_carry.py analyze` after the 10-12/13 roll steps, and
+installing the launchd jobs (the user's call).
+
+| study | verdict |
+|---|---|
+| `term_carry` | **go, new row** `hl-hype-spot-perp-carry`: HYPE spot as Hyperliquid portfolio-margin collateral, short the perp, +4.30%/yr over the savings rate out of sample (t 5.68, both halves), $5M, ~$200k/yr — the same coin pays 9.6% on Hyperliquid and 4.5% on Binance. Dated basis: standby row (+2.4–5.4% out of sample, but no 2026 day cleared +2pp). DIY Ethena on Binance no-go; Hyperliquid BTC/ETH watch; Boros no-go (implied − realised +0.12%, sign flips with the cycle); VRP measured, shrinking |
+| `tradfi_perps` | **no-go**: Binance's TradFi perps hedge 95% of the equity carry's off-hours risk, but 68.5% of their settlements are zero (no interest floor), so the hedged carry is below the savings rate on liquid names; no commodity roll trade. **Re-quote the equity carry $330k → $54–73k/yr** (its excess holds at t 3.91 but in thin names) |
+| `queue_bids_ext` | **payout check passed**: 40,890 ether.fi claims paid exactly, no fees, queue median 0.79 days (not 2.0); the instant route is not a cap. weETH re-quoted **$170k → $194k/yr**; **new row** `lombard-lbtc-queue-bid` $111k/yr at $10M (needs a Coinbase account for the BTC→cbBTC leg); OETH, tBTC, osETH, mETH, ETHx and others too small, one-event, permissioned or dead |
+| `listing_lifecycle` | **no entry.** New listings decay (median −25%/−33% vs seasoned alts at 30/60 days) but the pre-registered rule failed (week t 1.01) and 16% of trades saw the coin double; a forward-test rule is written down. Delistings closed: the "92%/yr pre-delisting" spread was earned weeks before any notice in sub-$5k books |
+| `fundamentals_factor` | **no-go.** Chain flows and protocol fees/value predicted returns in 2021–23 and not since; the chain-activity detectors replayed over five years (1,792 events) lose in all 16 variants — activity and price move together, so the reading arrives after the move. Watch: 4-week stablecoin growth (OOS IC 0.041) |
+| `governance_events` | **no-go.** 2,522 Snapshot proposals labelled by LLM passes against a rubric hashed before any price; VALUE_UP drifted +7.2% before mid-2024 and +0.07% after; the pre-registered trade lost out of sample. Labels are consistent (blind kappa 0.95) and keyword rules are not (kappa 0.09); Snapshot dates lag the forum post that moves the price. Labelling cost 4.85M tokens |
+
+**The pattern held.** What survived has a counterparty with a non-price motive: leverage demand on the venue that charges
+it most (HYPE), holders who will not wait a week for a queue (weETH, LBTC). What died was information the market
+already prices (fundamentals, governance, activity surges), a spread that is the cost of capital (the TradFi pair), or
+an edge in books a few thousand dollars deep (delistings; new listings' squeezes).
+
+**The book, pending one approval.** Auto mode refused the coordinator's writes to `research/strategies.jsonl` as a shared
+resource, so five changes wait for the user: add `hl-hype-spot-perp-carry` and `dated-basis-cash-and-carry`
+(`strategies.py add --file research/2026-10-10/term_carry/book_entries.json`); replace `etherfi-weeth-queue-bid` and add
+`lombard-lbtc-queue-bid` (`... add --file research/2026-10-10/queue_bids_ext/book_entries.json --replace`); re-quote
+`hip3-equity-funding-carry` down (`... quote hip3-equity-funding-carry --window research/2026-10-10/tradfi_perps
+--net-apr 0.034 --usd 73000`). With them, go-and-current moves from about $1.03M to about $1.10M a year, and the largest
+row is a measured capacity (the HYPE carry) rather than an assumed one. Two concentrations: the HYPE and equity carries
+are both Hyperliquid venue risk, and the three ETH queue bids share one collateral pool in a stress.
+
+**Errors found in earlier work.** `chain_census.py` wrote DefiLlama's missing stablecoin days as 0 (fixed, tested; no
+recorded hit rested on one); Hyperliquid `candleSnapshot` serves zero-volume pre-listing bars that carry prices (ZEC: 999
+days) and Binance serves delisted perps as flat zero-volume bars for months — every study reading either must drop
+untraded bars; the funding study's "1.25bp an hour" floor is 0.125bp and three of its "delisted" coins are still listed
+(erratum appended); `equity_offhours.FUND_PARAMS` assumes one funding multiplier per builder where some markets differ;
+the 2026-10-09 redemption note attributed April's instant redemptions to the public route (89% were fee-free large
+holders); `test_dislocation_history.py` needed pycryptodome to import (now falls back). Test runs: 638 pass under
+`uv run --with pytest --with pycryptodome python -m pytest scripts` — plain `unittest discover` misses the pytest-style
+files.
+
+Next: approve the book writes; install the launchd jobs so the forward tests and Boros history accumulate; score the
+unlock forward test as windows close (SEI 10-13, STRK 10-14, ARB 10-15); `roll_carry.py analyze` after the October roll;
+a combined ETH queue book on one capital pool; one live LBTC redeem-and-convert cycle; the governance re-test dated by
+forum posts; brainstorm items 1.4 (queue bids off Ethereum: HYPE LSTs, sAVAX), 5.4 (incentive-adjusted dollar yields)
+and 3.3 (ve(3,3) epoch economics).
+
 ## Session log — 2026-10-09/10, second session (fill the gaps, more data, find alpha: ten history-tested studies)
 
 Asked to "fill the gaps, gain more data, find several alpha strategies". The gap was history: every book line had

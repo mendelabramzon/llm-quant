@@ -162,3 +162,21 @@ No entry. HL vs Binance stays a watch item. It becomes a strategy candidate only
 5. **HYPE and ZEC spot–perp carry.** Always-on, these made 8.8% and 20.7% on capital in the test half, with $123k and
    $53k of capacity at 10bp. Both are single coins over a single half-year; worth rechecking with the HYPE staking yield
    (2.18%) added to the spot leg.
+
+## Errata (2026-10-10)
+
+Found by `research/2026-10-10/listing_lifecycle` and checked by the coordinator; the numbers above are left as
+published.
+
+- §2, "the 1.25bp-an-hour floor": the interest-only floor is 1.25e-5 an hour, **0.125bp an hour**. The 10.95% a year in
+  the same sentence is right.
+- §4, "13 coins that have since lost their HL book": **HMSTR, NOT and XAI are still listed** on Hyperliquid (open
+  interest $1.46M, $97k and $375k in this study's own snapshot). They scored zero capacity because their half-spreads
+  (30, 10.6 and 10.5bp) exceed the 10bp cap, not because they were delisted. The ten truly delisted coins earned about
+  234% a year of position held, 58% of it from MAVIA, and almost all of it 1–4 weeks before any delisting notice, in
+  books under $5k: the delisting event study finds none of the "pre-delisting" spread capturable at $10k.
+- §1 and every Hyperliquid `candleSnapshot` series: the venue returns zero-volume bars, with prices, for days to years
+  before a market first traded (ZEC: 999 daily bars before 2025-10-02). This study treated a coin without funding rows
+  as not live, so the effect here is probably small; any study that dates a listing from the first bar is wrong.
+- The HYPE spot–perp carry in item 5 was taken up by `research/2026-10-10/term_carry`: with HYPE spot as Hyperliquid
+  portfolio-margin collateral it beat the savings rate by +4.30% a year out of sample (t 5.68).

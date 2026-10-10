@@ -1,0 +1,96 @@
+[
+ {
+  "kind": "liquidity",
+  "status": "proposed",
+  "capital_days": 365,
+  "recheck_hours": 72,
+  "evidence": {
+   "notes": "research/2026-10-10/house_vaults/analysis.json vaults.JLP (chosen_in/out, variants, robustness, capacity, decomposition_fees, checks); tables.md; scripts/house_vaults.py (collect / analyze / render)",
+   "findings": [],
+   "verify": []
+  },
+  "id": "jlp-hedged-house-lp",
+  "name": "Hold JLP (Jupiter perps liquidity) and short its net SOL/ETH/BTC delta on Binance perps: keep the house's fee share",
+  "thesis": "JLP is the counterparty to every Jupiter perps trade and receives 75% of its fees. Hedged with a trailing 60-day beta to SOL/ETH/BTC (chosen on 2024-01-22..2025-06-27), it beat the savings rate by +8.3% a year on capital in the test half 2025-06-27..2026-10-09 (Newey-West t 3.80; bootstrap +3.9%..+12.8%; max drawdown 2.5%; worst week -2.2%), after fees, funding and a 0.2% mint/burn round trip. The pool's fee yield over the same window was 13.9% a year against a hedged vault yield of 15.3%: under the chosen hedge the return is the fee share, with traders' net P&L, staking and hedge error adding +1.4%. Re-measured without selection the test half reads coingecko_daily_window +3.3%; defillama_daily_same_window +6.6%; weekly_grid +2.6%; daily_roll120 +2.7%, so the quote uses the least favourable one. The fee yield is falling (2024 45%, 2025 19%, 2026 11%) and the venue reports 8.0% now.",
+  "mechanism": "Retail leverage demand on Solana's largest perp venue pays open/close fees, hourly borrow fees and price impact; JLP holders receive 75% of them and take the other side of trader P&L. The pool holds SOL, ETH, WBTC and dollars at target weights (now SOL 47%, ETH 8%, WBTC 13%, USDC 30%, JUPUSD 2%); its market exposure is the tokens it owns less what traders' longs have locked, plus traders' shorts. Shorting that net delta leaves the fee share, traders' net P&L and any staking yield on the SOL custody (jlp-info reports $387.7M of the $422.6M SOL custody as staked).",
+  "legs": [
+   "mint JLP with USDC (or SOL) through the Jupiter perps pool, or buy it on a DEX, in tranches; mint/burn fees are dynamic (about 0.1% each way at target weights)",
+   "short SOL, ETH and BTC USDT-margined perps on Binance sized to JLP's net delta: daily from jlp-info (owned minus locked plus short open interest per custody), cross-checked with a trailing 60-day regression (betas now {'SOL': 0.42, 'ETH': 0.06, 'BTC': 0.21}); margin one third of the short notional in USDC",
+   "rebalance a leg when it drifts more than 10% from target; top up the margin from JLP burns after a rally",
+   "hold; no timing rule (always on was chosen)"
+  ],
+  "capacity_usd": 10000000.0,
+  "kill_criteria": [
+   "trailing 30-day fee yield (DefiLlama supply-side revenue / JLP AUM) below 6.5% a year: hedged, that is under the savings rate + 1.5pp on capital",
+   "realised hedged excess over the savings rate negative over a trailing 90 days (house_vaults.py analyze, JLP chosen variant)",
+   "first 60 days live: realised hedged excess below +1% a year with the jlp-info net-delta hedge (the backtest's regression hedge is replaced, and must be shown to work)",
+   "daily hedged P&L standard deviation above 0.5% for two weeks (the delta is not being tracked)",
+   "any Jupiter perps exploit, oracle failure, AUM-limit or fee-split change (75% to LPs), or JLP depeg of more than 1% from its NAV on DEXs"
+  ],
+  "risks": [
+   "model risk in the hedge: the test-half excess ranged coingecko_daily_window +3.3%; defillama_daily_same_window +6.6%; weekly_grid +2.6%; daily_roll120 +2.7% across hedge windows and price sources; the chosen 60-day window read highest (+8.3%)",
+   "traders' net P&L is the pool's short option: rallies with crowded longs cost the hedged position (worst test day 2026-06-14 -2.1%: SOL +10.6% that day)",
+   "half of the test-half P&L came from the best 1% of days (50%): jumps on volatile days, not a smooth accrual",
+   "fee yield has fallen from 45% (2024) to 11% (2026); the edge is the fee share and shrinks with volume",
+   "smart-contract, oracle and custody risk on Solana (Jupiter perps program, Wormhole-bridged ETH/WBTC custodies)",
+   "two venues: JLP on Solana, the short on Binance; a rally needs margin moved before the short is liquidated"
+  ],
+  "quotes": [
+   {
+    "at": "2026-10-10T17:50:34+00:00",
+    "window": "research/2026-10-10/house_vaults",
+    "source": "history",
+    "present": true,
+    "go": true,
+    "net_apr": 0.0248,
+    "usd": 248000,
+    "note": "excess over the 3.80% savings rate on capital (JLP + one-third margin on a ~0.67 short), at $10M: the least favourable test-half re-measurement (+2.6%) less dilution; the chosen measurement reads +8.3% (t 3.80). Current JLP AUM $899.7M, venue APR 8.0%."
+   }
+  ]
+ },
+ {
+  "kind": "liquidity",
+  "status": "proposed",
+  "capital_days": 365,
+  "recheck_hours": 72,
+  "evidence": {
+   "notes": "research/2026-10-10/house_vaults/analysis.json vaults.GM_SOL-USDC (chosen_in/out, variants, robustness, capacity, decomposition_fees, checks); tables.md; scripts/house_vaults.py (collect / analyze / render)",
+   "findings": [],
+   "verify": []
+  },
+  "id": "gmx-gm-sol-usdc-hedged-lp",
+  "name": "Deposit in GMX v2 GM SOL/USD [SOL-USDC] on Arbitrum and short the pool's SOL delta on Binance",
+  "thesis": "The GM SOL-USDC pool is the counterparty to GMX's SOL perp traders. Hedged with its in-sample beta (0.45 SOL, chosen on 2023-09-03..2025-03-22), it beat the savings rate by +10.8% a year on capital in the test half 2025-03-22..2026-10-10 (Newey-West t 2.62; bootstrap +2.5%..+18.5%; max drawdown 3.7%; worst week -3.5%). The squid's own accounting explains it: fees 11.4% a year (of which borrowing 2.4%) plus traders' net losses 4.9% against a measured hedged yield of 18.0%. Re-measured without selection: weekly_grid +9.1%; daily_roll120 +10.9%. The pool is small ($4.9M), so the income dilutes: the quote is at $2M.",
+  "mechanism": "GMX v2 isolates each market: this pool holds wrapped SOL and USDC, earns position, swap and borrow fees and the traders' net losses, and pays their wins. Its SOL exposure is the SOL it holds less traders' net long open interest (now long $1.4M, short $1.9M). The capital that would compete the fee yield down is small because the market is small and on Arbitrum.",
+  "legs": [
+   "deposit USDC and SOL in the pool's ratio through the GMX v2 ExchangeRouter (deposit fee ~0.05-0.07%; the cap is $17.5M a side, not binding)",
+   "short the SOL USDT perp on Binance at the pool's SOL beta (0.45 in sample, 0.50 trailing 60 days) per dollar deposited; one-third margin",
+   "rebalance at a 10% drift; hold"
+  ],
+  "capacity_usd": 2000000.0,
+  "kill_criteria": [
+   "trailing 30-day aprByFee (squid) below 6% a year",
+   "realised hedged excess over the savings rate negative over a trailing 90 days",
+   "pool value below $3M (the deposit would be most of the pool) or above $15M (the fee yield dilutes away)",
+   "any GMX v2 exploit or a Wormhole SOL depeg on Arbitrum of more than 0.5%"
+  ],
+  "risks": [
+   "size: the pool is $4.9M; a $2M deposit cuts the hedged yield by about 29% (fixed-dollar income)",
+   "traders' P&L is the pool's short option (worst test day 2026-02-05 -2.0%)",
+   "wrapped SOL on Arbitrum (Wormhole) and GMX v2 contract risk; GMX v1 was exploited in July 2025",
+   "two venues (Arbitrum and Binance)"
+  ],
+  "quotes": [
+   {
+    "at": "2026-10-10T17:50:34+00:00",
+    "window": "research/2026-10-10/house_vaults",
+    "source": "history",
+    "present": true,
+    "go": true,
+    "net_apr": 0.0516,
+    "usd": 103000,
+    "note": "excess over the 3.80% savings rate on capital at $2M after fixed-dollar dilution of a $4.9M pool and the gap to the least favourable re-measurement; chosen measurement +10.8% (t 2.62)"
+   }
+  ]
+ }
+]

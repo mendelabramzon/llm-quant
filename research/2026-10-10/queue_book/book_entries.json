@@ -1,0 +1,35 @@
+[
+ {
+  "id": "lst-queue-book-one-pool",
+  "name": "One capital pool behind the stETH, weETH, rsETH and LBTC queue bids",
+  "kind": "redemption",
+  "status": "proposed",
+  "thesis": "The four queue bids were each priced as if they owned their capital ($479,378 a year out of sample on $33M). Their dislocations do not coincide: weETH and stETH lock capital together (daily correlation 0.70) but LBTC is uncorrelated with both (-0.06, -0.04) and rsETH only weakly (0.26-0.38). One $15M pool filling first come, first served earned $409,889 a year out of sample (t 9.31, 95% interval $321,307 to $503,564), 86% of the separate books on 45% of the capital; $20M earned $508,553. Late entry keeps 85-96% (an hour) and 85-91% (a day); the best month is 12% of the value.",
+  "mechanism": "Holders who will not wait for a withdrawal queue sell the liquid staking token below its redemption value; a patient bidder buys behind them when the whole market shows the discount and redeems through the queue (per-asset mechanisms and payout checks in research/2026-10-09/redemption_history and research/2026-10-10/queue_bids_ext). The capital constraint is time in the queue, and the four queues stall at different times, so one pool rotates through them.",
+  "legs": [
+   "hold the pool as WETH/aWETH (ETH bids) and cbBTC or borrowing power against wstETH (LBTC); one balance backs every bid",
+   "post standing below-NAV bids for stETH, weETH and rsETH (and LBTC against cbBTC) as unescrowed signed limit orders (CoW Protocol / 1inch), re-signed daily as exchange rates accrue; hurdle 1bp over fees and the queue's carry",
+   "on a fill, request withdrawal (Lido WithdrawalQueueERC721, ether.fi WithdrawRequestNFT, Kelp LRTWithdrawalManager, LBTC redeemForBtc); claim when finalized and return the proceeds to the pool"
+  ],
+  "capacity_usd": 15000000,
+  "capital_days": 2.0,
+  "kill_criteria": [
+   "trailing 90-day simulated value of the one-pool book under $40,000 a year at $15M",
+   "any component's payout check failing (a claim paying less than requested, a fee appearing, an invalidated request that is not repaid)",
+   "the daily correlation of LBTC's and the ETH tokens' locked capital rising above 0.5 over a trailing year (the diversification is the edge of the pool)",
+   "resting orders observed not to fill while the venue-median discount clears the limit for an hour (the implementation fails)"
+  ],
+  "quotes": [
+   {
+    "at": "2026-10-10T19:30:00+00:00",
+    "source": "history",
+    "window": "research/2026-10-10/queue_book",
+    "net_apr": 0.0273,
+    "usd": 409889,
+    "go": true,
+    "present": true,
+    "note": "out of sample 2025-10-03..2026-10-09, all four assets on one $15M pool, hurdle chosen in sample (h=1bp); replaces the four component rows (etherfi-weeth-queue-bid, lido-steth-queue-bid, kelp-rseth-queue-bid, lombard-lbtc-queue-bid) rather than adding to them"
+   }
+  ]
+ }
+]
