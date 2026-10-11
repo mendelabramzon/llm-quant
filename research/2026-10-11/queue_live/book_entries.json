@@ -1,0 +1,51 @@
+[
+ {
+  "id": "lst-queue-book-one-pool",
+  "name": "One capital pool behind the stETH, weETH, rsETH and LBTC queue bids",
+  "kind": "redemption",
+  "status": "proposed",
+  "thesis": "The four queue bids were each priced as if they owned their capital ($479,378 a year out of sample on $33M). Their dislocations do not coincide: weETH and stETH lock capital together (daily correlation 0.70) but LBTC is uncorrelated with both (-0.06, -0.04) and rsETH only weakly (0.26-0.38). One $15M pool filling first come, first served earned $409,889 a year out of sample (t 9.31, 95% interval $321,307 to $503,564), 86% of the separate books on 45% of the capital; $20M earned $508,553. Late entry keeps 85-96% (an hour) and 85-91% (a day); the best month is 12% of the value. Re-priced 2026-10-11 for an executable bidder: the dislocations persist for an hour (98% of stETH and 91% of weETH qualifying sales still clear at the next hour), so an hourly taker keeps 72-77% of the backtest; resting limits keep 41-54%.",
+  "mechanism": "Holders who will not wait for a withdrawal queue sell the liquid staking token below its redemption value; a patient bidder buys behind them when the whole market shows the discount and redeems through the queue (per-asset mechanisms and payout checks in research/2026-10-09/redemption_history and research/2026-10-10/queue_bids_ext). The capital constraint is time in the queue, and the four queues stall at different times, so one pool rotates through them.",
+  "legs": [
+   "hold the pool as WETH/aWETH (ETH bids) and cbBTC or borrowing power against wstETH (LBTC); one balance backs every bid",
+   "every hour a keeper buys back the previous hour's qualifying sales (own-hour edge above the 1bp hurdle over fees and the queue's carry) at the next hour boundary, through one CoW Protocol order per token at the current venue price, only while that hour's venue median still clears the hurdle; no resting limit at hurdle + carry (it fills on routine flow and nets about the hurdle)",
+   "on a fill, request withdrawal (Lido WithdrawalQueueERC721, ether.fi WithdrawRequestNFT, Kelp LRTWithdrawalManager, LBTC redeemForBtc); claim when finalized and return the proceeds to the pool",
+   "fallback without a keeper: a daily re-quoted resting limit (max(1bp + carry + fee, the previous day's venue median less one fee less 1bp)), which earned about half the backtest ($210,512 a year out of sample at $15M)"
+  ],
+  "capacity_usd": 15000000,
+  "capital_days": 2.0,
+  "kill_criteria": [
+   "trailing 90-day value of the hourly-taker implementation (queue_live paper rule v3) under $40,000 a year at $15M",
+   "any component's payout check failing (a claim paying less than requested, a fee appearing, an invalidated request that is not repaid)",
+   "the daily correlation of LBTC's and the ETH tokens' locked capital rising above 0.5 over a trailing year (the diversification is the edge of the pool)",
+   "resting orders observed not to fill while the venue-median discount clears the limit for an hour (the implementation fails)"
+  ],
+  "quotes": [
+   {
+    "at": "2026-10-11T06:00:00+00:00",
+    "source": "history",
+    "window": "research/queue_live",
+    "net_apr": 0.0196,
+    "usd": 294743,
+    "go": true,
+    "present": true,
+    "note": "executable re-quote: hourly taker buying back the previous hour's qualifying sales at the next hour boundary, priced at that hour's venue median (queue_live implementations (f)); out of sample 2025-10-03..2026-10-09, all four assets, $15M, h=1bp, t 7.51, 95% interval $218,712-$377,227; the earlier $409,889 priced each sale at its own print, which only a bidder behind each seller gets"
+   }
+  ],
+  "risks": [
+   "first come, first served: in a broad stress the pool fills the earliest sellers and has no capital left for deeper discounts later; a pool that reserved capital for deeper prints was not tested",
+   "competing bidders: 83 owners bought liquid staking tokens through CoW in the April 2026 episode; the simulation lets the pool take every qualifying sale its capital allows, so the value is a ceiling for one participant",
+   "the component risks stand: Lido bunker mode, ether.fi request invalidation, Kelp's withdrawal pauses, LBTC's off-chain payout (9-day wait taken from docs, not measured)",
+   "the four-asset pool needs BTC capital or borrow-on-fill against shared collateral; the ETH-only version (one WETH balance) earns $337,677 at $15M",
+   "regime: July-August 2026 earned $8k and $6k; the in-sample year (with the summer-2025 Lido queue) was 1.7x richer than the test year"
+  ],
+  "evidence": [
+   "notes",
+   "findings",
+   "verify",
+   "research/2026-10-11/queue_live/findings.md: resting limits earn their limit, not the market; persistence test priced at the next hour",
+   "research/queue_live/implementation.json: (f) hourly taker $294,743 (t 7.51) at the later venue median, $317,253 at the first later trade",
+   "research/queue_live_paper.jsonl: frozen paper rules v1 (resting), v2 (daily re-quote), v3 (hourly taker) from 2026-10-12"
+  ]
+ }
+]

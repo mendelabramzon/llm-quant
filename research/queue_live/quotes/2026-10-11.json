@@ -1,0 +1,313 @@
+{
+ "data_through": {
+  "block": 26165403,
+  "utc": "2026-10-10T23:44:23Z"
+ },
+ "date": "2026-10-11",
+ "eth_usd": 2504.400192779088,
+ "eth_usd_source": "coins.llama.fi current",
+ "generated": "2026-10-11T00:00:46Z",
+ "head": {
+  "block": 26165484,
+  "utc": "2026-10-11T00:00:35Z"
+ },
+ "hurdle_check": {
+  "frozen_bps": 1.0,
+  "match": true,
+  "queue_book_analysis_now": "h=1"
+ },
+ "notes": [
+  "limit discount = hurdle + carry + redemption fee; pool fees and solver gas come out of the market's discount, not the limit (a print must clear limit + 2 pool fees for the simulation to count it)",
+  "the limit is fixed in ETH per token for the order's 26 hours; wstETH, weETH and rsETH NAVs accrue (nav_drift_bps_per_day), so a resting order drifts that much deeper below NAV per day",
+  "stETH pays 1:1 unless Lido is in bunker mode (discounted finalization)",
+  "gas ($10 per fill: buy, request, claim) is charged per fill in the paper P&L, not in the limit"
+ ],
+ "pool_eth": 100.0,
+ "pool_usd": 250440.01927790878,
+ "redemption_paths": {
+  "etherfi_ev": {
+   "flags": {
+    "liquidity_pool_paused": false,
+    "withdraw_request_nft_paused": false
+   },
+   "open": true,
+   "unknown": []
+  },
+  "kelp": {
+   "flags": {
+    "withdrawal_manager_paused": false
+   },
+   "open": true,
+   "unknown": []
+  },
+  "lido": {
+   "flags": {
+    "bunker_mode": false,
+    "paused": false
+   },
+   "open": true,
+   "unknown": []
+  }
+ },
+ "rule": {
+  "carry": "staking APR x wait / 365, the APR being wstETH stEthPerToken growth over the trailing 30 days",
+  "criteria": {
+   "c1": "trailing 90-day simulate_book value of the all4 pool at $15M and the frozen hurdle >= $40,000 a year",
+   "c3": "trailing 365-day correlation of LBTC and ETH-three daily locked capital (unbounded capital, frozen hurdle) <= 0.5",
+   "c4": "no hour with the venue-median discount less one pool fee at or beyond the limit and no CoW buy of the token at or beyond it"
+  },
+  "frozen": "2026-10-11",
+  "hurdle_bps": 1.0,
+  "hurdle_source": "research/2026-10-10/queue_book/analysis.json joint.all4.15000000.chosen_hurdle (h=1)",
+  "id": "lst-queue-book-one-pool",
+  "limit": "limit discount = hurdle + carry + redemption fee; limit price = NAV x (1 - limit discount / 1e4)",
+  "nav": "stETH 1; wstETH stEthPerToken(); weETH getRate(); rsETH LRTOracle.rsETHPrice(); read at the latest block",
+  "order": {
+   "kind": "sell",
+   "partially_fillable": true,
+   "sell_token": "WETH",
+   "size": "the whole pool on every order (unescrowed)",
+   "valid_hours": 26
+  },
+  "path_check": "a token whose queue reads paused (or Lido in bunker mode) at the quote gets no order and no paper bid that day: Lido isBunkerModeActive()/isPaused(), ether.fi WithdrawRequestNFT and LiquidityPool paused(), Kelp LRTWithdrawalManager paused()",
+  "simulation": {
+   "fee_legs": 2.0,
+   "gas_per_fill_usd": 10.0,
+   "market_cap": "venue median less one pool fee (market_discount_fn, 6h lookback)",
+   "min_fill_usd": 5000.0
+  },
+  "tokens": [
+   "stETH",
+   "wstETH",
+   "weETH",
+   "rsETH"
+  ],
+  "version": 1,
+  "wait": "median, over requests created in the trailing 14 days (60 when fewer than 5), of the study wait model's request points as known now: the measured wait if finalized, the age so far if pending"
+ },
+ "staking_apr": {
+  "source": "wstETH stEthPerToken growth, 30 days to 2026-10-10T23:44:23Z",
+  "value": 0.02313360192337388
+ },
+ "tokens": {
+  "rsETH": {
+   "address": "0xa1290d69c65a6fe4df752f95823fae25cb99e5a7",
+   "asset": "kelp",
+   "carry_bps": 4.036584664376837,
+   "cow_fee_bps_at_limit": 0.0,
+   "distance_below_nav_bps": 5.036584664376837,
+   "gas_bps_at_min_fill": 20.0,
+   "gas_bps_at_pool": 0.39929720612675645,
+   "gas_usd_per_fill": 10.0,
+   "hurdle_bps": 1.0,
+   "in_market_at_data_end": true,
+   "limit_discount_bps": 5.036584664376837,
+   "limit_price_eth_per_token": 1.0811936947499177,
+   "limit_price_wei_per_token": 1081193693091004351,
+   "market_less_fee_bps": 22.972065384188088,
+   "market_median_bps_at_data_end": 26.597065384188088,
+   "nav_block": 26165484,
+   "nav_drift_bps_per_day": 0.6016304907553799,
+   "nav_eth": 1.0817385215147504,
+   "nav_source": "0x349a73444b1a310bae67ef67973022020d70020d rsETHPrice()",
+   "nav_wei": 1081738521514750471,
+   "path_open": true,
+   "path_state": {
+    "flags": {
+     "withdrawal_manager_paused": false
+    },
+    "open": true,
+    "unknown": []
+   },
+   "redemption_fee_bps": 0.0,
+   "seller_print_needed_bps": 12.286584664376836,
+   "staking_apr": 0.02313360192337388,
+   "venue_fee_bps_median": 3.625,
+   "wait_days": 6.368888888888889,
+   "wait_rule": {
+    "finalized": 638,
+    "last_days": {
+     "2026-10-02": 7.0256944444444445,
+     "2026-10-03": 6.022083333333334,
+     "2026-10-04": 6.368888888888889,
+     "2026-10-05": 5.365138888888889,
+     "2026-10-08": 2.3536111111111113,
+     "2026-10-09": 1.2504166666666667,
+     "2026-10-10": 0.8588888888888889
+    },
+    "median_days_all": 5.031666666666666,
+    "model_at_end_days": 0.8588888888888889,
+    "oldest_pending_days": 6.368888888888889,
+    "pending": 6,
+    "points": 644,
+    "requests_in_window": 13,
+    "window_days": 14
+   }
+  },
+  "stETH": {
+   "address": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+   "asset": "lido",
+   "carry_bps": 0.630753031894122,
+   "cow_fee_bps_at_limit": 0.0,
+   "distance_below_nav_bps": 1.630753031894122,
+   "gas_bps_at_min_fill": 20.0,
+   "gas_bps_at_pool": 0.39929720612675645,
+   "gas_usd_per_fill": 10.0,
+   "hurdle_bps": 1.0,
+   "in_market_at_data_end": false,
+   "limit_discount_bps": 1.630753031894122,
+   "limit_price_eth_per_token": 0.9998369246968106,
+   "limit_price_wei_per_token": 999836920000000000,
+   "market_less_fee_bps": -0.8445752347739953,
+   "market_median_bps_at_data_end": 0.15542476522600468,
+   "nav_block": 26165484,
+   "nav_drift_bps_per_day": null,
+   "nav_eth": 1.0,
+   "nav_source": "stETH redeems 1:1 in the Lido queue",
+   "nav_wei": 1000000000000000000,
+   "path_open": true,
+   "path_state": {
+    "flags": {
+     "bunker_mode": false,
+     "paused": false
+    },
+    "open": true,
+    "unknown": []
+   },
+   "redemption_fee_bps": 0.0,
+   "seller_print_needed_bps": 3.630753031894122,
+   "staking_apr": 0.02313360192337388,
+   "venue_fee_bps_median": 1.0,
+   "wait_days": 0.9951967592592592,
+   "wait_rule": {
+    "finalized": 85183,
+    "last_days": {
+     "2026-10-04": 2.988773148148148,
+     "2026-10-05": 2.050138888888889,
+     "2026-10-06": 0.9672106481481482,
+     "2026-10-07": 0.6465393518518519,
+     "2026-10-08": 0.7260821759259259,
+     "2026-10-09": 0.8013888888888889,
+     "2026-10-10": 0.4641087962962963
+    },
+    "median_days_all": 1.976550925925926,
+    "model_at_end_days": 0.4641087962962963,
+    "oldest_pending_days": 1.1325810185185186,
+    "pending": 138,
+    "points": 85321,
+    "requests_in_window": 1511,
+    "window_days": 14
+   }
+  },
+  "weETH": {
+   "address": "0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee",
+   "asset": "etherfi_ev",
+   "carry_bps": 0.3007969770636561,
+   "cow_fee_bps_at_limit": 0.0,
+   "distance_below_nav_bps": 1.300796977063656,
+   "gas_bps_at_min_fill": 20.0,
+   "gas_bps_at_pool": 0.39929720612675645,
+   "gas_usd_per_fill": 10.0,
+   "hurdle_bps": 1.0,
+   "in_market_at_data_end": false,
+   "limit_discount_bps": 1.300796977063656,
+   "limit_price_eth_per_token": 1.1053524066903173,
+   "limit_price_wei_per_token": 1105352406356132843,
+   "market_less_fee_bps": 0.7105740400070998,
+   "market_median_bps_at_data_end": 1.5405740400070997,
+   "nav_block": 26165484,
+   "nav_drift_bps_per_day": 0.6404981900031214,
+   "nav_eth": 1.105496209303039,
+   "nav_source": "0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee getRate()",
+   "nav_wei": 1105496209303038983,
+   "path_open": true,
+   "path_state": {
+    "flags": {
+     "liquidity_pool_paused": false,
+     "withdraw_request_nft_paused": false
+    },
+    "open": true,
+    "unknown": []
+   },
+   "redemption_fee_bps": 0.0,
+   "seller_print_needed_bps": 2.960796977063656,
+   "staking_apr": 0.02313360192337388,
+   "venue_fee_bps_median": 0.83,
+   "wait_days": 0.4745949074074074,
+   "wait_rule": {
+    "finalized": 42792,
+    "last_days": {
+     "2026-10-04": 1.084872685185185,
+     "2026-10-05": 0.45267361111111115,
+     "2026-10-06": 0.9810416666666667,
+     "2026-10-07": 0.437037037037037,
+     "2026-10-08": 0.37008680555555556,
+     "2026-10-09": 0.6897916666666667,
+     "2026-10-10": 0.3710763888888889
+    },
+    "median_days_all": 0.7931597222222222,
+    "model_at_end_days": 0.3710763888888889,
+    "oldest_pending_days": 0.2772337962962963,
+    "pending": 6,
+    "points": 42798,
+    "requests_in_window": 386,
+    "window_days": 14
+   }
+  },
+  "wstETH": {
+   "address": "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0",
+   "asset": "lido",
+   "carry_bps": 0.630753031894122,
+   "cow_fee_bps_at_limit": 0.0,
+   "distance_below_nav_bps": 1.630753031894122,
+   "gas_bps_at_min_fill": 20.0,
+   "gas_bps_at_pool": 0.39929720612675645,
+   "gas_usd_per_fill": 10.0,
+   "hurdle_bps": 1.0,
+   "in_market_at_data_end": false,
+   "limit_discount_bps": 1.630753031894122,
+   "limit_price_eth_per_token": 1.245810480747439,
+   "limit_price_wei_per_token": 1245810474895148804,
+   "market_less_fee_bps": -0.8445752347739953,
+   "market_median_bps_at_data_end": 0.15542476522600468,
+   "nav_block": 26165484,
+   "nav_drift_bps_per_day": 0.6337973129691474,
+   "nav_eth": 1.246013674805236,
+   "nav_source": "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0 stEthPerToken()",
+   "nav_wei": 1246013674805236042,
+   "path_open": true,
+   "path_state": {
+    "flags": {
+     "bunker_mode": false,
+     "paused": false
+    },
+    "open": true,
+    "unknown": []
+   },
+   "redemption_fee_bps": 0.0,
+   "seller_print_needed_bps": 3.630753031894122,
+   "staking_apr": 0.02313360192337388,
+   "venue_fee_bps_median": 1.0,
+   "wait_days": 0.9951967592592592,
+   "wait_rule": {
+    "finalized": 85183,
+    "last_days": {
+     "2026-10-04": 2.988773148148148,
+     "2026-10-05": 2.050138888888889,
+     "2026-10-06": 0.9672106481481482,
+     "2026-10-07": 0.6465393518518519,
+     "2026-10-08": 0.7260821759259259,
+     "2026-10-09": 0.8013888888888889,
+     "2026-10-10": 0.4641087962962963
+    },
+    "median_days_all": 1.976550925925926,
+    "model_at_end_days": 0.4641087962962963,
+    "oldest_pending_days": 1.1325810185185186,
+    "pending": 138,
+    "points": 85321,
+    "requests_in_window": 1511,
+    "window_days": 14
+   }
+  }
+ }
+}

@@ -1,6 +1,6 @@
 # queue_bids_alt — tables
 
-Generated 2026-10-10T17:55:08Z from `analysis.json` by `scripts/queue_bids_alt.py render`.
+Generated 2026-10-10T22:09:34Z from `analysis.json` by `scripts/queue_bids_alt.py render`.
 
 ## A. Candidates by DEX liquidity against the native coin (GeckoTerminal 24h, 2026-10-10)
 
@@ -52,7 +52,7 @@ Not covered by GeckoTerminal: milkTIA (Osmosis (MilkyWay), 21 days); stATOM (Osm
 | unconfirmed at the end | 1,504 requests, 337,096 HYPE |
 | cancelled | 0 |
 | unstake fee | 10.0bp on 10,791 requests; set to 0 at 2026-04-08T00:14:01Z |
-| rate in no-fee requests vs StakingAccountant | p50 0.00bp, p1–p99 -0.00bp to 0.00bp (n 3,838) |
+| rate fixed in no-fee requests vs StakingAccountant (3-hourly samples) | p50 0.00bp, p10–p90 -0.00bp to 0.00bp, p99 0.32bp, min -0.57bp, max 0.51bp (n 3,838) |
 | request → confirmation, days | p1 7.00, p5 7.00, median 9.17, p90 27.76, max 443.8 |
 | fastest confirmation by month, days | 25-07 8.08, 25-08 7.10, 25-09 7.00, 25-10 7.00, 25-11 7.00, 25-12 7.00, 26-01 7.00, 26-02 7.00, 26-03 7.00, 26-04 7.00, 26-05 7.00, 26-06 7.00, 26-07 7.01, 26-08 7.00, 26-09 7.00, 26-10 7.00 |
 | HYPE requested by month | 25-07 100k, 25-08 911k, 25-09 3,770k, 25-10 5,891k, 25-11 11,122k, 25-12 5,049k, 26-01 1,173k, 26-02 1,832k, 26-03 2,216k, 26-04 1,559k, 26-05 2,464k, 26-06 1,328k, 26-07 450k, 26-08 1,026k, 26-09 2,135k, 26-10 402k |
@@ -61,79 +61,94 @@ Not covered by GeckoTerminal: milkTIA (Osmosis (MilkyWay), 21 days); stATOM (Osm
 
 | LST | source | window | hours traded | p50 | p90 | p99 | max | ≥10bp | ≥20bp | ≥50bp | round trip | episodes (hours) |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| aprmon | — | no exchange-rate history | | | | | | | | | | |
+| aprMON | GeckoTerminal hourly bars (typical price | 2026-03-13 +211d | 4,964 | 18.8bp | 33.3bp | 76.6bp | 276.2bp | 90% | 42% | 3% | 14.7bp | 93 (3774) |
 | JitoSOL | GeckoTerminal hourly bars (typical price | 2026-03-13 +211d | 5,064 | 7.4bp | 10.5bp | 26.4bp | 108.9bp | 13% | 2% | 0% | 12.0bp | 175 (279) |
-| kHYPE | on-chain swaps reconstructed from kHYPE/ | 2025-07-15 +268d | 2,595 | 8.2bp | 21.6bp | 31.0bp | 41.7bp | 44% | 13% | 0% | 6.3bp | 40 (1489) |
-| kHYPE | GeckoTerminal bars | 2026-03-12 +212d | 5,087 | 7.8bp | 20.8bp | 37.6bp | 107.6bp | 33% | 12% | 1% | 6.3bp | 47 (3017) |
-| savax | — | under 60 days of bars | | | | | | | | | | |
-| slisbnb | — | no exchange-rate history | | | | | | | | | | |
+| kHYPE | on-chain swaps reconstructed from kHYPE/ | 2025-07-15 +452d | 10,836 | 9.8bp | 30.1bp | 64.1bp | 260.2bp | 49% | 23% | 2% | 5.9bp | 105 (5301) |
+| kHYPE | GeckoTerminal bars | 2026-03-12 +212d | 5,087 | 7.8bp | 20.8bp | 37.6bp | 107.6bp | 33% | 12% | 1% | 5.9bp | 52 (2903) |
+| sAVAX | GeckoTerminal hourly bars (typical price | 2026-03-30 +194d | 4,100 | 17.4bp | 52.9bp | 74.8bp | 207.6bp | 69% | 44% | 11% | 22.0bp | 75 (1543) |
+| slisBNB | GeckoTerminal hourly bars (typical price | 2026-04-08 +185d | 4,432 | 12.7bp | 17.1bp | 23.9bp | 73.2bp | 80% | 4% | 0% | 4.0bp | 3 (4407) |
 | stS | GeckoTerminal hourly bars (typical price | 2026-03-17 +207d | 4,967 | 5.8bp | 42.0bp | 118.0bp | 297.8bp | 43% | 34% | 7% | 19.9bp | 17 (1701) |
 
 ## D. The bid, out of sample (hurdle chosen on the first half, scored once on the second)
 
 | LST | source | size | hurdle | in sample $/yr | out of sample $/yr | 95% interval | t | fills OOS | median edge | trailing 90d $/yr | capacity | late 1h | late 1d | ¼ volume as sales | verdict |
 |---|---|---:|---:|---:|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| aprMON | GeckoTerminal hourly bars (typical | $100,000 | h=5 | $18,052 | $8,301 | $2,651 to $15,134 | 2.80 | 337 | 14.8bp | $6,872 | $100,000 | 96% | 60% | $3,376 | no-go |
 | JitoSOL | GeckoTerminal hourly bars (typical | $1,000,000 | h=0 | $2,054 | $0 | $0 to $0 | — | 0 | 1.0bp | $0 | — | — | — | $0 | no-go |
-| kHYPE | on-chain swaps reconstructed from  | $30,000,000 | h=0 | $463 | $108,442 | $20,415 to $219,900 | 2.41 | 1961 | 8.2bp | $161,459 | $30,000,000 | 98% | 62% | — | proposed |
+| kHYPE | on-chain swaps reconstructed from  | $10,000,000 | h=20 | $370,709 | $140,043 | $17,327 to $356,703 | 1.44 | 864 | 24.6bp | $245,331 | $30,000,000 | 76% | 31% | — | proposed |
+| kHYPE | same, at the capacity-rule size | $30,000,000 | h=10 | $1,192,401 | $373,849 | $137,989 to $703,305 | 2.65 | 8183 | 15.3bp | $400,475 | $30,000,000 | 87% | 51% | — |  |
 | kHYPE | GeckoTerminal bars, same queue mod | $30,000,000 | h=0 | $509,460 | $511,447 | $89,370 to $1,314,524 | 1.61 | 2701 | 6.4bp | $583,189 | $30,000,000 | 99% | 98% | — |  |
+| sAVAX | GeckoTerminal hourly bars (typical | $3,000,000 | h=0 | $12,640 | $42,343 | $1,755 to $94,834 | 2.06 | 85 | 10.2bp | $45,636 | $3,000,000 | 74% | 54% | $20,931 | watch (bar-only evidence: $20,931 a year with a quarter of the volume as sales) |
+| slisBNB | GeckoTerminal hourly bars (typical | $3,000,000 | h=2 | $113,743 | $2,112 | $1,152 to $3,377 | 3.89 | 172 | 9.3bp | $2,165 | $3,000,000 | 98% | 99% | $866 | no-go |
 | stS | GeckoTerminal hourly bars (typical | $1,000,000 | h=0 | $13,476 | $17,090 | $2,101 to $35,797 | 2.19 | 185 | 23.7bp | $7,759 | $1,000,000 | 93% | 72% | $7,726 | watch (positive, below the bar) |
 
 ## E. kHYPE in detail
 
-### E1. Size grid (swap-level, 2025-07-15 +268 days, split 2025-11-26T00:00:00Z)
+### E1. Size grid (swap-level, 2025-07-15 +452 days, split 2026-02-26T00:00:00Z)
 
 | size | hurdle | in sample | out of sample | 95% interval | fills OOS | filled | missed for capital | median edge | trailing 90d |
 |---:|---:|---:|---:|---|---:|---:|---:|---:|---:|
-| $100,000 | h=1 | $57 | $740 | $108 to $1,806 | 33 | $799,744 | $48,520,877 | 2.8bp | $1,102 |
-| $1,000,000 | h=1 | $365 | $6,978 | $1,465 to $15,236 | 309 | $6,347,598 | $43,043,000 | 4.3bp | $10,390 |
-| $10,000,000 | h=0 | $463 | $74,018 | $15,894 to $149,641 | 1350 | $39,959,857 | $13,121,493 | 7.8bp | $110,205 |
-| $300,000 | h=1 | $186 | $1,991 | $449 to $4,381 | 137 | $2,399,466 | $47,010,472 | 4.3bp | $2,964 |
-| $3,000,000 | h=0 | $463 | $18,289 | $3,535 to $38,494 | 527 | $16,255,592 | $36,786,848 | 4.4bp | $27,230 |
-| $30,000,000 | h=0 | $463 | $108,442 | $20,415 to $219,900 | 1961 | $53,113,219 | $0 | 8.2bp | $161,459 |
+| $100,000 | h=20 | $3,905 | $1,749 | $441 to $3,279 | 39 | $1,499,695 | $432,807,860 | 20.5bp | $1,071 |
+| $1,000,000 | h=20 | $35,360 | $17,139 | $5,014 to $32,194 | 170 | $12,479,618 | $421,833,739 | 21.2bp | $12,171 |
+| $10,000,000 | h=20 | $370,709 | $140,043 | $17,327 to $356,703 | 864 | $82,495,606 | $346,965,098 | 24.6bp | $245,331 |
+| $300,000 | h=20 | $11,619 | $5,614 | $1,643 to $10,414 | 70 | $4,376,301 | $429,937,056 | 20.6bp | $3,439 |
+| $3,000,000 | h=20 | $102,397 | $45,801 | $12,035 to $89,033 | 444 | $32,613,313 | $401,700,044 | 21.9bp | $38,771 |
+| $30,000,000 | h=10 | $1,192,401 | $373,849 | $137,989 to $703,305 | 8183 | $398,402,856 | $379,619,063 | 15.3bp | $400,475 |
 
-### E2. Value by month at $30,000,000 (hurdle h=0)
+### E2. Value by month at $10,000,000 (hurdle h=20)
 
 | month | value | | month | value |
 |---|---:|---|---|---:|
-| 2025-08 | $170 | | 2026-03 | $36,836 |
-| 2026-02 | $2,897 | | 2026-04 | $79 |
+| 2025-09 | $65,620 | | 2026-03 | $829 |
+| 2025-10 | $96,400 | | 2026-04 | $9,558 |
+| 2025-11 | $39,316 | | 2026-05 | $15,832 |
+| 2025-12 | $26,928 | | 2026-09 | $60,492 |
+| 2026-02 | $1,270 | |  |  |
 
-### E3. Variants at $30,000,000
+### E3. Variants on the same sales (out of sample $/yr, hurdle chosen in sample)
 
-| variant | out of sample $/yr | chosen hurdle |
-|---|---:|---|
-| as quoted (stake carry, fastest-claim wait, venue-median cap) | $108,442 | h=0 |
-| carry at HyperLend WHYPE borrow (bid funded by borrowing HYPE) | $142,553 | h=0 |
-| fixed 7-day wait | $110,419 | h=0 |
-| per print (no venue-median cap; an upper bound) | $119,865 | h=0 |
-| GeckoTerminal window, swap-level sales | $0 | h=0 |
-| GeckoTerminal window, bars with half the volume as sales | $511,447 | h=0 |
+| variant | $10M | $30M |
+|---|---:|---:|
+| as quoted: staking carry, fastest-claim wait, venue-median cap | $140,043 (h=20) | $373,849 (h=10) |
+| carry at HyperLend WHYPE borrow (bid funded by borrowing HYPE against kHYPE) | $156,977 (h=20) | $363,547 (h=10) |
+| fixed 7-day wait | $141,087 (h=20) | $375,712 (h=10) |
+| print filter at 1,000bp (keeps the 2025-09-24 depeg sales) | $139,981 (h=20) | $373,788 (h=10) |
+| per print, no venue-median cap (an upper bound) | $185,553 (h=20) | $425,807 (h=10) |
+
+### E3b. Same window (2026-03-12 +212 days), same queue model: bars with half the volume as sales vs measured sales
+
+| size | bars $/yr OOS (hurdle) | swaps $/yr OOS (hurdle) | swaps 95% interval |
+|---:|---:|---:|---|
+| $1,000,000 | $12,476 (h=10) | $10,822 (h=10) | $0 to $26,701 |
+| $3,000,000 | $32,081 (h=10) | $29,982 (h=10) | $0 to $78,727 |
+| $10,000,000 | $181,069 (h=3) | $189,719 (h=10) | $0 to $560,374 |
+| $30,000,000 | $511,447 (h=0) | $433,892 (h=0) | $72,914 to $1,129,610 |
 
 ### E4. The same pool-hours priced two ways (GeckoTerminal bar vs swap VWAP rebuilt from chain)
 
 | pool | hours in both | median abs gap | p90 abs gap | signed median | bar volume / swap volume (p50) |
 |---|---:|---:|---:|---:|---:|
-| hybra-v4 | 687 | 0.10bp | 0.40bp | 0.01bp | 1.00 |
-| hyperswap-v3 | 86 | 0.24bp | 0.74bp | 0.02bp | 1.00 |
-| kittenswap-algebra | 189 | 0.15bp | 1.41bp | 0.02bp | 1.00 |
-| nest | 0 | — | — | — | — |
-| project-x | 614 | 0.55bp | 1.17bp | -0.02bp | 1.00 |
-| ramses-v3 | 600 | 0.07bp | 0.46bp | 0.01bp | 1.00 |
+| hybra-v4 | 4,941 | 0.11bp | 0.55bp | 0.01bp | 1.00 |
+| hyperswap-v3 | 3,933 | 0.36bp | 1.03bp | 0.00bp | 1.00 |
+| kittenswap-algebra | 3,949 | 0.14bp | 1.41bp | 0.00bp | 1.00 |
+| nest | 1,806 | 0.67bp | 5.09bp | 0.00bp | 1.00 |
+| project-x | 4,934 | 0.54bp | 1.17bp | -0.00bp | 1.00 |
+| ramses-v3 | 4,975 | 0.06bp | 0.41bp | 0.01bp | 1.00 |
 
-Valantis STEX (instant unstake, a competing bidder, not back-runnable): $200,665,243 of volume at a volume-weighted 5.5bp.
+Valantis STEX (instant unstake, a competing bidder, not back-runnable): $325,852,267 of volume at a volume-weighted 9.0bp.
 
-### E5. Largest dislocation episodes (market discount above the round trip of 6.3bp)
+### E5. Largest dislocation episodes (market discount above the round trip of 5.9bp)
 
 | start | end | hours | volume | vw discount | peak | net of round trip |
 |---|---|---:|---:|---:|---:|---:|
-| 2026-02-22T21:00 | 2026-04-03T09:00 | 945 | $164,989,020 | 21.4bp | 41.7bp | 15.1bp |
-| 2025-08-13T22:00 | 2025-08-18T19:00 | 117 | $140,106,634 | 9.9bp | 36.9bp | 3.6bp |
-| 2025-08-29T08:00 | 2025-08-30T06:00 | 22 | $73,027,179 | 11.6bp | 17.8bp | 5.3bp |
-| 2025-09-13T10:00 | 2025-09-16T12:00 | 70 | $101,036,526 | 9.1bp | 14.0bp | 2.8bp |
-| 2025-08-19T14:00 | 2025-08-21T06:00 | 37 | $63,883,737 | 9.2bp | 13.1bp | 2.9bp |
-| 2025-08-05T21:00 | 2025-08-07T03:00 | 29 | $22,812,112 | 9.9bp | 19.5bp | 3.6bp |
-| 2025-08-01T19:00 | 2025-08-02T14:00 | 19 | $14,563,097 | 11.8bp | 16.4bp | 5.5bp |
-| 2026-04-03T14:00 | 2026-04-09T00:00 | 128 | $14,770,558 | 11.3bp | 25.2bp | 5.0bp |
+| 2025-09-23T18:00 | 2025-09-30T14:00 | 164 | $372,863,821 | 103.1bp | 260.2bp | 86.1bp |
+| 2025-10-10T06:00 | 2025-10-21T19:00 | 277 | $531,176,655 | 54.6bp | 97.9bp | 38.0bp |
+| 2025-11-02T16:00 | 2025-11-23T01:00 | 489 | $457,605,563 | 31.3bp | 42.2bp | 14.9bp |
+| 2025-12-05T08:00 | 2025-12-24T14:00 | 462 | $202,585,650 | 29.0bp | 44.4bp | 12.6bp |
+| 2026-09-19T12:00 | 2026-09-28T05:00 | 208 | $58,326,438 | 46.6bp | 104.2bp | 40.8bp |
+| 2026-05-18T04:00 | 2026-06-08T02:00 | 502 | $201,674,365 | 17.5bp | 41.9bp | 11.7bp |
+| 2026-02-04T08:00 | 2026-02-20T17:00 | 391 | $123,501,988 | 29.0bp | 37.2bp | 12.8bp |
+| 2025-10-22T02:00 | 2025-10-27T12:00 | 129 | $101,570,640 | 21.9bp | 28.4bp | 5.2bp |
 
 ## F. Solana: the instant exit against the stake pool (Jupiter quotes vs on-chain rate, 2026-10-10T17:31:33Z)
 
@@ -150,8 +165,8 @@ Valantis STEX (instant unstake, a competing bidder, not back-runnable): $200,665
 |---|---|---|---|---:|---:|---:|---|---:|---:|---:|---:|---:|---:|
 | binance:SOL short, BNSOL collateral | collateral | 2025-02-27 → 2026-10-09 (2025-12-19) | trail30d_x0pp | +1.13% | -0.36% | -0.62 | -1.45% to +0.78% | -0.29% | +0.33% | +1.4% | +2.1% | +0.00% | +1.44% |
 | binance:SOL spot (BNSOL window) | collateral | 2025-02-27 → 2026-10-09 (2025-12-19) | trail30d_x2pp | -0.22% | +0.00% | — | +0.00% to +0.00% | +0.00% | +0.00% | +0.8% | +0.0% | +0.00% | +0.38% |
-| hl:HYPE short cash 3x, kHYPE spot | cash3x | 2025-07-07 → 2026-10-09 (2026-02-22) | always | +7.40% | +3.45% | 4.05 | +1.64% to +4.94% | +3.97% | +3.61% | +14.7% | +2.5% | +0.00% | +1.73% |
-| hl:HYPE short, kHYPE spot (margin borrowed on HyperLend) | collateral | 2025-07-07 → 2026-10-09 (2026-02-22) | always | +10.13% | +4.49% | 3.79 | +2.01% to +6.47% | +5.34% | +5.26% | +14.7% | +2.5% | +1.91% | +3.23% |
+| hl:HYPE short cash 3x, kHYPE spot | cash3x | 2025-07-07 → 2026-10-09 (2026-02-22) | always | +7.41% | +3.44% | 3.06 | +1.58% to +5.11% | +3.98% | +3.54% | +14.7% | +2.5% | +0.00% | +1.73% |
+| hl:HYPE short, kHYPE spot (margin borrowed on HyperLend) | collateral | 2025-07-07 → 2026-10-09 (2026-02-22) | always | +10.14% | +4.48% | 2.93 | +1.87% to +6.64% | +5.35% | +5.17% | +14.7% | +2.5% | +1.91% | +3.23% |
 | hl:HYPE short, kHYPE spot, staking only | collateral | 2025-07-07 → 2026-10-09 (2026-02-22) | always | +10.27% | +4.41% | 4.22 | +2.11% to +6.32% | +5.29% | +5.26% | +14.7% | +2.6% | +1.91% | +3.23% |
 | hl:HYPE | collateral | 2024-12-06 → 2026-10-09 (2025-11-07) | always | +25.23% | +4.30% | 5.68 | +2.85% to +5.66% | +4.03% | +4.16% | +37.4% | +0.0% | +1.43% | +3.31% |
 | hl:HYPE (kHYPE window) | collateral | 2025-07-07 → 2026-10-09 (2026-02-22) | always | +9.08% | +3.27% | 3.27 | +1.06% to +5.15% | +4.03% | +4.16% | +14.7% | +0.0% | +1.01% | +2.11% |
@@ -179,3 +194,5 @@ Staking yield over each window: kHYPE +2.05%, BNSOL +5.36% (DefiLlama apyBase), 
 - LiquidSwap route API returned a nonsensical route (65% impact via USOL) for WHYPE->kHYPE: no live depth quote for kHYPE
 - BSC: publicnode/drpc/official seeds refused archive reads; blastapi served them
 - TON (tsTON) and Hydration (vDOT vs H2O) not priced: no free exchange-rate history found
+- Monad: rpc1.monad.xyz and rpc-mainnet.monadinfra.com answer single calls but 403 any JSON-RPC batch; rpc2 serves both
+- Avalanche public archive (api.avax.network) takes ~12 s a call: sAVAX rate sampled every 12 h, no swap-level rebuild

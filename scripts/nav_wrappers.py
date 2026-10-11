@@ -2328,6 +2328,572 @@ def cmd_render(args):
     print('tables.md written (%d lines)' % len(L))
 
 
+# ---------------------------------------------------------------------------------------------- forward test (DATs)
+
+# The study's next step 1: EMPD and BNC pre-registered and scored at +20 and +60 sessions, read against a basket of the
+# other discounted DATs of the live table (no dated catalyst) and against MSTR. The rule is the study's own trade
+# (dat_forward: beta hedge rebalanced at each close, capital 1 + 1/3 of the short, ADV-tier stock costs, 5bp perp,
+# excess over the savings rate paid) on holdings and capital structure frozen at registration. A registered row is
+# never edited and carries its own parameters, so a later change to this file cannot re-score it; a later filing that
+# moves the holdings is a fact about the trade, not a reason to re-register.
+DAT_FORWARD_LEDGER = ROOT / 'research' / 'dat_events_forward.jsonl'
+WATCH_DIR = ROOT / 'research' / '2026-10-11' / 'watch_forward'
+DAT_FORWARD_HORIZONS = (20, 60)
+DAT_FORWARD_RULE = {
+    'id': 'dat-discount-catalyst',
+    'study': 'research/2026-10-10/nav_wrappers (findings.md, Next 1; live table of the 2026-10-09 close)',
+    'entry': 'the first regular-session close (16:00 New York; 13:00 on early-close days) strictly after registration',
+    'position': 'long $1 of the stock at the entry close; short h x $1 of the coin on its Binance USD-M perp',
+    'hedge': "beta, the study's main DAT hedge: h = coin value / (coin value + cash - debt - preferred), capped at 3, "
+             'from the holdings and capital structure frozen at registration and the coin price at each close; '
+             'rebalanced at every close (dat_forward)',
+    'coin_price': "Binance close of the hour ending at the stock close: spot where listed, else the perp (the study's "
+                  "convention); a variant marks the hedge leg on the perp's own close",
+    'funding': 'Binance funding settled in (previous close, close], received by the short when positive',
+    'capital': '1 + margin x h at entry, margin 1/3',
+    'costs': 'stock per side by trailing-60-session dollar volume (>= $100M 5bp, $10-100M 10bp, $1-10M 30bp, '
+             '< $1M 100bp) at entry and at exit; perp 5bp per side on h at entry',
+    'benchmark': 'savings rate paid (2026: 3.7%; after: 3.8%) per calendar day held',
+    'horizons': "the 20th and 60th NYSE session after the entry close (the study's +20d/+60d are trading-day rows)",
+    'nav_ratio': 'true mNAV = price / look-through NAV per share on the frozen holdings and capital structure; EMPD '
+                 'also with its $65M AI commitment at zero',
+    'placebo': 'equal-weight basket of the other discounted DATs of the live table with a Binance coin perp and no '
+               'dated catalyst (SKYA, HYPD, HSDT, NAKA, FWDI), the same rule each; MSTR as the sector benchmark',
+    'kill': 'once all four candidate horizons are scored: mean +60-session excess over the placebo basket not positive',
+    'promote': 'both candidates above the savings rate and above the placebo basket at +60 sessions, and both true mNAV '
+               'ratios higher than at entry: then pre-register the next dated-catalyst DATs (n = 2 is an anecdote, '
+               'not a book entry)',
+    'not_applied': "the study's DAT exits (coins sold for anything but buybacks; 3 months) are not applied: +60 "
+                   'sessions is the 3 months, and coin sales are recorded as notes',
+}
+DAT_FORWARD_PARAMS = {'margin': 1 / 3, 'perp_fee': 0.0005, 'hedge_cap': 3.0,
+                      'stock_cost_tiers': [[1e8, 0.0005], [1e7, 0.001], [1e6, 0.003], [0.0, 0.01]],
+                      'ssr_paid': {str(k): v for k, v in SSR_PAID.items()}, 'ssr_default': SSR_NOW,
+                      'horizons': list(DAT_FORWARD_HORIZONS), 'adv_sessions': 60}
+DAT_FORWARD_NAMES = {
+    'EMPD': {'role': 'candidate',
+             'catalyst': "ATG Capital proxy fight: Delaware Chancery (2026-08-28) and Supreme Court (2026-10-08) backed "
+                         "ATG's nominees; annual meeting vote 2026-10-14 per the study's sources (ISS, Glass Lewis, "
+                         'Egan-Jones back ATG); true mNAV 0.56, 0.97 with the AI stake at zero'},
+    'BNC': {'role': 'candidate',
+            'catalyst': '$250M buyback authorised 2025-09-22; YZi Labs settlement and three new directors 2026-06-24; '
+                        'Binance TradFi lists a BNCUSDT stock perp'},
+    'SKYA': {'role': 'placebo'}, 'HYPD': {'role': 'placebo'}, 'HSDT': {'role': 'placebo'},
+    'NAKA': {'role': 'placebo'}, 'FWDI': {'role': 'placebo'},
+    'MSTR': {'role': 'benchmark'},
+}
+DAT_FORWARD_MIN = 2 * len(DAT_FORWARD_HORIZONS)       # candidate horizon scores before any verdict
+NYSE_HOLIDAYS = {'2026-01-01', '2026-01-19', '2026-02-16', '2026-04-03', '2026-05-25', '2026-06-19', '2026-07-03',
+                 '2026-09-07', '2026-11-26', '2026-12-25', '2027-01-01', '2027-01-18', '2027-02-15', '2027-03-26',
+                 '2027-05-31', '2027-06-18', '2027-07-05', '2027-09-06', '2027-11-25', '2027-12-24'}
+NYSE_EARLY_CLOSE = {'2026-11-27', '2026-12-24', '2027-11-26'}      # 13:00 New York
+SETTLE_MS = 30 * 60 * 1000                                         # a close is final 30 minutes after it
+FWD_DAY_MS = 86400000
+DAT_PLACEBO_MIN = 3                                                # placebo names scored before a comparison
+
+
+def is_session(date):
+    d = dt.date.fromisoformat(date)
+    return d.weekday() < 5 and date not in NYSE_HOLIDAYS
+
+
+def session_close_ms(date):
+    """Epoch ms of the regular-session close on `date` (16:00 New York, 13:00 on early-close days)."""
+    t = dt.datetime.combine(dt.date.fromisoformat(date), dt.time(13 if date in NYSE_EARLY_CLOSE else 16, 0), NY)
+    return int(t.timestamp() * 1000)
+
+
+def next_close_after(ms):
+    """(date, close ms) of the first session close strictly after `ms`."""
+    d = dt.datetime.fromtimestamp(ms / 1000.0, NY).date()
+    for _ in range(15):
+        s = d.isoformat()
+        if is_session(s) and session_close_ms(s) > ms:
+            return s, session_close_ms(s)
+        d += dt.timedelta(days=1)
+    raise ValueError('no session within 15 days of %s' % ms)
+
+
+def sessions_after(date, n):
+    """The n NYSE sessions after `date` (holiday calendar to 2027)."""
+    out, d = [], dt.date.fromisoformat(date)
+    while len(out) < n:
+        d += dt.timedelta(days=1)
+        if is_session(d.isoformat()):
+            out.append(d.isoformat())
+    return out
+
+
+def frozen_beta(inputs, coin_px, cap=3.0):
+    """The study's beta hedge on frozen inputs: coin notional short per $ of stock at constant true mNAV."""
+    cv = inputs['coins'] * coin_px
+    nav = cv + inputs['cash_usd'] - inputs['debt_usd'] - inputs['pref_usd']
+    return min(cap, cv / nav) if nav > 0 else None
+
+
+def frozen_true_mnav(inputs, price, coin_px, share_factor=1.0, illiquid_at_zero=False):
+    """price / look-through NAV per share on frozen inputs (shares x share_factor: splits after registration)."""
+    cash = inputs['cash_usd'] - ((inputs.get('committed_to_illiquid_usd') or 0.0) if illiquid_at_zero else 0.0)
+    eq = inputs['coins'] * coin_px + cash - inputs['debt_usd'] - inputs['pref_usd']
+    return price * inputs['shares'] * share_factor / eq if eq > 0 else None
+
+
+def stock_side_cost(adv, tiers):
+    for lo, c in tiers:
+        if adv >= lo:
+            return c
+    return tiers[-1][1]
+
+
+def dat_forward_trade(rows, i0, k, inputs, params, leg='coin_px'):
+    """The frozen rule from session i0 to i0 + k: dat_forward's arithmetic on frozen inputs. rows: session dicts with
+    date, price, coin_px, perp_px, funding (in (previous close, close]) and adv_usd. `leg` is the price the hedge is
+    marked on ('coin_px' as the study; 'perp_px' the perp's own close). None when a price is missing."""
+    if i0 + k >= len(rows):
+        return None
+    if any(rows[j].get('coin_px') is None or rows[j].get(leg) is None or rows[j].get('price') is None
+           for j in range(i0, i0 + k + 1)):
+        return None
+    h0 = frozen_beta(inputs, rows[i0]['coin_px'], params['hedge_cap'])
+    if h0 is None:
+        return None
+    cap = 1.0 + params['margin'] * h0
+    parts = {'stock': 0.0, 'hedge': 0.0, 'funding': 0.0, 'savings': 0.0}
+    tot = 0.0
+    for j in range(i0 + 1, i0 + k + 1):
+        a, b = rows[j - 1], rows[j]
+        h = frozen_beta(inputs, a['coin_px'], params['hedge_cap'])
+        if h is None:
+            h = h0
+        rs = b['price'] / a['price'] - 1.0
+        rh = -h * (b[leg] / a[leg] - 1.0)
+        rf = h * b['funding']
+        gap = (dt.date.fromisoformat(b['date']) - dt.date.fromisoformat(a['date'])).days
+        sv = params['ssr_paid'].get(b['date'][:4], params['ssr_default']) * gap / 365.0
+        tot += (rs + rh + rf) / cap - sv
+        parts['stock'] += rs / cap
+        parts['hedge'] += rh / cap
+        parts['funding'] += rf / cap
+        parts['savings'] -= sv
+    c_in = stock_side_cost(rows[i0]['adv_usd'], params['stock_cost_tiers']) + params['perp_fee'] * h0
+    c_out = stock_side_cost(rows[i0 + k]['adv_usd'], params['stock_cost_tiers']) + params['perp_fee'] * h0
+    parts['costs'] = -(c_in + c_out) / cap
+    return {'excess': tot + parts['costs'], 'h0': h0, 'capital': cap, 'parts': parts,
+            'stock_return': rows[i0 + k]['price'] / rows[i0]['price'] - 1.0,
+            'coin_return': rows[i0 + k][leg] / rows[i0][leg] - 1.0,
+            'calendar_days': (dt.date.fromisoformat(rows[i0 + k]['date']) - dt.date.fromisoformat(rows[i0]['date'])).days}
+
+
+def dat_session_rows(y, coin_px, perp_px, funding, adv_n=60):
+    """Session rows from a Yahoo daily read ({'dates','close','volume'}) and Binance hourly closes keyed by open time:
+    the coin and perp close of the hour ending at each session close (up to 6 hours earlier when missing), funding
+    settled in (previous close, close], trailing dollar volume over adv_n sessions including the day."""
+    import bisect
+    funding = sorted(funding)
+    fts = [t for t, _ in funding]
+    frs = [r for _, r in funding]
+
+    def hour_close(m, T):
+        for back in range(1, 7):
+            v = m.get(T - back * 3600000)
+            if v is not None:
+                return v
+        return None
+    rows, vols, prev = [], [], None
+    for date, close, vol in zip(y['dates'], y['close'], y['volume']):
+        vols.append((vol or 0) * close)
+        T = session_close_ms(date)
+        f = sum(frs[bisect.bisect_right(fts, prev):bisect.bisect_right(fts, T)]) if prev is not None else 0.0
+        rows.append({'date': date, 'close_ms': T, 'price': close, 'coin_px': hour_close(coin_px, T),
+                     'perp_px': hour_close(perp_px, T), 'funding': f,
+                     'adv_usd': sum(vols[-adv_n:]) / len(vols[-adv_n:])})
+        prev = T
+    return rows
+
+
+def dat_forward_registrable(cands, ledger, now_ms):
+    """(new, late): candidates not yet in the ledger under the same rule and ticker whose entry close is still ahead,
+    and those whose entry has passed (a row registered after its entry would carry the price it bets on)."""
+    have = {(r.get('rule'), r.get('ticker')) for r in ledger}
+    new, late = [], []
+    for c in cands:
+        if (c['rule'], c['ticker']) in have:
+            continue
+        (new if iso_to_ms(c['entry_utc']) > now_ms else late).append(c)
+    return new, late
+
+
+def iso_to_ms(s):
+    return int(dt.datetime.fromisoformat(s).timestamp() * 1000)
+
+
+def read_jsonl(path):
+    p = Path(path)
+    if not p.exists():
+        return []
+    return [json.loads(line) for line in p.read_text().splitlines() if line.strip()]
+
+
+def append_jsonl(path, rows):
+    if not rows:
+        return
+    p = Path(path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    with p.open('a') as f:
+        for r in rows:
+            f.write(json.dumps(r, sort_keys=True, default=str) + '\n')
+
+
+class DatFetch:
+    """The forward test's network reads (Yahoo daily, Binance hourly closes and funding, Binance perp state), each
+    saved raw under `raw_dir`. Read-only public endpoints; Yahoo with UA 'Mozilla/5.0'."""
+
+    def __init__(self, raw_dir):
+        self.raw = Path(raw_dir)
+
+    def _save(self, name, obj):
+        write_gz(self.raw / name, obj)
+
+    def yahoo_daily(self, sym, t0_s, t1_s):
+        d = http_json(YAHOO + urllib.parse.quote(sym), {'period1': int(t0_s), 'period2': int(t1_s), 'interval': '1d',
+                                                        'events': 'div,split'}, pause=0.6)
+        self._save('yahoo_%s.json.gz' % sym, d)
+        r = ((d.get('chart') or {}).get('result') or [None])[0] if isinstance(d, dict) else None
+        if not r or not r.get('timestamp'):
+            return None
+        q = r['indicators']['quote'][0]
+        out = {'dates': [], 'close': [], 'volume': []}
+        for i, t in enumerate(r['timestamp']):
+            if q['close'][i] is None:
+                continue
+            out['dates'].append(dt.datetime.fromtimestamp(t, UTC).strftime('%Y-%m-%d'))
+            out['close'].append(float(q['close'][i]))
+            out['volume'].append(q['volume'][i] or 0)
+        ev = r.get('events') or {}
+        out['splits'] = sorted((ymd(x['date'] * 1000), x['numerator'] / x['denominator'])
+                               for x in (ev.get('splits') or {}).values())
+        return out
+
+    def hourly(self, coin, start_ms, end_ms, kind='study'):
+        """{open ms: close}: 'study' = spot where Binance lists it, else the perp (collect_binance's choice);
+        'perp' = the USD-M perp."""
+        spot, perp = COIN_SYMBOLS[coin]
+        if kind == 'study' and spot:
+            url, sym, src = BN_SPOT, spot, 'spot:' + spot
+        else:
+            url, sym, src = BN_PERP, perp, 'perp:' + perp
+        rows = _klines(url, sym, '1h', start_ms, end_ms, log=lambda *a: None, limit=1000)
+        mult = PERP_MULT.get(coin, 1.0) if src.startswith('perp') else 1.0
+        self._save('binance_%s_%s_1h.json.gz' % (coin, 'study' if kind == 'study' else 'perp'),
+                   {'source': src, 'rows': rows})
+        return {r[0]: r[1] / mult for r in rows}, src
+
+    def funding(self, coin, start_ms, end_ms):
+        perp = COIN_SYMBOLS[coin][1]
+        rows, t = [], start_ms
+        while t < end_ms:
+            d = http_json(BN_FUND, {'symbol': perp, 'startTime': t, 'endTime': end_ms, 'limit': 1000}, pause=0.25)
+            if not isinstance(d, list) or not d:
+                break
+            rows.extend([[int(x['fundingTime']), float(x['fundingRate'])] for x in d])
+            nt = int(d[-1]['fundingTime']) + 1
+            if nt <= t or len(d) < 1000:
+                break
+            t = nt
+        self._save('binance_%s_funding.json.gz' % coin, {'symbol': perp, 'rows': rows})
+        return [(a, b) for a, b in rows]
+
+    def perp_state(self, symbol):
+        base = 'https://fapi.binance.com'
+        out = {'symbol': symbol, 'at': dt.datetime.now(UTC).isoformat(timespec='seconds')}
+        for key, path, params in (('premium_index', '/fapi/v1/premiumIndex', {'symbol': symbol}),
+                                  ('ticker_24h', '/fapi/v1/ticker/24hr', {'symbol': symbol}),
+                                  ('open_interest', '/fapi/v1/openInterest', {'symbol': symbol}),
+                                  ('depth', '/fapi/v1/depth', {'symbol': symbol, 'limit': 100}),
+                                  ('funding_last', '/fapi/v1/fundingRate', {'symbol': symbol, 'limit': 30})):
+            try:
+                out[key] = http_json(base + path, params, pause=0.25)
+            except RuntimeError as e:
+                out[key] = {'_error': str(e)[:200]}
+        self._save('binance_perp_state_%s.json.gz' % symbol, out)
+        return out
+
+
+def perp_state_summary(st):
+    """Mark, index, last funding, 24h quote volume, open interest and depth within 1% from a perp_state read."""
+    pi, tk, oi, dp = (st.get(k) or {} for k in ('premium_index', 'ticker_24h', 'open_interest', 'depth'))
+    mark = fnum(pi.get('markPrice'))
+    out = {'symbol': st.get('symbol'), 'at': st.get('at'), 'mark': mark, 'index': fnum(pi.get('indexPrice')),
+           'last_funding_rate': fnum(pi.get('lastFundingRate')), 'quote_volume_24h': fnum(tk.get('quoteVolume')),
+           'open_interest_units': fnum(oi.get('openInterest'))}
+    if mark and isinstance(dp, dict) and dp.get('bids'):
+        out['bid_usd_within_1pct'] = sum(float(p) * float(q) for p, q in dp['bids'] if float(p) >= mark * 0.99)
+        out['ask_usd_within_1pct'] = sum(float(p) * float(q) for p, q in dp.get('asks', []) if float(p) <= mark * 1.01)
+    fl = st.get('funding_last')
+    if isinstance(fl, list) and fl:
+        out['funding_last_n'] = len(fl)
+        out['funding_last_sum'] = sum(float(x['fundingRate']) for x in fl)
+        out['funding_last_from'] = ymd(int(fl[0]['fundingTime']))
+    return out
+
+
+def dat_forward_inputs(live_row, override):
+    """Frozen look-through inputs from the study's live row (analysis.json dats.live) and its curated override."""
+    return {'coins': live_row['coins'], 'cash_usd': live_row['cash_usd'], 'debt_usd': live_row['debt_usd'],
+            'pref_usd': live_row['pref_usd'], 'shares': live_row['shares'],
+            'committed_to_illiquid_usd': (override or {}).get('committed_to_illiquid_usd', 0.0)}
+
+
+def dat_forward_register(ledger_path, now_ms, fetch, analysis, curated, entry_date=None, names=None, log=print):
+    """Append one registration row per name (rule, ticker) not yet in the ledger, entry at the first close after
+    `now_ms` (or the close of `entry_date`, refused when it has passed). Returns (new rows, late candidates)."""
+    ledger = read_jsonl(ledger_path)
+    if entry_date:
+        if not is_session(entry_date):
+            raise SystemExit('%s is not an NYSE session' % entry_date)
+        e_date, e_ms = entry_date, session_close_ms(entry_date)
+    else:
+        e_date, e_ms = next_close_after(now_ms)
+    names = names or list(DAT_FORWARD_NAMES)
+    live = {r['ticker']: r for r in analysis['dats']['live']}
+    overrides = curated.get('dat_live_overrides') or {}
+    exp = sessions_after(e_date, max(DAT_FORWARD_HORIZONS))
+    cands = [{'rule': DAT_FORWARD_RULE['id'], 'ticker': tk, 'entry_date': e_date, 'entry_utc': utc_iso_ms(e_ms)}
+             for tk in names]
+    new, late = dat_forward_registrable(cands, ledger, now_ms)
+    for c in late:
+        log('too late  %-5s entry %s has passed' % (c['ticker'], c['entry_utc']))
+    stamp = utc_iso_ms(now_ms)
+    rows = []
+    coin_cache = {}
+    for c in new:
+        tk = c['ticker']
+        spec = DAT_FORWARD_NAMES[tk]
+        r = live[tk]
+        ov = overrides.get(tk) or {}
+        coin = r['coin']
+        inputs = dat_forward_inputs(r, ov)
+        y = fetch.yahoo_daily(tk, now_ms / 1000 - 140 * 86400, now_ms / 1000)
+        ref_i = max(i for i, d in enumerate(y['dates']) if session_close_ms(d) + SETTLE_MS <= now_ms)
+        ref_date, ref_close = y['dates'][ref_i], y['close'][ref_i]
+        T = session_close_ms(ref_date)
+        if coin not in coin_cache:
+            cs, src = fetch.hourly(coin, T - 12 * 3600000, now_ms, 'study')
+            cp, psrc = fetch.hourly(coin, T - 12 * 3600000, now_ms, 'perp')
+            st = perp_state_summary(fetch.perp_state(COIN_SYMBOLS[coin][1]))
+            coin_cache[coin] = (cs, src, cp, psrc, st)
+        cs, src, cp, psrc, st = coin_cache[coin]
+        srows = dat_session_rows({'dates': y['dates'][:ref_i + 1], 'close': y['close'][:ref_i + 1],
+                                  'volume': y['volume'][:ref_i + 1]}, cs, cp, [])
+        ref = srows[-1]
+        C = ref['coin_px']
+        h = frozen_beta(inputs, C, DAT_FORWARD_PARAMS['hedge_cap'])
+        stock_perp = None
+        tf = (next((u for u in load_universe()['dats'] if u['ticker'] == tk), {}) or {}).get('binance_tradfi')
+        if tf:
+            stock_perp = perp_state_summary(fetch.perp_state(tf))
+        cv_ps = inputs['coins'] * C / inputs['shares']
+        row = {'rule': DAT_FORWARD_RULE['id'], 'rule_frozen': DAT_FORWARD_RULE, 'params': DAT_FORWARD_PARAMS,
+               'ticker': tk, 'role': spec['role'], 'catalyst': spec.get('catalyst'), 'coin': coin,
+               'hedge_perp': 'Binance USD-M %s' % COIN_SYMBOLS[coin][1], 'coin_price_source': src,
+               'registered_at': stamp, 'entry_date': e_date, 'entry_utc': c['entry_utc'],
+               'score_dates_expected': {str(k): exp[k - 1] for k in DAT_FORWARD_HORIZONS},
+               'horizon_unit': 'NYSE sessions after the entry close',
+               'reference': {'date': ref_date, 'close': ref_close, 'close_utc': utc_iso_ms(T), 'coin_px': C,
+                             'perp_px': ref['perp_px'], 'adv60_usd': ref['adv_usd'],
+                             'note': 'the latest settled close at registration; the trade enters at entry_date'},
+               'nav_inputs': inputs,
+               'nav_sources': {'as_of': r.get('date'), 'capital': r.get('capital_source'),
+                               'holdings': r.get('holdings_source'), 'documents': ov.get('sources'),
+                               'note': ov.get('note'), 'fv_check_10q': r.get('fv_check'), 'flags': r.get('flags'),
+                               'study_analysis': 'research/2026-10-10/nav_wrappers/analysis.json',
+                               'study_generated': analysis.get('generated')},
+               'at_reference': {'true_mnav': frozen_true_mnav(inputs, ref_close, C),
+                                'true_mnav_illiquid_at_zero': frozen_true_mnav(inputs, ref_close, C,
+                                                                               illiquid_at_zero=True)
+                                if inputs['committed_to_illiquid_usd'] else None,
+                                'naive_mnav': ref_close * inputs['shares'] / (inputs['coins'] * C),
+                                'nav_per_share': ref_close / frozen_true_mnav(inputs, ref_close, C)
+                                if frozen_true_mnav(inputs, ref_close, C) else None,
+                                'coin_value_per_share': cv_ps, 'hedge_beta': h,
+                                'hedge_coin_units_per_share': (h * ref_close / C) if h else None,
+                                'hedge_asset_alternative': cv_ps / ref_close,
+                                'hedge_beta_illiquid_at_zero': frozen_beta(
+                                    dict(inputs, cash_usd=inputs['cash_usd'] - inputs['committed_to_illiquid_usd']),
+                                    C, DAT_FORWARD_PARAMS['hedge_cap']) if inputs['committed_to_illiquid_usd'] else None,
+                                'stock_cost_per_side': stock_side_cost(ref['adv_usd'],
+                                                                       DAT_FORWARD_PARAMS['stock_cost_tiers'])},
+               'study_row': {k: r.get(k) for k in ('date', 'price_usd', 'coin_px', 'mnav_true', 'mnav_naive',
+                                                   'mnav_ev', 'mnav_true_illiquid_at_zero', 'mnav_true_10q_holdings',
+                                                   'nav_per_share', 'adv60_usd', 'capacity_usd')},
+               'live_at_registration': {'coin_perp': st, 'stock_perp': stock_perp},
+               'raw': str(fetch.raw.relative_to(ROOT)) if str(fetch.raw).startswith(str(ROOT)) else str(fetch.raw)}
+        rows.append(row)
+        log('registered %-5s %-9s entry %s close  ref %s %.4g  coin %s %.6g  true mNAV %.3f  beta %.3f  +20 %s  +60 %s'
+            % (tk, spec['role'], e_date, ref_date, ref_close, coin, C, row['at_reference']['true_mnav'] or 0, h or 0,
+               row['score_dates_expected']['20'], row['score_dates_expected']['60']))
+    append_jsonl(ledger_path, rows)
+    log('%d registered, %d too late, %d in the ledger' % (len(rows), len(late), len(ledger) + len(rows)))
+    return rows, late
+
+
+def utc_iso_ms(ms):
+    return dt.datetime.fromtimestamp(ms / 1000.0, UTC).isoformat(timespec='seconds')
+
+
+def dat_forward_score_row(row, srows, now_ms, share_factor=1.0):
+    """One registered name: entry state and each horizon's trade (pending until its close has settled)."""
+    P = row['params']
+    inputs = row['nav_inputs']
+    res = {'ticker': row['ticker'], 'role': row['role'], 'entry_date': row['entry_date'], 'horizons': {},
+           'pending': []}
+    i0 = next((i for i, r in enumerate(srows) if r['date'] == row['entry_date']), None)
+    if i0 is None or srows[i0]['close_ms'] + SETTLE_MS > now_ms:
+        res['pending'].append('entry: the %s close is not yet in the data' % row['entry_date'])
+        return res
+    e = srows[i0]
+    if e['coin_px'] is None:
+        res['pending'].append('entry: coin price missing at the entry close')
+        return res
+    ill = bool(inputs.get('committed_to_illiquid_usd'))
+    res['entry'] = {'price': e['price'], 'coin_px': e['coin_px'], 'perp_px': e['perp_px'], 'adv_usd': e['adv_usd'],
+                    'h0': frozen_beta(inputs, e['coin_px'], P['hedge_cap']),
+                    'true_mnav': frozen_true_mnav(inputs, e['price'], e['coin_px'], share_factor),
+                    'true_mnav_illiquid_at_zero': frozen_true_mnav(inputs, e['price'], e['coin_px'], share_factor,
+                                                                   True) if ill else None}
+    for k in P['horizons']:
+        j = i0 + k
+        if j >= len(srows) or srows[j]['close_ms'] + SETTLE_MS > now_ms:
+            have = len([r for r in srows[i0 + 1:] if r['close_ms'] + SETTLE_MS <= now_ms])
+            res['pending'].append('+%d: %d of %d sessions' % (k, min(have, k), k))
+            continue
+        tr = dat_forward_trade(srows, i0, k, inputs, P)
+        if tr is None:
+            res['pending'].append('+%d: a price is missing' % k)
+            continue
+        tp = dat_forward_trade(srows, i0, k, inputs, P, leg='perp_px')
+        x = srows[j]
+        t1 = frozen_true_mnav(inputs, x['price'], x['coin_px'], share_factor)
+        h = dict(tr, date=x['date'], expected=row['score_dates_expected'].get(str(k)),
+                 date_matches_expected=x['date'] == row['score_dates_expected'].get(str(k)),
+                 excess_perp_leg=tp['excess'] if tp else None, true_mnav=t1,
+                 true_change=(t1 - res['entry']['true_mnav']) if (t1 is not None and res['entry']['true_mnav']) else None)
+        if ill:
+            t1z = frozen_true_mnav(inputs, x['price'], x['coin_px'], share_factor, True)
+            h['true_mnav_illiquid_at_zero'] = t1z
+            e0z = res['entry']['true_mnav_illiquid_at_zero']
+            h['true_change_illiquid_at_zero'] = (t1z - e0z) if (t1z is not None and e0z) else None
+        res['horizons'][str(k)] = h
+    return res
+
+
+def dat_forward_summary(scored, horizons=DAT_FORWARD_HORIZONS):
+    """Candidates against the placebo basket and MSTR at each horizon, and the verdict the frozen criteria imply."""
+    by_role = {}
+    for s in scored:
+        by_role.setdefault(s['role'], []).append(s)
+    out = {'horizons': {}}
+    for k in horizons:
+        kk = str(k)
+        pl = [s['horizons'][kk]['excess'] for s in by_role.get('placebo', []) if kk in s['horizons']]
+        n_pl = len(by_role.get('placebo', []))
+        basket = sum(pl) / len(pl) if pl else None
+        bm = [s['horizons'][kk]['excess'] for s in by_role.get('benchmark', []) if kk in s['horizons']]
+        cands = {}
+        for s in by_role.get('candidate', []):
+            h = s['horizons'].get(kk)
+            if not h:
+                continue
+            cands[s['ticker']] = {'excess': h['excess'], 'excess_perp_leg': h.get('excess_perp_leg'),
+                                  'over_placebo': (h['excess'] - basket)
+                                  if (basket is not None and len(pl) >= min(n_pl, DAT_PLACEBO_MIN)) else None,
+                                  'over_benchmark': (h['excess'] - bm[0]) if bm else None,
+                                  'true_change': h.get('true_change'),
+                                  'true_change_illiquid_at_zero': h.get('true_change_illiquid_at_zero')}
+        out['horizons'][kk] = {'placebo_basket_excess': basket, 'placebo_scored': len(pl), 'placebo_names': n_pl,
+                               'benchmark_excess': bm[0] if bm else None, 'candidates': cands}
+    n = sum(len(v['candidates']) for v in out['horizons'].values())
+    out['candidate_horizons_scored'] = n
+    last = out['horizons'].get(str(max(horizons)), {}).get('candidates', {})
+    n_cand = len(by_role.get('candidate', []))
+    if n < DAT_FORWARD_MIN or len(last) < n_cand or any(v['over_placebo'] is None for v in last.values()):
+        out['verdict'] = 'accumulating (%d of %d candidate horizons scored)' % (n, DAT_FORWARD_MIN)
+    elif sum(v['over_placebo'] for v in last.values()) / len(last) <= 0:
+        out['verdict'] = 'kill: mean +%d-session excess over the placebo basket is not positive' % max(horizons)
+    elif all(v['excess'] > 0 and v['over_placebo'] > 0 and (v['true_change'] or 0) > 0 for v in last.values()):
+        out['verdict'] = 'promote: both candidates beat the savings rate and the placebo, and both discounts narrowed'
+    else:
+        out['verdict'] = 'hold: positive on average over the placebo, not on every criterion'
+    return out
+
+
+def cmd_forward(args):
+    ledger_path = Path(args.ledger)
+    now_ms = int(time.time() * 1000)
+    stamp = dt.datetime.fromtimestamp(now_ms / 1000, UTC).strftime('%Y%m%dT%H%MZ')
+    if args.action == 'register':
+        fetch = DatFetch(WATCH_DIR / 'dat' / ('register_%s' % stamp))
+        analysis = json.loads((OUT / 'analysis.json').read_text())
+        names = [x for x in args.names.split(',') if x] or None
+        dat_forward_register(ledger_path, now_ms, fetch, analysis, load_curated(), args.entry_date, names)
+        return 0
+    ledger = [r for r in read_jsonl(ledger_path) if r.get('rule') == DAT_FORWARD_RULE['id']]
+    if not ledger:
+        print('nothing registered in %s' % ledger_path)
+        return 0
+    first_entry = min(iso_to_ms(r['entry_utc']) for r in ledger)
+    prev_p = ledger_path.with_suffix('.json')
+    if not getattr(args, 'force', False) and prev_p.exists() and now_ms >= first_entry + SETTLE_MS:
+        # the network is read only when a milestone (entry, +20, +60 close) has settled and is not yet in the score
+        prev = json.loads(prev_p.read_text())
+        done = {(n['ticker'], 'entry') for n in prev.get('names', []) if n.get('entry')} | \
+            {(n['ticker'], k) for n in prev.get('names', []) for k in (n.get('horizons') or {})}
+        due = [(r['ticker'], 'entry') for r in ledger if now_ms >= iso_to_ms(r['entry_utc']) + SETTLE_MS] + \
+            [(r['ticker'], k) for r in ledger for k, d in r['score_dates_expected'].items()
+             if now_ms >= session_close_ms(d) + SETTLE_MS]
+        if all(x in done for x in due):
+            print('no new milestone since %s: %s (next: %s)' % (
+                prev.get('generated'), prev['summary']['verdict'],
+                min([d for r in ledger for d in r['score_dates_expected'].values()
+                     if session_close_ms(d) + SETTLE_MS > now_ms], default='none')))
+            return 0
+    if now_ms < first_entry + SETTLE_MS:
+        print('nothing to score yet: %d registered, entry %s' % (len(ledger), min(r['entry_utc'] for r in ledger)))
+        scored = [{'ticker': r['ticker'], 'role': r['role'], 'entry_date': r['entry_date'], 'horizons': {},
+                   'pending': ['entry: the %s close has not happened' % r['entry_date']]} for r in ledger]
+    else:
+        fetch = DatFetch(WATCH_DIR / 'dat' / ('score_%s' % stamp))
+        t0 = first_entry - 120 * FWD_DAY_MS
+        coins = {}
+        scored = []
+        for r in ledger:
+            y = fetch.yahoo_daily(r['ticker'], t0 / 1000, now_ms / 1000)
+            if r['coin'] not in coins:
+                cs, _ = fetch.hourly(r['coin'], first_entry - 2 * FWD_DAY_MS, now_ms, 'study')
+                cp, _ = fetch.hourly(r['coin'], first_entry - 2 * FWD_DAY_MS, now_ms, 'perp')
+                fu = fetch.funding(r['coin'], first_entry - 2 * FWD_DAY_MS, now_ms)
+                coins[r['coin']] = (cs, cp, fu)
+            cs, cp, fu = coins[r['coin']]
+            sf = 1.0
+            for d, ratio in (y or {}).get('splits', []):
+                if d > r['registered_at'][:10]:
+                    sf *= ratio
+            srows = dat_session_rows(y, cs, cp, fu) if y else []
+            s = dat_forward_score_row(r, srows, now_ms, sf)
+            if sf != 1.0:
+                s['share_factor_after_splits'] = sf
+            scored.append(s)
+    S = dat_forward_summary(scored)
+    res = {'generated': utc_iso_ms(now_ms), 'rule': DAT_FORWARD_RULE, 'ledger': str(ledger_path),
+           'registered': len(ledger), 'summary': S, 'names': scored}
+    write_json(ledger_path.with_suffix('.json'), _clean(res))
+    for s in scored:
+        hs = ' '.join('+%s %s' % (k, _p(v['excess'], 2)) for k, v in sorted(s['horizons'].items(), key=lambda x: int(x[0])))
+        print('%-5s %-9s %s  %s' % (s['ticker'], s['role'], hs or '—', '; '.join(s['pending'])))
+    print('verdict: %s' % S['verdict'])
+    return 0
+
+
 def cmd_collect(args):
     parts = [x.strip() for x in args.parts.split(',') if x.strip()]
     man_p = RAW / 'collect_manifest.json'
@@ -2370,6 +2936,15 @@ def main(argv=None):
     a.set_defaults(fn=lambda args: cmd_analyze(args))
     r = sub.add_parser('render')
     r.set_defaults(fn=lambda args: cmd_render(args))
+    f = sub.add_parser('forward', help='register EMPD/BNC (and their placebo basket, MSTR) before entry; score at '
+                                       '+20/+60 sessions')
+    f.add_argument('action', choices=['register', 'score'])
+    f.add_argument('--ledger', default=str(DAT_FORWARD_LEDGER))
+    f.add_argument('--entry-date', default=None, help='an NYSE session whose close is the entry (default: the first '
+                                                      'close after now); refused when it has passed')
+    f.add_argument('--names', default='', help='comma-separated subset of %s' % ','.join(DAT_FORWARD_NAMES))
+    f.add_argument('--force', action='store_true', help='score: read the network even when no milestone is new')
+    f.set_defaults(fn=cmd_forward)
     args = ap.parse_args(argv)
     args.fn(args)
 

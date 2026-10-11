@@ -117,6 +117,26 @@ class Protocol(unittest.TestCase):
         self.assertEqual(r['chosen'], 'early')
         self.assertLess(r['out_of_sample']['ann_return'], 0)
         self.assertEqual(r['oos_rank'], 2)
+        self.assertTrue(r['in_sample_positive'])
+
+    def test_bh_positive_survivors_exclude_significant_losers(self):
+        # a strong loser passes the two-sided BH; only the winner passes the one-sided test for a positive mean
+        n = 2000
+        win = noise(n, mu=0.4, seed=31)
+        lose = noise(n, mu=-0.4, seed=32)
+        r = B.choose_then_test({'win': win, 'lose': lose}, frac=0.5, periods_per_year=365, key='ann_return')
+        self.assertIn('lose', r['bh_survivors_full_sample'])
+        self.assertEqual(r['bh_survivors_positive'], ['win'])
+
+    def test_choose_then_test_flags_a_least_bad_choice(self):
+        # every variant loses before the split; the chosen one is only the least bad, and the flag says so
+        n = 2000
+        a = noise(n // 2, mu=-0.2, seed=20) + noise(n // 2, mu=0.3, seed=21)
+        b = noise(n // 2, mu=-0.5, seed=22) + noise(n // 2, mu=0.0, seed=23)
+        r = B.choose_then_test({'a': a, 'b': b}, frac=0.5, periods_per_year=365, key='ann_return')
+        self.assertEqual(r['chosen'], 'a')
+        self.assertFalse(r['in_sample_positive'])
+        self.assertGreater(r['out_of_sample']['ann_return'], 0)
 
 
 if __name__ == '__main__':

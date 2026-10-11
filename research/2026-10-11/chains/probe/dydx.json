@@ -1,0 +1,142 @@
+{
+ "tx": {
+  "count": 695394.44,
+  "se": 1592.3824650504037,
+  "method": "sampled-blocks",
+  "blocks": 131803,
+  "runs_read": 300,
+  "runs_total": 6591,
+  "run_length": 20,
+  "per_block": 5.276013747790262,
+  "tps": 8.048546759259258,
+  "nonempty_block_share": 1.0,
+  "index_count": null,
+  "failed_share": 0.189873417721519,
+  "note": "every transaction included in a block (num_txs), successful or failed. dYdX short-term orders are gossiped off-chain and only matched fills enter a block (one proposer operations transaction); the count is placements of long-term/conditional orders, cancels, transfers and that one operations transaction per block, not order flow. Fills settle in subaccount state and emit no bank transfer events, so transfer value is deposits, withdrawals and transfers only."
+ },
+ "transfers": {
+  "assets": [
+   {
+    "asset": "ibc/8E27BA2D5493AF5636760E354E46004562C46AB7EC0CC4C1CA14E9E20E2545B5",
+    "symbol": "USDC.n",
+    "class": "usd_stable",
+    "transfers": 70295,
+    "transfers_se": 57982,
+    "amount": 815.3575218833332,
+    "price": 0.9996653508509195,
+    "usd": 815.0846631824386,
+    "usd_se": 757.7333107930857,
+    "top_block_share": 0.9258872595111148,
+    "units_seen": 4,
+    "gross_amount": 815.3575218833332,
+    "gross_usd": 815.0846631824386,
+    "identity": "chain-registry"
+   }
+  ],
+  "unpriced_top": [],
+  "unpriced_assets": 0,
+  "unpriced_transfers": 0,
+  "priced_usd": 815.0846631824386,
+  "usd_by_class": {
+   "usd_stable": 815.0846631824386
+  },
+  "gross_priced_usd": 815.0846631824386,
+  "method": "sampled-blocks (transaction-level bank transfer events of successful transactions, fee legs removed; amount = net per transaction and denom, gross_amount = every leg)",
+  "block_level": {
+   "assets": [
+    {
+     "asset": "ibc/8E27BA2D5493AF5636760E354E46004562C46AB7EC0CC4C1CA14E9E20E2545B5",
+     "symbol": "USDC.n",
+     "class": "usd_stable",
+     "transfers": 3295,
+     "transfers_se": 1910,
+     "amount": 2.3329131,
+     "price": 0.9996653508509195,
+     "usd": 2.332132392616206,
+     "usd_se": 1.7881497203094028,
+     "top_block_share": 0.7231638418079096,
+     "units_seen": 3,
+     "gross_amount": 2.3329131,
+     "gross_usd": 2.332132392616206,
+     "identity": "chain-registry"
+    }
+   ],
+   "unpriced_top": [],
+   "unpriced_assets": 0,
+   "priced_usd": 2.332132392616206,
+   "gross_priced_usd": 2.332132392616206,
+   "usd_by_class": {
+    "usd_stable": 2.332132392616206
+   },
+   "method": "sampled-blocks (finalize/begin/end-block transfer events, staking, inflation and fee plumbing removed; netted per block)"
+  },
+  "fees": {
+   "priced_usd": 7.350640119693845,
+   "assets": [
+    {
+     "asset": "ibc/8E27BA2D5493AF5636760E354E46004562C46AB7EC0CC4C1CA14E9E20E2545B5",
+     "symbol": "USDC.n",
+     "class": "usd_stable",
+     "transfers": 17574,
+     "transfers_se": 14542,
+     "amount": 7.027296616666666,
+     "price": 0.9996653508509195,
+     "usd": 7.0249449378335616,
+     "usd_se": 5.384440168764389,
+     "top_block_share": 0.7228821506720849,
+     "units_seen": 3,
+     "gross_amount": 7.027296616666666,
+     "gross_usd": 7.0249449378335616,
+     "identity": "chain-registry"
+    },
+    {
+     "asset": "adydx",
+     "symbol": "DYDX",
+     "class": "native",
+     "transfers": 1098,
+     "transfers_se": 1102,
+     "amount": 2.3555392816666667,
+     "price": 0.13826777774210486,
+     "usd": 0.325695181860284,
+     "usd_se": 0.32691186599760846,
+     "top_block_share": 1.0,
+     "units_seen": 1,
+     "gross_amount": 2.3555392816666667,
+     "gross_usd": 0.325695181860284,
+     "identity": "registry"
+    }
+   ]
+  },
+  "module_addresses": {
+   "fee_collector": "dydx17xpfvakm2amg962yls6f84z3kell8c5leqdyt2",
+   "prefix": "dydx"
+  }
+ },
+ "window": {
+  "start_ts": 1791590400,
+  "end_ts": 1791676800,
+  "start_utc": "2026-10-10T00:00:00+00:00",
+  "end_utc": "2026-10-11T00:00:00+00:00",
+  "hours": 24.0
+ },
+ "blocks": {
+  "first": 108781552,
+  "last": 108913354,
+  "latest": 108960380,
+  "network": "dydx-mainnet-1",
+  "value_sampled_tx": 120,
+  "value_sampled_block": 120
+ },
+ "endpoint": "dydx-rpc.publicnode.com, rpc.cosmos.directory/dydx",
+ "calls": 459,
+ "notes": [],
+ "errors": [],
+ "error_count": 0,
+ "seconds": 46.7,
+ "chain": "dydx",
+ "name": "dYdX Chain",
+ "family": "cosmos",
+ "adapter": "cosmos",
+ "ok": true,
+ "probed_at": "2026-10-11T08:21:15+00:00"
+}

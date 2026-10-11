@@ -8,7 +8,9 @@
   "Several public HyperEVM RPCs (rpc.hyperliquid.xyz/evm, rpc.hypurrscan.io, stakely) ignore the block tag on eth_call",
   "LiquidSwap route API returned a nonsensical route (65% impact via USOL) for WHYPE->kHYPE: no live depth quote for kHYPE",
   "BSC: publicnode/drpc/official seeds refused archive reads; blastapi served them",
-  "TON (tsTON) and Hydration (vDOT vs H2O) not priced: no free exchange-rate history found"
+  "TON (tsTON) and Hydration (vDOT vs H2O) not priced: no free exchange-rate history found",
+  "Monad: rpc1.monad.xyz and rpc-mainnet.monadinfra.com answer single calls but 403 any JSON-RPC batch; rpc2 serves both",
+  "Avalanche public archive (api.avax.network) takes ~12 s a call: sAVAX rate sampled every 12 h, no swap-level rebuild"
  ],
  "benchmark": {
   "savings_paid_by_year": {
@@ -112,30 +114,30 @@
     "test_concentration_top4_weeks": null
    },
    "hl_hype_short_khype_cash3x": {
-    "always_test_ann_excess": 0.03446642542476222,
+    "always_test_ann_excess": 0.034439092155341244,
     "basis_mtm": 0.00026851760000000055,
     "borrow": 0.0,
     "by_year": {
-     "2025": 0.08143419152288582,
-     "2026": 0.03768359829810938
+     "2025": 0.08106751946601777,
+     "2026": 0.03737009585840212
     },
     "capital": "cash3x",
     "chosen_rule": "always",
     "costs": 0.017250701496032073,
     "days_in": 460,
-    "extra_received": 0.0260438015294221,
+    "extra_received": 0.025482430518938236,
     "first_day": "2025-07-07",
-    "full_max_drawdown": 0.0042575470654912725,
+    "full_max_drawdown": 0.007362714741431423,
     "full_worst_day": -0.0042575470654912725,
     "funding_received": 0.14656234879999983,
-    "in_sample_ann_excess": 0.07475992592802265,
+    "in_sample_ann_excess": 0.07411910565779162,
     "last_365d": {
-     "always": 0.039695790276648706,
-     "chosen": 0.039695790276648706
+     "always": 0.03979127989178994,
+     "chosen": 0.03979127989178994
     },
     "last_90d": {
-     "always": 0.036125434415299224,
-     "chosen": 0.036125434415299224
+     "always": 0.035407231119367256,
+     "chosen": 0.035407231119367256
     },
     "last_day": "2026-10-09",
     "late_entry": {
@@ -144,43 +146,43 @@
      "note": "always-on: one position; a day late forgoes one day"
     },
     "name": "hl:HYPE short cash 3x, kHYPE spot",
-    "oos_ann_excess": 0.03446642542476222,
+    "oos_ann_excess": 0.034439092155341244,
     "oos_bootstrap_mean_ci": [
-     0.015213313336370266,
-     0.04972865464711085
+     0.015768348104896388,
+     0.051116277027542754
     ],
-    "oos_max_drawdown": 0.002525473071649322,
-    "oos_t": 3.6692591118278544,
-    "oos_worst_day": -0.0017898222103654412,
+    "oos_max_drawdown": 0.003445589781953976,
+    "oos_t": 3.062021957370566,
+    "oos_worst_day": -0.0023158130709046323,
     "rebalances": 25,
     "split_day": "2026-02-22",
-    "test_concentration_top4_weeks": 0.3883902012898629
+    "test_concentration_top4_weeks": 0.40703804330699384
    },
    "hl_hype_short_khype_collateral": {
-    "always_test_ann_excess": 0.04482329361530279,
+    "always_test_ann_excess": 0.044786849256074825,
     "basis_mtm": 0.00026851760000000055,
     "borrow": 0.019136570311874282,
     "by_year": {
-     "2025": 0.10934444979053261,
-     "2026": 0.05094250624889665
+     "2025": 0.10885555371470854,
+     "2026": 0.05052450299595362
     },
     "capital": "collateral",
     "chosen_rule": "always",
     "costs": 0.03230179443653547,
     "days_in": 460,
-    "extra_received": 0.0260438015294221,
+    "extra_received": 0.025482430518938236,
     "first_day": "2025-07-07",
-    "full_max_drawdown": 0.0056705267827007015,
+    "full_max_drawdown": 0.009960707276142178,
     "full_worst_day": -0.005670526782700701,
     "funding_received": 0.14656234879999983,
-    "in_sample_ann_excess": 0.10225974475384354,
+    "in_sample_ann_excess": 0.10140531772686884,
     "last_365d": {
-     "always": 0.05336909832723488,
-     "chosen": 0.05336909832723488
+     "always": 0.053496417814089856,
+     "chosen": 0.053496417814089856
     },
     "last_90d": {
-     "always": 0.052608181131344044,
-     "chosen": 0.052608181131344044
+     "always": 0.051650576736768095,
+     "chosen": 0.051650576736768095
     },
     "last_day": "2026-10-09",
     "late_entry": {
@@ -189,17 +191,17 @@
      "note": "always-on: one position; a day late forgoes one day"
     },
     "name": "hl:HYPE short, kHYPE spot (margin borrowed on HyperLend)",
-    "oos_ann_excess": 0.04482329361530279,
+    "oos_ann_excess": 0.044786849256074825,
     "oos_bootstrap_mean_ci": [
-     0.01852719729153399,
-     0.06511759396282218
+     0.018747413684290604,
+     0.06635967016857819
     ],
-    "oos_max_drawdown": 0.003894768638626804,
-    "oos_t": 3.450594013580061,
-    "oos_worst_day": -0.0023802269758662594,
+    "oos_max_drawdown": 0.004683980320175602,
+    "oos_t": 2.9286835904128132,
+    "oos_worst_day": -0.0031133037326550807,
     "rebalances": 12,
     "split_day": "2026-02-22",
-    "test_concentration_top4_weeks": 0.36413076067393
+    "test_concentration_top4_weeks": 0.3812080289154822
    },
    "hl_hype_short_khype_staking_only": {
     "always_test_ann_excess": 0.04409522992326741,
@@ -432,7 +434,7 @@
   },
   "bnsol_staking_apr_window": 0.0536195568075066,
   "jitosol_staking_apr_window": 0.06834445858800892,
-  "khype_basis_days_marked": 155,
+  "khype_basis_days_marked": 452,
   "khype_staking_apr_window": 0.020501559955182266,
   "lst_side_cost_bps": {
    "BNSOL": 5.0,
@@ -479,7 +481,7 @@
    "share_ge_5bp": 0.0
   }
  },
- "generated": "2026-10-10T18:03:41Z",
+ "generated": "2026-10-10T22:09:34Z",
  "not_covered": {
   "milkTIA": "Osmosis (MilkyWay), 21 days",
   "stATOM": "Osmosis (Stride), 21 days",
@@ -514,9 +516,848 @@
  },
  "queue_bids": {
   "aprmon": {
+   "at_quoted_size": {
+    "by_hurdle_oos_usd_per_year": {
+     "h=0": 8300.645289999473,
+     "h=1": 8300.645289999473,
+     "h=10": 8193.907918985065,
+     "h=2": 8300.645289999473,
+     "h=20": 7441.178490788216,
+     "h=3": 8300.645289999473,
+     "h=5": 8300.613444992388
+    },
+    "chosen_hurdle": "h=5",
+    "cutoff_utc": "2026-06-27T00:00:00Z",
+    "filled_usd": 3512840.40433081,
+    "fills": 849,
+    "fills_oos": 337,
+    "full_period_usd_per_year": 13199.291685649947,
+    "hurdle_bps": 5.0,
+    "in_sample_usd_per_year": 18051.755980640926,
+    "median_edge_bps": 14.805475765920875,
+    "missed_capital_usd": 4790585.57388096,
+    "oos_ci95_usd_per_year": [
+     2651.445154365194,
+     15133.634828910379
+    ],
+    "oos_rank_of_chosen": 5,
+    "oos_share_of_bootstraps_le_0": 0.0,
+    "oos_t": 2.803010043194909,
+    "out_of_sample_usd_per_year": 8300.613444992388,
+    "qualifying_usd": 8405775.157615028,
+    "top_fills": [
+     {
+      "edge_bps": 101.18171450470432,
+      "pool": "capricorn-monad:0xbab2",
+      "usd": 55416.86387272794,
+      "utc": "2026-04-14T11:30:00Z",
+      "value_usd": 559.7173299116422
+     },
+     {
+      "edge_bps": 44.47755767238411,
+      "pool": "capricorn-monad:0xbab2",
+      "usd": 43392.346818786675,
+      "utc": "2026-03-25T10:30:00Z",
+      "value_usd": 191.99856081726776
+     },
+     {
+      "edge_bps": 176.9640591092763,
+      "pool": "capricorn-monad:0xbab2",
+      "usd": 7481.129306161389,
+      "utc": "2026-04-16T09:30:00Z",
+      "value_usd": 131.38910087396832
+     },
+     {
+      "edge_bps": 88.81212433509866,
+      "pool": "capricorn-monad:0xbab2",
+      "usd": 13743.982891546104,
+      "utc": "2026-10-06T07:30:00Z",
+      "value_usd": 121.06323174234615
+     },
+     {
+      "edge_bps": 26.523812763297975,
+      "pool": "capricorn-monad:0xbab2",
+      "usd": 43392.346818786675,
+      "utc": "2026-03-27T10:30:00Z",
+      "value_usd": 114.09304823815862
+     },
+     {
+      "edge_bps": 38.810907692820464,
+      "pool": "capricorn-monad:0xbab2",
+      "usd": 27679.5222236684,
+      "utc": "2026-03-25T11:30:00Z",
+      "value_usd": 106.4267382004167
+     }
+    ],
+    "trailing_90d_usd_per_year": 6871.762538685086,
+    "value_by_month_usd": {
+     "2026-03": 1267.22,
+     "2026-04": 2343.25,
+     "2026-05": 1362.99,
+     "2026-06": 284.48,
+     "2026-07": 1204.12,
+     "2026-08": 31.65,
+     "2026-09": 133.91,
+     "2026-10": 1002.65
+    }
+   },
+   "by_month": {
+    "2026-03": {
+     "hours": 455,
+     "max_bps": 66.24833679689948,
+     "p50_bps": 15.778944752612233,
+     "p90_bps": 32.02213534602785,
+     "volume_usd": 26670859.768780924
+    },
+    "2026-04": {
+     "hours": 693,
+     "max_bps": 276.16236520438883,
+     "p50_bps": 17.204614171060964,
+     "p90_bps": 34.63893390316584,
+     "volume_usd": 26970048.513340767
+    },
+    "2026-05": {
+     "hours": 740,
+     "max_bps": 186.22015632893235,
+     "p50_bps": 17.619499275663536,
+     "p90_bps": 29.972306992138055,
+     "volume_usd": 2915546.8711393015
+    },
+    "2026-06": {
+     "hours": 705,
+     "max_bps": 78.02859945136,
+     "p50_bps": 16.817296904911142,
+     "p90_bps": 26.363779431466863,
+     "volume_usd": 1874614.6228583178
+    },
+    "2026-07": {
+     "hours": 732,
+     "max_bps": 166.59387613362216,
+     "p50_bps": 19.50394138925821,
+     "p90_bps": 37.03870644875191,
+     "volume_usd": 2056104.9105367968
+    },
+    "2026-08": {
+     "hours": 716,
+     "max_bps": 47.327684263000734,
+     "p50_bps": 21.01692265269294,
+     "p90_bps": 28.727632975951988,
+     "volume_usd": 485814.081673994
+    },
+    "2026-09": {
+     "hours": 708,
+     "max_bps": 74.39348204189785,
+     "p50_bps": 18.893156264009846,
+     "p90_bps": 28.53095830142514,
+     "volume_usd": 740165.5035808813
+    },
+    "2026-10": {
+     "hours": 215,
+     "max_bps": 112.3553312535607,
+     "p50_bps": 38.252616664958985,
+     "p90_bps": 68.9504427181493,
+     "volume_usd": 612999.6091558367
+    }
+   },
+   "by_pool": {
+    "atlantis-monad:0xbeaf": {
+     "records": 2742,
+     "volume_usd": 771484.7985065569,
+     "vw_discount_bps": 29.423523884095367
+    },
+    "capricorn-monad:0xbab2": {
+     "records": 4941,
+     "volume_usd": 61554669.08256009,
+     "vw_discount_bps": 14.160080379126788
+    }
+   },
+   "capacity_size_usd": 100000,
+   "cutoff_utc": "2026-06-27T00:00:00Z",
+   "days": 211,
+   "depth_below_round_trip": {
+    "days": 211,
+    "days_with_any": 197,
+    "edge_usd_per_year_unbounded": 31412.10183158248,
+    "edge_usd_total": 18158.77667524357,
+    "usd_max_day": 815307.2306611079,
+    "usd_per_active_day_p50": 19414.691134500445,
+    "usd_per_active_day_p90": 83846.41739657351,
+    "usd_per_day_mean": 62256.904281673924,
+    "usd_total": 13136206.803433198
+   },
+   "episodes": {
+    "count": 93,
+    "deepest_bps": 276.16236520438883,
+    "hours": 3774,
+    "longest_hours": 687,
+    "top": [
+     {
+      "end_utc": "2026-03-28T16:00:00Z",
+      "net_of_round_trip_bps": 16.170442371929514,
+      "peak_bps": 66.24833679689948,
+      "qualifying_hours": 102,
+      "span_hours": 105,
+      "start_utc": "2026-03-24T07:00:00Z",
+      "volume_usd": 6099280.530050332,
+      "vw_discount_bps": 30.906949949033322
+     },
+     {
+      "end_utc": "2026-03-22T15:00:00Z",
+      "net_of_round_trip_bps": 9.616839399615735,
+      "peak_bps": 31.264679274104566,
+      "qualifying_hours": 85,
+      "span_hours": 85,
+      "start_utc": "2026-03-19T02:00:00Z",
+      "volume_usd": 5105583.850715585,
+      "vw_discount_bps": 24.353346976719564
+     },
+     {
+      "end_utc": "2026-10-10T00:00:00Z",
+      "net_of_round_trip_bps": 33.18860453427346,
+      "peak_bps": 112.3553312535607,
+      "qualifying_hours": 469,
+      "span_hours": 480,
+      "start_utc": "2026-09-20T00:00:00Z",
+      "volume_usd": 905625.1712950916,
+      "vw_discount_bps": 47.925112111377246
+     },
+     {
+      "end_utc": "2026-04-17T08:00:00Z",
+      "net_of_round_trip_bps": 24.901615778756383,
+      "peak_bps": 192.22346524500426,
+      "qualifying_hours": 68,
+      "span_hours": 69,
+      "start_utc": "2026-04-14T11:00:00Z",
+      "volume_usd": 1034156.840109469,
+      "vw_discount_bps": 39.6381233558602
+     },
+     {
+      "end_utc": "2026-04-14T07:00:00Z",
+      "net_of_round_trip_bps": 26.07463131533814,
+      "peak_bps": 78.6016477613825,
+      "qualifying_hours": 13,
+      "span_hours": 17,
+      "start_utc": "2026-04-13T14:00:00Z",
+      "volume_usd": 712515.5027876836,
+      "vw_discount_bps": 40.81113889244195
+     },
+     {
+      "end_utc": "2026-04-12T18:00:00Z",
+      "net_of_round_trip_bps": 14.94231984254498,
+      "peak_bps": 47.1114298233408,
+      "qualifying_hours": 11,
+      "span_hours": 13,
+      "start_utc": "2026-04-12T05:00:00Z",
+      "volume_usd": 1185765.6944613028,
+      "vw_discount_bps": 29.678827419648805
+     },
+     {
+      "end_utc": "2026-04-06T07:00:00Z",
+      "net_of_round_trip_bps": 12.575321115701096,
+      "peak_bps": 42.789388878432746,
+      "qualifying_hours": 19,
+      "span_hours": 23,
+      "start_utc": "2026-04-05T08:00:00Z",
+      "volume_usd": 1205968.0070976384,
+      "vw_discount_bps": 27.311828692804916
+     },
+     {
+      "end_utc": "2026-07-11T09:00:00Z",
+      "net_of_round_trip_bps": 34.358082776273214,
+      "peak_bps": 166.59387613362216,
+      "qualifying_hours": 66,
+      "span_hours": 68,
+      "start_utc": "2026-07-08T13:00:00Z",
+      "volume_usd": 304649.9416620328,
+      "vw_discount_bps": 49.09459035337703
+     }
+    ],
+    "volume_usd": 27973004.058028772
+   },
+   "excluded_bars": 27,
+   "first_day": "2026-03-13",
+   "grid": {
+    "100000": {
+     "by_hurdle_oos_usd_per_year": {
+      "h=0": 8300.645289999473,
+      "h=1": 8300.645289999473,
+      "h=10": 8193.907918985065,
+      "h=2": 8300.645289999473,
+      "h=20": 7441.178490788216,
+      "h=3": 8300.645289999473,
+      "h=5": 8300.613444992388
+     },
+     "chosen_hurdle": "h=5",
+     "cutoff_utc": "2026-06-27T00:00:00Z",
+     "filled_usd": 3512840.40433081,
+     "fills": 849,
+     "fills_oos": 337,
+     "full_period_usd_per_year": 13199.291685649947,
+     "hurdle_bps": 5.0,
+     "in_sample_usd_per_year": 18051.755980640926,
+     "median_edge_bps": 14.805475765920875,
+     "missed_capital_usd": 4790585.57388096,
+     "oos_ci95_usd_per_year": [
+      2651.445154365194,
+      15133.634828910379
+     ],
+     "oos_rank_of_chosen": 5,
+     "oos_share_of_bootstraps_le_0": 0.0,
+     "oos_t": 2.803010043194909,
+     "out_of_sample_usd_per_year": 8300.613444992388,
+     "qualifying_usd": 8405775.157615028,
+     "top_fills": [
+      {
+       "edge_bps": 101.18171450470432,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 55416.86387272794,
+       "utc": "2026-04-14T11:30:00Z",
+       "value_usd": 559.7173299116422
+      },
+      {
+       "edge_bps": 44.47755767238411,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 43392.346818786675,
+       "utc": "2026-03-25T10:30:00Z",
+       "value_usd": 191.99856081726776
+      },
+      {
+       "edge_bps": 176.9640591092763,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 7481.129306161389,
+       "utc": "2026-04-16T09:30:00Z",
+       "value_usd": 131.38910087396832
+      },
+      {
+       "edge_bps": 88.81212433509866,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 13743.982891546104,
+       "utc": "2026-10-06T07:30:00Z",
+       "value_usd": 121.06323174234615
+      },
+      {
+       "edge_bps": 26.523812763297975,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 43392.346818786675,
+       "utc": "2026-03-27T10:30:00Z",
+       "value_usd": 114.09304823815862
+      },
+      {
+       "edge_bps": 38.810907692820464,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 27679.5222236684,
+       "utc": "2026-03-25T11:30:00Z",
+       "value_usd": 106.4267382004167
+      }
+     ],
+     "trailing_90d_usd_per_year": 6871.762538685086,
+     "value_by_month_usd": {
+      "2026-03": 1267.22,
+      "2026-04": 2343.25,
+      "2026-05": 1362.99,
+      "2026-06": 284.48,
+      "2026-07": 1204.12,
+      "2026-08": 31.65,
+      "2026-09": 133.91,
+      "2026-10": 1002.65
+     }
+    },
+    "1000000": {
+     "by_hurdle_oos_usd_per_year": {
+      "h=0": 8300.645289999473,
+      "h=1": 8300.645289999473,
+      "h=10": 8193.907918985065,
+      "h=2": 8300.645289999473,
+      "h=20": 7441.178490788216,
+      "h=3": 8300.645289999473,
+      "h=5": 8300.613444992388
+     },
+     "chosen_hurdle": "h=0",
+     "cutoff_utc": "2026-06-27T00:00:00Z",
+     "filled_usd": 11336295.180320371,
+     "fills": 1083,
+     "fills_oos": 338,
+     "full_period_usd_per_year": 27751.114309116263,
+     "hurdle_bps": 0.0,
+     "in_sample_usd_per_year": 47018.08833748667,
+     "median_edge_bps": 12.933697274702219,
+     "missed_capital_usd": 0.0,
+     "oos_ci95_usd_per_year": [
+      2651.445154365194,
+      15133.698518924548
+     ],
+     "oos_rank_of_chosen": 1,
+     "oos_share_of_bootstraps_le_0": 0.0,
+     "oos_t": 2.803024432314006,
+     "out_of_sample_usd_per_year": 8300.645289999475,
+     "qualifying_usd": 11439571.357365116,
+     "top_fills": [
+      {
+       "edge_bps": 101.18171450470432,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 55416.86387272794,
+       "utc": "2026-04-14T11:30:00Z",
+       "value_usd": 559.7173299116422
+      },
+      {
+       "edge_bps": 61.17204686519645,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 55562.10896360778,
+       "utc": "2026-04-13T17:30:00Z",
+       "value_usd": 338.8847933450967
+      },
+      {
+       "edge_bps": 50.84942796317208,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 66591.70715393565,
+       "utc": "2026-03-25T09:30:00Z",
+       "value_usd": 337.6150215868702
+      },
+      {
+       "edge_bps": 31.764694335615047,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 95306.5593973017,
+       "utc": "2026-04-12T09:30:00Z",
+       "value_usd": 301.7383727434428
+      },
+      {
+       "edge_bps": 40.63080308816671,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 65427.8600781387,
+       "utc": "2026-03-25T08:30:00Z",
+       "value_usd": 264.83864993149774
+      },
+      {
+       "edge_bps": 44.47755767238411,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 43905.86964113655,
+       "utc": "2026-03-25T10:30:00Z",
+       "value_usd": 194.28258491198295
+      }
+     ],
+     "trailing_90d_usd_per_year": 6871.7996911933515,
+     "value_by_month_usd": {
+      "2026-03": 7105.05,
+      "2026-04": 4916.13,
+      "2026-05": 1363.86,
+      "2026-06": 285.05,
+      "2026-07": 1204.12,
+      "2026-08": 31.66,
+      "2026-09": 133.91,
+      "2026-10": 1002.65
+     }
+    },
+    "10000000": {
+     "by_hurdle_oos_usd_per_year": {
+      "h=0": 8300.645289999473,
+      "h=1": 8300.645289999473,
+      "h=10": 8193.907918985065,
+      "h=2": 8300.645289999473,
+      "h=20": 7441.178490788216,
+      "h=3": 8300.645289999473,
+      "h=5": 8300.613444992388
+     },
+     "chosen_hurdle": "h=0",
+     "cutoff_utc": "2026-06-27T00:00:00Z",
+     "filled_usd": 11336295.180320371,
+     "fills": 1083,
+     "fills_oos": 338,
+     "full_period_usd_per_year": 27751.114309116263,
+     "hurdle_bps": 0.0,
+     "in_sample_usd_per_year": 47018.08833748667,
+     "median_edge_bps": 12.933697274702219,
+     "missed_capital_usd": 0.0,
+     "oos_ci95_usd_per_year": [
+      2651.445154365194,
+      15133.698518924548
+     ],
+     "oos_rank_of_chosen": 1,
+     "oos_share_of_bootstraps_le_0": 0.0,
+     "oos_t": 2.803024432314006,
+     "out_of_sample_usd_per_year": 8300.645289999475,
+     "qualifying_usd": 11439571.357365116,
+     "top_fills": [
+      {
+       "edge_bps": 101.18171450470432,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 55416.86387272794,
+       "utc": "2026-04-14T11:30:00Z",
+       "value_usd": 559.7173299116422
+      },
+      {
+       "edge_bps": 61.17204686519645,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 55562.10896360778,
+       "utc": "2026-04-13T17:30:00Z",
+       "value_usd": 338.8847933450967
+      },
+      {
+       "edge_bps": 50.84942796317208,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 66591.70715393565,
+       "utc": "2026-03-25T09:30:00Z",
+       "value_usd": 337.6150215868702
+      },
+      {
+       "edge_bps": 31.764694335615047,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 95306.5593973017,
+       "utc": "2026-04-12T09:30:00Z",
+       "value_usd": 301.7383727434428
+      },
+      {
+       "edge_bps": 40.63080308816671,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 65427.8600781387,
+       "utc": "2026-03-25T08:30:00Z",
+       "value_usd": 264.83864993149774
+      },
+      {
+       "edge_bps": 44.47755767238411,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 43905.86964113655,
+       "utc": "2026-03-25T10:30:00Z",
+       "value_usd": 194.28258491198295
+      }
+     ],
+     "trailing_90d_usd_per_year": 6871.7996911933515,
+     "value_by_month_usd": {
+      "2026-03": 7105.05,
+      "2026-04": 4916.13,
+      "2026-05": 1363.86,
+      "2026-06": 285.05,
+      "2026-07": 1204.12,
+      "2026-08": 31.66,
+      "2026-09": 133.91,
+      "2026-10": 1002.65
+     }
+    },
+    "300000": {
+     "by_hurdle_oos_usd_per_year": {
+      "h=0": 8300.645289999473,
+      "h=1": 8300.645289999473,
+      "h=10": 8193.907918985065,
+      "h=2": 8300.645289999473,
+      "h=20": 7441.178490788216,
+      "h=3": 8300.645289999473,
+      "h=5": 8300.613444992388
+     },
+     "chosen_hurdle": "h=3",
+     "cutoff_utc": "2026-06-27T00:00:00Z",
+     "filled_usd": 6234939.9226217205,
+     "fills": 953,
+     "fills_oos": 338,
+     "full_period_usd_per_year": 19434.719453174806,
+     "hurdle_bps": 3.0,
+     "in_sample_usd_per_year": 30463.755180848486,
+     "median_edge_bps": 14.048754922827452,
+     "missed_capital_usd": 2876350.8274244894,
+     "oos_ci95_usd_per_year": [
+      2651.445154365194,
+      15133.698518924548
+     ],
+     "oos_rank_of_chosen": 4,
+     "oos_share_of_bootstraps_le_0": 0.0,
+     "oos_t": 2.803024432314006,
+     "out_of_sample_usd_per_year": 8300.645289999475,
+     "qualifying_usd": 9214566.927090935,
+     "top_fills": [
+      {
+       "edge_bps": 101.18171450470432,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 55416.86387272794,
+       "utc": "2026-04-14T11:30:00Z",
+       "value_usd": 559.7173299116422
+      },
+      {
+       "edge_bps": 31.764694335615047,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 95306.5593973017,
+       "utc": "2026-04-12T09:30:00Z",
+       "value_usd": 301.7383727434428
+      },
+      {
+       "edge_bps": 44.47755767238411,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 43392.34681878667,
+       "utc": "2026-03-25T10:30:00Z",
+       "value_usd": 191.9985608172677
+      },
+      {
+       "edge_bps": 176.9640591092763,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 7481.129306161389,
+       "utc": "2026-04-16T09:30:00Z",
+       "value_usd": 131.38910087396832
+      },
+      {
+       "edge_bps": 21.943592621715744,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 59692.23495054318,
+       "utc": "2026-04-14T14:30:00Z",
+       "value_usd": 129.9862086434462
+      },
+      {
+       "edge_bps": 45.217766620526554,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 28256.72447461495,
+       "utc": "2026-03-25T16:30:00Z",
+       "value_usd": 126.77059727536596
+      }
+     ],
+     "trailing_90d_usd_per_year": 6871.7996911933515,
+     "value_by_month_usd": {
+      "2026-03": 3444.27,
+      "2026-04": 3769.49,
+      "2026-05": 1363.86,
+      "2026-06": 284.9,
+      "2026-07": 1204.12,
+      "2026-08": 31.66,
+      "2026-09": 133.91,
+      "2026-10": 1002.65
+     }
+    },
+    "3000000": {
+     "by_hurdle_oos_usd_per_year": {
+      "h=0": 8300.645289999473,
+      "h=1": 8300.645289999473,
+      "h=10": 8193.907918985065,
+      "h=2": 8300.645289999473,
+      "h=20": 7441.178490788216,
+      "h=3": 8300.645289999473,
+      "h=5": 8300.613444992388
+     },
+     "chosen_hurdle": "h=0",
+     "cutoff_utc": "2026-06-27T00:00:00Z",
+     "filled_usd": 11336295.180320371,
+     "fills": 1083,
+     "fills_oos": 338,
+     "full_period_usd_per_year": 27751.114309116263,
+     "hurdle_bps": 0.0,
+     "in_sample_usd_per_year": 47018.08833748667,
+     "median_edge_bps": 12.933697274702219,
+     "missed_capital_usd": 0.0,
+     "oos_ci95_usd_per_year": [
+      2651.445154365194,
+      15133.698518924548
+     ],
+     "oos_rank_of_chosen": 1,
+     "oos_share_of_bootstraps_le_0": 0.0,
+     "oos_t": 2.803024432314006,
+     "out_of_sample_usd_per_year": 8300.645289999475,
+     "qualifying_usd": 11439571.357365116,
+     "top_fills": [
+      {
+       "edge_bps": 101.18171450470432,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 55416.86387272794,
+       "utc": "2026-04-14T11:30:00Z",
+       "value_usd": 559.7173299116422
+      },
+      {
+       "edge_bps": 61.17204686519645,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 55562.10896360778,
+       "utc": "2026-04-13T17:30:00Z",
+       "value_usd": 338.8847933450967
+      },
+      {
+       "edge_bps": 50.84942796317208,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 66591.70715393565,
+       "utc": "2026-03-25T09:30:00Z",
+       "value_usd": 337.6150215868702
+      },
+      {
+       "edge_bps": 31.764694335615047,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 95306.5593973017,
+       "utc": "2026-04-12T09:30:00Z",
+       "value_usd": 301.7383727434428
+      },
+      {
+       "edge_bps": 40.63080308816671,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 65427.8600781387,
+       "utc": "2026-03-25T08:30:00Z",
+       "value_usd": 264.83864993149774
+      },
+      {
+       "edge_bps": 44.47755767238411,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 43905.86964113655,
+       "utc": "2026-03-25T10:30:00Z",
+       "value_usd": 194.28258491198295
+      }
+     ],
+     "trailing_90d_usd_per_year": 6871.7996911933515,
+     "value_by_month_usd": {
+      "2026-03": 7105.05,
+      "2026-04": 4916.13,
+      "2026-05": 1363.86,
+      "2026-06": 285.05,
+      "2026-07": 1204.12,
+      "2026-08": 31.66,
+      "2026-09": 133.91,
+      "2026-10": 1002.65
+     }
+    },
+    "30000000": {
+     "by_hurdle_oos_usd_per_year": {
+      "h=0": 8300.645289999473,
+      "h=1": 8300.645289999473,
+      "h=10": 8193.907918985065,
+      "h=2": 8300.645289999473,
+      "h=20": 7441.178490788216,
+      "h=3": 8300.645289999473,
+      "h=5": 8300.613444992388
+     },
+     "chosen_hurdle": "h=0",
+     "cutoff_utc": "2026-06-27T00:00:00Z",
+     "filled_usd": 11336295.180320371,
+     "fills": 1083,
+     "fills_oos": 338,
+     "full_period_usd_per_year": 27751.114309116263,
+     "hurdle_bps": 0.0,
+     "in_sample_usd_per_year": 47018.08833748667,
+     "median_edge_bps": 12.933697274702219,
+     "missed_capital_usd": 0.0,
+     "oos_ci95_usd_per_year": [
+      2651.445154365194,
+      15133.698518924548
+     ],
+     "oos_rank_of_chosen": 1,
+     "oos_share_of_bootstraps_le_0": 0.0,
+     "oos_t": 2.803024432314006,
+     "out_of_sample_usd_per_year": 8300.645289999475,
+     "qualifying_usd": 11439571.357365116,
+     "top_fills": [
+      {
+       "edge_bps": 101.18171450470432,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 55416.86387272794,
+       "utc": "2026-04-14T11:30:00Z",
+       "value_usd": 559.7173299116422
+      },
+      {
+       "edge_bps": 61.17204686519645,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 55562.10896360778,
+       "utc": "2026-04-13T17:30:00Z",
+       "value_usd": 338.8847933450967
+      },
+      {
+       "edge_bps": 50.84942796317208,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 66591.70715393565,
+       "utc": "2026-03-25T09:30:00Z",
+       "value_usd": 337.6150215868702
+      },
+      {
+       "edge_bps": 31.764694335615047,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 95306.5593973017,
+       "utc": "2026-04-12T09:30:00Z",
+       "value_usd": 301.7383727434428
+      },
+      {
+       "edge_bps": 40.63080308816671,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 65427.8600781387,
+       "utc": "2026-03-25T08:30:00Z",
+       "value_usd": 264.83864993149774
+      },
+      {
+       "edge_bps": 44.47755767238411,
+       "pool": "capricorn-monad:0xbab2",
+       "usd": 43905.86964113655,
+       "utc": "2026-03-25T10:30:00Z",
+       "value_usd": 194.28258491198295
+      }
+     ],
+     "trailing_90d_usd_per_year": 6871.7996911933515,
+     "value_by_month_usd": {
+      "2026-03": 7105.05,
+      "2026-04": 4916.13,
+      "2026-05": 1363.86,
+      "2026-06": 285.05,
+      "2026-07": 1204.12,
+      "2026-08": 31.66,
+      "2026-09": 133.91,
+      "2026-10": 1002.65
+     }
+    }
+   },
+   "hours_with_trades": 4964,
    "key": "aprmon",
-   "skipped": "no exchange-rate history",
-   "verdict": "no data: no exchange-rate history"
+   "label": "aprMON",
+   "late_entry": {
+    "1d": {
+     "kept_share": 0.5972342067665978,
+     "oos_usd": 1426.1043289920533
+    },
+    "1h": {
+     "kept_share": 0.9573921333335152,
+     "oos_usd": 2286.1066067895968
+    },
+    "base_oos_usd": 2387.847703353975
+   },
+   "market_hourly_discount_bps": {
+    "max": 276.16236520438883,
+    "min": -278.5468375022246,
+    "n": 4964,
+    "p10": 9.73402459877083,
+    "p50": 18.83204866122142,
+    "p90": 33.27146024326851,
+    "p99": 76.58215153840726,
+    "share_ge_10bp": 0.895044319097502,
+    "share_ge_20bp": 0.4238517324738114,
+    "share_ge_50bp": 0.03364222401289283,
+    "share_ge_5bp": 0.9629331184528606
+   },
+   "native": "MON",
+   "network": "monad",
+   "pools": [
+    {
+     "bars": 4992,
+     "dex": "capricorn-monad",
+     "fee_bps": 1.0,
+     "first_bar_utc": "2026-03-12T17:00:00Z",
+     "gt_stop": "horizon",
+     "name": "aprMON / WMON 0.01%",
+     "pool": "0xbab2296c6a98c4e8584051dee817a98ab4069388",
+     "records": 4992
+    },
+    {
+     "bars": 2753,
+     "dex": "atlantis-monad",
+     "fee_bps": 5.0,
+     "first_bar_utc": "2026-04-30T01:00:00Z",
+     "gt_stop": "short page (history starts)",
+     "name": "aprMON / WMON 0.05%",
+     "pool": "0xbeafc7dbdb82c272c9301d246327821bf3996b9e",
+     "records": 2753
+    }
+   ],
+   "queue_model": {
+    "accrues": false,
+    "fee_bps": 10.0,
+    "note": "ERC-7540 requestRedeem fixes assets; withdrawalFee 10/10,000 (read); wait: one Monad epoch plus the operator batch (assumed 1 day)",
+    "wait_days": 1.0
+   },
+   "quoted_size_usd": 100000,
+   "rate_latest": 1.0957424084962508,
+   "rate_samples": 861,
+   "round_trip_bps": 14.736507577103822,
+   "sell_share_0_25": {
+    "chosen_hurdle": "h=5",
+    "out_of_sample_usd_per_year": 3375.968401102354
+   },
+   "source": "GeckoTerminal hourly bars (typical price, 50% of volume as sales)",
+   "staking_apr_latest": 0.09988252656428953,
+   "symbol": "aprMON",
+   "verdict": "no-go",
+   "volume_usd": 62326153.88106682
   },
   "jitosol": {
    "at_quoted_size": {
@@ -1395,204 +2236,313 @@
    "volume_usd": 712916795.0889509
   },
   "khype": {
-   "at_quoted_size": {
+   "at_capacity_size": {
     "by_hurdle_oos_usd_per_year": {
-     "h=0": 108225.92864831437,
-     "h=1": 107121.50396814501,
-     "h=10": 115815.1927608461,
-     "h=2": 109993.97574120438,
-     "h=20": 26146.45852832789,
-     "h=3": 111586.58518757713,
-     "h=5": 114689.78364380222
+     "h=0": 451902.2575090196,
+     "h=1": 451399.8128441563,
+     "h=10": 373849.1880740299,
+     "h=2": 446827.214785313,
+     "h=20": 191046.6997812499,
+     "h=3": 441058.7685045206,
+     "h=5": 420664.91010418045
     },
-    "chosen_hurdle": "h=20",
-    "cutoff_utc": "2025-12-08T00:00:00Z",
-    "filled_usd": 14273562.15813726,
-    "fills": 811,
-    "fills_oos": 197,
-    "full_period_usd_per_year": 95335.46795104814,
-    "hurdle_bps": 20.0,
-    "in_sample_usd_per_year": 164050.58004895522,
-    "median_edge_bps": 46.216000107916585,
-    "missed_capital_usd": 129727806.71132891,
+    "chosen_hurdle": "h=10",
+    "cutoff_utc": "2026-02-26T00:00:00Z",
+    "filled_usd": 398402856.1428,
+    "fills": 35905,
+    "fills_oos": 8183,
+    "full_period_usd_per_year": 783125.2694970304,
+    "hurdle_bps": 10.0,
+    "in_sample_usd_per_year": 1192401.3509200308,
+    "median_edge_bps": 15.33487434164194,
+    "missed_capital_usd": 379619063.0265957,
     "oos_ci95_usd_per_year": [
-     0.0,
-     72852.95466513177
+     137988.60616405707,
+     703304.8694168727
     ],
-    "oos_rank_of_chosen": 7,
-    "oos_share_of_bootstraps_le_0": 0.037,
-    "oos_t": 1.4680159497936014,
-    "out_of_sample_usd_per_year": 26146.458528327887,
-    "qualifying_usd": 148854021.28461635,
+    "oos_rank_of_chosen": 6,
+    "oos_share_of_bootstraps_le_0": 0.0,
+    "oos_t": 2.6521926513665868,
+    "out_of_sample_usd_per_year": 373849.1880740299,
+    "qualifying_usd": 778198474.0885661,
     "top_fills": [
      {
-      "edge_bps": 27.044188884914398,
+      "edge_bps": 74.46121067597151,
       "pool": "project-x",
-      "usd": 955066.2990869998,
-      "utc": "2026-04-19T19:24:15Z",
-      "value_usd": 2581.8993390124974
+      "usd": 2115668.9890941647,
+      "utc": "2025-10-17T23:01:01Z",
+      "value_usd": 15752.527431756029
      },
      {
-      "edge_bps": 98.44935789191892,
+      "edge_bps": 24.765625143860618,
       "pool": "project-x",
-      "usd": 179407.9372722529,
-      "utc": "2025-09-24T05:01:23Z",
-      "value_usd": 1765.2596225166965
+      "usd": 2813943.7478885637,
+      "utc": "2025-12-10T02:51:32Z",
+      "value_usd": 6967.907603611839
      },
      {
-      "edge_bps": 34.41491654296198,
+      "edge_bps": 20.746708532562415,
       "pool": "project-x",
-      "usd": 510963.1602606223,
-      "utc": "2025-09-24T03:53:21Z",
-      "value_usd": 1757.4754516897426
+      "usd": 2974129.035060624,
+      "utc": "2025-12-09T23:54:59Z",
+      "value_usd": 6169.338822863388
      },
      {
-      "edge_bps": 92.04131974998059,
+      "edge_bps": 77.38150192516233,
       "pool": "project-x",
-      "usd": 179407.93704068297,
-      "utc": "2025-09-24T05:01:06Z",
-      "value_usd": 1650.2943298845887
+      "usd": 764548.1438377759,
+      "utc": "2025-10-17T23:18:05Z",
+      "value_usd": 5915.188366426214
      },
      {
-      "edge_bps": 87.3676651892698,
-      "pool": "project-x",
-      "usd": 179407.93682273474,
-      "utc": "2025-09-24T05:00:50Z",
-      "value_usd": 1566.4452556626356
+      "edge_bps": 67.62754327557025,
+      "pool": "hyperswap-v3",
+      "usd": 705222.9963647214,
+      "utc": "2025-10-17T23:01:01Z",
+      "value_usd": 4768.249870558252
      },
      {
-      "edge_bps": 82.93235242433072,
+      "edge_bps": 13.661667761813373,
       "pool": "project-x",
-      "usd": 179407.93664565188,
-      "utc": "2025-09-24T05:00:37Z",
-      "value_usd": 1486.87222296192
+      "usd": 3354213.8541704845,
+      "utc": "2025-11-05T18:07:32Z",
+      "value_usd": 4581.415527774869
      }
     ],
-    "trailing_90d_usd_per_year": 42124.84985119494,
+    "trailing_90d_usd_per_year": 400474.733793622,
+    "value_by_month_usd": {
+     "2025-09": 204205.5,
+     "2025-10": 258904.46,
+     "2025-11": 127009.35,
+     "2025-12": 82566.26,
+     "2026-01": 3559.86,
+     "2026-02": 63043.48,
+     "2026-03": 23547.83,
+     "2026-04": 24638.8,
+     "2026-05": 63148.03,
+     "2026-06": 20417.23,
+     "2026-09": 96308.79,
+     "2026-10": 2438.4
+    }
+   },
+   "at_quoted_size": {
+    "by_hurdle_oos_usd_per_year": {
+     "h=0": 173963.13094601876,
+     "h=1": 175938.22411250166,
+     "h=10": 224065.93990161768,
+     "h=2": 186710.65472649987,
+     "h=20": 140043.01442971223,
+     "h=3": 193097.4042781189,
+     "h=5": 192837.2116955452
+    },
+    "chosen_hurdle": "h=20",
+    "cutoff_utc": "2026-02-26T00:00:00Z",
+    "filled_usd": 82495606.33582766,
+    "fills": 6125,
+    "fills_oos": 864,
+    "full_period_usd_per_year": 255375.7856848563,
+    "hurdle_bps": 20.0,
+    "in_sample_usd_per_year": 370708.5569400004,
+    "median_edge_bps": 24.572991741508066,
+    "missed_capital_usd": 346965098.2695838,
+    "oos_ci95_usd_per_year": [
+     17327.48202298262,
+     356702.5006425094
+    ],
+    "oos_rank_of_chosen": 7,
+    "oos_share_of_bootstraps_le_0": 0.0,
+    "oos_t": 1.4403582065074505,
+    "out_of_sample_usd_per_year": 140043.01442971223,
+    "qualifying_usd": 434313357.020562,
+    "top_fills": [
+     {
+      "edge_bps": 74.46121067597151,
+      "pool": "project-x",
+      "usd": 1272341.9326776136,
+      "utc": "2025-10-17T23:01:01Z",
+      "value_usd": 9473.012070098055
+     },
+     {
+      "edge_bps": 24.765625143860618,
+      "pool": "project-x",
+      "usd": 2813943.7478885637,
+      "utc": "2025-12-10T02:51:32Z",
+      "value_usd": 6967.907603611839
+     },
+     {
+      "edge_bps": 20.746708532562415,
+      "pool": "project-x",
+      "usd": 2974129.035060624,
+      "utc": "2025-12-09T23:54:59Z",
+      "value_usd": 6169.338822863388
+     },
+     {
+      "edge_bps": 77.38150192516233,
+      "pool": "project-x",
+      "usd": 764548.1438377759,
+      "utc": "2025-10-17T23:18:05Z",
+      "value_usd": 5915.188366426214
+     },
+     {
+      "edge_bps": 67.62754327557025,
+      "pool": "hyperswap-v3",
+      "usd": 705222.9963647214,
+      "utc": "2025-10-17T23:01:01Z",
+      "value_usd": 4768.249870558252
+     },
+     {
+      "edge_bps": 21.128723809930868,
+      "pool": "project-x",
+      "usd": 2092365.0191547105,
+      "utc": "2025-11-06T20:56:14Z",
+      "value_usd": 4419.900259928058
+     }
+    ],
+    "trailing_90d_usd_per_year": 245330.58014541274,
     "value_by_month_usd": {
      "2025-09": 65620.23,
+     "2025-10": 96400.15,
+     "2025-11": 39316.13,
+     "2025-12": 26927.68,
+     "2026-02": 1270.42,
      "2026-03": 828.81,
-     "2026-04": 9558.14
+     "2026-04": 9558.14,
+     "2026-05": 15832.14,
+     "2026-09": 60492.47
     }
    },
    "bars_crosscheck": {
     "hybra-v4": {
      "abs_gap_bps": {
-      "max": 2.758556329600294,
+      "max": 12.372478625230698,
       "min": 7.900706991597541e-07,
-      "n": 1202,
-      "p10": 0.015198830643817676,
-      "p50": 0.11462545073079623,
-      "p90": 0.4393221682660794,
-      "p99": 1.6093283809074683,
-      "share_ge_10bp": 0.0,
+      "n": 4941,
+      "p10": 0.016130848135767508,
+      "p50": 0.11456221605611669,
+      "p90": 0.5468443374012215,
+      "p99": 2.266913391064507,
+      "share_ge_10bp": 0.0004047763610605141,
       "share_ge_20bp": 0.0,
       "share_ge_50bp": 0.0,
-      "share_ge_5bp": 0.0
+      "share_ge_5bp": 0.0030358227079538553
      },
      "bar_volume_over_swap_volume": {
-      "p10": 0.9973878984917401,
-      "p50": 0.998675321382154,
-      "p90": 0.9997719424349297
+      "p10": 0.9979541074655482,
+      "p50": 0.9994405438228301,
+      "p90": 3.23908534152702
      },
-     "hours_both": 1202,
-     "signed_median_gap_bps": 0.006605808490474285
+     "hours_both": 4941,
+     "signed_median_gap_bps": 0.008162412792541644
     },
     "hyperswap-v3": {
      "abs_gap_bps": {
-      "max": 7.789596472803759,
-      "min": 0.00014661790051563695,
-      "n": 558,
-      "p10": 0.02264771427749337,
-      "p50": 0.32292927415213835,
-      "p90": 0.8603354158882986,
-      "p99": 1.7208016181064645,
-      "share_ge_10bp": 0.0,
-      "share_ge_20bp": 0.0,
-      "share_ge_50bp": 0.0,
-      "share_ge_5bp": 0.0017921146953405018
+      "max": 1981.2265110806413,
+      "min": 1.1140757054696095e-07,
+      "n": 3933,
+      "p10": 0.01232260273819139,
+      "p50": 0.36377977041974086,
+      "p90": 1.0304883755147847,
+      "p99": 4.657937145676849,
+      "share_ge_10bp": 0.004576659038901602,
+      "share_ge_20bp": 0.0025425883549453345,
+      "share_ge_50bp": 0.0010170353419781336,
+      "share_ge_5bp": 0.00966183574879227
      },
      "bar_volume_over_swap_volume": {
-      "p10": 0.9978720562799023,
-      "p50": 0.9991805431430578,
-      "p90": 0.9998959135781748
+      "p10": 0.998163068373456,
+      "p50": 0.9993582533924301,
+      "p90": 1.0011439387266998
      },
-     "hours_both": 558,
-     "signed_median_gap_bps": 0.023228273951951754
+     "hours_both": 3933,
+     "signed_median_gap_bps": 0.0035276495385005726
     },
     "kittenswap-algebra": {
      "abs_gap_bps": {
-      "max": 238.53296227890675,
-      "min": 0.00027438792802830596,
-      "n": 621,
-      "p10": 0.01981220647915754,
-      "p50": 0.16658085621897145,
-      "p90": 1.6693795282692214,
-      "p99": 39.131809680647834,
-      "share_ge_10bp": 0.030595813204508857,
-      "share_ge_20bp": 0.02254428341384863,
-      "share_ge_50bp": 0.00966183574879227,
-      "share_ge_5bp": 0.05314009661835749
+      "max": 296.0455732976233,
+      "min": 1.6060233873909566e-05,
+      "n": 3949,
+      "p10": 0.020685084197425384,
+      "p50": 0.1365332754894029,
+      "p90": 1.4081683665113218,
+      "p99": 29.00138200273192,
+      "share_ge_10bp": 0.022537351228159027,
+      "share_ge_20bp": 0.012914661939731578,
+      "share_ge_50bp": 0.004304887313243859,
+      "share_ge_5bp": 0.03975690048113446
      },
      "bar_volume_over_swap_volume": {
-      "p10": 0.9978364186918595,
-      "p50": 0.9990884449768621,
-      "p90": 0.9997849564430339
+      "p10": 0.998120402524108,
+      "p50": 0.999317563440769,
+      "p90": 0.9999360999903162
      },
-     "hours_both": 621,
-     "signed_median_gap_bps": 0.012412762445212552
+     "hours_both": 3949,
+     "signed_median_gap_bps": 0.004054244609329955
     },
     "nest": {
      "abs_gap_bps": {
-      "n": 0
+      "max": 635.4113463486688,
+      "min": 4.4727898463662354e-06,
+      "n": 1806,
+      "p10": 0.02541772589839645,
+      "p50": 0.6676606317290483,
+      "p90": 5.090676748188928,
+      "p99": 143.40851727320143,
+      "share_ge_10bp": 0.07032115171650055,
+      "share_ge_20bp": 0.04318936877076412,
+      "share_ge_50bp": 0.02547065337763012,
+      "share_ge_5bp": 0.10132890365448505
      },
-     "bar_volume_over_swap_volume": null,
-     "hours_both": 0,
-     "signed_median_gap_bps": null
+     "bar_volume_over_swap_volume": {
+      "p10": 0.9981757427576651,
+      "p50": 0.9994555612885498,
+      "p90": 1.4259139475972749
+     },
+     "hours_both": 1806,
+     "signed_median_gap_bps": 5.875815088028942e-05
     },
     "project-x": {
      "abs_gap_bps": {
-      "max": 5.831622612271117,
-      "min": 1.114395155572454e-06,
-      "n": 1163,
-      "p10": 0.06992461845396798,
-      "p50": 0.5558718703519929,
-      "p90": 1.1866025315867241,
-      "p99": 1.6784371921313908,
-      "share_ge_10bp": 0.0,
-      "share_ge_20bp": 0.0,
-      "share_ge_50bp": 0.0,
-      "share_ge_5bp": 0.0008598452278589854
+      "max": 1159.2468112155348,
+      "min": 2.1735410163054444e-11,
+      "n": 4934,
+      "p10": 0.03730908465773579,
+      "p50": 0.5351852316681807,
+      "p90": 1.1669390978412673,
+      "p99": 1.692594656231867,
+      "share_ge_10bp": 0.0008107012565869477,
+      "share_ge_20bp": 0.00040535062829347385,
+      "share_ge_50bp": 0.00040535062829347385,
+      "share_ge_5bp": 0.0018240778273206323
      },
      "bar_volume_over_swap_volume": {
-      "p10": 0.9974113390545544,
-      "p50": 0.9988179969119403,
-      "p90": 1.0025002034392563
+      "p10": 0.9977379847743292,
+      "p50": 0.9993406745624855,
+      "p90": 1.0031963428410438
      },
-     "hours_both": 1163,
-     "signed_median_gap_bps": -0.04233350486047049
+     "hours_both": 4934,
+     "signed_median_gap_bps": -0.0020166355247731157
     },
     "ramses-v3": {
      "abs_gap_bps": {
-      "max": 25.711945729089425,
-      "min": 1.982757142404621e-05,
-      "n": 1152,
-      "p10": 0.012218359445382748,
-      "p50": 0.07579765622005263,
-      "p90": 0.6227851193981826,
-      "p99": 3.7257669184307782,
-      "share_ge_10bp": 0.003472222222222222,
-      "share_ge_20bp": 0.001736111111111111,
-      "share_ge_50bp": 0.0,
-      "share_ge_5bp": 0.006944444444444444
+      "max": 588.8178757225776,
+      "min": 1.2333440359434419e-05,
+      "n": 4975,
+      "p10": 0.011181495340875383,
+      "p50": 0.06261620836684538,
+      "p90": 0.4133991963195967,
+      "p99": 3.1809518834513293,
+      "share_ge_10bp": 0.0020100502512562816,
+      "share_ge_20bp": 0.001407035175879397,
+      "share_ge_50bp": 0.0004020100502512563,
+      "share_ge_5bp": 0.006030150753768844
      },
      "bar_volume_over_swap_volume": {
-      "p10": 0.9914355616809669,
-      "p50": 0.9991839862813465,
-      "p90": 1.218517486136323
+      "p10": 0.9963085907642257,
+      "p50": 0.9993558982292764,
+      "p90": 1.0247500033079002
      },
-     "hours_both": 1152,
-     "signed_median_gap_bps": 0.0069419166753484085
+     "hours_both": 4975,
+     "signed_median_gap_bps": 0.006949048027760955
     }
    },
    "bars_window_block": {
@@ -1679,6 +2629,48 @@
       "2026-08": 15302.37,
       "2026-09": 122233.05,
       "2026-10": 5218.86
+     }
+    },
+    "bars_vs_swaps_same_window_by_size": {
+     "1000000": {
+      "bars_hurdle": "h=10",
+      "bars_oos_usd_per_year": 12476.497716086238,
+      "swaps_hurdle": "h=10",
+      "swaps_oos_ci95_usd_per_year": [
+       0.0,
+       26700.704807964466
+      ],
+      "swaps_oos_usd_per_year": 10822.405915379977
+     },
+     "10000000": {
+      "bars_hurdle": "h=3",
+      "bars_oos_usd_per_year": 181068.57839161527,
+      "swaps_hurdle": "h=10",
+      "swaps_oos_ci95_usd_per_year": [
+       0.0,
+       560373.8357183593
+      ],
+      "swaps_oos_usd_per_year": 189718.91043835142
+     },
+     "3000000": {
+      "bars_hurdle": "h=10",
+      "bars_oos_usd_per_year": 32081.38274997804,
+      "swaps_hurdle": "h=10",
+      "swaps_oos_ci95_usd_per_year": [
+       0.0,
+       78726.59557623883
+      ],
+      "swaps_oos_usd_per_year": 29982.3924292726
+     },
+     "30000000": {
+      "bars_hurdle": "h=0",
+      "bars_oos_usd_per_year": 511446.81886104506,
+      "swaps_hurdle": "h=0",
+      "swaps_oos_ci95_usd_per_year": [
+       72913.96616801913,
+       1129609.9174993748
+      ],
+      "swaps_oos_usd_per_year": 433891.6373040038
      }
     },
     "by_month": {
@@ -2410,10 +3402,10 @@
     "swap_level_same_window": {
      "chosen_hurdle": "h=0",
      "oos_ci95_usd_per_year": [
-      0.0,
-      0.0
+      72913.96616801913,
+      1129609.9174993748
      ],
-     "out_of_sample_usd_per_year": 0.0
+     "out_of_sample_usd_per_year": 433891.6373040038
     },
     "volume_usd": 748883426.7866107
    },
@@ -2440,18 +3432,39 @@
      "volume_usd": 1250416429.2816372
     },
     "2025-10": {
-     "hours": 199,
-     "max_bps": 9.33501569909617,
-     "p50_bps": 2.4389154056666915,
-     "p90_bps": 6.53740866353523,
-     "volume_usd": 186532780.03211704
+     "hours": 744,
+     "max_bps": 97.9410144319872,
+     "p50_bps": 20.808495931405815,
+     "p90_bps": 59.933339058692155,
+     "volume_usd": 992295295.9944602
+    },
+    "2025-11": {
+     "hours": 720,
+     "max_bps": 42.21425117841128,
+     "p50_bps": 28.396511842872968,
+     "p90_bps": 37.077910061012744,
+     "volume_usd": 612678419.4940504
+    },
+    "2025-12": {
+     "hours": 744,
+     "max_bps": 44.385085908538095,
+     "p50_bps": 23.127496058585034,
+     "p90_bps": 30.99063453998479,
+     "volume_usd": 290934791.0225223
+    },
+    "2026-01": {
+     "hours": 744,
+     "max_bps": 30.743111694512532,
+     "p50_bps": 9.97352040695385,
+     "p90_bps": 18.489464456644562,
+     "volume_usd": 189259867.35345674
     },
     "2026-02": {
-     "hours": 147,
-     "max_bps": 26.27167815688753,
-     "p50_bps": 12.256042800954837,
-     "p90_bps": 19.612615112411287,
-     "volume_usd": 28286299.72365727
+     "hours": 672,
+     "max_bps": 37.20211698183661,
+     "p50_bps": 22.04186194587549,
+     "p90_bps": 33.35754387906416,
+     "volume_usd": 183804163.12440094
     },
     "2026-03": {
      "hours": 744,
@@ -2468,89 +3481,129 @@
      "volume_usd": 116936473.38468415
     },
     "2026-05": {
-     "hours": 24,
-     "max_bps": 3.444777497273872,
-     "p50_bps": 2.234935497704666,
-     "p90_bps": 3.0638262541417367,
-     "volume_usd": 871771.7017939949
+     "hours": 744,
+     "max_bps": 41.91311670213051,
+     "p50_bps": 8.414753811094162,
+     "p90_bps": 18.828379012273928,
+     "volume_usd": 168440101.35740507
+    },
+    "2026-06": {
+     "hours": 720,
+     "max_bps": 23.063641628156073,
+     "p50_bps": 4.913124335407797,
+     "p90_bps": 16.25859668265835,
+     "volume_usd": 152565382.9469064
+    },
+    "2026-07": {
+     "hours": 744,
+     "max_bps": 12.44767444377455,
+     "p50_bps": 5.799371545664902,
+     "p90_bps": 8.82948886179381,
+     "volume_usd": 71553314.41898029
+    },
+    "2026-08": {
+     "hours": 744,
+     "max_bps": 24.453549358514856,
+     "p50_bps": 4.997998304498295,
+     "p90_bps": 10.389270158242324,
+     "volume_usd": 102955939.92106317
+    },
+    "2026-09": {
+     "hours": 720,
+     "max_bps": 104.15971817728557,
+     "p50_bps": 8.595180268868578,
+     "p90_bps": 33.376239853750455,
+     "volume_usd": 128001400.87734734
+    },
+    "2026-10": {
+     "hours": 216,
+     "max_bps": 26.758016399292572,
+     "p50_bps": 7.585574628257433,
+     "p90_bps": 12.803563325908577,
+     "volume_usd": 22261602.731066007
     }
    },
    "by_pool": {
     "hybra-v3": {
-     "records": 2583,
-     "volume_usd": 60500849.16564486,
-     "vw_discount_bps": 23.55168537321137
+     "records": 7042,
+     "volume_usd": 87475406.26748177,
+     "vw_discount_bps": 29.273990444046184
     },
     "hybra-v4": {
-     "records": 1587,
-     "volume_usd": 4233807.820847163,
-     "vw_discount_bps": 17.93449228399016
+     "records": 8345,
+     "volume_usd": 110336091.81563728,
+     "vw_discount_bps": 22.44534173768089
     },
     "hyperswap-v3": {
-     "records": 3527,
-     "volume_usd": 333971544.1761032,
-     "vw_discount_bps": 33.59161482929787
+     "records": 10170,
+     "volume_usd": 657406679.4038383,
+     "vw_discount_bps": 35.61251394612037
     },
     "kittenswap-algebra": {
-     "records": 2524,
-     "volume_usd": 228315729.94732857,
-     "vw_discount_bps": 6.504577483176416
+     "records": 9068,
+     "volume_usd": 293706117.64662284,
+     "vw_discount_bps": 11.001633129943176
     },
     "nest": {
-     "records": 1350,
-     "volume_usd": 21408493.366558906,
-     "vw_discount_bps": 16.187608692224458
+     "records": 6500,
+     "volume_usd": 248976204.13420102,
+     "vw_discount_bps": 19.47307200134731
     },
     "project-x": {
-     "records": 3687,
-     "volume_usd": 1796123993.70961,
-     "vw_discount_bps": 22.00848115187501
+     "records": 10735,
+     "volume_usd": 3263658515.4483476,
+     "vw_discount_bps": 25.574007378768034
     },
     "ramses-v3": {
-     "records": 1632,
-     "volume_usd": 63780475.64475608,
-     "vw_discount_bps": 17.568092998871837
+     "records": 7943,
+     "volume_usd": 532223139.52275676,
+     "vw_discount_bps": 13.666185167103599
     },
     "ramses-v3-2025": {
-     "records": 2043,
-     "volume_usd": 451475316.17900616,
-     "vw_discount_bps": 4.7178400093350215
+     "records": 2929,
+     "volume_usd": 465087483.5550535,
+     "vw_discount_bps": 5.252129868848241
     }
    },
-   "capacity_size_usd": 10000000,
+   "capacity_size_usd": 30000000,
    "competitor_stex": {
     "by_month_volume_usd": {
      "2025-07": 64628244.841341436,
      "2025-08": 89844217.88135622,
      "2025-09": 33945967.23355773,
-     "2025-10": 3720278.2728249906,
-     "2026-02": 6439335.4771852065,
+     "2025-10": 30046381.223742098,
+     "2025-11": 14347287.67703546,
+     "2025-12": 15360140.64911076,
+     "2026-01": 23577092.86479871,
+     "2026-02": 20340952.749226697,
      "2026-03": 6089567.590226764,
      "2026-04": 9139796.430602124,
-     "2026-05": 320195.8874162883
+     "2026-05": 10592280.451299144,
+     "2026-06": 4746775.113216937,
+     "2026-07": 3193562.6432136297
     },
-    "pool_hours": 1915,
-    "volume_usd": 214127603.61451077,
-    "vw_discount_bps": 5.892443916310073
+    "pool_hours": 4128,
+    "volume_usd": 325852267.3487277,
+    "vw_discount_bps": 8.960052789863749
    },
-   "cutoff_utc": "2025-12-08T00:00:00Z",
-   "days": 291,
+   "cutoff_utc": "2026-02-26T00:00:00Z",
+   "days": 452,
    "depth_below_round_trip": {
-    "days": 291,
-    "days_with_any": 65,
-    "edge_usd_per_year_unbounded": 1773394.8208024816,
-    "edge_usd_total": 1413857.2406945813,
+    "days": 452,
+    "days_with_any": 283,
+    "edge_usd_per_year_unbounded": 2535307.894593266,
+    "edge_usd_total": 3139614.15987988,
     "usd_max_day": 94068781.97721837,
-    "usd_per_active_day_p50": 1390943.1396204494,
-    "usd_per_active_day_p90": 6064204.4745281,
-    "usd_per_day_mean": 935096.8418069601,
-    "usd_total": 272113180.9658254
+    "usd_per_active_day_p50": 1796367.7089401567,
+    "usd_per_active_day_p90": 9556811.904090175,
+    "usd_per_day_mean": 2664530.6920104926,
+    "usd_total": 1204367872.7887425
    },
    "episodes": {
-    "count": 27,
+    "count": 105,
     "deepest_bps": 260.1901891443612,
-    "hours": 1123,
-    "longest_hours": 207,
+    "hours": 5301,
+    "longest_hours": 502,
     "top": [
      {
       "end_utc": "2025-09-30T14:00:00Z",
@@ -2563,80 +3616,80 @@
       "vw_discount_bps": 103.05749566094272
      },
      {
-      "end_utc": "2026-04-27T05:00:00Z",
-      "net_of_round_trip_bps": 12.380481956138983,
-      "peak_bps": 34.69215690148123,
-      "qualifying_hours": 204,
-      "span_hours": 207,
-      "start_utc": "2026-04-18T14:00:00Z",
-      "volume_usd": 37782888.600055724,
-      "vw_discount_bps": 18.625471686872636
+      "end_utc": "2025-10-21T19:00:00Z",
+      "net_of_round_trip_bps": 38.02200490425629,
+      "peak_bps": 97.9410144319872,
+      "qualifying_hours": 277,
+      "span_hours": 277,
+      "start_utc": "2025-10-10T06:00:00Z",
+      "volume_usd": 531176654.5624719,
+      "vw_discount_bps": 54.580317071652956
      },
      {
-      "end_utc": "2026-03-26T15:00:00Z",
-      "net_of_round_trip_bps": 10.785981822159926,
-      "peak_bps": 41.68152310481158,
-      "qualifying_hours": 191,
-      "span_hours": 191,
-      "start_utc": "2026-03-18T16:00:00Z",
-      "volume_usd": 34033677.8181529,
-      "vw_discount_bps": 27.107170111203605
+      "end_utc": "2025-11-23T01:00:00Z",
+      "net_of_round_trip_bps": 14.898658956704837,
+      "peak_bps": 42.21425117841128,
+      "qualifying_hours": 489,
+      "span_hours": 489,
+      "start_utc": "2025-11-02T16:00:00Z",
+      "volume_usd": 457605563.26817966,
+      "vw_discount_bps": 31.27707731879911
      },
      {
-      "end_utc": "2026-03-18T10:00:00Z",
-      "net_of_round_trip_bps": 8.820479334452308,
-      "peak_bps": 34.38010697129841,
-      "qualifying_hours": 126,
-      "span_hours": 126,
-      "start_utc": "2026-03-13T04:00:00Z",
-      "volume_usd": 35745654.43172678,
-      "vw_discount_bps": 25.06020707503225
+      "end_utc": "2025-12-24T14:00:00Z",
+      "net_of_round_trip_bps": 12.59777762638592,
+      "peak_bps": 44.385085908538095,
+      "qualifying_hours": 462,
+      "span_hours": 462,
+      "start_utc": "2025-12-05T08:00:00Z",
+      "volume_usd": 202585649.50199777,
+      "vw_discount_bps": 28.95398237572648
      },
      {
-      "end_utc": "2026-04-01T19:00:00Z",
-      "net_of_round_trip_bps": 8.843011911000248,
-      "peak_bps": 36.16706405148256,
-      "qualifying_hours": 119,
-      "span_hours": 123,
-      "start_utc": "2026-03-27T16:00:00Z",
-      "volume_usd": 22298936.18720365,
-      "vw_discount_bps": 25.339973459109878
+      "end_utc": "2026-09-28T05:00:00Z",
+      "net_of_round_trip_bps": 40.793686811272515,
+      "peak_bps": 104.15971817728557,
+      "qualifying_hours": 208,
+      "span_hours": 209,
+      "start_utc": "2026-09-19T12:00:00Z",
+      "volume_usd": 58326438.33597354,
+      "vw_discount_bps": 46.6337957193542
      },
      {
-      "end_utc": "2026-04-15T16:00:00Z",
-      "net_of_round_trip_bps": 9.904247635369773,
-      "peak_bps": 29.202882835149712,
-      "qualifying_hours": 44,
-      "span_hours": 44,
-      "start_utc": "2026-04-13T20:00:00Z",
-      "volume_usd": 15395861.260903388,
-      "vw_discount_bps": 17.064157052502175
+      "end_utc": "2026-06-08T02:00:00Z",
+      "net_of_round_trip_bps": 11.687969209531268,
+      "peak_bps": 41.91311670213051,
+      "qualifying_hours": 502,
+      "span_hours": 502,
+      "start_utc": "2026-05-18T04:00:00Z",
+      "volume_usd": 201674365.34574887,
+      "vw_discount_bps": 17.521819818520857
      },
      {
-      "end_utc": "2026-04-10T23:00:00Z",
-      "net_of_round_trip_bps": 7.709332216851729,
-      "peak_bps": 22.40486164709644,
-      "qualifying_hours": 15,
-      "span_hours": 15,
-      "start_utc": "2026-04-10T08:00:00Z",
-      "volume_usd": 11704350.88915961,
-      "vw_discount_bps": 14.93176034591684
+      "end_utc": "2026-02-20T17:00:00Z",
+      "net_of_round_trip_bps": 12.849355235216189,
+      "peak_bps": 37.20211698183661,
+      "qualifying_hours": 391,
+      "span_hours": 393,
+      "start_utc": "2026-02-04T08:00:00Z",
+      "volume_usd": 123501987.88815813,
+      "vw_discount_bps": 29.04449279828336
      },
      {
-      "end_utc": "2026-03-01T15:00:00Z",
-      "net_of_round_trip_bps": 4.700309229896981,
-      "peak_bps": 26.27167815688753,
-      "qualifying_hours": 51,
-      "span_hours": 52,
-      "start_utc": "2026-02-27T11:00:00Z",
-      "volume_usd": 13700331.51183472,
-      "vw_discount_bps": 20.83855972979244
+      "end_utc": "2025-10-27T12:00:00Z",
+      "net_of_round_trip_bps": 5.2253798879662865,
+      "peak_bps": 28.44606410894846,
+      "qualifying_hours": 129,
+      "span_hours": 130,
+      "start_utc": "2025-10-22T02:00:00Z",
+      "volume_usd": 101570640.05064438,
+      "vw_discount_bps": 21.895380367793962
      }
     ],
-    "volume_usd": 592635183.6005927
+    "volume_usd": 2658018030.86648
    },
    "excluded_prints": {
-    "count": 1148,
+    "count": 2935,
     "examples": [
      {
       "discount_bps": -401.000100010005,
@@ -2719,524 +3772,4197 @@
       "utc": "2025-07-15T03:25:19Z"
      }
     ],
-    "usd": 11617152.498470452
+    "usd": 17031152.03774589
    },
    "fee_off_utc": "2026-04-08T00:14:01Z",
    "first_day": "2025-07-15",
    "grid": {
     "100000": {
      "by_hurdle_oos_usd_per_year": {
-      "h=0": 893.9432746628967,
-      "h=1": 792.7658669193942,
-      "h=10": 2416.139660294289,
-      "h=2": 692.5474243690803,
-      "h=20": 991.6065654522374,
-      "h=3": 746.5366665374131,
-      "h=5": 1488.9907748084074
+      "h=0": 1509.5908605916816,
+      "h=1": 1460.0623827597533,
+      "h=10": 2753.250697925727,
+      "h=2": 1449.0159613799815,
+      "h=20": 1748.6837551816282,
+      "h=3": 1618.779338700192,
+      "h=5": 2149.2429553478087
      },
-     "chosen_hurdle": "h=1",
-     "cutoff_utc": "2025-12-08T00:00:00Z",
-     "filled_usd": 1199744.231631469,
-     "fills": 95,
-     "fills_oos": 41,
-     "full_period_usd_per_year": 826.3091841287127,
-     "hurdle_bps": 1.0,
-     "in_sample_usd_per_year": 859.6227525900222,
-     "median_edge_bps": 10.636918569967296,
-     "missed_capital_usd": 253042676.5839934,
+     "chosen_hurdle": "h=20",
+     "cutoff_utc": "2026-02-26T00:00:00Z",
+     "filled_usd": 1499694.6184054494,
+     "fills": 173,
+     "fills_oos": 39,
+     "full_period_usd_per_year": 2826.9977503187383,
+     "hurdle_bps": 20.0,
+     "in_sample_usd_per_year": 3905.3117454558487,
+     "median_edge_bps": 20.521403755146743,
+     "missed_capital_usd": 432807860.15186,
      "oos_ci95_usd_per_year": [
-      178.5485249093809,
-      1839.4498731002664
+      440.8396921240089,
+      3279.1505200429524
      ],
-     "oos_rank_of_chosen": 5,
-     "oos_share_of_bootstraps_le_0": 0.0,
-     "oos_t": 1.7260156157020081,
-     "out_of_sample_usd_per_year": 792.7658669193942,
-     "qualifying_usd": 254389024.64054227,
+     "oos_rank_of_chosen": 3,
+     "oos_share_of_bootstraps_le_0": 0.002,
+     "oos_t": 2.416302089339706,
+     "out_of_sample_usd_per_year": 1748.6837551816282,
+     "qualifying_usd": 434313357.020562,
      "top_fills": [
       {
-       "edge_bps": 19.562755195753184,
+       "edge_bps": 67.62754327557025,
+       "pool": "hyperswap-v3",
+       "usd": 89771.87563238446,
+       "utc": "2025-10-17T23:01:01Z",
+       "value_usd": 606.105140425819
+      },
+      {
+       "edge_bps": 21.06486330753297,
+       "pool": "project-x",
+       "usd": 99999.99999999996,
+       "utc": "2026-05-15T12:53:04Z",
+       "value_usd": 209.64863307532963
+      },
+      {
+       "edge_bps": 20.746708532562415,
+       "pool": "project-x",
+       "usd": 100000.0,
+       "utc": "2025-12-09T23:54:59Z",
+       "value_usd": 206.46708532562417
+      },
+      {
+       "edge_bps": 22.133292215535786,
+       "pool": "project-x",
+       "usd": 87512.47434407863,
+       "utc": "2025-12-19T00:37:54Z",
+       "value_usd": 192.69391671620704
+      },
+      {
+       "edge_bps": 26.893829230690432,
        "pool": "nest",
-       "usd": 61915.21780673088,
-       "utc": "2026-03-20T08:27:49Z",
-       "value_usd": 120.12322488448144
+       "usd": 61582.45094965856,
+       "utc": "2026-09-20T23:51:52Z",
+       "value_usd": 164.61879194474872
       },
       {
-       "edge_bps": 19.309179668982047,
+       "edge_bps": 26.893829230690432,
        "pool": "project-x",
-       "usd": 29937.95462292974,
-       "utc": "2026-03-20T08:27:49Z",
-       "value_usd": 56.8077344735982
-      },
-      {
-       "edge_bps": 35.528035759394086,
-       "pool": "hybra-v3",
-       "usd": 9739.638291849456,
-       "utc": "2025-09-26T14:38:37Z",
-       "value_usd": 33.60302175163914
-      },
-      {
-       "edge_bps": 35.331889125635065,
-       "pool": "project-x",
-       "usd": 9204.208782431484,
-       "utc": "2025-09-26T14:28:33Z",
-       "value_usd": 31.520208419006572
-      },
-      {
-       "edge_bps": 36.091566480990416,
-       "pool": "project-x",
-       "usd": 8116.276649525538,
-       "utc": "2025-09-26T14:07:00Z",
-       "value_usd": 28.29291382744611
-      },
-      {
-       "edge_bps": 36.091566480990416,
-       "pool": "hybra-v3",
-       "usd": 6485.016875705493,
-       "utc": "2025-09-26T14:56:57Z",
-       "value_usd": 22.405441769986954
+       "usd": 34536.53321569728,
+       "utc": "2026-09-20T23:51:52Z",
+       "value_usd": 91.88196265230306
       }
      ],
-     "trailing_90d_usd_per_year": 1277.2338967034686,
+     "trailing_90d_usd_per_year": 1071.344370631493,
      "value_by_month_usd": {
-      "2025-08": 20.91,
-      "2025-09": 322.94,
-      "2026-02": 26.12,
-      "2026-03": 224.18,
-      "2026-04": 64.63
+      "2025-09": 186.68,
+      "2025-10": 866.94,
+      "2025-11": 567.44,
+      "2025-12": 420.59,
+      "2026-02": 376.44,
+      "2026-03": 198.05,
+      "2026-04": 195.88,
+      "2026-05": 424.65,
+      "2026-09": 264.17
      }
     },
     "1000000": {
      "by_hurdle_oos_usd_per_year": {
-      "h=0": 7909.336193930372,
-      "h=1": 7994.848472749061,
-      "h=10": 18402.377854940536,
-      "h=2": 8903.14711354702,
-      "h=20": 8020.521281423133,
-      "h=3": 10775.361988816268,
-      "h=5": 12459.345164870201
+      "h=0": 15629.385038124487,
+      "h=1": 16016.018604086139,
+      "h=10": 24625.173832460503,
+      "h=2": 18268.567620097307,
+      "h=20": 17138.94379343205,
+      "h=3": 19305.054891484993,
+      "h=5": 22879.17096018258
      },
-     "chosen_hurdle": "h=0",
-     "cutoff_utc": "2025-12-08T00:00:00Z",
-     "filled_usd": 11408849.067003515,
-     "fills": 640,
-     "fills_oos": 370,
-     "full_period_usd_per_year": 8609.92498503955,
-     "hurdle_bps": 0.0,
-     "in_sample_usd_per_year": 9305.71522278497,
-     "median_edge_bps": 7.906933151665077,
-     "missed_capital_usd": 250293044.95281827,
+     "chosen_hurdle": "h=20",
+     "cutoff_utc": "2026-02-26T00:00:00Z",
+     "filled_usd": 12479617.610689972,
+     "fills": 624,
+     "fills_oos": 170,
+     "full_period_usd_per_year": 26249.297872946572,
+     "hurdle_bps": 20.0,
+     "in_sample_usd_per_year": 35359.6519524611,
+     "median_edge_bps": 21.240209180855476,
+     "missed_capital_usd": 421833739.40987206,
      "oos_ci95_usd_per_year": [
-      2244.9005626272933,
-      17355.9296267319
+      5013.628854515171,
+      32193.92141020864
      ],
-     "oos_rank_of_chosen": 7,
+     "oos_rank_of_chosen": 5,
      "oos_share_of_bootstraps_le_0": 0.0,
-     "oos_t": 2.1157571382941542,
-     "out_of_sample_usd_per_year": 7909.336193930371,
-     "qualifying_usd": 261931878.34414604,
+     "oos_t": 2.4325133848508345,
+     "out_of_sample_usd_per_year": 17138.94379343205,
+     "qualifying_usd": 434313357.020562,
      "top_fills": [
       {
-       "edge_bps": 19.309179668982047,
-       "pool": "project-x",
-       "usd": 321987.22323710134,
-       "utc": "2026-03-20T08:27:49Z",
-       "value_usd": 620.7309144601821
+       "edge_bps": 67.62754327557025,
+       "pool": "hyperswap-v3",
+       "usd": 705222.9963647214,
+       "utc": "2025-10-17T23:01:01Z",
+       "value_usd": 4768.249870558252
       },
       {
-       "edge_bps": 35.04164298583248,
+       "edge_bps": 74.46121067597151,
        "pool": "project-x",
-       "usd": 101498.42177836795,
-       "utc": "2025-09-26T15:01:19Z",
-       "value_usd": 354.66714595830143
+       "usd": 284548.87926766265,
+       "utc": "2025-10-17T23:01:01Z",
+       "value_usd": 2117.785404676101
       },
       {
-       "edge_bps": 24.86036051935904,
+       "edge_bps": 21.06486330753297,
        "pool": "project-x",
-       "usd": 138017.5520524179,
-       "utc": "2026-03-20T09:33:29Z",
-       "value_usd": 342.1166102022511
+       "usd": 1000000.0000000001,
+       "utc": "2026-05-15T12:53:04Z",
+       "value_usd": 2105.4863307532974
       },
       {
-       "edge_bps": 45.09390529084665,
+       "edge_bps": 20.746708532562415,
        "pool": "project-x",
-       "usd": 68312.54212185496,
-       "utc": "2025-09-27T07:34:57Z",
-       "value_usd": 307.04793046199
+       "usd": 1000000.0000000003,
+       "utc": "2025-12-09T23:54:59Z",
+       "value_usd": 2073.6708532562425
       },
       {
-       "edge_bps": 40.4956325553945,
+       "edge_bps": 22.133292215535786,
        "pool": "project-x",
-       "usd": 62270.00547016761,
-       "utc": "2025-09-27T07:59:45Z",
-       "value_usd": 251.16632607423134
+       "usd": 769331.7802540488,
+       "utc": "2025-12-19T00:37:54Z",
+       "value_usd": 1701.7845103061225
       },
       {
-       "edge_bps": 37.38804670748084,
+       "edge_bps": 21.128723809930868,
        "pool": "project-x",
-       "usd": 61514.95839326922,
-       "utc": "2025-09-26T17:35:01Z",
-       "value_usd": 228.99241376162902
+       "usd": 734286.329672623,
+       "utc": "2025-11-06T20:56:14Z",
+       "value_usd": 1550.4533057060696
       }
      ],
-     "trailing_90d_usd_per_year": 12742.819423554489,
+     "trailing_90d_usd_per_year": 12171.294528640201,
      "value_by_month_usd": {
-      "2025-08": 109.29,
-      "2025-09": 3613.0,
-      "2026-02": 88.13,
-      "2026-03": 2435.72,
-      "2026-04": 618.22
+      "2025-09": 2313.55,
+      "2025-10": 9066.22,
+      "2025-11": 4976.03,
+      "2025-12": 4267.69,
+      "2026-02": 1270.42,
+      "2026-03": 828.81,
+      "2026-04": 2357.43,
+      "2026-05": 4424.68,
+      "2026-09": 3001.14
      }
     },
     "10000000": {
      "by_hurdle_oos_usd_per_year": {
-      "h=0": 108225.92864831437,
-      "h=1": 107121.50396814501,
-      "h=10": 115815.1927608461,
-      "h=2": 109993.97574120438,
-      "h=20": 26146.45852832789,
-      "h=3": 111586.58518757713,
-      "h=5": 114689.78364380222
+      "h=0": 173963.13094601876,
+      "h=1": 175938.22411250166,
+      "h=10": 224065.93990161768,
+      "h=2": 186710.65472649987,
+      "h=20": 140043.01442971223,
+      "h=3": 193097.4042781189,
+      "h=5": 192837.2116955452
      },
      "chosen_hurdle": "h=20",
-     "cutoff_utc": "2025-12-08T00:00:00Z",
-     "filled_usd": 14273562.15813726,
-     "fills": 811,
-     "fills_oos": 197,
-     "full_period_usd_per_year": 95335.46795104814,
+     "cutoff_utc": "2026-02-26T00:00:00Z",
+     "filled_usd": 82495606.33582766,
+     "fills": 6125,
+     "fills_oos": 864,
+     "full_period_usd_per_year": 255375.7856848563,
      "hurdle_bps": 20.0,
-     "in_sample_usd_per_year": 164050.58004895522,
-     "median_edge_bps": 46.216000107916585,
-     "missed_capital_usd": 129727806.71132891,
+     "in_sample_usd_per_year": 370708.5569400004,
+     "median_edge_bps": 24.572991741508066,
+     "missed_capital_usd": 346965098.2695838,
      "oos_ci95_usd_per_year": [
-      0.0,
-      72852.95466513177
+      17327.48202298262,
+      356702.5006425094
      ],
      "oos_rank_of_chosen": 7,
-     "oos_share_of_bootstraps_le_0": 0.037,
-     "oos_t": 1.4680159497936014,
-     "out_of_sample_usd_per_year": 26146.458528327887,
-     "qualifying_usd": 148854021.28461635,
+     "oos_share_of_bootstraps_le_0": 0.0,
+     "oos_t": 1.4403582065074505,
+     "out_of_sample_usd_per_year": 140043.01442971223,
+     "qualifying_usd": 434313357.020562,
      "top_fills": [
       {
-       "edge_bps": 27.044188884914398,
+       "edge_bps": 74.46121067597151,
        "pool": "project-x",
-       "usd": 955066.2990869998,
-       "utc": "2026-04-19T19:24:15Z",
-       "value_usd": 2581.8993390124974
+       "usd": 1272341.9326776136,
+       "utc": "2025-10-17T23:01:01Z",
+       "value_usd": 9473.012070098055
       },
       {
-       "edge_bps": 98.44935789191892,
+       "edge_bps": 24.765625143860618,
        "pool": "project-x",
-       "usd": 179407.9372722529,
-       "utc": "2025-09-24T05:01:23Z",
-       "value_usd": 1765.2596225166965
+       "usd": 2813943.7478885637,
+       "utc": "2025-12-10T02:51:32Z",
+       "value_usd": 6967.907603611839
       },
       {
-       "edge_bps": 34.41491654296198,
+       "edge_bps": 20.746708532562415,
        "pool": "project-x",
-       "usd": 510963.1602606223,
-       "utc": "2025-09-24T03:53:21Z",
-       "value_usd": 1757.4754516897426
+       "usd": 2974129.035060624,
+       "utc": "2025-12-09T23:54:59Z",
+       "value_usd": 6169.338822863388
       },
       {
-       "edge_bps": 92.04131974998059,
+       "edge_bps": 77.38150192516233,
        "pool": "project-x",
-       "usd": 179407.93704068297,
-       "utc": "2025-09-24T05:01:06Z",
-       "value_usd": 1650.2943298845887
+       "usd": 764548.1438377759,
+       "utc": "2025-10-17T23:18:05Z",
+       "value_usd": 5915.188366426214
       },
       {
-       "edge_bps": 87.3676651892698,
-       "pool": "project-x",
-       "usd": 179407.93682273474,
-       "utc": "2025-09-24T05:00:50Z",
-       "value_usd": 1566.4452556626356
+       "edge_bps": 67.62754327557025,
+       "pool": "hyperswap-v3",
+       "usd": 705222.9963647214,
+       "utc": "2025-10-17T23:01:01Z",
+       "value_usd": 4768.249870558252
       },
       {
-       "edge_bps": 82.93235242433072,
+       "edge_bps": 21.128723809930868,
        "pool": "project-x",
-       "usd": 179407.93664565188,
-       "utc": "2025-09-24T05:00:37Z",
-       "value_usd": 1486.87222296192
+       "usd": 2092365.0191547105,
+       "utc": "2025-11-06T20:56:14Z",
+       "value_usd": 4419.900259928058
       }
      ],
-     "trailing_90d_usd_per_year": 42124.84985119494,
+     "trailing_90d_usd_per_year": 245330.58014541274,
      "value_by_month_usd": {
       "2025-09": 65620.23,
+      "2025-10": 96400.15,
+      "2025-11": 39316.13,
+      "2025-12": 26927.68,
+      "2026-02": 1270.42,
       "2026-03": 828.81,
-      "2026-04": 9558.14
+      "2026-04": 9558.14,
+      "2026-05": 15832.14,
+      "2026-09": 60492.47
      }
     },
     "300000": {
      "by_hurdle_oos_usd_per_year": {
-      "h=0": 2597.4609861401273,
-      "h=1": 2132.949452081215,
-      "h=10": 7054.807332897226,
-      "h=2": 2261.8583393637305,
-      "h=20": 3269.4107518276996,
-      "h=3": 2767.6886359359223,
-      "h=5": 4278.452428290164
+      "h=0": 4804.172570669904,
+      "h=1": 4689.681108569829,
+      "h=10": 8173.814241542083,
+      "h=2": 4929.762661752123,
+      "h=20": 5614.250970724473,
+      "h=3": 5487.889885878296,
+      "h=5": 6846.491004787185
      },
-     "chosen_hurdle": "h=1",
-     "cutoff_utc": "2025-12-08T00:00:00Z",
-     "filled_usd": 3596054.2638699245,
-     "fills": 281,
-     "fills_oos": 161,
-     "full_period_usd_per_year": 2396.40169328794,
-     "hurdle_bps": 1.0,
-     "in_sample_usd_per_year": 2658.0494670891394,
-     "median_edge_bps": 5.076669183120263,
-     "missed_capital_usd": 249759643.5758845,
+     "chosen_hurdle": "h=20",
+     "cutoff_utc": "2026-02-26T00:00:00Z",
+     "filled_usd": 4376301.308315645,
+     "fills": 326,
+     "fills_oos": 70,
+     "full_period_usd_per_year": 8616.665388135803,
+     "hurdle_bps": 20.0,
+     "in_sample_usd_per_year": 11619.079805547133,
+     "median_edge_bps": 20.567999194544285,
+     "missed_capital_usd": 429937055.7122465,
      "oos_ci95_usd_per_year": [
-      658.7366609161936,
-      4514.932361438127
+      1643.0856331310283,
+      10413.595338639481
      ],
-     "oos_rank_of_chosen": 7,
-     "oos_share_of_bootstraps_le_0": 0.0,
-     "oos_t": 2.163604287021559,
-     "out_of_sample_usd_per_year": 2132.9494520812154,
-     "qualifying_usd": 254389024.64054227,
+     "oos_rank_of_chosen": 3,
+     "oos_share_of_bootstraps_le_0": 0.0005,
+     "oos_t": 2.4144485417908976,
+     "out_of_sample_usd_per_year": 5614.250970724473,
+     "qualifying_usd": 434313357.020562,
      "top_fills": [
       {
-       "edge_bps": 35.04164298583248,
+       "edge_bps": 67.62754327557025,
+       "pool": "hyperswap-v3",
+       "usd": 289771.8756323845,
+       "utc": "2025-10-17T23:01:01Z",
+       "value_usd": 1958.6560059372243
+      },
+      {
+       "edge_bps": 22.133292215535786,
        "pool": "project-x",
-       "usd": 101498.42177836795,
-       "utc": "2025-09-26T15:01:19Z",
-       "value_usd": 354.66714595830143
+       "usd": 287512.4743440785,
+       "utc": "2025-12-19T00:37:54Z",
+       "value_usd": 635.3597610269226
       },
       {
-       "edge_bps": 19.309179668982047,
+       "edge_bps": 21.06486330753297,
        "pool": "project-x",
-       "usd": 78052.38779389474,
-       "utc": "2026-03-20T08:27:49Z",
-       "value_usd": 149.71275795053748
+       "usd": 299999.99999999977,
+       "utc": "2026-05-15T12:53:04Z",
+       "value_usd": 630.9458992259886
       },
       {
-       "edge_bps": 19.562755195753184,
-       "pool": "nest",
-       "usd": 61915.21780673088,
-       "utc": "2026-03-20T08:27:49Z",
-       "value_usd": 120.12322488448144
-      },
-      {
-       "edge_bps": 1.6605999936420588,
+       "edge_bps": 20.746708532562415,
        "pool": "project-x",
-       "usd": 272527.0080076185,
-       "utc": "2026-04-17T08:07:29Z",
-       "value_usd": 44.25583477647406
+       "usd": 299999.9999999999,
+       "utc": "2025-12-09T23:54:59Z",
+       "value_usd": 621.4012559768722
       },
       {
-       "edge_bps": 35.04164298583248,
+       "edge_bps": 24.86036051935904,
        "pool": "project-x",
-       "usd": 10924.554347000074,
-       "utc": "2025-09-26T15:33:26Z",
-       "value_usd": 37.281433320690084
+       "usd": 146578.8032731507,
+       "utc": "2026-03-20T09:33:29Z",
+       "value_usd": 363.4001893866731
       },
       {
-       "edge_bps": 35.528035759394086,
-       "pool": "hybra-v3",
-       "usd": 9739.638291849456,
-       "utc": "2025-09-26T14:38:37Z",
-       "value_usd": 33.60302175163914
+       "edge_bps": 24.22708268603448,
+       "pool": "project-x",
+       "usd": 148429.90069147805,
+       "utc": "2026-05-26T19:10:26Z",
+       "value_usd": 358.6023477132325
       }
      ],
-     "trailing_90d_usd_per_year": 3436.418561686403,
+     "trailing_90d_usd_per_year": 3438.793014355926,
      "value_by_month_usd": {
-      "2025-08": 68.24,
-      "2025-09": 994.98,
-      "2026-02": 62.0,
-      "2026-03": 600.69,
-      "2026-04": 184.65
+      "2025-09": 576.18,
+      "2025-10": 2625.07,
+      "2025-11": 1771.06,
+      "2025-12": 1278.19,
+      "2026-02": 943.78,
+      "2026-03": 664.56,
+      "2026-04": 634.25,
+      "2026-05": 1329.49,
+      "2026-09": 847.92
      }
     },
     "3000000": {
      "by_hurdle_oos_usd_per_year": {
-      "h=0": 23612.29691175088,
-      "h=1": 27756.024505158126,
-      "h=10": 46659.50119823575,
-      "h=2": 34898.29548177513,
-      "h=20": 20844.78395778176,
-      "h=3": 38944.25578092575,
-      "h=5": 42330.7521109771
+      "h=0": 47241.19746266627,
+      "h=1": 50078.43722744957,
+      "h=10": 65212.49477110568,
+      "h=2": 58161.584175419805,
+      "h=20": 45800.53486177893,
+      "h=3": 62163.83529987905,
+      "h=5": 63139.28381712741
      },
      "chosen_hurdle": "h=20",
-     "cutoff_utc": "2025-12-08T00:00:00Z",
-     "filled_usd": 6370938.397902433,
-     "fills": 254,
-     "fills_oos": 145,
-     "full_period_usd_per_year": 21502.57717924993,
+     "cutoff_utc": "2026-02-26T00:00:00Z",
+     "filled_usd": 32613312.579652917,
+     "fills": 1605,
+     "fills_oos": 444,
+     "full_period_usd_per_year": 74098.58396532253,
      "hurdle_bps": 20.0,
-     "in_sample_usd_per_year": 22155.86496769434,
-     "median_edge_bps": 23.029154534579177,
-     "missed_capital_usd": 142483082.88671458,
+     "in_sample_usd_per_year": 102396.63306886614,
+     "median_edge_bps": 21.91525299274629,
+     "missed_capital_usd": 401700044.4409092,
      "oos_ci95_usd_per_year": [
-      0.0,
-      57161.52375401835
+      12035.304734805037,
+      89033.04834806146
      ],
      "oos_rank_of_chosen": 7,
-     "oos_share_of_bootstraps_le_0": 0.044,
-     "oos_t": 1.5361215567645436,
-     "out_of_sample_usd_per_year": 20844.78395778176,
-     "qualifying_usd": 148854021.28461635,
+     "oos_share_of_bootstraps_le_0": 0.0,
+     "oos_t": 2.3386014511315145,
+     "out_of_sample_usd_per_year": 45800.53486177893,
+     "qualifying_usd": 434313357.020562,
      "top_fills": [
+      {
+       "edge_bps": 74.46121067597151,
+       "pool": "project-x",
+       "usd": 1272341.9326776147,
+       "utc": "2025-10-17T23:01:01Z",
+       "value_usd": 9473.012070098064
+      },
+      {
+       "edge_bps": 20.746708532562415,
+       "pool": "project-x",
+       "usd": 2974129.035060624,
+       "utc": "2025-12-09T23:54:59Z",
+       "value_usd": 6169.338822863388
+      },
+      {
+       "edge_bps": 77.38150192516233,
+       "pool": "project-x",
+       "usd": 764548.1438377759,
+       "utc": "2025-10-17T23:18:05Z",
+       "value_usd": 5915.188366426214
+      },
+      {
+       "edge_bps": 67.62754327557025,
+       "pool": "hyperswap-v3",
+       "usd": 705222.9963647214,
+       "utc": "2025-10-17T23:01:01Z",
+       "value_usd": 4768.249870558252
+      },
+      {
+       "edge_bps": 21.128723809930868,
+       "pool": "project-x",
+       "usd": 2092365.0191547105,
+       "utc": "2025-11-06T20:56:14Z",
+       "value_usd": 4419.900259928058
+      },
       {
        "edge_bps": 27.044188884914398,
        "pool": "project-x",
        "usd": 955066.2990869998,
        "utc": "2026-04-19T19:24:15Z",
        "value_usd": 2581.8993390124974
-      },
-      {
-       "edge_bps": 34.41491654296198,
-       "pool": "project-x",
-       "usd": 510963.1602606223,
-       "utc": "2025-09-24T03:53:21Z",
-       "value_usd": 1757.4754516897426
-      },
-      {
-       "edge_bps": 34.41491654296198,
-       "pool": "project-x",
-       "usd": 409976.8148267457,
-       "utc": "2025-09-24T03:21:55Z",
-       "value_usd": 1409.9317866811832
-      },
-      {
-       "edge_bps": 32.282048410860064,
-       "pool": "project-x",
-       "usd": 423333.16218244465,
-       "utc": "2025-09-24T03:20:19Z",
-       "value_usd": 1365.6061635496153
-      },
-      {
-       "edge_bps": 28.130933672180618,
-       "pool": "project-x",
-       "usd": 400449.0904420183,
-       "utc": "2025-09-24T03:17:21Z",
-       "value_usd": 1125.5006802309474
-      },
-      {
-       "edge_bps": 23.469941107829797,
-       "pool": "project-x",
-       "usd": 425799.2470852142,
-       "utc": "2025-09-24T03:16:52Z",
-       "value_usd": 998.3483252848246
       }
      ],
-     "trailing_90d_usd_per_year": 33583.26304309284,
+     "trailing_90d_usd_per_year": 38770.66452351634,
      "value_by_month_usd": {
       "2025-09": 8862.35,
+      "2025-10": 28595.44,
+      "2025-11": 13007.47,
+      "2025-12": 11666.07,
+      "2026-02": 1270.42,
       "2026-03": 828.81,
-      "2026-04": 7452.0
+      "2026-04": 7452.0,
+      "2026-05": 10517.99,
+      "2026-09": 9559.89
      }
     },
     "30000000": {
      "by_hurdle_oos_usd_per_year": {
-      "h=0": 179595.73027466435,
-      "h=1": 179217.99048073924,
-      "h=10": 123764.61296903728,
-      "h=2": 176742.61395086139,
-      "h=20": 26146.45852832789,
-      "h=3": 173482.92060912875,
-      "h=5": 163500.13873807262
+      "h=0": 451902.2575090196,
+      "h=1": 451399.8128441563,
+      "h=10": 373849.1880740299,
+      "h=2": 446827.214785313,
+      "h=20": 191046.6997812499,
+      "h=3": 441058.7685045206,
+      "h=5": 420664.91010418045
      },
-     "chosen_hurdle": "h=20",
-     "cutoff_utc": "2025-12-08T00:00:00Z",
-     "filled_usd": 34274070.71529666,
-     "fills": 1612,
-     "fills_oos": 197,
-     "full_period_usd_per_year": 325849.11245209293,
-     "hurdle_bps": 20.0,
-     "in_sample_usd_per_year": 623499.0084722704,
-     "median_edge_bps": 78.55458583309324,
-     "missed_capital_usd": 114579950.56932047,
+     "chosen_hurdle": "h=10",
+     "cutoff_utc": "2026-02-26T00:00:00Z",
+     "filled_usd": 398402856.1428,
+     "fills": 35905,
+     "fills_oos": 8183,
+     "full_period_usd_per_year": 783125.2694970304,
+     "hurdle_bps": 10.0,
+     "in_sample_usd_per_year": 1192401.3509200308,
+     "median_edge_bps": 15.33487434164194,
+     "missed_capital_usd": 379619063.0265957,
      "oos_ci95_usd_per_year": [
-      0.0,
-      72852.95466513177
+      137988.60616405707,
+      703304.8694168727
      ],
-     "oos_rank_of_chosen": 7,
-     "oos_share_of_bootstraps_le_0": 0.037,
-     "oos_t": 1.4680159497936014,
-     "out_of_sample_usd_per_year": 26146.458528327887,
-     "qualifying_usd": 148854021.28461635,
+     "oos_rank_of_chosen": 6,
+     "oos_share_of_bootstraps_le_0": 0.0,
+     "oos_t": 2.6521926513665868,
+     "out_of_sample_usd_per_year": 373849.1880740299,
+     "qualifying_usd": 778198474.0885661,
      "top_fills": [
       {
-       "edge_bps": 153.7750023458539,
-       "pool": "hyperswap-v3",
-       "usd": 190621.07545862082,
-       "utc": "2025-09-24T08:14:49Z",
-       "value_usd": 2930.275632581861
-      },
-      {
-       "edge_bps": 153.7750023458539,
-       "pool": "hyperswap-v3",
-       "usd": 190621.07545422085,
-       "utc": "2025-09-24T08:14:35Z",
-       "value_usd": 2930.2756325142004
-      },
-      {
-       "edge_bps": 153.7750023458539,
-       "pool": "hyperswap-v3",
-       "usd": 190621.07542184956,
-       "utc": "2025-09-24T08:12:52Z",
-       "value_usd": 2930.275632016411
-      },
-      {
-       "edge_bps": 153.7750023458539,
-       "pool": "hyperswap-v3",
-       "usd": 185014.5732081355,
-       "utc": "2025-09-24T08:13:07Z",
-       "value_usd": 2844.061642909819
-      },
-      {
-       "edge_bps": 153.7750023458539,
-       "pool": "hyperswap-v3",
-       "usd": 185014.57299674227,
-       "utc": "2025-09-24T08:01:34Z",
-       "value_usd": 2844.06163965912
-      },
-      {
-       "edge_bps": 153.7750023458539,
+       "edge_bps": 74.46121067597151,
        "pool": "project-x",
-       "usd": 179634.1303845551,
-       "utc": "2025-09-24T08:17:23Z",
-       "value_usd": 2761.3238821280383
+       "usd": 2115668.9890941647,
+       "utc": "2025-10-17T23:01:01Z",
+       "value_usd": 15752.527431756029
+      },
+      {
+       "edge_bps": 24.765625143860618,
+       "pool": "project-x",
+       "usd": 2813943.7478885637,
+       "utc": "2025-12-10T02:51:32Z",
+       "value_usd": 6967.907603611839
+      },
+      {
+       "edge_bps": 20.746708532562415,
+       "pool": "project-x",
+       "usd": 2974129.035060624,
+       "utc": "2025-12-09T23:54:59Z",
+       "value_usd": 6169.338822863388
+      },
+      {
+       "edge_bps": 77.38150192516233,
+       "pool": "project-x",
+       "usd": 764548.1438377759,
+       "utc": "2025-10-17T23:18:05Z",
+       "value_usd": 5915.188366426214
+      },
+      {
+       "edge_bps": 67.62754327557025,
+       "pool": "hyperswap-v3",
+       "usd": 705222.9963647214,
+       "utc": "2025-10-17T23:01:01Z",
+       "value_usd": 4768.249870558252
+      },
+      {
+       "edge_bps": 13.661667761813373,
+       "pool": "project-x",
+       "usd": 3354213.8541704845,
+       "utc": "2025-11-05T18:07:32Z",
+       "value_usd": 4581.415527774869
       }
      ],
-     "trailing_90d_usd_per_year": 42124.84985119494,
+     "trailing_90d_usd_per_year": 400474.733793622,
      "value_by_month_usd": {
-      "2025-09": 249399.6,
-      "2026-03": 828.81,
-      "2026-04": 9558.14
+      "2025-09": 204205.5,
+      "2025-10": 258904.46,
+      "2025-11": 127009.35,
+      "2025-12": 82566.26,
+      "2026-01": 3559.86,
+      "2026-02": 63043.48,
+      "2026-03": 23547.83,
+      "2026-04": 24638.8,
+      "2026-05": 63148.03,
+      "2026-06": 20417.23,
+      "2026-09": 96308.79,
+      "2026-10": 2438.4
      }
     }
    },
-   "hours_with_trades": 3694,
+   "hours_with_trades": 10836,
    "key": "khype",
    "label": "kHYPE (swaps)",
    "late_entry": {
     "1d": {
-     "kept_share": 0.0,
-     "oos_usd": 0.0
+     "kept_share": 0.30974166847188167,
+     "oos_usd": 26858.18484955544
     },
     "1h": {
-     "kept_share": 0.3021046032560861,
-     "oos_usd": 3137.945190785123
+     "kept_share": 0.7570009045444923,
+     "oos_usd": 65640.73321437008
     },
-    "base_oos_usd": 10386.949278376833
+    "base_oos_usd": 86711.56509894511
+   },
+   "late_entry_at_capacity": {
+    "1d": {
+     "kept_share": 0.5135818765793055,
+     "oos_usd": 118883.53389185882
+    },
+    "1h": {
+     "kept_share": 0.8733332619167151,
+     "oos_usd": 202158.50515108884
+    },
+    "base_oos_usd": 231479.22330063223
+   },
+   "locked_capital_daily_unbounded": {
+    "chosen_at_size_usd": 10000000,
+    "hurdle_bps": 20.0,
+    "series": [
+     {
+      "day": "2025-07-15",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-16",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-17",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-18",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-19",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-20",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-21",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-22",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-23",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-24",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-25",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-26",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-27",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-28",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-29",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-30",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-31",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-01",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-02",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-03",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-04",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-05",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-06",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-07",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-08",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-09",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-10",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-11",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-12",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-13",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-14",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-15",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-16",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-17",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-18",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-19",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-20",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-21",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-22",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-23",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-24",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-25",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-26",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-27",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-28",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-29",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-30",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-31",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-01",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-02",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-03",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-04",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-05",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-06",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-07",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-08",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-09",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-10",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-11",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-12",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-13",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-14",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-15",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-16",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-17",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-18",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-19",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-20",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-21",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-22",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-23",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-24",
+      "locked_usd": 88913990.09
+     },
+     {
+      "day": "2025-09-25",
+      "locked_usd": 126135909.55
+     },
+     {
+      "day": "2025-09-26",
+      "locked_usd": 138685564.62
+     },
+     {
+      "day": "2025-09-27",
+      "locked_usd": 144579950.57
+     },
+     {
+      "day": "2025-09-28",
+      "locked_usd": 144579950.57
+     },
+     {
+      "day": "2025-09-29",
+      "locked_usd": 144579950.57
+     },
+     {
+      "day": "2025-09-30",
+      "locked_usd": 144579950.57
+     },
+     {
+      "day": "2025-10-01",
+      "locked_usd": 144579950.57
+     },
+     {
+      "day": "2025-10-02",
+      "locked_usd": 144579950.57
+     },
+     {
+      "day": "2025-10-03",
+      "locked_usd": 80482165.25
+     },
+     {
+      "day": "2025-10-04",
+      "locked_usd": 33862512.88
+     },
+     {
+      "day": "2025-10-05",
+      "locked_usd": 3922846.94
+     },
+     {
+      "day": "2025-10-06",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-10-07",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-10-08",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-10-09",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-10-10",
+      "locked_usd": 15502191.5
+     },
+     {
+      "day": "2025-10-11",
+      "locked_usd": 45634171.92
+     },
+     {
+      "day": "2025-10-12",
+      "locked_usd": 59300524.26
+     },
+     {
+      "day": "2025-10-13",
+      "locked_usd": 73479282.81
+     },
+     {
+      "day": "2025-10-14",
+      "locked_usd": 93661178.21
+     },
+     {
+      "day": "2025-10-15",
+      "locked_usd": 112316966.27
+     },
+     {
+      "day": "2025-10-16",
+      "locked_usd": 145831215.35
+     },
+     {
+      "day": "2025-10-17",
+      "locked_usd": 187599894.32
+     },
+     {
+      "day": "2025-10-18",
+      "locked_usd": 193997308.15
+     },
+     {
+      "day": "2025-10-19",
+      "locked_usd": 164659537.04
+     },
+     {
+      "day": "2025-10-20",
+      "locked_usd": 164925667.53
+     },
+     {
+      "day": "2025-10-21",
+      "locked_usd": 152386962.02
+     },
+     {
+      "day": "2025-10-22",
+      "locked_usd": 139047741.08
+     },
+     {
+      "day": "2025-10-23",
+      "locked_usd": 133077015.33
+     },
+     {
+      "day": "2025-10-24",
+      "locked_usd": 96809975.21
+     },
+     {
+      "day": "2025-10-25",
+      "locked_usd": 29376541.61
+     },
+     {
+      "day": "2025-10-26",
+      "locked_usd": 9771690.43
+     },
+     {
+      "day": "2025-10-27",
+      "locked_usd": 3297092.1
+     },
+     {
+      "day": "2025-10-28",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-10-29",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-10-30",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-10-31",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-11-01",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-11-02",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-11-03",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-11-04",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-11-05",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-11-06",
+      "locked_usd": 2646883.63
+     },
+     {
+      "day": "2025-11-07",
+      "locked_usd": 11088772.74
+     },
+     {
+      "day": "2025-11-08",
+      "locked_usd": 13286821.41
+     },
+     {
+      "day": "2025-11-09",
+      "locked_usd": 13286821.41
+     },
+     {
+      "day": "2025-11-10",
+      "locked_usd": 21030545.48
+     },
+     {
+      "day": "2025-11-11",
+      "locked_usd": 21188662.32
+     },
+     {
+      "day": "2025-11-12",
+      "locked_usd": 21188662.32
+     },
+     {
+      "day": "2025-11-13",
+      "locked_usd": 27112722.0
+     },
+     {
+      "day": "2025-11-14",
+      "locked_usd": 30842887.08
+     },
+     {
+      "day": "2025-11-15",
+      "locked_usd": 23723599.68
+     },
+     {
+      "day": "2025-11-16",
+      "locked_usd": 23235604.87
+     },
+     {
+      "day": "2025-11-17",
+      "locked_usd": 21706120.3
+     },
+     {
+      "day": "2025-11-18",
+      "locked_usd": 13625130.58
+     },
+     {
+      "day": "2025-11-19",
+      "locked_usd": 13425073.17
+     },
+     {
+      "day": "2025-11-20",
+      "locked_usd": 13425073.17
+     },
+     {
+      "day": "2025-11-21",
+      "locked_usd": 8076059.03
+     },
+     {
+      "day": "2025-11-22",
+      "locked_usd": 1776436.39
+     },
+     {
+      "day": "2025-11-23",
+      "locked_usd": 760115.11
+     },
+     {
+      "day": "2025-11-24",
+      "locked_usd": 760115.11
+     },
+     {
+      "day": "2025-11-25",
+      "locked_usd": 739785.86
+     },
+     {
+      "day": "2025-11-26",
+      "locked_usd": 482191.39
+     },
+     {
+      "day": "2025-11-27",
+      "locked_usd": 470757.23
+     },
+     {
+      "day": "2025-11-28",
+      "locked_usd": 470757.23
+     },
+     {
+      "day": "2025-11-29",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-11-30",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-12-01",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-12-02",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-12-03",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-12-04",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-12-05",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-12-06",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-12-07",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-12-08",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-12-09",
+      "locked_usd": 4878178.68
+     },
+     {
+      "day": "2025-12-10",
+      "locked_usd": 9420068.9
+     },
+     {
+      "day": "2025-12-11",
+      "locked_usd": 9700371.62
+     },
+     {
+      "day": "2025-12-12",
+      "locked_usd": 9700371.62
+     },
+     {
+      "day": "2025-12-13",
+      "locked_usd": 9700371.62
+     },
+     {
+      "day": "2025-12-14",
+      "locked_usd": 9700371.62
+     },
+     {
+      "day": "2025-12-15",
+      "locked_usd": 9700371.62
+     },
+     {
+      "day": "2025-12-16",
+      "locked_usd": 9700371.62
+     },
+     {
+      "day": "2025-12-17",
+      "locked_usd": 9700371.62
+     },
+     {
+      "day": "2025-12-18",
+      "locked_usd": 280302.72
+     },
+     {
+      "day": "2025-12-19",
+      "locked_usd": 2569062.04
+     },
+     {
+      "day": "2025-12-20",
+      "locked_usd": 2527856.36
+     },
+     {
+      "day": "2025-12-21",
+      "locked_usd": 2527856.36
+     },
+     {
+      "day": "2025-12-22",
+      "locked_usd": 2527856.36
+     },
+     {
+      "day": "2025-12-23",
+      "locked_usd": 2527856.36
+     },
+     {
+      "day": "2025-12-24",
+      "locked_usd": 2527856.36
+     },
+     {
+      "day": "2025-12-25",
+      "locked_usd": 2527856.36
+     },
+     {
+      "day": "2025-12-26",
+      "locked_usd": 2527856.36
+     },
+     {
+      "day": "2025-12-27",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-12-28",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-12-29",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-12-30",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-12-31",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-01",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-02",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-03",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-04",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-05",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-06",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-07",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-08",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-09",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-10",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-11",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-12",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-13",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-14",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-15",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-16",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-17",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-18",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-19",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-20",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-21",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-22",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-23",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-24",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-25",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-26",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-27",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-28",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-29",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-30",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-31",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-02-01",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-02-02",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-02-03",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-02-04",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-02-05",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-02-06",
+      "locked_usd": 348817.35
+     },
+     {
+      "day": "2026-02-07",
+      "locked_usd": 348817.35
+     },
+     {
+      "day": "2026-02-08",
+      "locked_usd": 348817.35
+     },
+     {
+      "day": "2026-02-09",
+      "locked_usd": 348817.35
+     },
+     {
+      "day": "2026-02-10",
+      "locked_usd": 348817.35
+     },
+     {
+      "day": "2026-02-11",
+      "locked_usd": 355753.87
+     },
+     {
+      "day": "2026-02-12",
+      "locked_usd": 425257.28
+     },
+     {
+      "day": "2026-02-13",
+      "locked_usd": 637921.98
+     },
+     {
+      "day": "2026-02-14",
+      "locked_usd": 289104.63
+     },
+     {
+      "day": "2026-02-15",
+      "locked_usd": 289104.63
+     },
+     {
+      "day": "2026-02-16",
+      "locked_usd": 289104.63
+     },
+     {
+      "day": "2026-02-17",
+      "locked_usd": 289104.63
+     },
+     {
+      "day": "2026-02-18",
+      "locked_usd": 289104.63
+     },
+     {
+      "day": "2026-02-19",
+      "locked_usd": 282168.11
+     },
+     {
+      "day": "2026-02-20",
+      "locked_usd": 212664.7
+     },
+     {
+      "day": "2026-02-21",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-02-22",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-02-23",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-02-24",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-02-25",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-02-26",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-02-27",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-02-28",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-03-01",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-03-02",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-03-03",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-03-04",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-03-05",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-03-06",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-03-07",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-03-08",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-03-09",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-03-10",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-03-11",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-03-12",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-03-13",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-03-14",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-03-15",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-03-16",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-03-17",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-03-18",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-03-19",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-03-20",
+      "locked_usd": 370938.4
+     },
+     {
+      "day": "2026-03-21",
+      "locked_usd": 370938.4
+     },
+     {
+      "day": "2026-03-22",
+      "locked_usd": 370938.4
+     },
+     {
+      "day": "2026-03-23",
+      "locked_usd": 370938.4
+     },
+     {
+      "day": "2026-03-24",
+      "locked_usd": 370938.4
+     },
+     {
+      "day": "2026-03-25",
+      "locked_usd": 370938.4
+     },
+     {
+      "day": "2026-03-26",
+      "locked_usd": 370938.4
+     },
+     {
+      "day": "2026-03-27",
+      "locked_usd": 370938.4
+     },
+     {
+      "day": "2026-03-28",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-03-29",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-03-30",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-03-31",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-04-01",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-04-02",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-04-03",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-04-04",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-04-05",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-04-06",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-04-07",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-04-08",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-04-09",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-04-10",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-04-11",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-04-12",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-04-13",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-04-14",
+      "locked_usd": 716219.2
+     },
+     {
+      "day": "2026-04-15",
+      "locked_usd": 716219.2
+     },
+     {
+      "day": "2026-04-16",
+      "locked_usd": 716219.2
+     },
+     {
+      "day": "2026-04-17",
+      "locked_usd": 716219.2
+     },
+     {
+      "day": "2026-04-18",
+      "locked_usd": 716219.2
+     },
+     {
+      "day": "2026-04-19",
+      "locked_usd": 2137170.48
+     },
+     {
+      "day": "2026-04-20",
+      "locked_usd": 2137170.48
+     },
+     {
+      "day": "2026-04-21",
+      "locked_usd": 3845117.96
+     },
+     {
+      "day": "2026-04-22",
+      "locked_usd": 3903132.32
+     },
+     {
+      "day": "2026-04-23",
+      "locked_usd": 3186913.12
+     },
+     {
+      "day": "2026-04-24",
+      "locked_usd": 3186913.12
+     },
+     {
+      "day": "2026-04-25",
+      "locked_usd": 3186913.12
+     },
+     {
+      "day": "2026-04-26",
+      "locked_usd": 3186913.12
+     },
+     {
+      "day": "2026-04-27",
+      "locked_usd": 1765961.84
+     },
+     {
+      "day": "2026-04-28",
+      "locked_usd": 1765961.84
+     },
+     {
+      "day": "2026-04-29",
+      "locked_usd": 59267.52
+     },
+     {
+      "day": "2026-04-30",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-05-01",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-05-02",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-05-03",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-05-04",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-05-05",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-05-06",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-05-07",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-05-08",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-05-09",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-05-10",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-05-11",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-05-12",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-05-13",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-05-14",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-05-15",
+      "locked_usd": 2510886.57
+     },
+     {
+      "day": "2026-05-16",
+      "locked_usd": 2510886.57
+     },
+     {
+      "day": "2026-05-17",
+      "locked_usd": 2510886.57
+     },
+     {
+      "day": "2026-05-18",
+      "locked_usd": 2510886.57
+     },
+     {
+      "day": "2026-05-19",
+      "locked_usd": 2510886.57
+     },
+     {
+      "day": "2026-05-20",
+      "locked_usd": 2510886.57
+     },
+     {
+      "day": "2026-05-21",
+      "locked_usd": 2510886.57
+     },
+     {
+      "day": "2026-05-22",
+      "locked_usd": 4866357.84
+     },
+     {
+      "day": "2026-05-23",
+      "locked_usd": 2355471.27
+     },
+     {
+      "day": "2026-05-24",
+      "locked_usd": 2355471.27
+     },
+     {
+      "day": "2026-05-25",
+      "locked_usd": 2355471.27
+     },
+     {
+      "day": "2026-05-26",
+      "locked_usd": 3110195.79
+     },
+     {
+      "day": "2026-05-27",
+      "locked_usd": 3937880.65
+     },
+     {
+      "day": "2026-05-28",
+      "locked_usd": 3937880.65
+     },
+     {
+      "day": "2026-05-29",
+      "locked_usd": 3937880.65
+     },
+     {
+      "day": "2026-05-30",
+      "locked_usd": 1605838.6
+     },
+     {
+      "day": "2026-05-31",
+      "locked_usd": 1582409.38
+     },
+     {
+      "day": "2026-06-01",
+      "locked_usd": 1582409.38
+     },
+     {
+      "day": "2026-06-02",
+      "locked_usd": 1582409.38
+     },
+     {
+      "day": "2026-06-03",
+      "locked_usd": 1171737.94
+     },
+     {
+      "day": "2026-06-04",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-05",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-06",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-07",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-08",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-09",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-10",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-11",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-12",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-13",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-14",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-15",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-16",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-17",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-18",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-19",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-20",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-21",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-22",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-23",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-24",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-25",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-26",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-27",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-28",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-29",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-30",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-01",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-02",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-03",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-04",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-05",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-06",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-07",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-08",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-09",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-10",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-11",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-12",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-13",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-14",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-15",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-16",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-17",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-18",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-19",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-20",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-21",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-22",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-23",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-24",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-25",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-26",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-27",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-28",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-29",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-30",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-31",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-01",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-02",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-03",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-04",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-05",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-06",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-07",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-08",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-09",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-10",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-11",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-12",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-13",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-14",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-15",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-16",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-17",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-18",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-19",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-20",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-21",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-22",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-23",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-24",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-25",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-26",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-27",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-28",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-29",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-30",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-31",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-01",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-02",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-03",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-04",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-05",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-06",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-07",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-08",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-09",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-10",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-11",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-12",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-13",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-14",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-15",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-16",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-17",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-18",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-19",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-20",
+      "locked_usd": 200174.79
+     },
+     {
+      "day": "2026-09-21",
+      "locked_usd": 10618914.28
+     },
+     {
+      "day": "2026-09-22",
+      "locked_usd": 11031124.25
+     },
+     {
+      "day": "2026-09-23",
+      "locked_usd": 12399262.46
+     },
+     {
+      "day": "2026-09-24",
+      "locked_usd": 16306833.84
+     },
+     {
+      "day": "2026-09-25",
+      "locked_usd": 17992764.73
+     },
+     {
+      "day": "2026-09-26",
+      "locked_usd": 18069774.45
+     },
+     {
+      "day": "2026-09-27",
+      "locked_usd": 18532901.95
+     },
+     {
+      "day": "2026-09-28",
+      "locked_usd": 18532901.95
+     },
+     {
+      "day": "2026-09-29",
+      "locked_usd": 7929807.16
+     },
+     {
+      "day": "2026-09-30",
+      "locked_usd": 7507608.68
+     },
+     {
+      "day": "2026-10-01",
+      "locked_usd": 6141542.4
+     },
+     {
+      "day": "2026-10-02",
+      "locked_usd": 2228959.65
+     },
+     {
+      "day": "2026-10-03",
+      "locked_usd": 540137.22
+     },
+     {
+      "day": "2026-10-04",
+      "locked_usd": 463127.5
+     },
+     {
+      "day": "2026-10-05",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-10-06",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-10-07",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-10-08",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-10-09",
+      "locked_usd": 0.0
+     }
+    ],
+    "unit": "USD at the HYPE price of the fill day"
+   },
+   "locked_capital_daily_unbounded_capacity_hurdle": {
+    "chosen_at_size_usd": 30000000,
+    "hurdle_bps": 10.0,
+    "series": [
+     {
+      "day": "2025-07-15",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-16",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-17",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-18",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-19",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-20",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-21",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-22",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-23",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-24",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-25",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-26",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-27",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-28",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-29",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-30",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-07-31",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-01",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-02",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-03",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-04",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-05",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-06",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-07",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-08",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-09",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-10",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-11",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-12",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-13",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-14",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-15",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-16",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-17",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-18",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-19",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-20",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-21",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-22",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-23",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-24",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-25",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-26",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-27",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-28",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-29",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-30",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-08-31",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-01",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-02",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-03",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-04",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-05",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-06",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-07",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-08",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-09",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-10",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-11",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-12",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-13",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-14",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-15",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-16",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-17",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-18",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-19",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-20",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-21",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-22",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-23",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-09-24",
+      "locked_usd": 93742278.91
+     },
+     {
+      "day": "2025-09-25",
+      "locked_usd": 132652831.09
+     },
+     {
+      "day": "2025-09-26",
+      "locked_usd": 145716422.55
+     },
+     {
+      "day": "2025-09-27",
+      "locked_usd": 152111741.76
+     },
+     {
+      "day": "2025-09-28",
+      "locked_usd": 155655392.45
+     },
+     {
+      "day": "2025-09-29",
+      "locked_usd": 156565026.28
+     },
+     {
+      "day": "2025-09-30",
+      "locked_usd": 156565026.28
+     },
+     {
+      "day": "2025-10-01",
+      "locked_usd": 156565026.28
+     },
+     {
+      "day": "2025-10-02",
+      "locked_usd": 156565026.28
+     },
+     {
+      "day": "2025-10-03",
+      "locked_usd": 88670251.56
+     },
+     {
+      "day": "2025-10-04",
+      "locked_usd": 41019299.77
+     },
+     {
+      "day": "2025-10-05",
+      "locked_usd": 8877064.72
+     },
+     {
+      "day": "2025-10-06",
+      "locked_usd": 2673690.29
+     },
+     {
+      "day": "2025-10-07",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-10-08",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-10-09",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-10-10",
+      "locked_usd": 24744740.45
+     },
+     {
+      "day": "2025-10-11",
+      "locked_usd": 58212207.22
+     },
+     {
+      "day": "2025-10-12",
+      "locked_usd": 71881285.86
+     },
+     {
+      "day": "2025-10-13",
+      "locked_usd": 86062569.35
+     },
+     {
+      "day": "2025-10-14",
+      "locked_usd": 106244464.75
+     },
+     {
+      "day": "2025-10-15",
+      "locked_usd": 124906250.51
+     },
+     {
+      "day": "2025-10-16",
+      "locked_usd": 158434001.85
+     },
+     {
+      "day": "2025-10-17",
+      "locked_usd": 200207059.94
+     },
+     {
+      "day": "2025-10-18",
+      "locked_usd": 198195086.33
+     },
+     {
+      "day": "2025-10-19",
+      "locked_usd": 164688667.37
+     },
+     {
+      "day": "2025-10-20",
+      "locked_usd": 170793188.24
+     },
+     {
+      "day": "2025-10-21",
+      "locked_usd": 163372858.53
+     },
+     {
+      "day": "2025-10-22",
+      "locked_usd": 150031112.64
+     },
+     {
+      "day": "2025-10-23",
+      "locked_usd": 144060386.89
+     },
+     {
+      "day": "2025-10-24",
+      "locked_usd": 107784464.78
+     },
+     {
+      "day": "2025-10-25",
+      "locked_usd": 40570937.58
+     },
+     {
+      "day": "2025-10-26",
+      "locked_usd": 21567207.94
+     },
+     {
+      "day": "2025-10-27",
+      "locked_usd": 15092609.61
+     },
+     {
+      "day": "2025-10-28",
+      "locked_usd": 5957127.12
+     },
+     {
+      "day": "2025-10-29",
+      "locked_usd": 836025.03
+     },
+     {
+      "day": "2025-10-30",
+      "locked_usd": 836025.03
+     },
+     {
+      "day": "2025-10-31",
+      "locked_usd": 836025.03
+     },
+     {
+      "day": "2025-11-01",
+      "locked_usd": 836025.03
+     },
+     {
+      "day": "2025-11-02",
+      "locked_usd": 836025.03
+     },
+     {
+      "day": "2025-11-03",
+      "locked_usd": 1055357.57
+     },
+     {
+      "day": "2025-11-04",
+      "locked_usd": 10947030.62
+     },
+     {
+      "day": "2025-11-05",
+      "locked_usd": 17924859.68
+     },
+     {
+      "day": "2025-11-06",
+      "locked_usd": 32684613.41
+     },
+     {
+      "day": "2025-11-07",
+      "locked_usd": 41900219.47
+     },
+     {
+      "day": "2025-11-08",
+      "locked_usd": 44759410.56
+     },
+     {
+      "day": "2025-11-09",
+      "locked_usd": 48273718.31
+     },
+     {
+      "day": "2025-11-10",
+      "locked_usd": 57406020.16
+     },
+     {
+      "day": "2025-11-11",
+      "locked_usd": 62250893.83
+     },
+     {
+      "day": "2025-11-12",
+      "locked_usd": 53250965.63
+     },
+     {
+      "day": "2025-11-13",
+      "locked_usd": 62658901.68
+     },
+     {
+      "day": "2025-11-14",
+      "locked_usd": 61966275.39
+     },
+     {
+      "day": "2025-11-15",
+      "locked_usd": 56001307.92
+     },
+     {
+      "day": "2025-11-16",
+      "locked_usd": 63028821.0
+     },
+     {
+      "day": "2025-11-17",
+      "locked_usd": 64626026.87
+     },
+     {
+      "day": "2025-11-18",
+      "locked_usd": 67671767.69
+     },
+     {
+      "day": "2025-11-19",
+      "locked_usd": 73851004.04
+     },
+     {
+      "day": "2025-11-20",
+      "locked_usd": 76145478.44
+     },
+     {
+      "day": "2025-11-21",
+      "locked_usd": 74480301.41
+     },
+     {
+      "day": "2025-11-22",
+      "locked_usd": 68474975.95
+     },
+     {
+      "day": "2025-11-23",
+      "locked_usd": 64287346.82
+     },
+     {
+      "day": "2025-11-24",
+      "locked_usd": 56847390.15
+     },
+     {
+      "day": "2025-11-25",
+      "locked_usd": 50708593.62
+     },
+     {
+      "day": "2025-11-26",
+      "locked_usd": 36763646.67
+     },
+     {
+      "day": "2025-11-27",
+      "locked_usd": 25076925.97
+     },
+     {
+      "day": "2025-11-28",
+      "locked_usd": 21669422.0
+     },
+     {
+      "day": "2025-11-29",
+      "locked_usd": 7207771.26
+     },
+     {
+      "day": "2025-11-30",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-12-01",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-12-02",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-12-03",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-12-04",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2025-12-05",
+      "locked_usd": 1574203.19
+     },
+     {
+      "day": "2025-12-06",
+      "locked_usd": 1574203.19
+     },
+     {
+      "day": "2025-12-07",
+      "locked_usd": 4720499.69
+     },
+     {
+      "day": "2025-12-08",
+      "locked_usd": 5971715.57
+     },
+     {
+      "day": "2025-12-09",
+      "locked_usd": 17138862.31
+     },
+     {
+      "day": "2025-12-10",
+      "locked_usd": 23417284.0
+     },
+     {
+      "day": "2025-12-11",
+      "locked_usd": 28816741.55
+     },
+     {
+      "day": "2025-12-12",
+      "locked_usd": 31774608.99
+     },
+     {
+      "day": "2025-12-13",
+      "locked_usd": 30200405.8
+     },
+     {
+      "day": "2025-12-14",
+      "locked_usd": 30200405.8
+     },
+     {
+      "day": "2025-12-15",
+      "locked_usd": 27147379.27
+     },
+     {
+      "day": "2025-12-16",
+      "locked_usd": 26983738.84
+     },
+     {
+      "day": "2025-12-17",
+      "locked_usd": 27890325.71
+     },
+     {
+      "day": "2025-12-18",
+      "locked_usd": 24814382.83
+     },
+     {
+      "day": "2025-12-19",
+      "locked_usd": 25798283.22
+     },
+     {
+      "day": "2025-12-20",
+      "locked_usd": 23618495.24
+     },
+     {
+      "day": "2025-12-21",
+      "locked_usd": 23962044.42
+     },
+     {
+      "day": "2025-12-22",
+      "locked_usd": 24819897.45
+     },
+     {
+      "day": "2025-12-23",
+      "locked_usd": 25384049.94
+     },
+     {
+      "day": "2025-12-24",
+      "locked_usd": 24487194.92
+     },
+     {
+      "day": "2025-12-25",
+      "locked_usd": 17768127.25
+     },
+     {
+      "day": "2025-12-26",
+      "locked_usd": 11897564.61
+     },
+     {
+      "day": "2025-12-27",
+      "locked_usd": 2606282.73
+     },
+     {
+      "day": "2025-12-28",
+      "locked_usd": 1779531.87
+     },
+     {
+      "day": "2025-12-29",
+      "locked_usd": 1765554.69
+     },
+     {
+      "day": "2025-12-30",
+      "locked_usd": 1701051.98
+     },
+     {
+      "day": "2025-12-31",
+      "locked_usd": 794400.42
+     },
+     {
+      "day": "2026-01-01",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-02",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-03",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-04",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-05",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-06",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-07",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-08",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-09",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-10",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-11",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-12",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-13",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-14",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-15",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-16",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-17",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-18",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-19",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-20",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-21",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-22",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-23",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-24",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-01-25",
+      "locked_usd": 1465498.76
+     },
+     {
+      "day": "2026-01-26",
+      "locked_usd": 1465498.76
+     },
+     {
+      "day": "2026-01-27",
+      "locked_usd": 1465498.76
+     },
+     {
+      "day": "2026-01-28",
+      "locked_usd": 1465498.76
+     },
+     {
+      "day": "2026-01-29",
+      "locked_usd": 1465498.76
+     },
+     {
+      "day": "2026-01-30",
+      "locked_usd": 2853828.63
+     },
+     {
+      "day": "2026-01-31",
+      "locked_usd": 2853828.63
+     },
+     {
+      "day": "2026-02-01",
+      "locked_usd": 2853828.63
+     },
+     {
+      "day": "2026-02-02",
+      "locked_usd": 1433033.38
+     },
+     {
+      "day": "2026-02-03",
+      "locked_usd": 1388329.87
+     },
+     {
+      "day": "2026-02-04",
+      "locked_usd": 1807812.1
+     },
+     {
+      "day": "2026-02-05",
+      "locked_usd": 6625129.24
+     },
+     {
+      "day": "2026-02-06",
+      "locked_usd": 12045175.83
+     },
+     {
+      "day": "2026-02-07",
+      "locked_usd": 13251675.44
+     },
+     {
+      "day": "2026-02-08",
+      "locked_usd": 15563621.17
+     },
+     {
+      "day": "2026-02-09",
+      "locked_usd": 19082596.81
+     },
+     {
+      "day": "2026-02-10",
+      "locked_usd": 22614860.18
+     },
+     {
+      "day": "2026-02-11",
+      "locked_usd": 24970056.36
+     },
+     {
+      "day": "2026-02-12",
+      "locked_usd": 28431780.8
+     },
+     {
+      "day": "2026-02-13",
+      "locked_usd": 26892968.91
+     },
+     {
+      "day": "2026-02-14",
+      "locked_usd": 23776371.97
+     },
+     {
+      "day": "2026-02-15",
+      "locked_usd": 21574035.2
+     },
+     {
+      "day": "2026-02-16",
+      "locked_usd": 21031705.09
+     },
+     {
+      "day": "2026-02-17",
+      "locked_usd": 18135411.28
+     },
+     {
+      "day": "2026-02-18",
+      "locked_usd": 14736898.86
+     },
+     {
+      "day": "2026-02-19",
+      "locked_usd": 16925400.08
+     },
+     {
+      "day": "2026-02-20",
+      "locked_usd": 13069420.07
+     },
+     {
+      "day": "2026-02-21",
+      "locked_usd": 9829174.06
+     },
+     {
+      "day": "2026-02-22",
+      "locked_usd": 7492586.35
+     },
+     {
+      "day": "2026-02-23",
+      "locked_usd": 7068656.08
+     },
+     {
+      "day": "2026-02-24",
+      "locked_usd": 5346744.88
+     },
+     {
+      "day": "2026-02-25",
+      "locked_usd": 4762447.26
+     },
+     {
+      "day": "2026-02-26",
+      "locked_usd": 4680496.86
+     },
+     {
+      "day": "2026-02-27",
+      "locked_usd": 927613.42
+     },
+     {
+      "day": "2026-02-28",
+      "locked_usd": 927613.42
+     },
+     {
+      "day": "2026-03-01",
+      "locked_usd": 927613.42
+     },
+     {
+      "day": "2026-03-02",
+      "locked_usd": 927613.42
+     },
+     {
+      "day": "2026-03-03",
+      "locked_usd": 927613.42
+     },
+     {
+      "day": "2026-03-04",
+      "locked_usd": 927613.42
+     },
+     {
+      "day": "2026-03-05",
+      "locked_usd": 927613.42
+     },
+     {
+      "day": "2026-03-06",
+      "locked_usd": 927613.42
+     },
+     {
+      "day": "2026-03-07",
+      "locked_usd": 4675.84
+     },
+     {
+      "day": "2026-03-08",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-03-09",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-03-10",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-03-11",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-03-12",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-03-13",
+      "locked_usd": 3356653.27
+     },
+     {
+      "day": "2026-03-14",
+      "locked_usd": 3570513.76
+     },
+     {
+      "day": "2026-03-15",
+      "locked_usd": 3609329.74
+     },
+     {
+      "day": "2026-03-16",
+      "locked_usd": 4628489.76
+     },
+     {
+      "day": "2026-03-17",
+      "locked_usd": 4825098.41
+     },
+     {
+      "day": "2026-03-18",
+      "locked_usd": 4825098.41
+     },
+     {
+      "day": "2026-03-19",
+      "locked_usd": 5760302.19
+     },
+     {
+      "day": "2026-03-20",
+      "locked_usd": 7682027.81
+     },
+     {
+      "day": "2026-03-21",
+      "locked_usd": 5429709.37
+     },
+     {
+      "day": "2026-03-22",
+      "locked_usd": 7608146.51
+     },
+     {
+      "day": "2026-03-23",
+      "locked_usd": 9362561.57
+     },
+     {
+      "day": "2026-03-24",
+      "locked_usd": 8887372.09
+     },
+     {
+      "day": "2026-03-25",
+      "locked_usd": 8690763.44
+     },
+     {
+      "day": "2026-03-26",
+      "locked_usd": 8690763.44
+     },
+     {
+      "day": "2026-03-27",
+      "locked_usd": 9923621.07
+     },
+     {
+      "day": "2026-03-28",
+      "locked_usd": 7986143.08
+     },
+     {
+      "day": "2026-03-29",
+      "locked_usd": 6880162.62
+     },
+     {
+      "day": "2026-03-30",
+      "locked_usd": 6853911.02
+     },
+     {
+      "day": "2026-03-31",
+      "locked_usd": 2694633.95
+     },
+     {
+      "day": "2026-04-01",
+      "locked_usd": 2150663.41
+     },
+     {
+      "day": "2026-04-02",
+      "locked_usd": 2150663.41
+     },
+     {
+      "day": "2026-04-03",
+      "locked_usd": 2150663.41
+     },
+     {
+      "day": "2026-04-04",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-04-05",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-04-06",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-04-07",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-04-08",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-04-09",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-04-10",
+      "locked_usd": 1415550.91
+     },
+     {
+      "day": "2026-04-11",
+      "locked_usd": 1415550.91
+     },
+     {
+      "day": "2026-04-12",
+      "locked_usd": 1415550.91
+     },
+     {
+      "day": "2026-04-13",
+      "locked_usd": 2223967.45
+     },
+     {
+      "day": "2026-04-14",
+      "locked_usd": 3534612.57
+     },
+     {
+      "day": "2026-04-15",
+      "locked_usd": 4380554.92
+     },
+     {
+      "day": "2026-04-16",
+      "locked_usd": 4380554.92
+     },
+     {
+      "day": "2026-04-17",
+      "locked_usd": 4380554.92
+     },
+     {
+      "day": "2026-04-18",
+      "locked_usd": 4380554.92
+     },
+     {
+      "day": "2026-04-19",
+      "locked_usd": 7121362.66
+     },
+     {
+      "day": "2026-04-20",
+      "locked_usd": 8523725.73
+     },
+     {
+      "day": "2026-04-21",
+      "locked_usd": 11425156.5
+     },
+     {
+      "day": "2026-04-22",
+      "locked_usd": 12525063.28
+     },
+     {
+      "day": "2026-04-23",
+      "locked_usd": 11497206.41
+     },
+     {
+      "day": "2026-04-24",
+      "locked_usd": 10740375.87
+     },
+     {
+      "day": "2026-04-25",
+      "locked_usd": 10740375.87
+     },
+     {
+      "day": "2026-04-26",
+      "locked_usd": 10740375.87
+     },
+     {
+      "day": "2026-04-27",
+      "locked_usd": 6889566.88
+     },
+     {
+      "day": "2026-04-28",
+      "locked_usd": 5189221.41
+     },
+     {
+      "day": "2026-04-29",
+      "locked_usd": 2281476.53
+     },
+     {
+      "day": "2026-04-30",
+      "locked_usd": 1197061.53
+     },
+     {
+      "day": "2026-05-01",
+      "locked_usd": 1180316.6
+     },
+     {
+      "day": "2026-05-02",
+      "locked_usd": 965603.02
+     },
+     {
+      "day": "2026-05-03",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-05-04",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-05-05",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-05-06",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-05-07",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-05-08",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-05-09",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-05-10",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-05-11",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-05-12",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-05-13",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-05-14",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-05-15",
+      "locked_usd": 2698305.47
+     },
+     {
+      "day": "2026-05-16",
+      "locked_usd": 2698305.47
+     },
+     {
+      "day": "2026-05-17",
+      "locked_usd": 2698305.47
+     },
+     {
+      "day": "2026-05-18",
+      "locked_usd": 2698305.47
+     },
+     {
+      "day": "2026-05-19",
+      "locked_usd": 2698305.47
+     },
+     {
+      "day": "2026-05-20",
+      "locked_usd": 2698305.47
+     },
+     {
+      "day": "2026-05-21",
+      "locked_usd": 5808547.04
+     },
+     {
+      "day": "2026-05-22",
+      "locked_usd": 12756053.06
+     },
+     {
+      "day": "2026-05-23",
+      "locked_usd": 12560604.18
+     },
+     {
+      "day": "2026-05-24",
+      "locked_usd": 13693893.07
+     },
+     {
+      "day": "2026-05-25",
+      "locked_usd": 15456569.9
+     },
+     {
+      "day": "2026-05-26",
+      "locked_usd": 20297336.92
+     },
+     {
+      "day": "2026-05-27",
+      "locked_usd": 23482126.99
+     },
+     {
+      "day": "2026-05-28",
+      "locked_usd": 26678279.06
+     },
+     {
+      "day": "2026-05-29",
+      "locked_usd": 32955752.91
+     },
+     {
+      "day": "2026-05-30",
+      "locked_usd": 25716515.54
+     },
+     {
+      "day": "2026-05-31",
+      "locked_usd": 28900366.1
+     },
+     {
+      "day": "2026-06-01",
+      "locked_usd": 32676502.32
+     },
+     {
+      "day": "2026-06-02",
+      "locked_usd": 31114802.27
+     },
+     {
+      "day": "2026-06-03",
+      "locked_usd": 32289670.01
+     },
+     {
+      "day": "2026-06-04",
+      "locked_usd": 36272580.34
+     },
+     {
+      "day": "2026-06-05",
+      "locked_usd": 37002444.8
+     },
+     {
+      "day": "2026-06-06",
+      "locked_usd": 29417686.36
+     },
+     {
+      "day": "2026-06-07",
+      "locked_usd": 28278077.24
+     },
+     {
+      "day": "2026-06-08",
+      "locked_usd": 22690958.53
+     },
+     {
+      "day": "2026-06-09",
+      "locked_usd": 17658353.35
+     },
+     {
+      "day": "2026-06-10",
+      "locked_usd": 17229502.49
+     },
+     {
+      "day": "2026-06-11",
+      "locked_usd": 11589489.26
+     },
+     {
+      "day": "2026-06-12",
+      "locked_usd": 4665958.89
+     },
+     {
+      "day": "2026-06-13",
+      "locked_usd": 139895.29
+     },
+     {
+      "day": "2026-06-14",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-15",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-16",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-17",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-18",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-19",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-20",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-21",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-22",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-23",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-24",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-25",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-26",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-27",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-28",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-29",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-06-30",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-01",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-02",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-03",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-04",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-05",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-06",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-07",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-08",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-09",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-10",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-11",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-12",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-13",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-14",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-15",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-16",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-17",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-18",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-19",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-20",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-21",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-22",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-23",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-24",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-25",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-26",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-27",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-28",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-29",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-30",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-07-31",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-01",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-02",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-03",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-04",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-05",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-06",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-07",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-08",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-09",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-10",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-11",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-12",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-13",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-14",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-15",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-16",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-17",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-18",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-19",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-20",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-21",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-22",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-23",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-24",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-25",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-26",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-27",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-28",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-29",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-30",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-08-31",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-01",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-02",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-03",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-04",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-05",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-06",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-07",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-08",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-09",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-10",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-11",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-12",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-13",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-14",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-15",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-16",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-17",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-18",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-19",
+      "locked_usd": 0.0
+     },
+     {
+      "day": "2026-09-20",
+      "locked_usd": 988528.52
+     },
+     {
+      "day": "2026-09-21",
+      "locked_usd": 12196986.9
+     },
+     {
+      "day": "2026-09-22",
+      "locked_usd": 13266055.08
+     },
+     {
+      "day": "2026-09-23",
+      "locked_usd": 14634193.3
+     },
+     {
+      "day": "2026-09-24",
+      "locked_usd": 18541764.68
+     },
+     {
+      "day": "2026-09-25",
+      "locked_usd": 20233159.37
+     },
+     {
+      "day": "2026-09-26",
+      "locked_usd": 20608248.51
+     },
+     {
+      "day": "2026-09-27",
+      "locked_usd": 21466736.21
+     },
+     {
+      "day": "2026-09-28",
+      "locked_usd": 20713881.61
+     },
+     {
+      "day": "2026-09-29",
+      "locked_usd": 9321067.94
+     },
+     {
+      "day": "2026-09-30",
+      "locked_usd": 8242011.24
+     },
+     {
+      "day": "2026-10-01",
+      "locked_usd": 6875944.96
+     },
+     {
+      "day": "2026-10-02",
+      "locked_usd": 4048050.93
+     },
+     {
+      "day": "2026-10-03",
+      "locked_usd": 2869040.73
+     },
+     {
+      "day": "2026-10-04",
+      "locked_usd": 2493951.6
+     },
+     {
+      "day": "2026-10-05",
+      "locked_usd": 1635463.9
+     },
+     {
+      "day": "2026-10-06",
+      "locked_usd": 1599964.76
+     },
+     {
+      "day": "2026-10-07",
+      "locked_usd": 1599964.76
+     },
+     {
+      "day": "2026-10-08",
+      "locked_usd": 1599964.76
+     },
+     {
+      "day": "2026-10-09",
+      "locked_usd": 1599964.76
+     }
+    ]
    },
    "market_hourly_discount_bps": {
     "max": 260.1901891443612,
     "min": -180.4819523262524,
-    "n": 3694,
-    "p10": 1.494017370601232,
-    "p50": 8.609325231722863,
-    "p90": 23.33151194888773,
-    "p99": 74.5722394008364,
-    "share_ge_10bp": 0.44964807796426637,
-    "share_ge_20bp": 0.1561992420140769,
-    "share_ge_50bp": 0.021386031402273957,
-    "share_ge_5bp": 0.6572820790471035
+    "n": 10836,
+    "p10": 1.731126831605251,
+    "p50": 9.75885608511335,
+    "p90": 30.120505456819842,
+    "p99": 64.06602987080993,
+    "share_ge_10bp": 0.48754152823920266,
+    "share_ge_20bp": 0.2324658545588778,
+    "share_ge_50bp": 0.02482465854558878,
+    "share_ge_5bp": 0.7257290513104466
    },
    "native": "HYPE",
    "network": "hyperevm",
@@ -3378,7 +8104,16 @@
      "2026-10": 7.002644097222222
     }
    },
-   "per_print_upper_bound_oos_usd_per_year": 52315.48866516869,
+   "per_print_upper_bound": {
+    "10000000": {
+     "hurdle_bps": 20.0,
+     "out_of_sample_usd_per_year": 185552.7663411498
+    },
+    "30000000": {
+     "hurdle_bps": 10.0,
+     "out_of_sample_usd_per_year": 425807.2669786253
+    }
+   },
    "queue_model": {
     "accrues": false,
     "fee": "events",
@@ -3389,37 +8124,77 @@
    "rate_latest": 1.026227990095337,
    "rate_samples": 3755,
    "records_are": "hourly per-pool aggregates (by_pool.records counts pool-hours)",
-   "round_trip_bps": 5.950913226739185,
+   "round_trip_bps": 5.878675635569945,
    "sell_discount_bps_all_sells": {
     "max": 299.97480149134543,
     "min": -298.9661039493849,
-    "n": 639404,
-    "p10": 2.3179513668049405,
-    "p50": 8.355494707478439,
-    "p90": 23.716326642654103,
-    "p99": 124.803607486677,
-    "share_ge_10bp": 0.4533596912124416,
-    "share_ge_20bp": 0.1607246748534573,
-    "share_ge_50bp": 0.04307292416062458,
-    "share_ge_5bp": 0.7120036784255338
+    "n": 1783230,
+    "p10": 2.8121415569541357,
+    "p50": 13.180177149758698,
+    "p90": 33.99490411808844,
+    "p99": 87.96713996754465,
+    "share_ge_10bp": 0.610611642917627,
+    "share_ge_20bp": 0.31135691974675167,
+    "share_ge_50bp": 0.04046701771504517,
+    "share_ge_5bp": 0.810516871071034
    },
-   "sell_volume_at_least_min_fill_usd": 1337709494.128479,
-   "sells_at_least_min_fill": 166089,
+   "sell_volume_at_least_min_fill_usd": 2519905354.326359,
+   "sells_at_least_min_fill": 308155,
    "source": "on-chain swaps reconstructed from kHYPE/WHYPE transfers into and out of 9 pools",
-   "staking_apr_latest": 0.02055600497010146,
-   "swaps_priced": 1265452,
+   "staking_apr_latest": 0.0207254089819624,
+   "swaps_priced": 3547521,
    "symbol": "kHYPE",
    "variant_carry_whype_borrow": {
-    "chosen_hurdle": "h=20",
-    "out_of_sample_usd_per_year": 54398.923786797306,
+    "by_size": {
+     "10000000": {
+      "chosen_hurdle": "h=20",
+      "out_of_sample_usd_per_year": 156976.7154541442
+     },
+     "30000000": {
+      "chosen_hurdle": "h=10",
+      "out_of_sample_usd_per_year": 363546.78602992755
+     }
+    },
     "whype_borrow_apr_mean": 0.022502156532926865
    },
    "variant_fixed_7d_wait": {
-    "chosen_hurdle": "h=20",
-    "out_of_sample_usd_per_year": 27692.193883952386
+    "by_size": {
+     "10000000": {
+      "chosen_hurdle": "h=20",
+      "out_of_sample_usd_per_year": 141086.89810677568
+     },
+     "30000000": {
+      "chosen_hurdle": "h=10",
+      "out_of_sample_usd_per_year": 375712.4221180078
+     }
+    }
    },
-   "verdict": "no-go",
-   "volume_usd": 2959810210.0098524
+   "variant_print_filter_1000bp": {
+    "by_size": {
+     "10000000": {
+      "chosen_hurdle": "h=20",
+      "in_sample_usd_per_year": 390822.2106666826,
+      "oos_ci95_usd_per_year": [
+       17308.71230377315,
+       356637.3911211282
+      ],
+      "out_of_sample_usd_per_year": 139980.7247003032
+     },
+     "30000000": {
+      "chosen_hurdle": "h=10",
+      "in_sample_usd_per_year": 1204945.1457612836,
+      "oos_ci95_usd_per_year": [
+       137946.46423964124,
+       703134.6283445483
+      ],
+      "out_of_sample_usd_per_year": 373788.0484274151
+     }
+    },
+    "excluded_prints": 1549,
+    "excluded_usd": 5507101.223274356
+   },
+   "verdict": "proposed",
+   "volume_usd": 5658869637.793943
   },
   "savax": {
    "at_quoted_size": {
@@ -4203,787 +8978,6 @@
     },
     "base_oos_usd": 11252.695596551834
    },
-   "locked_capital_daily_unbounded": {
-    "hurdle_bps": 0.0,
-    "series": [
-     {
-      "day": "2026-03-30",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-03-31",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-04-01",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-04-02",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-04-03",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-04-04",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-04-05",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-04-06",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-04-07",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-04-08",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-04-09",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-04-10",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-04-11",
-      "locked_usd": 154013.38
-     },
-     {
-      "day": "2026-04-12",
-      "locked_usd": 331437.15
-     },
-     {
-      "day": "2026-04-13",
-      "locked_usd": 687735.92
-     },
-     {
-      "day": "2026-04-14",
-      "locked_usd": 1189618.09
-     },
-     {
-      "day": "2026-04-15",
-      "locked_usd": 1322877.55
-     },
-     {
-      "day": "2026-04-16",
-      "locked_usd": 1322877.55
-     },
-     {
-      "day": "2026-04-17",
-      "locked_usd": 1322877.55
-     },
-     {
-      "day": "2026-04-18",
-      "locked_usd": 1322877.55
-     },
-     {
-      "day": "2026-04-19",
-      "locked_usd": 1618768.26
-     },
-     {
-      "day": "2026-04-20",
-      "locked_usd": 1969231.14
-     },
-     {
-      "day": "2026-04-21",
-      "locked_usd": 2160253.44
-     },
-     {
-      "day": "2026-04-22",
-      "locked_usd": 2345843.77
-     },
-     {
-      "day": "2026-04-23",
-      "locked_usd": 2357931.0
-     },
-     {
-      "day": "2026-04-24",
-      "locked_usd": 2534549.4
-     },
-     {
-      "day": "2026-04-25",
-      "locked_usd": 2566032.63
-     },
-     {
-      "day": "2026-04-26",
-      "locked_usd": 2649948.1
-     },
-     {
-      "day": "2026-04-27",
-      "locked_usd": 2669565.6
-     },
-     {
-      "day": "2026-04-28",
-      "locked_usd": 2472642.89
-     },
-     {
-      "day": "2026-04-29",
-      "locked_usd": 2597798.75
-     },
-     {
-      "day": "2026-04-30",
-      "locked_usd": 2439816.5
-     },
-     {
-      "day": "2026-05-01",
-      "locked_usd": 1889137.31
-     },
-     {
-      "day": "2026-05-02",
-      "locked_usd": 1859618.54
-     },
-     {
-      "day": "2026-05-03",
-      "locked_usd": 1859618.54
-     },
-     {
-      "day": "2026-05-04",
-      "locked_usd": 1859618.54
-     },
-     {
-      "day": "2026-05-05",
-      "locked_usd": 1731964.41
-     },
-     {
-      "day": "2026-05-06",
-      "locked_usd": 1485173.41
-     },
-     {
-      "day": "2026-05-07",
-      "locked_usd": 1206455.05
-     },
-     {
-      "day": "2026-05-08",
-      "locked_usd": 1006652.77
-     },
-     {
-      "day": "2026-05-09",
-      "locked_usd": 954812.45
-     },
-     {
-      "day": "2026-05-10",
-      "locked_usd": 865815.34
-     },
-     {
-      "day": "2026-05-11",
-      "locked_usd": 789414.48
-     },
-     {
-      "day": "2026-05-12",
-      "locked_usd": 690796.78
-     },
-     {
-      "day": "2026-05-13",
-      "locked_usd": 670531.36
-     },
-     {
-      "day": "2026-05-14",
-      "locked_usd": 643264.91
-     },
-     {
-      "day": "2026-05-15",
-      "locked_usd": 623710.32
-     },
-     {
-      "day": "2026-05-16",
-      "locked_usd": 203263.77
-     },
-     {
-      "day": "2026-05-17",
-      "locked_usd": 170516.82
-     },
-     {
-      "day": "2026-05-18",
-      "locked_usd": 186609.3
-     },
-     {
-      "day": "2026-05-19",
-      "locked_usd": 181364.35
-     },
-     {
-      "day": "2026-05-20",
-      "locked_usd": 181364.35
-     },
-     {
-      "day": "2026-05-21",
-      "locked_usd": 198228.86
-     },
-     {
-      "day": "2026-05-22",
-      "locked_usd": 221032.06
-     },
-     {
-      "day": "2026-05-23",
-      "locked_usd": 135669.87
-     },
-     {
-      "day": "2026-05-24",
-      "locked_usd": 121707.37
-     },
-     {
-      "day": "2026-05-25",
-      "locked_usd": 95512.39
-     },
-     {
-      "day": "2026-05-26",
-      "locked_usd": 95512.39
-     },
-     {
-      "day": "2026-05-27",
-      "locked_usd": 83785.94
-     },
-     {
-      "day": "2026-05-28",
-      "locked_usd": 78088.59
-     },
-     {
-      "day": "2026-05-29",
-      "locked_usd": 78088.59
-     },
-     {
-      "day": "2026-05-30",
-      "locked_usd": 78088.59
-     },
-     {
-      "day": "2026-05-31",
-      "locked_usd": 71571.35
-     },
-     {
-      "day": "2026-06-01",
-      "locked_usd": 71571.35
-     },
-     {
-      "day": "2026-06-02",
-      "locked_usd": 71571.35
-     },
-     {
-      "day": "2026-06-03",
-      "locked_usd": 58587.35
-     },
-     {
-      "day": "2026-06-04",
-      "locked_usd": 44395.4
-     },
-     {
-      "day": "2026-06-05",
-      "locked_usd": 141149.54
-     },
-     {
-      "day": "2026-06-06",
-      "locked_usd": 176823.86
-     },
-     {
-      "day": "2026-06-07",
-      "locked_usd": 132428.46
-     },
-     {
-      "day": "2026-06-08",
-      "locked_usd": 238106.82
-     },
-     {
-      "day": "2026-06-09",
-      "locked_usd": 244654.04
-     },
-     {
-      "day": "2026-06-10",
-      "locked_usd": 244654.04
-     },
-     {
-      "day": "2026-06-11",
-      "locked_usd": 244654.04
-     },
-     {
-      "day": "2026-06-12",
-      "locked_usd": 244654.04
-     },
-     {
-      "day": "2026-06-13",
-      "locked_usd": 249458.91
-     },
-     {
-      "day": "2026-06-14",
-      "locked_usd": 261542.1
-     },
-     {
-      "day": "2026-06-15",
-      "locked_usd": 263154.57
-     },
-     {
-      "day": "2026-06-16",
-      "locked_usd": 264620.08
-     },
-     {
-      "day": "2026-06-17",
-      "locked_usd": 267853.76
-     },
-     {
-      "day": "2026-06-18",
-      "locked_usd": 279434.02
-     },
-     {
-      "day": "2026-06-19",
-      "locked_usd": 296027.2
-     },
-     {
-      "day": "2026-06-20",
-      "locked_usd": 296027.2
-     },
-     {
-      "day": "2026-06-21",
-      "locked_usd": 280270.68
-     },
-     {
-      "day": "2026-06-22",
-      "locked_usd": 166159.55
-     },
-     {
-      "day": "2026-06-23",
-      "locked_usd": 164623.07
-     },
-     {
-      "day": "2026-06-24",
-      "locked_usd": 161635.46
-     },
-     {
-      "day": "2026-06-25",
-      "locked_usd": 58944.71
-     },
-     {
-      "day": "2026-06-26",
-      "locked_usd": 52397.48
-     },
-     {
-      "day": "2026-06-27",
-      "locked_usd": 52397.48
-     },
-     {
-      "day": "2026-06-28",
-      "locked_usd": 52397.48
-     },
-     {
-      "day": "2026-06-29",
-      "locked_usd": 50958.35
-     },
-     {
-      "day": "2026-06-30",
-      "locked_usd": 36688.08
-     },
-     {
-      "day": "2026-07-01",
-      "locked_usd": 35509.43
-     },
-     {
-      "day": "2026-07-02",
-      "locked_usd": 32431.44
-     },
-     {
-      "day": "2026-07-03",
-      "locked_usd": 32431.44
-     },
-     {
-      "day": "2026-07-04",
-      "locked_usd": 29197.77
-     },
-     {
-      "day": "2026-07-05",
-      "locked_usd": 13910.28
-     },
-     {
-      "day": "2026-07-06",
-      "locked_usd": 1024.32
-     },
-     {
-      "day": "2026-07-07",
-      "locked_usd": 1024.32
-     },
-     {
-      "day": "2026-07-08",
-      "locked_usd": 1024.32
-     },
-     {
-      "day": "2026-07-09",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-07-10",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-07-11",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-07-12",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-07-13",
-      "locked_usd": 26974.84
-     },
-     {
-      "day": "2026-07-14",
-      "locked_usd": 238669.68
-     },
-     {
-      "day": "2026-07-15",
-      "locked_usd": 434104.17
-     },
-     {
-      "day": "2026-07-16",
-      "locked_usd": 715334.67
-     },
-     {
-      "day": "2026-07-17",
-      "locked_usd": 1051652.6
-     },
-     {
-      "day": "2026-07-18",
-      "locked_usd": 1089721.03
-     },
-     {
-      "day": "2026-07-19",
-      "locked_usd": 1357249.75
-     },
-     {
-      "day": "2026-07-20",
-      "locked_usd": 1357249.75
-     },
-     {
-      "day": "2026-07-21",
-      "locked_usd": 1762243.25
-     },
-     {
-      "day": "2026-07-22",
-      "locked_usd": 1776139.15
-     },
-     {
-      "day": "2026-07-23",
-      "locked_usd": 1780742.92
-     },
-     {
-      "day": "2026-07-24",
-      "locked_usd": 1780742.92
-     },
-     {
-      "day": "2026-07-25",
-      "locked_usd": 1793171.61
-     },
-     {
-      "day": "2026-07-26",
-      "locked_usd": 1793171.61
-     },
-     {
-      "day": "2026-07-27",
-      "locked_usd": 1793171.61
-     },
-     {
-      "day": "2026-07-28",
-      "locked_usd": 1793171.61
-     },
-     {
-      "day": "2026-07-29",
-      "locked_usd": 1793171.61
-     },
-     {
-      "day": "2026-07-30",
-      "locked_usd": 1624587.48
-     },
-     {
-      "day": "2026-07-31",
-      "locked_usd": 1441713.98
-     },
-     {
-      "day": "2026-08-01",
-      "locked_usd": 1302226.91
-     },
-     {
-      "day": "2026-08-02",
-      "locked_usd": 999253.85
-     },
-     {
-      "day": "2026-08-03",
-      "locked_usd": 736592.02
-     },
-     {
-      "day": "2026-08-04",
-      "locked_usd": 435921.85
-     },
-     {
-      "day": "2026-08-05",
-      "locked_usd": 484090.33
-     },
-     {
-      "day": "2026-08-06",
-      "locked_usd": 373430.39
-     },
-     {
-      "day": "2026-08-07",
-      "locked_usd": 92254.35
-     },
-     {
-      "day": "2026-08-08",
-      "locked_usd": 79267.19
-     },
-     {
-      "day": "2026-08-09",
-      "locked_usd": 79267.19
-     },
-     {
-      "day": "2026-08-10",
-      "locked_usd": 74763.03
-     },
-     {
-      "day": "2026-08-11",
-      "locked_usd": 66838.5
-     },
-     {
-      "day": "2026-08-12",
-      "locked_usd": 66838.5
-     },
-     {
-      "day": "2026-08-13",
-      "locked_usd": 66838.5
-     },
-     {
-      "day": "2026-08-14",
-      "locked_usd": 66838.5
-     },
-     {
-      "day": "2026-08-15",
-      "locked_usd": 66838.5
-     },
-     {
-      "day": "2026-08-16",
-      "locked_usd": 66838.5
-     },
-     {
-      "day": "2026-08-17",
-      "locked_usd": 66838.5
-     },
-     {
-      "day": "2026-08-18",
-      "locked_usd": 66838.5
-     },
-     {
-      "day": "2026-08-19",
-      "locked_usd": 66838.5
-     },
-     {
-      "day": "2026-08-20",
-      "locked_usd": 66838.5
-     },
-     {
-      "day": "2026-08-21",
-      "locked_usd": 18670.02
-     },
-     {
-      "day": "2026-08-22",
-      "locked_usd": 18670.02
-     },
-     {
-      "day": "2026-08-23",
-      "locked_usd": 18670.02
-     },
-     {
-      "day": "2026-08-24",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-08-25",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-08-26",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-08-27",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-08-28",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-08-29",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-08-30",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-08-31",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-09-01",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-09-02",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-09-03",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-09-04",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-09-05",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-09-06",
-      "locked_usd": 0.0
-     },
-     {
-      "day": "2026-09-07",
-      "locked_usd": 66398.55
-     },
-     {
-      "day": "2026-09-08",
-      "locked_usd": 66398.55
-     },
-     {
-      "day": "2026-09-09",
-      "locked_usd": 66398.55
-     },
-     {
-      "day": "2026-09-10",
-      "locked_usd": 66398.55
-     },
-     {
-      "day": "2026-09-11",
-      "locked_usd": 66398.55
-     },
-     {
-      "day": "2026-09-12",
-      "locked_usd": 66398.55
-     },
-     {
-      "day": "2026-09-13",
-      "locked_usd": 66398.55
-     },
-     {
-      "day": "2026-09-14",
-      "locked_usd": 66398.55
-     },
-     {
-      "day": "2026-09-15",
-      "locked_usd": 66398.55
-     },
-     {
-      "day": "2026-09-16",
-      "locked_usd": 66398.55
-     },
-     {
-      "day": "2026-09-17",
-      "locked_usd": 66398.55
-     },
-     {
-      "day": "2026-09-18",
-      "locked_usd": 66398.55
-     },
-     {
-      "day": "2026-09-19",
-      "locked_usd": 66398.55
-     },
-     {
-      "day": "2026-09-20",
-      "locked_usd": 139261.67
-     },
-     {
-      "day": "2026-09-21",
-      "locked_usd": 139261.67
-     },
-     {
-      "day": "2026-09-22",
-      "locked_usd": 139261.67
-     },
-     {
-      "day": "2026-09-23",
-      "locked_usd": 139261.67
-     },
-     {
-      "day": "2026-09-24",
-      "locked_usd": 72863.13
-     },
-     {
-      "day": "2026-09-25",
-      "locked_usd": 72863.13
-     },
-     {
-      "day": "2026-09-26",
-      "locked_usd": 72863.13
-     },
-     {
-      "day": "2026-09-27",
-      "locked_usd": 203799.88
-     },
-     {
-      "day": "2026-09-28",
-      "locked_usd": 203799.88
-     },
-     {
-      "day": "2026-09-29",
-      "locked_usd": 592602.35
-     },
-     {
-      "day": "2026-09-30",
-      "locked_usd": 592602.35
-     },
-     {
-      "day": "2026-10-01",
-      "locked_usd": 631640.37
-     },
-     {
-      "day": "2026-10-02",
-      "locked_usd": 631640.37
-     },
-     {
-      "day": "2026-10-03",
-      "locked_usd": 631640.37
-     },
-     {
-      "day": "2026-10-04",
-      "locked_usd": 631640.37
-     },
-     {
-      "day": "2026-10-05",
-      "locked_usd": 631640.37
-     },
-     {
-      "day": "2026-10-06",
-      "locked_usd": 558777.25
-     },
-     {
-      "day": "2026-10-07",
-      "locked_usd": 558777.25
-     },
-     {
-      "day": "2026-10-08",
-      "locked_usd": 558777.25
-     },
-     {
-      "day": "2026-10-09",
-      "locked_usd": 558777.25
-     }
-    ]
-   },
    "market_hourly_discount_bps": {
     "max": 207.59390110074915,
     "min": -215.35035068501043,
@@ -5068,7 +9062,7 @@
    "source": "GeckoTerminal hourly bars (typical price, 50% of volume as sales)",
    "staking_apr_latest": 0.04701693539811913,
    "symbol": "sAVAX",
-   "verdict": "proposed",
+   "verdict": "watch (bar-only evidence: $20,931 a year with a quarter of the volume as sales)",
    "volume_usd": 28849434.52655154
   },
   "slisbnb": {
@@ -5812,7 +9806,7 @@
    "source": "GeckoTerminal hourly bars (typical price, 50% of volume as sales)",
    "staking_apr_latest": 0.009126014308989516,
    "symbol": "slisBNB",
-   "verdict": "watch (positive, below the bar)",
+   "verdict": "no-go",
    "volume_usd": 39490799.87513037
   },
   "sts": {
@@ -7157,7 +11151,7 @@
    "vol24_native_pairs_usd": 0
   }
  ],
- "seconds": 17.377033233642578,
+ "seconds": 57.349855184555054,
  "solana_instant_exit_snapshot": {
   "at": "2026-10-10T17:31:33Z",
   "pools": {

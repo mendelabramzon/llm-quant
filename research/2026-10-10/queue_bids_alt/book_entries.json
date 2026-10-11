@@ -1,7 +1,12 @@
 [
  {
-  "capacity_usd": 30000000,
-  "capital_days": 7.0,
+  "capacity_rule": {
+   "note": "value still growing at the largest size tested; quoted lower, as the Ethereum queue bids are",
+   "oos_usd_per_year": 373849.1880740299,
+   "size_usd": 30000000
+  },
+  "capacity_usd": 10000000,
+  "capital_days": 8.5,
   "evidence": {
    "findings": [],
    "notes": "research/2026-10-10/queue_bids_alt/analysis.json; tables.md; scripts/queue_bids_alt.py",
@@ -24,13 +29,13 @@
   "name": "Buy kHYPE below the HYPE Kinetiq pays for it and redeem through the 7-day queue",
   "quotes": [
    {
-    "at": "2026-10-10T17:55:08Z",
+    "at": "2026-10-10T22:09:34Z",
     "go": true,
-    "net_apr": 0.0036,
-    "note": "hurdle h=0 chosen on the first half, scored on the second",
+    "net_apr": 0.014,
+    "note": "hurdle h=20 chosen on the first half, scored on the second",
     "present": true,
     "source": "history",
-    "usd": 108442,
+    "usd": 140043,
     "window": "research/2026-10-10/queue_bids_alt"
    }
   ],
@@ -41,17 +46,18 @@
    "other bidders (Valantis STEX, arbitrageurs) not simulated: values are ceilings for one participant"
   ],
   "status": "proposed",
-  "thesis": "kHYPE trades below the HYPE its withdrawal queue pays: 8.2bp at the hourly median and 21.6bp at the 90th percentile over 268 days of swaps rebuilt from chain. A $30,000,000 bid that redeems every fill made $108,442 a year out of sample (95% interval $20,415 to $219,900), $161,459 over the trailing 90 days."
+  "thesis": "kHYPE trades below the HYPE its withdrawal queue pays: 9.8bp at the hourly median and 30.1bp at the 90th percentile over 452 days of swaps rebuilt from chain. A $10,000,000 bid that redeems every fill made $140,043 a year out of sample (95% interval $17,327 to $356,703), $245,331 over the trailing 90 days."
  },
  {
   "capacity_usd": 5000000,
   "capital_days": null,
+  "change": "replace the HYPE spot leg (HyperCore portfolio margin) with kHYPE on HyperLend; same short, same size",
   "evidence": {
    "findings": [],
    "notes": "research/2026-10-10/queue_bids_alt/analysis.json (carry_b); tables.md G; scripts/queue_bids_alt.py",
    "verify": []
   },
-  "id": "hl-hype-carry-khype-spot",
+  "id": "hl-hype-spot-perp-carry",
   "kill_criteria": [
    "the HYPE carry's own kill criteria (hl-hype-spot-perp-carry)",
    "HyperLend USDT0 borrow above 15% for a week, or kHYPE LTV cut below 0.4",
@@ -66,16 +72,16 @@
    "rebalance after a 25% price move"
   ],
   "mechanism": "Hyperliquid portfolio margin accepts only USDC, USDT, HYPE and BTC, so kHYPE cannot collateralise the short on HyperCore: kHYPE is supplied to HyperLend (LTV 59%%, liquidation 74%%, priced at the Kinetiq exchange rate by a fundamental oracle), USDT0 is borrowed for 10%% of notional and moved to HyperCore as the short's margin; losses after a rise are borrowed too and the legs are rebalanced after a 25%% move. The kHYPE leg is marked at the market discount daily; it exits through the queue at the rate.",
-  "name": "HYPE spot/short-perp carry with kHYPE as the spot leg (margin borrowed on HyperLend)",
+  "name": "HYPE spot/short-perp carry, upgraded: kHYPE as the spot leg, the short's margin borrowed on HyperLend",
   "quotes": [
    {
-    "at": "2026-10-10T17:55:08Z",
+    "at": "2026-10-10T22:09:34Z",
     "go": true,
-    "net_apr": 0.0449,
-    "note": "increment over the spot leg at $5M: +1.22% a year (rule always chosen before 2026-02-22)",
+    "net_apr": 0.0448,
+    "note": "kHYPE as the spot leg: +4.48% a year over SSR at $5M = $224,000 a year in total; the increment over spot HYPE is +1.21pp, $60,378 (rule always, chosen before 2026-02-22). Coordinator: usd corrected from the increment to the total, 2026-10-11",
     "present": true,
     "source": "history",
-    "usd": 60885,
+    "usd": 224000,
     "window": "research/2026-10-10/queue_bids_alt"
    }
   ],
@@ -86,6 +92,7 @@
    "same venue and same funding as the existing HYPE carry: not additive capacity, an upgrade of its spot leg"
   ],
   "status": "proposed",
-  "thesis": "The Hyperliquid HYPE carry, with the spot leg held as kHYPE: staking +2.05% a year on top of funding. Over the same window the kHYPE version beat the spot version by +1.22% a year out of sample (+4.49% vs +3.27% over SSR, t 3.79), after paying HyperLend's USDT0 rate (+10.40%) on the short's margin instead of Hyperliquid's portfolio-margin rate."
+  "thesis": "The Hyperliquid HYPE carry, with the spot leg held as kHYPE: staking +2.05% a year on top of funding. Over the same window the kHYPE version beat the spot version by +1.21% a year out of sample (+4.48% vs +3.27% over SSR, t 2.93), after paying HyperLend's USDT0 rate (+10.40%) on the short's margin instead of Hyperliquid's portfolio-margin rate.",
+  "upgrade_of": "hl-hype-spot-perp-carry"
  }
 ]

@@ -1,0 +1,74 @@
+[
+ {
+  "capacity_usd": 15000000,
+  "capital_days": 6.8,
+  "draft": true,
+  "evidence": {
+   "findings": [],
+   "notes": "research/2026-10-11/queue_book5/tables.md (The hourly taker); analysis.json (hourly_taker, joint, rotation, split, overlap); research/2026-10-11/queue_live (implementations f, g); scripts/queue_book.py (simulate_book later=); scripts/queue_bids_alt.py (khype_book_env)",
+   "verify": []
+  },
+  "go_rule": {
+   "go": true,
+   "in_sample_positive": true,
+   "late_1d_kept_share": 1.0539192605705088,
+   "oos_t": 3.2715119557202925,
+   "thresholds": {
+    "in_sample_positive": true,
+    "min_late_1d_kept": 0.5,
+    "min_oos_t": 2.0
+   },
+   "variant": "all5 hourly taker (next hour, venue median), kHYPE leg a day behind"
+  },
+  "id": "lst-queue-book-one-pool",
+  "kill_criteria": [
+   "trailing 90-day simulated value of the five-asset hourly taker under $40,000 a year at $15,000,000 (it was $208,314)",
+   "any component's payout check failing (a claim paying less than requested, a fee appearing, an invalidated request that is not repaid; for kHYPE a confirmation below its WithdrawalQueued hypeAmount or a non-zero unstakeFeeRate)",
+   "the daily correlation of LBTC's or kHYPE's locked capital with the ETH tokens' rising above 0.5 over a trailing year",
+   "the share of qualifying sales still clearing the hurdle at the next hour's venue median falling under half for a quarter (the persistence the taker lives on)",
+   "capital taking more than a day to reach HyperEVM in a kHYPE episode; Kinetiq's fastest confirmation above 10 days for a month, or withdrawals paused for more than a week"
+  ],
+  "kind": "redemption",
+  "legs": [
+   "Ethereum: hold WETH/aWETH and cbBTC (or borrowing power against wstETH) as one balance; at each hour boundary a keeper submits one CoW order per token (stETH, weETH, rsETH; LBTC against cbBTC) for the previous hour's sales whose edge cleared the hurdle (10bp over fees and the queue's carry), limited at that edge; the sale happened up to an hour earlier, so nothing races for block position",
+   "HyperEVM (kHYPE leg): CoW Protocol is not deployed there; when the kHYPE venue median has cleared the hurdle, move capital across to WHYPE and have the keeper buy the previous hour's qualifying kHYPE sales back on the kHYPE/WHYPE AMM pools at the hour boundary (queue_bids_alt: Project X carried most of the volume since launch; this pool's out-of-sample fills were on ramses-v3 (1,982), project-x (1,234), nest (717), hyperswap-v3 (247), hybra-v4 (141), kittenswap-algebra (27)). Valantis STEX, Kinetiq's instant-unstake pool, is a competing standing bidder there, not a venue",
+   "on a fill, request withdrawal (Lido WithdrawalQueueERC721, ether.fi WithdrawRequestNFT, Kelp LRTWithdrawalManager, LBTC redeemForBtc, Kinetiq StakingManager.queueWithdrawal); claim when finalized (kHYPE: confirmWithdrawal after the 7-day withdrawalDelay) and move the proceeds back to the Ethereum balance",
+   "hedge the HYPE held on HyperEVM, idle or queued, with a short HYPE perp on Hyperliquid (the bid is priced in HYPE)"
+  ],
+  "mechanism": "Holders who will not wait for a withdrawal queue sell the staking token below what the queue pays; a patient bidder buys after them and redeems (per-asset mechanisms and payout checks: research/2026-10-09/redemption_history, research/2026-10-10/queue_bids_ext, research/2026-10-10/queue_bids_alt; Kinetiq paid 13,426 of 13,426 kHYPE confirmations exactly). The discounts last beyond the hour of the sale, so an hourly keeper buying the previous hour's qualifying sales at the market captures most of them without racing anyone (research/2026-10-11/queue_live). Capital is bound by time in the queue and the queues stall at different times, so one pool rotates through them; in a kHYPE stress the whole pool wants to be on HyperEVM, which is why the quote charges a day for the crossing each way.",
+  "name": "One capital pool behind the stETH, weETH, rsETH, LBTC and kHYPE queue bids, run as an hourly taker",
+  "quotes": [
+   {
+    "at": "2026-10-11T04:07:00Z",
+    "go": true,
+    "net_apr": 0.0196,
+    "note": "hourly taker at the next hour's venue median, out of sample 2026-02-26..2026-10-09, five assets on one $15,000,000 pool with the kHYPE leg a day behind; hurdle chosen in sample (h=10; in sample $925,058), t 3.27; late entry (later price) 1h 102%, 1d 105%; first-trade reading $288,520; fungible taker $353,855; fixed split $194,923; all4 taker on the same window $184,984; own-print pricing $368,046 (crossing) and $460,554 (fungible); by asset weETH $84,636, rsETH $10,607, kHYPE $110,922, LBTC $35,416, stETH $51,881. Draft: replaces the 2026-10-10 quote ($409,889, own-print all4) only if the coordinator accepts it",
+    "present": true,
+    "source": "history",
+    "usd": 293463,
+    "window": "research/2026-10-11/queue_book5"
+   }
+  ],
+  "recheck_hours": 168,
+  "risks": [
+   "the out-of-sample half is short (2026-02-26 to 2026-10-09, 226 days) because kHYPE launched in July 2025; the in-sample half, which holds the 2025 kHYPE and Lido stresses, was 3.2x richer",
+   "the hourly taker is a model of a keeper that has not run: a CoW order may not fill at the hour's median, and the later price can be worse than the median for size (the first-trade reading brackets it)",
+   "competing bidders (83 CoW owners in the April 2026 stETH episode; Valantis STEX and arbitrageurs on kHYPE) are not simulated: values are ceilings for one participant",
+   "capital split across chains: the quote charges a day each way for the crossing; a fixed HyperEVM sub-pool earns $194,923",
+   "HYPE price exposure of capital on HyperEVM unless hedged; Kinetiq contract, validator and governance risk on HYPE queued a week",
+   "the component risks stand: Lido bunker mode, ether.fi request invalidation, Kelp withdrawal pauses, LBTC's off-chain payout (9-day wait from docs)"
+  ],
+  "status": "proposed",
+  "thesis": "Five queue bids on one pool, priced as an executable hourly taker: each sale that cleared the hurdle in its own hour is bought back at the next hour boundary at that hour's venue median. The book adds kHYPE on HyperEVM, whose locked capital is uncorrelated with the Ethereum-side bids (-0.14 against the three ETH bids summed; stETH -0.14, weETH -0.12, rsETH -0.11, LBTC 0.13). On the five assets' common window (2025-07-15 to 2026-10-09, split 2026-02-26) a $15,000,000 pool whose kHYPE leg is reached a day after capital starts to move earned $293,463 a year out of sample (t 3.27, 95% interval $127,024 to $496,836; in sample $925,058), against $184,984 for the four Ethereum-side bids priced the same way on the same capital: +$108,480. At the first trade after each boundary it is $288,520; with capital that moves instantly $353,855; the backtest's own-print pricing gave $368,046. The discounts persist: of the sales that qualified in their own hour, 98% (stETH), 91% (weETH), 98% (kHYPE) still cleared 1bp at the next hour's median; rsETH (34%) and LBTC (53%) often had no trade in the next hour. Late entry with the later price keeps 102% (an hour) and 105% (a day).",
+  "variants_usd_per_year": {
+   "own_print_1d_crossing": 368046.31366981927,
+   "own_print_all4": 276873.0351054458,
+   "own_print_fungible": 460554.41278227716,
+   "taker_1d_crossing_first_trade": 288520.19999681145,
+   "taker_1d_crossing_median": 293463.08634682855,
+   "taker_all4_median": 184983.5680470903,
+   "taker_fixed_split_median": 194922.87352879124,
+   "taker_fungible_median": 353855.1381457906
+  }
+ }
+]

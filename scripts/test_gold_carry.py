@@ -245,3 +245,91 @@ def test_premium_cross_term_is_small():
     b = 0.003
     assert abs(G.day_return(1.0, 1.02, b, b, 0.0) - 0.0) == pytest.approx(0.02 * b)
     assert math.isclose(G.day_return(1.0, 1.0, b, b, 0.0), 0.0)
+
+
+# ---------------------------------------------------------------------------------------------- forward test
+
+def _snap(d0, days, rate=1e-5, perp_px=4000.0, tok_px=4004.0, xau_px=4000.0, gold_listed=True, ssr=0.038):
+    """A synthetic snapshot covering days d0-31 .. d0+days: hourly funding `rate` on both perps, flat prices."""
+    t0, t1 = (d0 - 31) * DAY, (d0 + days) * DAY + 2 * HOUR
+    fund = [{'time': t, 'fundingRate': str(rate), 'premium': '0.0'} for t in range(t0 + HOUR, t1, HOUR)]
+    cand = [{'t': t, 'c': str(perp_px), 'h': str(perp_px), 'v': '5'} for t in range(t0, t1, HOUR)]
+    kl = [[t, tok_px, tok_px, tok_px, tok_px, 1000.0] for t in range(t0, t1, HOUR)]
+    xi = [[t, xau_px, xau_px, xau_px, xau_px, 0.0] for t in range(t0, t1, HOUR)]
+    return {'at': G.utc(t1), 'window': [t0, t1], 'hl_funding': {'xyz:GOLD': fund, 'PAXG': fund},
+            'hl_candles': {'xyz:GOLD': cand, 'PAXG': cand}, 'bn_paxg_1h': kl, 'bn_xau_index_1h': xi,
+            'ssr': {'apy': ssr}, 'hl_meta': {'core': {'names': ['PAXG'], 'delisted': []},
+                                             'xyz': {'names': ['xyz:GOLD'] if gold_listed else [], 'delisted': []}}}
+
+
+def _register(tmp_path, first='2026-10-12'):
+    led = tmp_path / 'gold.jsonl'
+    row = G.gold_forward_register(led, ms('2026-10-10 23:30'), first_day=first, log=lambda *a: None)
+    return led, row
+
+
+def test_forward_registration_freezes_the_rule_and_is_append_only(tmp_path, monkeypatch):
+    led, row = _register(tmp_path)
+    assert row['rule_frozen'] == G.GOLD_FORWARD_RULE and row['lines'] == G.GOLD_FORWARD_LINES
+    assert row['first_day'] == '2026-10-12' and row['entry_utc'].startswith('2026-10-12T00:00')
+    before = led.read_text()
+    assert G.gold_forward_register(led, ms('2026-10-11 05:00'), log=lambda *a: None) is None
+    assert led.read_text() == before
+    d0 = ms('2026-10-12 00:00') // DAY
+    snaps = [_snap(d0, 10)]
+    s1 = G.gold_forward_score(G.read_ledger(led), ms('2026-10-23 00:00'), snaps=snaps)
+    monkeypatch.setitem(G.GOLD_FORWARD_LINES['hl:xyz:GOLD x PAXG@bn'], 'K', 3.0)
+    s2 = G.gold_forward_score(G.read_ledger(led), ms('2026-10-23 00:00'), snaps=snaps)
+    assert s1['lines']['hl:xyz:GOLD x PAXG@bn']['ann_excess'] == s2['lines']['hl:xyz:GOLD x PAXG@bn']['ann_excess']
+
+
+def test_forward_registration_after_the_first_day_began_is_refused(tmp_path):
+    led = tmp_path / 'gold.jsonl'
+    assert G.gold_forward_register(led, ms('2026-10-12 00:30'), first_day='2026-10-12', log=lambda *a: None) is None
+    assert not led.exists()
+    assert G.gold_forward_register(led, ms('2026-10-11 23:59'), first_day='2026-10-12', log=lambda *a: None)
+
+
+def test_forward_carry_arithmetic_on_synthetic_hours(tmp_path):
+    """Flat prices, 1e-5 an hour: each day earns 24e-5 per unit notional on K = 1.12, minus the savings rate; the first
+    day pays the entry cost and the last the exit cost of both legs; nothing else moves."""
+    led, row = _register(tmp_path)
+    d0 = ms('2026-10-12 00:00') // DAY
+    res = G.gold_forward_score(G.read_ledger(led), ms('2026-10-23 00:00'), snaps=[_snap(d0, 10)])
+    L = res['lines']['hl:xyz:GOLD x PAXG@bn']
+    p = row['lines']['hl:xyz:GOLD x PAXG@bn']
+    side = (p['fee_perp_bp'] + p['half_spread_perp_bp'] + p['fee_token_bp'] + p['half_spread_token_bp']) / 1e4
+    K = 1.12
+    days = L['days']
+    assert days == 10 and L['first_day'] == '2026-10-12'
+    want = [(24e-5 - (side if i in (0, days - 1) else 0.0)) / K - 0.038 / 365 for i in range(days)]
+    got = [x['excess'] for x in L['series']]
+    assert got == pytest.approx(want, abs=1e-12)
+    assert L['ann_excess'] == pytest.approx(sum(want) / days * 365)
+    assert L['funding_apr'] == pytest.approx(24e-5 * 365)
+    assert L['verdict'] == 'accumulating (10 of 90 days)'
+    assert L['checks']['kill'] == []
+
+
+def test_forward_kill_checks_fire_on_each_condition(tmp_path):
+    led, _ = _register(tmp_path)
+    d0 = ms('2026-10-12 00:00') // DAY
+    now = ms('2026-10-23 00:00')
+    low = G.gold_forward_score(G.read_ledger(led), now, snaps=[_snap(d0, 10, rate=2e-6)])
+    assert low['lines']['hl:PAXG x PAXG@bn']['verdict'].startswith('kill: trailing 30-day funding')
+    cheap = G.gold_forward_score(G.read_ledger(led), now, snaps=[_snap(d0, 10, tok_px=3976.0, xau_px=4000.0)])
+    assert "premium below -50bp" in cheap['lines']['hl:xyz:GOLD x PAXG@bn']['verdict']
+    gone = G.gold_forward_score(G.read_ledger(led), now, snaps=[_snap(d0, 10, gold_listed=False)])
+    assert 'delisted' in gone['lines']['hl:xyz:GOLD x PAXG@bn']['verdict']
+    assert gone['lines']['hl:PAXG x PAXG@bn']['verdict'].startswith('accumulating')
+
+
+def test_forward_verdict_promotes_only_on_the_findings_rule():
+    def line(days, ex, t, p, last):
+        return {'days': days, 'ann_excess': ex, 'nw_t': t, 'nw_p': p, 'last_day': last, 'checks': {'kill': []}}
+    v = G.gold_forward_verdict({'a': line(120, 0.03, 2.5, 0.01, '2027-02-01'), 'b': line(120, 0.03, 2.5, 0.02, '2027-02-01')})
+    assert v['a']['verdict'].startswith('promote') and v['b']['verdict'].startswith('promote')
+    v = G.gold_forward_verdict({'a': line(89, 0.05, 4.0, 0.001, '2027-01-08')})
+    assert v['a']['verdict'] == 'accumulating (89 of 90 days)'
+    v = G.gold_forward_verdict({'a': line(120, 0.019, 3.0, 0.003, '2027-02-01'), 'b': line(120, 0.03, 1.5, 0.13, '2027-02-01')})
+    assert v['a']['verdict'].startswith('hold') and v['b']['verdict'].startswith('hold')

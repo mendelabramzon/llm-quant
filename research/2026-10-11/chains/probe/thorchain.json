@@ -1,0 +1,192 @@
+{
+ "tx": {
+  "count": 189099.0,
+  "se": 0.0,
+  "method": "exact-blocks",
+  "blocks": 14013,
+  "runs_read": 701,
+  "runs_total": 701,
+  "run_length": 20,
+  "per_block": 13.494540783558124,
+  "tps": 2.188645833333333,
+  "nonempty_block_share": 1.0,
+  "index_count": null,
+  "failed_share": 0.0006056935190793458,
+  "note": "every transaction included in a block (num_txs), successful or failed. THORChain executes swaps, outbounds and liquidity actions in its end blocker: transaction-level transfers are inbound deposits and sends; the swaps are in transfers.block_level."
+ },
+ "transfers": {
+  "assets": [
+   {
+    "asset": "rune",
+    "symbol": "RUNE",
+    "class": "native",
+    "transfers": 115607,
+    "transfers_se": 5365,
+    "amount": 5595929.278017828,
+    "price": 0.6854111725947816,
+    "usd": 3835512.448203669,
+    "usd_se": 1569948.9051781206,
+    "top_block_share": 0.35308625626773354,
+    "units_seen": 104,
+    "gross_amount": 5595929.278030675,
+    "gross_usd": 3835512.448212474,
+    "identity": "registry"
+   }
+  ],
+  "unpriced_top": [],
+  "unpriced_assets": 0,
+  "unpriced_transfers": 0,
+  "priced_usd": 3835512.448203669,
+  "usd_by_class": {
+   "native": 3835512.448203669
+  },
+  "gross_priced_usd": 3835512.448212474,
+  "method": "sampled-blocks (transaction-level bank transfer events of successful transactions, fee legs removed; amount = net per transaction and denom, gross_amount = every leg)",
+  "block_level": {
+   "assets": [
+    {
+     "asset": "rune",
+     "symbol": "RUNE",
+     "class": "native",
+     "transfers": 666785,
+     "transfers_se": 11149,
+     "amount": 4740209.925235938,
+     "price": 0.6854111725947816,
+     "usd": 3248992.8432013863,
+     "usd_se": 1126818.9556471677,
+     "top_block_share": 0.34742131597854453,
+     "units_seen": 120,
+     "gross_amount": 14889753.993786352,
+     "gross_usd": 10205603.744528936,
+     "identity": "registry"
+    },
+    {
+     "asset": "x/ruji",
+     "symbol": "RUJI",
+     "class": "other",
+     "transfers": 117,
+     "transfers_se": 117,
+     "amount": 443023.50625221373,
+     "price": 0.19626082048946691,
+     "usd": 86948.15683317994,
+     "usd_se": 86938.06689592163,
+     "top_block_share": 1.0,
+     "units_seen": 1,
+     "gross_amount": 443023.50625221373,
+     "gross_usd": 86948.15683317994,
+     "identity": "chain-registry"
+    },
+    {
+     "asset": "bsc-usdt-0x55d398326f99059ff775485246999027b3197955",
+     "symbol": "USDT",
+     "class": "usd_stable",
+     "transfers": 350,
+     "transfers_se": 202,
+     "amount": 23978.520562083748,
+     "price": 0.999151699083075,
+     "usd": 23958.179561104425,
+     "usd_se": 21049.7695004163,
+     "top_block_share": 0.8741917737910226,
+     "units_seen": 3,
+     "gross_amount": 23978.520562083748,
+     "gross_usd": 23958.179561104425,
+     "identity": "thorchain-denom"
+    },
+    {
+     "asset": "base-usdc-0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+     "symbol": "USDC",
+     "class": "usd_stable",
+     "transfers": 234,
+     "transfers_se": 165,
+     "amount": 3807.4644679657504,
+     "price": 0.9996653508509195,
+     "usd": 3806.1903032213913,
+     "usd_se": 3046.5835566938044,
+     "top_block_share": 0.76536263766683,
+     "units_seen": 2,
+     "gross_amount": 3807.4644679657504,
+     "gross_usd": 3806.1903032213913,
+     "identity": "thorchain-denom"
+    },
+    {
+     "asset": "eth-usdc-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+     "symbol": "USDC",
+     "class": "usd_stable",
+     "transfers": 117,
+     "transfers_se": 117,
+     "amount": 2919.375,
+     "price": 0.9996653508509195,
+     "usd": 2918.398033640403,
+     "usd_se": 2918.0593668517477,
+     "top_block_share": 1.0,
+     "units_seen": 1,
+     "gross_amount": 2919.375,
+     "gross_usd": 2918.398033640403,
+     "identity": "thorchain-denom"
+    }
+   ],
+   "unpriced_top": [
+    {
+     "asset": "tron-usdt-tr7nhqjekqxgtci8q8zy4pl8otszgjlj6t",
+     "symbol": null,
+     "class": "other",
+     "transfers": 234,
+     "transfers_se": 117,
+     "amount": 0.0,
+     "price": null,
+     "usd": null,
+     "usd_se": null,
+     "top_block_share": null,
+     "units_seen": 2,
+     "gross_amount": 0.0,
+     "gross_usd": null,
+     "identity": null
+    }
+   ],
+   "unpriced_assets": 1,
+   "priced_usd": 3366623.7679325324,
+   "gross_priced_usd": 10323234.669260083,
+   "usd_by_class": {
+    "native": 3248992.8432013863,
+    "other": 86948.15683317994,
+    "usd_stable": 30682.76789796622
+   },
+   "method": "sampled-blocks (finalize/begin/end-block transfer events, staking, inflation and fee plumbing removed; netted per block)"
+  },
+  "fees": {
+   "priced_usd": 0,
+   "assets": []
+  },
+  "module_addresses": {
+   "fee_collector": "thor17xpfvakm2amg962yls6f84z3kell8c5lk76m7z",
+   "prefix": "thor"
+  }
+ },
+ "window": {
+  "start_ts": 1791590400,
+  "end_ts": 1791676800,
+  "start_utc": "2026-10-10T00:00:00+00:00",
+  "end_utc": "2026-10-11T00:00:00+00:00",
+  "hours": 24.0
+ },
+ "blocks": {
+  "first": 28176107,
+  "last": 28190119,
+  "latest": 28195058,
+  "network": "thorchain-1",
+  "value_sampled_tx": 120,
+  "value_sampled_block": 120
+ },
+ "endpoint": "rpc.cosmos.directory/thorchain",
+ "calls": 857,
+ "notes": [],
+ "errors": [],
+ "error_count": 0,
+ "seconds": 63.7,
+ "chain": "thorchain",
+ "name": "THORChain",
+ "family": "cosmos",
+ "adapter": "cosmos",
+ "ok": true,
+ "probed_at": "2026-10-11T08:29:31+00:00"
+}

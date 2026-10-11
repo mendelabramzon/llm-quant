@@ -1,0 +1,282 @@
+{
+ "tx": {
+  "count": 610457.1428571428,
+  "se": 19633.00351529666,
+  "raw_count": 610457.1428571428,
+  "system_count": 0.0,
+  "method": "sampled-blocks",
+  "system_per_block": 0.0,
+  "bookkeeping": null,
+  "count_ex_bookkeeping": null,
+  "bookkeeping_targets": null,
+  "blocks": 86400,
+  "sampled": 168,
+  "per_block": 7.065476190476191,
+  "tps": 7.065476190476191,
+  "note": "user transactions: OP-stack L1-attributes deposits and Arbitrum internal txs excluded"
+ },
+ "gas": {
+  "gas_per_second": 2645371.4464285714,
+  "base_fee_median_gwei": 8e-09
+ },
+ "transfers": {
+  "assets": [
+   {
+    "asset": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+    "symbol": "USDT0",
+    "class": "usd_stable",
+    "transfers": 83314,
+    "transfers_se": 11997,
+    "amount": 46602393.807085715,
+    "price": 0.9990293925669073,
+    "usd": 46557161.177256644,
+    "usd_se": 19600415.246986207,
+    "top_block_share": 0.30706638064578656,
+    "units_seen": 75,
+    "gross_amount": 46765665.144514285,
+    "gross_usd": 46720274.0423115
+   },
+   {
+    "asset": "native:XPL",
+    "symbol": "XPL",
+    "class": "native",
+    "transfers": null,
+    "transfers_se": null,
+    "amount": 31117680.41970731,
+    "price": 0.08686966065506244,
+    "usd": 2703182.3384326547,
+    "usd_se": 2703716.255502223,
+    "top_block_share": 0.9981861695928528,
+    "units_seen": 16,
+    "note": "top-level transaction value only; internal transfers need traces"
+   },
+   {
+    "asset": "0x6100e367285b01f48d07953803a2d8dca5d19873",
+    "symbol": "WXPL",
+    "class": "native",
+    "transfers": 11314,
+    "transfers_se": 4723,
+    "amount": 9537041.13229567,
+    "price": 0.08682500484487339,
+    "usd": 828053.6425173284,
+    "usd_se": 438056.5861549377,
+    "top_block_share": 0.39521872926039436,
+    "units_seen": 8,
+    "gross_amount": 11128689.318925017,
+    "gross_usd": 966248.5040327554
+   },
+   {
+    "asset": "0x9895d81bb462a195b4922ed7de0e3acd007c32cb",
+    "symbol": "WETH",
+    "class": "eth",
+    "transfers": 1543,
+    "transfers_se": 1546,
+    "amount": 0.0010620395561273142,
+    "price": 2498.8697949575057,
+    "usd": 2.653898567856622,
+    "usd_se": 2.6592433605680292,
+    "top_block_share": 1.0,
+    "units_seen": 1,
+    "gross_amount": 0.0021259907834554285,
+    "gross_usd": 5.312574153134814
+   }
+  ],
+  "unpriced_top": [
+   {
+    "asset": "0x7af74ed55585a25c8746fb49d06269a801d8e84b",
+    "symbol": "VRL",
+    "class": "other",
+    "transfers": 1029,
+    "transfers_se": 1031,
+    "amount": 154373.14285714287,
+    "price": null,
+    "usd": null,
+    "usd_se": null,
+    "top_block_share": 1.0,
+    "units_seen": 1,
+    "gross_amount": 154373.14285714287,
+    "gross_usd": null
+   },
+   {
+    "asset": "0xde6754aee6b63614e9e3dbadae4cf92374ac277e",
+    "symbol": "LAWAS",
+    "class": "other",
+    "transfers": 1029,
+    "transfers_se": 1031,
+    "amount": 2278841.771052024,
+    "price": null,
+    "usd": null,
+    "usd_se": null,
+    "top_block_share": 1.0,
+    "units_seen": 1,
+    "gross_amount": 4557683.542104048,
+    "gross_usd": null
+   }
+  ],
+  "unpriced_assets": 2,
+  "unpriced_transfers": 2058,
+  "priced_usd": 50088399.812105194,
+  "usd_by_class": {
+   "usd_stable": 46557161.177256644,
+   "native": 3531235.980949983,
+   "eth": 2.653898567856622
+  },
+  "gross_priced_usd": 47686527.858918406,
+  "method": "sampled-blocks; value = net per transaction (each account's positive net change), gross beside it",
+  "top_targets_by_value": [
+   {
+    "to": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+    "usd": 44482062.12091695,
+    "share": 0.9387328895479142
+   },
+   {
+    "to": "0x807f4e281b7a3b324825c64ca53c69f0b418de40",
+    "usd": 1013228.1918342402,
+    "share": 0.021382790791182812
+   },
+   {
+    "to": "0x0000000071727de22e5e9d8baf0edac6f37da032",
+    "usd": 835273.0615288488,
+    "share": 0.017627291929026824
+   },
+   {
+    "to": "0xe8d579973db8e95e8ff0f5ce41b373ed10858ac2",
+    "usd": 498006.77071965486,
+    "share": 0.010509749606960226
+   },
+   {
+    "to": "0x00000000005ad9ce1f5035fd62ca96cef16adaaf",
+    "usd": 277464.3922011356,
+    "share": 0.0058555053030050165
+   },
+   {
+    "to": "0xffe691a6ddb5d2645321e0a920c2e7bdd00dd3d8",
+    "usd": 197909.42153125824,
+    "share": 0.004176606800237176
+   },
+   {
+    "to": "0xd5dd79397fdfbe5e1fceedc2463fe4a464873077",
+    "usd": 59445.10322742404,
+    "share": 0.0012545073420935976
+   },
+   {
+    "to": "0xfd03abcadaf3f930fa4e37eb2f6ea3a44a41b7f0",
+    "usd": 16687.78697343762,
+    "share": 0.0003521728476335354
+   },
+   {
+    "to": "0x50c4e75a512f2a14a7b304787adf79c4531a5909",
+    "usd": 4881.784914794804,
+    "share": 0.00010302337258464935
+   },
+   {
+    "to": "0x334987c80502e44f053dde057af1647fcb827808",
+    "usd": 251.3037326556726,
+    "share": 5.303420476972553e-06
+   }
+  ],
+  "top_targets_by_txs": [
+   {
+    "to": "0x334987c80502e44f053dde057af1647fcb827808",
+    "txs": 289028.5714285715,
+    "share": 0.4734625105307498
+   },
+   {
+    "to": "0xdd7f3df04370885c6ba8a6fd0947d617ffc39ca3",
+    "txs": 68914.28571428572,
+    "share": 0.11288963774220724
+   },
+   {
+    "to": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+    "txs": 65314.28571428572,
+    "share": 0.10699241786015164
+   },
+   {
+    "to": "0x8dd3c884848d9e473bcacee8cae4fa6c9615d975",
+    "txs": 56057.14285714286,
+    "share": 0.09182813816343724
+   },
+   {
+    "to": "0xe28b144bed7b862b47b5ff634f88879cc2ac4885",
+    "txs": 28285.71428571429,
+    "share": 0.04633529907329402
+   },
+   {
+    "to": "0x6d91e828fc43161df67d8e68f5e5907905eb9222",
+    "txs": 24171.428571428572,
+    "share": 0.039595619208087615
+   },
+   {
+    "to": "0x0000000071727de22e5e9d8baf0edac6f37da032",
+    "txs": 13371.428571428572,
+    "share": 0.02190395956192081
+   },
+   {
+    "to": "0x0f53bd34212edb71e40a10773e9df4e998ddc822",
+    "txs": 8742.857142857143,
+    "share": 0.014321819713563605
+   },
+   {
+    "to": "0x00000000005ad9ce1f5035fd62ca96cef16adaaf",
+    "txs": 8742.857142857143,
+    "share": 0.014321819713563605
+   },
+   {
+    "to": "0xd5dd79397fdfbe5e1fceedc2463fe4a464873077",
+    "txs": 8228.57142857143,
+    "share": 0.013479359730412805
+   }
+  ],
+  "transfer_logs_per_block": 1.1369047619047619,
+  "logs_missing_blocks": 54
+ },
+ "window": {
+  "start_ts": 1791590400,
+  "end_ts": 1791676800,
+  "start_utc": "2026-10-10T00:00:00+00:00",
+  "end_utc": "2026-10-11T00:00:00+00:00",
+  "hours": 24.0
+ },
+ "blocks": {
+  "first": 34649076,
+  "last": 34735475,
+  "head": 34765890
+ },
+ "endpoint": "https://rpc.plasma.to",
+ "calls": 435,
+ "notes": [
+  "plasma.drpc.org rejected: HTTP 400 {\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"chain is not available on free plan, please upgrade to paid plan\",\"",
+  "rpc.nodeflare.app rejected: HTTP 404 {\"error\":\"unknown_chain\",\"message\":\"Chain 'plasma' is not supported\"}",
+  "lb.routeme.sh rejected: no getLogs: HTTP 429 {\"jsonrpc\":\"2.0\",\"id\":0,\"error\":{\"code\":-32029,\"message\":\"public rate limit exceeded \u2014 sign"
+ ],
+ "errors": [
+  "logs 34656919: {'error': {'code': -32007, 'message': '25/second request limit reached - reduce ",
+  "logs 34657683: {'error': {'code': -32007, 'message': '25/second request limit reached - reduce ",
+  "block 34658410: {'error': {'code': -32007, 'message': '25/second request limit reached - reduce ",
+  "block 34658651: {'error': {'code': -32007, 'message': '25/second request limit reached - reduce ",
+  "block 34659211: {'error': {'code': -32007, 'message': '25/second request limit reached - reduce ",
+  "block 34659487: {'error': {'code': -32007, 'message': '25/second request limit reached - reduce ",
+  "block 34660453: {'error': {'code': -32007, 'message': '25/second request limit reached - reduce ",
+  "block 34661399: {'error': {'code': -32007, 'message': '25/second request limit reached - reduce ",
+  "block 34661730: {'error': {'code': -32007, 'message': '25/second request limit reached - reduce ",
+  "logs 34663098: {'error': {'code': -32007, 'message': '25/second request limit reached - reduce ",
+  "logs 34663380: {'error': {'code': -32007, 'message': '25/second request limit reached - reduce ",
+  "logs 34663779: {'error': {'code': -32007, 'message': '25/second request limit reached - reduce ",
+  "logs 34664751: {'error': {'code': -32007, 'message': '25/second request limit reached - reduce ",
+  "logs 34665415: {'error': {'code': -32007, 'message': '25/second request limit reached - reduce ",
+  "logs 34665525: {'error': {'code': -32007, 'message': '25/second request limit reached - reduce ",
+  "logs 34666031: {'error': {'code': -32007, 'message': '25/second request limit reached - reduce ",
+  "logs 34672186: {'error': {'code': -32007, 'message': '25/second request limit reached - reduce ",
+  "logs 34674952: {'error': {'code': -32007, 'message': '25/second request limit reached - reduce ",
+  "block 34675518: {'error': {'code': -32007, 'message': '25/second request limit reached - reduce ",
+  "block 34675939: {'error': {'code': -32007, 'message': '25/second request limit reached - reduce "
+ ],
+ "error_count": 86,
+ "seconds": 172.0,
+ "chain": "plasma",
+ "name": "Plasma",
+ "family": "evm",
+ "adapter": "evm",
+ "ok": true,
+ "probed_at": "2026-10-11T08:27:17+00:00"
+}

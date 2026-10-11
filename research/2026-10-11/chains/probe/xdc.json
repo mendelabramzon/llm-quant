@@ -1,0 +1,11 @@
+{
+ "chain": "xdc",
+ "name": "XDC Network",
+ "family": "evm",
+ "adapter": "evm",
+ "ok": false,
+ "error": "RpcError: {\"code\": -32603, \"message\": \"failsafe timeout policy exceeded on network-level after 20.934384747s: timeout exceeded\", \"data\": {\"code\": \"ErrFailsafeTimeoutExceeded\", \"message\": \"failsafe timeout policy exceeded on network-level after 20.934384747s\", \"cause\": \"timeout exceeded\"}}",
+ "trace": "Traceback (most recent call last):\n  File \"/Users/iv/dev/llm-quant/scripts/chain_probe.py\", line 83, in probe_one\n    r = fn(cfg, ctx)\n        ^^^^^^^^^^^^\n  File \"/Users/iv/dev/llm-quant/scripts/chain_adapters/evm.py\", line 233, in probe\n    last = head_n if end_ts >= head_ts else block_at(c, end_ts, head_n, head_ts) - 1\n                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/iv/dev/llm-quant/scripts/chain_adapters/evm.py\", line 197, in block_at\n    if hx(header(c, mid)['timestamp']) >= ts:\n          ^^^^^^^^^^^^^^\n  File \"/Users/iv/dev/llm-quant/scripts/chain_adapters/evm.py\", line 175, in header\n    b = c.call('eth_getBlockByNumber', [hex(n) if isinstance(n, int) else n, False])\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/iv/dev/llm-quant/scripts/chain_adapters/__init__.py\", line 239, in call\n    raise RpcError(err)\nchain_adapters.RpcError: {\"code\": -32603, \"message\": \"failsafe timeout policy exceeded on network-level after 20.934384747s: timeout exceeded\", \"data\": {\"code\": \"ErrFailsafeTimeoutExceeded\", \"message\": \"failsafe timeout policy exceeded on network-level after 20.934384747s\", \"cause\": \"timeout exceeded\"}}\n",
+ "seconds": 209.2,
+ "probed_at": "2026-10-11T08:32:25+00:00"
+}

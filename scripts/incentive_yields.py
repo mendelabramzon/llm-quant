@@ -1066,13 +1066,15 @@ class Ctx:
         return bool(t and t >= 1e9)
 
     # -- hacks, joined by protocol id (exact) or by normalised name when the hack has no id
-    def _hacks(self):
+    def _hacks(self, hacks=None):
+        """`hacks`: a fresh api.llama.fi/hacks list (the forward test); default the study's cached file."""
         self.hacks = {}
         self.hack_join = {'matched': [], 'unmatched_large': []}
-        p = RAW / 'hacks.json.gz'
-        if not p.exists():
-            return
-        hacks = read_gz(p)
+        if hacks is None:
+            p = RAW / 'hacks.json.gz'
+            if not p.exists():
+                return
+            hacks = read_gz(p)
         projects = {m['project'] for m in self.meta.values()}
         id2proj = {}
         name2proj = {}
@@ -2798,6 +2800,739 @@ def main_render(args):
 
 # ---------------------------------------------------------------------------------------------- CLI
 
+# ---------------------------------------------------------------------------------------------- forward test
+
+# The watch row "(1) same, pooled money markets only (post hoc)" held forward: the blue-chip rotation k7 h1.0 H4
+# without curated-vault platforms (analysis.json diagnostic_bluechip_pooled_only, 'bluechip k7 h1.0 H4', +1.06% a
+# year out of sample, t 3.24). Each 4-week hold is registered before its decision (Monday 00:00 UTC on the study's
+# 28-day calendar) from live DefiLlama data run through the study's own eligibility code; the picks are frozen in
+# the row; a daily snapshot records what was displayed and what the share prices and exchange rates delivered; each
+# hold is scored at its end against the savings rate paid. Registered rows are never edited.
+MM_FORWARD_LEDGER = ROOT / 'research' / 'mm_rotation_forward.jsonl'
+MM_WATCH_RAW = ROOT / 'research' / '2026-10-11' / 'watch_forward' / 'mm_rotation'
+CURATED_VAULT_PROJECTS = ('euler-v2', 'morpho-aave', 'morpho-aavev3', 'morpho-blue', 'morpho-compound',
+                          'morpho-v0-aavev2', 'morpho-v0-compoundv2', 'morpho-v1')
+MM_PARAMS = {'k': 7, 'h': 1.0, 'H_weeks': 4, 'N': 5, 'buffer': 2, 'capital': 1e6, 'universe': 'bluechip',
+             'exclude_projects': list(CURATED_VAULT_PROJECTS), 'calendar_start': START, 'tvl_min': 1e6,
+             'fresh_days': FRESH_DAYS, 'apy_cap_pct': APY_CAP, 'entry_min_px': ENTRY_MIN_PX, 'depeg_band': DEPEG_BAND,
+             'claim_every_days': CLAIM_EVERY, 'sale_lag_days': SALE_LAG, 'reward_sale_cost': REWARD_SALE_COST,
+             'impute_ratio': 1.0075039721511876, 'hack_window_days': 30, 'bluechip_tvl_min': 1e9,
+             'bluechip_history_days': 365, 'register_within_hours': 30, 'exit_mark_days_after_end': 3}
+MM_FORWARD_RULE = {
+    'id': 'mm-pooled-rotation',
+    'study': 'research/2026-10-10/incentive_yields (findings: "(1) same, pooled money markets only (post hoc)"; '
+             "analysis.json diagnostic_bluechip_pooled_only 'bluechip k7 h1.0 H4': +1.06% a year out of sample, t 3.24)",
+    'universe': 'blue-chip lending: DefiLlama category Lending, protocol TVL >= $1B the day before the decision and at '
+                'least 365 days of TVL history (is_bluechip), minus the curated-vault platforms ' +
+                ', '.join(CURATED_VAULT_PROJECTS),
+    'filters': 'single-exposure dollar pools (stablecoin flag + dollar-symbol test, non-dollar tokens excluded); pool TVL '
+               '>= $1M on its last record before the decision; first record >= 7 days before; a record within 3 days; '
+               'no matched hack at the venue in the last 30 days; a plain deposit token priced >= $0.985 the day before',
+    'score': 'trailing 7-day mean of apyBase + 1.0 x apyReward over records on days D-7..D-1 (>= 4 records, the latest '
+             'within 3 days of D); ties by TVL, then id',
+    'picks': 'top 5, equal $200k slices of $1M; at each later decision a held pool stays while still eligible and ranked '
+             'in the top 10 (buffer 2N); free slices take the best-ranked pools not held (simulate)',
+    'hold': '4 weeks: decisions every 28 days from 2022-10-17 (2026-10-12 is decision 52), Mondays 00:00 UTC',
+    'money': 'base and rewards accrue daily from DefiLlama records diluted by T/(T+X); rewards at the reward token price '
+             'on the sale day (weekly claim + 1 day) less 1%, unpriced rewards at the in-sample ratio 1.0075; two claim '
+             'transactions a week; switches pay gas, a bridge ($10 + 5bp) and a stable swap (2-50bp)',
+    'audit': "the study's share-price audit at each hold's end: a vault share whose price accrues must deliver the "
+             'apyBase it claimed (shortfall booked), a rebasing receipt books a price fall beyond 1%, without a share '
+             'price the deposit token\'s depeg beyond 1%; recorded daily: DefiLlama share/deposit/reward prices and, on '
+             'Ethereum, the venue\'s own exchange rate (Aave/Spark liquidity index, ERC-4626 convertToAssets)',
+    'benchmark': 'the Sky savings rate paid over each hold: sUSDS NAV growth between the reads nearest its start and end '
+                 '(the SSR read x days when a read is missing)',
+    'kill': ['trailing 13-week excess below 0 (the last three holds)', "the picks' displayed reward APR below 1pp over a "
+             'hold (four weeks)', 'a share shortfall above 1% or a matched hack at a held venue: exit; two in 13 weeks: '
+             'retire', 'capacity of the picks below $2M (deposit at which marginal yield falls to SSR + 1pp)'],
+    'promote': 'after 6 holds: annualised excess above 0 with t (across holds) above 2 and no kill',
+    'min_holds': 6,
+}
+MM_KILL = {'trailing_holds': 3, 'reward_apr_min_pct': 1.0, 'shortfall_exit': -0.01, 'retire_events': 2,
+           'retire_window_days': 91, 'capacity_min_usd': 2e6}
+
+
+class LiveCtx(Ctx):
+    """The study's eligibility code (Ctx.eligible, is_bluechip, recent_hack, dep_price) on live inputs: today's dollar
+    pools and their charts, the protocol list and TVL histories, a fresh hack list and current deposit-token prices.
+    Deposit tokens are classified on their current price (the study used each token's first 90 days of prices)."""
+
+    def __init__(self, rows, charts, protocols, proto_detail, hacks, dep_prices, D, log=None):  # noqa: D107
+        self.log = log or (lambda *a: None)
+        self.universe, self.meta, self.pools, self.synthetic = {}, {}, {}, set()
+        bad = 0
+        for r in rows:
+            pid = r.get('pool')
+            ch = charts.get(pid)
+            if not pid or not ch:
+                continue
+            u = {'chain': r.get('chain'), 'project': r.get('project'), 'symbol': r.get('symbol'),
+                 'poolMeta': r.get('poolMeta'), 'underlying': [str(t) for t in (r.get('underlyingTokens') or []) if t],
+                 'reward_tokens': {str(t): [D - 1] for t in (r.get('rewardTokens') or []) if t}}
+            P = Pool(pid, u, ch)
+            bad += P.bad
+            if P.first is None:
+                continue
+            self.universe[pid], self.pools[pid] = u, P
+            self.meta[pid] = {k: u[k] for k in ('chain', 'project', 'symbol', 'poolMeta')}
+        self.bad_records = bad
+        self.savings, self.savings_source = {}, 'live'
+        self.proto = {x['slug']: dict(x) for x in protocols if x.get('slug')}
+        self.proto_by_id = {str(x.get('id')): x for x in self.proto.values()}
+        self.proto_tvl, self.proto_chain_tvl = {}, {}
+        for slug, r in proto_detail.items():
+            if not r or r.get('_failed'):
+                continue
+            self.proto_tvl[slug] = series_lookup(r.get('tvl'))
+            self.proto_chain_tvl[slug] = {norm_chain(c): series_lookup(v) for c, v in (r.get('chainTvls') or {}).items()}
+            if slug in self.proto:
+                self.proto[slug]['_category_hist'] = r.get('category')
+        self._hacks(hacks if isinstance(hacks, list) else [])
+        self.dep_px, self.dep_plain, self.not_dollar = {}, {}, set()
+        for pid, u in self.universe.items():
+            px = dep_prices.get(coin_key(u['chain'], u['underlying'][0])) if len(u['underlying']) == 1 else None
+            if px is None:
+                continue
+            self.dep_px[pid] = ([D - 1], [px])
+            self.dep_plain[pid] = 0.9 <= px <= 1.1
+            if not 0.85 <= px <= 1.7:
+                self.not_dollar.add(pid)
+        self.share_px, self.share_accruing, self.reward_px = {}, {}, {}
+        self.impute_ratio = MM_PARAMS['impute_ratio']
+        self._elig_cache = {}
+
+
+def mm_decision_after(now_ms, start=START, H=4):
+    """The first decision day (integer day) of the study's H-week calendar whose 00:00 UTC is strictly after now."""
+    s = day_of(start)
+    k = int(math.floor((now_ms / 1000.0 / DAY_S - s) / (7.0 * H))) + 1
+    return s + 7 * H * k
+
+
+def assign_slices(prev, ranked, elig, N=5, buffer=2):
+    """simulate's decision block on one decision: held pools still eligible and ranked within the top buffer x N stay;
+    free slices take the best-ranked pools not held, a slice already in a target keeping it. prev: N pool ids (None =
+    cash). Returns the new N pool ids in slice order."""
+    rank_of = {pid: i for i, pid in enumerate(ranked)}
+    held, free = set(), []
+    out = list(prev)
+    for i, pid in enumerate(prev):
+        if pid is not None and pid in elig and rank_of.get(pid, 10 ** 9) < buffer * N and pid not in held:
+            held.add(pid)
+        else:
+            free.append(i)
+    targets = [pid for pid in ranked if pid not in held][:len(free)]
+    stay = [i for i in free if prev[i] in targets]
+    for i in stay:
+        targets.remove(prev[i])
+        held.add(prev[i])
+    for i in free:
+        if i in stay:
+            continue
+        out[i] = targets.pop(0) if targets else None
+    return out
+
+
+def compact_protocol(slug, r):
+    return {'id': r.get('id'), 'name': r.get('name'), 'slug': slug, 'parentProtocol': r.get('parentProtocol'),
+            'category': r.get('category'), 'deadFrom': r.get('deadFrom'),
+            'tvl': [[x.get('date'), x.get('totalLiquidityUSD')] for x in (r.get('tvl') or [])],
+            'chainTvls': {c: [[x.get('date'), x.get('totalLiquidityUSD')] for x in (v.get('tvl') or [])]
+                          for c, v in (r.get('chainTvls') or {}).items()
+                          if '-' not in c and c not in ('borrowed', 'staking', 'pool2', 'vesting')}}
+
+
+def coins_current(net, keys, batch=40):
+    """{coin key: price} from coins.llama.fi/prices/current (batched), plus the raw replies."""
+    out, raw = {}, []
+    keys = sorted({k for k in keys if k})
+    for i in range(0, len(keys), batch):
+        r = net.get('%s/prices/current/%s' % (COINS, ','.join(keys[i:i + batch])))
+        raw.append(r)
+        for k, v in ((r or {}).get('coins') or {}).items():
+            if fnum(v.get('price')) is not None:
+                out[k] = fnum(v['price'])
+    return out, raw
+
+
+def coin_chart_growth(net, key, days=90):
+    """Annualised log growth of a share token's DefiLlama price over the last `days` (the study's accruing test:
+    above 1% a year marks a vault share whose price must deliver its yield)."""
+    r = net.get('%s/chart/%s?start=%d&span=%d&period=1d' % (COINS, key, int(time.time()) - days * DAY_S, days + 1))
+    pts = (((r or {}).get('coins') or {}).get(key) or {}).get('prices') or []
+    pts = [(int(p['timestamp']), fnum(p.get('price'))) for p in pts if fnum(p.get('price'))]
+    if len(pts) < 20:
+        return None, len(pts)
+    (t0, a), (t1, b) = pts[0], pts[-1]
+    return math.log(b / a) * 365.0 * DAY_S / max(1, t1 - t0) * 100.0, len(pts)
+
+
+SEL_DECIMALS = '0x313ce567'
+SEL_CONVERT_TO_ASSETS = '0x07a2d13a'
+SUSDS_ETH = '0xa3931d71877c0e7a3148cb7eb4463524fec27fbd'
+SEL_SSR = '0x03607ceb'
+
+
+def onchain_rate(pid, meta, pool_str, underlying):
+    """The venue's own exchange rate on Ethereum (public RPC via drpc): Aave v3 core / Spark liquidityIndex (ray) of
+    the underlying reserve; otherwise ERC-4626 convertToAssets(one share) of the address in the pool id. None
+    elsewhere."""
+    if meta.get('chain') != 'Ethereum':
+        return None
+    import drpc
+    try:
+        if meta.get('project') in ('aave-v3', 'sparklend') and not meta.get('poolMeta') and underlying:
+            pool = AAVE_V3_POOL if meta['project'] == 'aave-v3' else SPARK_POOL
+            res = drpc.rpc('eth_call', [{'to': pool, 'data': SEL_GET_RESERVE_DATA + underlying[2:].lower().rjust(64, '0')},
+                                        'latest'])
+            return {'kind': 'aave_liquidity_index', 'value': int(res[2 + 64: 2 + 128], 16) / 1e27, 'contract': pool}
+        m = _ADDR.search(pool_str or '')
+        if m and (not underlying or m.group(0).lower() != underlying.lower()):
+            addr = m.group(0)
+            dec = int(drpc.rpc('eth_call', [{'to': addr, 'data': SEL_DECIMALS}, 'latest']), 16)
+            if not 0 < dec <= 36:
+                return None
+            v = int(drpc.rpc('eth_call', [{'to': addr, 'data': SEL_CONVERT_TO_ASSETS + hex(10 ** dec)[2:].rjust(64, '0')},
+                                          'latest']), 16)
+            return {'kind': 'erc4626_assets_per_share', 'value': v / 10 ** dec, 'contract': addr, 'decimals': dec}
+    except Exception as e:  # noqa: BLE001 - a missing method or a reverting call is a gap, recorded
+        return {'error': repr(e)[:160]}
+    return None
+
+
+def savings_read():
+    """sUSDS.ssr() as an APY and the sUSDS NAV (assets per share) on Ethereum, through drpc's public endpoints."""
+    import drpc
+    try:
+        ray = int(drpc.rpc('eth_call', [{'to': SUSDS_ETH, 'data': SEL_SSR}, 'latest']), 16)
+        nav = int(drpc.rpc('eth_call', [{'to': SUSDS_ETH, 'data': SEL_CONVERT_TO_ASSETS + hex(10 ** 18)[2:].rjust(64, '0')},
+                                        'latest']), 16) / 1e18
+        return {'apy': (ray / 1e27) ** 31536000 - 1.0, 'ray': str(ray), 'susds_nav': nav, 'at': now_iso()}
+    except Exception as e:  # noqa: BLE001
+        return {'error': repr(e)[:160], 'at': now_iso()}
+
+
+def pool_strings(pids):
+    """DefiLlama config id -> pool id string (with the share token's address where it has one), from the study's
+    /distinctID cache."""
+    p = RAW / 'distinctID.json.gz'
+    if not p.exists():
+        return {}
+    want = set(pids)
+    return {x['config_id']: x['pool'] for x in read_gz(p) if x.get('config_id') in want}
+
+
+def mm_marks(net, infos):
+    """Prices and rates the audit needs for each pool: DefiLlama share-token, deposit-token and reward-token prices,
+    the venue's on-chain exchange rate (Ethereum), and the savings rate."""
+    keys = set()
+    for pid, x in infos.items():
+        keys |= {x.get('share_key'), x.get('deposit_key')} | set(x.get('reward_keys') or [])
+    prices, raw = coins_current(net, keys)
+    out = {'at': now_iso(), 'pools': {}, 'savings': savings_read()}
+    for pid, x in infos.items():
+        out['pools'][pid] = {'share_px': prices.get(x.get('share_key')), 'deposit_px': prices.get(x.get('deposit_key')),
+                             'reward_px': {k: prices.get(k) for k in x.get('reward_keys') or []},
+                             'onchain': onchain_rate(pid, x, x.get('pool_str'), (x.get('underlying') or [None])[0])}
+    return out, raw
+
+
+def pool_info(pid, u, pool_str, proto=None):
+    """What the forward test keeps per pool to mark it later (proto: the DefiLlama protocol record, for hacks)."""
+    chain = u.get('chain')
+    und = list(u.get('underlying') or [])
+    return {'pool': pid, 'project': u.get('project'), 'chain': chain, 'symbol': u.get('symbol'),
+            'poolMeta': u.get('poolMeta'), 'underlying': und, 'pool_str': pool_str,
+            'protocol_id': str((proto or {}).get('id')) if proto else None, 'protocol_name': (proto or {}).get('name'),
+            'share_key': share_key(pool_str, chain), 'deposit_key': coin_key(chain, und[0]) if len(und) == 1 else None,
+            'reward_keys': sorted(coin_key(chain, t) for t in (u.get('reward_tokens') or {}))}
+
+
+def mm_live_inputs(net, D, raw_dir, log=print):
+    """Live inputs for one decision, each reply saved (compactly) under raw_dir: /pools (dollar single-exposure rows),
+    /protocols, the TVL history of every Lending protocol that could be blue-chip, the chart of every candidate pool,
+    /hacks, and the candidates' deposit-token prices."""
+    pools = net.get(YIELDS + '/pools', timeout=180)
+    allrows = (pools or {}).get('data') or []
+    rows = [r for r in allrows if is_usd_stable_row(r)]
+    write_gz(raw_dir / 'pools_usd_stable.json.gz', {'fetched': now_iso(), 'n_all': len(allrows), 'rows': rows})
+    protos = net.get(LLAMA + '/protocols', timeout=180)
+    protos = [{k: x.get(k) for k in ('id', 'name', 'slug', 'parentProtocol', 'category', 'chains', 'tvl', 'listedAt',
+                                     'deadFrom', 'deprecated', 'rugged', 'misrepresentedTokens')}
+              for x in (protos if isinstance(protos, list) else [])]
+    write_gz(raw_dir / 'protocols.json.gz', protos)
+    by_slug = {x['slug']: x for x in protos if x.get('slug')}
+
+    def could_be_bluechip(project):
+        x = by_slug.get(proto_slug(project)) or {}
+        return project not in CURATED_VAULT_PROJECTS and x.get('category') == 'Lending' and (fnum(x.get('tvl'), 0) or 0) >= 5e8
+    projects = sorted({r['project'] for r in rows if could_be_bluechip(r.get('project'))})
+    detail = {}
+    for pr in projects:
+        slug = proto_slug(pr)
+        r = net.get('%s/protocol/%s' % (LLAMA, slug), timeout=120)
+        detail[slug] = compact_protocol(slug, r) if isinstance(r, dict) and 'tvl' in r else {'_failed': str(r)[:200]}
+    write_gz(raw_dir / 'protocol_detail.json.gz', detail)
+    cand = [r for r in rows if r.get('project') in projects and DOLLAR.search(str(r.get('symbol') or ''))
+            and (fnum(r.get('tvlUsd'), 0.0) or 0.0) >= 0.5 * MM_PARAMS['tvl_min']]
+    charts, failed = {}, []
+    for i, r in enumerate(cand):
+        c = net.get('%s/chart/%s' % (YIELDS, r['pool']))
+        data = c.get('data') if isinstance(c, dict) else None
+        if not data:
+            failed.append(r['pool'])
+            continue
+        charts[r['pool']] = data
+        if (i + 1) % 25 == 0:
+            log('charts %d / %d' % (i + 1, len(cand)))
+    keep_from = D - 120
+    write_gz(raw_dir / 'charts.json.gz', {'kept_from': ymd(keep_from), 'failed': failed,
+                                          'first_record': {p: v[0].get('timestamp') for p, v in charts.items() if v},
+                                          'charts': {p: [x for x in v if day_of(x['timestamp']) >= keep_from]
+                                                     for p, v in charts.items()}})
+    hacks = net.get(LLAMA + '/hacks', timeout=180)
+    write_gz(raw_dir / 'hacks.json.gz', hacks)
+    keys = {coin_key(r.get('chain'), (r.get('underlyingTokens') or [None])[0]) for r in cand
+            if len(r.get('underlyingTokens') or []) == 1}
+    prices, raw = coins_current(net, keys)
+    write_gz(raw_dir / 'deposit_prices.json.gz', raw)
+    return {'rows': cand, 'charts': charts, 'protocols': protos, 'detail': detail,
+            'hacks': hacks if isinstance(hacks, list) else [], 'prices': prices, 'failed_charts': failed,
+            'n_usd_stable': len(rows)}
+
+
+def mm_rank(inputs, D, params=MM_PARAMS):
+    """The frozen selection on live inputs: (ctx, ranked ids, eligible set)."""
+    ctx = LiveCtx(inputs['rows'], inputs['charts'], inputs['protocols'], inputs['detail'], inputs['hacks'],
+                  inputs['prices'], D)
+    sel = filtered_selector(ctx, score_selector(ctx, params['k'], params['h'], params['universe']),
+                            set(params['exclude_projects']))
+    ranked, elig = sel(D)
+    return ctx, ranked, elig
+
+
+def mm_hold_row(ctx, ranked, elig, D, prev_slices, prev_infos, now_ms, params, marks=None, infos=None, raw_rel=None,
+                records_through=None, ssr=None, prev_entered=None):
+    """The registration row of one hold from a ranking (no network): the top 10 with their scores, the slices after
+    the buffer rule, switch costs, capacity, and the entry marks."""
+    N, X = params['N'], params['capital'] / params['N']
+    slices = assign_slices(prev_slices, ranked, elig, N, params['buffer'])
+    top = []
+    for i, pid in enumerate(ranked[:2 * N]):
+        P = ctx.pools[pid]
+        b, r = P.trailing(D, params['k'])
+        T = P.tvl_before(D)
+        m = ctx.meta[pid]
+        top.append({'rank': i + 1, 'pool': pid, 'project': m['project'], 'chain': m['chain'], 'symbol': m['symbol'],
+                    'poolMeta': m.get('poolMeta'), 'score_pct': b + params['h'] * r, 'trailing_base_pct': b,
+                    'trailing_reward_pct': r, 'tvl_usd': T, 'first_record': ymd(P.first), 'last_record': ymd(P.last)})
+    by = {t['pool']: t for t in top}
+    m_ssr = ssr if ssr is not None else SSR_NOW
+    sl = []
+    for i, pid in enumerate(slices):
+        old = prev_slices[i]
+        t = by.get(pid)
+        if pid is None:
+            sl.append({'slice': i, 'pool': None, 'from': old})
+            continue
+        m = ctx.meta[pid]
+        om = (prev_infos or {}).get(old) or {}
+        cost = 0.0 if old == pid else switch_cost(X, om.get('chain'), m['chain'], om.get('symbol'), m['symbol'], D)
+        y = (t['score_pct'] / 100.0) if t else None
+        entered = ((prev_entered or [None] * N)[i] or ymd(D)) if old == pid else ymd(D)
+        sl.append({'slice': i, 'pool': pid, 'from': old, 'entered': entered, 'project': m['project'], 'chain': m['chain'],
+                   'symbol': m['symbol'], 'switch_cost_usd': cost, 'score_pct': t and t['score_pct'],
+                   'tvl_usd': t and t['tvl_usd'],
+                   'capacity_usd': capacity_deposit(y, t['tvl_usd'], m_ssr + 0.01) if t else None})
+    cap = sum(x.get('capacity_usd') or 0.0 for x in sl)
+    ptvl = {x['project']: ctx.proto_tvl_at(x['project'], D - 1) for x in sl if x.get('project')}
+    return {'kind': 'hold', 'rule': MM_FORWARD_RULE['id'], 'rule_frozen': MM_FORWARD_RULE, 'params': params,
+            'registered_at': dt.datetime.fromtimestamp(now_ms / 1000.0, UTC).isoformat(timespec='seconds'),
+            'decision_day': ymd(D), 'entry_utc': '%sT00:00:00+00:00' % ymd(D), 'hold_end': ymd(D + 7 * params['H_weeks']),
+            'records_through': records_through, 'eligible': len(elig), 'top10': top, 'slices': sl,
+            'capacity_usd': cap, 'protocol_tvl_at_decision': ptvl, 'savings_at_registration': ssr,
+            'infos': infos or {}, 'entry_marks': marks,
+            'raw': raw_rel}
+
+
+def mm_forward_register(ledger_path, now_ms, net=None, inputs_fn=None, log=print, ignore_window=False,
+                        decision=None):
+    """Register the next hold when its decision is within `register_within_hours` (never twice, never after its
+    decision: `decision` names one explicitly and is refused once its 00:00 UTC has passed). inputs_fn(D, raw_dir)
+    -> live inputs (default: mm_live_inputs over the network)."""
+    ledger = read_ledger_rows(ledger_path)
+    holds = [r for r in ledger if r.get('kind') == 'hold']
+    D = day_of(decision) if decision else mm_decision_after(now_ms, MM_PARAMS['calendar_start'], MM_PARAMS['H_weeks'])
+    if (D - day_of(MM_PARAMS['calendar_start'])) % (7 * MM_PARAMS['H_weeks']):
+        log('%s is not a decision day of the frozen calendar' % ymd(D))
+        return None
+    if holds and D <= day_of(holds[-1]['decision_day']):
+        log('hold for %s already registered' % holds[-1]['decision_day'])
+        return None
+    if holds and day_of(holds[-1]['decision_day']) + 7 * MM_PARAMS['H_weeks'] != D:
+        log('note: the decision after %s was missed; registering %s' % (holds[-1]['decision_day'], ymd(D)))
+    if D * DAY_S * 1000 <= now_ms:
+        log('too late: decision %s has passed' % ymd(D))
+        return None
+    if not ignore_window and D * DAY_S * 1000 - now_ms > MM_PARAMS['register_within_hours'] * 3600 * 1000:
+        log('next decision %s is more than %d h away: not registering yet' % (ymd(D), MM_PARAMS['register_within_hours']))
+        return None
+    stamp = dt.datetime.fromtimestamp(now_ms / 1000.0, UTC).strftime('%Y%m%dT%H%MZ')
+    raw_dir = MM_WATCH_RAW / ('register_%s' % stamp)
+    net = net or Net()
+    inputs = (inputs_fn or (lambda D_, d_: mm_live_inputs(net, D_, d_, log)))(D, raw_dir)
+    ctx, ranked, elig = mm_rank(inputs, D)
+    prev = [x['pool'] for x in holds[-1]['slices']] if holds else [None] * MM_PARAMS['N']
+    prev_infos = holds[-1].get('infos') if holds else {}
+    slices = assign_slices(prev, ranked, elig, MM_PARAMS['N'], MM_PARAMS['buffer'])
+    wanted = [p for p in dict.fromkeys(slices + ranked[:2 * MM_PARAMS['N']]) if p]
+    ps = pool_strings(wanted) if inputs_fn is None else inputs.get('pool_strings', {})
+    infos = {p: pool_info(p, ctx.universe[p], ps.get(p), ctx.proto.get(proto_slug(ctx.meta[p]['project'])))
+             for p in wanted}
+    marks, mraw = (mm_marks(net, {p: infos[p] for p in slices if p}) if inputs_fn is None
+                   else (inputs.get('marks'), None))
+    if inputs_fn is None:
+        for p in slices:
+            if p and infos[p].get('share_key'):
+                g, n = coin_chart_growth(net, infos[p]['share_key'])
+                infos[p]['share_growth_90d_pct'] = g
+                infos[p]['share_accruing'] = (g > 1.0) if g is not None else None
+        write_gz(raw_dir / 'entry_marks.json.gz', {'marks': marks, 'raw': mraw})
+    rt = max((ymd(ctx.pools[p].last) for p in ranked[:2 * MM_PARAMS['N']]), default=None)
+    ssr = ((marks or {}).get('savings') or {}).get('apy')
+    prev_entered = [x.get('entered') for x in holds[-1]['slices']] if holds else None
+    row = mm_hold_row(ctx, ranked, elig, D, prev, prev_infos, now_ms, MM_PARAMS, marks, infos,
+                      str(raw_dir.relative_to(ROOT)) if str(raw_dir).startswith(str(ROOT)) else str(raw_dir), rt, ssr,
+                      prev_entered)
+    row['inputs'] = {'usd_stable_pools': inputs.get('n_usd_stable'), 'candidates': len(inputs['rows']),
+                     'charts': len(inputs['charts']), 'failed_charts': inputs.get('failed_charts')}
+    append_ledger_rows(ledger_path, [row])
+    log('registered hold %s -> %s: %d eligible, capacity %s' % (row['decision_day'], row['hold_end'], row['eligible'],
+                                                                usd(row['capacity_usd'])))
+    for x in row['slices']:
+        log('  slice %d %-14s %-10s %-10s score %s  tvl %s  from %s' % (
+            x['slice'], x.get('project') or 'cash', x.get('chain') or '', x.get('symbol') or '',
+            num(x.get('score_pct')), usd(x.get('tvl_usd')), 'cash' if x['from'] is None else
+            ('same' if x['from'] == x['pool'] else x['from'][:8])))
+    return row
+
+
+def read_ledger_rows(path):
+    p = Path(path)
+    if not p.exists():
+        return []
+    return [json.loads(x) for x in p.read_text().splitlines() if x.strip()]
+
+
+def append_ledger_rows(path, rows):
+    if not rows:
+        return
+    p = Path(path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    with p.open('a') as f:
+        for r in rows:
+            f.write(json.dumps(r, sort_keys=True, default=str) + '\n')
+
+
+def mm_forward_snapshot(ledger_path, now_ms, net=None, log=print):
+    """Daily: register the next hold when due, then record every active hold's pools: the latest DefiLlama records
+    (displayed apyBase / apyReward / TVL), share / deposit / reward prices, on-chain exchange rates, the savings rate."""
+    net = net or Net()
+    mm_forward_register(ledger_path, now_ms, net, log=log)
+    ledger = read_ledger_rows(ledger_path)
+    holds = [r for r in ledger if r.get('kind') == 'hold']
+    today = now_ms // 1000 // DAY_S
+    active = [h for h in holds if day_of(h['decision_day']) - 1 <= today <=
+              day_of(h['hold_end']) + MM_PARAMS['exit_mark_days_after_end']]
+    infos = {}
+    for h in active:
+        for x in h['slices']:
+            if x.get('pool'):
+                infos[x['pool']] = h['infos'][x['pool']]
+    if not infos:
+        log('no active hold to snapshot')
+        return None
+    stamp = dt.datetime.fromtimestamp(now_ms / 1000.0, UTC).strftime('%Y%m%dT%H%MZ')
+    fp = MM_WATCH_RAW / ('snap_%s.json.gz' % stamp)
+    charts = {}
+    for pid in infos:
+        c = net.get('%s/chart/%s' % (YIELDS, pid))
+        data = c.get('data') if isinstance(c, dict) else None
+        charts[pid] = [x for x in (data or []) if day_of(x['timestamp']) >= today - 60]
+    marks, mraw = mm_marks(net, infos)
+    hk = net.get(LLAMA + '/hacks', timeout=180)
+    since = min(day_of(h['decision_day']) for h in active) - 1
+    hits = venue_hacks(hk if isinstance(hk, list) else [], infos, since)
+    write_gz(fp, {'at': now_iso(), 'charts': charts, 'marks': marks, 'raw_prices': mraw, 'hacks': hits})
+    row = {'kind': 'snapshot', 'rule': MM_FORWARD_RULE['id'], 'at': now_iso(), 'raw': str(fp.relative_to(ROOT)),
+           'holds': [h['decision_day'] for h in active], 'savings': marks.get('savings'), 'pools': {},
+           'hacks': hits, 'hacks_list_ok': isinstance(hk, list)}
+    for pid, x in infos.items():
+        last = charts[pid][-1] if charts[pid] else {}
+        mk = marks['pools'].get(pid) or {}
+        row['pools'][pid] = {'project': x['project'], 'chain': x['chain'], 'symbol': x['symbol'],
+                             'last_record': last.get('timestamp'), 'apyBase': fnum(last.get('apyBase')),
+                             'apyReward': fnum(last.get('apyReward')), 'tvlUsd': fnum(last.get('tvlUsd')),
+                             'share_px': mk.get('share_px'), 'deposit_px': mk.get('deposit_px'),
+                             'reward_px': mk.get('reward_px'), 'onchain': mk.get('onchain')}
+    append_ledger_rows(ledger_path, [row])
+    for pid, p in row['pools'].items():
+        log('%-12s %-9s %-9s base %s reward %s tvl %s share %s onchain %s' % (
+            p['project'], p['chain'], p['symbol'], num(p['apyBase']), num(p['apyReward']), usd(p['tvlUsd']),
+            p['share_px'], (p['onchain'] or {}).get('value')))
+    return row
+
+
+def venue_hacks(hacks, infos, since_day):
+    """Hacks on or after since_day at a held pool's protocol (DefiLlama id, else normalised name) and chain."""
+    out = []
+    for h in hacks:
+        d = int(h.get('date') or 0) // DAY_S
+        if d < since_day:
+            continue
+        chains = [norm_chain(c) for c in (h.get('chain') or [])]
+        for pid, x in infos.items():
+            same = (h.get('defillamaId') and str(h['defillamaId']) == str(x.get('protocol_id'))) or \
+                (not h.get('defillamaId') and x.get('protocol_name') and norm_name(h.get('name')) == norm_name(x['protocol_name']))
+            if same and (not chains or norm_chain(x.get('chain')) in chains):
+                out.append({'pool': pid, 'day': ymd(d), 'name': h.get('name'), 'amount': fnum(h.get('amount')),
+                            'returned': fnum(h.get('returnedFunds')), 'chains': h.get('chain')})
+    return out
+
+
+def merged_charts(ledger):
+    """pool -> chart rows merged over every registration and snapshot raw file (later reads win by day)."""
+    by = {}
+    for r in ledger:
+        if not r.get('raw'):
+            continue
+        p = ROOT / r['raw']
+        files = [p / 'charts.json.gz'] if r.get('kind') == 'hold' else [p]
+        for f in files:
+            if not f.exists():
+                continue
+            d = read_gz(f)
+            ch = d.get('charts') or {}
+            for pid, rows in ch.items():
+                m = by.setdefault(pid, {})
+                for x in rows:
+                    m[day_of(x['timestamp'])] = x
+    return {pid: [m[d] for d in sorted(m)] for pid, m in by.items()}
+
+
+def mark_series(ledger):
+    """Daily marks from the registrations' entry marks and every snapshot: {pool: {day: {...}}}, savings reads
+    [(ms, apy, nav)]."""
+    marks, sav = {}, []
+    for r in ledger:
+        if r.get('kind') == 'hold' and r.get('entry_marks'):
+            src, at = r['entry_marks'], r['registered_at']
+        elif r.get('kind') == 'snapshot':
+            src, at = {'pools': r.get('pools'), 'savings': r.get('savings')}, r['at']
+        else:
+            continue
+        t = dt.datetime.fromisoformat(at)
+        d = day_of(at)
+        for pid, x in (src.get('pools') or {}).items():
+            marks.setdefault(pid, {})[d] = dict(x, at=at)
+        s = src.get('savings') or {}
+        if s.get('apy') is not None:
+            sav.append((int(t.timestamp() * 1000), s['apy'], s.get('susds_nav')))
+    return marks, sorted(sav)
+
+
+def hold_savings(sav, D, E):
+    """Savings rate paid over days [D, E): sUSDS NAV growth between the reads nearest D and E 00:00 UTC (within 36 h),
+    scaled to the hold's length; else the mean SSR read x days / 365."""
+    a, b = D * DAY_S * 1000, E * DAY_S * 1000
+    near = lambda t: min(sav, key=lambda x: abs(x[0] - t)) if sav else None
+    x0, x1 = near(a), near(b)
+    if x0 and x1 and x0[2] and x1[2] and abs(x0[0] - a) <= 36 * 3600e3 and abs(x1[0] - b) <= 36 * 3600e3 \
+            and x1[0] > x0[0]:
+        return (x1[2] / x0[2] - 1.0) * (b - a) / (x1[0] - x0[0]), 'sUSDS NAV'
+    ys = [x[1] for x in sav if a - 36 * 3600e3 <= x[0] <= b + 36 * 3600e3]
+    if ys:
+        return sum(ys) / len(ys) * (E - D) / 365.0, 'SSR reads'
+    return SSR_NOW * (E - D) / 365.0, 'SSR_NOW (no read)'
+
+
+def score_hold(hold, charts, marks, sav, params, prev_hold=None, hacks=None):
+    """One hold's money, the study's way: per slice, base and rewards accrued daily from the merged records with
+    dilution, rewards at sale-day prices less 1% (weekly claims), claim gas, the switch cost at entry, and the audit
+    mark at exit; savings over the hold; excess."""
+    D, E = day_of(hold['decision_day']), day_of(hold['hold_end'])
+    X = params['capital'] / params['N']
+    out = {'decision_day': hold['decision_day'], 'hold_end': hold['hold_end'], 'slices': [], 'events': []}
+    tot = 0.0
+    rew_apr = []
+    for sl in hold['slices']:
+        pid = sl.get('pool')
+        if pid is None:
+            s, _ = hold_savings(sav, D, E)
+            tot += X * s
+            out['slices'].append({'slice': sl['slice'], 'pool': None, 'pnl_usd': X * s})
+            continue
+        info = hold['infos'][pid]
+        P = Pool(pid, info, charts.get(pid) or [])
+        mk = marks.get(pid) or {}
+        days_mk = sorted(mk)
+        rprices = {}
+        for k in info.get('reward_keys') or []:
+            pts = [(d, (mk[d].get('reward_px') or {}).get(k)) for d in days_mk]
+            pts = [(d, v) for d, v in pts if v]
+            if pts:
+                rprices[k] = ([d for d, _ in pts], [v for _, v in pts])
+        base = rew = gas = 0.0
+        base_acc = 0.0
+        days_valid, imputed = 0, 0
+        for d in range(D, E):
+            r = P.at(d) if P.first is not None else None
+            if r is None:
+                continue
+            tvl, b, rw = r
+            f = dilution(tvl, X)
+            base += X * b / 100.0 / 365.0 * f
+            base_acc += b / 36500.0
+            days_valid += 1
+            rew_apr.append(rw)
+            if rw > 0:
+                ratio, n = sale_ratio(list(rprices.values()), d, claim_sale_day(d, day_of(sl.get('entered') or
+                                                                                         hold['decision_day']), 10 ** 9))
+                if ratio is None:
+                    ratio, imputed = params['impute_ratio'], imputed + 1
+                rew += X * rw / 100.0 / 365.0 * f * ratio * (1.0 - params['reward_sale_cost'])
+                gas += 2.0 * gas_per_tx(info['chain'], d) / 7.0
+        # audit marks: entry = the registration's marks (before D), exit = the first snapshot on or after E
+        e0 = (hold.get('entry_marks') or {}).get('pools', {}).get(pid) or {}
+        ex_days = [d for d in days_mk if d >= E]
+        e1 = mk[ex_days[0]] if ex_days else None
+        loss, kind = 0.0, None
+        realised = None
+        if e1 is None:
+            kind = 'exit mark pending'
+        elif e0.get('share_px') and e1.get('share_px'):
+            ret = e1['share_px'] / e0['share_px'] - 1.0
+            if info.get('share_accruing'):
+                loss, kind = min(0.0, ret - base_acc), 'share (accruing)'
+            else:
+                loss, kind = (ret if ret < -params['depeg_band'] else 0.0), 'share (rebasing)'
+        else:
+            loss, kind = depeg_loss(e0.get('deposit_px'), e1.get('deposit_px')), 'depeg'
+        o0, o1 = (e0.get('onchain') or {}), ((e1 or {}).get('onchain') or {})
+        if o0.get('value') and o1.get('value') and o0.get('kind') == o1.get('kind'):
+            realised = o1['value'] / o0['value'] - 1.0
+        cost = sl.get('switch_cost_usd') or 0.0
+        hk = [x for x in (hacks or []) if x['pool'] == pid and D <= day_of(x['day']) < E]
+        hack_loss = 0.0
+        for x in hk:
+            tv = (hold.get('protocol_tvl_at_decision') or {}).get(info['project'])
+            sev = hack_severity(max(0.0, (x.get('amount') or 0.0) - (x.get('returned') or 0.0)), tv)
+            hack_loss -= sev * X
+            out['events'].append({'type': 'hack', 'pool': pid, 'day': x['day'], 'name': x.get('name'),
+                                  'severity': sev, 'frozen': sev >= FREEZE_MIN_SEVERITY})
+        pnl = base + rew - gas + loss * X - cost + hack_loss
+        tot += pnl
+        rec = {'slice': sl['slice'], 'pool': pid, 'project': info['project'], 'chain': info['chain'],
+               'symbol': info['symbol'], 'days_with_records': days_valid, 'base_usd': base, 'reward_usd': rew,
+               'claim_gas_usd': gas, 'reward_days_imputed': imputed, 'switch_cost_usd': cost, 'hack_loss_usd': hack_loss,
+               'audit': kind,
+               'audit_loss_frac': loss, 'displayed_base_accrual': base_acc, 'onchain_realised': realised,
+               'pnl_usd': pnl}
+        out['slices'].append(rec)
+        if loss < params.get('shortfall_exit', MM_KILL['shortfall_exit']):
+            out['events'].append({'type': 'share shortfall', 'pool': pid, 'loss_frac': loss, 'day': hold['hold_end']})
+    s, src = hold_savings(sav, D, E)
+    ret = tot / params['capital']
+    out.update({'return': ret, 'savings': s, 'savings_source': src, 'excess': ret - s,
+                'ann_excess': (ret - s) * 365.0 / (E - D),
+                'mean_reward_apr_pct': (sum(rew_apr) / len(rew_apr)) if rew_apr else None,
+                'exit_marks_complete': all(x.get('audit') != 'exit mark pending' for x in out['slices'])})
+    return out
+
+
+def mm_forward_summary(scored, holds):
+    """Kill checks and the verdict over the scored holds."""
+    kills = []
+    xs = [s['excess'] for s in scored]
+    if len(xs) >= MM_KILL['trailing_holds'] and sum(xs[-MM_KILL['trailing_holds']:]) < 0:
+        kills.append('trailing %d-hold excess below 0' % MM_KILL['trailing_holds'])
+    for s in scored:
+        if s.get('mean_reward_apr_pct') is not None and s['mean_reward_apr_pct'] < MM_KILL['reward_apr_min_pct']:
+            kills.append("picks' reward APR %.2fpp < 1pp over the hold to %s" % (s['mean_reward_apr_pct'], s['hold_end']))
+    evs = sorted((day_of(e['day']), e) for s in scored for e in s['events'])
+    for i in range(len(evs)):
+        n = sum(1 for d, _ in evs if 0 <= d - evs[i][0] < MM_KILL['retire_window_days'])
+        if n >= MM_KILL['retire_events']:
+            kills.append('%d shortfall/hack events within 13 weeks from %s' % (n, ymd(evs[i][0])))
+            break
+    for h in holds:
+        if (h.get('capacity_usd') or 0) < MM_KILL['capacity_min_usd']:
+            kills.append('capacity of the %s picks %s < $2M' % (h['decision_day'], usd(h.get('capacity_usd'))))
+    n = len(xs)
+    m = sum(xs) / n if n else None
+    sd = statistics.stdev(xs) if n > 1 else None
+    t = (m / (sd / math.sqrt(n))) if (sd and sd > 0) else None
+    ann = m * 365.0 / 28.0 if m is not None else None
+    if kills:
+        verdict = 'kill: ' + '; '.join(kills)
+    elif n < MM_FORWARD_RULE['min_holds']:
+        verdict = 'accumulating (%d of %d holds)' % (n, MM_FORWARD_RULE['min_holds'])
+    elif ann is not None and ann > 0 and t is not None and t > 2:
+        verdict = 'promote: annualised excess %.2f%% with t %.2f across %d holds' % (100 * ann, t, n)
+    elif ann is not None and ann <= 0:
+        verdict = 'kill: annualised excess not positive after %d holds' % n
+    else:
+        verdict = 'hold (watch): excess positive, t not above 2'
+    return {'holds_scored': n, 'mean_hold_excess': m, 'ann_excess': ann, 't_across_holds': t, 'kill': kills,
+            'verdict': verdict}
+
+
+def mm_forward_score(ledger, now_ms):
+    holds = [r for r in ledger if r.get('kind') == 'hold']
+    charts = merged_charts(ledger)
+    marks, sav = mark_series(ledger)
+    hacks = list({(x['pool'], x['day'], x.get('name')): x for r in ledger if r.get('kind') == 'snapshot'
+                  for x in r.get('hacks') or []}.values())
+    scored, pending = [], []
+    for i, h in enumerate(holds):
+        E = day_of(h['hold_end'])
+        if now_ms < E * DAY_S * 1000:
+            pending.append('%s -> %s: hold running' % (h['decision_day'], h['hold_end']))
+            continue
+        s = score_hold(h, charts, marks, sav, h['params'], holds[i - 1] if i else None, hacks)
+        if not s['exit_marks_complete']:
+            pending.append('%s -> %s: exit marks pending (needs a snapshot on or after %s)' % (
+                h['decision_day'], h['hold_end'], h['hold_end']))
+            continue
+        scored.append(s)
+    S = mm_forward_summary(scored, holds)
+    S['pending'] = pending
+    return {'holds_registered': len(holds), 'summary': S, 'holds': scored}
+
+
+def main_forward(args):
+    ledger_path = Path(args.ledger)
+    now_ms = int(time.time() * 1000)
+    net = Net()
+    if args.action == 'register':
+        mm_forward_register(ledger_path, now_ms, net, ignore_window=args.now)
+        return
+    if args.action == 'snapshot':
+        mm_forward_snapshot(ledger_path, now_ms, net)
+        return
+    ledger = read_ledger_rows(ledger_path)
+    res = mm_forward_score(ledger, now_ms)
+    write_json(ledger_path.with_suffix('.json'), {'generated': now_iso(), 'rule': MM_FORWARD_RULE,
+                                                  'ledger': str(ledger_path), **res})
+    for s in res['holds']:
+        print('%s -> %s  return %s  savings %s  excess %s (%s a year)' % (
+            s['decision_day'], s['hold_end'], pct(s['return'], 3), pct(s['savings'], 3), pct(s['excess'], 3),
+            pct(s['ann_excess'])))
+    for p in res['summary']['pending']:
+        print('pending: ' + p)
+    print('verdict: %s' % res['summary']['verdict'])
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
     sub = ap.add_subparsers(dest='cmd', required=True)
@@ -2807,6 +3542,11 @@ def main():
     c.add_argument('--spacing', type=float, default=0.4, help='seconds between DefiLlama request starts')
     sub.add_parser('analyze')
     sub.add_parser('render')
+    f = sub.add_parser('forward', help='the pooled money-market rotation held forward: register (the next hold, '
+                                       'within 30 h of its decision) | snapshot (daily; registers when due) | score')
+    f.add_argument('action', choices=['register', 'snapshot', 'score'])
+    f.add_argument('--ledger', default=str(MM_FORWARD_LEDGER))
+    f.add_argument('--now', action='store_true', help='register: ignore the 30-hour window (never the decision time)')
     args = ap.parse_args()
     if args.cmd == 'collect':
         main_collect(args)
@@ -2814,6 +3554,8 @@ def main():
         main_analyze(args)
     elif args.cmd == 'render':
         main_render(args)
+    elif args.cmd == 'forward':
+        main_forward(args)
 
 
 if __name__ == '__main__':

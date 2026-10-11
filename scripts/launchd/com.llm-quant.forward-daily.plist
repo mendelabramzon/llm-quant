@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <!-- One unattended pass of the forward tests a day (scripts/forward_daily.py run): the JLP net-delta hedge, the
+       one-pool queue book's ladder and kill criteria, the gold-carry watch, the money-market rotation, the EMPD/BNC
+       events, and the collateral watcher. Public endpoints plus the local Infura/GetBlock keys; read-only: nothing is
+       signed, sent or posted (queue_live writes unsigned orders only).
+       Edit the absolute paths, copy to ~/Library/LaunchAgents/, then:
+         launchctl load ~/Library/LaunchAgents/com.llm-quant.forward-daily.plist
+       Remove with launchctl unload. 11:30 local in Asia/Tbilisi is 07:30 UTC: after the chains pass (07:00 UTC) has
+       released the shared Infura keys, and away from the 08:00 UTC funding settlement the JLP snapshot closes on.
+       About 5 minutes. -->
+  <key>Label</key><string>com.llm-quant.forward-daily</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/opt/homebrew/bin/uv</string>
+    <string>run</string>
+    <string>--with</string>
+    <string>pycryptodome</string>
+    <string>python</string>
+    <string>scripts/forward_daily.py</string>
+    <string>run</string>
+  </array>
+  <key>WorkingDirectory</key><string>/Users/iv/dev/llm-quant</string>
+  <key>StartCalendarInterval</key>
+  <dict><key>Hour</key><integer>11</integer><key>Minute</key><integer>30</integer></dict>
+  <key>StandardOutPath</key><string>/Users/iv/dev/llm-quant/research/forward_daily_launchd.log</string>
+  <key>StandardErrorPath</key><string>/Users/iv/dev/llm-quant/research/forward_daily_launchd.err</string>
+  <key>EnvironmentVariables</key>
+  <dict><key>PATH</key><string>/Users/iv/.local/bin:/opt/homebrew/bin:/usr/bin:/bin</string></dict>
+</dict>
+</plist>

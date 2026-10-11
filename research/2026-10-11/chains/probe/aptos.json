@@ -1,0 +1,112 @@
+{
+ "tx": {
+  "count": 6765577.0,
+  "se": 0.0,
+  "method": "exact-versions minus sampled system share",
+  "all_versions": 11488919,
+  "all_versions_method": "exact-counter",
+  "cumulative_total": 7562852325,
+  "system_est": 4723342.0,
+  "system_per_block": 2.0,
+  "user_from_blocks": 5254717.975000001,
+  "user_from_blocks_se": 937996.2041792275,
+  "failed_share": 0.011235955056179775,
+  "blocks": 2361671,
+  "sampled": 80,
+  "crosscheck": {
+   "source": "aptos explorer analytics (daily_user_transactions)",
+   "day": "2026-10-10",
+   "user_transactions": 6745127,
+   "ratio": 1.0030318183779194
+  },
+  "note": "user transactions; block metadata, epilogue, state-checkpoint and validator transactions excluded"
+ },
+ "transfers": {
+  "assets": [
+   {
+    "asset": "0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b",
+    "symbol": "USDt",
+    "class": "usd_stable",
+    "transfers": 29521,
+    "transfers_se": 29707,
+    "amount": 206601.45883455002,
+    "price": 0.9991625129329603,
+    "usd": 206428.43278474457,
+    "usd_se": 207727.31489309832,
+    "top_block_share": 1.0,
+    "units_seen": 1,
+    "gross_amount": 206601.45883455002,
+    "gross_usd": 206428.43278474457
+   },
+   {
+    "asset": "0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b",
+    "symbol": "USDC",
+    "class": "usd_stable",
+    "transfers": 88563,
+    "transfers_se": 51453,
+    "amount": 28656.929206424997,
+    "price": 0.9996783032122436,
+    "usd": 28647.710364352326,
+    "usd_se": 20039.573593556473,
+    "top_block_share": 0.5176495311794992,
+    "units_seen": 3,
+    "gross_amount": 28656.929206424997,
+    "gross_usd": 28647.710364352326
+   }
+  ],
+  "unpriced_top": [
+   {
+    "asset": "0x0d829a23c3a3760e2fed60ca24d83cee8943f7c61859608ae0726fdb2e4f2784",
+    "symbol": null,
+    "class": "other",
+    "transfers": 29521,
+    "transfers_se": 29707,
+    "amount": 0.0,
+    "price": null,
+    "usd": null,
+    "usd_se": null,
+    "top_block_share": null,
+    "units_seen": 1,
+    "gross_amount": 0.0,
+    "gross_usd": null
+   }
+  ],
+  "unpriced_assets": 1,
+  "unpriced_transfers": 29521,
+  "priced_usd": 235076.1431490969,
+  "usd_by_class": {
+   "usd_stable": 235076.1431490969
+  },
+  "gross_priced_usd": 235076.1431490969,
+  "method": "sampled-blocks (fungible-asset and coin deposit/withdraw events of successful user transactions, netted per store or account within each transaction)",
+  "unresolved_deposits_sampled": 0
+ },
+ "window": {
+  "start_ts": 1791590400,
+  "end_ts": 1791676800,
+  "start_utc": "2026-10-10T00:00:00+00:00",
+  "end_utc": "2026-10-11T00:00:00+00:00",
+  "hours": 24.0
+ },
+ "blocks": {
+  "first": 1101617479,
+  "last": 1103979149,
+  "head": 1104800166,
+  "oldest_available": 1079409905,
+  "blocks_per_second": 27.48639515175832
+ },
+ "endpoint": "api.mainnet.aptoslabs.com",
+ "calls": 122,
+ "rate_limit_wait_s": 0.0,
+ "api_key": true,
+ "notes": [],
+ "errors": [],
+ "error_count": 0,
+ "seconds": 23.2,
+ "chain": "aptos",
+ "name": "Aptos",
+ "family": "aptos",
+ "adapter": "aptos",
+ "ok": true,
+ "probed_at": "2026-10-11T08:15:37+00:00"
+}

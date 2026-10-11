@@ -1,0 +1,178 @@
+{
+ "utc": "2026-10-11T03:50:50+00:00",
+ "verdicts": {
+  "jlp": {
+   "verdict": "accumulating (0 of 60 days)",
+   "days": 0.0,
+   "ann_excess": null,
+   "warnings": [],
+   "events": []
+  },
+  "queue_book": {
+   "verdict": "continue: no kill criterion met",
+   "data_through": {
+    "block": 26166551,
+    "utc": "2026-10-11T03:34:47Z"
+   },
+   "fills": null
+  },
+  "gold": {
+   "verdict": "hl:PAXG x PAXG@bn: accumulating (0 of 90 days); hl:xyz:GOLD x PAXG@bn: accumulating (0 of 90 days)"
+  },
+  "money_markets": {
+   "verdict": "accumulating (0 of 6 holds)",
+   "kill": []
+  },
+  "dat_events": {
+   "verdict": "accumulating (0 of 4 candidate horizons scored)"
+  },
+  "collateral": {
+   "events_total": 0,
+   "events_today": 0,
+   "today": []
+  }
+ },
+ "steps": [
+  {
+   "step": "jlp snapshot",
+   "returncode": 0,
+   "seconds": 0.0
+  },
+  {
+   "step": "jlp score",
+   "returncode": 0,
+   "seconds": 0.1
+  },
+  {
+   "step": "collateral watch",
+   "returncode": 0,
+   "seconds": 0.0
+  },
+  {
+   "step": "queue book",
+   "returncode": 0,
+   "seconds": 29.3
+  },
+  {
+   "step": "gold snapshot",
+   "returncode": 0,
+   "seconds": 13.3
+  },
+  {
+   "step": "gold score",
+   "returncode": 0,
+   "seconds": 0.1
+  },
+  {
+   "step": "money-market snapshot",
+   "returncode": 0,
+   "seconds": 3.0
+  },
+  {
+   "step": "money-market score",
+   "returncode": 0,
+   "seconds": 0.1
+  },
+  {
+   "step": "dat events score",
+   "returncode": 0,
+   "seconds": 0.0
+  }
+ ],
+ "seconds": 46.0,
+ "results": [
+  {
+   "step": "jlp snapshot",
+   "returncode": 0,
+   "seconds": 0.0,
+   "tail": [
+    "skip: 2026-10-11 already has a daily row in /Users/iv/dev/llm-quant/research/jlp_forward.jsonl (--intraday writes an extra row marked intraday)"
+   ],
+   "stderr_tail": []
+  },
+  {
+   "step": "jlp score",
+   "returncode": 0,
+   "seconds": 0.1,
+   "tail": [
+    "latest 2026-10-11T00:02: JLP 4.665422, hedge ratios SOL 0.438 ETH 0.074 BTC 0.122 (regression SOL 0.415 ETH 0.064 BTC 0.209), gross short $6.348M on $12.116M capital",
+    "flags: sigma14 latest \u2014, fee yield +8.53%, events none",
+    "verdict: accumulating (0 of 60 days)  -> /Users/iv/dev/llm-quant/research/jlp_forward.json"
+   ],
+   "stderr_tail": []
+  },
+  {
+   "step": "collateral watch",
+   "returncode": 0,
+   "seconds": 0.0,
+   "tail": [
+    "skipped (--skip)"
+   ],
+   "stderr_tail": []
+  },
+  {
+   "step": "queue book",
+   "returncode": 0,
+   "seconds": 29.3,
+   "tail": [
+    "c1 for the v2 daily re-quote, trailing 90d at $15M: all4 $146,257/yr, eth3 $56,286/yr",
+    "c1 for the v3 hourly taker, trailing 90d at $15M: all4 $162,276/yr, eth3 $59,920/yr",
+    "wrote research/queue_live/monitor/2026-10-11.json and research/queue_live_paper.json (29s)"
+   ],
+   "stderr_tail": []
+  },
+  {
+   "step": "gold snapshot",
+   "returncode": 0,
+   "seconds": 13.3,
+   "tail": [
+    "hl:PAXG x PAXG@bn        funding since last 10.95% (3 h)  trailing 30d 10.25%  mark 4189.05 oracle 4188.7  bids 25bp coarse $961k fine $178k",
+    "hl:xyz:GOLD x PAXG@bn    funding since last 5.47% (3 h)  trailing 30d 7.44%  mark 4193.4 oracle 4193.4  bids 25bp coarse $2.06M fine $221k",
+    "PAXG mid 4188.705  XAU index 4197.87462178  premium -21.8  asks 25bp $2.13M  SSR 3.80%  errors 0"
+   ],
+   "stderr_tail": []
+  },
+  {
+   "step": "gold score",
+   "returncode": 0,
+   "seconds": 0.1,
+   "tail": [
+    "hl:PAXG x PAXG@bn        days 0  excess \u2014 (vs 3.80% \u2014)  NW t \u2014  -> accumulating (0 of 90 days)",
+    "hl:xyz:GOLD x PAXG@bn    days 0  excess \u2014 (vs 3.80% \u2014)  NW t \u2014  -> accumulating (0 of 90 days)"
+   ],
+   "stderr_tail": []
+  },
+  {
+   "step": "money-market snapshot",
+   "returncode": 0,
+   "seconds": 3.0,
+   "tail": [
+    "kamino-lend  Solana    USDC      base 6.54 reward \u2014 tvl $5.6M share None onchain None",
+    "aave-v3      Plasma    GHO       base 4.06 reward 2.27 tvl $1.7M share 0.9984134763977518 onchain None",
+    "kamino-lend  Solana    USDC      base 5.19 reward \u2014 tvl $2.8M share None onchain None"
+   ],
+   "stderr_tail": []
+  },
+  {
+   "step": "money-market score",
+   "returncode": 0,
+   "seconds": 0.1,
+   "tail": [
+    "pending: 2026-10-12 -> 2026-11-09: hold running",
+    "verdict: accumulating (0 of 6 holds)"
+   ],
+   "stderr_tail": []
+  },
+  {
+   "step": "dat events score",
+   "returncode": 0,
+   "seconds": 0.0,
+   "tail": [
+    "FWDI  placebo   \u2014  entry: the 2026-10-12 close has not happened",
+    "MSTR  benchmark \u2014  entry: the 2026-10-12 close has not happened",
+    "verdict: accumulating (0 of 4 candidate horizons scored)"
+   ],
+   "stderr_tail": []
+  }
+ ]
+}

@@ -219,6 +219,14 @@ def choose_then_test(variants, frac=0.5, periods_per_year=8760, key='sharpe'):
     `variants` maps a name to a return series; all series must share one time axis. Returns the chosen name, its
     in-sample and out-of-sample `perf`, its out-of-sample rank among all variants, the HAC t-stat out of sample, the
     deflated Sharpe of the in-sample choice given how many were tried, and the BH survivors on the full sample.
+
+    `bh_survivors_full_sample` is two-sided (a significant loser survives too); `bh_survivors_positive` is the one-sided
+    test for a positive mean, the one a go rule should use.
+
+    `in_sample_positive` says whether the choice earned anything before the split. A go rule should require it: the
+    best of a family that all lost in sample is the least-bad loser, and its out-of-sample "pass" is luck or regime
+    (hl_vault_skill, 2026-10-10: 56 variants all lost in sample, the pick made +44% out of sample and −78% a year
+    over the full history).
     """
     names = list(variants)
     if not names:
@@ -236,19 +244,27 @@ def choose_then_test(variants, frac=0.5, periods_per_year=8760, key='sharpe'):
     ranked = sorted(names, key=lambda k: -score(outs[k]))
     in_srs = [ins[k].get('sharpe') for k in names if ins[k].get('sharpe') is not None]
     sr_std = (statistics.pstdev(in_srs) / math.sqrt(periods_per_year)) if len(in_srs) > 1 else None
-    pv = [newey_west_t(variants[k][:n])[1] for k in names]
+    tp = [newey_west_t(variants[k][:n]) for k in names]
+    pv = [p for _, p in tp]
     rej, adj = bh(pv)
+    # The two-sided test above also "passes" a variant that loses significantly. A go rule needs the one-sided test
+    # for a positive mean: p/2 when t > 0, else 1 - p/2 (alt_floor_carry, 2026-10-11: 31 two-sided survivors, all
+    # significant losers).
+    pv1 = [None if p is None else (p / 2.0 if t > 0 else 1.0 - p / 2.0) for t, p in tp]
+    rej1, _ = bh(pv1)
     t_oos, p_oos = newey_west_t(variants[chosen][c:n])
     return {
         'chosen': chosen,
         'n_variants': len(names),
         'cutoff_index': c,
         'in_sample': ins[chosen],
+        'in_sample_positive': (ins[chosen].get('ann_return') or 0.0) > 0,
         'out_of_sample': outs[chosen],
         'oos_rank': ranked.index(chosen) + 1,
         'oos_t': t_oos,
         'oos_p': p_oos,
         'deflated_sharpe_in_sample': deflated_sharpe(variants[chosen][:c], len(names), sr_std),
         'bh_survivors_full_sample': [k for k, r in zip(names, rej) if r],
+        'bh_survivors_positive': [k for k, r in zip(names, rej1) if r],
         'bh_adjusted_p': dict(zip(names, adj)),
     }

@@ -400,3 +400,162 @@ def test_densify_captures_no_lookahead():
     assert D0 + 16 in days and D0 + 17 not in days and D0 + 29 not in days
     P = I.Pool('p', {}, rows)
     assert P.trailing(D0 + 7, 7) == (5.0, 1.0)
+
+
+# ------------------------------------------------------------------------------------------------ forward test
+
+DF = I.day_of('2026-10-12')       # a decision day of the frozen 28-day calendar
+
+
+def test_forward_calendar_is_the_studys_four_week_phase():
+    assert (DF - I.day_of(I.START)) % 28 == 0
+    sat = I.day_of('2026-10-10') * I.DAY_S * 1000 + int(23.5 * 3600e3)
+    assert I.mm_decision_after(sat) == DF
+    assert I.mm_decision_after(DF * I.DAY_S * 1000) == DF + 28          # at 00:00 the decision has begun
+    assert I.mm_decision_after(DF * I.DAY_S * 1000 - 1) == DF
+
+
+def test_assign_slices_is_simulates_decision_block():
+    """Two decisions through simulate (a scripted selector) and through assign_slices give the same holdings."""
+    pids = list('abcdefgh')
+    ctx = FakeCtx({p: chart([(5e6, 5.0, 0.0)] * 40) for p in pids})
+    script = {D0 + 7: (['a', 'b', 'c', 'd', 'e', 'f'], set(pids)),
+              D0 + 14: (['f', 'g', 'c', 'h', 'e', 'a', 'd', 'b'], set(pids) - {'b'})}
+
+    def sel(D):
+        return script[D]
+    res = I.simulate(ctx, sel, 3, 1, 3e6, D0 + 7, D0 + 21, buffer=2, record=True)
+    held = {}
+    for e in res['events']:
+        if e['type'] == 'enter':
+            held.setdefault(e['day'], []).append(e['pool'])
+    first = I.assign_slices([None] * 3, *script[D0 + 7], N=3, buffer=2)
+    assert first == ['a', 'b', 'c'] and sorted(held[I.ymd(D0 + 7)]) == ['a', 'b', 'c']
+    second = I.assign_slices(first, *script[D0 + 14], N=3, buffer=2)
+    # a (rank 6 of the top 6) and c stay; b is no longer eligible: its slice takes f, the best pool not held
+    assert second == ['a', 'f', 'c'] and held[I.ymd(D0 + 14)] == ['f']
+
+
+def _fwd_inputs(D=DF):
+    """Live-shaped inputs with one pool per failure mode."""
+    def rows(n, base, rew, tvl=5e8, start=None):
+        s0 = D - n if start is None else start
+        return [{'timestamp': I.ymd(s0 + i) + 'T23:01:00.000Z', 'tvlUsd': tvl, 'apyBase': base, 'apyReward': rew}
+                for i in range(D - s0)]
+    usdc, dai, bad = '0x' + 'a' * 40, '0x' + 'd' * 40, '0x' + 'e' * 40
+    pools = [('p1', 'aave-v3', usdc, 4.0, 1.0), ('p7', 'aave-v3', dai, 3.0, 0.5), ('p2', 'morpho-blue', usdc, 9.0, 3.0),
+             ('p3', 'smalllend', usdc, 8.0, 0.0), ('p4', 'hackedlend', usdc, 7.0, 0.0), ('p5', 'aave-v3', bad, 6.0, 0.0),
+             ('p6', 'aave-v3', usdc, 9.5, 0.0)]
+    R = [{'pool': p, 'chain': 'Ethereum', 'project': pr, 'symbol': 'USDC', 'underlyingTokens': [u],
+          'rewardTokens': ['0x' + 'b' * 40] if r else None, 'stablecoin': True, 'exposure': 'single', 'tvlUsd': 5e8}
+         for p, pr, u, b, r in pools]
+    charts = {p: rows(60, b, r) for p, _, _, b, r in pools}
+    charts['p6'] = rows(5, 9.5, 0.0)                                   # five days old
+    hist = lambda v: [[(D - 800 + i) * I.DAY_S, v] for i in range(800)]
+    protocols = [{'slug': 'aave-v3', 'id': '1', 'name': 'Aave V3', 'category': 'Lending', 'tvl': 2e10},
+                 {'slug': 'morpho-blue', 'id': '2', 'name': 'Morpho', 'category': 'Lending', 'tvl': 8e9},
+                 {'slug': 'smalllend', 'id': '3', 'name': 'Small', 'category': 'Lending', 'tvl': 5e8},
+                 {'slug': 'hackedlend', 'id': '4', 'name': 'Hacked', 'category': 'Lending', 'tvl': 3e9}]
+    detail = {'aave-v3': {'category': 'Lending', 'tvl': hist(2e10), 'chainTvls': {}},
+              'morpho-blue': {'category': 'Lending', 'tvl': hist(8e9), 'chainTvls': {}},
+              'smalllend': {'category': 'Lending', 'tvl': hist(5e8), 'chainTvls': {}},
+              'hackedlend': {'category': 'Lending', 'tvl': hist(3e9), 'chainTvls': {}}}
+    hacks = [{'date': (D - 10) * I.DAY_S, 'defillamaId': '4', 'name': 'Hacked', 'amount': 1e6, 'returnedFunds': 0,
+              'chain': ['Ethereum']}]
+    prices = {I.coin_key('Ethereum', usdc): 1.0, I.coin_key('Ethereum', dai): 1.0, I.coin_key('Ethereum', bad): 0.97}
+    marks = {'at': '2026-10-11T12:00:00+00:00', 'savings': {'apy': 0.038, 'susds_nav': 1.0},
+             'pools': {'p1': {'share_px': 1.0, 'deposit_px': 1.0, 'reward_px': {}, 'onchain': None},
+                       'p7': {'share_px': 1.0, 'deposit_px': 1.0, 'reward_px': {}, 'onchain': None}}}
+    return {'rows': R, 'charts': charts, 'protocols': protocols, 'detail': detail, 'hacks': hacks, 'prices': prices,
+            'marks': marks, 'pool_strings': {}, 'n_usd_stable': len(R), 'failed_charts': []}
+
+
+def test_live_context_applies_the_studys_eligibility():
+    ctx, ranked, elig = I.mm_rank(_fwd_inputs(), DF)
+    # p2 curated, p3 protocol under $1B, p4 hacked 10 days ago, p5 deposit at $0.97, p6 five days old
+    assert ranked == ['p1', 'p7'] and elig == {'p1', 'p7'}
+
+
+def test_forward_registration_freezes_the_rule_and_is_append_only(tmp_path, monkeypatch):
+    monkeypatch.setattr(I, 'MM_WATCH_RAW', tmp_path / 'raw')
+    led = tmp_path / 'mm.jsonl'
+    now = DF * I.DAY_S * 1000 - 20 * 3600 * 1000
+    row = I.mm_forward_register(led, now, inputs_fn=lambda D, d: _fwd_inputs(D), log=lambda *a: None)
+    assert row['rule_frozen'] == I.MM_FORWARD_RULE and row['params'] == I.MM_PARAMS
+    assert row['decision_day'] == '2026-10-12' and row['hold_end'] == '2026-11-09'
+    assert [x['pool'] for x in row['slices']] == ['p1', 'p7', None, None, None]
+    assert row['top10'][0]['score_pct'] == pytest.approx(5.0) and row['slices'][0]['entered'] == '2026-10-12'
+    before = led.read_text()
+    assert I.mm_forward_register(led, now + 3600e3, inputs_fn=lambda D, d: _fwd_inputs(D), log=lambda *a: None) is None
+    assert led.read_text() == before
+
+
+def test_forward_registration_after_the_decision_or_too_early_is_refused(tmp_path, monkeypatch):
+    monkeypatch.setattr(I, 'MM_WATCH_RAW', tmp_path / 'raw')
+    led = tmp_path / 'mm.jsonl'
+    late = DF * I.DAY_S * 1000 + 60 * 1000
+    assert I.mm_forward_register(led, late, inputs_fn=lambda D, d: _fwd_inputs(D), log=lambda *a: None,
+                                 decision='2026-10-12') is None
+    early = DF * I.DAY_S * 1000 - 40 * 3600 * 1000
+    assert I.mm_forward_register(led, early, inputs_fn=lambda D, d: _fwd_inputs(D), log=lambda *a: None) is None
+    assert not led.exists()
+
+
+def _hold(slices, entry_marks, D=DF):
+    infos = {p: {'pool': p, 'project': 'aave-v3', 'chain': 'Arbitrum', 'symbol': 'USDC', 'underlying': [],
+                 'reward_keys': ['arbitrum:0xrew'], 'share_accruing': acc} for p, acc in slices if p}
+    return {'kind': 'hold', 'decision_day': I.ymd(D), 'hold_end': I.ymd(D + 28), 'params': I.MM_PARAMS,
+            'slices': [{'slice': i, 'pool': p, 'switch_cost_usd': 0.0 if p is None else 100.0,
+                        'entered': I.ymd(D)} for i, (p, _) in enumerate(slices)],
+            'infos': infos, 'entry_marks': entry_marks, 'protocol_tvl_at_decision': {'aave-v3': 1e10}}
+
+
+def test_score_hold_arithmetic_on_synthetic_records():
+    """One rebasing pool at 5% base + 2% rewards on $100M, four cash slices: the hold earns the diluted base, the
+    rewards at sale price (flat) less 1% and claim gas, pays its switch cost, and is compared with sUSDS NAV growth."""
+    X, D, E = 2e5, DF, DF + 28
+    hold = _hold([('p', False), (None, None), (None, None), (None, None), (None, None)],
+                 {'at': '2026-10-11T12:00:00+00:00', 'savings': {'apy': 0.038, 'susds_nav': 1.0},
+                  'pools': {'p': {'share_px': 1.0, 'deposit_px': 1.0, 'reward_px': {'arbitrum:0xrew': 2.0}}}})
+    charts = {'p': [{'timestamp': I.ymd(d) + 'T23:01:00.000Z', 'tvlUsd': 1e8, 'apyBase': 5.0, 'apyReward': 2.0}
+                    for d in range(D - 10, E + 2)]}
+    marks = {'p': {d: {'share_px': 1.0, 'deposit_px': 1.0, 'reward_px': {'arbitrum:0xrew': 2.0}}
+                   for d in range(D - 1, E + 2)}}
+    s28 = 0.038 * 28 / 365
+    sav = [(D * I.DAY_S * 1000, 0.038, 1.0), (E * I.DAY_S * 1000, 0.038, 1.0 + s28)]
+    out = I.score_hold(hold, charts, marks, sav, I.MM_PARAMS)
+    f = 1e8 / (1e8 + X)
+    base = X * 0.05 / 365 * 28 * f
+    rew = X * 0.02 / 365 * 28 * f * 0.99
+    gas = 2 * 0.5 / 7 * 28
+    pnl = base + rew - gas - 100.0
+    assert out['savings'] == pytest.approx(s28) and out['savings_source'] == 'sUSDS NAV'
+    assert out['slices'][0]['pnl_usd'] == pytest.approx(pnl)
+    assert out['return'] == pytest.approx((pnl + 4 * X * s28) / 1e6)
+    assert out['excess'] == pytest.approx((pnl - X * s28) / 1e6)
+    assert out['mean_reward_apr_pct'] == pytest.approx(2.0) and out['exit_marks_complete']
+    # an accruing share that delivered 0.1% while claiming 5% books the shortfall (under 1%: no exit event)
+    hold2 = _hold([('p', True), (None, None), (None, None), (None, None), (None, None)], hold['entry_marks'])
+    marks2 = {'p': dict(marks['p'])}
+    marks2['p'][E] = dict(marks2['p'][E], share_px=1.001)
+    out2 = I.score_hold(hold2, charts, marks2, sav, I.MM_PARAMS)
+    assert out2['slices'][0]['audit_loss_frac'] == pytest.approx(0.001 - 0.05 * 28 / 365)
+    assert out2['events'] == []
+    marks2['p'][E] = dict(marks2['p'][E], share_px=0.985)              # a 1.5% write-down: exit event
+    out3 = I.score_hold(hold2, charts, marks2, sav, I.MM_PARAMS)
+    assert out3['events'] and out3['events'][0]['type'] == 'share shortfall'
+    assert out3['slices'][0]['pnl_usd'] == pytest.approx(pnl + X * (-0.015 - 0.05 * 28 / 365))
+
+
+def test_forward_verdict_accumulates_then_follows_the_kill_and_promote_rules():
+    def s(x, rew=2.0, ev=()):
+        return {'excess': x, 'mean_reward_apr_pct': rew, 'events': list(ev), 'hold_end': '2026-11-09'}
+    h = [{'decision_day': '2026-10-12', 'capacity_usd': 3e7}]
+    assert I.mm_forward_summary([s(0.001), s(0.0012)], h)['verdict'] == 'accumulating (2 of 6 holds)'
+    assert I.mm_forward_summary([s(0.001), s(-0.001), s(-0.0011)], h)['verdict'].startswith('kill: trailing 3-hold')
+    assert 'reward APR' in I.mm_forward_summary([s(0.001, rew=0.5)], h)['verdict']
+    assert 'capacity' in I.mm_forward_summary([s(0.001)], [{'decision_day': '2026-10-12', 'capacity_usd': 1e6}])['verdict']
+    good = I.mm_forward_summary([s(0.0008 + 0.0001 * (i % 2)) for i in range(6)], h)
+    assert good['verdict'].startswith('promote') and good['ann_excess'] == pytest.approx(0.00085 * 365 / 28)
+    two = [{'type': 'share shortfall', 'day': '2026-11-09'}, {'type': 'hack', 'day': '2026-12-01'}]
+    assert '2 shortfall/hack events' in I.mm_forward_summary([s(0.001, ev=two)], h)['verdict']

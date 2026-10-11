@@ -41,6 +41,27 @@
   "last_block": null,
   "last_utc": "2026-10-09T21:25:54+00:00"
  },
+ "/Users/iv/dev/llm-quant/research/2026-10-10/perps_daily": {
+  "chain": "hyperliquid",
+  "detectors_run": [
+   "cross_dex_basis",
+   "cross_venue_funding",
+   "dead_market",
+   "funding_carry",
+   "illiquid_extreme_funding",
+   "oi_cap_pressure",
+   "premium_drift",
+   "roll_premium",
+   "stale_oracle"
+  ],
+  "first_block": null,
+  "first_utc": "2026-10-10T22:06:44+00:00",
+  "hours": 1.0,
+  "ingested_at": "2026-10-10T23:29:44+00:00",
+  "label_fingerprint": null,
+  "last_block": null,
+  "last_utc": "2026-10-10T23:06:44+00:00"
+ },
  "research/2026-09-07/live_5h": {
   "chain": "ethereum",
   "detectors_run": [
@@ -451,5 +472,25 @@
   "label_fingerprint": null,
   "last_block": null,
   "last_utc": "2026-10-10T00:00:00+00:00"
+ },
+ "research/2026-10-11/chains": {
+  "chain": "chains",
+  "detectors_run": [
+   "activity_divergence",
+   "chain_new",
+   "chain_surge",
+   "dex_share_shift",
+   "probe_new_asset",
+   "probe_tx_surge",
+   "stable_inflow",
+   "unregistered_active"
+  ],
+  "first_block": null,
+  "first_utc": "2026-10-10T00:00:00+00:00",
+  "hours": 24.0,
+  "ingested_at": "2026-10-11T08:32:25+00:00",
+  "label_fingerprint": null,
+  "last_block": null,
+  "last_utc": "2026-10-11T00:00:00+00:00"
  }
 }

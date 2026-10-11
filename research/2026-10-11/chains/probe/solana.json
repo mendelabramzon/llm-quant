@@ -1,0 +1,11 @@
+{
+ "chain": "solana",
+ "name": "Solana",
+ "family": "solana",
+ "adapter": "solana",
+ "ok": false,
+ "error": "RpcError: {\"code\": -32602, \"message\": \"BigTable query failed (maybe timeout due to too large range?)\"}",
+ "trace": "Traceback (most recent call last):\n  File \"/Users/iv/dev/llm-quant/scripts/chain_probe.py\", line 83, in probe_one\n    r = fn(cfg, ctx)\n        ^^^^^^^^^^^^\n  File \"/Users/iv/dev/llm-quant/scripts/chain_adapters/solana.py\", line 190, in probe\n    produced += c.call('getBlocks', [s, e, {'commitment': 'finalized'}]) or []\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/iv/dev/llm-quant/scripts/chain_adapters/__init__.py\", line 239, in call\n    raise RpcError(err)\nchain_adapters.RpcError: {\"code\": -32602, \"message\": \"BigTable query failed (maybe timeout due to too large range?)\"}\n",
+ "seconds": 265.4,
+ "probed_at": "2026-10-11T08:18:47+00:00"
+}

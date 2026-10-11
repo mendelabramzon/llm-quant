@@ -5,6 +5,186 @@ the LLM reads evidence, proposes mechanisms, and writes the infrastructure; dete
 reusable detectors and tests; the human steers. The metric we optimise is **time-to-verified-insight**: how fast a raw
 signal becomes a true, capacity-aware, reproducible claim and then a reusable detector — not classification coverage.
 
+## Session log — 2026-10-11 (forward tests, the book written, and what an executable queue bidder earns)
+
+Asked to "continue". The book's pending writes were approved and run; launchd was declined for now. The session froze
+five forward tests and a watcher, then found and measured the gap between the queue book's backtest and any bidder
+that can actually execute it. Interrupted once by the usage limit; the stopped workers were resumed and finished.
+
+**The book.** Written with the user's approval (the 2026-10-10/11 command list): 29 rows, go-and-current **$1,421,473 a
+year** over 8 rows, matching the simulation on a copy.
+
+**The queue row's implementation** (`research/2026-10-11/queue_live/findings.md`). This is the session's main result.
+
+| implementation, $15M, all4, out of sample | $ a year (t) | share of the backtest |
+|---|---:|---:|
+| backtest: each sale at its own print (only a bidder behind each seller gets it) | $409,885 (9.31) | 100% |
+| **hourly taker: buy back the previous hour's qualifying sales at the next hour, at that hour's venue median** | **$294,743 (7.51)** | 72% |
+| same, at the first trade after the hour | $317,253 (7.03) | 77% |
+| daily re-quoted resting limit | $210,512 (8.01) | 51% |
+| one fixed resting limit (15bp) | $191,626 (3.84) | 47% |
+| the row as written: resting limits at hurdle + carry | ~$20.6k (trailing 90 days) | — |
+
+- **Resting orders earn their limit, not the market.**
+- **Dislocations persist for an hour.** 98% of stETH and 91% of weETH qualifying sales still clear at the next hour;
+  the coordinator recomputed 98.4% and 92.9% from the swaps.
+- **The 2026-10-10 late-entry figures were optimistic** (96% kept at an hour, 91% at a day). `simulate_book(delay_s)`
+  delays the decision but keeps each sale's own price. Priced at the later market, an hour keeps 72–77% and a day 52%.
+- **Two corrections, applied with the user's approval** (book go-and-current now **$1,166,284 a year** over 7 rows):
+  - `lst-queue-book-one-pool`: hourly-taker legs, quote $294,743, kill criterion 1 on the hourly taker's trailing 90
+    days.
+  - `kinetiq-khype-queue-bid`: re-quote as an hourly taker, $113,872, go = no (t 1.21).
+  - The old quotes stay in each row's history.
+
+  ```
+  uv run python scripts/strategies.py add --file research/2026-10-11/queue_live/book_entries.json --replace
+  uv run python scripts/strategies.py add --file research/2026-10-11/queue_book5/book_entries_khype_requote.json --replace
+  ```
+
+**The other studies.**
+
+| study | result |
+|---|---|
+| `queue_book5` | kHYPE reproduces exactly; `simulate_book` gained next-hour pricing (default off) that reproduces queue_live's hourly taker to the cent. As hourly takers: kHYPE alone $113,872 at $10M (t 1.21: fails go); five assets at $15M $293,463 with a one-day chain crossing (t 3.27; $353,855 fungible); all4 on that 452-day window $184,984; sAVAX $70,073 at $3M. kHYPE and sAVAX persist 98% into the next hour. Own-print headline recomputed by the coordinator ($460,554.41) |
+| sAVAX at swap level | $75,530 a year at $3M (t 6.38). The 2026-10-10 queue model was wrong: Benqi pays the rate at the cooldown's end (6,013 redeems, median −0.00001bp), so queued sAVAX accrues. sAVAX correlates 0.67 with kHYPE |
+| `jlp_forward` | Forward test day 0 (SOL 3,574,433.6 / ETH 26,633.4 / BTC 1,323.5 tokens of net delta, re-derived from raw). Hedging on Hyperliquid instead of Binance adds +1.54pp a year for JLP (+9.89% vs +8.35%) and +1.26pp for GM SOL-USDC, because HL funding sits at the formula rate on 41–55% of hours (Binance 11–18%). The gap narrowed in 2026. Decide the venue at day 60 |
+| `watch_forward` | EMPD/BNC registered before the 10-14 vote (EMPD true mNAV 0.5590 re-derived); the gold watch reproduces the study exactly; money-market hold 1 sits at its 1pp kill line in young isolated markets |
+| `collateral_watch` | 5 venues baselined. HL portfolio margin exposes 5 reserves in the API (HYPE 0.65, UBTC 0.50). HL HYPE +5.09pp and BTC +4.58pp (re-derived). 642 alt pairs settle at the floor at least half the time; the spot book binds, and floor share is not carry (negative spikes) |
+| `alt_floor_carry` | **no-go** on Binance and Bybit: all 32 pre-registered variants lose in and out of sample (chosen: −0.14% and −0.40% a year out of sample; re-derived), even at zero costs. Floor share does not persist (32% of 28-day windows after ≥90% floor contain a spike), liquid floor names are ~1.5 per date, the book churns. New data trap: Binance prints floor funding for delisted perps (51,434 settlements on untraded days, 97% at the floor) |
+
+**Infrastructure.**
+
+- `scripts/forward_daily.py` runs every forward test with one log line a day (`research/forward_daily_log.md`, first
+  pass clean in 46s). It has a `--skip` option for second runs the same day.
+- `scripts/launchd/com.llm-quant.forward-daily.plist` (07:30 UTC) is not installed.
+- 871+ tests pass.
+
+**Method changes.**
+
+1. **Late entry means entering late at the later price.** Every queue study's late-entry claim is optimistic until
+   re-run that way. The corrected pricing lives in `queue_live.py implementations` (f)/(g) and should become a
+   `simulate_book` option.
+2. **Test the implementation, not only the signal.** A backtest's fill convention is an implementation claim. Price
+   the executable versions (taker at the next hour, resting limit at its limit) before quoting.
+3. **Place the hedge where longs pay the formula rate.** For any hedged row, compare the hedge venue's funding.
+4. **One-sided BH for go rules.** `choose_then_test` now also returns `bh_survivors_positive`. The two-sided list
+   counts significant losers.
+5. **Cut Binance funding to traded days.** Delisted perps keep printing floor settlements. Re-check the rent map's
+   floor shares.
+
+**Errors found and fixed.**
+
+- The coordinator ran the chains pass before 07:00 UTC; it re-probes the previous UTC day and overwrites its folder.
+  Stopped, and restored from git.
+- `strategies.py scorecard` writes `research/scorecard.json` even when the book is patched to a copy. Restored.
+- The JLP sigma gate's 14-day run could be reached by one tail day; set to 15 before any scored period.
+- Worker errors are listed in each `findings.md`.
+
+**Next.**
+
+1. Decide the JLP hedge venue at day 60 (~2026-12-10).
+2. Redo the late-entry numbers of the 2026-10-09/10 queue studies with `simulate_book(later='hour')` (done for kHYPE,
+   the five-asset book and sAVAX).
+3. Re-check the rent map's Binance floor shares for phantom post-delisting settlements.
+4. Read `research/forward_daily_log.md` daily. JLP day 60 is around 2026-12-10; EMPD +20 is 2026-11-09; money-market
+   hold 1 ends 2026-11-09; queue paper v2/v3 register from 2026-10-12.
+5. A keeper for the hourly taker needs a signing key: the user's call.
+6. launchd when the user agrees; the chains pass only after 07:00 UTC.
+
+## Session log — 2026-10-10/11 (rents and scarce resources: a rent map, nine studies, a shared queue book)
+
+Asked to "continue the analysis, be profound and smart, find new and unique approaches and profitable alpha strategies".
+
+**The method change.** The repo's one robust lesson became a search method:
+
+- **The lesson.** Survivors are rents paid by agents with a non-price motive, collected by whoever supplies the scarce
+  resource the agent needs: locked capital, venue-specific capital, tail tolerance, attention, access.
+- **The rent map** (`rent_map`) sizes the pools top-down. About $12.7B a year is paid, $2.2B above a fair rate, of which
+  roughly $2.8–17.5M is accessible to patient capital, 3–16× the book.
+  - Hyperliquid's funding sits at the formula's interest rate on 71.6% of open-interest-weighted hours: the largest
+    above-fair pool is a venue parameter.
+- **Nine studies tested the under-collected pools.** Every headline was re-derived by the coordinator from raw files.
+
+The synthesis is [rents_and_resources.md](research/2026-10-10/rents_and_resources.md).
+
+| study | verdict |
+|---|---|
+| `queue_book` (coordinator) | **go**: the four queue bids on one capital pool. $15M earns $409,889/yr out of sample (t 9.31), 86% of the four separate books on 45% of their $33M. Dislocations correlate within an underlying (weETH–stETH 0.70) but not across them (LBTC −0.06; kHYPE −0.03). Late entry keeps 85–96% (1h), 85–91% (1d); best month 12% of the value |
+| `cow_fill_check` (coordinator) | **implementation verified**: in the April 2026 stETH episode, CoW orders resting ≥ 1h filled 6,023 ETH of LSTs (91 fills) at a median 31bp below NAV, at their limits; 83 bidders. One unescrowed balance can back every bid |
+| `house_vaults` | **go ×2**: GMX GM SOL-USDC hedged ($103k at $2M; fees 11.4% + traders' losses 4.9%); JLP hedged, conservative ($248k at $10M, gated by a live forward test). HLP no-go: its liquidators made $74.7M of $138.6M, its market makers ≈ $0. gUSDC, Lighter LLP, GM ETH no-go |
+| `queue_bids_alt` | **go ×2**: kHYPE queue bid ($140,043 at $10M; 13,426/13,426 confirmations exact; lumpy); kHYPE as the HYPE carry's spot leg (+4.48% vs +3.27%: **upgrade** of `hl-hype-spot-perp-carry`, $224k at $5M). Solana LSTs capped by a 10bp withdrawal fee; slisBNB, aprMON no-go; sAVAX, stS watch |
+| `rent_map` | the map above; ranked the gaps that became `gold_carry` and confirmed incentive budgets and LP vaults as the largest under-tested pools |
+| `incentive_yields` | **no-go**: displayed dollar yields rotate to +15%/yr over SSR out of sample, but nothing above ~5pp survives a share-price audit (vault write-downs never reach the yield series); blue-chip rotation passed by luck (siblings −0.16%); new-chain premium lives in small unchecked pools (rule −0.23%). Watch: +1% on pooled money markets |
+| `ve_carry` | **standby**: hedged veAERO +11.3% only when hedged on Hyperliquid's funding; pre-committed +4.10% (t 1.47); the attentive-voter premium fell from +15–21pp to ≈ 0 (final-hour votes only); the 2026-10-22 Aero merger ends the measured system |
+| `nav_wrappers` | **standby / no-go**: GBTC/ETHE conversions paid (+8%/+53% a year); after the 2025 listing standards trusts filed at premiums; DAT true-NAV discounts do not converge; 5 of 18 dashboard "discounts" are premiums once debt and preferred count (MSTR naive 0.93, true 1.19) |
+| `gold_carry` | **no-go, two watch lines**: gold perps follow spot (no roll), but the cost of carry (2.8–3.8%) ≈ SSR; +1.7–2.6% left on capital, capped at $1–2M by tokenized-gold depth |
+| `hl_vault_skill` | **no-go**: 9,477 vaults, survivorship-free; track records do not persist; user vaults lost $69.7M lifetime, 22.7% positive. A least-bad pick "passed" out of sample (+44%) and lost −78%/yr over the full history |
+
+**Method changes.**
+
+- `backtest.choose_then_test` now reports `in_sample_positive`. Go rules should require it: the vault-skill study showed
+  how a least-bad loser passes.
+- Yields are believed only after a share-price audit (`incentive_yields`).
+- Queue bids are sized as one book with `queue_book.simulate_book`, which reproduces `simulate_bid` exactly with one
+  asset (tested).
+
+**Errors found and fixed.**
+
+- In `queue_bids_alt`'s HYPE upgrade entry, `usd` held the increment ($60k), not the total. Corrected to $224,000 before
+  any write.
+- Three public HyperEVM RPCs ignore the block tag (use HyperLend's archive or dRPC).
+- GeckoTerminal printed a false 778bp kHYPE hour.
+- Sanctum's `sol-value` API is 230–250bp stale.
+- DefiLlama floors vault yields at zero.
+- Yahoo rescales GBTC/ETHE closes before the Mini Trust spin-offs.
+- Infura's −32603 is not retried by `live_rpc`; `ve_carry` wraps it.
+
+The full lists are in each `findings.md`.
+
+**The book, pending the user's approval** (auto mode refused book writes last session). Run in this order:
+
+```
+# carried over from the previous session
+uv run python scripts/strategies.py add --file research/2026-10-10/term_carry/book_entries.json
+uv run python scripts/strategies.py add --file research/2026-10-10/queue_bids_ext/book_entries.json --replace
+uv run python scripts/strategies.py quote hip3-equity-funding-carry --window research/2026-10-10/tradfi_perps --net-apr 0.034 --usd 73000 --go yes
+# this session: go rows (the kHYPE file replaces the HYPE carry with its kHYPE version)
+uv run python scripts/strategies.py add --file research/2026-10-10/queue_bids_alt/book_entries.json --replace
+uv run python scripts/strategies.py add --file research/2026-10-10/queue_book/book_entries.json
+uv run python scripts/strategies.py add --file research/2026-10-10/house_vaults/book_entries.json
+# the four queue components are priced inside the one-pool row: mark them go=no so they are not counted twice
+uv run python scripts/strategies.py quote lido-steth-queue-bid    --window research/2026-10-10/queue_book --net-apr 0.0130 --usd 129884 --go no --note 'component of lst-queue-book-one-pool: priced inside it, not additive'
+uv run python scripts/strategies.py quote etherfi-weeth-queue-bid --window research/2026-10-10/queue_book --net-apr 0.0194 --usd 194238 --go no --note 'component of lst-queue-book-one-pool: priced inside it, not additive'
+uv run python scripts/strategies.py quote kelp-rseth-queue-bid    --window research/2026-10-10/queue_book --net-apr 0.0147 --usd 44120  --go no --note 'component of lst-queue-book-one-pool: priced inside it, not additive'
+uv run python scripts/strategies.py quote lombard-lbtc-queue-bid  --window research/2026-10-10/queue_book --net-apr 0.0111 --usd 111136 --go no --note 'component of lst-queue-book-one-pool: priced inside it, not additive'
+# watch and standby rows (go = no)
+for s in hl_vault_skill incentive_yields nav_wrappers ve_carry; do uv run python scripts/strategies.py add --file research/2026-10-10/$s/book_entries.json; done
+```
+
+**What the approved book would hold.** The commands were run on a scratch copy of the book, counting rows on its own
+rule (go, current quote, not retired):
+
+| state | go and current, $ a year |
+|---|---:|
+| today | $613,442 |
+| with the previous session's pending writes | $1,022,032 |
+| with this session's as well | **$1,467,586** |
+
+- The queue rows now need $15M instead of $33M.
+- Two of the new rows are gated (JLP's forward test) or lumpy (kHYPE).
+- The cross-chain dollar book's quote is stale and is not counted.
+
+**Next.**
+
+1. Run the one-pool queue book live and small: ETH-only first, resting CoW orders from one WETH balance.
+2. Forward-test JLP's net-delta hedge for 60 days.
+3. A daily watcher of Hyperliquid's and Binance's accepted collateral: each new asset is a same-venue carry at the
+   formula rate.
+4. Joint five-asset queue simulation with kHYPE's environment exported; sAVAX at swap level.
+5. Forward ledgers for the watch items: pooled money-market incentives, xyz:GOLD / HL PAXG, HL vault size-follow, sAERO
+   after the merger, EMPD (vote 10-14) and BNC.
+6. Install the launchd jobs.
+
 ## Session log — 2026-10-10 (alpha that does not race: a brainstorm, six history tests, a forward ledger)
 
 Asked to "continue what is left and brainstorm alpha strategies that don't require latency or a position in the block".

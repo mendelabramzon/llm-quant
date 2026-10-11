@@ -1,0 +1,186 @@
+{
+ "events": [
+  {
+   "coin": "SEI",
+   "pending": [
+    "trade: unlock not yet passed",
+    "placebo +15: not yet passed"
+   ],
+   "placebo": [
+    {
+     "abnormal": 0.15257133754756044,
+     "btc_return": -0.0034739874132335836,
+     "coin_return": 0.14909735013432687,
+     "cost": 0.00441,
+     "funding_btc_long_paid": 0.0006850568,
+     "funding_short_received": 0.0021160844,
+     "pnl": -0.15555030994756044,
+     "shift_days": -15
+    }
+   ],
+   "trade": null,
+   "unlock_utc": "2026-10-13T14:23:54+00:00"
+  },
+  {
+   "coin": "STRK",
+   "pending": [
+    "trade: unlock not yet passed",
+    "placebo +15: not yet passed"
+   ],
+   "placebo": [
+    {
+     "abnormal": 0.03602257669651494,
+     "btc_return": 0.0033267620920327478,
+     "coin_return": 0.03934933878854768,
+     "cost": 0.008970120910278193,
+     "funding_btc_long_paid": 0.0005765931000000001,
+     "funding_short_received": 0.0009203774,
+     "pnl": -0.04464891330679313,
+     "shift_days": -15
+    }
+   ],
+   "trade": null,
+   "unlock_utc": "2026-10-14T13:00:33+00:00"
+  },
+  {
+   "coin": "ARB",
+   "pending": [
+    "trade: unlock not yet passed",
+    "placebo +15: not yet passed"
+   ],
+   "placebo": [
+    {
+     "abnormal": -0.06855148115783066,
+     "btc_return": -0.004433028552363712,
+     "coin_return": -0.07298450971019438,
+     "cost": 0.0037884010183866067,
+     "funding_btc_long_paid": 0.0005031624000000001,
+     "funding_short_received": 0.000895457,
+     "pnl": 0.06515537473944405,
+     "shift_days": -15
+    }
+   ],
+   "trade": null,
+   "unlock_utc": "2026-10-15T14:00:33+00:00"
+  },
+  {
+   "coin": "ZK",
+   "pending": [
+    "trade: unlock not yet passed",
+    "placebo +15: not yet passed"
+   ],
+   "placebo": [
+    {
+     "abnormal": 0.03437606887207733,
+     "btc_return": 0.04076091073516729,
+     "coin_return": 0.07513697960724462,
+     "cost": 0.00441,
+     "funding_btc_long_paid": 0.0006839033,
+     "funding_short_received": 0.0009000000000000001,
+     "pnl": -0.038569972172077326,
+     "shift_days": -15
+    }
+   ],
+   "trade": null,
+   "unlock_utc": "2026-10-17T05:33:34+00:00"
+  },
+  {
+   "coin": "KAITO",
+   "pending": [
+    "trade: unlock not yet passed",
+    "placebo +15: not yet passed"
+   ],
+   "placebo": [
+    {
+     "abnormal": 0.0021354917001610296,
+     "btc_return": 0.013933602409956194,
+     "coin_return": 0.016069094110117223,
+     "cost": 0.00441,
+     "funding_btc_long_paid": 0.000720324,
+     "funding_short_received": 0.0011523628,
+     "pnl": -0.006113452900161029,
+     "shift_days": -15
+    }
+   ],
+   "trade": null,
+   "unlock_utc": "2026-10-19T17:41:00+00:00"
+  },
+  {
+   "coin": "ZRO",
+   "pending": [
+    "trade: unlock not yet passed",
+    "placebo +15: not yet passed"
+   ],
+   "placebo": [
+    {
+     "abnormal": 0.028439525899994288,
+     "btc_return": -0.012826199651548947,
+     "coin_return": 0.01561332624844534,
+     "cost": 0.004808015369236132,
+     "funding_btc_long_paid": 0.0007774102,
+     "funding_short_received": 0.003978804,
+     "pnl": -0.03004614746923042,
+     "shift_days": -15
+    }
+   ],
+   "trade": null,
+   "unlock_utc": "2026-10-20T05:33:34+00:00"
+  },
+  {
+   "coin": "XPL",
+   "pending": [
+    "trade: unlock not yet passed",
+    "placebo +15: not yet passed"
+   ],
+   "placebo": [
+    {
+     "abnormal": 0.009128773525695707,
+     "btc_return": -0.0052146030596269535,
+     "coin_return": 0.003914170466068754,
+     "cost": 0.0035388547833144755,
+     "funding_btc_long_paid": 0.0005355854,
+     "funding_short_received": 0.0005014661,
+     "pnl": -0.012701747609010182,
+     "shift_days": -15
+    }
+   ],
+   "trade": null,
+   "unlock_utc": "2026-10-25T16:17:49+00:00"
+  }
+ ],
+ "generated": "2026-10-10T23:06:14.372978+00:00",
+ "ledger": "/Users/iv/dev/llm-quant/research/unlocks_forward.jsonl",
+ "registered": 20,
+ "rule": {
+  "categories": [
+   "insiders",
+   "privateSale"
+  ],
+  "hedge": "long the BTC perp, same notional",
+  "id": "unlock-preshort",
+  "kill": "after 30 scored events, mean excess over the placebo not positive",
+  "min_size": 0.01,
+  "placebo_shift_days": [
+   -15,
+   15
+  ],
+  "promote": "after 30 scored events, excess positive and event-day t of the P&L above 2",
+  "venue": "Hyperliquid core perps",
+  "window_days": [
+   -3,
+   0
+  ]
+ },
+ "summary": {
+  "components": null,
+  "events_scored": 0,
+  "excess": null,
+  "excess_t": null,
+  "hit": null,
+  "mean_pnl": null,
+  "placebo_mean": -0.031782166952198355,
+  "placebo_n": 7,
+  "t_by_day": null,
+  "verdict": "accumulating (0 of 30 events scored)"
+ }
+}

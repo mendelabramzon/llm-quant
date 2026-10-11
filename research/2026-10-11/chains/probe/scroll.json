@@ -1,0 +1,378 @@
+{
+ "tx": {
+  "count": 8340.2,
+  "se": 270.4201480703907,
+  "raw_count": 8340.2,
+  "system_count": 0.0,
+  "method": "sampled-blocks",
+  "system_per_block": 0.0,
+  "bookkeeping": null,
+  "count_ex_bookkeeping": null,
+  "bookkeeping_targets": null,
+  "blocks": 7582,
+  "sampled": 200,
+  "per_block": 1.1,
+  "tps": 0.0965300925925926,
+  "note": "user transactions: OP-stack L1-attributes deposits and Arbitrum internal txs excluded"
+ },
+ "gas": {
+  "gas_per_second": 11826.848077199074,
+  "base_fee_median_gwei": 0.000120008
+ },
+ "transfers": {
+  "assets": [
+   {
+    "asset": "0xd29687c813d741e2f938f4ac377128810e217b1b",
+    "symbol": "SCR",
+    "class": "other",
+    "transfers": 341,
+    "transfers_se": 172,
+    "amount": 5609739.131561327,
+    "price": 0.025422615215387072,
+    "usd": 142614.23940038326,
+    "usd_se": 138932.48230427378,
+    "top_block_share": 0.9847041983639541,
+    "units_seen": 5,
+    "gross_amount": 5610447.4182353765,
+    "gross_usd": 142632.2458999598
+   },
+   {
+    "asset": "0x5300000000000000000000000000000000000004",
+    "symbol": "ETH",
+    "class": "eth",
+    "transfers": 4625,
+    "transfers_se": 636,
+    "amount": 14.77229351308158,
+    "price": 2505.63805926585,
+    "usd": 37014.02084902324,
+    "usd_se": 11571.709044724452,
+    "top_block_share": 0.21351538927972702,
+    "units_seen": 36,
+    "gross_amount": 34.54260782143439,
+    "gross_usd": 86551.27282368024
+   },
+   {
+    "asset": "0x06efdbff2a14a7c8e15944d1f4a48f9f95f663a4",
+    "symbol": "USDC",
+    "class": "usd_stable",
+    "transfers": 1933,
+    "transfers_se": 338,
+    "amount": 22037.02287474,
+    "price": 0.9996819785492902,
+    "usd": 22030.01462875605,
+    "usd_se": 8215.388691416805,
+    "top_block_share": 0.2090445390411817,
+    "units_seen": 22,
+    "gross_amount": 32383.15337789,
+    "gross_usd": 32372.854840474207
+   },
+   {
+    "asset": "native:ETH",
+    "symbol": "ETH",
+    "class": "eth",
+    "transfers": null,
+    "transfers_se": null,
+    "amount": 8.476241245556965,
+    "price": 2499.288587767928,
+    "usd": 21184.57301218833,
+    "usd_se": 15785.852439805163,
+    "top_block_share": 0.7445804860403702,
+    "units_seen": 27,
+    "note": "top-level transaction value only; internal transfers need traces"
+   },
+   {
+    "asset": "0xf55bec9cafdbe8730f096aa55dad6d22d44099df",
+    "symbol": "USDT",
+    "class": "usd_stable",
+    "transfers": 682,
+    "transfers_se": 327,
+    "amount": 12156.9116993,
+    "price": 0.9991540057431565,
+    "usd": 12146.62702182144,
+    "usd_se": 3798.262362312062,
+    "top_block_share": 0.3594779258947513,
+    "units_seen": 7,
+    "gross_amount": 12758.798912700002,
+    "gross_usd": 12748.005042095636
+   },
+   {
+    "asset": "0x3c1bca5a656e69edcd0d4e36bebb3fcdaca60cf1",
+    "symbol": "WBTC",
+    "class": "btc",
+    "transfers": 455,
+    "transfers_se": 281,
+    "amount": 0.1208328176,
+    "price": 82865.31483542592,
+    "usd": 10012.849472875594,
+    "usd_se": 9117.638534913349,
+    "top_block_share": 0.9412178103508859,
+    "units_seen": 3,
+    "gross_amount": 0.5828101432,
+    "gross_usd": 48294.74600554766
+   },
+   {
+    "asset": "0x80137510979822322193fc997d400d5a6c747bf7",
+    "symbol": "STONE",
+    "class": "other",
+    "transfers": 531,
+    "transfers_se": 219,
+    "amount": 0.6855457037900275,
+    "price": 2661.8620837046487,
+    "usd": 1824.8281155652926,
+    "usd_se": 734.0822775515489,
+    "top_block_share": 0.32064516927756265,
+    "units_seen": 6,
+    "gross_amount": 1.349298666101247,
+    "gross_usd": 3591.6469588881682
+   },
+   {
+    "asset": "0xf301805be1df81102c957f6d4ce29d2b8c056b2a",
+    "symbol": "aScrWETH",
+    "class": "other",
+    "transfers": 114,
+    "transfers_se": 113,
+    "amount": 0.128894,
+    "price": 2505.63805926585,
+    "usd": 322.96171201101254,
+    "usd_se": 319.4733447099514,
+    "top_block_share": 1.0,
+    "units_seen": 1,
+    "gross_amount": 0.272547449189976,
+    "gross_usd": 682.9052616462293
+   },
+   {
+    "asset": "0xca77eb3fefe3725dc33bccb54edefc3d9f764f97",
+    "symbol": "DAI",
+    "class": "usd_stable",
+    "transfers": 76,
+    "transfers_se": 75,
+    "amount": 57.29114806164702,
+    "price": 0.9998478333409181,
+    "usd": 57.282430259051516,
+    "usd_se": 56.66371246926542,
+    "top_block_share": 1.0,
+    "units_seen": 1,
+    "gross_amount": 114.58229612329404,
+    "gross_usd": 114.56486051810303
+   },
+   {
+    "asset": "0xa25b25548b4c98b0c7d3d27dca5d5ca743d68b7f",
+    "symbol": "wrsETH",
+    "class": "eth",
+    "transfers": 114,
+    "transfers_se": 113,
+    "amount": 0.003697321807620841,
+    "price": 2662.09309619607,
+    "usd": 9.842614858482614,
+    "usd_se": 9.736303012364777,
+    "top_block_share": 1.0,
+    "units_seen": 1,
+    "gross_amount": 0.011091965422862523,
+    "gross_usd": 29.527844575447844
+   },
+   {
+    "asset": "0xf610a9dfb7c89644979b4a0f27063e9e7d7cda32",
+    "symbol": "wstETH",
+    "class": "eth",
+    "transfers": 76,
+    "transfers_se": 75,
+    "amount": 0.0,
+    "price": 3131.4795395360657,
+    "usd": 0.0,
+    "usd_se": 0.0,
+    "top_block_share": null,
+    "units_seen": 1,
+    "gross_amount": 0.053178009102648666,
+    "gross_usd": 166.52584745820695
+   },
+   {
+    "asset": "0x1467b62a6ae5cdcb10a6a8173cfe187dd2c5a136",
+    "symbol": "SIS",
+    "class": "other",
+    "transfers": 76,
+    "transfers_se": 75,
+    "amount": 0.0,
+    "price": 0.016738376884976966,
+    "usd": 0.0,
+    "usd_se": 0.0,
+    "top_block_share": null,
+    "units_seen": 1,
+    "gross_amount": 0.018562054877819895,
+    "gross_usd": 0.00031069867030457447
+   }
+  ],
+  "unpriced_top": [
+   {
+    "asset": "0xaaae8378809bb8815c08d3c59eb0c7d1529ad769",
+    "symbol": "NURI",
+    "class": "other",
+    "transfers": 152,
+    "transfers_se": 150,
+    "amount": 0.2027171265247274,
+    "price": null,
+    "usd": null,
+    "usd_se": null,
+    "top_block_share": 1.0,
+    "units_seen": 1,
+    "gross_amount": 0.4049881233332554,
+    "gross_usd": null
+   },
+   {
+    "asset": "0x8ae1c699c9c62fac468a1e253e15b571b69a7ffe",
+    "symbol": "vAMM-WETH/NURI",
+    "class": "other",
+    "transfers": 38,
+    "transfers_se": 38,
+    "amount": 330.23443354641074,
+    "price": null,
+    "usd": null,
+    "usd_se": null,
+    "top_block_share": 1.0,
+    "units_seen": 1,
+    "gross_amount": 330.23443354641074,
+    "gross_usd": null
+   }
+  ],
+  "unpriced_assets": 2,
+  "unpriced_transfers": 190,
+  "priced_usd": 247217.23925774175,
+  "usd_by_class": {
+   "other": 144762.02922795957,
+   "eth": 58208.436476070056,
+   "usd_stable": 34233.92408083654,
+   "btc": 10012.849472875594
+  },
+  "gross_priced_usd": 327184.2956955424,
+  "method": "sampled-blocks; value = net per transaction (each account's positive net change), gross beside it",
+  "top_targets_by_value": [
+   {
+    "to": "0xd29687c813d741e2f938f4ac377128810e217b1b",
+    "usd": 142596.23290085673,
+    "share": 0.6308655968599934
+   },
+   {
+    "to": "0x04a700f83286821a5de732107d0b47996eb3f54f",
+    "usd": 31841.508868232537,
+    "share": 0.14087127049875667
+   },
+   {
+    "to": "0x89c6340b1a1f4b25d36cd8b063d49045caf3f818",
+    "usd": 16422.688194282226,
+    "share": 0.07265626011968215
+   },
+   {
+    "to": "0xe0b1d387622d09a6a2ac74cb08e3f0dcea8c3505",
+    "usd": 15591.803870997734,
+    "share": 0.06898031213797826
+   },
+   {
+    "to": "0x2db0afd0045f3518c77ec6591a542e326befd3d7",
+    "usd": 5661.6543110748,
+    "share": 0.025047947295034744
+   },
+   {
+    "to": "0xf55bec9cafdbe8730f096aa55dad6d22d44099df",
+    "usd": 4366.44428842151,
+    "share": 0.019317757742493596
+   },
+   {
+    "to": "0x2730f6e9f3010ad066fa97de9973be591affa7ed",
+    "usd": 2207.9230645647976,
+    "share": 0.009768159183532318
+   },
+   {
+    "to": "0x3338be49a5f60e2593337919f9ad7098e9a7dd7e",
+    "usd": 1671.8018033511235,
+    "share": 0.007396284046549895
+   },
+   {
+    "to": "0x181055ea51cc3027ef67e1ff99ba98e4e417fc33",
+    "usd": 1474.6928995703158,
+    "share": 0.006524246800541055
+   },
+   {
+    "to": "0x5300000000000000000000000000000000000004",
+    "usd": 1316.1318490212457,
+    "share": 0.005822750626634867
+   }
+  ],
+  "top_targets_by_txs": [
+   {
+    "to": "0x5300000000000000000000000000000000000002",
+    "txs": 2843.2499999999995,
+    "share": 0.3409090909090909
+   },
+   {
+    "to": "0xe0b1d387622d09a6a2ac74cb08e3f0dcea8c3505",
+    "txs": 758.1999999999999,
+    "share": 0.09090909090909091
+   },
+   {
+    "to": "0x3c2269811836af69497e5f486a85d7316753cf62",
+    "txs": 568.65,
+    "share": 0.06818181818181818
+   },
+   {
+    "to": "0x1c338d27f36452358611936fc8418849910b1c59",
+    "txs": 341.18999999999994,
+    "share": 0.04090909090909091
+   },
+   {
+    "to": "0x98b8335d29aca40840ed8426da1a0aaa8677d8d1",
+    "txs": 341.18999999999994,
+    "share": 0.04090909090909091
+   },
+   {
+    "to": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+    "txs": 303.28,
+    "share": 0.03636363636363636
+   },
+   {
+    "to": "0x0c00f6555c502e2c84037eb9873fbb7abedde9c3",
+    "txs": 303.28,
+    "share": 0.03636363636363636
+   },
+   {
+    "to": "0x04a700f83286821a5de732107d0b47996eb3f54f",
+    "txs": 227.45999999999998,
+    "share": 0.02727272727272727
+   },
+   {
+    "to": "0x1231deb6f5749ef6ce6943a275a1d3e7486f4eae",
+    "txs": 151.64,
+    "share": 0.01818181818181818
+   },
+   {
+    "to": "0x5300000000000000000000000000000000000004",
+    "txs": 151.64,
+    "share": 0.01818181818181818
+   }
+  ],
+  "transfer_logs_per_block": 1.215,
+  "logs_missing_blocks": 0
+ },
+ "window": {
+  "start_ts": 1791590400,
+  "end_ts": 1791676800,
+  "start_utc": "2026-10-10T00:00:00+00:00",
+  "end_utc": "2026-10-11T00:00:00+00:00",
+  "hours": 24.0
+ },
+ "blocks": {
+  "first": 35326664,
+  "last": 35334245,
+  "head": 35336773
+ },
+ "endpoint": "infura:scroll-mainnet",
+ "calls": 436,
+ "notes": [],
+ "errors": [],
+ "error_count": 0,
+ "seconds": 25.6,
+ "chain": "scroll",
+ "name": "Scroll",
+ "family": "evm",
+ "adapter": "evm",
+ "ok": true,
+ "probed_at": "2026-10-11T08:26:47+00:00"
+}

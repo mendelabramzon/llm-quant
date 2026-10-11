@@ -1,0 +1,1577 @@
+{
+ "days": 744,
+ "generated": "2026-10-11T03:42:45Z",
+ "hurdle_bps": 1.0,
+ "late_entry_check": {
+  "all4": {
+   "mine_1h_hurdle": "h=1",
+   "mine_1h_t": 8.144737476975266,
+   "mine_1h_usd_per_year": 392429.52264942985,
+   "mine_no_delay_usd_per_year": 409884.6566439895,
+   "queue_book_1h_hurdle": "h=1",
+   "queue_book_1h_t": 8.144737476975266,
+   "queue_book_1h_usd_per_year": 392429.52264942985,
+   "queue_book_no_delay_usd_per_year": 409888.879512157
+  },
+  "eth3": {
+   "mine_1h_hurdle": "h=0",
+   "mine_1h_t": 6.34747580328817,
+   "mine_1h_usd_per_year": 313401.95790866803,
+   "mine_no_delay_usd_per_year": 337672.8901525888,
+   "queue_book_1h_hurdle": "h=0",
+   "queue_book_1h_t": 6.34747580328817,
+   "queue_book_1h_usd_per_year": 313401.95790866803,
+   "queue_book_no_delay_usd_per_year": 337677.1130207563
+  }
+ },
+ "persistence": {
+  "etherfi_ev": {
+   "day|first": {
+    "all": {
+     "later_missing_share": 0.045040766247130534,
+     "median_edge_kept": 0.9908956928562114,
+     "qualifying": 37899,
+     "qualifying_usd": 5004434288.271239,
+     "still_clear_share": 0.8281484999604212,
+     "still_clear_usd_share": 0.7826938377132108
+    },
+    "deep": {
+     "later_missing_share": 0.027328015164678934,
+     "median_edge_kept": 0.9343434078356022,
+     "qualifying": 12661,
+     "qualifying_usd": 995876016.8874257,
+     "still_clear_share": 0.9692757286154332,
+     "still_clear_usd_share": 0.9624860706830723
+    }
+   },
+   "day|lookback": {
+    "all": {
+     "later_missing_share": 0.00018470144330984985,
+     "median_edge_kept": 0.9835370196217572,
+     "qualifying": 37899,
+     "qualifying_usd": 5004434288.271239,
+     "still_clear_share": 0.8525290904773213,
+     "still_clear_usd_share": 0.7845502321913328
+    },
+    "deep": {
+     "later_missing_share": 0.0,
+     "median_edge_kept": 0.9320983594293795,
+     "qualifying": 12661,
+     "qualifying_usd": 995876016.8874257,
+     "still_clear_share": 0.9946291762104099,
+     "still_clear_usd_share": 0.9860805549527318
+    }
+   },
+   "day|median": {
+    "all": {
+     "later_missing_share": 0.045040766247130534,
+     "median_edge_kept": 0.9841856429352669,
+     "qualifying": 37899,
+     "qualifying_usd": 5004434288.271239,
+     "still_clear_share": 0.819335602522494,
+     "still_clear_usd_share": 0.7600555623444771
+    },
+    "deep": {
+     "later_missing_share": 0.027328015164678934,
+     "median_edge_kept": 0.9292186000127642,
+     "qualifying": 12661,
+     "qualifying_usd": 995876016.8874257,
+     "still_clear_share": 0.9673801437485191,
+     "still_clear_usd_share": 0.9630027750249006
+    }
+   },
+   "hour|first": {
+    "all": {
+     "later_missing_share": 0.02897174067917359,
+     "median_edge_kept": 1.0,
+     "qualifying": 37899,
+     "qualifying_usd": 5004434288.271239,
+     "still_clear_share": 0.921475500672841,
+     "still_clear_usd_share": 0.9233853894893751
+    },
+    "deep": {
+     "later_missing_share": 0.020693468130479425,
+     "median_edge_kept": 1.0,
+     "qualifying": 12661,
+     "qualifying_usd": 995876016.8874257,
+     "still_clear_share": 0.9785167048416397,
+     "still_clear_usd_share": 0.9861320796024579
+    }
+   },
+   "hour|lookback": {
+    "all": {
+     "later_missing_share": 0.0,
+     "median_edge_kept": 1.0,
+     "qualifying": 37899,
+     "qualifying_usd": 5004434288.271239,
+     "still_clear_share": 0.953428850365445,
+     "still_clear_usd_share": 0.945315318618368
+    },
+    "deep": {
+     "later_missing_share": 0.0,
+     "median_edge_kept": 1.0,
+     "qualifying": 12661,
+     "qualifying_usd": 995876016.8874257,
+     "still_clear_share": 0.9983413632414502,
+     "still_clear_usd_share": 0.9988063436994097
+    }
+   },
+   "hour|median": {
+    "all": {
+     "later_missing_share": 0.02897174067917359,
+     "median_edge_kept": 1.0,
+     "qualifying": 37899,
+     "qualifying_usd": 5004434288.271239,
+     "still_clear_share": 0.9127153750758595,
+     "still_clear_usd_share": 0.9147566228835075
+    },
+    "deep": {
+     "later_missing_share": 0.020693468130479425,
+     "median_edge_kept": 1.0,
+     "qualifying": 12661,
+     "qualifying_usd": 995876016.8874257,
+     "still_clear_share": 0.9776478951109707,
+     "still_clear_usd_share": 0.9858849760028199
+    }
+   }
+  },
+  "kelp": {
+   "day|first": {
+    "all": {
+     "later_missing_share": 0.8048929663608563,
+     "median_edge_kept": 0.9994690370212707,
+     "qualifying": 1635,
+     "qualifying_usd": 104975027.93924528,
+     "still_clear_share": 0.18409785932721712,
+     "still_clear_usd_share": 0.21101059010010836
+    },
+    "deep": {
+     "later_missing_share": 0.7868369351669942,
+     "median_edge_kept": 0.9791391926726937,
+     "qualifying": 1018,
+     "qualifying_usd": 72719212.5136694,
+     "still_clear_share": 0.20726915520628683,
+     "still_clear_usd_share": 0.23290606583222437
+    }
+   },
+   "day|lookback": {
+    "all": {
+     "later_missing_share": 0.382262996941896,
+     "median_edge_kept": 1.0,
+     "qualifying": 1635,
+     "qualifying_usd": 104975027.93924528,
+     "still_clear_share": 0.5730886850152905,
+     "still_clear_usd_share": 0.5458901879891848
+    },
+    "deep": {
+     "later_missing_share": 0.3349705304518664,
+     "median_edge_kept": 1.0,
+     "qualifying": 1018,
+     "qualifying_usd": 72719212.5136694,
+     "still_clear_share": 0.650294695481336,
+     "still_clear_usd_share": 0.5879434586042923
+    }
+   },
+   "day|median": {
+    "all": {
+     "later_missing_share": 0.8048929663608563,
+     "median_edge_kept": 0.9994697725969772,
+     "qualifying": 1635,
+     "qualifying_usd": 104975027.93924528,
+     "still_clear_share": 0.1853211009174312,
+     "still_clear_usd_share": 0.21114527203340358
+    },
+    "deep": {
+     "later_missing_share": 0.7868369351669942,
+     "median_edge_kept": 0.981764483478373,
+     "qualifying": 1018,
+     "qualifying_usd": 72719212.5136694,
+     "still_clear_share": 0.2082514734774067,
+     "still_clear_usd_share": 0.23293048843985692
+    }
+   },
+   "hour|first": {
+    "all": {
+     "later_missing_share": 0.6415902140672783,
+     "median_edge_kept": 1.0,
+     "qualifying": 1635,
+     "qualifying_usd": 104975027.93924528,
+     "still_clear_share": 0.346177370030581,
+     "still_clear_usd_share": 0.31635598389719405
+    },
+    "deep": {
+     "later_missing_share": 0.6493123772102161,
+     "median_edge_kept": 1.0,
+     "qualifying": 1018,
+     "qualifying_usd": 72719212.5136694,
+     "still_clear_share": 0.3487229862475442,
+     "still_clear_usd_share": 0.36031816443121456
+    }
+   },
+   "hour|lookback": {
+    "all": {
+     "later_missing_share": 0.0,
+     "median_edge_kept": 1.0,
+     "qualifying": 1635,
+     "qualifying_usd": 104975027.93924528,
+     "still_clear_share": 0.9865443425076452,
+     "still_clear_usd_share": 0.9538192334941563
+    },
+    "deep": {
+     "later_missing_share": 0.0,
+     "median_edge_kept": 1.0,
+     "qualifying": 1018,
+     "qualifying_usd": 72719212.5136694,
+     "still_clear_share": 0.9970530451866405,
+     "still_clear_usd_share": 0.9998824555005149
+    }
+   },
+   "hour|median": {
+    "all": {
+     "later_missing_share": 0.6415902140672783,
+     "median_edge_kept": 1.0,
+     "qualifying": 1635,
+     "qualifying_usd": 104975027.93924528,
+     "still_clear_share": 0.3443425076452599,
+     "still_clear_usd_share": 0.3440356600815753
+    },
+    "deep": {
+     "later_missing_share": 0.6493123772102161,
+     "median_edge_kept": 1.0,
+     "qualifying": 1018,
+     "qualifying_usd": 72719212.5136694,
+     "still_clear_share": 0.3477406679764244,
+     "still_clear_usd_share": 0.3603013061551053
+    }
+   }
+  },
+  "lbtc_cb": {
+   "day|first": {
+    "all": {
+     "later_missing_share": 0.6766169154228856,
+     "median_edge_kept": 1.0,
+     "qualifying": 2814,
+     "qualifying_usd": 218226372.5510364,
+     "still_clear_share": 0.31663113006396587,
+     "still_clear_usd_share": 0.27432625480837475
+    },
+    "deep": {
+     "later_missing_share": 0.6657088122605364,
+     "median_edge_kept": 1.0,
+     "qualifying": 2088,
+     "qualifying_usd": 175574898.7311706,
+     "still_clear_share": 0.33381226053639845,
+     "still_clear_usd_share": 0.28296706642908126
+    }
+   },
+   "day|lookback": {
+    "all": {
+     "later_missing_share": 0.22388059701492538,
+     "median_edge_kept": 1.0,
+     "qualifying": 2814,
+     "qualifying_usd": 218226372.5510364,
+     "still_clear_share": 0.7412935323383084,
+     "still_clear_usd_share": 0.6719889482758236
+    },
+    "deep": {
+     "later_missing_share": 0.21743295019157088,
+     "median_edge_kept": 1.0,
+     "qualifying": 2088,
+     "qualifying_usd": 175574898.7311706,
+     "still_clear_share": 0.7816091954022989,
+     "still_clear_usd_share": 0.7011069992021541
+    }
+   },
+   "day|median": {
+    "all": {
+     "later_missing_share": 0.6766169154228856,
+     "median_edge_kept": 1.0,
+     "qualifying": 2814,
+     "qualifying_usd": 218226372.5510364,
+     "still_clear_share": 0.31627576403695806,
+     "still_clear_usd_share": 0.2743187724607161
+    },
+    "deep": {
+     "later_missing_share": 0.6657088122605364,
+     "median_edge_kept": 1.0,
+     "qualifying": 2088,
+     "qualifying_usd": 175574898.7311706,
+     "still_clear_share": 0.3333333333333333,
+     "still_clear_usd_share": 0.28295776643460885
+    }
+   },
+   "hour|first": {
+    "all": {
+     "later_missing_share": 0.464818763326226,
+     "median_edge_kept": 1.0,
+     "qualifying": 2814,
+     "qualifying_usd": 218226372.5510364,
+     "still_clear_share": 0.5334044065387349,
+     "still_clear_usd_share": 0.5065147220305368
+    },
+    "deep": {
+     "later_missing_share": 0.44396551724137934,
+     "median_edge_kept": 1.0,
+     "qualifying": 2088,
+     "qualifying_usd": 175574898.7311706,
+     "still_clear_share": 0.5541187739463601,
+     "still_clear_usd_share": 0.5095525599466514
+    }
+   },
+   "hour|lookback": {
+    "all": {
+     "later_missing_share": 0.0,
+     "median_edge_kept": 1.0,
+     "qualifying": 2814,
+     "qualifying_usd": 218226372.5510364,
+     "still_clear_share": 0.9989339019189766,
+     "still_clear_usd_share": 0.9988644515340014
+    },
+    "deep": {
+     "later_missing_share": 0.0,
+     "median_edge_kept": 1.0,
+     "qualifying": 2088,
+     "qualifying_usd": 175574898.7311706,
+     "still_clear_share": 0.9990421455938697,
+     "still_clear_usd_share": 0.9991650844018024
+    }
+   },
+   "hour|median": {
+    "all": {
+     "later_missing_share": 0.464818763326226,
+     "median_edge_kept": 1.0,
+     "qualifying": 2814,
+     "qualifying_usd": 218226372.5510364,
+     "still_clear_share": 0.5341151385927505,
+     "still_clear_usd_share": 0.5076135519373949
+    },
+    "deep": {
+     "later_missing_share": 0.44396551724137934,
+     "median_edge_kept": 1.0,
+     "qualifying": 2088,
+     "qualifying_usd": 175574898.7311706,
+     "still_clear_share": 0.5550766283524904,
+     "still_clear_usd_share": 0.510918322742798
+    }
+   }
+  },
+  "lido": {
+   "day|first": {
+    "all": {
+     "later_missing_share": 0.0020783245951974047,
+     "median_edge_kept": 0.9585476005026066,
+     "qualifying": 138092,
+     "qualifying_usd": 13375467767.685593,
+     "still_clear_share": 0.9076847319178518,
+     "still_clear_usd_share": 0.8915038689698231
+    },
+    "deep": {
+     "later_missing_share": 0.0,
+     "median_edge_kept": 0.9234465295480803,
+     "qualifying": 41739,
+     "qualifying_usd": 3375601736.6199474,
+     "still_clear_share": 0.9987062459570186,
+     "still_clear_usd_share": 0.9990010693843504
+    }
+   },
+   "day|lookback": {
+    "all": {
+     "later_missing_share": 0.0,
+     "median_edge_kept": 0.9509221656410795,
+     "qualifying": 138092,
+     "qualifying_usd": 13375467767.685593,
+     "still_clear_share": 0.9082061234539293,
+     "still_clear_usd_share": 0.886407981672626
+    },
+    "deep": {
+     "later_missing_share": 0.0,
+     "median_edge_kept": 0.9113990149612408,
+     "qualifying": 41739,
+     "qualifying_usd": 3375601736.6199474,
+     "still_clear_share": 0.9988739548144421,
+     "still_clear_usd_share": 0.9982765634872093
+    }
+   },
+   "day|median": {
+    "all": {
+     "later_missing_share": 0.0020783245951974047,
+     "median_edge_kept": 0.9498705064154891,
+     "qualifying": 138092,
+     "qualifying_usd": 13375467767.685593,
+     "still_clear_share": 0.9055846826753179,
+     "still_clear_usd_share": 0.8811701008152252
+    },
+    "deep": {
+     "later_missing_share": 0.0,
+     "median_edge_kept": 0.9029812615268153,
+     "qualifying": 41739,
+     "qualifying_usd": 3375601736.6199474,
+     "still_clear_share": 0.9983708282421716,
+     "still_clear_usd_share": 0.9979463961545486
+    }
+   },
+   "hour|first": {
+    "all": {
+     "later_missing_share": 0.0006879471656576775,
+     "median_edge_kept": 1.0,
+     "qualifying": 138092,
+     "qualifying_usd": 13375467767.685593,
+     "still_clear_share": 0.9775729223995597,
+     "still_clear_usd_share": 0.9763865542365082
+    },
+    "deep": {
+     "later_missing_share": 0.0,
+     "median_edge_kept": 1.0,
+     "qualifying": 41739,
+     "qualifying_usd": 3375601736.6199474,
+     "still_clear_share": 1.0,
+     "still_clear_usd_share": 1.0
+    }
+   },
+   "hour|lookback": {
+    "all": {
+     "later_missing_share": 0.0,
+     "median_edge_kept": 1.0,
+     "qualifying": 138092,
+     "qualifying_usd": 13375467767.685593,
+     "still_clear_share": 0.9830764997248211,
+     "still_clear_usd_share": 0.9810376337043405
+    },
+    "deep": {
+     "later_missing_share": 0.0,
+     "median_edge_kept": 1.0,
+     "qualifying": 41739,
+     "qualifying_usd": 3375601736.6199474,
+     "still_clear_share": 1.0,
+     "still_clear_usd_share": 1.0
+    }
+   },
+   "hour|median": {
+    "all": {
+     "later_missing_share": 0.0006879471656576775,
+     "median_edge_kept": 1.0,
+     "qualifying": 138092,
+     "qualifying_usd": 13375467767.685593,
+     "still_clear_share": 0.9798105610752252,
+     "still_clear_usd_share": 0.9784263468545307
+    },
+    "deep": {
+     "later_missing_share": 0.0,
+     "median_edge_kept": 1.0,
+     "qualifying": 41739,
+     "qualifying_usd": 3375601736.6199474,
+     "still_clear_share": 1.0,
+     "still_clear_usd_share": 1.0
+    }
+   }
+  }
+ },
+ "persistence_note": "sells whose own-hour edge (simulate_book's) cleared 1bp; share whose edge at the later price still cleared it, by count and volume, all and deep (own edge > 10bp); full window",
+ "queue_book_late_entry_kept": {
+  "all4|15000000|1d": 0.9107193658811857,
+  "all4|15000000|1h": 0.9574046583466549,
+  "eth3|15000000|1d": 0.8878816057699486,
+  "eth3|15000000|1h": 0.9281113401647801
+ },
+ "seconds": 48.3,
+ "sets": {
+  "all4": {
+   "a0_taker_no_delay": {
+    "by_hurdle_oos_usd_per_year": {
+     "h=0": 383271.1718112354,
+     "h=1": 409884.6566439895,
+     "h=10": 323700.45866767026,
+     "h=2": 438984.05699798,
+     "h=20": 208384.14748674826,
+     "h=3": 439159.9974743531,
+     "h=5": 397353.81294932496
+    },
+    "chosen_hurdle": "h=1",
+    "cutoff_utc": "2025-10-03T00:00:00Z",
+    "filled_usd": 2826135399.2797036,
+    "fills": 15203,
+    "in_sample_positive": true,
+    "in_sample_usd_per_year": 707140.2440636687,
+    "missed_capital_usd": 15068974243.071003,
+    "oos_by_asset_usd_per_year": {
+     "etherfi_ev": 158552.97913722927,
+     "kelp": 28339.14692824966,
+     "lbtc_cb": 97308.25426190777,
+     "lido": 125684.27631660257
+    },
+    "oos_ci95_usd_per_year": [
+     321302.78330822353,
+     503555.2783466055
+    ],
+    "oos_rank_of_chosen": 3,
+    "oos_t": 9.313617774653917,
+    "out_of_sample_usd_per_year": 409884.6566439895
+   },
+   "a_taker_hourly": {
+    "by_hurdle_oos_usd_per_year": {
+     "h=0": 385205.96115379606,
+     "h=1": 392429.5226494298,
+     "h=10": 261324.25825007228,
+     "h=2": 360428.3080401065,
+     "h=20": 168422.75500998707,
+     "h=3": 358186.8097841798,
+     "h=5": 350928.8877061854
+    },
+    "chosen_hurdle": "h=1",
+    "cutoff_utc": "2025-10-03T00:00:00Z",
+    "filled_usd": 2501168416.3023305,
+    "fills": 14933,
+    "in_sample_positive": true,
+    "in_sample_usd_per_year": 666235.9223112619,
+    "late_1d_kept_share_vs_no_delay": 0.9107287486374255,
+    "late_1d_out_of_sample_usd_per_year": 373293.74043106136,
+    "missed_capital_usd": 13862987782.896109,
+    "oos_by_asset_usd_per_year": {
+     "etherfi_ev": 157828.22658055945,
+     "kelp": 21229.999130245236,
+     "lbtc_cb": 91209.02355003938,
+     "lido": 122162.27338858554
+    },
+    "oos_ci95_usd_per_year": [
+     297542.21196099336,
+     493309.38063930545
+    ],
+    "oos_rank_of_chosen": 1,
+    "oos_t": 8.144737476975266,
+    "out_of_sample_usd_per_year": 392429.52264942985
+   },
+   "b_fixed_limit": {
+    "by_variant_oos_usd_per_year": {
+     "L=10": 206584.96286007273,
+     "L=15": 191626.26829766005,
+     "L=2": 132750.29677788273,
+     "L=20": 140079.87114597435,
+     "L=30": 91016.53459436518,
+     "L=5": 191765.21548401465,
+     "L=50": 69923.33568711343,
+     "L=75": 35349.80981665314
+    },
+    "chosen": "L=15",
+    "cutoff_utc": "2025-10-03T00:00:00Z",
+    "in_sample_positive": true,
+    "in_sample_usd_per_year": 452425.17109390174,
+    "late_1d_kept_share": 0.3890688324656422,
+    "late_1d_out_of_sample_usd_per_year": 74555.80847631852,
+    "n_variants": 8,
+    "oos_by_asset_usd_per_year": {
+     "etherfi_ev": 79745.48971842809,
+     "kelp": 18868.65233065248,
+     "lbtc_cb": 47453.41361008347,
+     "lido": 45558.71263849614
+    },
+    "oos_ci95_usd_per_year": [
+     101425.13879440795,
+     302106.7526128964
+    ],
+    "oos_filled_usd": 138454195.08078456,
+    "oos_fills": 1238,
+    "oos_median_earned_bps": 15.0,
+    "oos_rank_of_chosen": 3,
+    "oos_t": 3.8405772779347935,
+    "oos_top_month_share": 0.23879621884276195,
+    "out_of_sample_usd_per_year": 191626.26829766008
+   },
+   "c_daily_requote": {
+    "by_variant_oos_usd_per_year": {
+     "requote": 210511.77416520964
+    },
+    "chosen": "requote",
+    "cutoff_utc": "2025-10-03T00:00:00Z",
+    "days_market_term_above_floor_share": {
+     "etherfi_ev": 0.33736559139784944,
+     "kelp": 0.38844086021505375,
+     "lbtc_cb": 0.48118279569892475,
+     "lido": 0.3844086021505376
+    },
+    "in_sample_positive": true,
+    "in_sample_usd_per_year": 406366.06987606647,
+    "late_1d_kept_share": "n/a: the limit is set from the previous day's market",
+    "n_variants": 1,
+    "oos_by_asset_usd_per_year": {
+     "etherfi_ev": 74230.22319250178,
+     "kelp": 17260.427001821652,
+     "lbtc_cb": 49743.43347475203,
+     "lido": 69277.69049613392
+    },
+    "oos_ci95_usd_per_year": [
+     157453.73620312128,
+     263331.7305220037
+    ],
+    "oos_filled_usd": 913521597.8685992,
+    "oos_fills": 3640,
+    "oos_median_earned_bps": 4.227954815588152,
+    "oos_rank_of_chosen": 1,
+    "oos_t": 8.009847259533764,
+    "oos_top_month_share": 0.14800553383802817,
+    "out_of_sample_usd_per_year": 210511.77416520964
+   },
+   "d_two_level_ladder": {
+    "by_variant_oos_usd_per_year": {
+     "L=15|2L": 168527.88199488848
+    },
+    "chosen": "L=15|2L",
+    "cutoff_utc": "2025-10-03T00:00:00Z",
+    "filled_usd_by_level_full_window": [
+     266008765.03210193,
+     56177239.92450461
+    ],
+    "in_sample_positive": true,
+    "in_sample_usd_per_year": 364386.7055653492,
+    "late_1d_kept_share": 0.44653216232713117,
+    "late_1d_out_of_sample_usd_per_year": 75253.11955958915,
+    "n_variants": 1,
+    "oos_by_asset_usd_per_year": {
+     "etherfi_ev": 77814.54510252805,
+     "kelp": 17658.8772246931,
+     "lbtc_cb": 45966.636912751754,
+     "lido": 27087.822754915625
+    },
+    "oos_ci95_usd_per_year": [
+     88091.37709383082,
+     275816.56774628046
+    ],
+    "oos_filled_usd": 105733263.49809577,
+    "oos_fills": 1004,
+    "oos_median_earned_bps": 15.0,
+    "oos_rank_of_chosen": 1,
+    "oos_t": 3.543195345926679,
+    "oos_top_month_share": 0.29888623554218635,
+    "out_of_sample_usd_per_year": 168527.88199488848
+   },
+   "e_hourly_requote": {
+    "by_variant_oos_usd_per_year": {
+     "hourly requote": 222476.71837588894
+    },
+    "chosen": "hourly requote",
+    "cutoff_utc": "2025-10-03T00:00:00Z",
+    "in_sample_positive": true,
+    "in_sample_usd_per_year": 494703.401677769,
+    "late_1d_kept_share": "n/a: the limit is set from the previous hour's market",
+    "n_variants": 1,
+    "oos_by_asset_usd_per_year": {
+     "etherfi_ev": 72452.47824214498,
+     "kelp": 9768.671552375154,
+     "lbtc_cb": 48165.68317324598,
+     "lido": 92089.8854081227
+    },
+    "oos_ci95_usd_per_year": [
+     165969.81693249088,
+     285065.8518081629
+    ],
+    "oos_filled_usd": 948788634.9448181,
+    "oos_fills": 4226,
+    "oos_median_earned_bps": 4.625595208708066,
+    "oos_rank_of_chosen": 1,
+    "oos_t": 7.474652383358028,
+    "oos_top_month_share": 0.17480717050146277,
+    "out_of_sample_usd_per_year": 222476.71837588894
+   },
+   "f_taker_next_hour|first": {
+    "by_variant_oos_usd_per_year": {
+     "h=0": 304137.4105299114,
+     "h=1": 324702.7816901779,
+     "h=10": 199902.95407062792,
+     "h=2": 317252.97422779055,
+     "h=20": 138654.84090959717,
+     "h=3": 313442.1658178454,
+     "h=5": 260264.00855495196
+    },
+    "chosen": "h=2",
+    "cutoff_utc": "2025-10-03T00:00:00Z",
+    "delay": "bought at the next hour boundary H, priced over [H, H+1h)",
+    "in_sample_positive": true,
+    "in_sample_usd_per_year": 618938.4960240357,
+    "kept_share_vs_no_delay_taker": 0.7740054893134112,
+    "n_variants": 7,
+    "oos_by_asset_usd_per_year": {
+     "etherfi_ev": 144074.63100228275,
+     "kelp": 7277.259943305073,
+     "lbtc_cb": 50024.9991525612,
+     "lido": 115876.0841296415
+    },
+    "oos_ci95_usd_per_year": [
+     229381.87606530124,
+     413222.61593346647
+    ],
+    "oos_filled_usd": 722229600.1759571,
+    "oos_fills": 3756,
+    "oos_median_earned_bps": 5.379372403771418,
+    "oos_rank_of_chosen": 2,
+    "oos_t": 7.02532208826958,
+    "oos_top_month_share": 0.14457464344059776,
+    "out_of_sample_usd_per_year": 317252.9742277906,
+    "reading": "the first trade in the later window; skipped when none",
+    "stats_full_window": {
+     "filled_usd": 2036829661.6573207,
+     "later_below_hurdle": 2793,
+     "later_missing": 1807,
+     "missed_capital_usd": 12507321458.564533,
+     "qualifying_own_hour": 79444
+    }
+   },
+   "f_taker_next_hour|lookback": {
+    "by_variant_oos_usd_per_year": {
+     "h=0": 341203.8667149098,
+     "h=1": 369983.7283663131,
+     "h=10": 294479.80892188183,
+     "h=2": 381627.7602733678,
+     "h=20": 170805.18899348588,
+     "h=3": 377836.62915489665,
+     "h=5": 349297.3948307619
+    },
+    "chosen": "h=1",
+    "cutoff_utc": "2025-10-03T00:00:00Z",
+    "delay": "bought at the next hour boundary H, priced over [H, H+1h)",
+    "in_sample_positive": true,
+    "in_sample_usd_per_year": 669134.3688131294,
+    "kept_share_vs_no_delay_taker": 0.9026532766452566,
+    "n_variants": 7,
+    "oos_by_asset_usd_per_year": {
+     "etherfi_ev": 128828.31417609246,
+     "kelp": 28968.84677463287,
+     "lbtc_cb": 95185.38828756193,
+     "lido": 117001.17912802572
+    },
+    "oos_ci95_usd_per_year": [
+     287767.61929408193,
+     459281.7201069859
+    ],
+    "oos_filled_usd": 883137240.7418364,
+    "oos_fills": 5087,
+    "oos_median_earned_bps": 5.945809861539208,
+    "oos_rank_of_chosen": 3,
+    "oos_t": 8.75969720750495,
+    "oos_top_month_share": 0.1250072275445945,
+    "out_of_sample_usd_per_year": 369983.7283663131,
+    "reading": "market_discount_fn at the purchase (the study's 6h carry: a quiet venue counts as unchanged)",
+    "stats_full_window": {
+     "filled_usd": 2620639172.4156585,
+     "later_below_hurdle": 2670,
+     "later_missing": 0,
+     "missed_capital_usd": 14743603728.396366,
+     "qualifying_own_hour": 84731
+    }
+   },
+   "f_taker_next_hour|median": {
+    "by_variant_oos_usd_per_year": {
+     "h=0": 273832.854707446,
+     "h=1": 294743.2615093877,
+     "h=10": 218308.27304248873,
+     "h=2": 303736.69403189956,
+     "h=20": 132940.22663140824,
+     "h=3": 297203.14518177946,
+     "h=5": 267432.42764679214
+    },
+    "chosen": "h=1",
+    "cutoff_utc": "2025-10-03T00:00:00Z",
+    "delay": "bought at the next hour boundary H, priced over [H, H+1h)",
+    "in_sample_positive": true,
+    "in_sample_usd_per_year": 621758.6210491932,
+    "kept_share_vs_no_delay_taker": 0.7190883013837492,
+    "n_variants": 7,
+    "oos_by_asset_usd_per_year": {
+     "etherfi_ev": 112411.39595960111,
+     "kelp": 7738.066378600184,
+     "lbtc_cb": 49067.29171823663,
+     "lido": 125526.50745294987
+    },
+    "oos_ci95_usd_per_year": [
+     218711.62422109867,
+     377226.63170567044
+    ],
+    "oos_filled_usd": 842647423.709926,
+    "oos_fills": 4353,
+    "oos_median_earned_bps": 5.396500421824341,
+    "oos_rank_of_chosen": 3,
+    "oos_t": 7.511761286293897,
+    "oos_top_month_share": 0.1525875527520721,
+    "out_of_sample_usd_per_year": 294743.2615093877,
+    "reading": "venue median over the later window, trades in it only; skipped when no venue traded",
+    "stats_full_window": {
+     "filled_usd": 2573852399.6231627,
+     "later_below_hurdle": 2921,
+     "later_missing": 1911,
+     "missed_capital_usd": 14453188198.950815,
+     "qualifying_own_hour": 84731
+    }
+   },
+   "g_taker_next_day|first": {
+    "by_variant_oos_usd_per_year": {
+     "h=0": 197426.00157256756,
+     "h=1": 213886.50946141433,
+     "h=10": 134138.4782775143,
+     "h=2": 205305.66563955002,
+     "h=20": 104916.50918769243,
+     "h=3": 196316.74429683693,
+     "h=5": 162408.84437930177
+    },
+    "chosen": "h=1",
+    "cutoff_utc": "2025-10-03T00:00:00Z",
+    "delay": "bought 24 hours after the sell, priced over [t+24h, t+25h)",
+    "in_sample_positive": true,
+    "in_sample_usd_per_year": 511688.6466320406,
+    "kept_share_vs_no_delay_taker": 0.5218212148087021,
+    "n_variants": 7,
+    "oos_by_asset_usd_per_year": {
+     "etherfi_ev": 93418.91527330742,
+     "kelp": 2814.3475269464852,
+     "lbtc_cb": 29442.119153137315,
+     "lido": 88211.12750802301
+    },
+    "oos_ci95_usd_per_year": [
+     147953.05567256027,
+     292184.1701081337
+    ],
+    "oos_filled_usd": 663022269.7201171,
+    "oos_fills": 2861,
+    "oos_median_earned_bps": 4.16922659386601,
+    "oos_rank_of_chosen": 1,
+    "oos_t": 5.870185079036821,
+    "oos_top_month_share": 0.23130821224331782,
+    "out_of_sample_usd_per_year": 213886.50946141436,
+    "reading": "the first trade in the later window; skipped when none",
+    "stats_full_window": {
+     "filled_usd": 2273881088.0298862,
+     "later_below_hurdle": 12053,
+     "later_missing": 2883,
+     "missed_capital_usd": 12887800142.116013,
+     "qualifying_own_hour": 84731
+    }
+   },
+   "g_taker_next_day|lookback": {
+    "by_variant_oos_usd_per_year": {
+     "h=0": 230162.95528167422,
+     "h=1": 249267.52668764038,
+     "h=10": 167588.91773734192,
+     "h=2": 244847.03627416238,
+     "h=20": 111726.50222790983,
+     "h=3": 218878.1075685748,
+     "h=5": 206905.99760002425
+    },
+    "chosen": "h=1",
+    "cutoff_utc": "2025-10-03T00:00:00Z",
+    "delay": "bought 24 hours after the sell, priced over [t+24h, t+25h)",
+    "in_sample_positive": true,
+    "in_sample_usd_per_year": 521803.3051126739,
+    "kept_share_vs_no_delay_taker": 0.6081406626160805,
+    "n_variants": 7,
+    "oos_by_asset_usd_per_year": {
+     "etherfi_ev": 89599.253514221,
+     "kelp": 17239.615764391096,
+     "lbtc_cb": 63567.91183741562,
+     "lido": 78870.3188190561
+    },
+    "oos_ci95_usd_per_year": [
+     181698.7129553949,
+     331593.43967845157
+    ],
+    "oos_filled_usd": 648025384.1665763,
+    "oos_fills": 3414,
+    "oos_median_earned_bps": 4.974731969479068,
+    "oos_rank_of_chosen": 1,
+    "oos_t": 6.786317222686674,
+    "oos_top_month_share": 0.20776318363578938,
+    "out_of_sample_usd_per_year": 249267.5266876404,
+    "reading": "market_discount_fn at the purchase (the study's 6h carry: a quiet venue counts as unchanged)",
+    "stats_full_window": {
+     "filled_usd": 2222317413.0152617,
+     "later_below_hurdle": 12796,
+     "later_missing": 742,
+     "missed_capital_usd": 12982655527.730434,
+     "qualifying_own_hour": 84731
+    }
+   },
+   "g_taker_next_day|median": {
+    "by_variant_oos_usd_per_year": {
+     "h=0": 194126.65385527856,
+     "h=1": 213113.48824694843,
+     "h=10": 120711.71505448599,
+     "h=2": 202520.43868503458,
+     "h=20": 103646.84298924572,
+     "h=3": 185294.71524707097,
+     "h=5": 156917.75624768942
+    },
+    "chosen": "h=1",
+    "cutoff_utc": "2025-10-03T00:00:00Z",
+    "delay": "bought 24 hours after the sell, priced over [t+24h, t+25h)",
+    "in_sample_positive": true,
+    "in_sample_usd_per_year": 488802.9812977347,
+    "kept_share_vs_no_delay_taker": 0.5199352666475898,
+    "n_variants": 7,
+    "oos_by_asset_usd_per_year": {
+     "etherfi_ev": 92921.95555264316,
+     "kelp": 2836.369914244449,
+     "lbtc_cb": 30589.37445057414,
+     "lido": 86765.78832948663
+    },
+    "oos_ci95_usd_per_year": [
+     145225.7578060463,
+     293585.54753543745
+    ],
+    "oos_filled_usd": 642887550.3170937,
+    "oos_fills": 2798,
+    "oos_median_earned_bps": 4.323673193277053,
+    "oos_rank_of_chosen": 1,
+    "oos_t": 5.696225025647243,
+    "oos_top_month_share": 0.23539894583660942,
+    "out_of_sample_usd_per_year": 213113.48824694846,
+    "reading": "venue median over the later window, trades in it only; skipped when no venue traded",
+    "stats_full_window": {
+     "filled_usd": 2200042245.184588,
+     "later_below_hurdle": 12308,
+     "later_missing": 2883,
+     "missed_capital_usd": 12706388755.681065,
+     "qualifying_own_hour": 84731
+    }
+   }
+  },
+  "eth3": {
+   "a0_taker_no_delay": {
+    "by_hurdle_oos_usd_per_year": {
+     "h=0": 307502.421622243,
+     "h=1": 337672.8901525888,
+     "h=10": 234093.80439905982,
+     "h=2": 362892.67425685533,
+     "h=20": 162510.5919895972,
+     "h=3": 362973.9056382257,
+     "h=5": 313169.05268951243
+    },
+    "chosen_hurdle": "h=1",
+    "cutoff_utc": "2025-10-03T00:00:00Z",
+    "filled_usd": 2860742657.884515,
+    "fills": 14021,
+    "in_sample_positive": true,
+    "in_sample_usd_per_year": 625421.8009489786,
+    "missed_capital_usd": 14822101162.046059,
+    "oos_by_asset_usd_per_year": {
+     "etherfi_ev": 170401.62760813555,
+     "kelp": 28517.80627691697,
+     "lido": 138753.45626753604
+    },
+    "oos_ci95_usd_per_year": [
+     246724.32412409512,
+     434861.07397861814
+    ],
+    "oos_rank_of_chosen": 3,
+    "oos_t": 7.312130732143963,
+    "out_of_sample_usd_per_year": 337672.8901525888
+   },
+   "a_taker_hourly": {
+    "by_hurdle_oos_usd_per_year": {
+     "h=0": 313401.95790866803,
+     "h=1": 317488.67385903245,
+     "h=10": 186964.68386339073,
+     "h=2": 286083.6316242905,
+     "h=20": 150355.49518699347,
+     "h=3": 284464.0002233358,
+     "h=5": 274580.0360172847
+    },
+    "chosen_hurdle": "h=0",
+    "cutoff_utc": "2025-10-03T00:00:00Z",
+    "filled_usd": 3176821455.334412,
+    "fills": 14887,
+    "in_sample_positive": true,
+    "in_sample_usd_per_year": 596861.2723880666,
+    "late_1d_kept_share_vs_no_delay": 0.8878927094358894,
+    "late_1d_out_of_sample_usd_per_year": 299817.2973406295,
+    "missed_capital_usd": 15220325414.827276,
+    "oos_by_asset_usd_per_year": {
+     "etherfi_ev": 153558.89578339233,
+     "kelp": 20079.413742866254,
+     "lido": 139763.64838240968
+    },
+    "oos_ci95_usd_per_year": [
+     218826.02578672988,
+     417766.07116251084
+    ],
+    "oos_rank_of_chosen": 2,
+    "oos_t": 6.34747580328817,
+    "out_of_sample_usd_per_year": 313401.95790866803
+   },
+   "b_fixed_limit": {
+    "by_variant_oos_usd_per_year": {
+     "L=10": 162791.8980055632,
+     "L=15": 148827.15420100276,
+     "L=2": 133668.41557624584,
+     "L=20": 108816.35181094664,
+     "L=30": 74390.36476039115,
+     "L=5": 180961.25876004153,
+     "L=50": 69923.33568711343,
+     "L=75": 35349.80981665314
+    },
+    "chosen": "L=15",
+    "cutoff_utc": "2025-10-03T00:00:00Z",
+    "in_sample_positive": true,
+    "in_sample_usd_per_year": 375520.4956728429,
+    "late_1d_kept_share": 0.3653068667576823,
+    "late_1d_out_of_sample_usd_per_year": 54367.58138963075,
+    "n_variants": 8,
+    "oos_by_asset_usd_per_year": {
+     "etherfi_ev": 83165.03060176267,
+     "kelp": 18472.876205352135,
+     "lido": 47189.24739388806
+    },
+    "oos_ci95_usd_per_year": [
+     58212.49552139651,
+     259383.26142082043
+    ],
+    "oos_filled_usd": 107074249.06442562,
+    "oos_fills": 893,
+    "oos_median_earned_bps": 15.0,
+    "oos_rank_of_chosen": 3,
+    "oos_t": 2.927706903145091,
+    "oos_top_month_share": 0.3062238280463852,
+    "out_of_sample_usd_per_year": 148827.15420100276
+   },
+   "c_daily_requote": {
+    "by_variant_oos_usd_per_year": {
+     "requote": 168565.8265704556
+    },
+    "chosen": "requote",
+    "cutoff_utc": "2025-10-03T00:00:00Z",
+    "days_market_term_above_floor_share": {
+     "etherfi_ev": 0.33736559139784944,
+     "kelp": 0.38844086021505375,
+     "lido": 0.3844086021505376
+    },
+    "in_sample_positive": true,
+    "in_sample_usd_per_year": 353265.624126041,
+    "late_1d_kept_share": "n/a: the limit is set from the previous day's market",
+    "n_variants": 1,
+    "oos_by_asset_usd_per_year": {
+     "etherfi_ev": 77895.05169423937,
+     "kelp": 17143.445072587103,
+     "lido": 73527.32980362892
+    },
+    "oos_ci95_usd_per_year": [
+     117022.05864122897,
+     223323.09223579525
+    ],
+    "oos_filled_usd": 920068911.620227,
+    "oos_fills": 3097,
+    "oos_median_earned_bps": 2.788932967050209,
+    "oos_rank_of_chosen": 1,
+    "oos_t": 6.256530864113695,
+    "oos_top_month_share": 0.19419848315391605,
+    "out_of_sample_usd_per_year": 168565.8265704556
+   },
+   "d_two_level_ladder": {
+    "by_variant_oos_usd_per_year": {
+     "L=15|2L": 126725.90284205902
+    },
+    "chosen": "L=15|2L",
+    "cutoff_utc": "2025-10-03T00:00:00Z",
+    "filled_usd_by_level_full_window": [
+     205223990.79731566,
+     54985517.38632258
+    ],
+    "in_sample_positive": true,
+    "in_sample_usd_per_year": 319184.92108147225,
+    "late_1d_kept_share": 0.43451963046205194,
+    "late_1d_out_of_sample_usd_per_year": 55064.89247290138,
+    "n_variants": 1,
+    "oos_by_asset_usd_per_year": {
+     "etherfi_ev": 80962.68696836074,
+     "kelp": 17706.497842023946,
+     "lido": 28056.718031674376
+    },
+    "oos_ci95_usd_per_year": [
+     46680.14229790717,
+     232730.44100969494
+    ],
+    "oos_filled_usd": 76349212.07307677,
+    "oos_fills": 678,
+    "oos_median_earned_bps": 15.0,
+    "oos_rank_of_chosen": 1,
+    "oos_t": 2.6403030109089602,
+    "oos_top_month_share": 0.39430077306969047,
+    "out_of_sample_usd_per_year": 126725.90284205902
+   },
+   "e_hourly_requote": {
+    "by_variant_oos_usd_per_year": {
+     "hourly requote": 182929.28752979523
+    },
+    "chosen": "hourly requote",
+    "cutoff_utc": "2025-10-03T00:00:00Z",
+    "in_sample_positive": true,
+    "in_sample_usd_per_year": 425710.9187903077,
+    "late_1d_kept_share": "n/a: the limit is set from the previous hour's market",
+    "n_variants": 1,
+    "oos_by_asset_usd_per_year": {
+     "etherfi_ev": 76264.19806660643,
+     "kelp": 9383.769898365656,
+     "lido": 97281.31956482296
+    },
+    "oos_ci95_usd_per_year": [
+     124108.20035453442,
+     249624.89653600124
+    ],
+    "oos_filled_usd": 961506473.6678356,
+    "oos_fills": 3758,
+    "oos_median_earned_bps": 3.959269019534577,
+    "oos_rank_of_chosen": 1,
+    "oos_t": 5.9575487156267775,
+    "oos_top_month_share": 0.21914312612059414,
+    "out_of_sample_usd_per_year": 182929.28752979523
+   },
+   "f_taker_next_hour|first": {
+    "by_variant_oos_usd_per_year": {
+     "h=0": 268686.1787386284,
+     "h=1": 289059.3869485506,
+     "h=10": 152536.85257851932,
+     "h=2": 282191.31702895276,
+     "h=20": 122569.63803928663,
+     "h=3": 279754.2849317681,
+     "h=5": 217517.38653226054
+    },
+    "chosen": "h=1",
+    "cutoff_utc": "2025-10-03T00:00:00Z",
+    "delay": "bought at the next hour boundary H, priced over [H, H+1h)",
+    "in_sample_positive": true,
+    "in_sample_usd_per_year": 571067.7520825707,
+    "kept_share_vs_no_delay_taker": 0.8560337396879253,
+    "n_variants": 7,
+    "oos_by_asset_usd_per_year": {
+     "etherfi_ev": 135114.8757606315,
+     "kelp": 6683.022980002372,
+     "lido": 147261.48820791682
+    },
+    "oos_ci95_usd_per_year": [
+     200932.43947791855,
+     388868.5204711122
+    ],
+    "oos_filled_usd": 894276095.9259745,
+    "oos_fills": 4137,
+    "oos_median_earned_bps": 4.636368940407855,
+    "oos_rank_of_chosen": 1,
+    "oos_t": 6.140619915480131,
+    "oos_top_month_share": 0.15662485973396723,
+    "out_of_sample_usd_per_year": 289059.3869485506,
+    "reading": "the first trade in the later window; skipped when none",
+    "stats_full_window": {
+     "filled_usd": 2634564294.5573273,
+     "later_below_hurdle": 2672,
+     "later_missing": 998,
+     "missed_capital_usd": 14299233485.10911,
+     "qualifying_own_hour": 82734
+    }
+   },
+   "f_taker_next_hour|lookback": {
+    "by_variant_oos_usd_per_year": {
+     "h=0": 261752.6106187535,
+     "h=1": 292351.3020804151,
+     "h=10": 201854.31332710036,
+     "h=2": 301406.30297755374,
+     "h=20": 129701.65262262225,
+     "h=3": 296865.42790019646,
+     "h=5": 262762.69966091984
+    },
+    "chosen": "h=1",
+    "cutoff_utc": "2025-10-03T00:00:00Z",
+    "delay": "bought at the next hour boundary H, priced over [H, H+1h)",
+    "in_sample_positive": true,
+    "in_sample_usd_per_year": 590465.8928110435,
+    "kept_share_vs_no_delay_taker": 0.8657825682965143,
+    "n_variants": 7,
+    "oos_by_asset_usd_per_year": {
+     "etherfi_ev": 135774.08772816547,
+     "kelp": 28000.836652587757,
+     "lido": 128576.37769966184
+    },
+    "oos_ci95_usd_per_year": [
+     209722.27179197027,
+     381444.6973446985
+    ],
+    "oos_filled_usd": 889733452.4979216,
+    "oos_fills": 4256,
+    "oos_median_earned_bps": 4.935456973596809,
+    "oos_rank_of_chosen": 3,
+    "oos_t": 6.935659585398784,
+    "oos_top_month_share": 0.16690230151497845,
+    "out_of_sample_usd_per_year": 292351.3020804151,
+    "reading": "market_discount_fn at the purchase (the study's 6h carry: a quiet venue counts as unchanged)",
+    "stats_full_window": {
+     "filled_usd": 2652769448.0582237,
+     "later_below_hurdle": 2657,
+     "later_missing": 0,
+     "missed_capital_usd": 14502635238.290716,
+     "qualifying_own_hour": 82734
+    }
+   },
+   "f_taker_next_hour|median": {
+    "by_variant_oos_usd_per_year": {
+     "h=0": 234356.9691862299,
+     "h=1": 255634.15653757576,
+     "h=10": 167260.9066772149,
+     "h=2": 263593.8663695762,
+     "h=20": 117620.10423005625,
+     "h=3": 259439.6535823467,
+     "h=5": 223784.01237346034
+    },
+    "chosen": "h=1",
+    "cutoff_utc": "2025-10-03T00:00:00Z",
+    "delay": "bought at the next hour boundary H, priced over [H, H+1h)",
+    "in_sample_positive": true,
+    "in_sample_usd_per_year": 585046.6524740207,
+    "kept_share_vs_no_delay_taker": 0.7570467277431094,
+    "n_variants": 7,
+    "oos_by_asset_usd_per_year": {
+     "etherfi_ev": 116762.80202846769,
+     "kelp": 7782.483742778747,
+     "lido": 131088.87076632932
+    },
+    "oos_ci95_usd_per_year": [
+     177047.68109080312,
+     341875.6881010278
+    ],
+    "oos_filled_usd": 844317250.2483912,
+    "oos_fills": 3906,
+    "oos_median_earned_bps": 4.741823414222815,
+    "oos_rank_of_chosen": 3,
+    "oos_t": 6.220111493062645,
+    "oos_top_month_share": 0.18211757349178992,
+    "out_of_sample_usd_per_year": 255634.1565375758,
+    "reading": "venue median over the later window, trades in it only; skipped when no venue traded",
+    "stats_full_window": {
+     "filled_usd": 2574357774.2740827,
+     "later_below_hurdle": 2907,
+     "later_missing": 998,
+     "missed_capital_usd": 14350749225.670893,
+     "qualifying_own_hour": 82734
+    }
+   },
+   "g_taker_next_day|first": {
+    "by_variant_oos_usd_per_year": {
+     "h=0": 172274.6997134563,
+     "h=1": 188682.48285956852,
+     "h=10": 102649.96540790047,
+     "h=2": 180063.18133243718,
+     "h=20": 97632.31490460389,
+     "h=3": 171365.73316904984,
+     "h=5": 130122.0262478864
+    },
+    "chosen": "h=1",
+    "cutoff_utc": "2025-10-03T00:00:00Z",
+    "delay": "bought 24 hours after the sell, priced over [t+24h, t+25h)",
+    "in_sample_positive": true,
+    "in_sample_usd_per_year": 482090.62135985616,
+    "kept_share_vs_no_delay_taker": 0.5587729674547046,
+    "n_variants": 7,
+    "oos_by_asset_usd_per_year": {
+     "etherfi_ev": 95312.63221850363,
+     "kelp": 2426.0666740637366,
+     "lido": 90943.78396700115
+    },
+    "oos_ci95_usd_per_year": [
+     120328.14237347234,
+     269722.97345980536
+    ],
+    "oos_filled_usd": 656207175.3802474,
+    "oos_fills": 2569,
+    "oos_median_earned_bps": 3.8084075641938635,
+    "oos_rank_of_chosen": 1,
+    "oos_t": 4.994500792216371,
+    "oos_top_month_share": 0.25917634287533076,
+    "out_of_sample_usd_per_year": 188682.48285956855,
+    "reading": "the first trade in the later window; skipped when none",
+    "stats_full_window": {
+     "filled_usd": 2265635426.56722,
+     "later_below_hurdle": 12025,
+     "later_missing": 1529,
+     "missed_capital_usd": 12834579368.309435,
+     "qualifying_own_hour": 82734
+    }
+   },
+   "g_taker_next_day|lookback": {
+    "by_variant_oos_usd_per_year": {
+     "h=0": 178011.26209738586,
+     "h=1": 195657.87393244109,
+     "h=10": 105317.94435439385,
+     "h=2": 193273.6444284217,
+     "h=20": 92451.00450886834,
+     "h=3": 167632.5011631551,
+     "h=5": 146527.13954845583
+    },
+    "chosen": "h=1",
+    "cutoff_utc": "2025-10-03T00:00:00Z",
+    "delay": "bought 24 hours after the sell, priced over [t+24h, t+25h)",
+    "in_sample_positive": true,
+    "in_sample_usd_per_year": 460021.75136400684,
+    "kept_share_vs_no_delay_taker": 0.579430210829263,
+    "n_variants": 7,
+    "oos_by_asset_usd_per_year": {
+     "etherfi_ev": 93910.2924647414,
+     "kelp": 16799.199505604818,
+     "lido": 84948.38196209495
+    },
+    "oos_ci95_usd_per_year": [
+     126784.97576858048,
+     275063.8871322394
+    ],
+    "oos_filled_usd": 632543520.7052759,
+    "oos_fills": 2733,
+    "oos_median_earned_bps": 4.076593989456596,
+    "oos_rank_of_chosen": 1,
+    "oos_t": 5.189408340025286,
+    "oos_top_month_share": 0.25827283575794946,
+    "out_of_sample_usd_per_year": 195657.87393244109,
+    "reading": "market_discount_fn at the purchase (the study's 6h carry: a quiet venue counts as unchanged)",
+    "stats_full_window": {
+     "filled_usd": 2201999733.3112764,
+     "later_below_hurdle": 12690,
+     "later_missing": 284,
+     "missed_capital_usd": 12854869362.349117,
+     "qualifying_own_hour": 82734
+    }
+   },
+   "g_taker_next_day|median": {
+    "by_variant_oos_usd_per_year": {
+     "h=0": 167851.70282131707,
+     "h=1": 185809.76278692836,
+     "h=10": 88946.14080655093,
+     "h=2": 176474.30872917,
+     "h=20": 94406.41018628217,
+     "h=3": 159755.41305580307,
+     "h=5": 121937.05621993596
+    },
+    "chosen": "h=1",
+    "cutoff_utc": "2025-10-03T00:00:00Z",
+    "delay": "bought 24 hours after the sell, priced over [t+24h, t+25h)",
+    "in_sample_positive": true,
+    "in_sample_usd_per_year": 459253.54166399315,
+    "kept_share_vs_no_delay_taker": 0.5502655623404177,
+    "n_variants": 7,
+    "oos_by_asset_usd_per_year": {
+     "etherfi_ev": 94627.46826874206,
+     "kelp": 2452.7424005824355,
+     "lido": 88729.55211760376
+    },
+    "oos_ci95_usd_per_year": [
+     115341.11218531092,
+     267378.6710829754
+    ],
+    "oos_filled_usd": 632649949.2035556,
+    "oos_fills": 2523,
+    "oos_median_earned_bps": 3.929722564467534,
+    "oos_rank_of_chosen": 1,
+    "oos_t": 4.8265037742333705,
+    "oos_top_month_share": 0.26596765518989074,
+    "out_of_sample_usd_per_year": 185809.76278692836,
+    "reading": "venue median over the later window, trades in it only; skipped when no venue traded",
+    "stats_full_window": {
+     "filled_usd": 2186264223.775915,
+     "later_below_hurdle": 12281,
+     "later_missing": 1529,
+     "missed_capital_usd": 12662809533.745348,
+     "qualifying_own_hour": 82734
+    }
+   }
+  }
+ },
+ "size_usd": 15000000,
+ "staking_apr": 0.0270476442817964,
+ "venue_fee_bps": {
+  "etherfi_ev": 0.83,
+  "kelp": 3.0,
+  "lbtc_cb": 1.0,
+  "lido": 1.0
+ },
+ "verdict": {
+  "best_daily_signed": "c_daily_requote",
+  "best_hourly": "f_taker_next_hour|median",
+  "book_row_should_carry": "f_taker_next_hour",
+  "excluded_as_executed": {
+   "*|lookback": "the 6h carry keeps a quiet venue at the seller's own print",
+   "a_taker_hourly": "fills each sell at its own price, cap read from the sell's own hour"
+  },
+  "headline_reading": "f_taker_next_hour|median",
+  "ranked": [
+   {
+    "all4_ci95": [
+     297542.21196099336,
+     493309.38063930545
+    ],
+    "all4_t": 8.144737476975266,
+    "all4_usd_per_year": 392429.52264942985,
+    "eth3_ci95": [
+     218826.02578672988,
+     417766.07116251084
+    ],
+    "eth3_t": 6.34747580328817,
+    "eth3_usd_per_year": 313401.95790866803,
+    "implementation": "a_taker_hourly",
+    "in_sample_positive_both": true
+   },
+   {
+    "all4_ci95": [
+     287767.61929408193,
+     459281.7201069859
+    ],
+    "all4_t": 8.75969720750495,
+    "all4_usd_per_year": 369983.7283663131,
+    "eth3_ci95": [
+     209722.27179197027,
+     381444.6973446985
+    ],
+    "eth3_t": 6.935659585398784,
+    "eth3_usd_per_year": 292351.3020804151,
+    "implementation": "f_taker_next_hour|lookback",
+    "in_sample_positive_both": true
+   },
+   {
+    "all4_ci95": [
+     229381.87606530124,
+     413222.61593346647
+    ],
+    "all4_t": 7.02532208826958,
+    "all4_usd_per_year": 317252.9742277906,
+    "eth3_ci95": [
+     200932.43947791855,
+     388868.5204711122
+    ],
+    "eth3_t": 6.140619915480131,
+    "eth3_usd_per_year": 289059.3869485506,
+    "implementation": "f_taker_next_hour|first",
+    "in_sample_positive_both": true
+   },
+   {
+    "all4_ci95": [
+     218711.62422109867,
+     377226.63170567044
+    ],
+    "all4_t": 7.511761286293897,
+    "all4_usd_per_year": 294743.2615093877,
+    "eth3_ci95": [
+     177047.68109080312,
+     341875.6881010278
+    ],
+    "eth3_t": 6.220111493062645,
+    "eth3_usd_per_year": 255634.1565375758,
+    "implementation": "f_taker_next_hour|median",
+    "in_sample_positive_both": true
+   },
+   {
+    "all4_ci95": [
+     181698.7129553949,
+     331593.43967845157
+    ],
+    "all4_t": 6.786317222686674,
+    "all4_usd_per_year": 249267.5266876404,
+    "eth3_ci95": [
+     126784.97576858048,
+     275063.8871322394
+    ],
+    "eth3_t": 5.189408340025286,
+    "eth3_usd_per_year": 195657.87393244109,
+    "implementation": "g_taker_next_day|lookback",
+    "in_sample_positive_both": true
+   },
+   {
+    "all4_ci95": [
+     147953.05567256027,
+     292184.1701081337
+    ],
+    "all4_t": 5.870185079036821,
+    "all4_usd_per_year": 213886.50946141436,
+    "eth3_ci95": [
+     120328.14237347234,
+     269722.97345980536
+    ],
+    "eth3_t": 4.994500792216371,
+    "eth3_usd_per_year": 188682.48285956855,
+    "implementation": "g_taker_next_day|first",
+    "in_sample_positive_both": true
+   },
+   {
+    "all4_ci95": [
+     145225.7578060463,
+     293585.54753543745
+    ],
+    "all4_t": 5.696225025647243,
+    "all4_usd_per_year": 213113.48824694846,
+    "eth3_ci95": [
+     115341.11218531092,
+     267378.6710829754
+    ],
+    "eth3_t": 4.8265037742333705,
+    "eth3_usd_per_year": 185809.76278692836,
+    "implementation": "g_taker_next_day|median",
+    "in_sample_positive_both": true
+   },
+   {
+    "all4_ci95": [
+     165969.81693249088,
+     285065.8518081629
+    ],
+    "all4_t": 7.474652383358028,
+    "all4_usd_per_year": 222476.71837588894,
+    "eth3_ci95": [
+     124108.20035453442,
+     249624.89653600124
+    ],
+    "eth3_t": 5.9575487156267775,
+    "eth3_usd_per_year": 182929.28752979523,
+    "implementation": "e_hourly_requote",
+    "in_sample_positive_both": true
+   },
+   {
+    "all4_ci95": [
+     157453.73620312128,
+     263331.7305220037
+    ],
+    "all4_t": 8.009847259533764,
+    "all4_usd_per_year": 210511.77416520964,
+    "eth3_ci95": [
+     117022.05864122897,
+     223323.09223579525
+    ],
+    "eth3_t": 6.256530864113695,
+    "eth3_usd_per_year": 168565.8265704556,
+    "implementation": "c_daily_requote",
+    "in_sample_positive_both": true
+   },
+   {
+    "all4_ci95": [
+     101425.13879440795,
+     302106.7526128964
+    ],
+    "all4_t": 3.8405772779347935,
+    "all4_usd_per_year": 191626.26829766008,
+    "eth3_ci95": [
+     58212.49552139651,
+     259383.26142082043
+    ],
+    "eth3_t": 2.927706903145091,
+    "eth3_usd_per_year": 148827.15420100276,
+    "implementation": "b_fixed_limit",
+    "in_sample_positive_both": true
+   },
+   {
+    "all4_ci95": [
+     88091.37709383082,
+     275816.56774628046
+    ],
+    "all4_t": 3.543195345926679,
+    "all4_usd_per_year": 168527.88199488848,
+    "eth3_ci95": [
+     46680.14229790717,
+     232730.44100969494
+    ],
+    "eth3_t": 2.6403030109089602,
+    "eth3_usd_per_year": 126725.90284205902,
+    "implementation": "d_two_level_ladder",
+    "in_sample_positive_both": true
+   }
+  ],
+  "reason": "f_taker_next_hour|median: $294,743 a year out of sample on all four (t 7.51) and $255,634 on the ETH-only book (t 6.22); the best daily-signed implementation (c_daily_requote) falls below its 95% interval on both sets. The other later-price reading gives $317,253 / $289,059. Persistence makes it work: of the sells that qualified in their own hour, 98% of stETH/wstETH and 91% of weETH still cleared the hurdle at the next hour's venue median; rsETH and LBTC lose most sells to quiet venues (no later price), not to recovery."
+ },
+ "window": [
+  "2024-09-26T12:53:11Z",
+  "2026-10-09T20:06:47Z"
+ ]
+}

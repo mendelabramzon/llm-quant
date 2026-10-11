@@ -1,0 +1,74 @@
+{
+ "generated": "2026-10-11T03:50:47+00:00",
+ "ledger": "/Users/iv/dev/llm-quant/research/gold_carry_forward.jsonl",
+ "rule": {
+  "benchmark": "the Sky savings rate read from sUSDS.ssr() at each snapshot, applied to the days up to the next one; check: the study's constant 3.80%",
+  "capital": "cash10: K = 1 + 10% buffer + maintenance margin (xyz 2% -> 1.12; Hyperliquid PAXG 5% -> 1.15); the short's margin is 12% / 15% of notional (leverage 8.3x / 6.7x)",
+  "costs": "one side of both legs (taker fee + measured half-spread) at entry and on the last scored day (the study closes at the end of its sample); rebalancing after a 5% perp move (half the buffer) costs the move times both legs' one-side cost",
+  "daily_return": "funding the short received in (d 00:00, d+1 00:00] UTC + the change of the token-minus-perp basis b = T/F - 1: r = (F/F_prev) b - b_prev + f (day_return), marks = the close of the hourly bar ending at 00:00 UTC (Hyperliquid trade bars, Binance spot klines)",
+  "id": "gold-carry-watch",
+  "kill": [
+   "trailing 30-day venue funding below 5.8% a year",
+   "PAXG's premium to spot below -50bp (daily median of open hours, PAXG@binance over the Binance XAU index: the study's primary path)",
+   "xyz changes its oracle method or delists GOLD (delisting automatic; oracle drift flagged for review)",
+   "Hyperliquid halts or auto-deleverages positions (missing funding hours flagged; ADL is not visible in the public API)"
+  ],
+  "min_days": 90,
+  "position": "long 1 PAXG (Binance spot PAXGUSDT) per ounce short on the perp, from 00:00 UTC of the first day after registration, always on (the rule the study chose for both lines)",
+  "promote": "the findings' rule: forward excess above 2% a year with NW t > 2 through 2026-12, surviving Benjamini-Hochberg at q = 0.10 (forward family: the two lines); no verdict before 90 days",
+  "statistics": "annualised mean daily excess x 365; Newey-West t with 30 lags (as the study)",
+  "study": "research/2026-10-10/gold_carry (findings.md: the two watch lines; analysis.json carry blocks)"
+ },
+ "summary": {
+  "first_day": "2026-10-11",
+  "last_complete_day": null,
+  "lines": {
+   "hl:PAXG x PAXG@bn": {
+    "K": 1.15,
+    "ann_excess": null,
+    "ann_excess_vs_3_80": null,
+    "bh": null,
+    "checks": {
+     "delisted": null,
+     "funding_30d": {},
+     "funding_30d_first_breach": null,
+     "kill": [],
+     "paxg_premium": {},
+     "paxg_premium_first_breach": null,
+     "review": []
+    },
+    "days": 0,
+    "first_day": null,
+    "last_day": "",
+    "nw_p": null,
+    "nw_t": null,
+    "verdict": "accumulating (0 of 90 days)"
+   },
+   "hl:xyz:GOLD x PAXG@bn": {
+    "K": 1.12,
+    "ann_excess": null,
+    "ann_excess_vs_3_80": null,
+    "bh": null,
+    "checks": {
+     "delisted": null,
+     "funding_30d": {},
+     "funding_30d_first_breach": null,
+     "kill": [],
+     "oracle_gap_baseline": -0.0003972571942252312,
+     "oracle_gap_drift": {},
+     "paxg_premium": {},
+     "paxg_premium_first_breach": null,
+     "review": []
+    },
+    "days": 0,
+    "first_day": null,
+    "last_day": "",
+    "nw_p": null,
+    "nw_t": null,
+    "verdict": "accumulating (0 of 90 days)"
+   }
+  },
+  "snapshots": 3,
+  "verdict": "hl:PAXG x PAXG@bn: accumulating (0 of 90 days); hl:xyz:GOLD x PAXG@bn: accumulating (0 of 90 days)"
+ }
+}

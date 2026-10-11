@@ -2500,6 +2500,562 @@ def cmd_render(args):
     write_json(out / 'manifest.json', man)
     print('wrote tables.md (%d lines) and manifest.json' % len(L))
 
+# ============================================================================================== forward test
+
+# The two watch lines exactly as the study ran them (analysis.json carry blocks: model cash10, chosen rule 'always'),
+# held forward from the first UTC day after registration. Capital K = 1 + the 10% buffer + the venue's maintenance
+# margin; one-side costs = taker fee + the half-spread measured in the study's Saturday books (costs_one_side). The
+# registration row carries all of it, and `score` reads the parameters from that row, never from this file.
+GOLD_FORWARD_LEDGER = ROOT / 'research' / 'gold_carry_forward.jsonl'
+GOLD_WATCH_RAW = ROOT / 'research' / '2026-10-11' / 'watch_forward' / 'gold'
+STUDY_OUT = ROOT / 'research' / '2026-10-10' / 'gold_carry'
+SUSDS = '0xa3931d71877c0e7a3148cb7eb4463524fec27fbd'
+SEL_SSR, SEL_CONVERT = '0x03607ceb', '0x07a2d13a'       # ssr(), convertToAssets(uint256)
+GOLD_FORWARD_LINES = {
+    'hl:xyz:GOLD x PAXG@bn': {
+        'perp': 'hl:xyz:GOLD', 'hl_coin': 'xyz:GOLD', 'dex': 'xyz', 'token': 'PAXG@bn', 'model': 'cash10',
+        'rule': 'always', 'buffer': 0.10, 'mm': 0.02, 'K': 1.12, 'short_margin_per_notional': 0.12,
+        'fee_perp_bp': 9.0, 'half_spread_perp_bp': 0.119324622636315, 'fee_token_bp': 10.0,
+        'half_spread_token_bp': 0.01194105418040578,
+        'study_test': {'window': ['2026-05-18', '2026-10-09'], 'days': 145, 'excess': 0.025946608189138784,
+                       'nw_t30': 2.2325417920283193, 'first_day': '2025-12-23'}},
+    'hl:PAXG x PAXG@bn': {
+        'perp': 'hl:PAXG', 'hl_coin': 'PAXG', 'dex': '', 'token': 'PAXG@bn', 'model': 'cash10', 'rule': 'always',
+        'buffer': 0.10, 'mm': 0.05, 'K': 1.15, 'short_margin_per_notional': 0.15, 'fee_perp_bp': 4.5,
+        'half_spread_perp_bp': 0.11938445375578036, 'fee_token_bp': 10.0, 'half_spread_token_bp': 0.01194105418040578,
+        'study_test': {'window': ['2026-01-08', '2026-10-09'], 'days': 275, 'excess': 0.016882888086036642,
+                       'nw_t30': 2.171717428451186, 'first_day': '2025-04-07'}},
+}
+GOLD_FORWARD_RULE = {
+    'id': 'gold-carry-watch',
+    'study': 'research/2026-10-10/gold_carry (findings.md: the two watch lines; analysis.json carry blocks)',
+    'position': 'long 1 PAXG (Binance spot PAXGUSDT) per ounce short on the perp, from 00:00 UTC of the first day after '
+                'registration, always on (the rule the study chose for both lines)',
+    'daily_return': 'funding the short received in (d 00:00, d+1 00:00] UTC + the change of the token-minus-perp basis '
+                    'b = T/F - 1: r = (F/F_prev) b - b_prev + f (day_return), marks = the close of the hourly bar '
+                    'ending at 00:00 UTC (Hyperliquid trade bars, Binance spot klines)',
+    'capital': 'cash10: K = 1 + 10% buffer + maintenance margin (xyz 2% -> 1.12; Hyperliquid PAXG 5% -> 1.15); the '
+               "short's margin is 12% / 15% of notional (leverage 8.3x / 6.7x)",
+    'costs': 'one side of both legs (taker fee + measured half-spread) at entry and on the last scored day (the study '
+             'closes at the end of its sample); rebalancing after a 5% perp move (half the buffer) costs the move '
+             'times both legs\' one-side cost',
+    'benchmark': 'the Sky savings rate read from sUSDS.ssr() at each snapshot, applied to the days up to the next one; '
+                 "check: the study's constant 3.80%",
+    'statistics': 'annualised mean daily excess x 365; Newey-West t with 30 lags (as the study)',
+    'kill': ['trailing 30-day venue funding below 5.8% a year', "PAXG's premium to spot below -50bp (daily median of "
+             'open hours, PAXG@binance over the Binance XAU index: the study\'s primary path)', 'xyz changes its oracle '
+             'method or delists GOLD (delisting automatic; oracle drift flagged for review)', 'Hyperliquid halts or '
+             'auto-deleverages positions (missing funding hours flagged; ADL is not visible in the public API)'],
+    'promote': "the findings' rule: forward excess above 2% a year with NW t > 2 through 2026-12, surviving "
+               'Benjamini-Hochberg at q = 0.10 (forward family: the two lines); no verdict before 90 days',
+    'min_days': 90,
+}
+GOLD_FORWARD_KILL = {'funding_30d_min': 0.058, 'paxg_premium_min': -0.0050, 'oracle_drift_review': 0.0025}
+GOLD_FORWARD_PROMOTE = {'min_excess': 0.02, 'min_nw_t': 2.0, 'covers': '2026-12-31', 'bh_q': 0.10, 'min_days': 90}
+GOLD_TOKEN_BOOKS = [('bn_spot:PAXGUSDT', BN_S + '/api/v3/depth', {'symbol': 'PAXGUSDT', 'limit': 5000}),
+                    ('bn_spot:PAXGUSDC', BN_S + '/api/v3/depth', {'symbol': 'PAXGUSDC', 'limit': 5000}),
+                    ('okx:PAXG-USDT', OKX + '/api/v5/market/books', {'instId': 'PAXG-USDT', 'sz': 400}),
+                    ('kraken_spot:PAXGUSD', 'https://api.kraken.com/0/public/Depth', {'pair': 'PAXGUSD', 'count': 500}),
+                    ('coinbase_spot:PAXG-USD', 'https://api.exchange.coinbase.com/products/PAXG-USD/book',
+                     {'level': 2})]
+
+
+def ssr_apy(ray):
+    """sUSDS.ssr() (per-second rate in RAY) -> the annual yield it compounds to."""
+    return (int(ray) / 1e27) ** 31536000 - 1.0
+
+
+def read_ssr():
+    """The live Sky savings rate and sUSDS NAV through gold_carry's public-RPC eth_call (no keys)."""
+    a = eth_call(SUSDS, SEL_SSR)
+    b = eth_call(SUSDS, SEL_CONVERT + '%064x' % 10 ** 18)
+    if 'result' not in a:
+        return {'error': a.get('error')}
+    out = {'apy': ssr_apy(int(a['result'], 16)), 'ray': str(int(a['result'], 16)), 'rpc': a['rpc']}
+    if 'result' in b:
+        out['susds_nav'] = int(b['result'], 16) / 1e18
+    return out
+
+
+def hl_book_side_usd(book, bp=25, side=0):
+    """USD within `bp` of the mid on one side of a Hyperliquid l2Book reply (0 bids, 1 asks) and the half-spread."""
+    lv = book.get('levels') if isinstance(book, dict) else None
+    if not lv or not lv[0] or not lv[1]:
+        return None, None
+    bids = [(float(x['px']), float(x['sz'])) for x in lv[0]]
+    asks = [(float(x['px']), float(x['sz'])) for x in lv[1]]
+    mid = (bids[0][0] + asks[0][0]) / 2.0
+    return depth_usd(bids if side == 0 else asks, mid, bp), (asks[0][0] - bids[0][0]) / 2.0 / mid * 1e4
+
+
+def gold_snapshot_fetch(now_ms, since_ms, interval=1.0, log=print):
+    """One forward snapshot: Hyperliquid hourly funding and candles since `since_ms`, both perps' contexts and books
+    (fine and the coarse 4-significant-figure book the study found necessary), Binance PAXGUSDT hourly closes and the
+    Binance XAU index (the study's spot reference), the PAXG token books, and the sUSDS savings rate."""
+    from perp_rpc import Info
+    from perp_history import page_funding, page_candles
+    api = Info(interval=max(0.4, interval))
+    get = Get(interval=0.3)
+    snap = {'at': utc(now_ms), 'window': [since_ms, now_ms], 'errors': []}
+    end_h = now_ms // HOUR_MS * HOUR_MS
+
+    def guard(key, fn):
+        try:
+            return fn()
+        except Exception as e:  # noqa: BLE001 - one source failing does not lose the snapshot
+            snap['errors'].append('%s: %r' % (key, e))
+            return None
+    snap['hl_funding'] = {c: guard('funding ' + c, lambda c=c: page_funding(api, c, since_ms, now_ms))
+                          for c in ('xyz:GOLD', 'PAXG')}
+    snap['hl_candles'] = {c: guard('candles ' + c, lambda c=c: page_candles(api, c, since_ms - 3 * HOUR_MS, now_ms))
+                          for c in ('xyz:GOLD', 'PAXG')}
+    meta = {}
+    for k, dex in (('core', ''), ('xyz', 'xyz')):
+        m = guard('meta ' + k, lambda dex=dex: api.post({'type': 'metaAndAssetCtxs', 'dex': dex}))
+        if m:
+            uni, ctx = m
+            meta[k] = {'names': [u['name'] for u in uni['universe']],
+                       'delisted': [u['name'] for u in uni['universe'] if u.get('isDelisted')],
+                       'ctx': {u['name']: dict(u, **c) for u, c in zip(uni['universe'], ctx)
+                               if u['name'] in ('PAXG', 'xyz:GOLD', 'GOLD')}}
+    snap['hl_meta'] = meta
+    snap['hl_books'] = {}
+    for c in ('xyz:GOLD', 'PAXG'):
+        snap['hl_books'][c] = {'fine': guard('book ' + c, lambda c=c: api.post({'type': 'l2Book', 'coin': c})),
+                               'coarse': guard('coarse book ' + c, lambda c=c: api.post(
+                                   {'type': 'l2Book', 'coin': c, 'nSigFigs': 4}))}
+    snap['bn_paxg_1h'] = guard('paxg klines', lambda: bn_klines(get, BN_S, '/api/v3/klines', 'PAXGUSDT',
+                                                                 since_ms - 3 * HOUR_MS, end_h))
+    snap['bn_xau_index_1h'] = guard('xau index', lambda: bn_klines(get, BN_F, '/fapi/v1/indexPriceKlines', 'XAUUSDT',
+                                                                    since_ms - 3 * HOUR_MS, end_h, key='pair'))
+    snap['bn_xau_premium_index'] = guard('xau premiumIndex', lambda: get(BN_F + '/fapi/v1/premiumIndex',
+                                                                          {'symbol': 'XAUUSDT'}))
+    raw_books = {k: guard(k, lambda u=u, p=p: get(u, p)) for k, u, p in GOLD_TOKEN_BOOKS}
+    snap['token_books_norm'] = trim_books(parse_books({'books': {k: v for k, v in raw_books.items() if v}}))
+    snap['ssr'] = guard('ssr', read_ssr)
+    snap['api'] = {'hl': api.stats(), 'http': get.stats()}
+    # only bars that have closed: a bar still open would stand in for its hour's close until the next snapshot
+    for c, rows in (snap.get('hl_candles') or {}).items():
+        if rows:
+            snap['hl_candles'][c] = [r for r in rows if int(r['t']) + HOUR_MS <= now_ms]
+    for k in ('bn_paxg_1h', 'bn_xau_index_1h'):
+        if snap.get(k):
+            snap[k] = [r for r in snap[k] if int(r[0]) + HOUR_MS <= now_ms]
+    return snap
+
+
+def trim_books(books, frac=0.01):
+    """Normalised books kept to the levels within `frac` of the best price (enough for depth within 25bp): the raw
+    5,000-level replies would make a daily snapshot ~150 kB."""
+    out = {}
+    for k, (bids, asks) in books.items():
+        if bids and asks:
+            out[k] = [[[p, q] for p, q in bids if p >= bids[0][0] * (1 - frac)],
+                      [[p, q] for p, q in asks if p <= asks[0][0] * (1 + frac)]]
+    return out
+
+
+def token_books_of(snap):
+    """{book: (bids, asks)} from a snapshot (trimmed normalised books, or the raw replies of the first snapshot)."""
+    if 'token_books_norm' in snap:
+        return {k: ([tuple(x) for x in b], [tuple(x) for x in a]) for k, (b, a) in snap['token_books_norm'].items()}
+    return parse_books({'books': snap.get('token_books') or {}})
+
+
+def merge_forward_raw(snaps):
+    """Every snapshot's hourly rows merged (later reads win): HL funding by time, HL candles by bar open, Binance
+    PAXG and XAU-index klines by bar open; plus each snapshot's SSR and meta, in time order."""
+    fund = {c: {} for c in ('xyz:GOLD', 'PAXG')}
+    cand = {c: {} for c in ('xyz:GOLD', 'PAXG')}
+    paxg, xau, ssr, metas = {}, {}, [], []
+    for s in snaps:
+        for c in fund:
+            for r in (s.get('hl_funding') or {}).get(c) or []:
+                fund[c][int(r['time'])] = r
+            for r in (s.get('hl_candles') or {}).get(c) or []:
+                cand[c][int(r['t'])] = r
+        for r in s.get('bn_paxg_1h') or []:
+            paxg[int(r[0])] = r
+        for r in s.get('bn_xau_index_1h') or []:
+            xau[int(r[0])] = r
+        if (s.get('ssr') or {}).get('apy') is not None:
+            ssr.append((int(dt.datetime.fromisoformat(s['at']).timestamp() * 1000), s['ssr']['apy']))
+        metas.append((s['at'], s.get('hl_meta') or {}))
+    return {'funding': {c: [v for _, v in sorted(d.items())] for c, d in fund.items()},
+            'candles': {c: [v for _, v in sorted(d.items())] for c, d in cand.items()},
+            'paxg': [v for _, v in sorted(paxg.items())], 'xau': [v for _, v in sorted(xau.items())],
+            'ssr': sorted(ssr), 'metas': metas}
+
+
+def forward_maps(M):
+    """The study's representations from merged rows: {bar end: close} / highs for each perp and the token, the XAU
+    index, and [(ms, rate)] funding events with each hour's premium."""
+    P, H, ev, prem = {}, {}, {}, {}
+    for c, perp in (('xyz:GOLD', 'hl:xyz:GOLD'), ('PAXG', 'hl:PAXG')):
+        P[perp], H[perp] = closes_from(M['candles'][c], 'trade')
+        ev[perp] = [(int(r['time']), float(r['fundingRate'])) for r in M['funding'][c]]
+        prem[perp] = {int(round(int(r['time']) / HOUR_MS)) * HOUR_MS: fnum(r.get('premium')) for r in M['funding'][c]}
+    P['PAXG@bn'], _ = closes_from(M['paxg'], 'trade')
+    P['xau_index'], _ = closes_from(M['xau'], 'index')
+    return P, H, ev, prem
+
+
+def gold_forward_leg(Fh, Hh, Th, ev, line, d_first, d_last, cut=None):
+    """Daily inputs of one line over days d_first..d_last in the study's format (build_leg): end-of-day marks, funding
+    by day, highs, and the days with funding and both opening marks; costs and margin from the frozen line."""
+    f, n = daily_funding(ev, cut)
+    F, T = daily_marks(Fh, d_first - 1, d_last + 1), daily_marks(Th, d_first - 1, d_last + 1)
+    hi = daily_highs(Hh, d_first - 1, d_last + 1)
+    days = [d for d in range(d_first, d_last + 1) if d in f and n.get(d, 0) >= 1 and (d - 1) in F and (d - 1) in T]
+    return {'F': F, 'T': T, 'f': f, 'n': n, 'hi': hi, 'days': days,
+            'cost_perp': (line['fee_perp_bp'] + line['half_spread_perp_bp']) / 1e4,
+            'cost_token': (line['fee_token_bp'] + line['half_spread_token_bp']) / 1e4,
+            'mm': line['mm'], 'hourly': True}
+
+
+def forward_series(leg, line, bench_fn):
+    """The frozen rule ('always', cash10, the line's K) over the leg's days: (excess series, bookkeeping, per-day
+    funding and basis return per unit notional)."""
+    rule = next(r for r in RULES if r['name'] == line['rule'])
+    ex, _, st = simulate(leg['days'], {line['perp']: leg}, rule, line['model'], bench_fn, K=line['K'])
+    per_day = []
+    F_prev = b_prev = None
+    for d in leg['days']:
+        if F_prev is None:
+            F0, T0 = leg['F'].get(d - 1), leg['T'].get(d - 1)
+            if F0 and T0:
+                F_prev, b_prev = F0, T0 / F0 - 1.0
+        F, T = leg['F'].get(d), leg['T'].get(d)
+        basis = None
+        if F and T and F_prev:
+            b = T / F - 1.0
+            basis = day_return(F_prev, F, b_prev, b, 0.0)
+            F_prev, b_prev = F, b
+        per_day.append({'day': ymd(d * DAY_MS), 'funding': leg['f'].get(d, 0.0), 'basis': basis})
+    return ex, st, per_day
+
+
+def trailing_funding_apr(ev, t_end, days=30, min_frac=0.8):
+    """Funding a short received over the `days` before t_end, annualised by the hours actually present (None when
+    fewer than min_frac of the hours exist)."""
+    rows = [r for t, r in ev if t_end - days * DAY_MS < t <= t_end]
+    if len(rows) < min_frac * days * 24:
+        return None
+    return sum(rows) / len(rows) * 8760.0
+
+
+def daily_open_median(num, den, d0, d1, min_hours=3):
+    """{day: median of num/den - 1 over the spot-open hours of the day} for days d0..d1-1 (hourly maps keyed by bar
+    end; an hour counts when spot gold trades in it)."""
+    out = {}
+    for d in range(d0, d1):
+        v = []
+        for h in range(1, 25):
+            t = d * DAY_MS + h * HOUR_MS
+            a, b = num.get(t), den.get(t)
+            if a and b and spot_open(t - HOUR_MS):
+                v.append(a / b - 1.0)
+        if len(v) >= min_hours:
+            out[d] = statistics.median(v)
+    return out
+
+
+def gold_kill_checks(P, ev, prem, metas, line, days, d_reg):
+    """The findings' kill-the-watch conditions on one line over the forward days (first breach dates), and the two
+    review flags (oracle drift for xyz, missing funding hours)."""
+    perp = line['perp']
+    out = {'funding_30d': {}, 'paxg_premium': {}, 'delisted': None, 'review': []}
+    first = None
+    for d in days:
+        a = trailing_funding_apr(ev[perp], (d + 1) * DAY_MS)
+        out['funding_30d'][ymd(d * DAY_MS)] = a
+        if first is None and a is not None and a < GOLD_FORWARD_KILL['funding_30d_min']:
+            first = ymd(d * DAY_MS)
+    out['funding_30d_first_breach'] = first
+    pm = daily_open_median(P['PAXG@bn'], P['xau_index'], days[0], days[-1] + 1) if days else {}
+    out['paxg_premium'] = {ymd(d * DAY_MS): v for d, v in pm.items()}
+    out['paxg_premium_first_breach'] = next((ymd(d * DAY_MS) for d in sorted(pm)
+                                             if pm[d] < GOLD_FORWARD_KILL['paxg_premium_min']), None)
+    coin = line['hl_coin']
+    for at_, m in metas:
+        k = 'xyz' if line['dex'] == 'xyz' else 'core'
+        mm = m.get(k)
+        if mm and (coin not in mm.get('names', []) or coin in mm.get('delisted', [])):
+            out['delisted'] = out['delisted'] or at_
+    if line['dex'] == 'xyz':
+        implied = {t: c / (1.0 + prem[perp][t]) for t, c in P[perp].items() if prem[perp].get(t) is not None}
+        gap = daily_open_median(implied, P['xau_index'], d_reg - 30, (days[-1] + 1) if days else d_reg)
+        base = [v for d, v in gap.items() if d < d_reg]
+        if base:
+            b0 = statistics.median(base)
+            out['oracle_gap_baseline'] = b0
+            drift = {ymd(d * DAY_MS): v - b0 for d, v in gap.items() if d >= d_reg}
+            out['oracle_gap_drift'] = drift
+            bad = [k for k, v in drift.items() if abs(v) > GOLD_FORWARD_KILL['oracle_drift_review']]
+            if bad:
+                out['review'].append('xyz oracle vs Binance XAU index moved > %.0fbp from its pre-registration median '
+                                     'on %s: check for an oracle change' % (1e4 * GOLD_FORWARD_KILL['oracle_drift_review'],
+                                                                            ', '.join(bad[:5])))
+    if days:
+        hrs = {int(round(t / HOUR_MS)) for t, _ in ev[perp] if days[0] * DAY_MS < t <= (days[-1] + 1) * DAY_MS}
+        missing = (days[-1] + 1 - days[0]) * 24 - len(hrs)
+        out['missing_funding_hours'] = missing
+        if missing > 2:
+            out['review'].append('%d funding hours missing in the forward window: check for a halt' % missing)
+    out['kill'] = [x for x in (out['funding_30d_first_breach'] and 'trailing 30-day funding below %.1f%% on %s' % (
+        100 * GOLD_FORWARD_KILL['funding_30d_min'], out['funding_30d_first_breach']),
+        out['paxg_premium_first_breach'] and "PAXG's open-hours premium below %.0fbp on %s" % (
+            1e4 * GOLD_FORWARD_KILL['paxg_premium_min'], out['paxg_premium_first_breach']),
+        out['delisted'] and '%s missing or delisted at the %s snapshot' % (coin, out['delisted'])) if x]
+    return out
+
+
+def gold_forward_verdict(lines):
+    """Per line: kill on any kill-the-watch breach; accumulating until 90 days; then the findings' promote rule (BH
+    across the forward family of the lines that reached it)."""
+    ps = {n: L['nw_p'] for n, L in lines.items() if L.get('nw_p') is not None and L['days'] >= GOLD_FORWARD_PROMOTE['min_days']}
+    names = sorted(ps)
+    rej, adj = B.bh([ps[n] for n in names], q=GOLD_FORWARD_PROMOTE['bh_q']) if names else ([], [])
+    bh = dict(zip(names, zip(rej, adj)))
+    for n, L in lines.items():
+        L['bh'] = {'reject': bh[n][0], 'adjusted_p': bh[n][1]} if n in bh else None
+        if L['checks']['kill']:
+            L['verdict'] = 'kill: ' + '; '.join(L['checks']['kill'])
+        elif L['days'] < GOLD_FORWARD_PROMOTE['min_days']:
+            L['verdict'] = 'accumulating (%d of %d days)' % (L['days'], GOLD_FORWARD_PROMOTE['min_days'])
+        elif (L['ann_excess'] or 0) > GOLD_FORWARD_PROMOTE['min_excess'] and (L['nw_t'] or 0) > GOLD_FORWARD_PROMOTE['min_nw_t'] \
+                and L['last_day'] >= GOLD_FORWARD_PROMOTE['covers'] and L['bh'] and L['bh']['reject']:
+            L['verdict'] = 'promote: excess above 2% with NW t > 2 through 2026-12, surviving BH across the lines'
+        else:
+            L['verdict'] = 'hold (watch): the promote rule is not met'
+    return lines
+
+
+def gold_forward_register(ledger_path, now_ms, first_day=None, study_costs=None, log=print):
+    """Append the registration row (frozen rule and lines, first forward day = the UTC day after registration unless
+    given). Never re-registers; refuses a first day that has already begun. Returns the row, or None."""
+    ledger = read_ledger(ledger_path)
+    if any(r.get('kind') == 'register' and r.get('rule') == GOLD_FORWARD_RULE['id'] for r in ledger):
+        log('already registered: %s' % next(r['registered_at'] for r in ledger if r.get('kind') == 'register'))
+        return None
+    d1 = (now_ms // DAY_MS + 1) if first_day is None else ms_of(first_day) // DAY_MS
+    if d1 * DAY_MS <= now_ms:
+        log('too late: the first forward day %s began before registration' % ymd(d1 * DAY_MS))
+        return None
+    lines = json.loads(json.dumps(GOLD_FORWARD_LINES))
+    check = {}
+    for n, L in lines.items():
+        sc = (study_costs or {})
+        for leg, key in ((L['perp'], 'half_spread_perp_bp'), (L['token'], 'half_spread_token_bp')):
+            if leg in sc:
+                check['%s %s' % (n, key)] = abs(sc[leg]['half_spread_bp'] - L[key]) < 1e-12
+    row = {'kind': 'register', 'rule': GOLD_FORWARD_RULE['id'], 'rule_frozen': GOLD_FORWARD_RULE, 'lines': lines,
+           'kill': GOLD_FORWARD_KILL, 'promote': GOLD_FORWARD_PROMOTE, 'registered_at': utc(now_ms),
+           'first_day': ymd(d1 * DAY_MS), 'entry_utc': utc(d1 * DAY_MS), 'study_costs_match': check}
+    append_ledger(ledger_path, [row])
+    log('registered %s: first forward day %s (entry %s)' % (row['rule'], row['first_day'], row['entry_utc']))
+    return row
+
+
+def read_ledger(path):
+    p = Path(path)
+    if not p.exists():
+        return []
+    return [json.loads(x) for x in p.read_text().splitlines() if x.strip()]
+
+
+def append_ledger(path, rows):
+    if not rows:
+        return
+    p = Path(path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    with p.open('a') as f:
+        for r in rows:
+            f.write(json.dumps(r, sort_keys=True, default=str) + '\n')
+
+
+def snapshot_row(snap, raw_rel, M, reg, prev_at_ms):
+    """The ledger row for one snapshot: funding since the last snapshot and trailing 30 days per line, mark /
+    oracle / premium, coarse and fine perp depth within 25bp, PAXG spot and its premium to the XAU index, token ask
+    depth within 25bp on the study's five books, and the savings rate."""
+    now_ms = snap['window'][1]
+    P, H, ev, prem = forward_maps(M)
+    row = {'kind': 'snapshot', 'rule': GOLD_FORWARD_RULE['id'], 'at': snap['at'], 'window': snap['window'],
+           'raw': raw_rel, 'errors': snap.get('errors'), 'api': snap.get('api'), 'lines': {}}
+    for n, L in reg['lines'].items():
+        perp, coin = L['perp'], L['hl_coin']
+        since = [r for t, r in ev[perp] if prev_at_ms < t <= now_ms]
+        mk = 'xyz' if L['dex'] == 'xyz' else 'core'
+        ctx = ((snap.get('hl_meta') or {}).get(mk) or {}).get('ctx', {}).get(coin) or {}
+        bk = (snap.get('hl_books') or {}).get(coin) or {}
+        coarse, _ = hl_book_side_usd(bk.get('coarse'))
+        fine, hs = hl_book_side_usd(bk.get('fine'))
+        mark = fnum(ctx.get('markPx'))
+        row['lines'][n] = {
+            'funding_since_last': sum(since), 'funding_hours_since_last': len(since),
+            'funding_apr_since_last': (sum(since) / len(since) * 8760.0) if since else None,
+            'trailing_30d_apr': trailing_funding_apr(ev[perp], now_ms),
+            'mark': mark, 'oracle': fnum(ctx.get('oraclePx')), 'mid': fnum(ctx.get('midPx')),
+            'premium': fnum(ctx.get('premium')), 'funding_rate_now': fnum(ctx.get('funding')),
+            'open_interest_usd': (fnum(ctx.get('openInterest')) or 0.0) * (mark or 0.0) if mark else None,
+            'day_ntl_vlm': fnum(ctx.get('dayNtlVlm')), 'perp_bid_25bp_usd_coarse': coarse,
+            'perp_bid_25bp_usd_fine': fine, 'half_spread_bp': hs,
+            'listed': coin in (((snap.get('hl_meta') or {}).get(mk) or {}).get('names') or [coin]) and
+            coin not in (((snap.get('hl_meta') or {}).get(mk) or {}).get('delisted') or [])}
+    books = token_books_of(snap)
+    asks, mid_bn = {}, None
+    for k, (bids, a) in books.items():
+        if bids and a:
+            mid = (bids[0][0] + a[0][0]) / 2.0
+            asks[k] = depth_usd(a, mid, 25)
+            if k == 'bn_spot:PAXGUSDT':
+                mid_bn = mid
+    xi = fnum((snap.get('bn_xau_premium_index') or {}).get('indexPrice'))
+    last_t = max(P['PAXG@bn']) if P['PAXG@bn'] else None
+    row['paxg'] = {'binance_mid': mid_bn, 'binance_last_hour_close': P['PAXG@bn'].get(last_t) if last_t else None,
+                   'xau_index': xi, 'premium_to_xau_index_now': (mid_bn / xi - 1.0) if (mid_bn and xi) else None,
+                   'spot_open_now': spot_open(now_ms // HOUR_MS * HOUR_MS),
+                   'ask_25bp_usd_by_book': asks, 'ask_25bp_usd_total': sum(asks.values()) if asks else None}
+    row['ssr'] = snap.get('ssr')
+    return row
+
+
+def load_snapshots(ledger):
+    snaps = []
+    for r in ledger:
+        if r.get('kind') == 'snapshot' and r.get('raw'):
+            p = ROOT / r['raw']
+            if p.exists():
+                snaps.append(read_gz(p))
+    return snaps
+
+
+def gold_forward_score(ledger, now_ms, snaps=None):
+    """Every line's forward carry series from the registration's first day to the last complete day, its excess over
+    the savings rate (live, and the study's 3.80%), NW t, the kill checks and the verdict. Parameters come from the
+    registration row."""
+    reg = next((r for r in ledger if r.get('kind') == 'register'), None)
+    if reg is None:
+        return None
+    snaps = load_snapshots(ledger) if snaps is None else snaps
+    M = merge_forward_raw(snaps)
+    P, H, ev, prem = forward_maps(M)
+    d_first = ms_of(reg['first_day']) // DAY_MS
+    data_end = min([max(P[L['perp']]) if P[L['perp']] else 0 for L in reg['lines'].values()] +
+                   [max(P['PAXG@bn']) if P['PAXG@bn'] else 0])
+    d_last = data_end // DAY_MS - 1                      # the last day whose closing mark exists
+    ssr_pts = M['ssr']
+
+    def ssr_live(d):
+        v = [a for t, a in ssr_pts if t <= (d + 1) * DAY_MS]
+        return v[-1] if v else (ssr_pts[0][1] if ssr_pts else SSR)
+    out = {'first_day': reg['first_day'], 'last_complete_day': ymd(d_last * DAY_MS) if d_last >= d_first else None,
+           'snapshots': len(snaps), 'lines': {}}
+    for n, L in reg['lines'].items():
+        leg = gold_forward_leg(P[L['perp']], H[L['perp']], P['PAXG@bn'], ev[L['perp']], L, d_first, d_last)
+        days = leg['days']
+        rec = {'days': len(days), 'first_day': ymd(days[0] * DAY_MS) if days else None,
+               'last_day': ymd(days[-1] * DAY_MS) if days else '', 'K': L['K']}
+        if days:
+            ex, st, per_day = forward_series(leg, L, ssr_live)
+            ex_c, _, _ = forward_series(leg, L, bench_const)
+            t, p = nw_t(ex, lags=30)
+            rec.update({'ann_excess': ann_mean(ex), 'ann_excess_vs_3_80': ann_mean(ex_c), 'nw_t': t, 'nw_p': p,
+                        'funding_apr': sum(x['funding'] for x in per_day) / len(per_day) * 365.0,
+                        'basis_apr': sum(x['basis'] or 0.0 for x in per_day) / len(per_day) * 365.0,
+                        'bookkeeping': st, 'savings_rate_used': {ymd(d * DAY_MS): ssr_live(d) for d in days[-1:]},
+                        'series': [dict(x, excess=e, excess_vs_3_80=ec) for x, e, ec in zip(per_day, ex, ex_c)]})
+        else:
+            rec.update({'ann_excess': None, 'ann_excess_vs_3_80': None, 'nw_t': None, 'nw_p': None})
+        rec['checks'] = gold_kill_checks(P, ev, prem, M['metas'], L, days, d_first)
+        out['lines'][n] = rec
+    gold_forward_verdict(out['lines'])
+    out['verdict'] = '; '.join('%s: %s' % (n, L['verdict']) for n, L in out['lines'].items())
+    return out
+
+
+def gold_forward_replay(study_out=STUDY_OUT):
+    """The frozen lines replayed on the study's own raw data through the forward leg builder: the test-window excess
+    must equal the study's (full-period run sliced at its split, as run_block does), and a fresh entry at the split
+    shows what the entry cost takes."""
+    raw = Path(study_out) / 'raw'
+    P, H = load_prices(raw)
+    ev, cut = load_funding(raw)
+    out = {}
+    for n, L in GOLD_FORWARD_LINES.items():
+        st = L['study_test']
+        d0, d1 = ms_of(st['first_day']) // DAY_MS, ms_of(st['window'][1]) // DAY_MS
+        perp = L['perp']
+        Hh = dict(H.get(perp + ':trade', {}))
+        leg = gold_forward_leg(P[perp + ':trade'], Hh, P[TOKEN_LEGS[L['token']]['series']], ev[perp], L, d0, d1,
+                               cut.get(perp))
+        ex, _, _ = forward_series(leg, L, bench_const)
+        split = ms_of(st['window'][0]) // DAY_MS
+        c = next(i for i, d in enumerate(leg['days']) if d >= split)
+        fresh = gold_forward_leg(P[perp + ':trade'], Hh, P[TOKEN_LEGS[L['token']]['series']], ev[perp], L, split, d1,
+                                 cut.get(perp))
+        exf, _, _ = forward_series(fresh, L, bench_const)
+        out[n] = {'study_test_excess': st['excess'], 'replayed_test_excess': ann_mean(ex[c:]),
+                  'replayed_nw_t30': nw_t(ex[c:], lags=30)[0], 'study_nw_t30': st['nw_t30'],
+                  'test_days': len(ex) - c, 'study_test_days': st['days'],
+                  'fresh_entry_at_split_excess': ann_mean(exf)}
+    return out
+
+
+def cmd_forward(args):
+    ledger_path = Path(args.ledger)
+    now_ms = int(time.time() * 1000)
+    if args.action == 'replay':
+        res = gold_forward_replay(Path(args.study))
+        print(json.dumps(res, indent=1))
+        return res
+    if args.action in ('register', 'snapshot'):
+        sc = None
+        try:
+            sc = json.loads((Path(args.study) / 'analysis.json').read_text()).get('costs_one_side')
+        except FileNotFoundError:
+            pass
+        quiet = args.action == 'snapshot' and any(r.get('kind') == 'register' for r in read_ledger(ledger_path))
+        gold_forward_register(ledger_path, now_ms, args.first_day if args.action == 'register' else None, sc,
+                              log=(lambda *a: None) if quiet else print)
+        if args.action == 'register':
+            return None
+        ledger = read_ledger(ledger_path)
+        reg = next(r for r in ledger if r.get('kind') == 'register')
+        prev = [r for r in ledger if r.get('kind') == 'snapshot']
+        prev_at = max(int(dt.datetime.fromisoformat(r['at']).timestamp() * 1000) for r in prev) if prev else \
+            int(dt.datetime.fromisoformat(reg['registered_at']).timestamp() * 1000)
+        since = (max(r['window'][1] for r in prev) - 3 * HOUR_MS) if prev else now_ms - 31 * DAY_MS
+        snap = gold_snapshot_fetch(now_ms, since, interval=args.interval)
+        stamp = dt.datetime.fromtimestamp(now_ms / 1000, UTC).strftime('%Y%m%dT%H%MZ')
+        fp = GOLD_WATCH_RAW / ('snap_%s.json.gz' % stamp)
+        write_gz(fp, snap)
+        M = merge_forward_raw(load_snapshots(ledger) + [snap])
+        row = snapshot_row(snap, str(fp.relative_to(ROOT)), M, reg, prev_at)
+        append_ledger(ledger_path, [row])
+        for n, L in row['lines'].items():
+            print('%-24s funding since last %s (%d h)  trailing 30d %s  mark %s oracle %s  bids 25bp coarse %s fine %s'
+                  % (n, pc(L['funding_apr_since_last']), L['funding_hours_since_last'], pc(L['trailing_30d_apr']),
+                     L['mark'], L['oracle'], usd(L['perp_bid_25bp_usd_coarse']), usd(L['perp_bid_25bp_usd_fine'])))
+        x = row['paxg']
+        print('PAXG mid %s  XAU index %s  premium %s  asks 25bp %s  SSR %s  errors %d' % (
+            x['binance_mid'], x['xau_index'], bp(x['premium_to_xau_index_now']), usd(x['ask_25bp_usd_total']),
+            pc((row['ssr'] or {}).get('apy')), len(row['errors'] or [])))
+        return row
+    ledger = read_ledger(ledger_path)
+    res = gold_forward_score(ledger, now_ms)
+    if res is None:
+        print('nothing registered in %s' % ledger_path)
+        return None
+    write_json(ledger_path.with_suffix('.json'), {'generated': utc(now_ms), 'rule': GOLD_FORWARD_RULE,
+                                                  'ledger': str(ledger_path), 'summary': res})
+    for n, L in res['lines'].items():
+        print('%-24s days %d  excess %s (vs 3.80%% %s)  NW t %s  -> %s' % (
+            n, L['days'], pc(L.get('ann_excess')), pc(L.get('ann_excess_vs_3_80')),
+            nm(L.get('nw_t')), L['verdict']))
+    return res
+
+
 # ============================================================================================== entry point
 
 def main(argv=None):
@@ -2516,6 +3072,15 @@ def main(argv=None):
     r = sub.add_parser('render')
     r.add_argument('--out', default='research/2026-10-10/gold_carry')
     r.set_defaults(fn=lambda args: cmd_render(args))
+    f = sub.add_parser('forward', help='the two watch lines held forward: register | snapshot (daily) | score | '
+                                       'replay (the frozen rule on the study\'s raw data)')
+    f.add_argument('action', choices=['register', 'snapshot', 'score', 'replay'])
+    f.add_argument('--ledger', default=str(GOLD_FORWARD_LEDGER))
+    f.add_argument('--study', default=str(STUDY_OUT))
+    f.add_argument('--first-day', default=None, help='register: first forward UTC day (default: the day after now); '
+                                                     'refused when it has begun')
+    f.add_argument('--interval', type=float, default=1.0, help='Hyperliquid pacing, seconds (>= 0.4)')
+    f.set_defaults(fn=cmd_forward)
     args = ap.parse_args(argv)
     args.fn(args)
 

@@ -1453,6 +1453,43 @@
    }
   }
  },
+ "khype_overlap": {
+  "corr_with_eth3_sum": -0.03208130527059043,
+  "days": 452,
+  "khype_hurdle_bps": 20,
+  "others_hurdle_bps": 2,
+  "pairs": {
+   "etherfi_ev": {
+    "corr": 0.016504245702808732,
+    "days_both": 108,
+    "days_either": 349,
+    "jaccard": 0.30945558739255014
+   },
+   "kelp": {
+    "corr": -0.10324903802590037,
+    "days_both": 92,
+    "days_either": 393,
+    "jaccard": 0.2340966921119593
+   },
+   "lbtc_cb": {
+    "corr": 0.08350383421887844,
+    "days_both": 127,
+    "days_either": 377,
+    "jaccard": 0.33687002652519893
+   },
+   "lido": {
+    "corr": -0.038371213683164165,
+    "days_both": 76,
+    "days_either": 276,
+    "jaccard": 0.2753623188405797
+   }
+  },
+  "source": "research/2026-10-10/queue_bids_alt/analysis.json queue_bids.khype.locked_capital_daily_unbounded",
+  "window": [
+   "2025-07-15",
+   "2026-10-09"
+  ]
+ },
  "late_entry": {
   "all4|10000000|1d": {
    "chosen_hurdle": "h=0",

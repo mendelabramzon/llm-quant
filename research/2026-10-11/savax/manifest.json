@@ -1,0 +1,107 @@
+{
+ "commands": [
+  "uv run --with pycryptodome python scripts/queue_bids_alt.py savax --step collect --out research/2026-10-11/savax",
+  "uv run --with pycryptodome python scripts/queue_bids_alt.py savax --step analyze --out research/2026-10-11/savax --long /private/tmp/claude-501/-Users-iv-dev-llm-quant/f8f5dd7f-a4a0-4093-be28-3b0ec0236208/scratchpad/qbook/long --khype research/2026-10-10/queue_bids_alt",
+  "uv run --with pycryptodome python scripts/queue_bids_alt.py savax --step render --out research/2026-10-11/savax"
+ ],
+ "files": {
+  "raw/blocks_avax.json.gz": {
+   "bytes": 22744,
+   "sha256": "9d11ff3d8c3e0214cabc1fa662a2e0dac303a36205053741a0287ee3b7acddc2"
+  },
+  "raw/queue_events.json.gz": {
+   "bytes": 6303733,
+   "sha256": "bf4446883f860e4fb599c2b8b4cf9d072d23726989464ee04b02cfbf12a1beaf"
+  },
+  "raw/rate_spot_check.json": {
+   "bytes": 1384,
+   "sha256": "ab0fd8b070ecc2d06f21a736c40a9462b083d18f83094f4a8fd46c01e2900247"
+  },
+  "raw/rates_savax.json.gz": {
+   "bytes": 18320,
+   "sha256": "7a4810b95e9f410d0e1c2957379f4ed0a9c7358b5abb7713214d264f2fe7380b"
+  },
+  "raw/state.json": {
+   "bytes": 774,
+   "sha256": "fe4d494efbffef4d1b39c26d01ee0f4dce857d275698de963088b9483c13dec8"
+  },
+  "raw/swaps/shard_32.json.gz": {
+   "bytes": 249843,
+   "sha256": "a9ca974cf6673196d2a492b2a54f29386c5aad5a2520c10444790363356eb105"
+  },
+  "raw/swaps/shard_33.json.gz": {
+   "bytes": 708326,
+   "sha256": "37145196c4036c3338a32b442c975088beb81932af07ad7119e3d9eb6bce7e95"
+  },
+  "raw/swaps/shard_34.json.gz": {
+   "bytes": 965193,
+   "sha256": "1727dc052539aecf584e80e148ce83d2782cb4c5d77bc2f1ffd860b5760a37af"
+  },
+  "raw/swaps/shard_35.json.gz": {
+   "bytes": 764280,
+   "sha256": "8f6f7c7e7646b7a4031a3a190d6674b926d8cffd14cb9ba3b5f506489878a846"
+  },
+  "raw/swaps/shard_36.json.gz": {
+   "bytes": 826633,
+   "sha256": "c6ce143d0a5d9ef910052ddeb2d3357d49dd04dcaa6e7f50713e1070ff42fb9f"
+  },
+  "raw/swaps/shard_37.json.gz": {
+   "bytes": 714832,
+   "sha256": "61ee054ca8be314d0c5e5e2c0add008be8ef6c3b02f5f396c2d1fdaf494717f5"
+  },
+  "raw/swaps/shard_38.json.gz": {
+   "bytes": 392334,
+   "sha256": "ca56ef67b27aeb036164a9ddc0442a4bb94027768b6d1bfc7ba56450247008d9"
+  },
+  "raw/swaps/shard_39.json.gz": {
+   "bytes": 207491,
+   "sha256": "3721cee147b7a74b7472c54b463ccf8486c0973e2d7b5821d46dc772255b59c6"
+  },
+  "raw/swaps/shard_40.json.gz": {
+   "bytes": 256341,
+   "sha256": "8f98c6a2030735c9dbaac2cbc5428329d9965bc30042dc33347db237037a5275"
+  },
+  "raw/swaps/shard_41.json.gz": {
+   "bytes": 408348,
+   "sha256": "6ddd87dda33199ae96fb632d023d660202108753091b0f9b376774b605d75e09"
+  },
+  "raw/swaps/shard_42.json.gz": {
+   "bytes": 456042,
+   "sha256": "07d0e336e80f475c61b9d8e13c2175ced1636ff3a55ce969e45db91665f07158"
+  },
+  "raw/swaps/shard_43.json.gz": {
+   "bytes": 508840,
+   "sha256": "c945977d14c25db24c03ddadbac5486258891805907c57be4666ab051a327617"
+  },
+  "raw/swaps/shard_44.json.gz": {
+   "bytes": 487365,
+   "sha256": "c51b2915fa86379f959900e3703df3014d26b96db5e212962b0b7f18ed30588a"
+  },
+  "raw/swaps/shard_45.json.gz": {
+   "bytes": 287240,
+   "sha256": "37dac647097934a70c5bd98987b584faeab18bd3c965f2043ea59d3730f3d588"
+  },
+  "raw/swaps/shard_46.json.gz": {
+   "bytes": 212065,
+   "sha256": "d75b1645d060a4dcb636460a87f2db6cb6abc805ea434c607b1a438cb95934b1"
+  },
+  "raw/swaps/shard_47.json.gz": {
+   "bytes": 249498,
+   "sha256": "628772280ff27f613f50c2237aee977ba335252a9a5276515e9a50c82e680886"
+  },
+  "raw/swaps/shard_48.json.gz": {
+   "bytes": 153660,
+   "sha256": "1de26dd8b4fb8ff898fa6b7fa8fa8a74971e5adbf7756040d815794dc2bd9046"
+  }
+ },
+ "generated": "2026-10-11T04:06:29Z",
+ "prices": "research/2026-10-10/queue_bids_alt/raw/prices_usd.json.gz",
+ "rpc": [
+  "https://avalanche-mainnet.gateway.tenderly.co",
+  "https://api.avax.network/ext/bc/C/rpc"
+ ],
+ "window": [
+  "2025-07-15T00:00:00Z",
+  "2026-10-09T23:59:59Z"
+ ]
+}

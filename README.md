@@ -44,6 +44,75 @@ to 12,056 addresses in one campaign — token-transfer address poisoning at a sc
 cannot see, and which the hand analysis of the same window missed.
 
 
+2026-10-11 — forward tests, and what an executable bidder earns. The book's pending writes went in ($1,421,473 a year
+go-and-current), then two corrections priced for an executable bidder took it to **$1,166,284**. Five forward tests
+started, each with a frozen rule and an append-only ledger, run daily by `scripts/forward_daily.py`.
+
+* **The queue book was re-priced for a bidder who can actually execute** ([note](research/2026-10-11/queue_live/findings.md)).
+  - The backtest bought each sale at its own print, which only a bidder behind each seller gets. Resting limit orders
+    earn their limit: a daily re-quote keeps $210,512 of $409,885.
+  - Dislocations persist for an hour (98% of stETH qualifying sales still clear), so an hourly taker earns **$294,743 a
+    year at $15M** (t 7.51); the row now carries that.
+  - The earlier late-entry figures (96% kept at an hour) priced the delayed entry at the original print. At the later
+    price an hour keeps 72–77%.
+* **kHYPE and sAVAX** ([note](research/2026-10-11/queue_book5/findings.md)).
+  - As hourly takers, five assets on one $15M pool earn $293,463 with a one-day chain crossing. kHYPE alone falls to
+    $113,872 (t 1.21) and no longer passes on its own.
+  - sAVAX pays $70,073 at $3M, and its queue accrues through the cooldown.
+* **The hedge venue is a rent too** ([note](research/2026-10-11/jlp_forward/findings.md)). Shorting JLP's delta on
+  Hyperliquid instead of Binance adds +1.5pp a year, because HL funding sits at the formula rate on 41–55% of hours.
+* **Watchers** ([collateral](research/2026-10-11/collateral_watch/findings.md), [watch items](research/2026-10-11/watch_forward/findings.md)).
+  - 642 altcoin pairs settle at the funding floor at least half the time. A basket of them still loses on Binance and
+    Bybit, in and out of sample: floor share does not persist through sell-offs
+    ([note](research/2026-10-11/alt_floor_carry/findings.md)).
+  - EMPD/BNC, the gold carry and the money-market rotation are now forward tests.
+
+| module | what it does |
+|---|---|
+| `scripts/forward_daily.py` | one daily pass of every forward test, one log line (`research/forward_daily_log.md`) |
+| `scripts/queue_live.py` | the queue book read-only: ladder, unsigned CoW orders (digest pinned to a real order), kill criteria, paper ledger v1–v3, implementation comparison |
+| `scripts/jlp_forward.py` | JLP's composition hedge held forward (60 days), and the Hyperliquid-hedge backtest |
+| `scripts/collateral_watch.py` | daily collateral lists of five venues, diffs, and the same-venue carry of each asset |
+
+2026-10-10/11 — rents and scarce resources. The repo's one robust lesson (what survives is a rent paid by someone with
+a non-price motive) became a search method. A rent map sizes who pays whom, and studies test the pools that patient
+capital can collect ([synthesis](research/2026-10-10/rents_and_resources.md)).
+
+* **The map.** About $12.7B a year is paid by non-price-motivated agents, $2.2B of it above a fair rate, of which roughly
+  $2.8–17.5M is accessible without speed. The largest pool is a formula parameter: Hyperliquid funding sits at its
+  10.95% interest rate on 72% of open-interest hours ([note](research/2026-10-10/rent_map/findings.md)).
+* **Survivors.**
+  - **The queue bids share one capital pool.** Dislocations correlate within an underlying but not across them, so $15M
+    earns $409,889 a year, 86% of four separate books that need $33M
+    ([note](research/2026-10-10/queue_book/findings.md)). Resting CoW orders were seen filling at a median 31bp below
+    NAV in the April 2026 stETH episode ([note](research/2026-10-10/cow_fill_check/findings.md)).
+  - **kHYPE's queue** pays exactly (13,426 of 13,426 confirmations) and its bid made $140k a year at $10M. As the HYPE
+    carry's spot leg, kHYPE adds +1.2pp ([note](research/2026-10-10/queue_bids_alt/findings.md)).
+  - **Being the house pays where fees dominate:** hedged GMX SOL-USDC ($103k at $2M) and JLP ($248k at $10M, after a
+    forward test). HLP's income is crash liquidations; its market making nets zero
+    ([note](research/2026-10-10/house_vaults/findings.md)).
+* **No-go or standby.**
+  - **Incentive yields.** Displayed yields above ~5pp over the savings rate are credit risk once share prices are checked
+    ([note](research/2026-10-10/incentive_yields/findings.md)).
+  - **Hyperliquid vault managers** have no persistent skill ([note](research/2026-10-10/hl_vault_skill/findings.md)).
+  - **Hedged Aerodrome locks** pay only on Hyperliquid's funding, and the merger ends them
+    ([note](research/2026-10-10/ve_carry/findings.md)).
+  - **Trusts and treasury companies.** Their discounts closed with the 2025 listing standards and do not converge
+    ([note](research/2026-10-10/nav_wrappers/findings.md)).
+  - **Gold perps** pay a real premium that the cost of carry absorbs ([note](research/2026-10-10/gold_carry/findings.md)).
+* **The book.** Simulated on a copy, it would go from $1.02M to $1.47M a year with this session's proposals. The commands
+  wait for the user in the ROADMAP's session entry.
+
+| module | what it does |
+|---|---|
+| `scripts/rent_map.py` | sizes the rents (funding above fair, LP-vault fees, incentive budgets, DEX fees vs LVR, lending, queues, Pendle YT), with double-count guards |
+| `scripts/queue_book.py` | the queue bids on one capital pool (`simulate_book` = `simulate_bid` over merged assets), late entry, overlap of locked capital |
+| `scripts/cow_fill_check.py` | CoW Protocol settlements in a dislocation: which resting orders bought LSTs, at what discount, after how long |
+| `scripts/house_vaults.py` | perp-venue vaults (HLP, JLP, GMX GM/GLV, gTrade, LLP, MegaVault) hedged, against the savings rate, with dilution |
+| `scripts/queue_bids_alt.py` | staking tokens off Ethereum: queue facts from contracts, kHYPE swaps rebuilt from chain, bids and staked carries |
+| `scripts/incentive_yields.py` | DefiLlama yields from Wayback captures (dead pools kept), reward sale prices, hacks, and the share-price audit |
+| `scripts/ve_carry.py`, `scripts/gold_carry.py`, `scripts/nav_wrappers.py`, `scripts/hl_vault_skill.py` | vote-escrow carry; tokenized gold against gold perps; trusts and treasury companies on true NAV; survivorship-free vault persistence |
+
 2026-10-10 — alpha that does not race. Asked for strategies that need neither latency nor a position in the block,
 this session wrote the candidates down by where a non-racing edge comes from
 ([brainstorm](research/2026-10-10/alpha_brainstorm.md): a constraint someone pays to escape, slow public information,

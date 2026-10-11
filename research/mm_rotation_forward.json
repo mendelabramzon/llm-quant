@@ -1,0 +1,37 @@
+{
+ "generated": "2026-10-11T03:50:50+00:00",
+ "holds": [],
+ "holds_registered": 1,
+ "ledger": "/Users/iv/dev/llm-quant/research/mm_rotation_forward.jsonl",
+ "rule": {
+  "audit": "the study's share-price audit at each hold's end: a vault share whose price accrues must deliver the apyBase it claimed (shortfall booked), a rebasing receipt books a price fall beyond 1%, without a share price the deposit token's depeg beyond 1%; recorded daily: DefiLlama share/deposit/reward prices and, on Ethereum, the venue's own exchange rate (Aave/Spark liquidity index, ERC-4626 convertToAssets)",
+  "benchmark": "the Sky savings rate paid over each hold: sUSDS NAV growth between the reads nearest its start and end (the SSR read x days when a read is missing)",
+  "filters": "single-exposure dollar pools (stablecoin flag + dollar-symbol test, non-dollar tokens excluded); pool TVL >= $1M on its last record before the decision; first record >= 7 days before; a record within 3 days; no matched hack at the venue in the last 30 days; a plain deposit token priced >= $0.985 the day before",
+  "hold": "4 weeks: decisions every 28 days from 2022-10-17 (2026-10-12 is decision 52), Mondays 00:00 UTC",
+  "id": "mm-pooled-rotation",
+  "kill": [
+   "trailing 13-week excess below 0 (the last three holds)",
+   "the picks' displayed reward APR below 1pp over a hold (four weeks)",
+   "a share shortfall above 1% or a matched hack at a held venue: exit; two in 13 weeks: retire",
+   "capacity of the picks below $2M (deposit at which marginal yield falls to SSR + 1pp)"
+  ],
+  "min_holds": 6,
+  "money": "base and rewards accrue daily from DefiLlama records diluted by T/(T+X); rewards at the reward token price on the sale day (weekly claim + 1 day) less 1%, unpriced rewards at the in-sample ratio 1.0075; two claim transactions a week; switches pay gas, a bridge ($10 + 5bp) and a stable swap (2-50bp)",
+  "picks": "top 5, equal $200k slices of $1M; at each later decision a held pool stays while still eligible and ranked in the top 10 (buffer 2N); free slices take the best-ranked pools not held (simulate)",
+  "promote": "after 6 holds: annualised excess above 0 with t (across holds) above 2 and no kill",
+  "score": "trailing 7-day mean of apyBase + 1.0 x apyReward over records on days D-7..D-1 (>= 4 records, the latest within 3 days of D); ties by TVL, then id",
+  "study": "research/2026-10-10/incentive_yields (findings: \"(1) same, pooled money markets only (post hoc)\"; analysis.json diagnostic_bluechip_pooled_only 'bluechip k7 h1.0 H4': +1.06% a year out of sample, t 3.24)",
+  "universe": "blue-chip lending: DefiLlama category Lending, protocol TVL >= $1B the day before the decision and at least 365 days of TVL history (is_bluechip), minus the curated-vault platforms euler-v2, morpho-aave, morpho-aavev3, morpho-blue, morpho-compound, morpho-v0-aavev2, morpho-v0-compoundv2, morpho-v1"
+ },
+ "summary": {
+  "ann_excess": null,
+  "holds_scored": 0,
+  "kill": [],
+  "mean_hold_excess": null,
+  "pending": [
+   "2026-10-12 -> 2026-11-09: hold running"
+  ],
+  "t_across_holds": null,
+  "verdict": "accumulating (0 of 6 holds)"
+ }
+}

@@ -207,3 +207,153 @@ def test_dat_forward_beta_hedge_is_neutral_at_constant_true_mnav():
 
 def test_abdi_ranaldo_zero_for_constant_prices():
     assert N.abdi_ranaldo_spread([10.0] * 5, [10.0] * 5, [10.0] * 5) == 0.0
+
+
+# ---------------------------------------------------------------- forward test (DATs): registration and scoring
+
+H_MS = 3600000
+
+
+def _fwd_inputs():
+    # 1,000 coins, $20k cash, $40k debt, 1,000 shares: NAV/share = coin - 20; beta = C / (C - 20)
+    return {'coins': 1000.0, 'cash_usd': 20_000.0, 'debt_usd': 40_000.0, 'pref_usd': 0.0, 'shares': 1000.0,
+            'committed_to_illiquid_usd': 0.0}
+
+
+def _fwd_rows(prices, coins, perps=None, funding=None, adv=5e6, start='2026-10-12'):
+    d0 = N.dt.date.fromisoformat(start)
+    out = []
+    for i, (p, c) in enumerate(zip(prices, coins)):
+        date = (d0 + N.dt.timedelta(days=i)).isoformat()
+        out.append({'date': date, 'close_ms': N.session_close_ms(date), 'price': p, 'coin_px': c,
+                    'perp_px': (perps or coins)[i], 'funding': (funding or [0.0] * len(prices))[i], 'adv_usd': adv})
+    return out
+
+
+def test_calendar_entry_is_the_first_close_after_registration_and_horizons_count_sessions():
+    sat = N.iso_to_ms('2026-10-10T23:24:00+00:00')
+    assert N.next_close_after(sat) == ('2026-10-12', N.iso_to_ms('2026-10-12T20:00:00+00:00'))
+    s = N.sessions_after('2026-10-12', 60)
+    assert (s[19], s[59]) == ('2026-11-09', '2027-01-07')            # Thanksgiving, Christmas, New Year skipped
+    assert '2026-11-26' not in s and '2026-11-27' in s
+    assert N.utc_iso_ms(N.session_close_ms('2026-11-27')) == '2026-11-27T18:00:00+00:00'   # early close, EST
+    assert N.utc_iso_ms(N.session_close_ms('2026-11-09')) == '2026-11-09T21:00:00+00:00'   # after the DST change
+
+
+def test_frozen_rule_arithmetic_on_synthetic_prices():
+    P = N.DAT_FORWARD_PARAMS
+    inp = _fwd_inputs()
+    # coin flat at 100 (beta 100/80 = 1.25), stock 40 -> 44 over two sessions, funding 0.01% on day 2
+    rows = _fwd_rows([40.0, 42.0, 44.0], [100.0, 100.0, 100.0], funding=[0.0, 0.0, 0.0001], adv=5e6)
+    tr = N.dat_forward_trade(rows, 0, 2, inp, P)
+    h, cap = 1.25, 1.0 + 1.25 / 3
+    stock = (42 / 40 - 1) + (44 / 42 - 1)
+    sav = 2 * 0.037 / 365.0
+    costs = 2 * (0.003 + 0.0005 * h)                                   # $1-10M ADV tier
+    assert tr['h0'] == pytest.approx(h) and tr['capital'] == pytest.approx(cap)
+    assert tr['excess'] == pytest.approx((stock + h * 0.0001) / cap - sav - costs / cap)
+    assert tr['parts']['funding'] == pytest.approx(h * 0.0001 / cap)
+    # at constant true mNAV the beta hedge cancels the coin move to first order
+    coins = [100.0, 104.0, 99.0]
+    flat = N.dat_forward_trade(_fwd_rows([0.5 * (c - 20) for c in coins], coins, adv=5e6), 0, 2, inp, P)
+    assert abs(flat['parts']['stock'] + flat['parts']['hedge']) < 2e-3
+    # the perp-leg variant marks the hedge on the perp close
+    pv = N.dat_forward_trade(_fwd_rows([40.0, 40.0], [100.0, 100.0], perps=[100.0, 101.0]), 0, 1, inp, P, leg='perp_px')
+    assert pv['parts']['hedge'] == pytest.approx(-1.25 * 0.01 / cap)
+    assert N.dat_forward_trade(rows, 0, 3, inp, P) is None             # runs past the data
+
+
+def test_session_rows_take_the_hour_ending_at_the_close_and_funding_in_between():
+    d1, d2 = '2026-10-12', '2026-10-13'
+    T1, T2 = N.session_close_ms(d1), N.session_close_ms(d2)
+    coin = {T1 - H_MS: 100.0, T1: 999.0, T2 - H_MS: 110.0}            # keyed by bar open: the 19:00 bar closes at 20:00
+    funding = [(T1, 0.5), (T1 + 1, 0.001), (T2, 0.002), (T2 + 1, 9.0)]
+    rows = N.dat_session_rows({'dates': [d1, d2], 'close': [10.0, 11.0], 'volume': [100, 300]}, coin, coin, funding)
+    assert [r['coin_px'] for r in rows] == [100.0, 110.0]
+    assert rows[1]['funding'] == pytest.approx(0.003)                   # (T1, T2]
+    assert rows[1]['adv_usd'] == pytest.approx((1000 + 3300) / 2)
+
+
+class _FakeFetch:
+    def __init__(self, raw):
+        self.raw = raw
+
+    def yahoo_daily(self, sym, t0, t1):
+        return {'dates': ['2026-10-08', '2026-10-09'], 'close': [10.0, 10.0], 'volume': [1e6, 1e6], 'splits': []}
+
+    def hourly(self, coin, a, b, kind='study'):
+        T = N.session_close_ms('2026-10-09')
+        return {T - H_MS: 100.0}, ('spot:X' if kind == 'study' else 'perp:X')
+
+    def funding(self, coin, a, b):
+        return []
+
+    def perp_state(self, symbol):
+        return {'symbol': symbol}
+
+
+def _fwd_analysis():
+    live = []
+    for tk in N.DAT_FORWARD_NAMES:
+        live.append(dict(_fwd_inputs(), ticker=tk, coin='BTC', date='2026-10-09', price_usd=10.0, coin_px=100.0,
+                         capital_source='test', holdings_source='test'))
+    return {'generated': 'test', 'dats': {'live': live}}
+
+
+def test_registration_freezes_the_rule_and_the_ledger_is_append_only(tmp_path, monkeypatch):
+    led = tmp_path / 'fwd.jsonl'
+    sat = N.iso_to_ms('2026-10-10T23:24:00+00:00')
+    rows, late = N.dat_forward_register(led, sat, _FakeFetch(tmp_path), _fwd_analysis(), {}, log=lambda *a: None)
+    assert len(rows) == len(N.DAT_FORWARD_NAMES) and not late
+    r = rows[0]
+    assert r['rule_frozen'] == N.DAT_FORWARD_RULE and r['params'] == N.DAT_FORWARD_PARAMS
+    assert r['entry_date'] == '2026-10-12' and r['score_dates_expected'] == {'20': '2026-11-09', '60': '2027-01-07'}
+    assert r['reference']['date'] == '2026-10-09' and r['at_reference']['hedge_beta'] == pytest.approx(1.25)
+    before = led.read_text()
+    again, _ = N.dat_forward_register(led, sat + 3600000, _FakeFetch(tmp_path), _fwd_analysis(), {},
+                                      log=lambda *a: None)
+    assert again == [] and led.read_text() == before                    # never re-registered, never rewritten
+    # the registered row carries its own parameters: changing the module's later does not re-score it
+    srows = _fwd_rows([10.0] * 25, [100.0] * 25, start='2026-10-12')
+    for i, x in enumerate(srows):                                        # sessions only, as Yahoo serves them
+        x['date'] = (['2026-10-12'] + N.sessions_after('2026-10-12', 24))[i]
+        x['close_ms'] = N.session_close_ms(x['date'])
+    now = N.session_close_ms(srows[-1]['date']) + 3600000
+    s1 = N.dat_forward_score_row(N.read_jsonl(led)[0], srows, now)
+    monkeypatch.setitem(N.DAT_FORWARD_PARAMS, 'margin', 1.0)
+    s2 = N.dat_forward_score_row(N.read_jsonl(led)[0], srows, now)
+    assert s1['horizons']['20']['excess'] == s2['horizons']['20']['excess']
+    assert any(p.startswith('+60: 24 of 60') for p in s1['pending'])
+
+
+def test_a_row_registered_after_its_entry_is_refused(tmp_path):
+    led = tmp_path / 'fwd.jsonl'
+    mon_late = N.iso_to_ms('2026-10-12T20:30:00+00:00')
+    c = [{'rule': 'r', 'ticker': 'A', 'entry_date': '2026-10-12', 'entry_utc': '2026-10-12T20:00:00+00:00'},
+         {'rule': 'r', 'ticker': 'B', 'entry_date': '2026-10-13', 'entry_utc': '2026-10-13T20:00:00+00:00'},
+         {'rule': 'r', 'ticker': 'C', 'entry_date': '2026-10-13', 'entry_utc': '2026-10-13T20:00:00+00:00'}]
+    new, late = N.dat_forward_registrable(c, [{'rule': 'r', 'ticker': 'C'}], mon_late)
+    assert [x['ticker'] for x in new] == ['B'] and [x['ticker'] for x in late] == ['A']
+    rows, late = N.dat_forward_register(led, mon_late, _FakeFetch(tmp_path), _fwd_analysis(), {},
+                                        entry_date='2026-10-12', log=lambda *a: None)
+    assert rows == [] and len(late) == len(N.DAT_FORWARD_NAMES) and not led.exists()
+
+
+def test_forward_verdict_waits_for_four_candidate_horizons_then_follows_the_criteria():
+    def s(tk, role, ex20=None, ex60=None, ch=0.05):
+        hz = {}
+        if ex20 is not None:
+            hz['20'] = {'excess': ex20, 'true_change': ch}
+        if ex60 is not None:
+            hz['60'] = {'excess': ex60, 'true_change': ch}
+        return {'ticker': tk, 'role': role, 'horizons': hz}
+    pl = [s('P%d' % i, 'placebo', 0.0, 0.0) for i in range(5)]
+    early = N.dat_forward_summary([s('A', 'candidate', 0.05), s('B', 'candidate', 0.02)] + pl)
+    assert early['verdict'].startswith('accumulating (2 of 4')
+    kill = N.dat_forward_summary([s('A', 'candidate', 0.05, -0.04), s('B', 'candidate', 0.02, 0.01)] + pl)
+    assert kill['verdict'].startswith('kill')
+    good = N.dat_forward_summary([s('A', 'candidate', 0.05, 0.06), s('B', 'candidate', 0.02, 0.03)] + pl)
+    assert good['verdict'].startswith('promote')
+    assert good['horizons']['60']['candidates']['A']['over_placebo'] == pytest.approx(0.06)
+    mixed = N.dat_forward_summary([s('A', 'candidate', 0.05, 0.08), s('B', 'candidate', 0.02, -0.01)] + pl)
+    assert mixed['verdict'].startswith('hold')

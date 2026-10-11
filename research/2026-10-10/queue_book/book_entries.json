@@ -30,6 +30,18 @@
     "present": true,
     "note": "out of sample 2025-10-03..2026-10-09, all four assets on one $15M pool, hurdle chosen in sample (h=1bp); replaces the four component rows (etherfi-weeth-queue-bid, lido-steth-queue-bid, kelp-rseth-queue-bid, lombard-lbtc-queue-bid) rather than adding to them"
    }
-  ]
+  ],
+  "risks": [
+   "first come, first served: in a broad stress the pool fills the earliest sellers and has no capital left for deeper discounts later; a pool that reserved capital for deeper prints was not tested",
+   "competing bidders: 83 owners bought liquid staking tokens through CoW in the April 2026 episode; the simulation lets the pool take every qualifying sale its capital allows, so the value is a ceiling for one participant",
+   "the component risks stand: Lido bunker mode, ether.fi request invalidation, Kelp's withdrawal pauses, LBTC's off-chain payout (9-day wait taken from docs, not measured)",
+   "the four-asset pool needs BTC capital or borrow-on-fill against shared collateral; the ETH-only version (one WETH balance) earns $337,677 at $15M",
+   "regime: July-August 2026 earned $8k and $6k; the in-sample year (with the summer-2025 Lido queue) was 1.7x richer than the test year"
+  ],
+  "evidence": {
+   "notes": "research/2026-10-10/queue_book/findings.md; analysis.json (alone, joint, late_entry, concentration, overlap); research/2026-10-10/cow_fill_check/findings.md; scripts/queue_book.py; scripts/cow_fill_check.py",
+   "findings": [],
+   "verify": []
+  }
  }
 ]

@@ -1369,6 +1369,8 @@ QUEUE_MODEL = {
                        'operator batch (assumed 1 day)'},
 }
 BAR_ASSETS = ['jitosol', 'slisbnb', 'sts', 'savax', 'aprmon']
+KHYPE_BOOK_SIZE = 10_000_000
+VARIANT_SIZES = [10_000_000, 30_000_000]
 DEFAULT_FEE_BPS = 1.0
 PASS_USD = 25_000.0
 
@@ -1543,7 +1545,7 @@ def analyze_bar_asset(key, raw, screen, prices):
 NOT_BACKRUNNABLE = {'valantis-stex'}
 
 
-def khype_swap_records(raw, rate_at, block_ts, usd_at, min_khype=0.01, min_sell_usd=MIN_FILL_USD):
+def khype_swap_records(raw, rate_at, block_ts, usd_at, min_khype=0.01, min_sell_usd=MIN_FILL_USD, max_bps=MAX_BAR_BPS):
     """One pass over the swap shards, keeping memory flat: (hourly aggregates per pool, sells of at least
     `min_sell_usd` -- the bid can never fill a smaller one --, all sell discounts, excluded prints). The hourly
     aggregates carry what the market cap, the distributions and the bar cross-check need."""
@@ -1564,7 +1566,7 @@ def khype_swap_records(raw, rate_at, block_ts, usd_at, min_khype=0.01, min_sell_
             px = wb / ka
             d = 1e4 * (R - px) / R
             usd = ka * R * u
-            if abs(d) > MAX_BAR_BPS:
+            if abs(d) > max_bps:
                 excluded['count'] += 1
                 excluded['usd'] += usd
                 if len(excluded['examples']) < 8:
@@ -1661,22 +1663,26 @@ def analyze_khype(raw, screen, prices):
         env_b = dict(env)
         env_b['carry'] = (lambda ts: 1e4 * (bapr(ts) or 0.0) / 365.0 + fee_at(ts) / wait_at(ts))
         env_b = {k: v for k, v in env_b.items() if not (isinstance(k, tuple))}
-        g, cap_b = run_bid(env_b, first_day, n_days, sizes=[blk['quoted_size_usd']])
-        blk['variant_carry_whype_borrow'] = {'out_of_sample_usd_per_year': g[blk['quoted_size_usd']]['out_of_sample_usd_per_year'],
-                                             'chosen_hurdle': g[blk['quoted_size_usd']]['chosen_hurdle'],
-                                             'whype_borrow_apr_mean': (wh[-1][1] / wh[0][1]) ** (365 * DAY / (wh[-1][0] - wh[0][0])) - 1}
+        g, cap_b = run_bid(env_b, first_day, n_days, sizes=VARIANT_SIZES)
+        blk['variant_carry_whype_borrow'] = {
+            'whype_borrow_apr_mean': (wh[-1][1] / wh[0][1]) ** (365 * DAY / (wh[-1][0] - wh[0][0])) - 1,
+            'by_size': {str(sz): {'out_of_sample_usd_per_year': g[sz]['out_of_sample_usd_per_year'], 'chosen_hurdle': g[sz]['chosen_hurdle']}
+                        for sz in VARIANT_SIZES}}
     env_f = {k: v for k, v in env.items() if not isinstance(k, tuple)}
     env_f['wait'] = (lambda ts: 7.0 + 1.0 / 24)
     env_f['carry'] = (lambda ts: carry_stake(ts) + fee_at(ts) / (7.0 + 1.0 / 24))
-    g, _ = run_bid(env_f, first_day, n_days, sizes=[blk['quoted_size_usd']])
-    blk['variant_fixed_7d_wait'] = {'out_of_sample_usd_per_year': g[blk['quoted_size_usd']]['out_of_sample_usd_per_year'],
-                                    'chosen_hurdle': g[blk['quoted_size_usd']]['chosen_hurdle']}
+    g, _ = run_bid(env_f, first_day, n_days, sizes=VARIANT_SIZES)
+    blk['variant_fixed_7d_wait'] = {'by_size': {str(sz): {'out_of_sample_usd_per_year': g[sz]['out_of_sample_usd_per_year'],
+                                                          'chosen_hurdle': g[sz]['chosen_hurdle']} for sz in VARIANT_SIZES}}
     import queue_book as QB
     env_n = {k: v for k, v in env.items() if not isinstance(k, tuple)}
-    fills_pp, _ = QB.simulate_book({'a': env_n}, blk['quoted_size_usd'], blk['at_quoted_size']['hurdle_bps'],
-                                   gas_usd=GAS_USD, min_fill_usd=MIN_FILL_USD, use_market_cap=False)
     c = B.cutoff_index(n_days, 0.5)
-    blk['per_print_upper_bound_oos_usd_per_year'] = sum(daily_values(fills_pp, first_day, n_days)[c:]) * 365.0 / max(1, n_days - c)
+    blk['per_print_upper_bound'] = {}
+    for sz in VARIANT_SIZES:
+        h = blk['grid'][str(sz)]['hurdle_bps']
+        fills_pp, _ = QB.simulate_book({'a': env_n}, sz, h, gas_usd=GAS_USD, min_fill_usd=MIN_FILL_USD, use_market_cap=False)
+        blk['per_print_upper_bound'][str(sz)] = {'hurdle_bps': h, 'out_of_sample_usd_per_year':
+                                                 sum(daily_values(fills_pp, first_day, n_days)[c:]) * 365.0 / max(1, n_days - c)}
     # the GeckoTerminal window priced from bars with the same queue model: a second price path for the bid itself
     brecs = []
     for addr, (name, fee) in KHYPE_POOLS.items():
@@ -1697,6 +1703,39 @@ def analyze_khype(raw, screen, prices):
                                           'chosen_hurdle': g[bblk['quoted_size_usd']]['chosen_hurdle'],
                                           'oos_ci95_usd_per_year': g[bblk['quoted_size_usd']]['oos_ci95_usd_per_year']}
         out['bars_window_block'] = bblk
+    # Sensitivity: the 300bp print filter also drops the genuine depeg of 2025-09-24 ($6.1M sold 300-795bp under the
+    # rate); at 1,000bp those sales stay in (reconstruction artefacts sit near 10,000bp and are still dropped).
+    r2, s2, _, ex2, _ = khype_swap_records(raw, R, block_ts, U, max_bps=1000.0)
+    r2 = [r for r in r2 if first_day <= r['ts'] // DAY < first_day + n_days and r['pool'] not in NOT_BACKRUNNABLE]
+    env2 = {'sells': [x for x in s2 if first_day <= x['ts'] // DAY < first_day + n_days], 'wait': wait_at, 'carry': carry_eff,
+            'accrues': False, 'market': market_discount_fn(r2), 'redemption_fee_bps': 0.0}
+    g2, cap2 = run_bid(env2, first_day, n_days, sizes=[KHYPE_BOOK_SIZE, 30_000_000])
+    blk['variant_print_filter_1000bp'] = {
+        'excluded_prints': ex2['count'], 'excluded_usd': ex2['usd'],
+        'by_size': {str(sz): {'chosen_hurdle': g['chosen_hurdle'], 'in_sample_usd_per_year': g['in_sample_usd_per_year'],
+                              'out_of_sample_usd_per_year': g['out_of_sample_usd_per_year'], 'oos_ci95_usd_per_year': g['oos_ci95_usd_per_year']}
+                    for sz, g in g2.items()}}
+    # The book sizes kHYPE like the Ethereum queue bids: $10M, below the capacity rule's size (the simulation's fills are
+    # ceilings for one participant, and 2026's flow is a sixth of 2025's). The capacity-rule size is kept alongside.
+    cap_size = blk['capacity_size_usd']
+    blk['at_capacity_size'] = blk['grid'][str(cap_size)] if cap_size else None
+    blk['late_entry_at_capacity'] = blk['late_entry']
+    if str(KHYPE_BOOK_SIZE) in blk['grid']:
+        blk['quoted_size_usd'] = KHYPE_BOOK_SIZE
+        blk['at_quoted_size'] = blk['grid'][str(KHYPE_BOOK_SIZE)]
+        blk['late_entry'] = late_entry(env, KHYPE_BOOK_SIZE, blk['at_quoted_size']['hurdle_bps'], first_day, n_days,
+                                       B.cutoff_index(n_days, 0.5))
+    if out.get('bars_window_block'):
+        bb = out['bars_window_block']
+        bf, bn = day_ts(bb['first_day']) // DAY, bb['days']
+        sw_env = {k: v for k, v in env.items() if not isinstance(k, tuple)}
+        sw_env['sells'] = [x for x in env['sells'] if bf <= x['ts'] // DAY < bf + bn]
+        g, _ = run_bid(sw_env, bf, bn, sizes=[1_000_000, 3_000_000, 10_000_000, 30_000_000])
+        bb['bars_vs_swaps_same_window_by_size'] = {
+            str(sz): {'bars_oos_usd_per_year': bb['grid'][str(sz)]['out_of_sample_usd_per_year'],
+                      'bars_hurdle': bb['grid'][str(sz)]['chosen_hurdle'],
+                      'swaps_oos_usd_per_year': g[sz]['out_of_sample_usd_per_year'], 'swaps_hurdle': g[sz]['chosen_hurdle'],
+                      'swaps_oos_ci95_usd_per_year': g[sz]['oos_ci95_usd_per_year']} for sz in g}
     out.update(blk)
     out['_env'] = env
     out['_recs'] = recs
@@ -1727,6 +1766,122 @@ def bars_crosscheck_khype(raw, screen, prices, hourly):
                      'signed_median_gap_bps': pct(diffs, .5) if diffs else None,
                      'bar_volume_over_swap_volume': {'p10': pct(ratios, .1), 'p50': pct(ratios, .5), 'p90': pct(ratios, .9)} if ratios else None}
     return out
+
+
+# ----------------------------------------------------------------------------------------------------------------------
+# Export: kHYPE's bid environment for the shared queue book (`queue_book.py analyze --khype <this study's directory>`)
+# ----------------------------------------------------------------------------------------------------------------------
+def pool_trade_windows(shard_dir, pools, rate_at, block_ts, usd_at, first_day, n_days, exclude=frozenset(), min_amount=0.01,
+                       max_bps=MAX_BAR_BPS):
+    """`queue_book.window_fns_from_arrays` over every priced trade of the swap shards that the venue median reads (the
+    same filters as `khype_swap_records` / `pool_swap_records`: dust, missing rate or price, prints over `max_bps`, the
+    `exclude`d venues, days outside the window), kept as compact arrays in (ts, pool, discount, usd) order. The shards
+    are in block order, so ties are sorted day by day. Returns (market_in, first_in, trades)."""
+    import queue_book as QB
+    from array import array
+    names = sorted({v[0] for v in pools.values()} | {k[:10] for k in pools})
+    code = {nm: j for j, nm in enumerate(names)}
+    ts_a, pool_a, d_a, u_a = array('d'), array('l'), array('d'), array('d')
+    buf, cur = [], None
+
+    def flush():
+        buf.sort()
+        for t, c, d, u in buf:
+            ts_a.append(t)
+            pool_a.append(c)
+            d_a.append(d)
+            u_a.append(u)
+        buf.clear()
+    for fn in sorted(Path(shard_dir).glob('shard_*.json.gz'), key=lambda x: int(x.name.split('_')[1].split('.')[0])):
+        for b, tx, pool, side, ka, wb in (read_gz(fn) or {}).get('swaps', []):
+            if ka < min_amount or wb <= 0:
+                continue
+            ts = block_ts(b)
+            day = ts // DAY
+            if not first_day <= day < first_day + n_days:
+                continue
+            name = pools.get(pool, (pool[:10], DEFAULT_FEE_BPS))[0]
+            if name in exclude:
+                continue
+            R = rate_at(ts)
+            u = usd_at(ts)
+            if not R or not u:
+                continue
+            d = 1e4 * (R - wb / ka) / R
+            if abs(d) > max_bps:
+                continue
+            if cur is not None and day < cur:
+                raise SystemExit('pool_trade_windows: swaps out of time order in %s' % fn)
+            if day != cur:
+                flush()
+                cur = day
+            buf.append((ts, code[name], d, ka * R * u))
+    flush()
+    market_in, first_in = QB.window_fns_from_arrays(ts_a, pool_a, d_a, u_a)
+    return market_in, first_in, len(ts_a)
+
+
+def khype_book_env(out_dir):
+    """kHYPE's environment rebuilt from this study's saved files, in the shape `queue_book.load_env` returns.
+
+    It repeats `analyze_khype`'s construction of the bid's environment step for step and nothing else (no variants):
+    swaps from the shards, priced against StakingAccountant.kHYPEToHYPE (HYPE per kHYPE) and valued in USD at the
+    Binance HYPE close of the day before (`price_fn`, the series the study used); the venue median over the
+    back-runnable pools (STEX excluded); the wait from Kinetiq's own confirmations (`wait_from_events`); the staking
+    yield forgone while queued (`trailing_apr_fn`), with the 10bp unstake fee of the fee era folded into the per-day
+    carry exactly as the study did (fee / wait per day of wait, so the edge loses exactly the fee; `carry_stake` is the
+    staking part alone); amounts fixed at the request (`accrues` False). The window is the study's: whole UTC days, the first and last partial days dropped, so
+    `first_ts` is midnight of the first day and `last_ts` the last second of the last day. `gas_usd` and `min_fill_usd`
+    are HyperEVM's ($1 a fill, $1k minimum); `queue_book.simulate_book` uses them for this asset in place of its
+    Ethereum defaults. Sells keep the study's order (ts, tx)."""
+    out = Path(out_dir)
+    raw = out / 'raw'
+    prices = read_gz(raw / 'prices_usd.json.gz')
+    if not prices or not (raw / 'khype_swaps').exists():
+        raise SystemExit('khype: %s lacks prices_usd.json.gz or khype_swaps/' % raw)
+    blocks = {int(k): v for k, v in read_gz(raw / 'blocks_hyperevm.json.gz').items()}
+    bs = sorted(blocks)
+    tss = [blocks[b] for b in bs]
+    block_ts = (lambda n: int(round(interp(bs, tss, n))))
+    samples = sorted((blocks[int(k)], v) for k, v in read_gz(raw / 'rates' / 'khype.json.gz').items() if v and int(k) in blocks)
+    R = rate_fn(samples)
+    apr = trailing_apr_fn(samples)
+    U = price_fn(prices, 'HYPE')
+    logs = read_gz(raw / 'queue' / 'khype_events.json.gz')['logs']
+    req, conf, canc, params = decode_kinetiq(logs, block_ts)
+    pay, rows = kinetiq_check(req, conf, canc, R)
+    fee_change = [x for x in params if x['kind'] == 'fee_rate']
+    fee_off_ts = fee_change[-1]['ts'] if fee_change and fee_change[-1]['value'] == 0 else None
+    wait_at, best = wait_from_events(rows, 7.0)
+    carry_stake = (lambda ts: 1e4 * (apr(ts) or 0.0) / 365.0)
+
+    def fee_at(ts):
+        return 10.0 if (fee_off_ts is None or ts < fee_off_ts) else 0.0
+
+    carry_eff = (lambda ts: carry_stake(ts) + fee_at(ts) / wait_at(ts))
+    recs, sells_big, sell_disc, excluded, n_swaps = khype_swap_records(raw, R, block_ts, U)
+    if not recs:
+        raise SystemExit('khype: no swaps priced under %s' % raw)
+    first_day, n_days = window_days(recs)
+    recs = [r for r in recs if first_day <= r['ts'] // DAY < first_day + n_days and r['pool'] not in NOT_BACKRUNNABLE]
+    sells = [dict(r, side='sell') for r in sells_big if first_day <= r['ts'] // DAY < first_day + n_days]
+    first_ts, last_ts = first_day * DAY, (first_day + n_days) * DAY - 1
+    inwin = [(t, r) for t, r in samples if first_ts <= t <= last_ts]
+    waits = sorted(best.values())
+    market_in, first_in, n_trades = pool_trade_windows(raw / 'khype_swaps', KHYPE_POOLS, R, block_ts, U, first_day, n_days,
+                                                       exclude=NOT_BACKRUNNABLE)
+    return {'key': 'khype', 'unit': 'HYPE', 'label': 'kHYPE (swaps)', 'sells': sells, 'swaps': n_swaps,
+            'market_in': market_in, 'first_in': first_in, 'trades_in_window': n_trades,
+            'market': market_discount_fn(recs), 'wait': wait_at, 'carry': carry_eff, 'carry_stake': carry_stake,
+            'accrues': False, 'redemption_fee_bps': 0.0, 'first_ts': first_ts, 'last_ts': last_ts,
+            'staking_apr': apr_from_nav(inwin), 'gas_usd': GAS_USD, 'min_fill_usd': MIN_FILL_USD,
+            'wait_summary': {'kind': 'events', 'median_days': statistics.median(waits) if waits else None,
+                             'note': 'fastest confirmation of requests made each day (the model takes the fastest within a '
+                                     'day either side, never under 7 days, plus 1 hour)',
+                             'days_measured': len(waits), 'confirmations': pay.get('confirmed'),
+                             'paid_exact_share': pay.get('paid_exact_share')},
+            'fee_off_utc': utc(fee_off_ts) if fee_off_ts else None, 'excluded_prints': excluded['count'],
+            'price_unit': 'HYPE per kHYPE; USD at the Binance HYPEUSDT daily close of the day before', 'dir': str(out)}
 
 
 WATCH_USD = 10_000.0
@@ -2000,9 +2155,15 @@ def cmd_analyze(args):
         blk['verdict'] = verdict_for(blk)
         if blk['verdict'] == 'proposed' and k in envs:
             first_day = day_ts(blk['first_day']) // DAY
+            h = blk['at_quoted_size']['hurdle_bps']
             blk['locked_capital_daily_unbounded'] = {
-                'hurdle_bps': blk['at_quoted_size']['hurdle_bps'],
-                'series': locked_capital_series(envs[k], blk['at_quoted_size']['hurdle_bps'], first_day, blk['days'])}
+                'hurdle_bps': h, 'chosen_at_size_usd': blk['quoted_size_usd'], 'unit': 'USD at the HYPE price of the fill day',
+                'series': locked_capital_series(envs[k], h, first_day, blk['days'])}
+            ac = blk.get('at_capacity_size')
+            if ac and ac['hurdle_bps'] != h:
+                blk['locked_capital_daily_unbounded_capacity_hurdle'] = {
+                    'hurdle_bps': ac['hurdle_bps'], 'chosen_at_size_usd': blk['capacity_size_usd'],
+                    'series': locked_capital_series(envs[k], ac['hurdle_bps'], first_day, blk['days'])}
     # ---- Solana snapshot ----
     snap = read_gz(raw / 'sol_snapshot.json.gz')
     if snap:
@@ -2035,6 +2196,8 @@ def cmd_analyze(args):
         'LiquidSwap route API returned a nonsensical route (65% impact via USOL) for WHYPE->kHYPE: no live depth quote for kHYPE',
         'BSC: publicnode/drpc/official seeds refused archive reads; blastapi served them',
         'TON (tsTON) and Hydration (vDOT vs H2O) not priced: no free exchange-rate history found',
+        'Monad: rpc1.monad.xyz and rpc-mainnet.monadinfra.com answer single calls but 403 any JSON-RPC batch; rpc2 serves both',
+        'Avalanche public archive (api.avax.network) takes ~12 s a call: sAVAX rate sampled every 12 h, no swap-level rebuild',
     ]
     res['seconds'] = time.time() - t0
     write_json(out / 'analysis.json', strip_private(res))
@@ -2136,6 +2299,10 @@ def cmd_render(args):
         if b.get('skipped'):
             continue
         rows = [(b, b.get('source', ''), b.get('verdict'))]
+        if b.get('at_capacity_size') and b.get('capacity_size_usd') != b.get('quoted_size_usd'):
+            cap_view = dict(b, at_quoted_size=b['at_capacity_size'], late_entry=b['late_entry_at_capacity'],
+                            quoted_size_usd=b['capacity_size_usd'])
+            rows.append((cap_view, 'same, at the capacity-rule size', ''))
         if b.get('bars_window_block'):
             rows.append((b['bars_window_block'], 'GeckoTerminal bars, same queue model', ''))
         for x, src, ver in rows:
@@ -2165,19 +2332,28 @@ def cmd_render(args):
             l1 = ms[i]
             l2 = ms[i + half] if i + half < len(ms) else ('', None)
             L.append('| %s | %s | | %s | %s |' % (l1[0], fu(l1[1]), l2[0], fu(l2[1]) if l2[1] is not None else ''))
-        L += ['', '### E3. Variants at %s' % fu(kh['quoted_size_usd']), '', '| variant | out of sample $/yr | chosen hurdle |', '|---|---:|---|',
-              '| as quoted (stake carry, fastest-claim wait, venue-median cap) | %s | %s |' % (fu(at['out_of_sample_usd_per_year']), at['chosen_hurdle'])]
-        for name, key in (('carry at HyperLend WHYPE borrow (bid funded by borrowing HYPE)', 'variant_carry_whype_borrow'),
-                          ('fixed 7-day wait', 'variant_fixed_7d_wait')):
-            v = kh.get(key)
-            if v:
-                L.append('| %s | %s | %s |' % (name, fu(v['out_of_sample_usd_per_year']), v['chosen_hurdle']))
-        L.append('| per print (no venue-median cap; an upper bound) | %s | %s |' % (fu(kh.get('per_print_upper_bound_oos_usd_per_year')), at['chosen_hurdle']))
-        bw = kh.get('bars_window_block')
-        if bw:
-            sl = bw.get('swap_level_same_window') or {}
-            L.append('| GeckoTerminal window, swap-level sales | %s | %s |' % (fu(sl.get('out_of_sample_usd_per_year')), sl.get('chosen_hurdle')))
-            L.append('| GeckoTerminal window, bars with half the volume as sales | %s | %s |' % (fu(bw['at_quoted_size']['out_of_sample_usd_per_year']), bw['at_quoted_size']['chosen_hurdle']))
+        L += ['', '### E3. Variants on the same sales (out of sample $/yr, hurdle chosen in sample)', '',
+              '| variant | $10M | $30M |', '|---|---:|---:|']
+
+        def vrow(name, d):
+            cells = []
+            for sz in ('10000000', '30000000'):
+                x = (d or {}).get(sz) or {}
+                cells.append('%s (%s)' % (fu(x.get('out_of_sample_usd_per_year')), x.get('chosen_hurdle') or ('h=%g' % x['hurdle_bps'] if 'hurdle_bps' in x else '—')))
+            L.append('| %s | %s | %s |' % (name, cells[0], cells[1]))
+        vrow('as quoted: staking carry, fastest-claim wait, venue-median cap', {sz: kh['grid'][sz] for sz in ('10000000', '30000000') if sz in kh['grid']})
+        vrow('carry at HyperLend WHYPE borrow (bid funded by borrowing HYPE against kHYPE)', (kh.get('variant_carry_whype_borrow') or {}).get('by_size'))
+        vrow('fixed 7-day wait', (kh.get('variant_fixed_7d_wait') or {}).get('by_size'))
+        vrow('print filter at 1,000bp (keeps the 2025-09-24 depeg sales)', (kh.get('variant_print_filter_1000bp') or {}).get('by_size'))
+        vrow('per print, no venue-median cap (an upper bound)', kh.get('per_print_upper_bound'))
+        bvs = (kh.get('bars_window_block') or {}).get('bars_vs_swaps_same_window_by_size') or {}
+        if bvs:
+            bw = kh['bars_window_block']
+            L += ['', '### E3b. Same window (%s +%d days), same queue model: bars with half the volume as sales vs measured sales' % (bw['first_day'], bw['days']), '',
+                  '| size | bars $/yr OOS (hurdle) | swaps $/yr OOS (hurdle) | swaps 95% interval |', '|---:|---:|---:|---|']
+            for sz, v in sorted(bvs.items(), key=lambda kv: float(kv[0])):
+                L.append('| %s | %s (%s) | %s (%s) | %s to %s |' % (fu(float(sz)), fu(v['bars_oos_usd_per_year']), v['bars_hurdle'],
+                         fu(v['swaps_oos_usd_per_year']), v['swaps_hurdle'], fu(v['swaps_oos_ci95_usd_per_year'][0]), fu(v['swaps_oos_ci95_usd_per_year'][1])))
         cx = kh.get('bars_crosscheck') or {}
         if cx:
             L += ['', '### E4. The same pool-hours priced two ways (GeckoTerminal bar vs swap VWAP rebuilt from chain)', '',
@@ -2294,7 +2470,10 @@ def book_entries(a, out_dir):
             'legs': ['buy kHYPE with WHYPE on the kHYPE/WHYPE pools (Ramses v3, Nest, Project X, Hybra) behind a seller when the '
                      'median venue\'s discount less one fee clears the hurdle',
                      'queueWithdrawal on the Kinetiq StakingManager', 'confirmWithdrawal after 7 days; unwrap or reuse the HYPE'],
-            'capacity_usd': kh['quoted_size_usd'], 'capital_days': 7.0,
+            'capacity_usd': kh['quoted_size_usd'], 'capital_days': 8.5,
+            'capacity_rule': {'size_usd': kh.get('capacity_size_usd'),
+                              'oos_usd_per_year': (kh.get('at_capacity_size') or {}).get('out_of_sample_usd_per_year'),
+                              'note': 'value still growing at the largest size tested; quoted lower, as the Ethereum queue bids are'},
             'kill_criteria': ['trailing 90-day value under $10k a year at the quoted size',
                               'any confirmation paying less than its WithdrawalQueued hypeAmount, or a non-zero unstakeFeeRate',
                               'the fastest confirmation over a month above 10 days', 'withdrawals paused for over a week'],
@@ -2311,7 +2490,9 @@ def book_entries(a, out_dir):
     if kc and base and carry_passes(kc, base):
         inc = kc['oos_ann_excess'] - base['oos_ann_excess']
         entries.append({
-            'id': 'hl-hype-carry-khype-spot', 'name': 'HYPE spot/short-perp carry with kHYPE as the spot leg (margin borrowed on HyperLend)',
+            'id': 'hl-hype-spot-perp-carry', 'upgrade_of': 'hl-hype-spot-perp-carry',
+            'change': 'replace the HYPE spot leg (HyperCore portfolio margin) with kHYPE on HyperLend; same short, same size',
+            'name': 'HYPE spot/short-perp carry, upgraded: kHYPE as the spot leg, the short\'s margin borrowed on HyperLend',
             'kind': 'carry', 'status': 'proposed',
             'thesis': ('The Hyperliquid HYPE carry, with the spot leg held as kHYPE: staking %s a year on top of funding. Over the same '
                        'window the kHYPE version beat the spot version by %s a year out of sample (%s vs %s over SSR, t %.2f), '
@@ -2340,6 +2521,570 @@ def book_entries(a, out_dir):
     return entries
 
 
+# ----------------------------------------------------------------------------------------------------------------------
+# sAVAX at swap level (2026-10-11). The screen above left sAVAX on watch from hourly bars. This path rebuilds its swaps
+# from chain, as for kHYPE, reads the queue from the verified source and its events, and writes to its own directory;
+# nothing above changes.
+#   uv run --with pycryptodome python scripts/queue_bids_alt.py savax --step collect --out research/2026-10-11/savax
+#   uv run --with pycryptodome python scripts/queue_bids_alt.py savax --step analyze --out research/2026-10-11/savax \
+#       --long <dir with swaps_lido/kelp> --khype research/2026-10-10/queue_bids_alt
+#   uv run --with pycryptodome python scripts/queue_bids_alt.py savax --step render --out research/2026-10-11/savax
+# The queue (StakedAvax, verified source): requestUnlock moves the shares into custody; redeem() inside the 2-day
+# redeem window after the 15-day cooldown pays shares x the exchange rate recorded by the last accrueRewards at or
+# before startedAt + cooldownPeriod (_getExchangeRateByUnlockTimestamp). The queued shares therefore keep accruing for
+# the whole cooldown: the 2026-10-10 bar model (amount fixed at the request) charged 15.5 days of staking carry that the
+# queue does not cost. A request not redeemed in the window is returned as sAVAX (redeemOverdueShares).
+# ----------------------------------------------------------------------------------------------------------------------
+SAVAX = CAND['savax']['token']
+# Public Avalanche C-chain endpoints that honour the block tag on eth_call (a read 15M blocks back differs from `latest`,
+# checked at the start of every collect) and serve archive getLogs over 50k-block ranges. publicnode answered 'block
+# not found' and 1rpc 'missing trie node' (its getLogs is capped at 50 blocks); api.avax.network is correct but takes
+# ~5 s per historical eth_call, so it is the fallback.
+AVAX_RPC = ['https://avalanche-mainnet.gateway.tenderly.co', 'https://api.avax.network/ext/bc/C/rpc']
+# Every sAVAX/WAVAX pool in the screen (GeckoTerminal), fee in bp: v3-style pools from the name; Liquidity Book pairs
+# from baseFactor x binStep x 1e-8 (getStaticFeeParameters / getBinStep; v2.0 feeParameters), read 2026-10-11; v2-style
+# pairs 30bp. Ranking sAVAX transfer counterparties on nine sample days (2025-07 .. 2026-10) found no other sAVAX/WAVAX
+# venue: the larger counterparties are lending markets (Benqi qisAVAX, Aave aAvaSAVAX and its ERC-4626 wrapper), Yield
+# Yak vaults and routers, and the Balancer v3 vault moved sAVAX without an opposite WAVAX leg in any transaction.
+SAVAX_POOLS = {
+    '0x883ea72c2a46f7acb3820855344c43666c6cc5c0': ('traderjoe-v2.2', 1.0),       # LB binStep 5, baseFactor 2000
+    '0x65b9016c376604fe0af38c1e336ffcec0f8ecbbd': ('pharaoh-v3', 1.0),           # 0.01%
+    '0xee2ceda742bfb2ef566ab57642d47aba1909b653': ('blackhole-v3', 5.0),         # 0.05%
+    '0xf40e23204b2e1cc94930e15576b9ce47b4ad0f19': ('pharaoh-legacy', 2.5),       # 0.025%
+    '0x29657b1bd2276de7a40b519cba38f5ce3a053090': ('pharaoh-dlmm', 1.0),         # LB-style binStep 1, baseFactor 10000
+    '0xcea3c61705b68fefd8da1048ca69db1344180fcb': ('uniswap-v3', 5.0),           # 0.05%
+    '0x4b946c91c2b1a7d7c40fb3c130cdfbaf8389094d': ('traderjoe-v1', 30.0),
+    '0x4e9a38f05c38106c1cf5c145df24959ec50ff70d': ('pangolin', 30.0),
+    '0x897a83cf016f33fb061e756e4ca89baa9f17990a': ('kyberswap-elastic', 1.0),    # 0.01%
+    '0xadd3fbf60aeab37cbae696c348368af973ee9b6e': ('traderjoe-v2.2-bs10', 10.0), # LB binStep 10, baseFactor 10000
+    '0xc6bc80490a3d022ac888b26a5ae4f1fad89506bd': ('kyberswap-classic', DEFAULT_FEE_BPS),
+    '0xa7687be7174721178cfd7aa1ae590209649fc0b8': ('traderjoe-v2.0', 4.0),       # binStep 5, baseFactor 8000
+    '0x42c701d4e359178412d014506cfac43a67e57d6d': ('traderjoe-v2.1', 0.5),       # binStep 5, baseFactor 1000
+    '0x6a1c781b7b280e3c8bf04fdfb86c112c9ac70a89': ('curve', DEFAULT_FEE_BPS),
+    '0xbb060a721ff17008fd8c24efdf5b8886767bbbb5': ('pangolin-v3', 1.0),          # 0.01%
+    '0x4849e22c53e60421fcee656867e91b5e2fd60bf8': ('lydia', 30.0),
+}
+SAVAX_EVENTS = {'requested': 'UnlockRequested(address,uint256)', 'redeem': 'Redeem(address,uint256,uint256,uint256)',
+                'cancelled': 'UnlockCancelled(address,uint256,uint256)', 'overdue': 'RedeemOverdueShares(address,uint256)',
+                'accrue': 'AccrueRewards(uint256,uint256)', 'withdraw': 'Withdraw(address,uint256)',
+                'deposit': 'Deposit(address,uint256)', 'cooldown': 'CooldownPeriodUpdated(uint256,uint256)',
+                'redeem_period': 'RedeemPeriodUpdated(uint256,uint256)'}
+SAVAX_START = '2025-07-14'          # a day before the five-asset book's common window, which the correlation needs
+SAVAX_GRID_BLOCKS = 10_000          # block-time samples (~3-4 hours)
+SAVAX_RATE_THIN = 2                 # exchange rate on every 2nd grid block (~7 hours): accrueRewards runs about hourly, so
+                                    # the rate is close to linear between reads; the spot check below measures the error
+SAVAX_SPOT_CHECKS = 40              # swap blocks whose exchange rate is read exactly, against the interpolated one
+
+
+def savax_topics():
+    from dislocation_history import keccak
+    return {k: keccak(v) for k, v in SAVAX_EVENTS.items()}
+
+
+def savax_archive_check(last):
+    """Every endpoint must return a different exchange rate 15M blocks back than at `latest` (block tag honoured)."""
+    data = call_data('getPooledAvaxByShares(uint256)', 10 ** 18)
+    out = {}
+    for url in AVAX_RPC:
+        e = Evm([url], pause=0.3, batch=1)
+        a = e.one('eth_call', [{'to': SAVAX, 'data': data}, hex(last)])
+        b = e.one('eth_call', [{'to': SAVAX, 'data': data}, hex(last - 15_000_000)])
+        ra = word_int(a) / 1e18 if isinstance(a, str) and len(a) >= 66 else None
+        rb = word_int(b) / 1e18 if isinstance(b, str) and len(b) >= 66 else None
+        out[url] = {'block': last, 'rate': ra, 'block_old': last - 15_000_000, 'rate_old': rb,
+                    'honours_tag': ra is not None and rb is not None and ra != rb}
+    return out
+
+
+def savax_collect(out, args):
+    raw = out / 'raw'
+    log = lambda m: log_line(out, m)  # noqa: E731
+    # Tenderly answers single historical eth_calls at ~2.5 a second but 429s batches, and a batch that falls over to
+    # api.avax.network takes ~5 s a call; getLogs is fast on api.avax.network. So: calls one at a time to Tenderly, logs
+    # one window at a time to api.avax.network first.
+    evm = Evm(AVAX_RPC, pause=0.1, batch=1)
+    logs_evm = Evm(AVAX_RPC[::-1], pause=0.1, batch=1)
+    st = read_json(raw / 'state.json', {}) or {}
+    if 'last_block' not in st:          # fixed at the first run, so a resumed collect covers the same window
+        st['last_block'] = args.last_block or int(evm.one('eth_blockNumber', []), 16)
+        st['first_block'] = block_at(evm, day_ts(SAVAX_START), 1, st['last_block'])
+        write_json(raw / 'state.json', st)
+    first, last = st['first_block'], st['last_block']
+    st['archive_check'] = savax_archive_check(last)
+    if not all(v['honours_tag'] for v in st['archive_check'].values()):
+        raise SystemExit('an Avalanche endpoint ignores the block tag: %s' % st['archive_check'])
+    params = {}
+    for sg in ('cooldownPeriod()', 'redeemPeriod()', 'protocolRewardShare()', 'totalPooledAvax()', 'totalShares()'):
+        r = evm.one('eth_call', [{'to': SAVAX, 'data': call_data(sg)}, hex(last)])
+        params[sg] = word_int(r) if isinstance(r, str) and len(r) >= 66 else None
+    st['params_at_last_block'] = params
+    write_json(raw / 'state.json', st)
+    log('savax window blocks %d-%d; cooldown %s s, redeem window %s s' % (first, last, params['cooldownPeriod()'], params['redeemPeriod()']))
+    grid = list(range(first, last + 1, SAVAX_GRID_BLOCKS)) + [last]
+    collect_block_times(evm, grid, raw / 'blocks_avax.json.gz')
+    log('savax block grid: %d headers' % len(grid))
+    collect_rate_samples(evm, CAND['savax'], sorted(set(grid[::SAVAX_RATE_THIN]) | {last}), raw / 'rates_savax.json.gz', log=log)
+    T = savax_topics()
+    collect_logs(logs_evm, SAVAX, [list(T.values())], first, last, raw / 'queue_events.json.gz', span=50_000, log=log)
+    collect_pool_swaps(logs_evm, SAVAX, WAVAX, list(SAVAX_POOLS), first, last, raw / 'swaps', span=50_000, log=log)
+    # the exchange rate read at a sample of swap blocks, to measure the interpolation the analysis prices with
+    import random
+    blocks = sorted({x[0] for fn in sorted((raw / 'swaps').glob('shard_*.json.gz')) for x in (read_gz(fn) or {}).get('swaps', [])})
+    pick = sorted(random.Random(11).sample(blocks, min(SAVAX_SPOT_CHECKS, len(blocks))))
+    res = evm.many([('eth_call', [{'to': SAVAX, 'data': call_data('getPooledAvaxByShares(uint256)', 10 ** 18)}, hex(b)]) for b in pick])
+    write_json(raw / 'rate_spot_check.json', {'blocks': pick, 'rates': [word_int(r) / 1e18 if isinstance(r, str) and len(r) >= 66 else None for r in res]})
+    st['collected'] = utc()
+    st['rpc'] = {'calls': evm.calls + logs_evm.calls, 'errors': evm.errors + logs_evm.errors}
+    write_json(raw / 'state.json', st)
+    log('savax collect done: %d swap blocks; rpc calls %d errors %d' % (len(blocks), st['rpc']['calls'], st['rpc']['errors']))
+
+
+def cmd_savax(args):
+    out = Path(args.out)
+    (out / 'raw').mkdir(parents=True, exist_ok=True)
+    if args.step == 'collect':
+        savax_collect(out, args)
+    elif args.step == 'analyze':
+        savax_analyze(out, args)
+    else:
+        savax_render(out)
+
+
+def pool_swap_records(shard_dir, pools, rate_at, block_ts, usd_at, min_amount=0.01, min_sell_usd=MIN_FILL_USD, max_bps=MAX_BAR_BPS):
+    """`khype_swap_records` for any pair's swap shards and pool table (no non-back-runnable venue): hourly per-pool
+    aggregates, sells of at least `min_sell_usd`, every sell's discount, the excluded prints and the swap count."""
+    agg = {}
+    sells, sell_disc, excluded = [], [], {'count': 0, 'usd': 0.0, 'examples': []}
+    n_swaps = 0
+    for fn in sorted(Path(shard_dir).glob('shard_*.json.gz'), key=lambda x: int(x.name.split('_')[1].split('.')[0])):
+        for b, tx, pool, side, ka, wb in (read_gz(fn) or {}).get('swaps', []):
+            if ka < min_amount or wb <= 0:
+                continue
+            ts = block_ts(b)
+            R = rate_at(ts)
+            u = usd_at(ts)
+            if not R or not u:
+                continue
+            name, fee = pools.get(pool, (pool[:10], DEFAULT_FEE_BPS))
+            px = wb / ka
+            d = 1e4 * (R - px) / R
+            usd = ka * R * u
+            if abs(d) > max_bps:
+                excluded['count'] += 1
+                excluded['usd'] += usd
+                if len(excluded['examples']) < 8:
+                    excluded['examples'].append({'utc': utc(ts), 'pool': name, 'side': side, 'usd': usd, 'price': px, 'rate': R, 'discount_bps': d, 'tx': tx})
+                continue
+            n_swaps += 1
+            h = ts // HOUR * HOUR
+            a = agg.get((name, h))
+            if a is None:
+                a = agg[(name, h)] = [0.0, 0.0, 0, 0.0, 0.0, 0.0, fee]
+            a[0] += d * usd
+            a[1] += usd
+            a[2] += 1
+            a[3] += px * ka
+            a[4] += ka
+            a[5] += ka * R
+            if side == 's':
+                sell_disc.append(d)
+                if usd >= min_sell_usd:
+                    sells.append({'ts': ts, 'usd': usd, 'discount_bps': d, 'fee_bps': fee, 'pool': name, 'tx': tx})
+    sells.sort(key=lambda r: (r['ts'], r['tx']))
+    hourly = [{'ts': h + HOUR // 2, 'hour': h, 'pool': name, 'discount_bps': a[0] / a[1], 'usd': a[1], 'n': a[2],
+               'vwap': a[3] / a[4] if a[4] else None, 'native': a[4] * (a[3] / a[4]) if a[4] else 0.0,
+               'rate': a[5] / a[4] if a[4] else None, 'fee_bps': a[6]}
+              for (name, h), a in sorted(agg.items(), key=lambda kv: (kv[0][1], kv[0][0])) if a[1] > 0]
+    return hourly, sells, sell_disc, excluded, n_swaps
+
+
+def savax_queue(logs, block_ts, rate_at, cooldown_s):
+    """StakedAvax's events decoded, and every Redeem checked against the contract's rule: shares x the rate recorded at
+    the end of the cooldown (`rate_at(startedAt + cooldown)`), not the rate at the request. Returns (summary, redeem rows)."""
+    T = savax_topics()
+    inv = {v: k for k, v in T.items()}
+    ev = collections.defaultdict(list)
+    for lg in sorted(logs, key=lambda x: (x['block'], x['li'])):
+        kind = inv.get(lg['topics'][0])
+        if not kind:
+            continue
+        ts = block_ts(lg['block'])
+        user = ('0x' + lg['topics'][1][-40:]) if len(lg['topics']) > 1 else None
+        d = lg['data']
+        if kind == 'requested':
+            ev[kind].append({'user': user, 'ts': ts, 'shares': word_int(d, 0) / 1e18})
+        elif kind == 'redeem':
+            ev[kind].append({'user': user, 'ts': ts, 'requested_at': word_int(d, 0), 'shares': word_int(d, 1) / 1e18,
+                             'avax': word_int(d, 2) / 1e18, 'tx': lg['tx']})
+        elif kind == 'cancelled':
+            ev[kind].append({'user': user, 'ts': ts, 'requested_at': word_int(d, 0), 'shares': word_int(d, 1) / 1e18})
+        elif kind == 'overdue':
+            ev[kind].append({'user': user, 'ts': ts, 'shares': word_int(d, 0) / 1e18})
+        elif kind == 'accrue':
+            ev[kind].append({'ts': ts, 'user_reward': word_int(d, 0) / 1e18, 'protocol_reward': word_int(d, 1) / 1e18})
+        elif kind in ('withdraw', 'deposit'):
+            ev[kind].append({'ts': ts, 'amount': word_int(d, 0) / 1e18})
+        else:
+            ev[kind].append({'ts': ts, 'utc': utc(ts), 'old': word_int(d, 0), 'new': word_int(d, 1)})
+    rows = []
+    for r in ev['redeem']:
+        paid = r['avax'] / r['shares'] if r['shares'] else None
+        rc, r0 = rate_at(r['requested_at'] + cooldown_s), rate_at(r['requested_at'])
+        rows.append(dict(r, paid_rate=paid, wait_days=(r['ts'] - r['requested_at']) / DAY,
+                         gap_vs_cooldown_end_bps=1e4 * (paid / rc - 1.0) if (paid and rc) else None,
+                         gap_vs_request_bps=1e4 * (paid / r0 - 1.0) if (paid and r0) else None))
+    sh = {k: sum(x['shares'] for x in ev[k]) for k in ('requested', 'redeem', 'cancelled', 'overdue')}
+    ge = [x['gap_vs_cooldown_end_bps'] for x in rows if x['gap_vs_cooldown_end_bps'] is not None]
+    gr = [x['gap_vs_request_bps'] for x in rows if x['gap_vs_request_bps'] is not None]
+    waits = [x['wait_days'] for x in rows]
+    acc = ev['accrue']
+    gaps_h = [(b['ts'] - a['ts']) / HOUR for a, b in zip(acc, acc[1:])]
+    fastest = collections.defaultdict(lambda: 1e9)
+    for x in rows:
+        fastest[int(x['requested_at'] // DAY)] = min(fastest[int(x['requested_at'] // DAY)], x['wait_days'])
+    summary = {
+        'counts': {k: len(v) for k, v in ev.items()}, 'shares': sh,
+        'redeemed_share_of_resolved': sh['redeem'] / (sh['redeem'] + sh['overdue'] + sh['cancelled']) if (sh['redeem'] + sh['overdue'] + sh['cancelled']) else None,
+        'paid_vs_rate_at_cooldown_end_bps': dist(ge) if ge else {'n': 0},
+        'paid_vs_rate_at_request_bps': dist(gr) if gr else {'n': 0},
+        'fastest_redeem_by_request_day_days': dist(list(fastest.values())) if fastest else {'n': 0},
+        'wait_days': {'n': len(waits), 'min': min(waits) if waits else None, 'p5': pct(waits, .05), 'p50': pct(waits, .5),
+                      'p90': pct(waits, .9), 'max': max(waits) if waits else None,
+                      'share_within_cooldown_plus_1d': sum(1 for w in waits if w <= cooldown_s / DAY + 1) / len(waits) if waits else None},
+        'accrue_rewards': {'count': len(acc), 'median_gap_hours': pct(gaps_h, .5) if gaps_h else None,
+                           'max_gap_hours': max(gaps_h) if gaps_h else None,
+                           'user_reward_avax': sum(x['user_reward'] for x in acc), 'protocol_reward_avax': sum(x['protocol_reward'] for x in acc)},
+        'warden_withdraw_avax': sum(x['amount'] for x in ev['withdraw']), 'warden_deposit_avax': sum(x['amount'] for x in ev['deposit']),
+        'parameter_updates': ev['cooldown'] + ev['redeem_period'],
+        'redeemers': len({x['user'] for x in ev['redeem']}), 'overdue_users': len({x['user'] for x in ev['overdue']}),
+        'top_overdue_users': collections.Counter(x['user'] for x in ev['overdue']).most_common(5),
+    }
+    return summary, rows
+
+
+def wait_from_redeems(rows, floor_days, pad_days=1.0 / 24):
+    """ts -> wait (days) of a prompt redeemer: the fastest redeem of requests made within a day either side (the
+    cooldown at least, more if AVAX was short), plus `pad_days`."""
+    best = {}
+    for r in rows:
+        d = int(r['requested_at'] // DAY)
+        best[d] = min(best.get(d, 1e9), r['wait_days'])
+
+    def f(ts):
+        d = int(ts // DAY)
+        cand = [best[x] for x in (d - 1, d, d + 1) if x in best]
+        return max(floor_days, min(cand) if cand else floor_days) + pad_days
+    return f, best
+
+
+SAVAX_PRICES = ROOT / 'research' / '2026-10-10' / 'queue_bids_alt' / 'raw' / 'prices_usd.json.gz'
+
+
+def savax_book_env(out_dir, prices_path=SAVAX_PRICES):
+    """sAVAX's environment from the saved files, in the shape `queue_book.load_env` returns (as `khype_book_env`).
+
+    Swaps priced against getPooledAvaxByShares(1e18) interpolated from the block grid and valued at the Binance AVAX
+    close of the day before (the screen's series); the wait is the fastest redeem around each day, never under the
+    cooldown, plus an hour; the queued shares accrue until the cooldown ends (the contract's rule, checked against every
+    Redeem), so the carry is the staking yield over the part of the wait beyond the cooldown only."""
+    out = Path(out_dir)
+    raw = out / 'raw'
+    blocks = {int(k): v for k, v in read_gz(raw / 'blocks_avax.json.gz').items()}
+    bs = sorted(blocks)
+    tss = [blocks[b] for b in bs]
+    block_ts = (lambda n: int(round(interp(bs, tss, n))))
+    samples = sorted((blocks[int(k)], v) for k, v in read_gz(raw / 'rates_savax.json.gz').items() if v and int(k) in blocks)
+    R = rate_fn(samples)
+    apr = trailing_apr_fn(samples)
+    U = price_fn(read_gz(prices_path) or {}, 'AVAX')
+    st = read_json(raw / 'state.json')
+    cooldown_s = st['params_at_last_block']['cooldownPeriod()']
+    q, rows = savax_queue(read_gz(raw / 'queue_events.json.gz')['logs'], block_ts, R, cooldown_s)
+    if q['parameter_updates']:
+        raise SystemExit('savax: cooldown or redeem period changed inside the window: %s' % q['parameter_updates'])
+    cd = cooldown_s / DAY
+    wait_at, best = wait_from_redeems(rows, cd)
+    stake = (lambda ts: 1e4 * (apr(ts) or 0.0) / 365.0)
+    carry = (lambda ts: stake(ts) * max(0.0, wait_at(ts) - cd) / wait_at(ts))
+    recs, sells_big, sell_disc, excluded, n_swaps = pool_swap_records(raw / 'swaps', SAVAX_POOLS, R, block_ts, U)
+    if not recs:
+        raise SystemExit('savax: no swaps priced under %s' % raw)
+    first_day, n_days = window_days(recs)
+    recs = [r for r in recs if first_day <= r['ts'] // DAY < first_day + n_days]
+    sells = [dict(r, side='sell') for r in sells_big if first_day <= r['ts'] // DAY < first_day + n_days]
+    first_ts, last_ts = first_day * DAY, (first_day + n_days) * DAY - 1
+    waits = sorted(best.values())
+    market_in, first_in, n_trades = pool_trade_windows(raw / 'swaps', SAVAX_POOLS, R, block_ts, U, first_day, n_days)
+    env = {'key': 'savax', 'unit': 'AVAX', 'label': 'sAVAX (swaps)', 'sells': sells, 'swaps': n_swaps,
+           'market_in': market_in, 'first_in': first_in, 'trades_in_window': n_trades,
+           'market': market_discount_fn(recs), 'wait': wait_at, 'carry': carry, 'carry_stake': stake, 'accrues': False,
+           'redemption_fee_bps': 0.0, 'first_ts': first_ts, 'last_ts': last_ts,
+           'staking_apr': apr_from_nav([(t, r) for t, r in samples if first_ts <= t <= last_ts]),
+           'gas_usd': GAS_USD, 'min_fill_usd': MIN_FILL_USD,
+           'wait_summary': {'kind': 'events', 'median_days': statistics.median(waits) if waits else None, 'cooldown_days': cd,
+                            'note': 'fastest redeem of requests made each day; the model takes the fastest within a day either '
+                                    'side, never under the cooldown, plus 1 hour; carry only beyond the cooldown'},
+           'price_unit': 'AVAX per sAVAX; USD at the Binance AVAXUSDT daily close of the day before', 'dir': str(out)}
+    extra = {'queue': q, 'redeem_rows': rows, 'recs': recs, 'sell_disc': sell_disc, 'excluded': excluded,
+             'samples': samples, 'rate_at': R, 'block_ts': block_ts, 'usd_at': U, 'stake': stake, 'cooldown_days': cd,
+             'first_day': first_day, 'n_days': n_days, 'state': st}
+    return env, extra
+
+
+def savax_analyze(out, args):
+    t0 = time.time()
+    raw = out / 'raw'
+    env, x = savax_book_env(out)
+    first_day, n_days, recs, q = x['first_day'], x['n_days'], x['recs'], x['queue']
+    print('savax env: %d sells, %d swaps, %s +%d days' % (len(env['sells']), env['swaps'], ymd(first_day * DAY), n_days), flush=True)
+    med_fee = statistics.median([r['fee_bps'] for r in recs])
+    rt = (lambda h: FEE_LEGS * med_fee + max(0.0, env['wait'](h) - x['cooldown_days']) * x['stake'](h))
+    blk = bid_block(recs, env, first_day, n_days, 'sAVAX (swaps)')
+    blk.update(summarize_records(recs, rt))
+    print('savax bid done %.0fs: %s' % (time.time() - t0, {s: round(v['out_of_sample_usd_per_year'] or 0) for s, v in blk['grid'].items()}), flush=True)
+    c = B.cutoff_index(n_days, 0.5)
+    qs = blk['quoted_size_usd']
+    # the 2026-10-10 queue model on the same sales: amount fixed at the request, 15.5-day wait, staking carry throughout
+    env_old = {k: v for k, v in env.items() if not isinstance(k, tuple)}
+    env_old['wait'] = (lambda ts: 15.5)
+    env_old['carry'] = x['stake']
+    g_old, _ = run_bid(env_old, first_day, n_days, sizes=sorted({qs, 3_000_000}))
+    blk['variant_2026_10_10_queue_model'] = {str(s): {'out_of_sample_usd_per_year': g['out_of_sample_usd_per_year'], 'chosen_hurdle': g['chosen_hurdle']}
+                                              for s, g in g_old.items()}
+    import queue_book as QB
+    env_n = {k: v for k, v in env.items() if not isinstance(k, tuple)}
+    fills_pp, _ = QB.simulate_book({'a': env_n}, qs, blk['at_quoted_size']['hurdle_bps'], use_market_cap=False)
+    blk['per_print_upper_bound'] = {'size_usd': qs, 'hurdle_bps': blk['at_quoted_size']['hurdle_bps'],
+                                    'out_of_sample_usd_per_year': sum(daily_values(fills_pp, first_day, n_days)[c:]) * 365.0 / max(1, n_days - c)}
+    blk['verdict'] = verdict_for(blk)
+    # the executable version: each qualifying sale bought back at the next hour boundary at that hour's venue median
+    # (the rule) or its first trade (queue_book.simulate_book later='hour'; queue_live implementation f)
+    taker = {}
+    for price in ('median', 'first'):
+        for sz in (1_000_000, 3_000_000, 10_000_000):
+            r, fl = QB.run_choice({'savax': env}, sz, first_day, n_days, later='hour', later_price=price)
+            taker['%s|%d' % (price, sz)] = dict({k: r[k] for k in QB.RUN_FIELDS}, in_sample_positive=(r['in_sample_usd_per_year'] or 0.0) > 0,
+                                                oos_rank_of_chosen=r['oos_rank_of_chosen'], trailing_90d_usd_per_year=QB.trailing_90d(fl, first_day + n_days - 1),
+                                                own_print_out_of_sample_usd_per_year=blk['grid'][str(sz)]['out_of_sample_usd_per_year'])
+    base = taker['median|%d' % qs]['out_of_sample_usd_per_year'] or 0.0
+    for lbl, d in (('1h', HOUR), ('1d', DAY)):
+        r, _ = QB.run_choice({'savax': env}, qs, first_day, n_days, delay_s=d, later='hour', later_price='median')
+        taker['median|%d' % qs]['late_%s' % lbl] = {'out_of_sample_usd_per_year': r['out_of_sample_usd_per_year'], 'chosen_hurdle': r['chosen_hurdle'],
+                                                    'kept_share': (r['out_of_sample_usd_per_year'] or 0.0) / base if base else None}
+    blk['hourly_taker'] = taker
+    blk['persistence'] = {str(hb): QB.persistence(env, hurdle_bps=hb, delays=('hour',)) for hb in (1.0, 10.0)}
+    print('savax hourly taker %.0fs: %s' % (time.time() - t0, {k: round(v['out_of_sample_usd_per_year'] or 0) for k, v in taker.items()}), flush=True)
+    h = blk['at_quoted_size']['hurdle_bps']
+    blk['locked_capital_daily_unbounded'] = {'hurdle_bps': h, 'chosen_at_size_usd': qs, 'unit': 'USD at the AVAX price of the fill day',
+                                             'series': locked_capital_series(env, h, first_day, n_days)}
+    # the exchange rate at a sample of swap blocks against the interpolation used
+    sc = read_json(raw / 'rate_spot_check.json') or {}
+    gaps = [1e4 * (x['rate_at'](x['block_ts'](b)) / r - 1.0) for b, r in zip(sc.get('blocks', []), sc.get('rates', [])) if r and x['rate_at'](x['block_ts'](b))]
+    # GeckoTerminal's bars (the 2026-10-10 path) against the swap VWAP on the same pool-hours
+    sw = {(r['pool'], r['hour']): r for r in recs}
+    bx = {}
+    for addr, (name, fee) in SAVAX_POOLS.items():
+        d = read_gz(ROOT / 'research' / '2026-10-10' / 'queue_bids_alt' / 'raw' / 'ohlcv' / ('avax__%s.json.gz' % addr))
+        if not d:
+            continue
+        diffs, ratios = [], []
+        for b in bar_records(d['bars'], x['rate_at'], fee, x['usd_at'], name):
+            y = sw.get((name, b['hour']))
+            if y and y['vwap'] and y['rate']:
+                diffs.append(1e4 * (b['price'] - y['vwap']) / y['rate'])
+                if y['native']:
+                    ratios.append(b['vol_native'] / y['native'])
+        bx[name] = {'hours_both': len(diffs), 'abs_gap_bps': dist([abs(v) for v in diffs]) if diffs else {'n': 0},
+                    'signed_median_gap_bps': pct(diffs, .5) if diffs else None,
+                    'bar_volume_over_swap_volume_p50': pct(ratios, .5) if ratios else None}
+    old = ((read_json(ROOT / 'research' / '2026-10-10' / 'queue_bids_alt' / 'analysis.json') or {}).get('queue_bids') or {}).get('savax') or {}
+    res = {'generated': utc(), 'window': [utc(env['first_ts']), utc(env['last_ts'])], 'days': n_days,
+           'parameters': {'gas_usd': GAS_USD, 'min_fill_usd': MIN_FILL_USD, 'fee_legs': FEE_LEGS, 'sizes_usd': SIZES_USD,
+                          'hurdles_bps': HURDLES_BPS, 'max_print_bps': MAX_BAR_BPS, 'pools': SAVAX_POOLS},
+           'collect': {k: x['state'].get(k) for k in ('first_block', 'last_block', 'archive_check', 'params_at_last_block', 'collected', 'rpc')},
+           'queue': q, 'queue_model': {'cooldown_days': x['cooldown_days'], 'accrues_during_cooldown': True,
+                                       'wait': 'fastest redeem within a day either side of the request, never under the cooldown, + 1 hour',
+                                       'carry': 'staking yield over the wait beyond the cooldown only'},
+           'rate_spot_check_bps': dist([abs(g) for g in gaps]) if gaps else {'n': 0}, 'bars_crosscheck': bx,
+           'bars_2026_10_10': {'at_quoted_size': old.get('at_quoted_size', {}).get('out_of_sample_usd_per_year'),
+                               'quoted_size_usd': old.get('quoted_size_usd'), 'window': [old.get('first_day'), old.get('days')],
+                               'verdict': old.get('verdict')},
+           'savax': blk, 'swaps_priced': env['swaps'], 'sells_at_least_min_fill': len(env['sells']),
+           'sell_discount_bps_all_sells': dist(x['sell_disc']), 'excluded_prints': x['excluded'],
+           'staking_apr_window': env['staking_apr']}
+    # the daily locked-capital correlation with the five-asset book (queue_book's protocol, its common window)
+    if args.long:
+        envs = QB.load_default_envs(Path(args.long))
+        envs['khype'] = QB.load_khype_env(args.khype)
+        envs['savax'] = env
+        f_ts, l_ts, fd, nd = QB.common_window(envs)
+        b5 = (read_json(ROOT / 'research' / '2026-10-11' / 'queue_book5' / 'analysis.json') or {}).get('joint', {}).get('all5', {}).get('10000000')
+        hb = float(b5['chosen_hurdle'].split('=')[1]) if b5 else 10.0
+        demand = QB.demand_series(envs, hb, fd, nd)
+        sums = {'eth3': QB.SETS['eth3'], 'all4': QB.SETS['all4'], 'all5': QB.SETS_KHYPE['all5']}
+        tot = {n: [sum(demand[k][d] for k in ks) for d in range(nd)] for n, ks in sums.items()}
+        own = QB.demand_series({'savax': env}, h, fd, nd)['savax'] if h != hb else demand['savax']
+        res['correlation'] = {
+            'window': [utc(f_ts), utc(l_ts)], 'days': nd, 'hurdle_bps': hb, 'savax_own_hurdle_bps': h,
+            'pairs': {k: {'corr_daily_locked': QB.corr(demand['savax'], demand[k]),
+                          'days_both_locked': sum(1 for d in range(nd) if demand['savax'][d] > 0 and demand[k][d] > 0),
+                          'days_either_locked': sum(1 for d in range(nd) if demand['savax'][d] > 0 or demand[k][d] > 0)}
+                      for k in envs if k != 'savax'},
+            'with_sums': {n: QB.corr(demand['savax'], v) for n, v in tot.items()},
+            'at_own_hurdle': {k: QB.corr(own, demand[k]) for k in envs if k != 'savax'},
+            'at_own_hurdle_with_sums': {n: QB.corr(own, v) for n, v in tot.items()},
+            'peak_locked_usd': max(demand['savax']), 'days_locked': sum(1 for v in demand['savax'] if v > 0)}
+        # a fungible upper bound only: sAVAX on Avalanche is a third chain, with the same capital-crossing caveat as kHYPE
+        six = {}
+        for size in (10_000_000, 15_000_000):
+            r6, _ = QB.run_choice(envs, size, fd, nd)
+            r5, _ = QB.run_choice({k: envs[k] for k in QB.SETS_KHYPE['all5']}, size, fd, nd)
+            six[str(size)] = {'all6': {k: r6[k] for k in QB.RUN_FIELDS}, 'all5': {k: r5[k] for k in QB.RUN_FIELDS},
+                              'all6_by_asset': r6['oos_by_asset_usd_per_year'],
+                              'increment': (r6['out_of_sample_usd_per_year'] or 0.0) - (r5['out_of_sample_usd_per_year'] or 0.0)}
+        res['fungible_all6_upper_bound'] = six
+        print('savax correlation done %.0fs' % (time.time() - t0), flush=True)
+    res['seconds'] = time.time() - t0
+    write_json(out / 'analysis.json', strip_private(res))
+    files = {}
+    for p in sorted(raw.rglob('*')):
+        if p.is_file():
+            files[str(p.relative_to(out))] = {'bytes': p.stat().st_size, 'sha256': sha256(p)}
+    write_json(out / 'manifest.json', {'generated': res['generated'], 'files': files, 'window': res['window'],
+                                       'prices': str(SAVAX_PRICES.relative_to(ROOT)),
+                                       'commands': ['uv run --with pycryptodome python scripts/queue_bids_alt.py savax --step collect --out %s' % out,
+                                                    'uv run --with pycryptodome python scripts/queue_bids_alt.py savax --step analyze --out %s --long %s --khype %s' % (out, args.long, args.khype),
+                                                    'uv run --with pycryptodome python scripts/queue_bids_alt.py savax --step render --out %s' % out],
+                                       'rpc': AVAX_RPC})
+    print('savax analysis written %.0fs' % (time.time() - t0), flush=True)
+
+
+def savax_render(out):
+    """tables.md from the sAVAX analysis."""
+    a = read_json(out / 'analysis.json')
+    s, q = a['savax'], a['queue']
+    fd = (lambda v, d=2: '—' if v is None else '%.*f' % (d, v))
+    at = s['at_quoted_size']
+    L = ['# sAVAX at swap level — tables', '', 'Generated %s from `analysis.json` by `scripts/queue_bids_alt.py savax --step render`.' % utc(), '',
+         'Window %s → %s (%d days), split %s; swaps rebuilt from sAVAX/WAVAX transfers into and out of %d pools.' % (
+             a['window'][0][:10], a['window'][1][:10], a['days'], s['cutoff_utc'][:10], len(a['parameters']['pools'])), '']
+    L += ['## A. Data path', '', '| item | value |', '|---|---|']
+    for url, v in (a['collect'].get('archive_check') or {}).items():
+        L.append('| block tag honoured: %s | rate %.6f at %d vs %.6f at %d: %s |' % (url, v['rate'] or 0, v['block'], v['rate_old'] or 0, v['block_old'], 'yes' if v['honours_tag'] else 'NO'))
+    sc = a['rate_spot_check_bps']
+    L += ['| exchange rate at %d random swap blocks vs the interpolated grid | median %s, max %s |' % (sc.get('n', 0), fb(sc.get('p50'), 3), fb(sc.get('max'), 3)),
+          '| swaps priced / sales of at least $1,000 | %s / %s |' % (format(a['swaps_priced'], ','), format(a['sells_at_least_min_fill'], ',')),
+          '| prints dropped (over %gbp from the rate) | %s ($%s) |' % (a['parameters']['max_print_bps'], a['excluded_prints']['count'], format(int(a['excluded_prints']['usd']), ',')),
+          '| RPC calls / errors | %s / %s |' % ((a['collect'].get('rpc') or {}).get('calls'), (a['collect'].get('rpc') or {}).get('errors')), '']
+    p = a['collect'].get('params_at_last_block') or {}
+    L += ['## B. The queue, from the verified source and every event in the window', '', '| item | value |', '|---|---|',
+          '| cooldownPeriod / redeemPeriod (read at the last block) | %.2f days / %.2f days |' % (p.get('cooldownPeriod()', 0) / DAY, p.get('redeemPeriod()', 0) / DAY),
+          '| parameter updates in the window | %d |' % len(q['parameter_updates']),
+          '| what redeem pays | shares x the rate recorded by the last accrueRewards at or before startedAt + cooldownPeriod |',
+          '| paid rate vs the rate at the end of the cooldown | median %s, p10–p90 %s to %s, p99 %s, range %s to %s (n %d) |' % (
+              fb(q['paid_vs_rate_at_cooldown_end_bps'].get('p50'), 2), fb(q['paid_vs_rate_at_cooldown_end_bps'].get('p10'), 2),
+              fb(q['paid_vs_rate_at_cooldown_end_bps'].get('p90'), 2), fb(q['paid_vs_rate_at_cooldown_end_bps'].get('p99'), 2),
+              fb(q['paid_vs_rate_at_cooldown_end_bps'].get('min'), 2), fb(q['paid_vs_rate_at_cooldown_end_bps'].get('max'), 2),
+              q['paid_vs_rate_at_cooldown_end_bps'].get('n', 0)),
+          '| paid rate vs the rate at the request | median %s (the cooldown\'s accrual) |' % fb(q['paid_vs_rate_at_request_bps'].get('p50'), 2),
+          '| request → redeem, days | min %s, p5 %s, median %s, p90 %s, max %s; %s within a day of the cooldown |' % (
+              fd(q['wait_days']['min']), fd(q['wait_days']['p5']), fd(q['wait_days']['p50']),
+              fd(q['wait_days']['p90']), fd(q['wait_days']['max']), fs(q['wait_days']['share_within_cooldown_plus_1d'])),
+          '| fastest redeem of the requests made each day, days | median %s, p90 %s, p99 %s, max %s (%d request days) |' % (
+              fd(q['fastest_redeem_by_request_day_days'].get('p50'), 3), fd(q['fastest_redeem_by_request_day_days'].get('p90'), 3),
+              fd(q['fastest_redeem_by_request_day_days'].get('p99'), 3), fd(q['fastest_redeem_by_request_day_days'].get('max'), 3),
+              q['fastest_redeem_by_request_day_days'].get('n', 0)),
+          '| sAVAX requested / redeemed / returned overdue / cancelled | %s / %s / %s / %s |' % tuple(format(int(q['shares'][k]), ',') for k in ('requested', 'redeem', 'overdue', 'cancelled')),
+          '| redeemed share of resolved requests | %s (%d redeemers; %d accounts let requests lapse) |' % (fs(q['redeemed_share_of_resolved']), q['redeemers'], q['overdue_users']),
+          '| accrueRewards | %d, median gap %s h, longest %s h |' % (q['accrue_rewards']['count'], fd(q['accrue_rewards']['median_gap_hours']),
+                                                                     fd(q['accrue_rewards']['max_gap_hours'], 1)),
+          '| warden withdrawals / deposits (AVAX) | %s / %s |' % (format(int(q['warden_withdraw_avax']), ','), format(int(q['warden_deposit_avax']), ',')), '']
+    m = s['market_hourly_discount_bps']
+    L += ['## C. Discount to the exchange rate (hourly, volume-weighted across pools)', '',
+          '| hours traded | p50 | p90 | p99 | max | ≥10bp | ≥20bp | ≥50bp | round trip | episodes (hours) |', '|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|',
+          '| %s | %s | %s | %s | %s | %s | %s | %s | %s | %d (%d) |' % (format(s['hours_with_trades'], ','), fb(m['p50']), fb(m['p90']), fb(m['p99']), fb(m['max']),
+                                                                  fs(m['share_ge_10bp']), fs(m['share_ge_20bp']), fs(m['share_ge_50bp']), fb(s['round_trip_bps']),
+                                                                  s['episodes']['count'], s['episodes']['hours']), '',
+          '| pool | pool-hours | volume | vw discount |', '|---|---:|---:|---:|']
+    for k, v in s['by_pool'].items():
+        L.append('| %s | %s | %s | %s |' % (k, format(v['records'], ','), fu(v['volume_usd']), fb(v['vw_discount_bps'])))
+    L += ['', '| episode start | end | hours | volume | vw discount | peak | net of round trip |', '|---|---|---:|---:|---:|---:|---:|']
+    for e in s['episodes']['top']:
+        L.append('| %s | %s | %d | %s | %s | %s | %s |' % (e['start_utc'][:16], e['end_utc'][:16], e['qualifying_hours'], fu(e['volume_usd']),
+                                                         fb(e['vw_discount_bps']), fb(e['peak_bps']), fb(e['net_of_round_trip_bps'])))
+    L += ['', '## D. The bid, out of sample (hurdle chosen on the first half, scored once on the second)', '',
+          '| size | hurdle | in sample | out of sample | 95% interval | t | fills OOS | median edge | trailing 90d |', '|---:|---|---:|---:|---|---:|---:|---:|---:|']
+    for sz, g in sorted(s['grid'].items(), key=lambda kv: float(kv[0])):
+        L.append('| %s | %s | %s | %s | %s to %s | %s | %d | %s | %s |' % (fu(float(sz)), g['chosen_hurdle'], fu(g['in_sample_usd_per_year']), fu(g['out_of_sample_usd_per_year']),
+                                                                      fu(g['oos_ci95_usd_per_year'][0]), fu(g['oos_ci95_usd_per_year'][1]),
+                                                                      '%.2f' % g['oos_t'] if g['oos_t'] is not None else '—', g['fills_oos'],
+                                                                      fb(g['median_edge_bps']), fu(g['trailing_90d_usd_per_year'])))
+    le = s['late_entry']
+    L += ['', 'Quoted at %s (capacity rule: %s). Late entry (hurdle held): an hour late keeps %s, a day late %s. Verdict: **%s**.' % (
+        fu(s['quoted_size_usd']), fu(s['capacity_size_usd']), fs((le.get('1h') or {}).get('kept_share')), fs((le.get('1d') or {}).get('kept_share')), s['verdict']), '',
+          '| variant at %s | out of sample $/yr |' % fu(s['quoted_size_usd']), '|---|---:|',
+          '| as quoted: accrual through the cooldown, measured redeem waits, venue-median cap | %s (%s) |' % (fu(at['out_of_sample_usd_per_year']), at['chosen_hurdle'])]
+    for sz, v in sorted(s['variant_2026_10_10_queue_model'].items(), key=lambda kv: float(kv[0])):
+        L.append('| the 2026-10-10 queue model at %s (amount fixed at the request, 15.5 days of staking carry) | %s (%s) |' % (fu(float(sz)), fu(v['out_of_sample_usd_per_year']), v['chosen_hurdle']))
+    L.append('| per print, no venue-median cap (an upper bound) | %s |' % fu(s['per_print_upper_bound']['out_of_sample_usd_per_year']))
+    b = a.get('bars_2026_10_10') or {}
+    L.append('| GeckoTerminal bars, 2026-10-10 (%s +%s days, half the volume as sales) | %s at %s |' % (b.get('window', [None])[0], (b.get('window') or [None, None])[1],
+                                                                                                      fu(b.get('at_quoted_size')), fu(b.get('quoted_size_usd'))))
+    tk = s.get('hourly_taker') or {}
+    if tk:
+        L += ['', '| hourly taker (each qualifying sale bought at the next hour boundary) | own print | venue median of that hour | t | 95% interval | first trade after it |',
+              '|---|---:|---:|---:|---|---:|']
+        for sz in (1_000_000, 3_000_000, 10_000_000):
+            m_, f_ = tk['median|%d' % sz], tk['first|%d' % sz]
+            L.append('| %s | %s | %s (%s) | %s | %s to %s | %s (%s) |' % (fu(sz), fu(m_['own_print_out_of_sample_usd_per_year']), fu(m_['out_of_sample_usd_per_year']),
+                                                                        m_['chosen_hurdle'], '%.2f' % m_['oos_t'] if m_['oos_t'] is not None else '—',
+                                                                        fu(m_['oos_ci95_usd_per_year'][0]), fu(m_['oos_ci95_usd_per_year'][1]),
+                                                                        fu(f_['out_of_sample_usd_per_year']), f_['chosen_hurdle']))
+        mq = tk['median|%d' % s['quoted_size_usd']]
+        L += ['', 'Hourly taker at %s, late entry with the later price: an hour late %s, a day late %s; trailing 90 days %s.' % (
+            fu(s['quoted_size_usd']), fs(mq['late_1h']['kept_share']), fs(mq['late_1d']['kept_share']), fu(mq['trailing_90d_usd_per_year']))]
+        for hb, pv in (s.get('persistence') or {}).items():
+            m_, f_ = pv['hour|median']['all'], pv['hour|first']['all']
+            L.append('Persistence at %gbp: of %s sales that qualified in their own hour, %s still cleared it at the next hour\'s venue median '
+                     '(%s by volume; %s had no trade next hour; %s of those traded), %s at the first trade.' % (
+                         float(hb), format(m_['qualifying'], ','), fs(m_['still_clear_share']), fs(m_['still_clear_usd_share']),
+                         fs(m_['later_missing_share']), fs(m_['still_clear_share_of_those_traded']), fs(f_['still_clear_share'])))
+    d = s.get('depth_below_round_trip') or {}
+    L += ['', 'Sales the bid could have bought at a profit: on %s of %s days; %s on the median such day, %s at the 90th percentile.' % (
+        d.get('days_with_any'), d.get('days'), fu(d.get('usd_per_active_day_p50')), fu(d.get('usd_per_active_day_p90'))), '']
+    bx = a.get('bars_crosscheck') or {}
+    if bx:
+        L += ['## E. The same pool-hours priced two ways (GeckoTerminal bar vs swap VWAP rebuilt from chain)', '',
+              '| pool | hours in both | median abs gap | p90 abs gap | signed median | bar volume / swap volume (p50) |', '|---|---:|---:|---:|---:|---:|']
+        for k, v in bx.items():
+            g = v['abs_gap_bps']
+            L.append('| %s | %s | %s | %s | %s | %s |' % (k, format(v['hours_both'], ','), fb(g.get('p50'), 2), fb(g.get('p90'), 2), fb(v['signed_median_gap_bps'], 2),
+                                                        '%.2f' % v['bar_volume_over_swap_volume_p50'] if v['bar_volume_over_swap_volume_p50'] else '—'))
+        L.append('')
+    cr = a.get('correlation')
+    if cr:
+        L += ['## F. Daily locked capital against the five-asset book (unbounded capital, %gbp; %s → %s, %d days)' % (cr['hurdle_bps'], cr['window'][0][:10], cr['window'][1][:10], cr['days']), '',
+              '| sAVAX against | correlation | days both locked | days either | at sAVAX\'s own hurdle (%gbp) |' % cr['savax_own_hurdle_bps'], '|---|---:|---:|---:|---:|']
+        for k, v in cr['pairs'].items():
+            L.append('| %s | %s | %d | %d | %s |' % (k, '%.2f' % v['corr_daily_locked'] if v['corr_daily_locked'] is not None else '—', v['days_both_locked'], v['days_either_locked'],
+                                                   '%.2f' % cr['at_own_hurdle'][k] if cr['at_own_hurdle'][k] is not None else '—'))
+        for n, v in cr['with_sums'].items():
+            o = cr['at_own_hurdle_with_sums'][n]
+            L.append('| the %s summed | %s | | | %s |' % (n, '%.2f' % v if v is not None else '—', '%.2f' % o if o is not None else '—'))
+        L += ['', 'sAVAX would lock capital on %d of %d days; peak %s.' % (cr['days_locked'], cr['days'], fu(cr['peak_locked_usd'])), '']
+        six = a.get('fungible_all6_upper_bound') or {}
+        if six:
+            L += ['Fungible upper bound only (sAVAX sits on a third chain, with the same capital-crossing caveat as kHYPE):', '',
+                  '| pool | all5 | all6 | increment | hurdle all6 | t all6 | sAVAX in all6 |', '|---:|---:|---:|---:|---|---:|---:|']
+            for sz, v in sorted(six.items(), key=lambda kv: int(kv[0])):
+                L.append('| %s | %s | %s | %s | %s | %s | %s |' % (fu(int(sz)), fu(v['all5']['out_of_sample_usd_per_year']), fu(v['all6']['out_of_sample_usd_per_year']),
+                                                                fu(v['increment']), v['all6']['chosen_hurdle'], '%.2f' % v['all6']['oos_t'] if v['all6']['oos_t'] is not None else '—',
+                                                                fu(v['all6_by_asset'].get('savax'))))
+    (out / 'tables.md').write_text('\n'.join(L) + '\n')
+    print('\n'.join(L))
+
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
     sub = ap.add_subparsers(dest='cmd', required=True)
@@ -2362,6 +3107,13 @@ def main():
     s = sub.add_parser('render')
     s.add_argument('--out', required=True)
     s.set_defaults(func=cmd_render)
+    s = sub.add_parser('savax', help='sAVAX at swap level (2026-10-11): its own output directory')
+    s.add_argument('--out', required=True)
+    s.add_argument('--step', choices=['collect', 'analyze', 'render'], required=True)
+    s.add_argument('--last-block', type=int, default=0)
+    s.add_argument('--long', help='queue_book --long directory (lido/kelp swaps), for the correlation with the book')
+    s.add_argument('--khype', default=str(ROOT / 'research' / '2026-10-10' / 'queue_bids_alt'))
+    s.set_defaults(func=cmd_savax)
     args = ap.parse_args()
     args.func(args)
 

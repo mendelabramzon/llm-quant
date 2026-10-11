@@ -1,0 +1,1092 @@
+{
+ "collection": {
+  "collect_seconds": 19.9,
+  "complete": {
+   "cow": true,
+   "ef_admin": true,
+   "ef_lp": true,
+   "ef_upgrades": true,
+   "ef_wrnft": true,
+   "x_curve": true,
+   "x_fluid": true,
+   "x_queues": true,
+   "x_redeem": true,
+   "x_v3": true,
+   "x_v4": true
+  },
+  "cow": {
+   "lst_trades_in_new_ranges": 0,
+   "ranges_fetched": 1,
+   "trades_in_new_ranges": 21
+  },
+  "cow_orders": {
+   "cached": 27,
+   "errors": 0,
+   "looked_up": 0
+  },
+  "ef_first_block": 26161640,
+  "etherfi_finality": {
+   "admin_blocks": 3,
+   "read": 0
+  },
+  "first_block": 26157138,
+  "headers": {
+   "count": 37,
+   "new_this_run": 1,
+   "step_blocks": 300
+  },
+  "last_block": 26166551,
+  "last_block_utc": "2026-10-11T03:34:47Z",
+  "prices": {
+   "btc_usd.json": 5,
+   "eth_usd.json": 5
+  },
+  "rpc": {
+   "credits": 3445,
+   "errors": 0,
+   "keys": 10,
+   "requests": 14
+  },
+  "state": {
+   "archive_fallbacks": 0,
+   "errors": 0,
+   "reads": 6
+  }
+ },
+ "cow_trades_in_window": 4533,
+ "criteria": {
+  "c1": {
+   "all4": {
+    "by_asset_usd_per_year": {
+     "etherfi_ev": 43916.63612115217,
+     "kelp": 40118.57361386343,
+     "lbtc_cb": 202453.84330654764,
+     "lido": 20232.685190788394
+    },
+    "by_month_usd": {
+     "2026-07": 4556.904787734138,
+     "2026-08": 6095.516382574239,
+     "2026-09": 45615.38445605288,
+     "2026-10": 19362.212019972038
+    },
+    "filled_usd": 101017976.35558105,
+    "fills": 503,
+    "if_each_fill_earned_only_the_hurdle_usd_per_year": 20568.957077541203,
+    "median_edge_bps": 10.960296449096095,
+    "usd_per_year": 306721.7382323516,
+    "value_usd": 75630.01764633328
+   },
+   "eth3": {
+    "by_asset_usd_per_year": {
+     "etherfi_ev": 64754.9065991495,
+     "kelp": 40118.57361386343,
+     "lido": 33132.662070111255
+    },
+    "by_month_usd": {
+     "2026-07": 4556.904787734138,
+     "2026-08": 5748.613649168153,
+     "2026-09": 19472.093072210868,
+     "2026-10": 4251.30028672568
+    },
+    "filled_usd": 93848268.32512523,
+    "fills": 304,
+    "if_each_fill_earned_only_the_hurdle_usd_per_year": 25731.797709634124,
+    "median_edge_bps": 2.766965967993154,
+    "usd_per_year": 138006.14228312415,
+    "value_usd": 34028.91179583883
+   },
+   "hurdle_bps": 1.0,
+   "note": "all4 is the row as defined (the verdict); eth3 is the ETH-only book being run first",
+   "pool_usd": 15000000,
+   "staking_apr_window": 0.024667590025971187,
+   "status": "pass",
+   "threshold_usd_per_year": 40000.0,
+   "v2_daily_requote": {
+    "all4": {
+     "filled_usd": 97328650.0581553,
+     "fills": 327,
+     "median_earned_bps": 8.702228216367743,
+     "usd_per_year": 146257.11031360325
+    },
+    "eth3": {
+     "filled_usd": 91687876.3217162,
+     "fills": 238,
+     "median_earned_bps": 1.0,
+     "usd_per_year": 56286.23547683647
+    },
+    "note": "the v2 implementation on the same data (simulate_levels, daily re-quote at 00:30 UTC); reported beside the defined criterion, which the verdict still uses"
+   },
+   "v3_hourly_taker": {
+    "all4": {
+     "filled_usd": 67782274.55707231,
+     "fills": 226,
+     "usd_per_year": 162276.0444753914
+    },
+    "eth3": {
+     "filled_usd": 63410164.20387805,
+     "fills": 130,
+     "usd_per_year": 59919.85803066186
+    },
+    "note": "the v3 implementation on the same data (simulate_later: bought at the next hour, later venue median, frozen hurdle); reported beside the defined criterion"
+   },
+   "window": [
+    "2026-07-13T03:34:47Z",
+    "2026-10-11T03:34:47Z"
+   ]
+  },
+  "c2": {
+   "etherfi": {
+    "claims": 28,
+    "invalidated_in_window": [],
+    "min_payout_vs_request_bps": 0.0,
+    "new_requests_with_fee": 0,
+    "short_claims": 0,
+    "status": "pass"
+   },
+   "kelp": {
+    "below_minus_5bp": 0,
+    "claims": 3,
+    "median_bps_vs_nav_at_request": 0.14209432088816498,
+    "min_bps": 0.07138295935567317,
+    "note": "against the NAV interpolated at the request block (study p10/p90 -0.35/+0.42bp, min -20bp)",
+    "status": "pass"
+   },
+   "lido": {
+    "claims": 89,
+    "min_bps": 0.0,
+    "short_claims": 0,
+    "status": "pass"
+   },
+   "status": "pass"
+  },
+  "c3": {
+   "h=1": {
+    "corr_lbtc_vs_eth3_sum": -0.03494663518903991,
+    "days_eth3_locked": 341,
+    "days_lbtc_locked": 284,
+    "pairs": {
+     "lbtc_cb|etherfi_ev": -0.004448828413203015,
+     "lbtc_cb|kelp": -0.2326189914267746,
+     "lbtc_cb|lido": -0.03795989802656033
+    },
+    "peak_locked_usd": {
+     "etherfi_ev": 114658512.4831514,
+     "kelp": 4653880.583681242,
+     "lbtc_cb": 11372812.575252598,
+     "lido": 546419704.7994764
+    }
+   },
+   "h=2": {
+    "corr_lbtc_vs_eth3_sum": -0.04655570771199518,
+    "days_eth3_locked": 332,
+    "days_lbtc_locked": 281,
+    "pairs": {
+     "lbtc_cb|etherfi_ev": -0.03803633969102981,
+     "lbtc_cb|kelp": -0.232436716553647,
+     "lbtc_cb|lido": -0.042371199675366136
+    },
+    "peak_locked_usd": {
+     "etherfi_ev": 111475150.50830565,
+     "kelp": 4653880.583681242,
+     "lbtc_cb": 11372812.575252598,
+     "lido": 542121978.1594074
+    }
+   },
+   "lbtc_new_swaps": 24,
+   "lbtc_refreshed": true,
+   "note": "LBTC extended through the new window with the same pools (cbBTC side), lbtc_nav and BTC/USD",
+   "status": "pass",
+   "threshold": 0.5,
+   "window": [
+    "2025-10-12T00:00:00Z",
+    "2026-10-11T23:59:59Z"
+   ]
+  },
+  "c4": {
+   "cow_lst_buys_with_eth": 33,
+   "hours_cleared": 33,
+   "hours_evaluated": 30,
+   "hours_flagged": 33,
+   "literal": {
+    "by_asset": {
+     "etherfi_ev": {
+      "cleared_sample": [
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 0.83,
+        "hour_utc": "2026-10-10T02:00:00Z",
+        "limit_bps": 1.288510299359436,
+        "limit_source": "rule-implied",
+        "market_bps": 2.970632745647576
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 0.83,
+        "hour_utc": "2026-10-10T03:00:00Z",
+        "limit_bps": 1.288510299359436,
+        "limit_source": "rule-implied",
+        "market_bps": 3.489241136864076
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 0.83,
+        "hour_utc": "2026-10-10T18:00:00Z",
+        "limit_bps": 1.288510299359436,
+        "limit_source": "rule-implied",
+        "market_bps": 2.904682399247124
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 0.83,
+        "hour_utc": "2026-10-10T19:00:00Z",
+        "limit_bps": 1.288510299359436,
+        "limit_source": "rule-implied",
+        "market_bps": 2.8822389864974847
+       }
+      ],
+      "cow_buys_of_the_token_with_eth_in_window": 2,
+      "flagged": [
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 0.83,
+        "hour_utc": "2026-10-10T02:00:00Z",
+        "limit_bps": 1.288510299359436,
+        "limit_source": "rule-implied",
+        "market_bps": 2.970632745647576
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 0.83,
+        "hour_utc": "2026-10-10T03:00:00Z",
+        "limit_bps": 1.288510299359436,
+        "limit_source": "rule-implied",
+        "market_bps": 3.489241136864076
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 0.83,
+        "hour_utc": "2026-10-10T18:00:00Z",
+        "limit_bps": 1.288510299359436,
+        "limit_source": "rule-implied",
+        "market_bps": 2.904682399247124
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 0.83,
+        "hour_utc": "2026-10-10T19:00:00Z",
+        "limit_bps": 1.288510299359436,
+        "limit_source": "rule-implied",
+        "market_bps": 2.8822389864974847
+       }
+      ],
+      "flagged_in_hours_with_cow_buys_of_the_token": 0,
+      "hours_cleared": 4,
+      "hours_flagged": 4,
+      "venue_fee_bps": 0.83
+     },
+     "kelp": {
+      "cleared_sample": [
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-09T21:00:00Z",
+        "limit_bps": 5.47758980916653,
+        "limit_source": "rule-implied",
+        "market_bps": 27.707486119767495
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-09T22:00:00Z",
+        "limit_bps": 5.47758980916653,
+        "limit_source": "rule-implied",
+        "market_bps": 27.707486119767495
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-09T23:00:00Z",
+        "limit_bps": 5.47758980916653,
+        "limit_source": "rule-implied",
+        "market_bps": 26.44846977953799
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T00:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 26.44846977953799
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T01:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 26.44846977953799
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T02:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 14.042846797168524
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T03:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 14.042846797168524
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T04:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 14.042846797168524
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T05:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 14.042846797168524
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T06:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 14.042846797168524
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T07:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 14.042846797168524
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T08:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 14.042846797168524
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T09:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 26.368005787687114
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T10:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 26.368005787687114
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T11:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 26.474044765597178
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T12:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 26.474044765597178
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T13:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 26.474044765597178
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T14:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 26.474044765597178
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T15:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 26.474044765597178
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T16:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 26.474044765597178
+       }
+      ],
+      "cow_buys_of_the_token_with_eth_in_window": 0,
+      "flagged": [
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-09T21:00:00Z",
+        "limit_bps": 5.47758980916653,
+        "limit_source": "rule-implied",
+        "market_bps": 27.707486119767495
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-09T22:00:00Z",
+        "limit_bps": 5.47758980916653,
+        "limit_source": "rule-implied",
+        "market_bps": 27.707486119767495
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-09T23:00:00Z",
+        "limit_bps": 5.47758980916653,
+        "limit_source": "rule-implied",
+        "market_bps": 26.44846977953799
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T00:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 26.44846977953799
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T01:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 26.44846977953799
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T02:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 14.042846797168524
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T03:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 14.042846797168524
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T04:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 14.042846797168524
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T05:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 14.042846797168524
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T06:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 14.042846797168524
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T07:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 14.042846797168524
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T08:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 14.042846797168524
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T09:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 26.368005787687114
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T10:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 26.368005787687114
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T11:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 26.474044765597178
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T12:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 26.474044765597178
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T13:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 26.474044765597178
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T14:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 26.474044765597178
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T15:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 26.474044765597178
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T16:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 26.474044765597178
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T17:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 26.474044765597178
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T18:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 26.579133185581227
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T19:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 26.597065384188088
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T20:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 26.597065384188088
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T21:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 26.597065384188088
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T22:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 26.597065384188088
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-10T23:00:00Z",
+        "limit_bps": 5.45830517849339,
+        "limit_source": "rule-implied",
+        "market_bps": 26.597065384188088
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-11T00:00:00Z",
+        "limit_bps": 5.043458137551051,
+        "limit_source": "rule-implied",
+        "market_bps": 26.597065384188088
+       },
+       {
+        "best_cow_discount_bps": null,
+        "cow_buys_at_or_beyond_limit": 0,
+        "cow_buys_in_hour": 0,
+        "fee_bps": 3.625,
+        "hour_utc": "2026-10-11T01:00:00Z",
+        "limit_bps": 5.036584664376837,
+        "limit_source": "registered 2026-10-11",
+        "market_bps": 26.597065384188088
+       }
+      ],
+      "flagged_in_hours_with_cow_buys_of_the_token": 0,
+      "hours_cleared": 29,
+      "hours_flagged": 29,
+      "venue_fee_bps": 3.625
+     },
+     "lido": {
+      "cleared_sample": [],
+      "cow_buys_of_the_token_with_eth_in_window": 31,
+      "flagged": [],
+      "flagged_in_hours_with_cow_buys_of_the_token": 0,
+      "hours_cleared": 0,
+      "hours_flagged": 0,
+      "venue_fee_bps": 1.0
+     }
+    },
+    "flagged_in_hours_with_cow_buys_of_the_token": 0,
+    "hours_cleared": 33,
+    "hours_flagged": 33
+   },
+   "once_live": "Once the book's own orders rest, the test is run on them alone, and it becomes a direct one: (1) every order the owner posted, from CoW's account endpoint (GET /api/v1/account/<owner>/orders), which also lists orders that never filled, invisible in Trade events; (2) for each whole hour an order was open (created, not expired or cancelled, not fully executed) and funded (the owner's WETH balance and GPv2VaultRelayer allowance covering its remaining sellAmount, read at that hour), whether the venue median less one fee was at or beyond its limit; (3) the owner's own Trade events (owner is indexed, so one cheap getLogs filter). A funded order sitting through such an hour without a fill is a failure of the implementation; a fill tells us the surplus over the limit we were paid.",
+   "proxy": "other owners' CoW orders stand in for the book's own until they rest; once they do, filter by owner",
+   "resting_orders": {
+    "evidence": [],
+    "orders_observed": 27,
+    "orders_resting_1h_plus": 1,
+    "orders_through_a_cleared_hour": 0,
+    "orders_without_details": 0,
+    "rested_1h_plus": [
+     {
+      "cleared_hours": [],
+      "created_utc": "2026-10-10T08:44:38Z",
+      "fill_discount_bps": 3.488956209797278,
+      "first_fill_utc": "2026-10-10T21:39:59Z",
+      "hours_market_cleared_its_limit": 0,
+      "kind": "sell",
+      "limit_discount_bps_at_fill": 1.5147955680905323,
+      "owner": "0x9195bcdb5bc8f0dc2827e89c800f3bd84fc8f891",
+      "partially_fillable": true,
+      "rested_hours": 12.922490914199088,
+      "token": "wstETH",
+      "uid": "0x6b25b42dad17ebb5c10bc587bd03336f70d9c50f263e221479d6b15fdb3cc9169195bcdb5bc8f0dc2827e89c800f3bd84fc8f8916acaf0ac",
+      "whole_hours_before_fill": 12
+     }
+    ]
+   },
+   "status": "pass: the literal check flagged 33 hour(s), all in hours without a CoW buy of the token (no bidder, not a failed fill); no observed resting order sat through a cleared hour",
+   "window": [
+    "2026-10-09T21:00:00Z",
+    "2026-10-11T03:00:00Z"
+   ]
+  }
+ },
+ "data_through": {
+  "block": 26166551,
+  "utc": "2026-10-11T03:34:47Z"
+ },
+ "generated": "2026-10-11T03:50:33Z",
+ "paper_by_version": {
+  "v1": {
+   "by_token": {},
+   "counts": {
+    "before_first_ladder": 6
+   },
+   "eth_filled": 0,
+   "fills": 0,
+   "ladders": 1,
+   "locked_eth_now": 0,
+   "open_positions": 0,
+   "peak_locked_eth": 0.0,
+   "provisional_fills": 0,
+   "sells_after_first_registration": 11,
+   "sells_in_new_window": 78,
+   "usd_filled": 0,
+   "value_eth_at_limit": 0,
+   "value_eth_at_market": 0,
+   "value_usd_at_limit": 0,
+   "value_usd_at_market": 0
+  }
+ },
+ "prices": {
+  "btc_usd_last_utc": "2026-10-10T20:06:57Z",
+  "btc_usd_stale": false,
+  "eth_usd_last_utc": "2026-10-10T20:06:57Z",
+  "eth_usd_stale": false
+ },
+ "registration": "already registered at 2026-10-11T00:01:15.827836+00:00",
+ "rule": {
+  "carry": "staking APR x wait / 365, the APR being wstETH stEthPerToken growth over the trailing 30 days",
+  "criteria": {
+   "c1": "trailing 90-day simulate_book value of the all4 pool at $15M and the frozen hurdle >= $40,000 a year",
+   "c3": "trailing 365-day correlation of LBTC and ETH-three daily locked capital (unbounded capital, frozen hurdle) <= 0.5",
+   "c4": "no hour with the venue-median discount less one pool fee at or beyond the limit and no CoW buy of the token at or beyond it"
+  },
+  "frozen": "2026-10-11",
+  "hurdle_bps": 1.0,
+  "hurdle_source": "research/2026-10-10/queue_book/analysis.json joint.all4.15000000.chosen_hurdle (h=1)",
+  "id": "lst-queue-book-one-pool",
+  "limit": "limit discount = hurdle + carry + redemption fee; limit price = NAV x (1 - limit discount / 1e4)",
+  "nav": "stETH 1; wstETH stEthPerToken(); weETH getRate(); rsETH LRTOracle.rsETHPrice(); read at the latest block",
+  "order": {
+   "kind": "sell",
+   "partially_fillable": true,
+   "sell_token": "WETH",
+   "size": "the whole pool on every order (unescrowed)",
+   "valid_hours": 26
+  },
+  "path_check": "a token whose queue reads paused (or Lido in bunker mode) at the quote gets no order and no paper bid that day: Lido isBunkerModeActive()/isPaused(), ether.fi WithdrawRequestNFT and LiquidityPool paused(), Kelp LRTWithdrawalManager paused()",
+  "simulation": {
+   "fee_legs": 2.0,
+   "gas_per_fill_usd": 10.0,
+   "market_cap": "venue median less one pool fee (market_discount_fn, 6h lookback)",
+   "min_fill_usd": 5000.0
+  },
+  "tokens": [
+   "stETH",
+   "wstETH",
+   "weETH",
+   "rsETH"
+  ],
+  "version": 1,
+  "wait": "median, over requests created in the trailing 14 days (60 when fewer than 5), of the study wait model's request points as known now: the measured wait if finalized, the age so far if pending"
+ },
+ "seconds": 29.1,
+ "staking_apr": {
+  "now_30d": 0.02300728316326195,
+  "window": 0.024667590025971187
+ },
+ "streams": {
+  "ef_admin": {
+   "first_block": 26161640,
+   "last_block": 26166551,
+   "log_entries_this_run": 0,
+   "ranges": 5
+  },
+  "ef_lp": {
+   "first_block": 26161640,
+   "last_block": 26166551,
+   "log_entries_this_run": 0,
+   "ranges": 5
+  },
+  "ef_upgrades": {
+   "first_block": 26161640,
+   "last_block": 26166551,
+   "log_entries_this_run": 0,
+   "ranges": 5
+  },
+  "ef_wrnft": {
+   "first_block": 26161640,
+   "last_block": 26166551,
+   "log_entries_this_run": 0,
+   "ranges": 5
+  },
+  "x_curve": {
+   "first_block": 26157138,
+   "last_block": 26166551,
+   "log_entries_this_run": 2,
+   "ranges": 5
+  },
+  "x_fluid": {
+   "first_block": 26157138,
+   "last_block": 26166551,
+   "log_entries_this_run": 0,
+   "ranges": 5
+  },
+  "x_queues": {
+   "first_block": 26157138,
+   "last_block": 26166551,
+   "log_entries_this_run": 2,
+   "ranges": 5
+  },
+  "x_redeem": {
+   "first_block": 26157138,
+   "last_block": 26166551,
+   "log_entries_this_run": 1,
+   "ranges": 5
+  },
+  "x_v3": {
+   "first_block": 26157138,
+   "last_block": 26166551,
+   "log_entries_this_run": 0,
+   "ranges": 5
+  },
+  "x_v4": {
+   "first_block": 26157138,
+   "last_block": 26166551,
+   "log_entries_this_run": 0,
+   "ranges": 5
+  }
+ },
+ "swaps": {
+  "etherfi_ev": {
+   "base_swaps": 45575,
+   "new_excluded_prints": 0,
+   "new_first_utc": "2026-10-09T22:54:32Z",
+   "new_last_utc": "2026-10-11T02:45:06Z",
+   "new_sells": 15,
+   "new_skipped": {
+    "dust": 55
+   },
+   "new_swaps": 33
+  },
+  "kelp": {
+   "base_swaps": 1514,
+   "new_excluded_prints": 0,
+   "new_first_utc": "2026-10-09T21:54:57Z",
+   "new_last_utc": "2026-10-10T19:05:22Z",
+   "new_sells": 5,
+   "new_skipped": {
+    "dust": 11
+   },
+   "new_swaps": 7
+  },
+  "lbtc_cb": {
+   "base_swaps": 3245,
+   "new_excluded_prints": 0,
+   "new_first_utc": "2026-10-09T20:11:36Z",
+   "new_last_utc": "2026-10-10T08:40:59Z",
+   "new_sells": 16,
+   "new_skipped": {
+    "dust": 5
+   },
+   "new_swaps": 24
+  },
+  "lido": {
+   "base_swaps": 168851,
+   "new_excluded_prints": 0,
+   "new_first_utc": "2026-10-09T20:31:40Z",
+   "new_last_utc": "2026-10-11T02:47:18Z",
+   "new_sells": 58,
+   "new_skipped": {
+    "dust": 227
+   },
+   "new_swaps": 145
+  }
+ },
+ "verdict": "continue: no kill criterion met",
+ "waits": {
+  "etherfi_ev": {
+   "finalized": 42792,
+   "last_days": {
+    "2026-10-05": 0.45267361111111115,
+    "2026-10-06": 0.9810416666666667,
+    "2026-10-07": 0.437037037037037,
+    "2026-10-08": 0.37008680555555556,
+    "2026-10-09": 0.6897916666666667,
+    "2026-10-10": 0.38883101851851853,
+    "2026-10-11": 0.09554398148148148
+   },
+   "median_days_all": 0.7931597222222222,
+   "model_at_end_days": 0.09554398148148148,
+   "oldest_pending_days": 0.4372337962962963,
+   "pending": 9,
+   "points": 42801
+  },
+  "kelp": {
+   "finalized": 638,
+   "last_days": {
+    "2026-10-02": 7.0256944444444445,
+    "2026-10-03": 6.022083333333334,
+    "2026-10-04": 6.528888888888889,
+    "2026-10-05": 5.525138888888889,
+    "2026-10-08": 2.513611111111111,
+    "2026-10-09": 1.4104166666666667,
+    "2026-10-10": 1.018888888888889
+   },
+   "median_days_all": 5.031666666666666,
+   "model_at_end_days": 1.018888888888889,
+   "oldest_pending_days": 6.528888888888889,
+   "pending": 6,
+   "points": 644
+  },
+  "lbtc_cb": {
+   "kind": "constant",
+   "median_days": 9.0
+  },
+  "lido": {
+   "finalized": 85183,
+   "last_days": {
+    "2026-10-05": 2.050138888888889,
+    "2026-10-06": 0.9672106481481482,
+    "2026-10-07": 0.6465393518518519,
+    "2026-10-08": 0.7260821759259259,
+    "2026-10-09": 0.8013888888888889,
+    "2026-10-10": 0.6241087962962963,
+    "2026-10-11": 0.05945601851851852
+   },
+   "median_days_all": 1.976550925925926,
+   "model_at_end_days": 0.05945601851851852,
+   "oldest_pending_days": 1.2925810185185185,
+   "pending": 145,
+   "points": 85328
+  }
+ }
+}

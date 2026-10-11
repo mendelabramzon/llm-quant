@@ -1,0 +1,132 @@
+{
+ "tx": {
+  "count": 210230.0,
+  "se": 0.0,
+  "raw_count": 420460.0,
+  "system_count": 210230.0,
+  "method": "sampled-blocks",
+  "system_per_block": 1.0,
+  "bookkeeping": null,
+  "count_ex_bookkeeping": null,
+  "bookkeeping_targets": null,
+  "blocks": 210230,
+  "sampled": 200,
+  "per_block": 1.0,
+  "tps": 2.4332175925925927,
+  "note": "user transactions: OP-stack L1-attributes deposits and Arbitrum internal txs excluded"
+ },
+ "gas": {
+  "gas_per_second": 66289.39998206019,
+  "base_fee_median_gwei": 1000.0
+ },
+ "transfers": {
+  "assets": [
+   {
+    "asset": "0xea237441c92cae6fc17caaf9a7acb3f953be4bd1",
+    "symbol": "WPLUME",
+    "class": "native",
+    "transfers": 2102,
+    "transfers_se": 2107,
+    "amount": 1008.2140040865659,
+    "price": 0.019051721870058404,
+    "usd": 19.20821279135518,
+    "usd_se": 19.247252285432204,
+    "top_block_share": 1.0,
+    "units_seen": 1,
+    "gross_amount": 2016.4280081731317,
+    "gross_usd": 38.41642558271036
+   },
+   {
+    "asset": "0xa5f78b2a0ab85429d2dfbf8b60abc70f4cec066c",
+    "symbol": "nCREDIT",
+    "class": "other",
+    "transfers": 1051,
+    "transfers_se": 1053,
+    "amount": 10.5115,
+    "price": 1.038571,
+    "usd": 10.9169390665,
+    "usd_se": 10.93912706403289,
+    "top_block_share": 1.0,
+    "units_seen": 1,
+    "gross_amount": 10.5115,
+    "gross_usd": 10.9169390665
+   },
+   {
+    "asset": "native:PLUME",
+    "symbol": "PLUME",
+    "class": "native",
+    "transfers": null,
+    "transfers_se": null,
+    "amount": 0.0,
+    "price": 0.019104770600286727,
+    "usd": 0.0,
+    "usd_se": 0.0,
+    "top_block_share": null,
+    "units_seen": 0,
+    "note": "top-level transaction value only; internal transfers need traces"
+   }
+  ],
+  "unpriced_top": [],
+  "unpriced_assets": 0,
+  "unpriced_transfers": 0,
+  "priced_usd": 30.12515185785518,
+  "usd_by_class": {
+   "native": 19.20821279135518,
+   "other": 10.9169390665
+  },
+  "gross_priced_usd": 49.33336464921036,
+  "method": "sampled-blocks; value = net per transaction (each account's positive net change), gross beside it",
+  "top_targets_by_value": [
+   {
+    "to": "0x77ab297da4f3667059ef0c32f5bc657f1006cbb0",
+    "usd": 30.125151857855183,
+    "share": 1.0
+   }
+  ],
+  "top_targets_by_txs": [
+   {
+    "to": "0xee96619e247f69cf5ee49df56ce44a10514074ba",
+    "txs": 208127.7,
+    "share": 0.99
+   },
+   {
+    "to": "0x30c791e4654edac575fa1700ed8633cb2fede871",
+    "txs": 1051.15,
+    "share": 0.005
+   },
+   {
+    "to": "0x77ab297da4f3667059ef0c32f5bc657f1006cbb0",
+    "txs": 1051.15,
+    "share": 0.005
+   }
+  ],
+  "transfer_logs_per_block": 0.015,
+  "logs_missing_blocks": 0
+ },
+ "window": {
+  "start_ts": 1791590400,
+  "end_ts": 1791676800,
+  "start_utc": "2026-10-10T00:00:00+00:00",
+  "end_utc": "2026-10-11T00:00:00+00:00",
+  "hours": 24.0
+ },
+ "blocks": {
+  "first": 98451664,
+  "last": 98661893,
+  "head": 98735280
+ },
+ "endpoint": "https://rpc.plume.org",
+ "calls": 432,
+ "notes": [
+  "plume.drpc.org rejected: HTTP 400 {\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"the method eth_blockNumber does not exist/is not available\",\"code\":"
+ ],
+ "errors": [],
+ "error_count": 0,
+ "seconds": 44.2,
+ "chain": "plume",
+ "name": "Plume",
+ "family": "evm",
+ "adapter": "evm",
+ "ok": true,
+ "probed_at": "2026-10-11T08:25:18+00:00"
+}
