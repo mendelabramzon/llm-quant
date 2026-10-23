@@ -137,3 +137,39 @@ Two re-read snapshots, about 10,400 events each.
   - A websocket book feed for in-play neg-risk sums.
   - A forward test, with maker fills, of whether longshots were underpriced on World-Cup-scale props and weather
     markets.
+
+## Correction (2026-10-14): the short-horizon "favourites overpriced" result is mostly a selection artefact
+
+The universe keeps only markets with at least $10k of lifetime volume. In a multi-outcome event, the longshot members
+that cross $10k are mostly the ones that rallied toward winning. The NO side of exactly those members is the
+"favourite" this study bought. Five studies on 2026-10-14 measured the effect, each against the same events rebuilt with
+every member:
+- the structure scan: weather +7.7pp → −1.1pp, futures +7.9pp → −0.8pp;
+- the weather study: members with at least $10k resolve YES 19.9% of the time at a 17.4% price, and all members resolve
+  10.05% at a 10.42% price;
+- the sports study: +8.2pp on incomplete events;
+- the wallet-skill study: +2.5–3.0pp;
+- the crypto-options study: ranges at 0.183 against 0.131.
+
+These are in `research/2026-10-14/*/findings.md`.
+
+**What the split shows.** Rebuilt from this study's own sample, one-day favourites in the 0.85–0.995 band, out of
+sample (gross, weighted):
+
+| members | n | won | at a price of | gross |
+|---|---:|---:|---:|---:|
+| neg-risk | 1,617 | 90.0% | 94.6% | −5.0% |
+| standalone binary | 1,271 | 91.9% | 93.7% | −2.0% |
+| weather neg-risk | 449 | — | — | −5.2% |
+| weather standalone | 35 | — | — | +4.5% |
+| sports neg-risk | 180 | — | — | −8.8% |
+| sports standalone | 175 | — | — | −3.5% |
+
+The negative result concentrates in neg-risk members. That is where the filter selects winners.
+
+**Consequences:**
+1. The no-go verdict on favourites stands.
+2. The "forward-test candidate" above (longshots underpriced on World-Cup-scale props and weather) is withdrawn.
+   Weather on complete events shows no underpricing (`research/2026-10-14/pm_weather`).
+3. The out-of-sample calibration slopes below 1 at 1–3 days are partly the same artefact. Re-measure on complete
+   events before citing them.

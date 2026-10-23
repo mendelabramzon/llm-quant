@@ -44,6 +44,44 @@ to 12,056 addresses in one campaign — token-transfer address poisoning at a sc
 cannot see, and which the hand analysis of the same window missed.
 
 
+2026-10-14 — prediction markets, hunted for alpha eight ways, and none survives. The studies covered:
+- Polymarket and Kalshi temperature, crypto and sports prices, each against an outside model;
+- the venues' liquidity rents;
+- the combo house edge, and a new quoter for it;
+- wallet skill copied an hour late;
+- a 1,351-variant structural scan.
+
+Each was held to the repo protocol. Every `book_entries.json` is empty.
+
+* **For a slow participant the prices are efficient.**
+  - Weather: the price beats the NWS blend on every venue, city and decision time
+    ([note](research/2026-10-14/pm_weather/findings.md)).
+  - Crypto: it beats Deribit's surface, which overstates touches by its variance premium
+    ([note](research/2026-10-14/pm_crypto_options/findings.md)).
+  - Soccer: it equals the sharp books' close ([note](research/2026-10-14/pm_sports_sharp/findings.md)).
+* **Skill exists but is fast.** The wallets with persistent edge are in-play sports bettors, and their edge is gone
+  within five minutes ([note](research/2026-10-14/pm_wallet_skill/findings.md)).
+* **The rents are real and farmed.**
+  - Liquidity rewards: Polymarket pays $173k a day on chain, and half goes to 64 addresses. A slow quoter loses its
+    share to adverse selection ([note](research/2026-10-14/pm_rewards_mm/findings.md)).
+  - Combos: Polymarket's incumbent combo makers earn +1.93% on capital at risk, but the margin has compressed. A
+    model-only entrant loses to the winner's curse except, descriptively, on 7+ leg combos, which go to a paper quoter
+    ([parlays](research/2026-10-14/pm_parlays/findings.md), [new quoter](research/2026-10-14/pm_combos_maker/findings.md)).
+* **A bias in the stored universe, fixed.** Its $10k volume floor keeps the members of multi-outcome events that
+  rallied toward winning. That inflated "longshots win" by 2–8pp and explains most of 2026-10-09's short-horizon
+  favourite result (a correction is appended to that note). Member-level studies now select whole events.
+
+| module | what it does |
+|---|---|
+| `scripts/pm_weather.py` | Kalshi and Polymarket temperature ladders against the NBM station forecast; settlement sources reproduced; whole events |
+| `scripts/pm_crypto_options.py` | crypto strike, range and touch markets against Deribit smiles from expired-option trades (reflection touch, Monte Carlo check) |
+| `scripts/pm_sports_sharp.py` | Polymarket soccer and tennis matched to football-data and tennis-data odds, Shin de-vig, maker fills on real prints |
+| `scripts/pm_rewards_mm.py` | Polymarket reward budgets, competition scored in the docs' units, on-chain payouts, an hourly quoter simulation, Kalshi LIP |
+| `scripts/pm_parlays.py` | Kalshi combo margins over the leg product, maker P&L, the winner's curse; Polymarket combo makers' positions |
+| `scripts/pm_combos_maker.py` | a new Polymarket combo quoter priced from 1-minute leg midpoints, winning only below the incumbent |
+| `scripts/pm_wallet_skill.py` | wallet skill on event-complete samples, persistence, and the follower's decay from own fill to +1 day |
+| `scripts/pm_structure_scan.py` | a question-template classifier, calibration by template, ladder violations with fill checks, hourly dynamics |
+
 2026-10-11 — forward tests, and what an executable bidder earns. The book's pending writes went in ($1,421,473 a year
 go-and-current), then two corrections priced for an executable bidder took it to **$1,166,284**. Five forward tests
 started, each with a frozen rule and an append-only ledger, run daily by `scripts/forward_daily.py`.

@@ -5,6 +5,125 @@ the LLM reads evidence, proposes mechanisms, and writes the infrastructure; dete
 reusable detectors and tests; the human steers. The metric we optimise is **time-to-verified-insight**: how fast a raw
 signal becomes a true, capacity-aware, reproducible claim and then a reusable detector — not classification coverage.
 
+## Session log — 2026-10-23 (the last two hours; repo trimmed to scripts and reports)
+
+The report is [`research/2026-10-23/report.md`](research/2026-10-23/report.md). The window ran 13:09–15:09 UTC and was
+a quiet, risk-off US open. It covered Ethereum, nine EVM chains, Hyperliquid, Binance/Bybit perps (new
+`scripts/cex_window.py`) and the news. **Nothing enters the book.**
+
+- **Negative-funding long: no-go.** `scripts/neg_funding_long.py` tested it, with findings in
+  `research/2026-10-23/neg_funding_long/findings.md`.
+  - Out of sample: +15% funding against −11% price per trade, median −3.2%, t 0.96, and 0 of 32 variants survive BH.
+  - The Binance–Bybit gap hedge loses in all 18 variants.
+  - This pairs with the Oct 11 floor-carry no-go: funding paid by hedgers who cannot borrow spot is not a rent to the
+    other side.
+- **USDC/USDT basis reversion:** about 4bp a trade on about 5 trades a year, and recent trades lose. It goes on the
+  watch list only.
+- **Compound USDC:** 169bp over SSR, but only about $1M wide. The cross-chain dollar book is $19k a year.
+- **Fixed:** `live_scan.py` priced wstETH NAV off STETH/USD, which faked a −63bp discount. It now prices off ETH.
+- **Forward tests** ran for the first time since Oct 11. **The queue book returned `kill: criterion 4`** on proxy
+  evidence: other owners' 0bp-limit CoW orders rested while the median cleared by 1–2bp. **Decide:** retire the row, or
+  re-specify c4 with a clearance margin.
+- **.gitignore** is now a whitelist for `research/` (reports and code only). 11,276 data files were untracked with
+  `--cached`.
+
+## Session log — 2026-10-14 (prediction markets: eight alpha hunts, all no-go, and a selection bias found)
+
+Asked to "research what happens in polymarket and prediction markets in general". After a first plan aimed at the
+industry, the user redirected: research should find new alpha strategies, not cover regulation. Eight history-tested
+studies followed, each on the repo's protocol:
+- choose before a cutoff, test once after it;
+- price the executable version;
+- enter an hour late at the later price;
+- state $ a year over SSR at capacity.
+
+Each study's findings has a coordinator's check recomputed from its raw files. **Nothing enters the book.** Every
+`book_entries.json` is `[]`, so no approval commands are pending.
+
+| study | what was tested | result |
+|---|---|---|
+| `pm_weather` | Kalshi and Polymarket temperature buckets against the NBM station forecast (6 cities, whole events) | **no-go**: the price beats the model everywhere (Brier 0.1196 vs 0.1327 on Kalshi the day before; gap t 4.6–16.3). When they disagree by more than 15pp, outcomes follow the price. A model+price blend is worse than the price |
+| `pm_crypto_options` | strike, range and touch markets against Deribit-implied probabilities | **no-go**: the market has the lower Brier in all 5 families. Options overstate touches (realised/implied vol 0.67–0.78), so the market already prices the variance risk premium |
+| `pm_sports_sharp` | pre-game soccer and tennis against de-vigged Pinnacle or average odds | **no-go**: Polymarket's kick-off Brier equals the closing consensus (0.19770 vs 0.19772); every role bias is under one-way costs |
+| `pm_rewards_mm` | venue liquidity rents against an hourly re-quoting maker | **no-go**: Polymarket pays $173k a day on chain (64 addresses take half) and Kalshi LIP $221k a day. Simulated rewards of 79–446% a year are lost to adverse selection (fills mark −3.3c at 6h); the verdict hinges on competitors' unobservable reward share |
+| `pm_parlays` | Kalshi combos and Polymarket Combos: the house edge and who collects it | **no-go**: Kalshi combos are 58% of contracts, and makers net 0.19% per $ risked (t 1.04). Polymarket incumbents earn +1.93% (t 3.80) but 0.03% in August |
+| `pm_combos_maker` | a new Polymarket combo quoter pricing off leg midpoints, winning only below the incumbent | **no-go**: the pick lost out of sample (t −0.34). Cross-game 7+ legs at 1.4× fair is descriptive only ($767k a year point estimate, interval −$190k to +$1.72M, test count z 1.9993) |
+| `pm_wallet_skill` | persistent wallet skill, copied an hour late | **no-go**: skill exists in a few big sports bettors, but it is realised within 5 minutes (in play). Copying everyone at +1h loses 9.9% a signal |
+| `pm_structure_scan` | question templates, date and strike ladders, hourly momentum and reversal (1,351 variants) | **no-go**: ladder violations sit in dead books (110 of 120 entries had no trade on one leg); the best template tilt failed its pre-registered fresh-event confirmation |
+
+**What the session established.**
+1. **For slow participants these prices are efficient.** Polymarket and Kalshi prices already contain the public
+   model:
+   - the NWS blend for weather;
+   - Deribit's surface, net of its variance premium, for crypto;
+   - the sharp books' close for soccer.
+   An outside model that does not beat the price's Brier before trading has nothing to sell.
+2. **Skill exists, but it is fast.** The wallets with persistent edge are in-play sports bettors whose edge decays
+   within minutes. That is the speed game the repo excludes.
+3. **Rents exist and are farmed.** Combined, the venues pay about $0.4M a day in liquidity rewards. Polymarket combo
+   makers took about $33k a day, with margins compressing from about 19% to 8–9% since August. In both, a slow or
+   model-only entrant is adversely selected or loses to the winner's curse.
+4. **A selection bias in the stored universe.** `research/2026-10-09/polymarket_history/raw/universe.json.gz` keeps
+   markets with at least $10k of lifetime volume. Members of multi-outcome events that cross that line are mostly the
+   ones that rallied toward winning. Five studies measured the bias, each against whole events:
+   - the structure scan: weather +7.7pp → −1.1pp, futures +7.9pp → −0.8pp;
+   - sports: +8.2pp;
+   - weather: +2.5pp;
+   - wallets: +2.5–3.0pp;
+   - crypto ranges: 0.183 against 0.131.
+
+   It would have produced false "go"s in at least three studies. It also explains most of the 2026-10-09
+   "short-horizon favourites overpriced" result: out of sample, neg-risk members score −5.0% gross against −2.0% for
+   standalone markets. A dated correction is appended to that findings file, and its weather/props forward-test
+   candidate is withdrawn.
+   **Rule from now on:** any member-level Polymarket study selects whole events, fetching members under $10k from
+   gamma.
+
+**Facts learnt that cost time.**
+- **Polymarket's collateral.** Rewards are paid in pUSD by `0x2c2795ea…a709` at 00:00 UTC. Combos collateral is pUSD
+  approved to Exchange v3.
+- **Polymarket endpoints:**
+  - the list of markets that actually pays rewards is `/rewards/markets/current`; `/rewards/markets/multi` returns 100k
+    mostly empty rows;
+  - a combo leg's `position_id` is not a CLOB token; map it through gamma `positionIds` to `clobTokenIds`;
+  - `batch-prices-history` takes 20 tokens a call.
+- **Polygon blocks are about 1.5 s,** not 2 s. Block-number estimates overshoot Infura's 10k-block `getLogs` cap.
+- **Kalshi:**
+  - the batch candle endpoint returns nothing for markets archived before about April 2026, so fetch them one at a time;
+  - the public settled-markets endpoint serves only August–October 2026;
+  - weather settles on The Weather Company from 2026-08-14;
+  - combo makers pay 0.035·C·p(1−p) since 2026-08-20;
+  - LIP is US-only.
+- **Settlement sources and fees:**
+  - Polymarket weather settles on the maximum METAR reading, 0–2°F below the NWS climate report, so 70.7% of its
+    settlements match the climate report.
+  - Weather markets were fee-free until 2026-03-30.
+  - football-data's Pinnacle columns stop after January 2026.
+- **Free odds archives:** tennis-data's real files sit behind an obscured path; aussportsbetting.com is behind
+  Cloudflare.
+
+**Open, in order of expected value.** None is approved; the first two need the user's accounts or money.
+1. **Polymarket combo paper quoter** for cross-game 7+ legs at m = 0.40. It is passive: it subscribes to the RFQ
+   websocket and records hypothetical quotes. It needs CLOB credentials. Go after 60 days if count z ≥ 2 and excess > 0.
+2. **Liquidity-reward micro-test,** about $2k across 20 joinable Polymarket markets for 14 days. It is real money and
+   the only way to observe the reward share. The Kalshi LIP paper quoter needs a US-eligible account.
+3. **Election night (2026-11-03)** minute books on both venues. The 2026-10-09 study's open item; the venue tilt is
+   untested at minute resolution.
+4. **Forward watch lists:**
+   - resting soccer draw bids (+3.7% a signal out of sample, t 1.64);
+   - range longshot NO (needs at least 500 fresh Q4 events);
+   - a variance-adjusted options model for touch markets.
+
+**Infrastructure.** Eight new scripts, each with tests (206 pass):
+- `scripts/pm_weather.py`
+- `scripts/pm_rewards_mm.py`
+- `scripts/pm_crypto_options.py`
+- `scripts/pm_sports_sharp.py`
+- `scripts/pm_parlays.py`
+- `scripts/pm_combos_maker.py`
+- `scripts/pm_wallet_skill.py`
+- `scripts/pm_structure_scan.py`
+
 ## Session log — 2026-10-11 (forward tests, the book written, and what an executable queue bidder earns)
 
 Asked to "continue". The book's pending writes were approved and run; launchd was declined for now. The session froze

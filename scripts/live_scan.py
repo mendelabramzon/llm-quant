@@ -138,7 +138,9 @@ RATE_CROSSCHECK = {
     'WEETH':  ('call', 'getEETHByWeETH(uint256)', None),
 }
 RATES = {  # price key -> (contract, method, underlying key)
-    'WSTETH': ('0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0', 'stEthPerToken()', 'STETH'),
+    # NAV in ETH, not in stETH: Lido redeems stETH 1:1 for ETH, and the STETH / USD feed (1% deviation threshold)
+    # sat 63bp above ETH / USD on 2026-10-23 and printed a wstETH discount that was not there.
+    'WSTETH': ('0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0', 'stEthPerToken()', 'ETH'),
     'RETH': ('0xae78736cd615f374d3085123a210448e74fc6393', 'getExchangeRate()', 'ETH'),
     'CBETH': ('0xbe9895146f7af43049ca1c1ae358b0541ea49704', 'exchangeRate()', 'ETH'),
     'WEETH': ('0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee', 'getRate()', 'ETH'),

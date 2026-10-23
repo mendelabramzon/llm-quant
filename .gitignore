@@ -1,57 +1,48 @@
+# The repo holds scripts and reports only. Every collected window, cache, ledger, log and fork build stays local.
+
+# secrets
 infura_keys.txt
-.venv/
-__pycache__/
-research/2026-09-05/eth_day/raw/
-research/2026-09-05/eth_5h/raw/
-research/2026-09-05/amount_outliers_eth_5h/txs_all.jsonl.gz
-research/2026-09-05/eth_5h/raw/
-research/*/amount_outliers_eth_*/txs_all.jsonl.gz
-research/2026-09-06/live/raw/
-research/2026-09-06/live/*.log
-research/2026-09-06/live/rpc_errors.jsonl
-research/2026-09-07/captive_flow_lp/fork/lib/
-research/2026-09-07/captive_flow_lp/fork/out/
-research/2026-09-07/captive_flow_lp/fork/cache/
-research/2026-09-07/live_5h/raw/
-research/2026-09-07/live_5h/*.log
-research/2026-09-07/live_5h/rpc_errors.jsonl
-research/2026-09-07/stacy_farm/fork/lib
-research/2026-09-07/stacy_farm/fork/out
-research/2026-09-07/stacy_farm/fork/cache
 etherscan_key.txt
 getblock_keys.json
-research/2026-09-07/solana_live/blocks/
-research/2026-09-07/solana_live/*.log
-research/2026-09-07/solana_1h/blocks/
-research/2026-09-07/solana_1h/probe_block.json.gz
-research/2026-09-07/robinhood_10h/data/
-research/2026-09-07/robinhood_10h/rpc_errors.jsonl
+*_keys.txt
+*_keys.json
 
-# Collected raw windows, collector logs and RPC error journals, for any study directory. The per-study entries above
-# were added one window at a time and a new window therefore arrived untracked-but-not-ignored every session.
-research/*/*/raw/
-research/*/*/*.log
-research/*/*/rpc_errors.jsonl
-research/**/rpc_errors.jsonl
-research/*/*/snap/
-research/*/*/candles/
-research/*/*/books/
-research/*/*/funding/
-research/*/*/candles_1h/
-research/*/*/refs/hl_*.json.gz
-research/*/*/history_analysis.json
-research/*.log
-research/*.err
+# environment / OS
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
 
-# chain-activity caches: chainlist's endpoint list, the per-run price cache (re-fetchable, not evidence)
-research/chains/cache/
-research/*/chains/cache/
+# research/: ignore everything, then re-admit reports (markdown, figures) and the code written for a study
+# (python, our own Solidity tests/contracts, foundry configs). Directories must be re-admitted for the file rules to reach.
+research/**
+!research/**/
+!research/**/*.md
+!research/**/*.py
+!research/**/*.sol
+!research/**/*.svg
+!research/**/*.png
+!research/**/foundry.toml
+!research/**/remappings.txt
+!research/**/strategy_book.txt
 
-# 2026-10-09 history studies: bulky intermediate files outside raw/
-research/2026-10-09/pm_crossvenue/candidates.json
-research/2026-10-09/pm_crossvenue/history.json
-research/2026-10-09/pm_crossvenue/books_*.json
-research/2026-10-09/pm_crossvenue/books.json
-research/2026-10-09/pendle_history/trades*.json.gz
-research/2026-10-09/equity_offhours/sessions.json.gz
-research/2026-10-09/funding_arb/snapshot.json
+# ...except third-party code pulled in for a study: verified contract sources and forge deps/builds
+research/**/sources/
+research/**/raw/docs/
+research/**/lib/
+research/**/out/
+research/**/cache/
+
+# scripts/: generated caches and audit outputs (curated registries such as address_labels.json stay tracked)
+scripts/selector_cache.json
+scripts/labels_audit.json
+*.log
+*.err
+*.stdout
+
+# research markdown that is not a report: runner logs, regenerated table and detector dumps, LLM labeling packets
+research/**/*_log.md
+research/**/*tables.md
+research/**/detectors.md
+research/**/packets.md
+research/**/label_batches/
