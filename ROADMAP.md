@@ -5,6 +5,61 @@ the LLM reads evidence, proposes mechanisms, and writes the infrastructure; dete
 reusable detectors and tests; the human steers. The metric we optimise is **time-to-verified-insight**: how fast a raw
 signal becomes a true, capacity-aware, reproducible claim and then a reusable detector — not classification coverage.
 
+## Session log — 2026-10-23, second session (an alpha with no opponent: the Liquity v2 redemption buffer)
+
+The ask was a new strategy that extracts value without opponents. The findings are in
+[`research/2026-10-23/stability_pools/findings.md`](research/2026-10-23/stability_pools/findings.md) and the code in
+`scripts/stability_pool.py` (tests: `test_stability_pool.py`).
+
+- **Go: `liquity-v2-redemption-buffer-loop`.**
+  - **What it is.** A wstETH trove at the 0.51% minimum rate, hedged with an ETH perp short, with its BOLD in the same
+    branch's stability pool.
+  - **Why it pays.** Unhedged borrowers pay 2.5–8.4% to dodge redemption. A hedged trove is indifferent to redemption,
+    because the fee (0.87% value-weighted) stays in the trove.
+  - **History.** The sim replays every one of the 7,642 historical redemptions, with ties placed behind us. It earned
+    11.3% / 5.2% / 3.8% a year on the BOLD at $1M / $5M / $10M on wstETH.
+  - **Protocol.** OOS +11.9% at $1M (t 4.23), +6.0% at $5M (t 2.21), 40 of 42 one-sided BH survivors, positive every
+    quarter on every branch.
+  - **Forward quote:** $272k a year on $6M of BOLD ($2M a branch). It needs zero capital beyond the hedged ETH carry's
+    collateral, and it lifts the Binance-hedged carry from +0.9% to +2.6% over SSR.
+- **Follow-up (asked for 20–30% APR): go, `liquity-v2-levered-hedged-trove`.**
+  - **What it is.** The 0.51% credit levers the HL-hedged carry instead of funding an SP deposit, in
+    `scripts/levered_trove.py` (tests: `test_levered_trove.py`).
+  - **Configuration.** CR 1.5, perp 5x, rebalanced on a 10% move.
+  - **History.** Return on equity 18–22% with no liquidations.
+  - **Protocol, risk-capped grid.** OOS excess over SSR +15.4% at $1M (t 7.99) and +11.5% at $5M (t 9.44).
+  - **Forward quote:** ~17.5% return on equity, ~$700k a year on $4M.
+  - **More leverage fails.** The full grid picked perp 8x, which was liquidated OOS. Every CR 1.35 variant on
+    wstETH/rETH was liquidated, with drawdowns of 26–46%.
+  - **No 20–30% at size.** Sustained returns of 20–30% at size are not supported. Quarterly return on equity ran
+    11–30% and tracks HL funding.
+- **Small accounts.**
+  - **$1k is impossible.** MIN_DEBT is 2,000 BOLD.
+  - **History, return on equity** (band 5%, $3 a rebalance, no liquidations):
+
+    | equity | return on equity |
+    |---|---|
+    | $10k | 29–49% |
+    | $100k | 26–35% |
+    | $300k | 21–28% |
+
+  - **Protocol.** OOS excess over SSR +31% at $100k.
+  - **The small-size premium is redemption-fee churn.** It is cost-sensitive, and there have been no redemptions so
+    far in 2026Q4.
+  - **Floor with no redemptions:** 15–17.5% return on equity.
+- **Pending, needs the user.**
+  - Both book entries are in `stability_pools/book_entries.json` and passes `strategies.validate`.
+  - **`research/strategies.jsonl` is missing from the working tree.** Commit a8a7040 deleted it rather than untracking
+    it. Restore it with `git show a8a7040~1:research/strategies.jsonl > research/strategies.jsonl`, then run
+    `strategies.py add --file research/2026-10-23/stability_pools/book_entries.json`.
+- **Set aside:**
+  - Plain stability pool deposits: fair value.
+  - Liquity v1's 0% LUSD: the staking yield forgone exceeds the credit.
+  - Aave Umbrella: a fair insurance premium.
+  - fx Protocol SP v2: needs a share-price check.
+- **Next:** port the loop to Felix on HyperEVM, hedged with HL HYPE funding with kHYPE as collateral. Then the other
+  Liquity v2 forks, then a forward paper trove.
+
 ## Session log — 2026-10-23 (the last two hours; repo trimmed to scripts and reports)
 
 The report is [`research/2026-10-23/report.md`](research/2026-10-23/report.md). The window ran 13:09–15:09 UTC and was
